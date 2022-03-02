@@ -1,7 +1,19 @@
+// 網站色系
+$light-bg: #f7f6f3;
+$dark-bg: #212121;
+$dark-red: #841d29;
+$tint-red: #b03342;
+$light-red: #ff5656;
+$card-hover: #fffefc;
+$light-text: #ffffff;
+$dark-text: #575757;
+$gray: #c4c4c4;
+$logo: #989177;
+$shadow: #ddd4bc;
+$mtl-border: #eed19a;
 
 
 @import '~bootstrap/scss/bootstrap.scss';
-
 
 
 body {
