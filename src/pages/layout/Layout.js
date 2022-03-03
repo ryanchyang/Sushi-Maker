@@ -1,6 +1,10 @@
-import { ReactComponent as Logo } from '../../imgs/logo.svg'
+import react, { useState } from 'react';
+import { ReactComponent as Logo } from '../../imgs/logo.svg';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { BsCart4 } from 'react-icons/bs';
+import { BsCart4, BsTwitter } from 'react-icons/bs';
+import { BiCopyright } from 'react-icons/bi';
+import { FaFacebook } from 'react-icons/fa';
+import { RiInstagramFill } from 'react-icons/ri';
 
 
 function Header() {
@@ -14,10 +18,10 @@ function Header() {
   function AsideLeft() {
     return (
       <>
-        <aside style={{ width: '12.5%'}}>
-          <div style={{ borderRight: '1px solid #c4c4c4', height: '100%' }}>
-            <div style={{ width: '50px', height: '50px', margin: '0 auto' , paddingTop:'20px' }}>                
-                <Logo style={{ width: '100%', height: 'auto', fill:'#989177' }}/>
+        <aside className='col-lg-3 col-md-3 col-3 p-0 mobile-adj'>
+          <div className='aside-left'>
+            <div className='logo-box'>                
+                <Logo className='logo' />
             </div>            
           </div>
         </aside>
@@ -26,15 +30,22 @@ function Header() {
   }
   
   function AsideRight() {
+    const [memberImg, setMemberImg] = useState('');
+    const [cartCount, setCartCount] = useState(0);
+    
     return (
       <>
-        <aside style={{ width: '12.5%' }}>
-          <div style={{ borderLeft: '1px solid #c4c4c4', height: '100%' }}>
-          <GiHamburgerMenu />
-          <div>
-              
+        <aside className='col-lg-3 col-md-3 col-3 p-0 mobile-adj'>
+          <div className='aside-right'>
+          <div className='layout-hamberger-box'>
+            <GiHamburgerMenu className='layout-hamberger'/>
+          </div>          
+          <div className='layout-mem-photo-box'>
+              <img src={require('./../../imgs/ruka.png')} alt="member-photo"/>
           </div>
-          <BsCart4 />
+          <div className='layout-cart-btn-box'>
+            <BsCart4 className='layout-cart-btn'/>
+          </div>          
           </div>
         </aside>
       </>
@@ -44,7 +55,27 @@ function Header() {
   function Footer() {
     return (
       <>
-        <div style={{ width: '100%', borderTop: '1px solid #c4c4c4' }}>FOOTER</div>
+        <div className='footer'>
+          <div>
+            <div className='footer-logo-box'>                
+              <Logo className='footer-logo' />
+            </div>
+            <div className='copyright'>
+              PRIMEAL COPY RIGHT &nbsp; <BiCopyright /> &nbsp; 2022
+            </div>
+          </div>
+          <div className='footer-icon-box-group'>
+            <div className='footer-icon-box'>
+              <FaFacebook className='footer-fb'/>
+            </div>
+            <div className='footer-icon-box'>
+              <BsTwitter className='footer-tw'/>
+            </div>
+            <div className='footer-icon-box'>
+              <RiInstagramFill className='footer-in'/>
+            </div>
+          </div>          
+        </div>
       </>
     );
   }

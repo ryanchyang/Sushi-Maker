@@ -3,14 +3,14 @@ import { Header, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 function Home() {
   return (
     <>
-      <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '75%', height: '1200px' }}>            
-            <Footer />
+      <Header />      
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />          
+              <Footer />
+          </div>
+          <AsideRight />        
         </div>
-        <AsideRight />        
-      </div>      
     </>
   );
 }
