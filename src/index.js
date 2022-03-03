@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Classic from './pages/classic/Index'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Classic />
   </React.StrictMode>,
   document.getElementById('root')
 );
