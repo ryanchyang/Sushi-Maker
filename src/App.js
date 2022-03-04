@@ -22,8 +22,12 @@ import Evts from './pages/home/Evts';
 import EvtsDetails from './pages/home/EvtsDetails';
 import EvtsSignUp from './pages/home/EvtsSignUp';
 //setorder
-import SetOrder from './pages/setorder/SetOrder';
+import StepOne from './pages/setorder/StepOne';
+import StepTwo from './pages/setorder/StepOne';
+import StepThree from './pages/setorder/StepOne';
+import StepFour from './pages/setorder/StepOne';
 import SetOrderFinal from './pages/setorder/SetOrderFinal';
+import SetOrderList from './pages/setorder/SetOrderList';
 // customize
 import CusMiDetail from './pages/customize/CusMiDetail';
 import Customize from './pages/customize/Customize';
@@ -87,11 +91,23 @@ function App() {
           <Route path="/news">
             <News />
           </Route>
-          <Route path="/setorder/index" exact>
-            <SetOrder />
+          <Route path="/setorder/stepone" exact>
+            <StepOne />
+          </Route>
+          <Route path="/setorder/steptwo" exact>
+            <StepTwo />
+          </Route>
+          <Route path="/setorder/stepthree" exact>
+            <StepThree />
+          </Route>
+          <Route path="/setorder/stepfour" exact>
+            <StepFour />
           </Route>
           <Route path="/setorder/setorderfinal">
             <SetOrderFinal />
+          </Route>
+          <Route path="/setorder/setorderlist">
+            <SetOrderList />
           </Route>
           <Route path="/customize/:id" exact>
             <CusMiDetail />
