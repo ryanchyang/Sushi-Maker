@@ -7,7 +7,7 @@ import Classic from './pages/classic/Index';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Classic />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
