@@ -37,7 +37,7 @@ function Title(props) {
           </div>
         </div>
       </div>
-      <h1 className="layout-title">{props.title}</h1>
+      <mytitle className="layout-title en-title-48">{props.title}</mytitle>
     </>
   );
 }

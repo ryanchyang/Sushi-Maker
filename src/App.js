@@ -24,6 +24,9 @@ import EvtsSignUp from './pages/home/EvtsSignUp';
 //setorder
 import SetOrder from './pages/setorder/SetOrder';
 import SetOrderFinal from './pages/setorder/SetOrderFinal';
+// customize
+import CusMiDetail from './pages/customize/CusMiDetail';
+import Customize from './pages/customize/Customize';
 
 function App() {
   return (
@@ -84,12 +87,17 @@ function App() {
           <Route path="/news">
             <News />
           </Route>
-          <Route path="/setorder/setorder" exact>
+          <Route path="/setorder/index" exact>
             <SetOrder />
           </Route>
-
           <Route path="/setorder/setorderfinal">
             <SetOrderFinal />
+          </Route>
+          <Route path="/customize/:id" exact>
+            <CusMiDetail />
+          </Route>
+          <Route path="/customize">
+            <Customize />
           </Route>
         </Switch>
       </>

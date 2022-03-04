@@ -1,15 +1,15 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 
-function Share() {
+function CusMiDetail() {
   return (
     <>
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
-          <Title title={'Share'} />
-          <p className="ch-cont-14">Share分享牆</p>
+          <Title title={'Customization'} />
           <br />
+
           <Footer />
         </div>
         <AsideRight />
@@ -18,4 +18,4 @@ function Share() {
   );
 }
 
-export default Share;
+export default CusMiDetail;
