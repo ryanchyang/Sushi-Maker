@@ -14,6 +14,13 @@ import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
 import ShareMyShare from './pages/share/ShareMyShare';
+// Home
+import Home from './pages/home/Index';
+import News from './pages/home/News';
+import NewsDetails from './pages/home/NewsDetails';
+import Evts from './pages/home/Evts';
+import EvtsDetails from './pages/home/EvtsDetails';
+import EvtsSignUp from './pages/home/EvtsSignUp';
 
 function App() {
   return (
@@ -55,6 +62,24 @@ function App() {
           </Route>
           <Route path="/share/my-share">
             <ShareMyShare />
+          </Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/evts/details/signup">
+            <EvtsSignUp />
+          </Route>
+          <Route path="/evts/details">
+            <EvtsDetails />
+          </Route>
+          <Route path="/evts">
+            <Evts />
+          </Route>
+          <Route path="/news/details">
+            <NewsDetails />
+          </Route>
+          <Route path="/news">
+            <News />
           </Route>
         </Switch>
       </>
