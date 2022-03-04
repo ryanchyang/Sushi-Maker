@@ -23,14 +23,21 @@ import EvtsDetails from './pages/home/EvtsDetails';
 import EvtsSignUp from './pages/home/EvtsSignUp';
 //setorder
 import StepOne from './pages/setorder/StepOne';
-import StepTwo from './pages/setorder/StepOne';
-import StepThree from './pages/setorder/StepOne';
-import StepFour from './pages/setorder/StepOne';
+import StepTwo from './pages/setorder/StepTwo';
+import StepThree from './pages/setorder/StepThree';
+import StepFour from './pages/setorder/StepFour';
 import SetOrderFinal from './pages/setorder/SetOrderFinal';
 import SetOrderList from './pages/setorder/SetOrderList';
 // customize
 import CusMiDetail from './pages/customize/CusMiDetail';
 import Customize from './pages/customize/Customize';
+
+// Cart
+import CartStepOne from './pages/cart/StepOne';
+import CartStepTwo from './pages/cart/StepTwo';
+import CartStepThree from './pages/cart/StepThree';
+import CartStepFour from './pages/cart/StepFour';
+import CartList from './pages/cart/CartList';
 
 function App() {
   return (
@@ -114,6 +121,21 @@ function App() {
           </Route>
           <Route path="/customize">
             <Customize />
+          </Route>
+          <Route path="/cart/stepone" exact>
+            <CartStepOne />
+          </Route>
+          <Route path="/cart/steptwo" exact>
+            <CartStepTwo />
+          </Route>
+          <Route path="/cart/stepthree" exact>
+            <CartStepThree />
+          </Route>
+          <Route path="/cart/stepfour" exact>
+            <CartStepFour />
+          </Route>
+          <Route path="/cart/cartlist">
+            <CartList />
           </Route>
         </Switch>
       </>
