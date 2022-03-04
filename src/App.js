@@ -21,6 +21,9 @@ import NewsDetails from './pages/home/NewsDetails';
 import Evts from './pages/home/Evts';
 import EvtsDetails from './pages/home/EvtsDetails';
 import EvtsSignUp from './pages/home/EvtsSignUp';
+//setorder
+import SetOrder from './pages/setorder/SetOrder';
+import SetOrderFinal from './pages/setorder/SetOrderFinal';
 
 function App() {
   return (
@@ -80,6 +83,13 @@ function App() {
           </Route>
           <Route path="/news">
             <News />
+          </Route>
+          <Route path="/setorder/setorder" exact>
+            <SetOrder />
+          </Route>
+
+          <Route path="/setorder/setorderfinal">
+            <SetOrderFinal />
           </Route>
         </Switch>
       </>
