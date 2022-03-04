@@ -10,7 +10,7 @@ const LoginArea = styled.div`
 
 const LoginButton = styled.button``;
 
-function Member_login() {
+function Login() {
   return (
     <LoginArea>
       <p>Hello, My Friend</p>
@@ -27,4 +27,4 @@ function Member_login() {
   );
 }
 
-export default Member_login;
+export default Login;
