@@ -11,6 +11,10 @@ const LoginButton = styled.button`
   margin-top: 2%;
 `;
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+}
+
 function Login() {
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +31,7 @@ function Login() {
 
             <LoginArea>
               <p>Hello, My Friend</p>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <p>帳號</p>
                 <input
                   type="text"
