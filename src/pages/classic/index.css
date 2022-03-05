@@ -1,5 +1,109 @@
-.category-box{
+.category-box {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.prod-list{
+    padding: 3% 5% 0 5%;
     display: flex;
     justify-content: space-between;
-    padding: 0 200px;
+}
+.prod-card {
+  width: 28%;
+  height: 530px;
+}
+.prod-img-box {
+  position: relative;
+  width: 95%;
+  height: auto;
+}
+.prod-img-box img {
+  width: 90%;
+  height: auto;
+  object-fit: cover;
+}
+.discount-tag {
+  position: absolute;
+  right: 10%;
+  top: 12%;
+}
+.prod-name-ch {
+  padding-left: 6%;
+}
+.prod-name-en {
+  padding-top: 1%;
+  padding-left: 6%;
+}
+.prod-price-special {
+  padding-top: 5%;
+  display: flex;        /*切換特價標籤*/
+  width: 88%;
+  padding-right: 5%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.original-price {
+  padding-top: 2%;
+  text-decoration-line: line-through;
+  color: #c4c4c4;
+}
+.special-price {
+  color: #b03342;
+}
+.prod-price-no-discount{
+  display: none;        /*切換特價標籤*/
+  padding-top: 5%;  
+  width: 88%;
+  padding-right: 5%;
+  margin: 0 auto;  
+}
+.no-discount{
+    float: right;
+    padding-top: 2%;    
+    color: #212121;
+}
+.select-add-cart{
+    padding-top: 5%;
+    display: flex;
+    width: 88%;
+    padding-right: 5%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.select-count{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;    
+    border-top: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;  
+}
+/*隱藏input(number)的上下選擇按鈕*/
+.select-count input::-webkit-outer-spin-button,
+.select-count input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.select-count button{
+    border:none;
+    background: none;
+	padding: 0;
+	cursor: pointer;
+    font-size: 2.5rem;
+}
+.select-count input{
+    width: 50%; 
+    font-size: 1.8rem;     
+    background: none;
+    border: none;
+    text-align: center;      
+}
+
+@media screen and (max-width: 576px) {
+  .prod-card {
+    width: 45%;
+  }
+}
+
+@media only screen and (min-width: 577px) and (max-width: 960px) {
 }
