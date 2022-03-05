@@ -18,9 +18,9 @@ import ShareMyShare from './pages/share/ShareMyShare';
 import Home from './pages/home/Index';
 import News from './pages/home/News';
 import NewsDetails from './pages/home/NewsDetails';
-import Evts from './pages/home/Evts';
-import EvtsDetails from './pages/home/EvtsDetails';
-import EvtsSignUp from './pages/home/EvtsSignUp';
+import Evnts from './pages/home/Evnts';
+import EvntsDetails from './pages/home/EvntsDetails';
+import EvntsSignUp from './pages/home/EvntsSignUp';
 //setorder
 import StepOne from './pages/setorder/StepOne';
 import StepTwo from './pages/setorder/StepTwo';
@@ -83,14 +83,14 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/evts/details/signup">
-            <EvtsSignUp />
+          <Route path="/evnts/details/signup">
+            <EvntsSignUp />
           </Route>
-          <Route path="/evts/details">
-            <EvtsDetails />
+          <Route path="/evnts/details">
+            <EvntsDetails />
           </Route>
-          <Route path="/evts">
-            <Evts />
+          <Route path="/evnts">
+            <Evnts />
           </Route>
           <Route path="/news/details">
             <NewsDetails />
