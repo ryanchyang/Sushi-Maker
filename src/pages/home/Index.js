@@ -7,7 +7,7 @@ function Index() {
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
-          <Title title={'EVENT'} />
+          <Title title={''} />
           <br />
 
           <Footer />
