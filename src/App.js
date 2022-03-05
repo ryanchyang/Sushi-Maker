@@ -18,7 +18,7 @@ import ShareMyShare from './pages/share/ShareMyShare';
 import Home from './pages/home/Index';
 import News from './pages/home/News';
 import NewsDetails from './pages/home/NewsDetails';
-import Evnts from './pages/home/Evtns';
+import Evnts from './pages/home/Evnts';
 import EvntsDetails from './pages/home/EvntsDetails';
 import EvntsSignUp from './pages/home/EvntsSignUp';
 //setorder
