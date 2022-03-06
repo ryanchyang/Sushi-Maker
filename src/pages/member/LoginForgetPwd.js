@@ -14,11 +14,12 @@ const LoginBody = styled.body`
   background: #212121;
 `;
 const Slogan = styled.p`
-  color: #f7f6f3;
+  color: #212121;
   text-align: center;
   font-size: 3.6rem;
   line-height: 5.4rem;
   letter-spacing: 0.81rem;
+  margin-bottom: 84px; 
 `;
 const LoginArea = styled.div`
   display: flex;
@@ -31,14 +32,16 @@ const LoginForm = styled.form`
   flex-direction: column;
 `;
 const InputArea = styled.div`
-  margin-top: 15%;
-  padding: 0;
+  padding-right: 2%;
+  padding-left: 2%;
+  padding-top: 15%;
+  background: #f7f6f3;
 `;
 const LoginAreaImg = styled.div`
   padding-left: 5%;
 `;
 const InputTitle = styled.p`
-  color: #f7f6f3;
+  color: #212121;
   margin-top: 48px;
 `;
 const InputForPsw = styled.p`
@@ -87,13 +90,12 @@ function LoginForgetPassword() {
                   style={{ width: '100%', height: '100%' }}
                 ></img>
               </LoginAreaImg>
-              <InputArea className="col-5">
+              <InputArea className="col-7">
                 <Slogan>
-                  Hello, <br />
-                  My Friend
+                  Pleae confirm your Email
                 </Slogan>
                 <LoginForm onSubmit={handleSubmit}>
-                  <InputTitle className="ch-cont-14">帳號</InputTitle>
+                  <InputTitle className="ch-cont-14">請輸入您的帳號</InputTitle>
                   <input
                     type="text"
                     value={account}
@@ -112,42 +114,19 @@ function LoginForgetPassword() {
                     }}
                   />
                   <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
-
-                  <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <PswInput
-                    type="password"
-                    value={password}
-                    onChange={e => {
-                      setPassword(e.target.value);
-                    }}
-                    style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
-                    }}
-                  />
-                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
                   <button
                     className="ch-title-22"
                     style={{
                       borderRadius: 50,
-                      marginTop: '61px',
+                      marginTop: '90px',
                       height: '40px',
-                      color: '#575757',
+                      color: '#f7f6f3',
+                      background: '#b03342',
                     }}
                   >
-                    登入
+                    送出
                   </button>
                 </LoginForm>
-                <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
-                <InputRegistLink className="ch-cont-14">
-                  還沒有帳號嗎? 點我註冊
-                </InputRegistLink>
               </InputArea>
             </LoginArea>
 
