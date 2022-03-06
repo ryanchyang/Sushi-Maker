@@ -22,9 +22,14 @@
     flex-wrap: wrap;
 }
 .prod-card {
+  text-align: center;
   width: 28%;
   height: auto;
   margin-bottom: 5%;
+  padding-bottom: 2%;
+}
+.prod-card:hover{   
+  background-color: #e0ddbd;
 }
 .prod-img-box {
   position: relative;
@@ -110,6 +115,48 @@
     background: none;
     border: none;
     text-align: center;      
+}
+.cart-btn{
+  cursor: pointer;
+}
+/*ul水平置中*/
+/*參考: https://blog.sig.tw/2015/09/css-ul-%E7%BD%AE%E4%B8%AD%E6%96%B9%E6%B3%95-%E7%94%A8%E6%96%BC%E4%BD%BF%E7%94%A8-li-%E8%A8%AD%E8%A8%88%E7%9A%84%E9%81%B8%E5%96%AE.html*/
+.pagination-box{ 
+  float: right;
+  left: -50%;
+  position: relative;
+  margin-bottom: 8%;
+}
+.pagination{  
+  float:left;
+  left: 50%;
+  position: relative;
+  list-style-type: none;
+}
+.pagination li{  
+  display:inline;   /*li水平排列*/
+  margin-right: 6%; 
+}
+.page-prev, .page-next{
+  background-color: #c4c4c4;  
+  border-radius: 50%;
+  color: #ffffff;
+}
+.page-number{
+  border: 1px solid #575757;
+  border-radius: 50%;
+  color: #575757;
+}
+.page-number.selected{   /*分頁被選中時*/
+  border: 1px solid #B03342;
+  color: #B03342;
+}
+.page-prev, .page-next, .page-number{
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 576px) {

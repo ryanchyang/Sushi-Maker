@@ -57,7 +57,7 @@ function Index() {
                   <input type="number" value={1} />
                   <button>+</button>
                 </div>
-                <div className='discount-tag1'>
+                <div className='cart-btn'>
                   <Cart />
                 </div>
               </div>
@@ -87,7 +87,7 @@ function Index() {
                   <input type="number" value={1} />
                   <button>+</button>
                 </div>
-                <div className='discount-tag1'>
+                <div className='cart-btn'>
                   <Cart />
                 </div>
               </div>
@@ -117,7 +117,7 @@ function Index() {
                   <input type="number" value={1} />
                   <button>+</button>
                 </div>
-                <div className='discount-tag1'>
+                <div className='cart-btn'>
                   <Cart />
                 </div>
               </div>
@@ -147,7 +147,7 @@ function Index() {
                   <input type="number" value={1} />
                   <button>+</button>
                 </div>
-                <div className='discount-tag1'>
+                <div className='cart-btn'>
                   <Cart />
                 </div>
               </div>
@@ -155,8 +155,14 @@ function Index() {
           </div>
           
           {/* pagination */}
-          <div>
-            
+          <div className="pagination-box">
+            <ul className="pagination ch-cont-16">
+              <li><div className="page-prev">&lt;</div></li>
+              <li><div className="page-number">1</div></li>
+              <li><div className="page-number selected">2</div></li>
+              <li><div className="page-number">3</div></li>
+              <li><div className="page-next">&gt;</div></li>
+            </ul>
           </div>
 
 
