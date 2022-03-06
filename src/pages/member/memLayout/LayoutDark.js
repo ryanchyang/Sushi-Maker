@@ -46,7 +46,7 @@ function AsideLeft() {
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-left">
+        <div className="aside-left" style={{ border: 'none' }}>
           <div className="logo-box">
             <Logo className="logo" />
           </div>
@@ -63,7 +63,7 @@ function AsideRight() {
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-right">
+        <div className="aside-right" style={{ border: 'none' }}>
           <div className="layout-hamberger-box">
             <Hamburger className="layout-hamberger" />
           </div>

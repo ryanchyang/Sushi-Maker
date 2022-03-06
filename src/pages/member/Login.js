@@ -1,5 +1,11 @@
 import styled from 'styled-components';
-import { Header, Title, AsideLeft, AsideRight, Footer } from './memLayout/LayoutDark';
+import {
+  Header,
+  Title,
+  AsideLeft,
+  AsideRight,
+  Footer,
+} from './memLayout/LayoutDark';
 import { useState } from 'react';
 
 const LoginBody = styled.body`
@@ -20,11 +26,15 @@ const LoginForm = styled.form`
   flex-direction: column;
 `;
 const InputArea = styled.div`
-  margin-top: 25%;
+  margin-top: 20%;
+  padding: 0;
 `;
 const LoginAreaImg = styled.div`
-  height: 100vh;
+  padding-left: 5%;
 `;
+const InputTitle = styled.p`
+  color: #f7f6f3;
+`
 
 const handleSubmit = e => {
   e.preventDefault();
@@ -43,32 +53,44 @@ function Login() {
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
             <LoginArea>
-              <LoginAreaImg>
+              <LoginAreaImg className="col-8">
                 <img
                   src={require('../../imgs/mem/LoginImg.png')}
                   style={{ width: '100%', height: '100%' }}
                 ></img>
               </LoginAreaImg>
-              <InputArea>
+              <InputArea className="col-5">
                 <Slogan className="en-title-24">
                   Hello, <br />
                   My Friend
                 </Slogan>
                 <LoginForm onSubmit={handleSubmit}>
-                  <p className="ch-cont-14">帳號</p>
+                  <InputTitle className="ch-cont-14">帳號</InputTitle>
                   <input
                     type="text"
                     value={account}
                     onChange={e => {
                       setAccount(e.target.value);
                     }}
+                    style={{
+                      borderRadius: 50,
+                      height: '40px',
+                      background: '#212121',
+                      border: '1px solid #f7f6f3',
+                    }}
                   />
-                  <p className="ch-cont-14">密碼</p>
+                  <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <input
                     type="password"
                     value={password}
                     onChange={e => {
                       setPassword(e.target.value);
+                    }}
+                    style={{
+                      borderRadius: 50,
+                      height: '40px',
+                      background: '#212121',
+                      border: '1px solid #f7f6f3',
                     }}
                   />
                   <button>登入</button>
