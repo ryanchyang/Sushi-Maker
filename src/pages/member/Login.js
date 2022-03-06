@@ -7,13 +7,18 @@ import {
   Footer,
 } from './memLayout/LayoutDark';
 import { useState } from 'react';
+import { BsEyeSlash } from 'react-icons/bs';
 
+//styled component
 const LoginBody = styled.body`
   background: #212121;
 `;
 const Slogan = styled.p`
   color: #f7f6f3;
   text-align: center;
+  font-size: 3.6rem;
+  line-height: 5.4rem;
+  letter-spacing: 0.81rem;
 `;
 const LoginArea = styled.div`
   display: flex;
@@ -26,7 +31,7 @@ const LoginForm = styled.form`
   flex-direction: column;
 `;
 const InputArea = styled.div`
-  margin-top: 20%;
+  margin-top: 15%;
   padding: 0;
 `;
 const LoginAreaImg = styled.div`
@@ -34,10 +39,33 @@ const LoginAreaImg = styled.div`
 `;
 const InputTitle = styled.p`
   color: #f7f6f3;
+  margin-top: 48px;
+`;
+const InputForPsw = styled.p`
+  color: #f7f6f3;
+  margin-top: 33px;
+  text-align: center;
+`;
+const InputRegistLink = styled.p`
+  color: #f7f6f3;
+  margin-top: 26px;
+  text-align: center;
+`;
+const ErrorMessage = styled.p`
+  color: #b03342
+`;
+
+//顯示關閉密碼icon待開發
+const PswInput = styled.input`
+  after::{
+    <BsEyeSlash></BsEyeSlash>
+
+  }
 `
 
+//function
 const handleSubmit = e => {
-  e.preventDefault();
+  e.preventDefault(); 
 };
 
 function Login() {
@@ -60,7 +88,7 @@ function Login() {
                 ></img>
               </LoginAreaImg>
               <InputArea className="col-5">
-                <Slogan className="en-title-24">
+                <Slogan>
                   Hello, <br />
                   My Friend
                 </Slogan>
@@ -77,10 +105,16 @@ function Login() {
                       height: '40px',
                       background: '#212121',
                       border: '1px solid #f7f6f3',
+                      color: '#f7f6f3',
+                      fontSize: '1.4rem',
+                      lineHeight: '1.8rem',
+                      letterSpacing: '0.14rem',
                     }}
                   />
+                  <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
+
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <input
+                  <PswInput
                     type="password"
                     value={password}
                     onChange={e => {
@@ -91,10 +125,29 @@ function Login() {
                       height: '40px',
                       background: '#212121',
                       border: '1px solid #f7f6f3',
+                      color: '#f7f6f3',
+                      fontSize: '1.4rem',
+                      lineHeight: '1.8rem',
+                      letterSpacing: '0.14rem',
                     }}
                   />
-                  <button>登入</button>
+                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
+                  <button
+                    className="ch-title-22"
+                    style={{
+                      borderRadius: 50,
+                      marginTop: '61px',
+                      height: '40px',
+                      color: '#575757',
+                    }}
+                  >
+                    登入
+                  </button>
                 </LoginForm>
+                <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
+                <InputRegistLink className="ch-cont-14">
+                  還沒有帳號嗎? 點我註冊
+                </InputRegistLink>
               </InputArea>
             </LoginArea>
 

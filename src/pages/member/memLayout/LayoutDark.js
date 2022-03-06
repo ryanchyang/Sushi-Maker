@@ -6,6 +6,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
+import { AiOutlineUser } from 'react-icons/ai';
 
 function Header() {
   return (
@@ -67,9 +68,22 @@ function AsideRight() {
           <div className="layout-hamberger-box">
             <Hamburger className="layout-hamberger" />
           </div>
-          <div className="layout-mem-photo-box">
-            <img src={require('../../../imgs/ruka.png')} alt="member-photo" />
+
+          <div className="layout-cart-btn-box">
+            <AiOutlineUser
+              style={{
+                display: 'block',
+                margin: '0 auto',
+                fontSize: '25px',
+                fill: '#f7f6f3',
+              }}
+            ></AiOutlineUser>
           </div>
+
+          {/* <div className="layout-mem-photo-box"> */}
+          {/* <img src={require('../../../imgs/ruka.png')} alt="member-photo" /> */}
+          {/* </div> */}
+
           <div className="layout-cart-btn-box">
             <Cart className="layout-cart-btn" />
           </div>
