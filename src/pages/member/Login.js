@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Header, Title, AsideLeft, AsideRight, Footer } from './memLayout/LayoutDark';
 import { useState } from 'react';
 
 const LoginBody = styled.body`

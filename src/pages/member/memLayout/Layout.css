@@ -1,0 +1,122 @@
+.aside-left{ 
+    border-right: 1px solid #c4c4c4; 
+    height: 100%; 
+}
+.aside-right{ 
+    border-left: 1px solid #c4c4c4; 
+    height: 100%; 
+}
+.mobile-top{
+    display: none;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+.layout-cart-btn-box-top{     
+    padding-top: 40px;
+    padding-right: 10px;
+}
+.layout-title{
+    padding: 20px 0 0 30px;
+    font-size: 5rem;
+}
+.logo-box{ 
+    width: 70px; 
+    height: 70px; 
+    margin: 0 auto; 
+    padding-top: 20px; 
+}
+.logo{ 
+    width: 100%; 
+    height: auto; 
+    fill:#989177; 
+}
+.layout-hamberger-box{
+    padding-top: 25px;
+}
+.layout-hamberger{ 
+    display: block;
+    margin: 0 auto;   
+    font-size: 30px;    
+}
+.layout-mem-photo-box{ 
+    margin: 0 auto; 
+    padding-top: 25px;  
+    width: 50px; 
+    height: 50px;
+}
+.layout-mem-photo-box img{
+    border-radius: 50%;
+    width: 100%; 
+    height: auto;
+}
+.layout-cart-btn-box{
+    padding-top: 50px;
+}
+.layout-cart-btn{
+    display: block;
+    margin: 0 auto;   
+    font-size: 25px;
+}
+.footer{ 
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid #c4c4c4;
+}
+.footer-logo-box{
+    display: inline-block;
+    width: 20px; 
+    height: 20px; 
+    margin: 8px 0 8px 15px; 
+}
+.footer-logo{
+    width: 100%; 
+    height: auto; 
+    fill:#989177;
+}
+.copyright{    
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 8px 0 8px 20px;
+    color: #575757;
+}
+.footer-icon-box-group{
+    display: flex;    
+}
+.footer-icon-box{
+    width: 15px; 
+    height: 15px; 
+    margin: 8px 10px 8px 10px;
+}
+.footer-fb, .footer-tw, .footer-in{
+    width: 100%; 
+    height: auto; 
+    fill:#575757;
+}
+
+@media screen and (max-width: 576px) {
+    .mobile-adj {
+        display: none; 
+    }    
+    .layout-title{        
+        font-size: 2.4rem;
+        line-height: 3.6rem;
+        letter-spacing: 0.54rem;
+    } 
+    .logo-box{
+        width: 55px;
+        height: 55px;
+    }
+    .mobile-top{
+        display: flex;        
+    }
+}
+@media only screen and (min-width: 577px) and (max-width: 960px) {
+    .logo-box{
+        width: 40px;
+        height: 40px;
+    }
+    .layout-title{        
+        font-size: 4rem;
+    }
+}
