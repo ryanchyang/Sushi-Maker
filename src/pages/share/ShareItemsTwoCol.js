@@ -3,7 +3,9 @@ import styles from './Share.module.scss';
 import { ReactComponent as ArrowRight } from '../../imgs/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../../imgs/arrow-left.svg';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
+import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
 import { ReactComponent as Shin } from './imgs/shin.svg';
+import { ReactComponent as Commenter } from './imgs/user.svg';
 import { ReactComponent as Heart } from '../../imgs/heart.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
@@ -28,7 +30,7 @@ function ShareItems() {
               </div>
             </div>
           </div>
-          <div className={`mycontainer ${styles['mb-30']}`}>
+          <div className={`mycontainer ${styles['mb-30']} d-flex`}>
             <div
               className={`${styles['img-section']} col d-flex align-items-center flex-column`}
             >
@@ -79,6 +81,55 @@ function ShareItems() {
               <div className={`${styles['img-desc']} d-flex ch-cont-16`}>
                 這個壽司超炫!!如果下次朋友有揪我一定二話不說再買R!!!這個壽司超炫!!如果下次朋友有揪我一定二話不說再買R!!!
                 愛因斯坦講過一句值得人反覆尋思的話，提出一個問題往往比解決一個更重要。
+              </div>
+            </div>
+
+            <div
+              className={`${styles['message-section']} col d-flex flex-column`}
+            >
+              <DeleteSm className={`${styles['del-button']}`} />
+              <div style={{ height: 70 }}></div>
+              <div style={{ paddingLeft: 180, paddingRight: 30 }}>
+                <div className={`d-flex mb-3 border-bottom`}>
+                  <h2 className="mytitle ch-title-18 mr-4 ">評論</h2>
+                  <h3 className="mytitle ch-title-18">{'3'}</h3>
+                </div>
+                <div className="d-flex my-5">
+                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                    <Commenter />
+                  </div>
+                  <div className="d-flex flex-column ">
+                    <h2 className="en-cont-14 mb-3 font-weight-bold">
+                      Shinder Lin
+                    </h2>
+                    <p className="ch-cont-14">非常好吃的壽司</p>
+                    <p className="en-cont-12">36 mins ago</p>
+                  </div>
+                </div>
+                <div className="d-flex my-5">
+                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                    <Commenter />
+                  </div>
+                  <div className="d-flex flex-column ">
+                    <h2 className="en-cont-14 mb-3 font-weight-bold">
+                      Miles Teng
+                    </h2>
+                    <p className="ch-cont-14">拍得很好看</p>
+                    <p className="en-cont-12">1 hour ago</p>
+                  </div>
+                </div>
+                <div className="d-flex my-5">
+                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                    <Commenter />
+                  </div>
+                  <div className="d-flex flex-column ">
+                    <h2 className="en-cont-14 mb-3 font-weight-bold">
+                      Joe Shih
+                    </h2>
+                    <p className="ch-cont-14">Looks amazing✨</p>
+                    <p className="en-cont-12">1 hour ago</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

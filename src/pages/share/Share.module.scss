@@ -1,0 +1,146 @@
+.button {
+  border-radius: 30rem;
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  border: 1px solid #505050;
+  height: 4rem;
+  line-height: 1;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+.mt-45 {
+  margin-top: 45px;
+}
+
+.mb-80 {
+  margin-bottom: 80px;
+}
+
+.waterfall-container {
+  padding: 0 100px;
+}
+
+.img-section {
+  position: relative;
+}
+
+.message-section {
+  position: relative;
+}
+.img-section-left {
+  position: relative;
+  transform: translateX(-250px);
+}
+
+.del-button {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  position: absolute;
+  top: 60px;
+  left: 120px;
+  cursor: pointer;
+}
+
+.message-button {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.message-button:hover,
+.info-button:hover,
+.del-button:hover {
+  background-color: #e2e2e2;
+  background-size: 250px 150px;
+  border-radius: 50%;
+}
+
+.info-button {
+  width: 45px;
+  height: 45px;
+  padding: 10px;
+  position: absolute;
+  top: 120px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.img-info {
+  position: relative;
+  width: 750px;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-img-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.save-button {
+  width: 150px;
+  height: 44px;
+  padding: 5px 10px;
+  background-color: #b03342;
+  border: none;
+  border-radius: 30px;
+}
+
+.img-container {
+  position: relative;
+}
+
+.img-arrow-left {
+  position: absolute;
+  left: 10px;
+  top: calc(50% - 20px);
+}
+
+.img-arrow-right {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 20px);
+}
+
+.img-container img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
+.img-carousel {
+}
+
+.small-img-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 10px;
+}
+
+.small-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-desc {
+  width: 700px;
+}
