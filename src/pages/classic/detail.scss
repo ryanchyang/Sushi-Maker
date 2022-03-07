@@ -1,0 +1,19 @@
+.classic-detail{
+    .detail-content{
+        margin: 0 auto;
+        display: flex;
+        width: 80%;
+    }
+    .prod-img-box{
+        width: 50%;
+        height: 500px;
+    }
+    .prod-img-box img{
+        width: 70%;
+        height: auto;
+        object-fit: cover;
+    }
+
+
+
+}
