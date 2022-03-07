@@ -252,12 +252,25 @@ input.caterory-check{
   height : 25px;
 }
 .category-checkbox-box{
+  display: flex;
   margin-top: 2%;
   padding-left: 0.5%;
 }
 .category-checkbox-box label{
   color: #545454;
-  margin-right: 2%;
+}
+.label-box{
+  margin: 0 2% 0 0.5%;
+  line-height: 25px;
+}
+.send-filter{
+  background-color: #b03342;
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 1% 3%;
+  float: right;
+  margin-right: 8%;
+  margin-bottom: 10%;
 }
 
 
