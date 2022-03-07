@@ -1,28 +1,32 @@
 .home {
+  color: #ffffff;
+  overflow-x: hidden;
   // *{
   //     margin: 0;
-  //     overflow-x: hidden;
+
   // }
   ul {
     padding: 0 0;
     margin: 0 0;
     list-style: none;
   }
-  .index-wrap {
-    color: #ffffff;
-    background-color: #212121;
-    /* height: 100vh; */
-    width: 100%;
-  }
+  // .index-wrap {
+  // background-color: #212121;
+  // height: 100vh;
+  // width: 100%;
+  // }
   /* index-top */
   .index-nav {
     padding: 0.5rem 26px;
-    background-color: #212121;
+    // background-color: #212121;
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
   }
   .index-logo-img {
     width: 50px;
+    enable-background: new 0 0 1000 1000;
   }
   /* index-top PC version */
   .pc-index-top {
@@ -31,6 +35,8 @@
     display: flex;
     justify-content: center;
     position: fixed;
+    top: 0;
+    left: 0;
   }
   /* index content */
   .content-top {
@@ -39,21 +45,20 @@
     font-size: 16px;
   }
   .index-cube-img {
-    margin-top: 2rem;
-    padding-left: 0.5rem;
-    width: 149px;
+    margin: 5rem 0.5rem;
+    padding: 0 0;
   }
   .index-cube-img img {
-    width: 100%;
+    width: 70%;
   }
   .index-cube-txt {
-    margin-top: 6rem;
-    margin-bottom: 1rem;
-    padding-right: 0.5rem;
-    width: 197px;
+    margin-top: 10rem;
+    padding: 0 0;
+    // margin-bottom: 1rem;
+    // padding-right: 0.5rem;
   }
   .index-cube-txt img {
-    width: 100%;
+    width: 80%;
   }
   .content-bottom {
     border-top: 1px solid #c4c4c4;
@@ -214,7 +219,7 @@
   .footer-social-icon {
     margin: 0 0.5rem;
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 576px) {
     .index-nav {
       padding: 0.5rem 0;
     }
@@ -222,18 +227,23 @@
       width: 65px;
     }
     .content-top {
-      margin-top: 8rem;
+      margin-top: 15rem;
       padding: 0 4rem;
       font-size: 22px;
     }
     .index-cube-img {
-      margin-bottom: 2rem;
-      width: 249px;
+      margin: 3rem 0.5rem;
+      padding: 0 0;
+    }
+    .index-cube-img img {
+      width: 60%;
     }
     .index-cube-txt {
-      margin-top: 5rem;
+      margin-top: 6rem;
       margin-bottom: 2rem;
-      width: 272px;
+    }
+    .index-cube-txt img {
+      width: 80%;
     }
     .scroll-hint {
       margin-top: 1rem;

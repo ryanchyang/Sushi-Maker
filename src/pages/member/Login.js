@@ -100,6 +100,7 @@ function Login() {
                     onChange={e => {
                       setAccount(e.target.value);
                     }}
+                    name="member_account"
                     style={{
                       borderRadius: 50,
                       height: '40px',
@@ -120,6 +121,7 @@ function Login() {
                     onChange={e => {
                       setPassword(e.target.value);
                     }}
+                    name="member_password"
                     style={{
                       borderRadius: 50,
                       height: '40px',
