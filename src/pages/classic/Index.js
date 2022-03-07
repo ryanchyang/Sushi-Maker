@@ -1,5 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import './index.css';
+import './index.scss';
 import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
@@ -14,162 +14,193 @@ function Index() {
           <Title title={'Classic'} />
           <br />
 
+          <div className="classic">
           <div className="main-content">
             {/* category tag */}
-            <div className='category-box'>
-              <div className='en-title-20'>SUSHI</div>
-              <div className='en-title-20'>DESSERT</div>
-              <div className='en-title-20'>PACKAGE</div>
+            <div className="category-box">
+              <div className="en-title-20">SUSHI</div>
+              <div className="en-title-20">DESSERT</div>
+              <div className="en-title-20">PACKAGE</div>
             </div>
 
             {/* filter tag */}
-            <div className='filter-tag-box'>
-              <div className='filter-tag ch-cont-16'>
+            <div className="filter-tag-box">
+              <div className="filter-tag ch-cont-16">
                 鮭魚 <span>&nbsp;X</span>
               </div>
-              <div className='filter-tag ch-cont-16'>
+              <div className="filter-tag ch-cont-16">
                 200~500 <span>&nbsp;X</span>
               </div>
             </div>
 
             {/* product list */}
-            <div className='prod-list'>
+            <div className="prod-list">
               {/* product card */}
-              <div className='prod-card'>
-                <div className='prod-img-box'>
-                  <div className='discount-tag'><Discount /></div>              
-                  <img src={require('./../../imgs/temp/classic-pro1.png')} alt="product-image" />
+              <div className="prod-card">
+                <div className="prod-img-box">
+                  <div className="discount-tag">
+                    <Discount />
+                  </div>
+                  <img
+                    src={require('./../../imgs/temp/classic-pro1.png')}
+                    alt="product-image"
+                  />
                 </div>
 
-                <div className='prod-name-ch ch-title-22'>鮭魚壽司</div>
-                <div className='prod-name-en en-title-14-5'>Salmon Sushi</div> 
-                
-                <div className='prod-price-special'>
-                  <div className='original-price ch-cont-14'>NT_60</div>
-                  <div className='special-price ch-cont-16'>NT_50</div>
+                <div className="prod-name-ch ch-title-22">鮭魚壽司</div>
+                <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
+
+                <div className="prod-price-special">
+                  <div className="original-price ch-cont-14">NT_60</div>
+                  <div className="special-price ch-cont-16">NT_50</div>
                 </div>
 
-                <div className='prod-price-no-discount'>
-                  <div className='no-discount ch-cont-16'>NT_60</div>
-                </div> 
+                <div className="prod-price-no-discount">
+                  <div className="no-discount ch-cont-16">NT_60</div>
+                </div>
 
                 <div className="select-add-cart">
-                  <div className='select-count'>
+                  <div className="select-count">
                     <button>-</button>
                     <input type="number" value={1} />
                     <button>+</button>
                   </div>
-                  <div className='cart-btn'>
+                  <div className="cart-btn">
                     <Cart />
                   </div>
                 </div>
               </div>
 
-              <div className='prod-card'>
-                <div className='prod-img-box'>
-                  <div className='discount-tag'><Discount /></div>              
-                  <img src={require('./../../imgs/temp/classic-pro2.png')} alt="product-image" />
+              <div className="prod-card">
+                <div className="prod-img-box">
+                  <div className="discount-tag">
+                    <Discount />
+                  </div>
+                  <img
+                    src={require('./../../imgs/temp/classic-pro2.png')}
+                    alt="product-image"
+                  />
                 </div>
 
-                <div className='prod-name-ch ch-title-22'>海膽壽司</div>
-                <div className='prod-name-en en-title-14-5'>Salmon Sushi</div> 
-                
-                <div className='prod-price-special'>
-                  <div className='original-price ch-cont-14'>NT_75</div>
-                  <div className='special-price ch-cont-16'>NT_70</div>
+                <div className="prod-name-ch ch-title-22">海膽壽司</div>
+                <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
+
+                <div className="prod-price-special">
+                  <div className="original-price ch-cont-14">NT_75</div>
+                  <div className="special-price ch-cont-16">NT_70</div>
                 </div>
 
-                <div className='prod-price-no-discount'>
-                  <div className='no-discount ch-cont-16'>NT_60</div>
-                </div> 
+                <div className="prod-price-no-discount">
+                  <div className="no-discount ch-cont-16">NT_60</div>
+                </div>
 
                 <div className="select-add-cart">
-                  <div className='select-count'>
+                  <div className="select-count">
                     <button>-</button>
                     <input type="number" value={1} />
                     <button>+</button>
                   </div>
-                  <div className='cart-btn'>
+                  <div className="cart-btn">
                     <Cart />
                   </div>
                 </div>
               </div>
 
-              <div className='prod-card'>
-                <div className='prod-img-box'>
-                  <div className='discount-tag'><Discount /></div>              
-                  <img src={require('./../../imgs/temp/classic-pro3.png')} alt="product-image" />
+              <div className="prod-card">
+                <div className="prod-img-box">
+                  <div className="discount-tag">
+                    <Discount />
+                  </div>
+                  <img
+                    src={require('./../../imgs/temp/classic-pro3.png')}
+                    alt="product-image"
+                  />
                 </div>
 
-                <div className='prod-name-ch ch-title-22'>飛魚卵壽司</div>
-                <div className='prod-name-en en-title-14-5'>Salmon Sushi</div> 
-                
-                <div className='prod-price-special'>
-                  <div className='original-price ch-cont-14'>NT_65</div>
-                  <div className='special-price ch-cont-16'>NT_55</div>
+                <div className="prod-name-ch ch-title-22">飛魚卵壽司</div>
+                <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
+
+                <div className="prod-price-special">
+                  <div className="original-price ch-cont-14">NT_65</div>
+                  <div className="special-price ch-cont-16">NT_55</div>
                 </div>
 
-                <div className='prod-price-no-discount'>
-                  <div className='no-discount ch-cont-16'>NT_60</div>
-                </div> 
+                <div className="prod-price-no-discount">
+                  <div className="no-discount ch-cont-16">NT_60</div>
+                </div>
 
                 <div className="select-add-cart">
-                  <div className='select-count'>
+                  <div className="select-count">
                     <button>-</button>
                     <input type="number" value={1} />
                     <button>+</button>
                   </div>
-                  <div className='cart-btn'>
+                  <div className="cart-btn">
                     <Cart />
                   </div>
                 </div>
               </div>
 
-              <div className='prod-card'>
-                <div className='prod-img-box'>
-                  <div className='discount-tag'><Discount /></div>              
-                  <img src={require('./../../imgs/temp/classic-pro4.png')} alt="product-image" />
+              <div className="prod-card">
+                <div className="prod-img-box">
+                  <div className="discount-tag">
+                    <Discount />
+                  </div>
+                  <img
+                    src={require('./../../imgs/temp/classic-pro4.png')}
+                    alt="product-image"
+                  />
                 </div>
 
-                <div className='prod-name-ch ch-title-22'>花枝壽司</div>
-                <div className='prod-name-en en-title-14-5'>Salmon Sushi</div> 
-                
-                <div className='prod-price-special'>
-                  <div className='original-price ch-cont-14'>NT_55</div>
-                  <div className='special-price ch-cont-16'>NT_45</div>
+                <div className="prod-name-ch ch-title-22">花枝壽司</div>
+                <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
+
+                <div className="prod-price-special">
+                  <div className="original-price ch-cont-14">NT_55</div>
+                  <div className="special-price ch-cont-16">NT_45</div>
                 </div>
 
-                <div className='prod-price-no-discount'>
-                  <div className='no-discount ch-cont-16'>NT_60</div>
-                </div> 
+                <div className="prod-price-no-discount">
+                  <div className="no-discount ch-cont-16">NT_60</div>
+                </div>
 
                 <div className="select-add-cart">
-                  <div className='select-count'>
+                  <div className="select-count">
                     <button>-</button>
                     <input type="number" value={1} />
                     <button>+</button>
                   </div>
-                  <div className='cart-btn'>
+                  <div className="cart-btn">
                     <Cart />
                   </div>
                 </div>
               </div>
             </div>
-            
+
             {/* pagination */}
             <div className="pagination-box">
               <ul className="pagination ch-cont-16">
-                <li><div className="page-prev">&lt;</div></li>
-                <li><div className="page-number">1</div></li>
-                <li><div className="page-number selected">2</div></li>
-                <li><div className="page-number">3</div></li>
-                <li><div className="page-next">&gt;</div></li>
+                <li>
+                  <div className="page-prev">&lt;</div>
+                </li>
+                <li>
+                  <div className="page-number">1</div>
+                </li>
+                <li>
+                  <div className="page-number selected">2</div>
+                </li>
+                <li>
+                  <div className="page-number">3</div>
+                </li>
+                <li>
+                  <div className="page-next">&gt;</div>
+                </li>
               </ul>
             </div>
           </div>
 
           {/* 主要篩選條件區 */}
-          <div className="prod-filter">          
+          <div className="prod-filter">
             {/* clean or cancel filter */}
             <div className="filter-top">
               <div className="clean-filter ch-cont-16">
@@ -213,7 +244,7 @@ function Index() {
                 <div className="flavor-tag ch-title-16">麻糬</div>
                 <div className="flavor-tag ch-title-16">抹茶</div>
                 <div className="flavor-tag ch-title-16">羊羹/果凍</div>
-              </div>              
+              </div>
             </div>
 
             {/* by category */}
@@ -223,22 +254,34 @@ function Index() {
                 <div className="by-price-text en-title-24">By CATEGORY</div>
               </div>
               <div className="category-checkbox-box">
-                <input className="caterory-check" type="checkbox" id="new-item" />
-                <label className="ch-title-16" for="new-item">新品上市</label>
-                <input className="caterory-check" type="checkbox" id="hot-item" />
-                <label className="ch-title-16" for="hot-item">熱門商品</label>
-                <input className="caterory-check" type="checkbox" id="for-sale" />
-                <label className="ch-title-16" for="for-sale">促銷特價</label>
+                <input
+                  className="caterory-check"
+                  type="checkbox"
+                  id="new-item"
+                />
+                <label className="ch-title-16" for="new-item">
+                  新品上市
+                </label>
+                <input
+                  className="caterory-check"
+                  type="checkbox"
+                  id="hot-item"
+                />
+                <label className="ch-title-16" for="hot-item">
+                  熱門商品
+                </label>
+                <input
+                  className="caterory-check"
+                  type="checkbox"
+                  id="for-sale"
+                />
+                <label className="ch-title-16" for="for-sale">
+                  促銷特價
+                </label>
               </div>
-
             </div>
-
-
           </div>
-          
-
-
-
+</div>
           <Footer />
         </div>
         <AsideRight />

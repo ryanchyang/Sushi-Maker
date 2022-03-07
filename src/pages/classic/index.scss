@@ -1,3 +1,4 @@
+.classic{
 .main-content{
   /* display: none; */
 }
@@ -28,14 +29,14 @@
     flex-wrap: wrap;
 }
 .prod-card {
-  text-align: center;
+  /* text-align: center; */
   width: 28%;
   height: auto;
   margin-bottom: 5%;
   padding-bottom: 2%;
 }
 .prod-card:hover{   
-  background-color: #e0ddbd;
+  background-color: #ffffff;
 }
 .prod-img-box {
   position: relative;
@@ -267,4 +268,5 @@ input.caterory-check{
 }
 
 @media only screen and (min-width: 577px) and (max-width: 960px) {
+}
 }
