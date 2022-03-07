@@ -14,6 +14,7 @@ import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
 import ShareMyShare from './pages/share/ShareMyShare';
+import ShareItemsTwoCol from './pages/share/ShareItemsTwoCol';
 // Home
 import Home from './pages/home/Index';
 import News from './pages/home/News';
@@ -67,6 +68,9 @@ function App() {
           </Route>
           <Route path="/share/items/:id?">
             <ShareItems />
+          </Route>
+          <Route path="/share/items2/:id?">
+            <ShareItemsTwoCol />
           </Route>
           <Route path="/share/saves">
             <ShareSaves />

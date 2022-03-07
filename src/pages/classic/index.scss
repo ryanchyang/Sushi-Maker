@@ -1,3 +1,7 @@
+.classic{
+.main-content{
+  /* display: none; */
+}
 .category-box {
   width: 60%;
   display: flex;
@@ -15,6 +19,9 @@
     border: 2px solid #575757;
     border-radius: 20px;
 }
+.filter-tag span{
+  cursor: pointer;
+}
 .prod-list{
     padding: 3% 5% 0 5%;
     display: flex;
@@ -22,14 +29,14 @@
     flex-wrap: wrap;
 }
 .prod-card {
-  text-align: center;
+  /* text-align: center; */
   width: 28%;
   height: auto;
   margin-bottom: 5%;
   padding-bottom: 2%;
 }
 .prod-card:hover{   
-  background-color: #e0ddbd;
+  background-color: #ffffff;
 }
 .prod-img-box {
   position: relative;
@@ -159,6 +166,114 @@
   cursor: pointer;
 }
 
+.prod-filter{
+  width: 85%;  
+  margin: 5% auto 0 auto;
+}
+.filter-top{   
+  float: right;
+  display: flex;  
+}
+.clean-filter{   
+  width: 120px;
+  cursor: pointer;
+}
+.clean-filter img{
+  padding-bottom: 4%;
+}
+.cancel-filter{
+  font-weight: bold;
+  padding-left: 10%;
+  cursor: pointer;
+}
+.tag-img{
+  margin-bottom: 1%;
+  margin-right: 1%;
+}
+.by-price{
+  margin-bottom: 8%;
+  clear: both;
+}
+.by-price-text{ 
+  display: inline;
+}
+.by-price-input{
+  margin-top: 2%;
+  display: flex;
+}
+.by-price-input input::-webkit-outer-spin-button,
+.by-price-input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.by-price-input input{
+    width: 30%; 
+    height: 50px;
+    font-size: 1.8rem;      
+    background: none;
+    border: none;
+    border-top: 1px solid #545454;
+    border-bottom: 1px solid #545454;
+    text-align: center;      
+}
+.by-price-input input::placeholder{
+  color: #c4c4c4;
+}
+.by-price-dash-line{
+    margin: 0 3%;
+    width: 3%;
+    height: 25px;
+    border-bottom: 1px solid #545454;
+}
+.by-flavor{
+  margin-bottom: 8%;
+}
+.flavor-tag-box{
+  width: 60%;
+  margin-top: 2%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.flavor-tag{
+  margin-right: 1.5%;
+  margin-bottom: 1.5%;
+  padding: 0.5% 1% 0.5% 1%;
+  border: 1px solid #b03342;
+  color: #b03342;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.flavor-tag:hover{   /*TODO: 點擊變色*/
+  color: #ffffff;
+  background-color: #b03342;
+}
+input.caterory-check{
+  width : 25px;
+  height : 25px;
+}
+.category-checkbox-box{
+  display: flex;
+  margin-top: 2%;
+  padding-left: 0.5%;
+}
+.category-checkbox-box label{
+  color: #545454;
+}
+.label-box{
+  margin: 0 2% 0 0.5%;
+  line-height: 25px;
+}
+.send-filter{
+  background-color: #b03342;
+  color: #ffffff;
+  border-radius: 30px;
+  padding: 1% 3%;
+  float: right;
+  margin-right: 8%;
+  margin-bottom: 10%;
+}
+
+
 @media screen and (max-width: 576px) {
   .prod-card {
     width: 50%;
@@ -166,4 +281,5 @@
 }
 
 @media only screen and (min-width: 577px) and (max-width: 960px) {
+}
 }
