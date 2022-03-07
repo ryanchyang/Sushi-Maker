@@ -32,7 +32,42 @@
 
 .message-section {
   position: relative;
+  max-height: 800px;
+  overflow: hidden;
 }
+
+.comment-header {
+  position: relative;
+}
+
+.comment-section {
+  position: relative;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.comment-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.comment-section::-webkit-scrollbar-track {
+  background: #f7f6f3; /* color of the tracking area */
+}
+
+.comment-section::-webkit-scrollbar-thumb {
+  background-color: rgb(223, 223, 223);
+  border-radius: 30px;
+  // display: none;
+}
+
+.my-comment {
+  position: relative;
+}
+
+.comment-textarea {
+  width: 100%;
+}
+
 .img-section-left {
   position: relative;
   transform: translateX(-250px);
@@ -43,8 +78,8 @@
   height: 45px;
   padding: 10px;
   position: absolute;
-  top: 60px;
-  left: 120px;
+  top: -5px;
+  left: -80px;
   cursor: pointer;
 }
 

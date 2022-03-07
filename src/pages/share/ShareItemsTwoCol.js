@@ -87,48 +87,123 @@ function ShareItems() {
             <div
               className={`${styles['message-section']} col d-flex flex-column`}
             >
-              <DeleteSm className={`${styles['del-button']}`} />
-              <div style={{ height: 70 }}></div>
-              <div style={{ paddingLeft: 180, paddingRight: 30 }}>
-                <div className={`d-flex mb-3 border-bottom`}>
+              <div
+                style={{
+                  marginLeft: '180px',
+                  marginRight: '30px',
+                  marginTop: '70px',
+                }}
+                className={`d-flex flex-column`}
+              >
+                <div
+                  className={`d-flex mb-3 border-bottom ${styles['comment-header']}`}
+                >
+                  <DeleteSm className={`${styles['del-button']}`} />
                   <h2 className="mytitle ch-title-18 mr-4 ">評論</h2>
                   <h3 className="mytitle ch-title-18">{'3'}</h3>
                 </div>
-                <div className="d-flex my-5">
-                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                    <Commenter />
+                <div className={`${styles['comment-section']} flex-shrink-2`}>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Shinder Lin
+                      </h2>
+                      <p className="ch-cont-14">非常好吃的壽司</p>
+                      <p className="en-cont-12">36 mins ago</p>
+                    </div>
                   </div>
-                  <div className="d-flex flex-column ">
-                    <h2 className="en-cont-14 mb-3 font-weight-bold">
-                      Shinder Lin
-                    </h2>
-                    <p className="ch-cont-14">非常好吃的壽司</p>
-                    <p className="en-cont-12">36 mins ago</p>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Miles Teng
+                      </h2>
+                      <p className="ch-cont-14">拍得很好看</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
+                  </div>
+                  <div className="d-flex mt-5 mb-3">
+                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                      <Commenter />
+                    </div>
+                    <div className="d-flex flex-column ">
+                      <h2 className="en-cont-14 mb-3 font-weight-bold">
+                        Joe Shih
+                      </h2>
+                      <p className="ch-cont-14">Looks amazing✨</p>
+                      <p className="en-cont-12">1 hour ago</p>
+                    </div>
                   </div>
                 </div>
-                <div className="d-flex my-5">
-                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                    <Commenter />
-                  </div>
-                  <div className="d-flex flex-column ">
-                    <h2 className="en-cont-14 mb-3 font-weight-bold">
-                      Miles Teng
-                    </h2>
-                    <p className="ch-cont-14">拍得很好看</p>
-                    <p className="en-cont-12">1 hour ago</p>
-                  </div>
-                </div>
-                <div className="d-flex my-5">
-                  <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                    <Commenter />
-                  </div>
-                  <div className="d-flex flex-column ">
-                    <h2 className="en-cont-14 mb-3 font-weight-bold">
-                      Joe Shih
-                    </h2>
-                    <p className="ch-cont-14">Looks amazing✨</p>
-                    <p className="en-cont-12">1 hour ago</p>
-                  </div>
+                <div className={`${styles['my-comment']}`}>
+                  <textarea className={`${styles['comment-textarea']}`}>
+                    Hello there, this is some text in a text area
+                  </textarea>
                 </div>
               </div>
             </div>
