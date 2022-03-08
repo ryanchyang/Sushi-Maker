@@ -15,47 +15,51 @@ const LoginBody = styled.body`
 `;
 const LoginArea = styled.div`
   display: flex;
-  justify-content: space-between;
-  height: 729px;
-  margin-top: 7%;
+  justify-content: space-around;
+  height: 75%;
+  width: 75%;
+  position: fix;
+  top: 13%;
+  left: 10%;
+  padding: 0;
   background-color: rgba(255, 255, 255, 0.3);
+  z-index: 3;
 `;
 
 const RegistForm = styled.form`
   display: flex;
+  margin-top: 20%;
   flex-direction: column;
 `;
 const InputArea = styled.div`
-  margin-top: 15%;
   padding: 0;
 `;
 const InputTitle = styled.p`
   color: #212121;
-  margin-top: 48px;
 `;
 const InputForPsw = styled.p`
   color: #f7f6f3;
-  margin-top: 33px;
-  text-align: center;
-`;
-const InputRegistLink = styled.p`
-  color: #f7f6f3;
-  margin-top: 26px;
+  margin-top: 10%;
   text-align: center;
 `;
 const ErrorMessage = styled.p`
   color: #b03342;
 `;
 const IconRegisterArea = styled.div`
-  
+  margin-top: 18%;
 `;
 const MemTitle = styled.p`
   color: #f7f6f3;
-  margin-bottom: 80px; 
+  margin-bottom: 80px;
 `;
 const IconArea = styled.div``;
 const Intro = styled.p`
   color: #f7f6f3;
+`;
+const BgImg = styled.div`
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 `;
 
 //顯示關閉密碼icon待開發
@@ -83,7 +87,7 @@ function Register() {
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
-            <LoginArea>
+            <LoginArea className="col-18">
               <IconRegisterArea>
                 <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
                 <IconArea>
@@ -91,11 +95,12 @@ function Register() {
                 </IconArea>
               </IconRegisterArea>
 
-              <InputArea className="col-5">
+              <InputArea className="col-6">
                 <RegistForm onSubmit={handleSubmit}>
                   <InputTitle className="ch-cont-14">帳號</InputTitle>
                   <input
                     type="text"
+                    className="form-control"
                     value={account}
                     onChange={e => {
                       setAccount(e.target.value);
@@ -114,8 +119,9 @@ function Register() {
                   <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <PswInput
+                  <input
                     type="password"
+                    className="form-control"
                     value={password}
                     onChange={e => {
                       setPassword(e.target.value);
@@ -132,11 +138,128 @@ function Register() {
                     }}
                   />
                   <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
+                  <InputTitle className="ch-cont-14">手機號碼</InputTitle>
+                  <input
+                    type="password"
+                    className="form-control"
+                    value={password}
+                    onChange={e => {
+                      setPassword(e.target.value);
+                    }}
+                    style={{
+                      borderRadius: 50,
+                      height: '40px',
+                      background: '#212121',
+                      border: '1px solid #f7f6f3',
+                      color: '#f7f6f3',
+                      fontSize: '1.4rem',
+                      lineHeight: '1.8rem',
+                      letterSpacing: '0.14rem',
+                    }}
+                  />
+                  <ErrorMessage className="ch-cont-14">
+                    手機格式錯誤!
+                  </ErrorMessage>
+                  <div className="d-flex mb-3">
+                    <div>
+                      <InputTitle className="ch-cont-14">姓名</InputTitle>
+                      <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={e => {
+                          setPassword(e.target.value);
+                        }}
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          width: '97%',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <InputTitle className="ch-cont-14">暱稱</InputTitle>
+                      <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={e => {
+                          setPassword(e.target.value);
+                        }}
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          width: '97%',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                          marginLeft: '3%',
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div className="d-flex">
+                    <div>
+                      <InputTitle className="ch-cont-14">性別</InputTitle>
+                      <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={e => {
+                          setPassword(e.target.value);
+                        }}
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          width: '97%',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <InputTitle className="ch-cont-14">生日</InputTitle>
+                      <input
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={e => {
+                          setPassword(e.target.value);
+                        }}
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          width: '97%',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                          marginLeft: '3%',
+                        }}
+                      />
+                    </div>
+                  </div>
+
                   <button
                     className="ch-title-22"
                     style={{
                       borderRadius: 50,
-                      marginTop: '61px',
+                      marginTop: '15%',
                       height: '40px',
                       color: '#f7f6f3',
                       background: '#b03342',
@@ -145,10 +268,9 @@ function Register() {
                     註冊
                   </button>
                 </RegistForm>
-                <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
-                <InputRegistLink className="ch-cont-14">
-                  還沒有帳號嗎? 點我註冊
-                </InputRegistLink>
+                <InputForPsw className="ch-cont-14">
+                  已經有帳號了? 登入!
+                </InputForPsw>
               </InputArea>
             </LoginArea>
 
@@ -156,6 +278,9 @@ function Register() {
           </div>
           <AsideRight />
         </div>
+        <BgImg>
+          <img src="/img/member/register.png" alt="" />
+        </BgImg>
       </LoginBody>
     </>
   );
