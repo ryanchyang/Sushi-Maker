@@ -9,6 +9,7 @@ import { ReactComponent as Commenter } from './imgs/user.svg';
 import { ReactComponent as Heart } from '../../imgs/heart.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 function ShareItems() {
   return (
@@ -102,7 +103,7 @@ function ShareItems() {
                   <h2 className="mytitle ch-title-18 mr-4 ">評論</h2>
                   <h3 className="mytitle ch-title-18">{'3'}</h3>
                 </div>
-                <div className={`${styles['comment-section']} flex-shrink-2`}>
+                <div className={`${styles['comment-section']} mb-4`}>
                   <div className="d-flex mt-5 mb-3">
                     <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
                       <Commenter />
@@ -187,23 +188,30 @@ function ShareItems() {
                       <p className="en-cont-12">1 hour ago</p>
                     </div>
                   </div>
-                  <div className="d-flex mt-5 mb-3">
-                    <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                      <Commenter />
+                </div>
+                <div className={`${styles['my-comment']} d-flex mr-3`}>
+                  <div className="d-flex flex-column w-100">
+                    <div className="d-flex mb-3">
+                      <div className={`${styles['profile-img-sm']} mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <TextareaAutosize
+                        maxRows={4}
+                        className={`${styles['comment-textarea']} ch-cont-14 w-100`}
+                        placeholder=" 我的想法..."
+                      />
                     </div>
-                    <div className="d-flex flex-column ">
-                      <h2 className="en-cont-14 mb-3 font-weight-bold">
-                        Joe Shih
-                      </h2>
-                      <p className="ch-cont-14">Looks amazing✨</p>
-                      <p className="en-cont-12">1 hour ago</p>
+                    <div className="d-flex">
+                      <button
+                        className={`${styles['save-button-sm-border']} mr-3 mb-3 ml-auto`}
+                      >
+                        取消
+                      </button>
+                      <button className={`${styles['save-button-sm']} mb-3`}>
+                        發佈
+                      </button>
                     </div>
                   </div>
-                </div>
-                <div className={`${styles['my-comment']}`}>
-                  <textarea className={`${styles['comment-textarea']}`}>
-                    Hello there, this is some text in a text area
-                  </textarea>
                 </div>
               </div>
             </div>
