@@ -1,32 +1,19 @@
+body {
+  // background-color: #212121;
+  // color: #ffffff;
+}
 .home {
-  color: #ffffff;
-  overflow-x: hidden;
-  // *{
-  //     margin: 0;
-
-  // }
+  // color: #ffffff;
+  // overflow-x: hidden;
+  // height: '100vh';
+  // background-color: #212121;
   ul {
     padding: 0 0;
     margin: 0 0;
     list-style: none;
   }
-  // .index-wrap {
-  // background-color: #212121;
-  // height: 100vh;
-  // width: 100%;
-  // }
-  /* index-top */
-  .index-nav {
-    padding: 0.5rem 26px;
-    // background-color: #212121;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-  }
-  .index-logo-img {
-    width: 50px;
-    enable-background: new 0 0 1000 1000;
+  p {
+    margin: 0 0;
   }
   /* index-top PC version */
   .pc-index-top {
@@ -40,25 +27,24 @@
   }
   /* index content */
   .content-top {
-    margin-top: 10rem;
-    padding: 0 2rem;
-    font-size: 16px;
+    margin-top: 5rem;
+  }
+  .process {
+    text-align: end;
   }
   .index-cube-img {
-    margin: 5rem 0.5rem;
-    padding: 0 0;
+    padding: 5rem 1rem;
   }
   .index-cube-img img {
-    width: 70%;
+    width: 90%;
   }
   .index-cube-txt {
-    margin-top: 10rem;
-    padding: 0 0;
-    // margin-bottom: 1rem;
-    // padding-right: 0.5rem;
+    padding-top: 18rem;
+    padding-left: 1rem;
+    padding-bottom: 5rem;
   }
   .index-cube-txt img {
-    width: 80%;
+    width: 90%;
   }
   .content-bottom {
     border-top: 1px solid #c4c4c4;
@@ -85,41 +71,37 @@
   /* about */
   .about-us-title,
   .page-title {
-    font-size: 24px;
     padding-left: 1.5rem;
     margin-bottom: 2rem;
-    top: 4rem;
+    margin-top: 8rem;
+  }
+  .about-title {
+    margin-top: 5rem;
   }
   .about-ch-title,
   .about-en-title {
     text-align: right;
-    padding-right: 52px;
-  }
-  .about-ch-title {
-    font-size: 22px;
-  }
-  .about-en-title {
-    font-size: 14px;
+    padding-right: 26px;
   }
   .about-ch-content {
-    font-size: 14px;
-    padding-left: 52px;
-    margin-bottom: 0px;
+    padding-left: 26px;
+    margin-top: 5rem;
   }
   .about-img {
-    width: 500px;
-    height: 500px;
-    overflow: hidden;
+    width: 100%;
+    max-height: 350px;
+    display: flex;
+    justify-content: end;
   }
   .about-img img {
-    width: 110%;
+    width: 90%;
   }
   /* promotion */
   .promotion-wrap {
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
-    margin: 5rem 0;
+    margin-bottom: 5rem;
   }
   .promotion-list,
   .pagination-list {
@@ -157,33 +139,40 @@
   }
   .promotion-prod-ch-name,
   .promotion-prod-en-name {
-    font-size: 20px;
+    font-size: 28px;
     color: #212121;
     padding-left: 2rem;
   }
   /* just for you */
   .index-category {
-    padding-top: 2rem;
+    padding-top: 1rem;
     padding-bottom: 0.5rem;
+    border-bottom: 1px solid #c4c4c4;
   }
-  .index-category-content,
+  .index-category-name {
+    text-align: center;
+  }
+  .index-category-content {
+    padding: 2rem 2rem 2rem;
+    margin-bottom: 1rem;
+  }
   .lastest-new-content {
     padding: 2rem 2rem 2rem;
-    border-top: 1px solid #c4c4c4;
+    margin-bottom: 4rem;
   }
   .just-for-you-txt {
     padding: 1rem 2rem;
   }
-  .jfy-category-title {
-    font-size: 22px;
-  }
   .jfy-category-content {
-    font-size: 14px;
+    margin-top: 0.5rem;
   }
   .index-view-more {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   /* lastest news */
+  .index-category-img img {
+    width: 100%;
+  }
   .news-content-top {
     margin-top: 2rem;
   }
@@ -194,7 +183,7 @@
   }
   /* footer */
   .footer-top {
-    min-height: 400px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,48 +209,44 @@
     margin: 0 0.5rem;
   }
   @media screen and (min-width: 576px) {
-    .index-nav {
-      padding: 0.5rem 0;
-    }
-    .index-logo-img {
-      width: 65px;
-    }
     .content-top {
-      margin-top: 15rem;
-      padding: 0 4rem;
-      font-size: 22px;
+      padding: 0 2rem;
     }
     .index-cube-img {
-      margin: 3rem 0.5rem;
-      padding: 0 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .index-cube-img img {
-      width: 60%;
+      width: 50%;
     }
     .index-cube-txt {
-      margin-top: 6rem;
-      margin-bottom: 2rem;
+      text-align: center;
+      padding-top: 10rem;
     }
     .index-cube-txt img {
-      width: 80%;
+      width: 50%;
     }
     .scroll-hint {
       margin-top: 1rem;
-      font-size: 18px;
     }
     .about-us-title {
-      margin-top: 8rem;
+      margin-top: 13rem;
       font-size: 48px;
       text-align: right;
       padding-right: 52px;
     }
+    .about-us-text-area {
+      width: 40%;
+    }
     .about-us-content {
       display: flex;
       justify-content: space-around;
-      margin-top: 3rem;
+      margin-top: 6rem;
     }
     .about-ch-title {
       padding-right: 0px;
+      margin-bottom: 0.5rem;
       font-size: 36px;
     }
     .about-en-title {
@@ -271,26 +256,31 @@
     .about-ch-content {
       text-align: right;
       margin-top: 3rem;
-      font-size: 18px;
     }
     .about-img {
-      width: 500px;
-      height: 500px;
+      width: 60%;
+      min-height: 500px;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .about-img img {
-      width: 90%;
+      width: 70%;
     }
     .about-title {
       padding-top: 5rem;
       padding-left: 5rem;
     }
-    .page-title {
-      top: 1rem;
-      font-size: 48px;
+    .index-category {
+      margin-top: 5rem;
     }
     .index-category-img {
       display: block;
+      width: 50%;
+    }
+    .index-category-img img {
+      width: 100%;
     }
     .index-category-content {
       display: flex;
@@ -298,6 +288,10 @@
     }
     .just-for-you-txt {
       padding-top: 5rem;
+    }
+    .index-view-more {
+      margin-top: 5rem;
+      margin-bottom: 7rem;
     }
     .news-img {
       width: 50%;
@@ -326,6 +320,7 @@
       padding: 0 0;
       display: flex;
       border-bottom: 1px solid #c4c4c4;
+      margin-bottom: 1rem;
     }
     .pagination-dots {
       width: 15px;
@@ -335,11 +330,11 @@
       background-color: #c4c4c4;
     }
     .latest-news-pagination {
-      margin: 1rem 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
+
     .footer-slogan {
       margin-left: 8rem;
       margin-right: 2rem;

@@ -22,6 +22,7 @@ import NewsDetails from './pages/home/NewsDetails';
 import Evnts from './pages/home/Evnts';
 import EvntsDetails from './pages/home/EvntsDetails';
 import EvntsSignUp from './pages/home/EvntsSignUp';
+// import Entry from './pages/home/components/Entry';
 //setorder
 import StepOne from './pages/setorder/StepOne';
 import StepTwo from './pages/setorder/StepTwo';
@@ -84,6 +85,9 @@ function App() {
           <Route path="/share/my-share">
             <ShareMyShare />
           </Route>
+          {/* <Route path="/entry" exact>
+            <Entry />
+          </Route> */}
           <Route path="/" exact>
             <Home />
           </Route>
