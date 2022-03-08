@@ -12,6 +12,22 @@ $logo: #989177;
 $shadow: #ddd4bc;
 $mtl-border: #eed19a;
 
+// 更改 bootstrap 設定
+
+// 顏色
+$primary: $tint-red;
+
+// BUTTON
+$btn-font-size: 1.8rem;
+$btn-font-size-sm: 1.4rem;
+$btn-padding-x: 15px;
+$btn-padding-y: 10px;
+$btn-padding-x-sm: 10px;
+$btn-padding-y-sm: 5px;
+$btn-border-radius: 30px;
+$btn-border-radius-sm: 30px;
+$btn-border-width: 1px;
+
 // 字型設定
 @font-face {
   font-family: 'title';
@@ -33,7 +49,7 @@ $mtl-border: #eed19a;
 }
 
 // RWD變數
-@mixin pad{
+@mixin pad {
   @media only screen and (min-width: 577px) and (max-width: 960px) {
     @content;
   }
@@ -133,6 +149,13 @@ body {
   line-height: 2.2rem;
   letter-spacing: 0.22rem;
 }
+.ch-title-18 {
+  @include mytitle;
+  font-size: 1.8rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.16rem;
+}
+
 .ch-title-16 {
   @include mytitle;
   font-size: 1.6rem;
@@ -205,17 +228,54 @@ body {
   color: $dark-bg;
   @extend .en-title-48;
 
-  @include pad{
+  @include pad {
     font-size: 3.6rem;
     line-height: 7.3rem;
     letter-spacing: 1rem;
     transition: 0.5s;
   }
-  @include mobile{
+  @include mobile {
     // @extend .en-title-24;
     font-size: 2.4rem;
     line-height: 7.3rem;
     letter-spacing: 1rem;
     transition: 0.5s;
   }
+}
+
+// 大的button (套用長寬、樣式、RWD 字體)
+.primeal-btn {
+  @extend .ch-title-18;
+  width: 210px;
+  height: 44px;
+  border: none;
+
+  @include mobile {
+    width: 130px;
+    height: 34px;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    letter-spacing: 0.315rem;
+    transition: 0.5s;
+  }
+}
+
+// 小的button (套用長寬、樣式、RWD 字體)
+.primeal-btn-sm {
+  @extend .ch-title-14;
+  width: 130px;
+  height: 34px;
+  border: none;
+}
+
+.primeal-btn-outline {
+  @extend .primeal-btn;
+  border: 1px solid $primary;
+  background-color: transparent;
+}
+
+.primeal-btn-outline-sm {
+  @extend .primeal-btn-sm;
+  border: 1px solid $primary;
+  background-color: transparent;
 }

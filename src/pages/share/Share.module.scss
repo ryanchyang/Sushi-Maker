@@ -33,6 +33,7 @@
 .message-section {
   position: relative;
   overflow: hidden;
+  transition: 0.3s;
 }
 
 .comment-header {
@@ -146,30 +147,19 @@
 .save-button {
   width: 150px;
   height: 44px;
-  padding: 5px 10px;
-  background-color: #b03342;
   border: none;
-  border-radius: 30px;
 }
 
 .save-button-sm {
-  color: white;
   width: 81px;
   height: 34px;
-  padding: 5px 10px;
-  background-color: #b03342;
   border: none;
-  border-radius: 30px;
 }
 
 .save-button-sm-border {
-  color: #b03342;
   width: 81px;
   height: 34px;
-  padding: 5px 10px;
-  background-color: transparent;
   border: 1px solid #b03342;
-  border-radius: 30px;
 }
 
 .img-container {

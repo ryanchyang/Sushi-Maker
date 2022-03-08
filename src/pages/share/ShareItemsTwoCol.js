@@ -11,7 +11,12 @@ import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
+import React, { useState } from 'react';
+import { display } from '@mui/system';
+
 function ShareItems() {
+  const [msgdiv, setMsgdiv] = useState(false);
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -24,7 +29,6 @@ function ShareItems() {
                 <div className="d-flex justify-content-between">
                   <p className="mytitle en-title-14-10">HOME / SHARE / ITEMS</p>
                   <div className="d-flex align-items-center">
-                    {' '}
                     <Delete className="mx-4 p-2" />
                   </div>
                 </div>
@@ -35,8 +39,17 @@ function ShareItems() {
             <div
               className={`${styles['img-section']} col d-flex align-items-center flex-column`}
             >
-              <Message className={`${styles['message-button']}`} />
-              <Info className={`${styles['info-button']}`} />
+              <Message
+                className={`${styles['message-button']}`}
+                style={msgdiv ? { display: 'none' } : { display: 'block' }}
+                onClick={() => {
+                  setMsgdiv(true);
+                }}
+              />
+              <Info
+                className={`${styles['info-button']}`}
+                style={msgdiv ? { display: 'none' } : { display: 'block' }}
+              />
               <div className={`d-flex ${styles['img-info']}`}>
                 <div className={`${styles['profile-img']} mb-3 mr-3`}>
                   <Shin />
@@ -48,7 +61,7 @@ function ShareItems() {
                   <h3 className="en-cont-14">Shin</h3>
                 </div>
                 <button
-                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center`}
+                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
                 >
                   <Heart style={{ padding: '10px' }} />
                   <div className="en-cont-16 text-white">15</div>
@@ -58,7 +71,7 @@ function ShareItems() {
                 className={`${styles['img-info']} d-flex justify-content-center`}
               >
                 <div className={`${styles['img-container']} mb-5`}>
-                  <img src={itemData[3].img} alt="bed"></img>
+                  <img src="\img\home\mealplan-bento.png" alt="bed"></img>
                 </div>
                 <ArrowLeft className={`${styles['img-arrow-left']}`} />
                 <ArrowRight className={`${styles['img-arrow-right']}`} />
@@ -67,10 +80,7 @@ function ShareItems() {
                 className={`${styles['img-carousel']} d-flex justify-content-center ${styles['mb-80']}`}
               >
                 <div className={`${styles['small-img-container']}`}>
-                  <img
-                    src="https://images.unsplash.com/photo-1549388604-817d15aa0110"
-                    alt="bed"
-                  ></img>
+                  <img src="\img\home\mealplan-bento.png" alt="bed"></img>
                 </div>
                 <div className={`${styles['small-img-container']}`}>
                   <img src={itemData[1].img} alt="bed"></img>
@@ -86,7 +96,12 @@ function ShareItems() {
             </div>
 
             <div
-              className={`${styles['message-section']} col d-flex flex-column`}
+              className={`${styles['message-section']}  d-flex flex-column`}
+              style={
+                !msgdiv
+                  ? { width: '0px' }
+                  : { width: '560px', padding: '0 15px' }
+              }
             >
               <div
                 style={{
@@ -99,7 +114,12 @@ function ShareItems() {
                 <div
                   className={`d-flex mb-3 border-bottom ${styles['comment-header']}`}
                 >
-                  <DeleteSm className={`${styles['del-button']}`} />
+                  <DeleteSm
+                    className={`${styles['del-button']}`}
+                    onClick={() => {
+                      setMsgdiv(false);
+                    }}
+                  />
                   <h2 className="mytitle ch-title-18 mr-4 ">評論</h2>
                   <h3 className="mytitle ch-title-18">{'3'}</h3>
                 </div>
@@ -196,18 +216,20 @@ function ShareItems() {
                         <Commenter />
                       </div>
                       <TextareaAutosize
-                        maxRows={4}
+                        maxRows={1}
                         className={`${styles['comment-textarea']} ch-cont-14 w-100`}
                         placeholder=" 我的想法..."
                       />
                     </div>
                     <div className="d-flex">
                       <button
-                        className={`${styles['save-button-sm-border']} mr-3 mb-3 ml-auto`}
+                        className={`${styles['save-button-sm-border']} ch-title-14 mr-3 mb-3 ml-auto btn-sm btn-outline-primary`}
                       >
                         取消
                       </button>
-                      <button className={`${styles['save-button-sm']} mb-3`}>
+                      <button
+                        className={`${styles['save-button-sm']} ch-title-14 mb-3 btn-sm btn-primary`}
+                      >
                         發佈
                       </button>
                     </div>
