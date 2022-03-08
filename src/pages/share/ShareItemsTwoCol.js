@@ -48,7 +48,7 @@ function ShareItems() {
                   <h3 className="en-cont-14">Shin</h3>
                 </div>
                 <button
-                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center`}
+                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
                 >
                   <Heart style={{ padding: '10px' }} />
                   <div className="en-cont-16 text-white">15</div>
@@ -58,7 +58,7 @@ function ShareItems() {
                 className={`${styles['img-info']} d-flex justify-content-center`}
               >
                 <div className={`${styles['img-container']} mb-5`}>
-                  <img src={itemData[3].img} alt="bed"></img>
+                  <img src="\img\home\mealplan-bento.png" alt="bed"></img>
                 </div>
                 <ArrowLeft className={`${styles['img-arrow-left']}`} />
                 <ArrowRight className={`${styles['img-arrow-right']}`} />
@@ -67,10 +67,7 @@ function ShareItems() {
                 className={`${styles['img-carousel']} d-flex justify-content-center ${styles['mb-80']}`}
               >
                 <div className={`${styles['small-img-container']}`}>
-                  <img
-                    src="https://images.unsplash.com/photo-1549388604-817d15aa0110"
-                    alt="bed"
-                  ></img>
+                  <img src="\img\home\mealplan-bento.png" alt="bed"></img>
                 </div>
                 <div className={`${styles['small-img-container']}`}>
                   <img src={itemData[1].img} alt="bed"></img>
@@ -203,11 +200,13 @@ function ShareItems() {
                     </div>
                     <div className="d-flex">
                       <button
-                        className={`${styles['save-button-sm-border']} mr-3 mb-3 ml-auto`}
+                        className={`${styles['save-button-sm-border']} mr-3 mb-3 ml-auto btn-sm btn-outline-primary`}
                       >
                         取消
                       </button>
-                      <button className={`${styles['save-button-sm']} mb-3`}>
+                      <button
+                        className={`${styles['save-button-sm']} mb-3 btn-sm btn-primary`}
+                      >
                         發佈
                       </button>
                     </div>
