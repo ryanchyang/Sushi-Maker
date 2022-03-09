@@ -1,0 +1,88 @@
+.navbar {
+  background-color: #841d29;
+  height: 100vh;
+  .close-btn {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #eed19a;
+    color: #b03342;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 1.5rem;
+    top: 1.5rem;
+    cursor: pointer;
+  }
+  .login-icon,
+  .cart-icon {
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+  .nav-bottom {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 2rem;
+  }
+  .navbar-content {
+    display: flex;
+    width: 100%;
+  }
+  .nav-img {
+    position: fixed;
+    top: -3rem;
+    left: -10rem;
+    transition: 0.5s;
+  }
+  .nav-img img {
+    width: 70%;
+  }
+  .nav-area {
+    position: fixed;
+    top: 25%;
+    left: 45%;
+    color: #ffffff;
+  }
+  .nav-content {
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  .en-txt {
+    margin-bottom: 0.3rem;
+  }
+  @media screen and (min-width: 576px) {
+    .nav-area {
+      top: 30%;
+      right: 10%;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+    .nav-content {
+      margin-left: 2rem;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-grow: 1;
+    }
+    .en-txt {
+      margin: 0 0;
+      writing-mode: vertical-rl;
+    }
+    .ch-txt {
+      margin: 0 0;
+      writing-mode: vertical-rl;
+      letter-spacing: 0.5rem;
+    }
+  }
+  @media screen and (min-width: 961px) {
+    .nav-img {
+      position: fixed;
+      left: -10rem;
+      top: -1rem;
+      transition: 0.5s;
+    }
+    .nav-img img {
+      width: 90%;
+    }
+  }
+}

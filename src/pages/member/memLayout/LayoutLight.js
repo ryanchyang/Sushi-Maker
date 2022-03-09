@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { ReactComponent as Logo } from '../../../imgs/logoLight.svg';
-import { ReactComponent as Hamburger } from '../../../imgs/hamburgerLight.svg';
-import { ReactComponent as Cart } from '../../../imgs/cartLight.svg';
+import { ReactComponent as Logo } from '../../imgs/logo.svg';
+import { ReactComponent as Hamburger } from '../../imgs/hamburger.svg';
+import { ReactComponent as Cart } from '../../imgs/cart.svg';
 import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
-import { ReactComponent as Logout } from '../../../imgs/logout.svg';
 
 function Header() {
   return (
@@ -38,7 +37,7 @@ function Title(props) {
           </div>
         </div>
       </div>
-      <mytitle className="layout-title navtitle">{props.title}</mytitle>
+      <mytitle className="mytitle layout-title navtitle">{props.title}</mytitle>
     </>
   );
 }
@@ -47,7 +46,7 @@ function AsideLeft() {
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-left" style={{ border: 'none' }}>
+        <div className="aside-left">
           <div className="logo-box">
             <Logo className="logo" />
           </div>
@@ -64,25 +63,13 @@ function AsideRight() {
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-right" style={{ border: 'none' }}>
+        <div className="aside-right">
           <div className="layout-hamberger-box">
             <Hamburger className="layout-hamberger" />
           </div>
-
-          <div className="layout-cart-btn-box">
-            <Logout
-              style={{
-                display: 'block',
-                margin: '0 auto',
-                fontSize: '25px',
-              }}
-            ></Logout>
+          <div className="layout-mem-photo-box">
+            <img src={require('./../../imgs/ruka.png')} alt="member-photo" />
           </div>
-
-          {/* <div className="layout-mem-photo-box"> */}
-          {/* <img src={require('../../../imgs/ruka.png')} alt="member-photo" /> */}
-          {/* </div> */}
-
           <div className="layout-cart-btn-box">
             <Cart className="layout-cart-btn" />
           </div>

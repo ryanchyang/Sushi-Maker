@@ -1,6 +1,6 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 
-function Order() {
+function StepTwo() {
   return (
     <>
       <Header />
@@ -9,7 +9,7 @@ function Order() {
         <div style={{ width: '100%' }}>
           <Title title={'Just'} />
           <br />
-            <div>fhgkdhfgkhgfdkfkgdhkfdgdk</div>
+          <div>fhgkdhfgkhgfdkfkgdhkfdgdk</div>
           <Footer />
         </div>
         <AsideRight />
@@ -18,4 +18,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default StepTwo;

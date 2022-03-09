@@ -1,4 +1,4 @@
-import './entry.scss'
+import './entry.scss';
 
 function Entry() {
   return (

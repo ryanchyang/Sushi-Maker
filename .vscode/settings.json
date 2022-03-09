@@ -3,5 +3,13 @@
         "activityBar.background": "#3F1643",
         "titleBar.activeBackground": "#581F5E",
         "titleBar.activeForeground": "#FDFAFD"
-    }
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "emmet.includeLanguages":{
+        "javascript":"javascriptreact"
+  
+    },
+    "emmet.triggerExpansionOnTab":true,
+    "emmet.includeLanguages":{
+        "Javascript":"javascriptreact"}
 }

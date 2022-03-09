@@ -9,7 +9,7 @@ function Order() {
         <div style={{ width: '100%' }}>
           <Title title={'Just'} />
           <br />
-            <div>fhgkdhfgkhgfdkfkgdhkfdgdk</div>
+            <div></div>
           <Footer />
         </div>
         <AsideRight />
