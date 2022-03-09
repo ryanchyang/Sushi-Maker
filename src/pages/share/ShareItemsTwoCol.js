@@ -12,10 +12,24 @@ import { ReactComponent as Message } from '../../imgs/message.svg';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 import React, { useState } from 'react';
-import { display } from '@mui/system';
 
 function ShareItems() {
+  const [msgbtn, setMsgbtn] = useState(false);
   const [msgdiv, setMsgdiv] = useState(false);
+
+  const btnMoveTemplate = () => {
+    return msgbtn
+      ? {
+          transform: 'translateX(80px)',
+          transition: 'transform 0.3s, opacity 0.2s',
+          opacity: 0,
+        }
+      : {
+          transform: 'translateX(0px)',
+          transition: 'transform 0.3s, opacity 0.2s',
+          opacity: 1,
+        };
+  };
 
   return (
     <>
@@ -40,15 +54,24 @@ function ShareItems() {
               className={`${styles['img-section']} col d-flex align-items-center flex-column`}
             >
               <Message
-                className={`${styles['message-button']}`}
-                style={msgdiv ? { display: 'none' } : { display: 'block' }}
+                className={`${styles['message-button']} `}
+                style={btnMoveTemplate()}
                 onClick={() => {
-                  setMsgdiv(true);
+                  setMsgbtn(true);
+                }}
+                onTransitionEnd={() => {
+                  msgbtn && setMsgdiv(true);
                 }}
               />
               <Info
                 className={`${styles['info-button']}`}
-                style={msgdiv ? { display: 'none' } : { display: 'block' }}
+                style={btnMoveTemplate()}
+                onClick={() => {
+                  setMsgbtn(true);
+                }}
+                onTransitionEnd={() => {
+                  msgbtn && setMsgdiv(true);
+                }}
               />
               <div className={`d-flex ${styles['img-info']}`}>
                 <div className={`${styles['profile-img']} mb-3 mr-3`}>
@@ -102,6 +125,9 @@ function ShareItems() {
                   ? { width: '0px' }
                   : { width: '560px', padding: '0 15px' }
               }
+              onTransitionEnd={() => {
+                !msgdiv && setMsgbtn(false);
+              }}
             >
               <div
                 style={{
@@ -221,9 +247,9 @@ function ShareItems() {
                         placeholder=" 我的想法..."
                       />
                     </div>
-                    <div className="d-flex">
+                    <div className="d-flex justify-content-end">
                       <button
-                        className={`${styles['save-button-sm-border']} ch-title-14 mr-3 mb-3 ml-auto btn-sm btn-outline-primary`}
+                        className={`${styles['save-button-sm-border']} ch-title-14 mr-3 mb-3 btn-sm btn-outline-primary`}
                       >
                         取消
                       </button>

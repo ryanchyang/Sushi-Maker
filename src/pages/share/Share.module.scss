@@ -22,6 +22,9 @@
   margin-bottom: 80px;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
 .waterfall-container {
   padding: 0 100px;
 }
@@ -106,12 +109,18 @@
   cursor: pointer;
 }
 
+.message-button-move {
+  animation-duration: 3s;
+  animation-name: buttonmove;
+}
+
 .message-button:hover,
 .info-button:hover,
 .del-button:hover {
   background-color: #e2e2e2;
   background-size: 250px 150px;
   border-radius: 50%;
+  transition: none;
 }
 
 .info-button {
@@ -200,4 +209,24 @@
 
 .img-desc {
   width: 700px;
+}
+
+@keyframes buttonmove {
+  from {
+    transform: translateX(0px);
+    opacity: 100;
+  }
+  to {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+}
+
+@keyframes buttondisappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
