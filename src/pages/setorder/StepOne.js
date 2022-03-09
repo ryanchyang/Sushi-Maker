@@ -1,5 +1,6 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import './step.scss';
+import './../../styles/global.scss';
 
 //style component
 // const LoginBody = styled.body`
@@ -19,7 +20,7 @@ function StepOne() {
             <div className="mycontainer">
               <div className="set-all-content">
                 <div className="set-title col-12">
-                  <div className="ch-title-22 set-text-center">
+                  <div className="step-mob-title set-text-center">
                     讓我們來幫您規劃您的專屬菜單
                   </div>
                 </div>

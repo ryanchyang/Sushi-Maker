@@ -1,3 +1,4 @@
+@import './../../styles/global.scss';
 .step {
   .set-all-content {
     margin: 5% 0 5% 0;
@@ -12,7 +13,26 @@
     position: absolute;
     z-index: 1;
     top: -3%;
-    left:25%;
+    left: 25%;
+  }
+  
+  .step-mob-title {
+    @extend .ch-title-22;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 1.6rem;
+        line-height: 2.3rem;
+        letter-spacing: 0.16rem;
+
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        letter-spacing: 0.14rem;
+    }
+
   }
 
   .set-question-box {
@@ -56,4 +76,37 @@
   .set-content {
     padding-bottom: 5%;
   }
+
+  @media screen and (max-width: 600px) {
+    .set-title {
+      margin: auto;
+      padding: 10px;
+      border: 0px solid #212121;
+      border-radius: 13px;
+      background-color: #f7f6f3;
+      position: absolute;
+      z-index: 1;
+      top: -3%;
+      left: 25%;
+    }
+    .set-question-box {
+      z-index: 0;
+      margin: auto;
+      padding: 8% 4%;
+      width: 85%;
+      height: 60%;
+      border: 0px solid #212121;
+      border-radius: 13px;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+  }
+
+
+
+  
 }
+
+
