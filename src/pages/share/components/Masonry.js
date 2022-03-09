@@ -9,6 +9,7 @@ import styles from '../Share.module.scss';
 
 import { ReactComponent as Heart } from '../../../imgs/heart.svg';
 import { useState, useEffect } from 'react';
+import useCurrentWidth from '../hooks/useCurrentWidth';
 
 const breakpoints = {
   xs: 0,
@@ -29,23 +30,41 @@ const getColumns = width => {
   }
 };
 
-export default function MasonryImageList() {
-  const [columns, setColumns] = useState(getColumns(window.innerWidth));
+export default function Masonry() {
+  const currentWidth = useCurrentWidth();
+  const [columns, setColumns] = useState(getColumns(currentWidth));
+  const [hover, setHover] = useState(-1);
 
   const updateDimensions = () => {
-    setColumns(getColumns(window.innerWidth));
+    setColumns(getColumns(currentWidth));
+  };
+
+  const hoverHandler = i => {
+    let obj = {
+      background:
+        'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
+        'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    };
+    if (hover === i) {
+      return obj;
+    } else {
+      return { ...obj, display: 'none' };
+    }
   };
 
   useEffect(() => {
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions);
-  }, []);
+    updateDimensions();
+  }, [currentWidth]);
 
   return (
     <div className={`d-flex flex-column ${styles['waterfall-container']}`}>
       <ImageList variant="masonry" cols={columns} gap={columns * 12}>
-        {itemData.map(item => (
-          <ImageListItem key={item.img} onMouseOver={() => console.log('123')}>
+        {itemData.map((item, i) => (
+          <ImageListItem
+            key={i}
+            onMouseEnter={() => setHover(i)}
+            onMouseLeave={() => setHover(-1)}
+          >
             <img
               src={`${item.img}?w=450&fit=crop&auto=format`}
               srcSet={`${item.img}?w=450&fit=crop&auto=format&dpr=2 2x`}
@@ -53,12 +72,7 @@ export default function MasonryImageList() {
               loading="lazy"
             />
             <ImageListItemBar
-              sx={{
-                background:
-                  'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-                  'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                height: '100%',
-              }}
+              sx={hoverHandler(i)}
               title={item.title}
               subtitle={item.desc}
               actionIcon={

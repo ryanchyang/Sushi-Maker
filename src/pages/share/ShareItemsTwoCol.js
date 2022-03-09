@@ -152,8 +152,8 @@ function ShareItems() {
                       setMsgdiv(false);
                     }}
                   />
-                  <h2 className="mytitle ch-title-18 mr-4 ">評論</h2>
-                  <h3 className="mytitle ch-title-18">{'3'}</h3>
+                  <h2 className="en-title-18 mr-4 ">Comments</h2>
+                  <h3 className="en-title-18">{'7'}</h3>
                 </div>
                 <div className={`${styles['comment-section']} mb-4`}>
                   <div className="d-flex mt-5 mb-3">
@@ -297,7 +297,7 @@ function ShareItems() {
                       setInfodiv(false);
                     }}
                   />
-                  <h2 className="ch-title-18 mr-4">資訊</h2>
+                  <h2 className="en-title-18 mr-4">Info</h2>
                 </div>
                 <div className={`${styles['info-section']} mb-5`}>
                   <div className="d-flex mt-3 mb-5" style={{ width: '312px' }}>
