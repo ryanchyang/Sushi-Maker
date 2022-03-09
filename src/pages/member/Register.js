@@ -254,9 +254,8 @@ function Register() {
                       />
                     </div>
                   </div>
-
                   <button
-                    className="ch-title-22"
+                    className="ch-title-22 btn"
                     style={{
                       borderRadius: 50,
                       marginTop: '15%',

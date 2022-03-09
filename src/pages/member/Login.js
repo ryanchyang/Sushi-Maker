@@ -7,7 +7,8 @@ import {
   Footer,
 } from './memLayout/LayoutDark';
 import { useState } from 'react';
-import { BsEyeSlash } from 'react-icons/bs';
+import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
+import zIndex from '@mui/material/styles/zIndex';
 
 //styled component
 const LoginBody = styled.body`
@@ -52,7 +53,7 @@ const InputRegistLink = styled.p`
   text-align: center;
 `;
 const ErrorMessage = styled.p`
-  color: #b03342
+  color: #b03342;
 `;
 
 //顯示關閉密碼icon待開發
@@ -61,11 +62,11 @@ const PswInput = styled.input`
     <BsEyeSlash></BsEyeSlash>
 
   }
-`
+`;
 
 //function
 const handleSubmit = e => {
-  e.preventDefault(); 
+  e.preventDefault();
 };
 
 function Login() {
@@ -97,6 +98,7 @@ function Login() {
                   <input
                     type="text"
                     value={account}
+                    className="form-control"
                     onChange={e => {
                       setAccount(e.target.value);
                     }}
@@ -115,32 +117,48 @@ function Login() {
                   <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <PswInput
-                    type="password"
-                    value={password}
-                    onChange={e => {
-                      setPassword(e.target.value);
-                    }}
-                    name="member_password"
+                  <div
                     style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
+                      position: 'relative',
                     }}
-                  />
+                  >
+                    <PswInput
+                      type="password"
+                      className="form-control"
+                      value={password}
+                      onChange={e => {
+                        setPassword(e.target.value);
+                      }}
+                      name="member_password"
+                      style={{
+                        borderRadius: 50,
+                        height: '40px',
+                        background: '#212121',
+                        border: '1px solid #f7f6f3',
+                        color: '#f7f6f3',
+                        fontSize: '1.4rem',
+                        lineHeight: '1.8rem',
+                        letterSpacing: '0.14rem',
+                      }}
+                    />
+                    <EyeOff
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '8px',
+                      }}
+                    ></EyeOff>
+                  </div>
                   <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
                   <button
-                    className="ch-title-22"
+                    className="ch-title-22 btn"
                     style={{
                       borderRadius: 50,
                       marginTop: '61px',
                       height: '40px',
                       color: '#575757',
+                      background: '#f7f6f3',
+                      transition: '0.5s',
                     }}
                   >
                     登入
