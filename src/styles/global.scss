@@ -243,6 +243,10 @@ body {
   }
 }
 
+// BUTTON
+// 使用方法: 先套用BOOSTRAP預設的CLASS ex:btn-sm btn-primary
+// 再套下面的CLASS改大小跟字體
+
 // 大的button (套用長寬、樣式、RWD 字體)
 .primeal-btn {
   @extend .ch-title-18;
@@ -268,6 +272,7 @@ body {
   border: none;
 }
 
+//框框的button
 .primeal-btn-outline {
   @extend .primeal-btn;
   border: 1px solid $primary;
