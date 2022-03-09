@@ -69,8 +69,7 @@ body {
     margin-bottom: 0.5rem;
   }
   /* about */
-  .about-us-title,
-  .page-title {
+  .about-us-title{
     padding-left: 1.5rem;
     margin-bottom: 2rem;
     margin-top: 8rem;
@@ -101,7 +100,8 @@ body {
     margin: 0 auto;
     white-space: nowrap;
     overflow: hidden;
-    margin-bottom: 5rem;
+    margin-top: 10rem;
+    margin-bottom: 15rem;
   }
   .promotion-list,
   .pagination-list {
@@ -145,7 +145,7 @@ body {
   }
   /* just for you */
   .index-category {
-    padding-top: 1rem;
+    margin-top: 3rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #c4c4c4;
   }
@@ -154,6 +154,7 @@ body {
   }
   .index-category-content {
     padding: 2rem 2rem 2rem;
+    margin-top: 1rem;
     margin-bottom: 1rem;
   }
   .lastest-new-content {
@@ -183,7 +184,7 @@ body {
   }
   /* footer */
   .footer-top {
-    height: 300px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -192,6 +193,7 @@ body {
     border-top: 1px solid #c4c4c4;
     text-align: center;
     padding-top: 1rem;
+    margin-bottom: 1rem;
   }
   .footer-slogan,
   .footer-copy-right {
@@ -230,8 +232,11 @@ body {
     .scroll-hint {
       margin-top: 1rem;
     }
+    .scroll-down{
+      margin-top: 10rem;
+    }
     .about-us-title {
-      margin-top: 13rem;
+      margin-top: 15rem;
       font-size: 48px;
       text-align: right;
       padding-right: 52px;
@@ -243,6 +248,7 @@ body {
       display: flex;
       justify-content: space-around;
       margin-top: 6rem;
+      margin-bottom: 12rem;
     }
     .about-ch-title {
       padding-right: 0px;
@@ -284,10 +290,10 @@ body {
     }
     .index-category-content {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
     }
     .just-for-you-txt {
-      padding-top: 5rem;
+      padding-top: 10rem;
     }
     .index-view-more {
       margin-top: 5rem;
@@ -301,6 +307,7 @@ body {
       object-fit: contain;
     }
     .news-right-wrap {
+      padding-top: 3rem;
       width: 50%;
     }
     .news-content-top {
@@ -320,7 +327,7 @@ body {
       padding: 0 0;
       display: flex;
       border-bottom: 1px solid #c4c4c4;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
     .pagination-dots {
       width: 15px;
@@ -335,9 +342,11 @@ body {
       justify-content: space-between;
     }
 
-    .footer-slogan {
-      margin-left: 8rem;
-      margin-right: 2rem;
+    .footer-contact {
+      width: 50%;
+    }
+    .footer-link-area {
+      width: 50%;
     }
     .footer-bottom {
       display: flex;
@@ -353,6 +362,17 @@ body {
     .footer-copy-right {
       text-align: right;
       margin-right: 2rem;
+    }
+    .back-to-top{
+      text-align: center;
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      right: 5rem;
+      bottom: 2rem;
+    }
+    .back-to-top-text{
+      margin-bottom: 1rem;
     }
   }
 }
