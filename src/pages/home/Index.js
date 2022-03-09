@@ -1,4 +1,4 @@
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Header, Title, AsideLeft, AsideRight } from '../layout/Layout';
 import './index.scss';
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
@@ -338,7 +338,6 @@ function Index() {
               <p className="back-to-top-text">Back To Top</p>
               <img src="/img/home/index-backtotop.svg" alt="back-to-top" />
             </div>
-            {/* <Footer /> */}
           </div>
           <AsideRight />
         </div>
