@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { ReactComponent as Logo } from '../../imgs/logo.svg';
-import { ReactComponent as Hamburger } from '../../imgs/hamburger.svg';
-import { ReactComponent as Cart } from '../../imgs/cart.svg';
+import { ReactComponent as Logo } from '../../../imgs/logo.svg';
+import { ReactComponent as Hamburger } from '../../../imgs/hamburger.svg';
+import { ReactComponent as Cart } from '../../../imgs/cart.svg';
 import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
@@ -50,6 +50,59 @@ function AsideLeft() {
           <div className="logo-box">
             <Logo className="logo" />
           </div>
+          <div
+            style={{
+              width: '100%',
+              marginTop: '90%',
+              marginLeft: '30%',
+            }}
+          >
+            <div
+              className="ch-title-16"
+              style={{
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <p>會員資訊</p>
+            </div>
+            <div 
+            className="ch-title-16"
+            style={{
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <p>修改資料</p>
+            </div>
+            <div 
+            className="ch-title-16"
+            style={{
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <p>營養分析</p>
+            </div>
+            <div 
+            className="ch-title-16"
+            style={{
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <p className="ch-title-16">活動行程</p>
+            </div>
+            <div 
+            className="ch-title-16"
+            style={{
+                width: '100%',
+                marginTop: '10%',
+              }}
+            >
+              <p className="ch-title-16">我的訂單</p>
+            </div>
+          </div>
         </div>
       </aside>
     </>
@@ -68,7 +121,7 @@ function AsideRight() {
             <Hamburger className="layout-hamberger" />
           </div>
           <div className="layout-mem-photo-box">
-            <img src={require('./../../imgs/ruka.png')} alt="member-photo" />
+            <img src={require('../../../imgs/ruka.png')} alt="member-photo" />
           </div>
           <div className="layout-cart-btn-box">
             <Cart className="layout-cart-btn" />

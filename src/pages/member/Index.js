@@ -1,4 +1,4 @@
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Header, Title, AsideLeft, AsideRight, Footer } from './memLayout/LayoutLight';
 import './index.scss';
 
 function memIndex() {
@@ -16,7 +16,7 @@ function memIndex() {
                 <div className="memPhoto">
                   <img
                     className="memImg"
-                    src={require('./../../imgs/ruka.png')}
+                    src={require('../../imgs/ruka.png')}
                     alt="member-photo"
                   />
                 </div>
