@@ -4,19 +4,48 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
+
 import styles from '../Share.module.scss';
-import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
+
 import { ReactComponent as Heart } from '../../../imgs/heart.svg';
+import { useState, useEffect } from 'react';
+
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+};
+
+const getColumns = width => {
+  if (width < breakpoints.sm) {
+    return 2;
+  } else if (width < breakpoints.md) {
+    return 2;
+  } else if (width < breakpoints.lg) {
+    return 3;
+  } else {
+    return 3;
+  }
+};
 
 export default function MasonryImageList() {
+  const [columns, setColumns] = useState(getColumns(window.innerWidth));
+
+  const updateDimensions = () => {
+    setColumns(getColumns(window.innerWidth));
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions);
+  }, []);
+
   return (
     <div className={`d-flex flex-column ${styles['waterfall-container']}`}>
-      <div className={`d-flex justify-content-end mb-5`}>
-        <Filter />
-      </div>
-      <ImageList variant="masonry" cols={3} gap={40}>
+      <ImageList variant="masonry" cols={columns} gap={columns * 12}>
         {itemData.map(item => (
-          <ImageListItem key={item.img}>
+          <ImageListItem key={item.img} onMouseOver={() => console.log('123')}>
             <img
               src={`${item.img}?w=450&fit=crop&auto=format`}
               srcSet={`${item.img}?w=450&fit=crop&auto=format&dpr=2 2x`}
@@ -24,11 +53,11 @@ export default function MasonryImageList() {
               loading="lazy"
             />
             <ImageListItemBar
-              primaryTypographyProps={{ fontSize: '18px' }}
               sx={{
                 background:
                   'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
                   'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+                height: '100%',
               }}
               title={item.title}
               subtitle={item.desc}

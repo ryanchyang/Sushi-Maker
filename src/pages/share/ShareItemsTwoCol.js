@@ -1,5 +1,6 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import styles from './Share.module.scss';
+
 import { ReactComponent as ArrowRight } from '../../imgs/arrow-right.svg';
 import { ReactComponent as ArrowLeft } from '../../imgs/arrow-left.svg';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
@@ -9,16 +10,21 @@ import { ReactComponent as Commenter } from './imgs/user.svg';
 import { ReactComponent as Heart } from '../../imgs/heart.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
+import { ReactComponent as PriceTag } from '../../imgs/priceTag.svg';
+import { ReactComponent as TimeClock } from '../../imgs/timeClock.svg';
+
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 import React, { useState } from 'react';
 
 function ShareItems() {
   const [msgbtn, setMsgbtn] = useState(false);
+  const [infobtn, setInfobtn] = useState(false);
   const [msgdiv, setMsgdiv] = useState(false);
+  const [infodiv, setInfodiv] = useState(false);
 
   const btnMoveTemplate = () => {
-    return msgbtn
+    return msgbtn || infobtn
       ? {
           transform: 'translateX(80px)',
           transition: 'transform 0.3s, opacity 0.2s',
@@ -67,10 +73,10 @@ function ShareItems() {
                 className={`${styles['info-button']}`}
                 style={btnMoveTemplate()}
                 onClick={() => {
-                  setMsgbtn(true);
+                  setInfobtn(true);
                 }}
                 onTransitionEnd={() => {
-                  msgbtn && setMsgdiv(true);
+                  infobtn && setInfodiv(true);
                 }}
               />
               <div className={`d-flex ${styles['img-info']}`}>
@@ -133,7 +139,7 @@ function ShareItems() {
                 style={{
                   marginLeft: '180px',
                   marginRight: '30px',
-                  marginTop: '70px',
+                  marginTop: '80px',
                 }}
                 className={`d-flex flex-column`}
               >
@@ -258,6 +264,62 @@ function ShareItems() {
                       >
                         發佈
                       </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              className={`${styles['detail-section']}  d-flex flex-column`}
+              style={
+                !infodiv
+                  ? { width: '0px' }
+                  : { width: '560px', padding: '0 15px' }
+              }
+              onTransitionEnd={() => {
+                !infodiv && setInfobtn(false);
+              }}
+            >
+              <div
+                style={{
+                  marginLeft: '180px',
+                  marginRight: '30px',
+                  marginTop: '80px',
+                }}
+                className={`d-flex flex-column`}
+              >
+                <div
+                  className={`d-flex mb-3 border-bottom ${styles['detail-header']}`}
+                >
+                  <DeleteSm
+                    className={`${styles['del-button']}`}
+                    onClick={() => {
+                      setInfodiv(false);
+                    }}
+                  />
+                  <h2 className="ch-title-18 mr-4">資訊</h2>
+                </div>
+                <div className={`${styles['info-section']} mb-5`}>
+                  <div className="d-flex mt-3 mb-5" style={{ width: '312px' }}>
+                    <div className="d-flex flex-grow-1">
+                      <PriceTag className="mr-3" />
+                      <h3 className="en-cont-18">NT_$500</h3>
+                    </div>
+                    <div className="d-flex  flex-grow-1">
+                      <TimeClock className="mr-3" />
+                      <h3 className="en-cont-18">40_MIN</h3>
+                    </div>
+                  </div>
+                  <div className={`${styles['tag-box']}`}>
+                    <div className={`${styles['tag']} ch-title-16`}>
+                      #超好吃
+                    </div>
+                    <div className={`${styles['tag']} ch-title-16`}>
+                      #下次再揪阿
+                    </div>
+                    <div className={`${styles['tag']} ch-title-16`}> #香</div>
+                    <div className={`${styles['tag']} ch-title-16`}>
+                      #最近有活動!!大家趕快去買!
                     </div>
                   </div>
                 </div>

@@ -91,6 +91,14 @@ body {
 //   padding: 0 15px;
 // }
 
+.MuiImageListItemBar-title {
+  font-size: 1.8rem !important;
+}
+
+// .MuiImageListItemBar-root:hover {
+//   display: none !important;
+// }
+
 // 字型classname，若是title有需求請使用mytitle的tag
 @mixin mytitle {
   font-family: 'title';
