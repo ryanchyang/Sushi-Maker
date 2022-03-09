@@ -174,7 +174,7 @@ function Index() {
               <div className="index-category-content">
                 <div className="index-category-img d-flex justify-content-center">
                   <img
-                    className="d-md-none"
+                    className="d-sm-none"
                     src="/img/home/jfy-mobile-img.svg"
                     alt="just-for-you"
                   />
