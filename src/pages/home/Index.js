@@ -24,7 +24,7 @@ function Index() {
               {/* index content */}
               {/* todo: 下排圖片改變時，process的innerHTML要換字 */}
               <div className="index-content">
-                <div className="en-title-14-10 content-top d-flex justify-content-between">
+                <div className="en-title-14-5 content-top d-flex justify-content-between">
                   <div className="col-12 number">NO.897532</div>
                   <div className="col-12 process">Constructing...</div>
                 </div>
@@ -42,8 +42,8 @@ function Index() {
                 </div>
               </div>
               {/* view product & scroll area */}
-              <div className="en-title-14-5 view-product-area d-flex justify-content-end">
-                <p>View Product</p>
+              <div className="view-product-area d-flex justify-content-end align-items-center">
+                <p className="en-cont-12 ">View Product</p>
                 <div className="view-product-arrow">
                   <img src="/img/home/index-arrowsm.svg" alt="view-product" />
                 </div>
@@ -210,7 +210,7 @@ function Index() {
               <div className="en-title-14-5 index-category d-flex justify-content-evenly">
                 <div className="col-8 index-category-name">NEWS</div>
                 <div className="col-8 index-category-name">EVENTS</div>
-                <div className="col-8 index-category-name">SHARE</div>
+                <div className="col-8 index-category-name">SHARES</div>
               </div>
               <div className="news-carousel-wrap d-flex overflow-hidden">
                 <div className="col-24 lastest-new-content">
