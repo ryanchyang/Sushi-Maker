@@ -124,7 +124,7 @@ function StepOne() {
                 <div className="  next-btn d-flex my-5 ">
                   <button
                     type="button"
-                    className="btn btn-sm btn-primary primeal-btn-outline-sm  mx-5"
+                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5"
                   >
                     繼續購物
                   </button>

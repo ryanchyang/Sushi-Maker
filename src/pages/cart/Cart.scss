@@ -164,10 +164,16 @@ Footer{
 // 所有 input 高度
 input.form-control{
   height: 40px;
+  padding: 10px 20px;
+}
+
+input::placeholder {
+  padding: 0 0px;
 }
 
 select{
   height: 40px;
+  max-width:100%;
 }
 
 // stepFour 進度條

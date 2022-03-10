@@ -221,7 +221,7 @@ function StepThree() {
               <div className="  d-flex next-btn my-5">
                 <button
                   type="button"
-                  className="btn btn-sm btn-primary primeal-btn-outline-sm  mx-5"
+                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5"
                 >
                   上一步
                 </button>
