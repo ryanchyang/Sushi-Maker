@@ -20,8 +20,8 @@ function Detail() {
             <div className={ isDetail? "detail-content-ondetail" : "detail-content" }>
               <div className={ isDetail? "prod-img-box-ondetail" : "prod-img-box" }>
                 <div className={ isDetail? "all-size-title-ondetail" : "all-size-title" }>
-                  <div className="prod-ch-name ch-title-40-20">鮭魚壽司</div>
-                  <div className="prod-en-name en-title-20">Salmon Sushi</div>
+                  <div className="prod-ch-name ch-title-big">鮭魚壽司</div>
+                  <div className="prod-en-name eh-title-big">Salmon Sushi</div>
                 </div>
                 <img className={ isDetail? "prod-img-box-img-ondetail" : "prod-img-box-img" }
                   src={require('./../../imgs/temp/classic-pro1.png')}
@@ -50,21 +50,21 @@ function Detail() {
               </div>
 
               <div className={ isDetail? "prod-detail-right-ondetail" : "prod-detail-right" }>
-                <div className="prod-ch-name ch-title-40-20">鮭魚壽司</div>
-                <div className="prod-en-name en-title-20">Salmon Sushi</div>
+                <div className="prod-ch-name ch-title-big">鮭魚壽司</div>
+                <div className="prod-en-name eh-title-big">Salmon Sushi</div>
                 <div className="like-heart">
                   <Heart />
                 </div>
                 <div className="prod-price">
-                  <div className="ch-title-40-20">NT_$500</div>
-                  <div className="prod-stock en-title-16">IN STOCK</div>
+                  <div className="ch-title-large">NT_$500</div>
+                  <div className="prod-stock en-title-mid">PRICE</div>
                 </div>
                 <div className="prod-printtime">
-                  <div className="ch-title-40-20">30_SEC</div>
-                  <div className="prod-print en-title-16">PRINT TIME</div>
+                  <div className="ch-title-large">30_SEC</div>
+                  <div className="prod-print en-title-mid">PRINT TIME</div>
                 </div>
                 <div className="prod-desc">
-                  <div className="prod-desc-content ch-cont-14">
+                  <div className="prod-desc-content ch-content-sm">
                     美味的列印鮭魚搭配特製芥末，底層列印壽司米迸出新口感。
                   </div>
                   <div className="prod-desc-title en-title-16">DESCRIPTION</div>
@@ -80,7 +80,7 @@ function Detail() {
                   <input type="number" value={1} />
                   <button>+</button>
                 </div>
-                <button className="btn-sm btn-primary primeal-btn">
+                <button className="add-cart btn-sm btn-primary primeal-btn">
                   加入購物車
                 </button>
               </div>
@@ -122,7 +122,7 @@ function Detail() {
               </div>
               <div className="detail-content-bottom">
                 <div className="carrier-type ch-cont-14">
-                  配送類型
+                  ≪配送類型≫
                   <br />
                   宅急便(冷藏)
                   <br />
@@ -242,7 +242,7 @@ function Detail() {
                 </div>
               </div>
 
-              <div className="prod-card">
+              <div className="prod-card last-recommend">
                 <div className="recommend-prod-img-box">
                   <div className="discount-tag">
                     <Discount />
