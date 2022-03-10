@@ -83,12 +83,12 @@ function ProdItem(props) {
           <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
             {/* <div className="col-md-2 text-center"> */}
             <div className="prod-item-icon ">
-              <img src="/imgs/cart/icon-trash.svg" alt="" />
+              <img src="/img/cart/icon-trash.svg" alt="" />
             </div>
             {/* </div> */}
             {/* <div className="col-md-2 text-center"> */}
             <div className="prod-item-icon">
-              <img src="/imgs/cart/icon-info.svg" alt="" />
+              <img src="/img/cart/icon-info.svg" alt="" />
             </div>
             {/* </div> */}
           </div>

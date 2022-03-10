@@ -129,7 +129,7 @@ function StepTwo() {
 
             {/* 下一步 */}
             <div className="row  d-flex justify-content-center justify-content-md-end">
-              <div className="  next-btn my-5">
+              <div className="  d-flex next-btn my-5">
                 <button
                   type="button"
                   className="btn btn-sm btn-primary primeal-btn-outline-sm  mx-5"

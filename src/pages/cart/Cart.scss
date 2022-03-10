@@ -1,5 +1,6 @@
 /* cart.scss */
 @import './../../styles/global.scss';
+
 .cart{
 /* 購物車元件的項目 */
   
@@ -8,17 +9,43 @@
     align-items: center; 
     align-self :center;
     align-content:stretch;
+
+// 手機板的item padding 移除
+    @media screen and (max-width: 375px) {
+      .col-1,
+      .col-2,
+      .col-3,
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8,
+      .col-9,
+      .col-10,
+      .col-12,
+      .col-14,
+      .col-16,
+      .col-18,
+      .col-24{
+        padding: 0%;
+      }
+      
+    }
+
+    /* ProdLists商品圖片 */
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background-color: #c4c4c4;
+
 }
-/* 購物車數量 - 1 + */
-.amount-line{
-    border-top: 1px solid #303030;
-    border-bottom: 1px solid #303030;
-    display: flex;
-    width: 60%;
-    align-items: center;
-    padding:3% ;
-   justify-content:space-around;
+.cart-item-img img {
+  width: 100%;
 }
+
+}
+
 /* 購物車數量 - 1 + */
 .select-count{
     display: flex;
@@ -56,65 +83,37 @@
     // padding: 30px 0px;
     border-bottom: 1px solid #c4c4c4 ;
 }
-/* 框線按鈕顏色 */
-// .btn-outline-tint-red{
-//     // color: #b03342;
-//     // border: 1px solid #b03342; 
-//     // align-self: stretch;
-//     // padding:2% 10%;
-//     // margin:0 2%;
-
-// //   width: 150px;
-// //   height: 44px;
-// //   padding: 5px 10px;
-// //   border:2px solid #b03342;
-// // //   background-color: #b03342;
-// //   border-radius: 30px;
-// }
-/* 實心按鈕 */
-// .btn-tint-red{
-//     // color: #fff;
-//     // border: 1px solid #b03342; 
-//     // background:#b03342;
-//     // align-self: stretch;
-//     // padding:2% 10%;
-//     // margin:0 2%;
-//     // 組長大大btn
-// //   width: 150px;
-// //   height: 44px;
-// //   padding: 5px 10px;
-// //   background-color: #b03342;
-// // //   border: none;
-// //   border-radius: 30px;
-// }
 
 
 
-// .btn-primary{
-//     padding:5% 15%;
-//     margin:0 2%; 
-// }
-// .btn-outline-primary{
-//     padding:3% 12%;
-//     margin:0 2%; 
-// }
-
-
-/* 商品圖片 */
-.cart-item-img img{
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+// 確認訂單 的img
+.cart-item-img-info img{
+  width: 100%;
+ 
+}
+.cart-item-img-info {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+ background-color: #c4c4c4;
 
 }
-// .cart-item-img {
-//   width: 80%;
-// }
 
+// 總計右邊列
 .summary-right{
+      margin: 0;
+      position: sticky;
+      bottom: 36px;
+      background-color: #f7f6f3;
+}
+
+
+
+ @media screen and (min-width: 576px) {
+   .summary-right{
       margin: 10%;
 }
-
+// 總計的地方網頁版才要線
 .summary-right>.row{
     margin: 5% ;
     padding: 10% auto;
@@ -122,10 +121,9 @@
 
 }
 
-
+ }
 
 // stepone fixbottom
-
 // .list-check{
 //    position: sticky;
 //   //  left: 0;
@@ -135,48 +133,40 @@
   
 // }
 
-// cartlist 
+// cartlist 空的購物車圖
 .empty-img{
+   width: 200px;
+  height: 200px;
   margin: 10%;
+  
 
 }
 .empty-img img{
-  width: 200px;
-  height: 200px;
+width: 100%;
 }
 
+// 頁尾固定
 Footer{
    /*  */
     position: sticky;
     bottom: 0;
 }
 
-// primary 大小
-// .btn-lg{
-//   width: 210px;
-//   height: 44px;
-
-// }
-
-// .btn-sm{
-//   width: 120px;
-//   height: 34px;
-// }
 
 
-// stepone
+// stepone 總計的金額
 .ch-cont-24 {
- 
   font-size: 2.4rem;
   line-height: 3.6rem;
   letter-spacing: 0.54rem;
 }
-// 刪除 set 的按鈕
-// .prod-item-icon{
-//   margin: 0 15%;
-// }
-// input 高度
+
+// 所有 input 高度
 input.form-control{
+  height: 40px;
+}
+
+select{
   height: 40px;
 }
 
@@ -185,7 +175,6 @@ input.form-control{
   width: 100%;
   height: 30px;
   border-radius: 5px;
-  // margin: 20px 10px;
   margin: 5% 0;
   border: 1px solid rgb(189, 113, 113);
   overflow: hidden;
@@ -204,7 +193,6 @@ input.form-control{
 }
 
 .progress-red span {
- 
   background-color:  $primary;
 }
 
