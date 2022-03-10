@@ -7,7 +7,7 @@ import IndexRevisePwd from './pages/member/IndexRevisePwd';
 
 ReactDOM.render(
   <React.StrictMode>
-    <IndexRevisePwd />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
