@@ -4,6 +4,10 @@ import { useState } from 'react';
 
 function LastestNews() {
   const [focus, setFocus] = useState('news');
+  const changeFocus = event => {
+    console.log('hi');
+    // setFocus()
+  };
   return (
     <>
       <Header />
@@ -31,16 +35,34 @@ function LastestNews() {
               {/* latest news category */}
               <div className="latest-news-category-box">
                 <div className="category-name d-flex align-items-center">
-                  {/* {focus === 'news' ? `<div className="diamond"></div>` : ''} */}
-                  <div className="en-title-14-5">NEWS</div>
+                  {focus === 'news' ? (
+                    <div className="diamond"></div>
+                  ) : (
+                    <div></div>
+                  )}
+                  <div
+                    className="en-title-14-5 category-item"
+                    onClick={() => {
+                      changeFocus();
+                    }}
+                  >
+                    NEWS
+                  </div>
                 </div>
                 <div className="category-name d-flex align-items-center">
-                  {/* {focus === 'events' ? `<div className="diamond"></div>` : ''} */}
-                  <div className="diamond"></div>
+                  {focus === 'events' ? (
+                    <div className="diamond"></div>
+                  ) : (
+                    <div></div>
+                  )}
                   <div className="en-title-14-5">EVNETS</div>
                 </div>
                 <div className="category-name d-flex align-items-center">
-                  {/* {focus === 'shares' ? `<div className="diamond"></div>` : ''} */}
+                  {focus === 'shares' ? (
+                    <div className="diamond"></div>
+                  ) : (
+                    <div></div>
+                  )}
                   {/* <div className="diamond"></div> */}
                   <div className="en-title-14-5">SHARES</div>
                 </div>
