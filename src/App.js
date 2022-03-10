@@ -13,7 +13,7 @@ import ShareItems from './pages/share/ShareItems';
 import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
-import ShareMyShare from './pages/share/ShareMyShare';
+import ShareHistory from './pages/share/ShareHistory';
 import ShareItemsTwoCol from './pages/share/ShareItemsTwoCol';
 // Home
 import Home from './pages/home/Index';
@@ -41,6 +41,7 @@ import CartStepTwo from './pages/cart/StepTwo';
 import CartStepThree from './pages/cart/StepThree';
 import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
+import SharePost from './pages/share/ShareHistory';
 
 function App() {
   return (
@@ -84,7 +85,7 @@ function App() {
             <ShareEdit />
           </Route>
           <Route path="/share/my-share">
-            <ShareMyShare />
+            <ShareHistory />
           </Route>
           <Route path="/entry" exact>
             <Entry />

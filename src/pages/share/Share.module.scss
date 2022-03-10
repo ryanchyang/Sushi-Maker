@@ -1,3 +1,5 @@
+@import '../../styles/global.scss';
+
 .mysharebutton {
   border-radius: 30rem;
   padding: 0.5rem 1.5rem;
@@ -210,12 +212,24 @@
   background-color: #b03342;
 }
 
+.profile-section {
+  position: relative;
+}
+
 .profile-img-lg {
   width: 125px;
   height: 125px;
-  border: 1px solid rgb(224, 224, 224);
   border-radius: 50%;
   overflow: hidden;
+}
+
+.profile-img-lg img {
+  width: 100%;
+  height: auto;
+}
+
+.profile-name {
+  @extend .en-title-24;
 }
 
 .profile-img {
@@ -291,6 +305,28 @@
 
 .img-desc {
   width: 700px;
+}
+
+.topic-link {
+  @extend .en-title-24;
+  text-decoration: none;
+  color: $gray;
+}
+
+.topic-link:link {
+  text-decoration: none;
+}
+
+.topic-link:hover {
+  color: $dark-bg;
+}
+
+.topic-link:active {
+  color: $dark-bg;
+}
+
+.preview-img img {
+  width: 100%;
 }
 
 @keyframes buttonmove {
@@ -425,5 +461,22 @@
     margin-left: 15px;
     margin-right: 15px;
     margin-top: 50px;
+  }
+
+  .profile-name {
+    font-size: 2rem;
+    line-height: 3.1rem;
+    letter-spacing: 0.45rem;
+  }
+
+  .profile-img-lg {
+    width: 100px;
+    height: 100px;
+  }
+
+  .topic-link {
+    font-size: 1.8rem;
+    line-height: 3.1rem;
+    letter-spacing: 0.45rem;
   }
 }
