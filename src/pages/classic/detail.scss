@@ -1,25 +1,62 @@
 .classic-detail{
+    //有-ondetail後綴字的都是按了呈現詳細資料後的CSS
+
     .detail-content{
-        margin: 0 auto;
+        margin: 0 auto;  
         display: flex;
         width: 80%;
-        margin-bottom: 1%;        
+        margin-bottom: 1%;           
     }
+    .detail-content-ondetail{
+      margin: 0 20% 0 0;
+      display: flex;
+      width: 80%;
+      margin-bottom: 1%;           
+  }
+
     .prod-img-box{
-        width: 100%;    //1. click
-        text-align: center;    //1. click
-        // width: 50%;  //1. unclick
+        position: relative;
+        // width: 100%;    //1. click
+        // text-align: center;    //1. click
+        width: 50%;  //1. unclick
     }
     .prod-img-box img{
-        // width: 70%;  //1. unclick
-        width: 40%;    //1. click
+        width: 70%;  //1. unclick
+        // width: 40%;    //1. click
         height: auto;
         object-fit: cover;
     }
+    .all-size-title{
+      // display: block;  //1. click
+      display: none;   //1. unclick
+      position: absolute;
+      width: 20%;
+      top: 12%;
+      left: 10%;
+    }
+    .material-tag-group{
+      // display: block;  //1. click
+      display: none;   //1. unclick
+      position:absolute;
+      top: 20%;
+      right: 10%;
+      width: 15%;
+    }
+    .material-tag-box{
+      margin-bottom: 20%;
+      width: 100%;
+      height: auto;      
+    }
+    .material-tag.box img{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
     .prod-detail-right{
-        // width: 50%;  //1. unclick
-        width: 0%;    //1. click
-        overflow: hidden;    //1. click
+        width: 50%;  //1. unclick
+        // width: 0%;    //1. click
+        // height: 0px;   //1. click
+        // overflow: hidden;    //1. click
     }   
     .like-heart{
         margin-bottom: 10%;
@@ -62,7 +99,7 @@
         background-color: #ffffff;
     }
     .recommend{
-        margin-top: 12%;
+        margin-top: 22%;
     }
     .recommend-prod-img-box {
         position: relative;
@@ -115,6 +152,8 @@
           color: #212121;
       }
       .prod-detail-content{
+        display: none;  //1. unclick
+        // display: block;  //1. click
         width: 90%;
         margin: 0 auto;
       }
@@ -151,6 +190,22 @@
     background: none;
     border: none;
     text-align: center;      
+}
+.back-btn{
+  display: none;   //1. unclick
+  float: right;   
+  // display: flex;      //1. click
+  padding-top: 8%;
+  padding-right: 6%;
+  cursor: pointer;
+}
+.detail-btn{
+  // display: none;   //1. click
+  float: right;
+  display: flex;   //1. unclick
+  padding-top: 8%;
+  padding-right: 6%;
+  cursor: pointer;
 }
       .nutrition-img{
         width: 50%;
