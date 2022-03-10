@@ -95,5 +95,84 @@
         margin-top:5%;
         margin-right: 3%;
     }
+    
+    
+    .memReviseArea{
+        border-top: 1px solid #c4c4c4;
+        display: flex;
+        justify-content:center;
+    }
+    .reviseCon {
+        width: 80%;
+    }
+    .actPwd {
+        width:100%;
+        display:flex;
+        justify-content: space-around; 
+        margin-top: 3%;
+    }
+    .memInp{
+        width:40%;
+    }
+    
+    .revInpBig {
+        height: 40px;
+        width:100%;
+    }
+    .revInpSm {
+        height: 40px;
+        width:90%;
+    }
+    .accTitle {
+        margin-top: 5%;
+        border-bottom: 1px solid #c4c4c4;
+        padding-bottom: 1%;
+    }
+    .revPswBtn {
+        margin-left: 70%;
+        margin-top: 3%;
+        height:32px;
+        width:30%;
+    }
+    .memInfoBot {
+        width: 100%;
+    }
+    .memInpuSm {
+        width: 90%;
+    }
+    .memInpBt {
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+    }
+    .memInpbtBig{
+        width: 100%;
+    }
+    .memInfoLeft {
+        width: 40%;
+    }
+    .memInfoRight {
+        width: 40%;
+    }
+    .memInpbtPsdBig{
+        width: 100%;
+        
+    }
+    .revPswBtnPage {
+        margin-left: 70%;
+        height:32px;
+        width:30%;
+        position: absolute;
+        bottom: 0;
+    }
+    .memPwdBtn {
+        width: 40%;
+        position: relative;
+    }
+   
+    
+    
+    
+    
  
 }

@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Classic from './pages/classic/Index';
+import IndexRevisePwd from './pages/member/IndexRevisePwd';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <IndexRevisePwd />
   </React.StrictMode>,
   document.getElementById('root')
 );
