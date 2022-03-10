@@ -60,7 +60,7 @@ function memIndex() {
               <div className="memInfoArea">
                 <div className="memInfo col-md-12 col-24 mx-3">
                   <ul className="ch-cont-18">
-                    <li className="ch-title-22">會員資訊</li>
+                    <li className="ch-title-22 mt-4">會員資訊</li>
                     <li>會員暱稱</li>
                     <li>會員等級</li>
                     <li>會員總積分</li>
