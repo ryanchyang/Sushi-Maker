@@ -44,11 +44,13 @@ export default function Masonry() {
       background:
         'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
         'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+      opacity: 1,
+      transition: '0.2s',
     };
     if (hover === i) {
       return obj;
     } else {
-      return { ...obj, display: 'none' };
+      return { ...obj, opacity: 0 };
     }
   };
 

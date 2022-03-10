@@ -14,7 +14,7 @@ function Entry() {
             </div>
           </div>
           <div className="loading-area">
-            <p className="loading-txt">Loading...</p>
+            <p className="en-title-24 loading-txt">Loading...</p>
             <div className="progress">
               <div className="progress-done"></div>
             </div>

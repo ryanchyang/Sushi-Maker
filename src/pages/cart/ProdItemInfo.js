@@ -2,7 +2,7 @@
 
 import './Cart.scss';
 function ProdItemInfo(props) {
-  // TODO: 確認清單不會有可以更改數量與手機版印製時間
+  // TODO: 確認清單不會有可以更改數量與手機版印製時間 (done)
   // TODO: 要加商品數量總計算
   // 每個商品物件
   //    {
@@ -31,40 +31,38 @@ function ProdItemInfo(props) {
   } = props;
 
   return (
-    <>
-      <div className="prod-item-info ch-cont-14">
-        <div className="row col-24 my-2   d-flex align-items-center ">
-          <div className="col-md-4">
-            <div className="cart-item-img">
-              <img alt="" className="img-fluid" src={image} />
-              商品圖片
-            </div>
+    <div className="prod-item-info ch-cont-14">
+      <div className="row col-24 my-2   d-flex align-items-center align-middle">
+        <div className="col-6 col-md-4 text-center">
+          <div className="cart-item-img-info text-center">
+            <img alt="" className="img-fluid" src={image} />
           </div>
-          <div
-            className={
-              `d-flex ` +
-              `flex-md-row flex-column ` +
-              `col-md-10 justify-content-between ` +
-              `flex-grow-1`
-            }
-          >
-            <div className="col-md-10  align-items-center">
-              商品名稱 鮭魚壽司
-            </div>
-            <div className="col-md-4  align-items-center">100 元</div>
-            <div className="col-md-8  align-items-center">
-              <div className="row ">
-                <div className="select-count">x1</div>
-              </div>
-            </div>
+        </div>
+        <div
+          className={
+            `d-flex ` +
+            `flex-md-row flex-column ` +
+            `col-14 col-md-10 justify-content-md-between text-center ` +
+            `flex-grow-1 align-middle`
+          }
+        >
+          <div className="col-24 col-md-12 align-items-center  ">
+            商品名稱 鮭魚壽司
           </div>
-          <div className="col-md-2  align-items-center">
-            {name} 印製時間 分鐘
-          </div>
-          <div className="col-md-2  align-items-center">{name} 小計</div>
+          <div className="col-24 col-md-12 align-items-center  ">100 元</div>
+        </div>
+        <div className="col-4 col-md-4 align-items-center align-middle text-center ">
+          {/* <div className="row text-end">
+               <div className="select-count"> */}
+          x1
+          {/* </div> 
+            </div>*/}
+        </div>
+        <div className="col-md-6  align-items-center d-none d-md-flex text-center">
+          印製時間 20 分鐘
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
