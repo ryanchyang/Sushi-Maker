@@ -17,17 +17,17 @@ function Detail() {
 
           <div className="classic-detail">
             {/* 商品圖片與名稱、售價 */}
-            <div className="detail-content">
-              <div className="prod-img-box">
-                <div className="all-size-title">
+            <div className={ isDetail? "detail-content-ondetail" : "detail-content" }>
+              <div className={ isDetail? "prod-img-box-ondetail" : "prod-img-box" }>
+                <div className={ isDetail? "all-size-title-ondetail" : "all-size-title" }>
                   <div className="prod-ch-name ch-title-40-20">鮭魚壽司</div>
                   <div className="prod-en-name en-title-20">Salmon Sushi</div>
                 </div>
-                <img
+                <img className={ isDetail? "prod-img-box-img-ondetail" : "prod-img-box-img" }
                   src={require('./../../imgs/temp/classic-pro1.png')}
                   alt="product-image"
                 />
-                <div className="material-tag-group">
+                <div className={ isDetail? "material-tag-group-ondetail" : "material-tag-group" }>
                   <div className="material-tag-box">
                     <img
                       src={require('./../../imgs/temp/material1.png')}
@@ -49,7 +49,7 @@ function Detail() {
                 </div>
               </div>
 
-              <div className="prod-detail-right">
+              <div className={ isDetail? "prod-detail-right-ondetail" : "prod-detail-right" }>
                 <div className="prod-ch-name ch-title-40-20">鮭魚壽司</div>
                 <div className="prod-en-name en-title-20">Salmon Sushi</div>
                 <div className="like-heart">
@@ -87,7 +87,7 @@ function Detail() {
             </div>
 
             {/* 商品營養表、材料說明、配送 */}
-            <div className="prod-detail-content">
+            <div className={ isDetail? "prod-detail-content-ondetail" : "prod-detail-content" }>
               <div className="detail-content-top">
                 <div className="nutrition-img">
                   <img src={require('./../../imgs/temp/analyze.png')} alt="" />
@@ -160,7 +160,7 @@ function Detail() {
             {/* 商品詳細資料切換 */}
             <div className="detail-toggle-btn">
               <div
-                className="back-btn"
+                className={ isDetail? "back-btn-ondetail" : "back-btn" }
                 onClick={() => {
                   setIsDetail(!isDetail);
                 }}
@@ -174,7 +174,7 @@ function Detail() {
                 <div className="back-btn-text en-title-18">BACK</div>
               </div>
               <div
-                className="detail-btn"
+                className={ isDetail? "detail-btn-ondetail" : "detail-btn" }
                 onClick={() => {
                   setIsDetail(!isDetail);
                 }}
