@@ -2,6 +2,7 @@
     .memHead{
         display:flex;
         margin-top: 4% ;
+        justify-content: space-between;
     }
     .memPhotoArea{
         display:flex;
@@ -55,4 +56,44 @@
         border: 1px solid #c4c4c4;
         margin-top:2%;
     }
+    .ActiveDetail {
+        display:flex;
+    }
+    .ActTitle {
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .setDetail {
+        margin-left: 10%;
+        margin-top: 3%;
+    }
+    .setImg {
+        margin-top: 2%;
+        margin-left: 6%;
+    }
+    .divCarou {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+    }
+    .memShare {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .carouImg {
+        width: 40%;
+        border-radius:50%;
+    }
+    .Cimg {
+        width:180px;
+    }
+    .share-btn {
+        width:20%;
+        margin-top:5%;
+        margin-right: 3%;
+    }
+ 
 }
