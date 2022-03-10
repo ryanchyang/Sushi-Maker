@@ -1,7 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-
-
-function StepOne() {
+import SetMenuList from './SetMenuList';
+// import './SetOrderAll.scss';
+function SetOrderList() {
   return (
     <>
       <Header />
@@ -10,7 +10,14 @@ function StepOne() {
         <div style={{ width: '100%' }}>
           <Title title={'Just For You'} />
           <br />
-          <div></div>
+          <SetMenuList />
+          <SetMenuList />
+          <SetMenuList />
+          <SetMenuList />
+          <SetMenuList />
+          <SetMenuList />
+          <SetMenuList />
+
           <Footer />
         </div>
         <AsideRight />
@@ -19,4 +26,4 @@ function StepOne() {
   );
 }
 
-export default StepOne;
+export default SetOrderList;

@@ -1,3 +1,4 @@
+@import './../../styles/global.scss';
 .classic-detail{
     //有-ondetail後綴字的都是按了呈現詳細資料後的CSS
 
@@ -46,9 +47,9 @@
     .all-size-title-ondetail{
       display: block;  
       position: absolute;
-      width: 20%;
+      width: 40%;
       top: 12%;
-      left: 10%;
+      //left: 10%;
     }
     .material-tag-group{      
       display: none;   
@@ -195,7 +196,7 @@
     .select-count{
         display: flex;
         justify-content: space-between;
-        width: 50%;    
+        width: 40%;    
         border-top: 1px solid #c4c4c4;
         border-bottom: 1px solid #c4c4c4;  
     }
@@ -299,23 +300,170 @@
         justify-content: flex-end;        
         width: 33%;
       }
+      
 
     // RWD變數
-    @mixin pad {
-        @media only screen and (min-width: 577px) and (max-width: 960px) {
-            @content;
-        }
+  //   @mixin pad {
+  //     @media only screen and (min-width: 577px) and (max-width: 960px) {
+  //         @content;
+  //     }
+  //   }
+  //   @mixin mobile {
+  //     @media screen and (max-width: 576px) {
+  //       @content;
+  //       .prod-detail-right{
+  //           width: 0%;
+  //       }
+  //       .last-recommend{
+  //         display: none;
+  //       }
+  //   }
+  // }
+  @media screen and (max-width: 576px) {    
+    .last-recommend{
+      display: none;
     }
-    @mixin mobile {
-        @media screen and (max-width: 576px) {
-            @content;
-            .prod-detail-right{
-                width: 0%;
-            }
+    .detail-toggle-btn{
+      display: none;
+    }
+    .prod-card{
+      width: 40%;
+    }
+    .prod-detail-content, .prod-detail-content-ondetail{
+      display: block;
+    }    
+    .detail-content-bottom{
+      display: block;
+    }
+    .carrier-type, .expire, .package{
+      display: block;
+      width: 90%;
+      margin-bottom: 3%;
+    }
+    .material-list{
+      display: none;
+    }
+    .detail-content-top{
+      display: block;
+    }
+    .nutrition-img{
+      width: 100%;
+    }
+    .select-add-cart{
+      display: block;
+      width: 90%;
+    }
+    .select-count{
+      width: 70%;
+      margin: 0 auto;
+    }
+    .detail-content, .detail-content-ondetail{
+      margin: 0 auto;
+      display: block;
+    }
+    .prod-detail-right, .prod-detail-right-ondetail{
+      width: 100%;
+      height: auto;
+    }
+    .prod-img-box{
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .all-size-title-ondetail, .material-tag-group-ondetail{
+      display: none;
+    }
+    .add-cart{
+      margin: 10% 30%;
     }
   }
 
 
+
+  // 字體RWD
+  .ch-title-big {
+    @extend .ch-title-40-20;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 2.6rem;
+        line-height: 2.6rem;
+        letter-spacing: 0.26rem;
+
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 2.2rem;
+        line-height: 2.2rem;
+        letter-spacing: 0.22rem;
+    }
+  }
+  .eh-title-big {
+    @extend .en-title-20;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+        letter-spacing: 0.4rem;
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 1.4rem;
+        line-height: 2.6rem;
+        letter-spacing: 0.35rem;
+    }
+  }
+  .ch-title-large{
+    @extend .ch-title-40-20;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 2.8rem;
+        line-height: 2.8rem;
+        letter-spacing: 0.28rem;
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+        letter-spacing: 0.24rem;
+    }
+  }
+  .en-title-mid{
+    @extend .en-title-18;
+    font-size: 1.6rem;
+    letter-spacing: 0.1rem;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        letter-spacing: 0.06rem;
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+        letter-spacing: 0.05rem;
+    }
+  }
+  .ch-content-sm{
+    @extend .ch-cont-14;
+    transition: 0.5s;
+    @include pad {
+        @include mytitle;
+        font-size: 1.4rem;
+        line-height: 2rem;
+        letter-spacing: 0.14rem;
+      }
+    @include mobile {
+        @include mytitle;
+        font-size: 1.3rem;
+        line-height: 2rem;
+        letter-spacing: 0.14rem;
+    }
+  }
 
 
 }

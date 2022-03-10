@@ -1,0 +1,216 @@
+/* cart.scss */
+@import './../../styles/global.scss';
+
+.cart{
+/* 購物車元件的項目 */
+  
+.prod-item{ 
+    border-bottom:1px solid #c4c4c4;
+    align-items: center; 
+    align-self :center;
+    align-content:stretch;
+
+// 手機板的item padding 移除
+    @media screen and (max-width: 375px) {
+      .col-1,
+      .col-2,
+      .col-3,
+      .col-4,
+      .col-5,
+      .col-6,
+      .col-7,
+      .col-8,
+      .col-9,
+      .col-10,
+      .col-12,
+      .col-14,
+      .col-16,
+      .col-18,
+      .col-24{
+        padding: 0%;
+      }
+      
+    }
+
+    /* ProdLists商品圖片 */
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background-color: #c4c4c4;
+
+}
+.cart-item-img img {
+  width: 100%;
+}
+
+}
+
+/* 購物車數量 - 1 + */
+.select-count{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;    
+    border-top: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;  
+}
+/*隱藏input(number)的上下選擇按鈕*/
+.select-count input::-webkit-outer-spin-button,
+.select-count input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.select-count button{
+    border:none;
+    background: none;
+	padding: 0;
+	cursor: pointer;
+    font-size: 2.5rem;
+}
+.select-count input{
+    width: 50%; 
+    font-size: 1.8rem;     
+    background: none;
+    border: none;
+    text-align: center;      
+}
+
+
+
+/* 購物車清單標題 */
+.list-title{
+    // display: flex;
+    // padding: 30px 0px;
+    border-bottom: 1px solid #c4c4c4 ;
+}
+
+
+
+// 確認訂單 的img
+.cart-item-img-info img{
+  width: 100%;
+ 
+}
+.cart-item-img-info {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+ background-color: #c4c4c4;
+
+}
+
+// 總計右邊列
+.summary-right{
+      margin: 0;
+      position: sticky;
+      bottom: 36px;
+      background-color: #f7f6f3;
+}
+
+
+
+ @media screen and (min-width: 576px) {
+   .summary-right{
+      margin: 10%;
+}
+// 總計的地方網頁版才要線
+.summary-right>.row{
+    margin: 5% ;
+    padding: 10% auto;
+    border-bottom: 1px solid #c4c4c4;
+
+}
+
+ }
+
+// stepone fixbottom
+// .list-check{
+//    position: sticky;
+//   //  left: 0;
+//    bottom: 36px;
+//    width: 100%;
+//    background-color: #f7f6f3;
+  
+// }
+
+// cartlist 空的購物車圖
+.empty-img{
+   width: 200px;
+  height: 200px;
+  margin: 10%;
+  
+
+}
+.empty-img img{
+width: 100%;
+}
+
+// 頁尾固定
+Footer{
+   /*  */
+    position: sticky;
+    bottom: 0;
+}
+
+
+
+// stepone 總計的金額
+.ch-cont-24 {
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  letter-spacing: 0.54rem;
+}
+
+// 所有 input 高度
+input.form-control{
+  height: 40px;
+  padding: 10px 20px;
+}
+
+input::placeholder {
+  padding: 0 0px;
+}
+
+select{
+  height: 40px;
+  max-width:100%;
+}
+
+// stepFour 進度條
+.animated-progress {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  margin: 5% 0;
+  border: 1px solid rgb(189, 113, 113);
+  overflow: hidden;
+  position: relative;
+}
+
+.animated-progress span {
+  height: 100%;
+  display: block;
+  width: 0;
+  color: rgb(255, 251, 251);
+  line-height: 30px;
+  position: absolute;
+  text-align: end;
+  padding-right: 5px;
+}
+
+.progress-red span {
+  background-color:  $primary;
+}
+
+
+//檢查用 要移除
+// .col-md-2,
+// .col-md-4,
+// .col-md-6,
+// .col-md-8,
+// .col-md-10,
+// .col-md-12{
+// outline: #303030 solid 1px;
+// }
+}
+
