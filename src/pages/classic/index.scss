@@ -1,6 +1,16 @@
+@import './../../styles/global.scss';
 .classic{
 .main-content{
   /* display: none; */
+}
+.search-filter{
+  display: flex;
+  justify-content: flex-end;
+}
+.search-btn, .filter-btn{
+  margin-right: 2%;
+  margin-bottom: 3%;
+  cursor: pointer;
 }
 .category-box {
   width: 60%;
@@ -16,7 +26,7 @@
 .filter-tag{
     padding: 0.5% 1.5%;   
     margin-right: 1.5%; 
-    border: 2px solid #575757;
+    border: 1px solid #575757;
     border-radius: 20px;
 }
 .filter-tag span{
@@ -32,7 +42,7 @@
   /* text-align: center; */
   width: 28%;
   height: auto;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   padding-bottom: 2%;
 }
 .prod-card:hover{   
@@ -129,6 +139,7 @@
 /*ul水平置中*/
 /*參考: https://blog.sig.tw/2015/09/css-ul-%E7%BD%AE%E4%B8%AD%E6%96%B9%E6%B3%95-%E7%94%A8%E6%96%BC%E4%BD%BF%E7%94%A8-li-%E8%A8%AD%E8%A8%88%E7%9A%84%E9%81%B8%E5%96%AE.html*/
 .pagination-box{ 
+  display: block;
   float: right;
   left: -50%;
   position: relative;
@@ -272,14 +283,74 @@ input.caterory-check{
   margin-right: 8%;
   margin-bottom: 10%;
 }
+.add-cart{
+  display: none;
+  margin: 10% 2%;
+}
 
-
+// RWD變數
 @media screen and (max-width: 576px) {
+  .category-box{
+    width: 80%;
+  }
   .prod-card {
     width: 50%;
+  }
+  .en-category{
+    margin-right: 14%;
+  }
+  .select-add-cart{
+    display: block;
+  }
+  .select-count{
+    width: 100%;
+    margin: 0 auto;
+  }
+  .cart-btn{
+    display: none;
+  }
+  .add-cart{
+    display: block;
+  }
+  .pagination-box{
+    display: none;
+  }
+  .search-btn, .filter-btn{    
+    margin-bottom: 5%;
+  }
+  .search-btn, .filter-btn{
+    margin-right: 2%;
+    margin-bottom: 3%;
+    cursor: pointer;
+  }
+  .search-btn, .filter-btn{
+    margin-right: 2%;
+    margin-bottom: 3%;
+    cursor: pointer;
+  }
+  .filter-tag-box{
+    margin: 5% 0 5% 9%;
   }
 }
 
 @media only screen and (min-width: 577px) and (max-width: 960px) {
+  }
 }
+
+// 字體RWD
+.en-category {
+  @extend .en-title-20;
+  transition: 0.5s;
+  @include pad {
+      @include mytitle;
+      font-size: 1.6rem;
+      line-height: 2.8rem;
+      letter-spacing: 0.35rem;
+    }
+  @include mobile {
+      @include mytitle;
+      font-size: 1.4rem;
+      line-height: 2.5rem;
+      letter-spacing: 0.25rem;
+  }
 }
