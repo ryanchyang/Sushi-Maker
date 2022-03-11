@@ -17,28 +17,28 @@ function NavPage() {
           </div>
           <div className="nav-area">
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">About us</p>
-              <p className="ch-title-14 ch-txt">關於我們</p>
+              <p className="en-title-20 en-txt">About us</p>
+              <p className="ch-title-22 ch-txt">關於我們</p>
             </div>
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">Classic Product</p>
-              <p className="ch-title-14 ch-txt">經典產品</p>
+              <p className="en-title-20 en-txt">Classic Product</p>
+              <p className="ch-title-22 ch-txt">經典產品</p>
             </div>
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">Customized Product</p>
-              <p className="ch-title-14 ch-txt">客製產品</p>
+              <p className="en-title-20 en-txt">Customized Product</p>
+              <p className="ch-title-22 ch-txt">客製產品</p>
             </div>
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">Meal Plan</p>
-              <p className="ch-title-14 ch-txt">套餐規劃</p>
+              <p className="en-title-20 en-txt">Meal Plan</p>
+              <p className="ch-title-22 ch-txt">套餐規劃</p>
             </div>
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">Sharing Wall</p>
-              <p className="ch-title-14 ch-txt">分享牆</p>
+              <p className="en-title-20 en-txt">Sharing Wall</p>
+              <p className="ch-title-22 ch-txt">分享牆</p>
             </div>
             <div className="nav-content">
-              <p className="en-title-14-5 en-txt">Member</p>
-              <p className="ch-title-14 ch-txt">會員中心</p>
+              <p className="en-title-20 en-txt">Member</p>
+              <p className="ch-title-22 ch-txt">會員中心</p>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ function StepFour() {
                     <p>讚讚門市</p>
                   </div>
                   <div className="qrcode">
-                    <img src="/imgs/cart/qrcode.svg" alt=""></img>
+                    <img src="/img/cart/qrcode.svg" alt=""></img>
                   </div>
                 </div>
 

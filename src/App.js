@@ -13,17 +13,16 @@ import ShareItems from './pages/share/ShareItems';
 import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
-import ShareMyShare from './pages/share/ShareMyShare';
+import ShareHistory from './pages/share/ShareHistory';
 import ShareItemsTwoCol from './pages/share/ShareItemsTwoCol';
 // Home
 import Home from './pages/home/Index';
-import News from './pages/home/News';
+import LatestNews from './pages/home/LatestNews';
 import NewsDetails from './pages/home/NewsDetails';
-import Evnts from './pages/home/Evnts';
 import EvntsDetails from './pages/home/EvntsDetails';
 import EvntsSignUp from './pages/home/EvntsSignUp';
 import Entry from './pages/home/components/Entry';
-import NavPage from './pages/home/components/NavPage';
+// import NavPage from './pages/home/components/NavPage';
 //setorder
 import StepOne from './pages/setorder/StepOne';
 import StepTwo from './pages/setorder/StepTwo';
@@ -41,6 +40,7 @@ import CartStepTwo from './pages/cart/StepTwo';
 import CartStepThree from './pages/cart/StepThree';
 import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
+import SharePost from './pages/share/ShareHistory';
 
 function App() {
   return (
@@ -83,32 +83,29 @@ function App() {
           <Route path="/share/edit">
             <ShareEdit />
           </Route>
-          <Route path="/share/my-share">
-            <ShareMyShare />
+          <Route path="/share/post">
+            <ShareHistory />
           </Route>
           <Route path="/entry" exact>
             <Entry />
           </Route>
-          <Route path="/nav" exact>
-            <NavPage />
-          </Route>
+          {/*<Route path="/nav" exact>
+          <NavPage />
+          </Route>*/}
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/evnts/details/signup">
+          <Route path="/events/details/signup">
             <EvntsSignUp />
           </Route>
-          <Route path="/evnts/details">
+          <Route path="/events/details">
             <EvntsDetails />
-          </Route>
-          <Route path="/evnts">
-            <Evnts />
           </Route>
           <Route path="/news/details">
             <NewsDetails />
           </Route>
-          <Route path="/news">
-            <News />
+          <Route path="/latest-news">
+            <LatestNews />
           </Route>
           <Route path="/setorder/stepone" exact>
             <StepOne />

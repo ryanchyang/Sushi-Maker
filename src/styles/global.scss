@@ -84,6 +84,9 @@ body {
 }
 // 對齊title的滿版container
 .mycontainer {
+  @include mobile {
+    padding: 0 15px;
+  }
   padding: 0 30px;
 }
 // 瀑布式瀏覽自訂義class
@@ -157,6 +160,13 @@ body {
   line-height: 2.2rem;
   letter-spacing: 0.22rem;
 }
+.ch-title-20 {
+  @include mytitle;
+  font-size: 2rem;
+  line-height: 1.6rem;
+  letter-spacing: 0.16rem;
+}
+
 .ch-title-18 {
   @include mytitle;
   font-size: 1.8rem;

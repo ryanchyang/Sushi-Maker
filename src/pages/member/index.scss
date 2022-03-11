@@ -2,6 +2,7 @@
     .memHead{
         display:flex;
         margin-top: 4% ;
+        justify-content: space-between;
     }
     .memPhotoArea{
         display:flex;
@@ -55,4 +56,131 @@
         border: 1px solid #c4c4c4;
         margin-top:2%;
     }
+    .ActiveDetail {
+        display:flex;
+    }
+    .ActTitle {
+        display:flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .setDetail {
+        margin-left: 10%;
+        margin-top: 3%;
+    }
+    .setImg {
+        margin-top: 2%;
+        margin-left: 6%;
+    }
+    .divCarou {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+    }
+    .memShare {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .carouImg {
+        width: 40%;
+        border-radius:50%;
+    }
+    .Cimg {
+        width:180px;
+    }
+    .share-btn {
+        width:20%;
+        margin-top:5%;
+        margin-right: 3%;
+    }
+    
+    
+    .memReviseArea{
+        border-top: 1px solid #c4c4c4;
+        display: flex;
+        justify-content:center;
+    }
+    .reviseCon {
+        width: 80%;
+    }
+    .actPwd {
+        width:100%;
+        display:flex;
+        justify-content: space-around; 
+        margin-top: 3%;
+    }
+    .memInp{
+        width:40%;
+    }
+    
+    .revInpBig {
+        height: 40px;
+        width:100%;
+    }
+    .revInpSm {
+        height: 40px;
+        width:90%;
+    }
+    .accTitle {
+        margin-top: 5%;
+        border-bottom: 1px solid #c4c4c4;
+        padding-bottom: 1%;
+    }
+    .revPswBtn {
+        margin-left: 70%;
+        margin-top: 3%;
+        height:32px;
+        width:30%;
+    }
+    .memInfoBot {
+        width: 100%;
+    }
+    .memInpuSm {
+        width: 90%;
+    }
+    .memInpBt {
+        width: 100%;
+        display:flex;
+        justify-content: space-between;
+    }
+    .memInpbtBig{
+        width: 100%;
+    }
+    .memInfoLeft {
+        width: 40%;
+    }
+    .memInfoRight {
+        width: 40%;
+    }
+    .memInpbtPsdBig{
+        width: 100%;
+        
+    }
+    .revPswBtnPage {
+        margin-left: 70%;
+        height:32px;
+        width:30%;
+        position: absolute;
+        bottom: 0;
+    }
+    .memPwdBtn {
+        width: 40%;
+        position: relative;
+    }
+    //歷史訂單頁
+    .orderDetailTB {
+        margin-top:5%;
+    }
+    .orderDetailRow {
+        flex-direction: column;
+        align-items: center
+    }
+   
+    
+    
+    
+    
+ 
 }
