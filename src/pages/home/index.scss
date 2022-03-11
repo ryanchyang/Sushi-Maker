@@ -103,15 +103,27 @@
   .promotion-list,
   .pagination-list {
     display: flex;
-    overflow: hidden;
     flex-flow: row nowrap;
     align-items: center;
-    /* animation: infiniteSlide 10s linear 0s infinite;  */
   }
-  .promotion-list li {
-    flex: 0 0 auto;
-    display: block;
+  .promotion-list {
+    display: flex; 
+    flex-flow: row nowrap;
+    align-items: center;
+    // animation: infiniteSlide 10s linear 0s infinite;
   }
+  // @keyframes infiniteSlide {
+  //   0% {
+  //       transform: translate3d(0,0,0);
+  //   }            
+  //   100% {
+  //       transform: translate3d(-2240px,0,0);    /*位移值= img的width * img數量*/
+  //   }
+  // }
+  // .promotion-list li {
+  //   flex: 0 0 auto;
+  //   display: block;
+  // }
   .promotion-card {
     width: 280px;
     height: 476px;
