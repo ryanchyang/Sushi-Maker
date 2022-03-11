@@ -12,7 +12,10 @@ function ShareSaves() {
         <div style={{ width: '100%' }}>
           <Title title={'Share'} />
           <ShareProfile />
-          <Masonry />
+          <div className={`${styles['waterfall-container']}`}>
+            <Masonry />
+          </div>
+
           <br />
           <Footer />
         </div>
