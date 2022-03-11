@@ -111,13 +111,13 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/events/details/signup">
+          <Route path="/latest-news/events/signup">
             <EvntsSignUp />
           </Route>
-          <Route path="/events/details">
+          <Route path="/latest-news/events">
             <EvntsDetails />
           </Route>
-          <Route path="/news/details">
+          <Route path="/latest-news/news/">
             <NewsDetails />
           </Route>
           <Route path="/latest-news">

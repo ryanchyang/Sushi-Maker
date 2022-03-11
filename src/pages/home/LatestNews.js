@@ -24,7 +24,7 @@ function LatestNews() {
               {/* lastest-news top */}
               <div className="lastest-news-nav d-flex justify-content-between align-items-center">
                 <div className="lastest-news-nav-breadcrumbs">
-                  <p className="en-title-14-10">HOME / NEWS</p>
+                  <p className="en-title-14-10">HOME / LATEST NEWS</p>
                 </div>
                 <div className="lastest-news-nav-right d-flex align-items-center">
                   <div className="search mx-2">
