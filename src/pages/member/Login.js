@@ -6,10 +6,12 @@ import {
   AsideRight,
   Footer,
 } from './memLayout/LayoutDark';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { getMe, login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
 import zIndex from '@mui/material/styles/zIndex';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { setAuthToken } from '../../utils';
 
 //styled component
 const LoginBody = styled.body`
@@ -65,14 +67,31 @@ const PswInput = styled.input`
   }
 `;
 
-//function
-const handleSubmit = e => {
-  e.preventDefault();
-};
-
 function Login() {
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const history = useHistory();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(account, password).then(data => {
+      //console.log(data);
+      if (data.ok === 0) {
+        return setErrorMessage(data.message);
+      }
+      setAuthToken(data.token);
+
+      getMe().then(response => {
+        if (response.ok !== 1) {
+          setAuthToken(null);
+          return setErrorMessage(response.toString());
+        }
+        // setUser(response.data);
+        history.pushState('/');
+      });
+    });
+  };
 
   return (
     <>
@@ -103,7 +122,7 @@ function Login() {
                     onChange={e => {
                       setAccount(e.target.value);
                     }}
-                    name="member_account"
+                    name="mem_account"
                     style={{
                       borderRadius: 50,
                       height: '40px',
@@ -130,7 +149,7 @@ function Login() {
                       onChange={e => {
                         setPassword(e.target.value);
                       }}
-                      name="member_password"
+                      name="mem_password"
                       style={{
                         borderRadius: 50,
                         height: '40px',

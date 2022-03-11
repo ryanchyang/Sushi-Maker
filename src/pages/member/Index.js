@@ -1,10 +1,4 @@
-import {
-  Header,
-  Title,
-  AsideLeft,
-  AsideRight,
-  Footer,
-} from './memLayout/LayoutLight';
+import { Header, AsideLeft, AsideRight, Footer } from './memLayout/LayoutLight';
 import './index.scss';
 import MemHead from './component/MemHead';
 
