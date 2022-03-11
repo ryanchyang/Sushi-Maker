@@ -84,6 +84,9 @@ body {
 }
 // 對齊title的滿版container
 .mycontainer {
+  @include mobile {
+    padding: 0 15px;
+  }
   padding: 0 30px;
 }
 // 瀑布式瀏覽自訂義class
