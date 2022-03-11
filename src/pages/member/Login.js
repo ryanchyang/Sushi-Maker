@@ -9,6 +9,7 @@ import {
 import { useState } from 'react';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
 import zIndex from '@mui/material/styles/zIndex';
+import { Link } from 'react-router-dom';
 
 //styled component
 const LoginBody = styled.body`
@@ -48,7 +49,7 @@ const InputForPsw = styled.p`
   text-align: center;
 `;
 const InputRegistLink = styled.p`
-  color: #f7f6f3;
+  color: #c4c4c4;
   margin-top: 26px;
   text-align: center;
 `;
@@ -77,7 +78,7 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', height: '100vh' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
@@ -166,7 +167,16 @@ function Login() {
                 </LoginForm>
                 <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
                 <InputRegistLink className="ch-cont-14">
-                  還沒有帳號嗎? 點我註冊
+                  還沒有帳號嗎?{' '}
+                  <Link
+                    to="/member/register"
+                    style={{
+                      color: '#f7f6f3',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    點我註冊
+                  </Link>
                 </InputRegistLink>
               </InputArea>
             </LoginArea>
