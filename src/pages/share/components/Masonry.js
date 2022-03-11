@@ -26,7 +26,7 @@ const getColumns = width => {
   } else if (width < breakpoints.lg) {
     return 3;
   } else {
-    return 3;
+    return 4;
   }
 };
 
@@ -59,8 +59,8 @@ export default function Masonry() {
   }, [currentWidth]);
 
   return (
-    <div className={`d-flex flex-column ${styles['waterfall-container']}`}>
-      <ImageList variant="masonry" cols={columns} gap={columns * 12}>
+    <div className={`d-flex flex-column`}>
+      <ImageList variant="masonry" cols={columns} gap={columns * 10}>
         {itemData.map((item, i) => (
           <ImageListItem
             key={i}

@@ -1,6 +1,8 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ShareNavBar from './components/ShareNavBar';
 import Masonry from './components/Masonry';
+
+import styles from './Share.module.scss';
 function Share() {
   return (
     <>
@@ -9,8 +11,9 @@ function Share() {
         <div style={{ width: '100%' }}>
           <Title title={'Share'} />
           <ShareNavBar />
-
-          <Masonry />
+          <div className={`${styles['waterfall-container']}`}>
+            <Masonry />
+          </div>
 
           <br />
           <Footer />

@@ -1,6 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 
 import Masonry from './components/Masonry';
+import ShareProfile from './components/ShareProfile';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as Rect } from '../../imgs/tags/Rectangle_orange.svg';
 import styles from './Share.module.scss';
@@ -12,92 +13,42 @@ function ShareHistory() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Share'} />
+          <ShareProfile />
           <div className={`mycontainer`}>
-            <div className="row">
-              <div className="col">
-                <div className="d-flex justify-content-between">
-                  <p className="mytitle en-title-14-10">
-                    HOME / SHARE / MY-SHARE
-                  </p>
+            <div className="myshare-layout d-flex">
+              <div className="col-6 flex-column d-none d-lg-flex">
+                <div className="d-flex">
+                  <div className="d-none d-sm-block">
+                    <div className="d-flex align-items-center mr-3 ">
+                      <Rect />
+                    </div>
+                  </div>
                   <div className="d-flex align-items-center">
-                    <Delete className="mx-4 p-2" />
+                    <div className="ch-cont-16 font-weight-bold mb-5">
+                      已分享貼文
+                    </div>
                   </div>
                 </div>
-                <div
-                  className={`${styles['profile-section']} d-flex justify-content-center flex-sm-column ${styles['mb-50']} `}
-                >
-                  <div
-                    className={`${styles['profile-img-box']} d-flex justify-content-center mr-4 mr-sm-0`}
-                  >
-                    <div className={`${styles['profile-img-lg']} mb-4`}>
-                      <img
-                        className="myself-img"
-                        src="\img\member\ruka.png"
-                        alt="profile"
-                      />
-                    </div>
-                  </div>
-                  <div
-                    className={` ${styles['profile-name-box']}  d-flex align-items-center justify-content-center`}
-                  >
-                    <h2 className={`${styles['profile-name']} mytitle`}>
-                      Xisharp Teng
-                    </h2>
-                  </div>
-                </div>
-                <div
-                  className={`${styles['topic-section']} d-flex  ${styles['mb-50']}`}
-                >
-                  <div
-                    className={` ${styles['topic-section-box']} d-flex justify-content-center col-8`}
-                  >
-                    <div className="d-none d-sm-block pt-2">
-                      <div className="d-flex align-items-center mr-3 ">
-                        <Rect />
-                      </div>
-                    </div>
 
-                    <div className="d-flex align-items-center">
-                      <a href="#/" className={`${styles['topic-link']}`}>
-                        SAVES
-                      </a>
+                <div className="d-flex">
+                  <div className="d-none d-sm-block">
+                    <div className="d-flex align-items-center mr-3 ">
+                      <Rect />
                     </div>
                   </div>
-                  <div
-                    className={`${styles['topic-section-box']} d-flex justify-content-center col-8`}
-                  >
-                    <div className="d-none d-sm-block pt-2">
-                      <div className="d-flex align-items-center mr-3 ">
-                        <Rect />
-                      </div>
-                    </div>
-
-                    <div className="d-flex align-items-center">
-                      <a href="#/" className={`${styles['topic-link']}`}>
-                        UPLOAD
-                      </a>
-                    </div>
-                  </div>
-                  <div
-                    className={`${styles['topic-section-box']} d-flex justify-content-center col-8`}
-                  >
-                    <div className="d-none d-sm-block pt-2">
-                      <div className="d-flex align-items-center mr-3 ">
-                        <Rect />
-                      </div>
-                    </div>
-
-                    <div className="d-flex align-items-center">
-                      <a href="#/" className={`${styles['topic-link']}`}>
-                        POST
-                      </a>
+                  <div className="d-flex align-items-center">
+                    <div className="ch-cont-16 font-weight-bold mb-5">
+                      留言紀錄
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="col-lg-18">
+                <Masonry />
+              </div>
             </div>
           </div>
-          <Masonry />
+
           <br />
           <Footer />
         </div>

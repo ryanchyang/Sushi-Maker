@@ -346,6 +346,13 @@
   @extend .primeal-btn-sm;
 }
 
+.comment-history {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
 @media screen and (max-width: 1400px) {
   .items-box {
     flex-direction: column;
@@ -487,5 +494,8 @@
     width: 81px;
     height: 34px;
     border: none;
+  }
+  .comment-title-wrap {
+    display: block;
   }
 }

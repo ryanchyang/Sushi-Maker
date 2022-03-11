@@ -83,7 +83,7 @@ function Register() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', height: '100vh'}}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
