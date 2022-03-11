@@ -8,26 +8,9 @@ import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useReducer } from 'react';
 
-const initShowControl = {
-  openFilterList: false,
-  openPriceFilter: true,
-  openFlavorFilter: true,
-  openCategoryFilter: true,
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'filterList':
-      return { ...state, openFilterList: !state.openFilterList };
-    case 'priceFilter':
-      return { ...state, openPriceFilter: !state.openPriceFilter };
-    default:
-      return state;
-  }
-};
-
 function Index() {
-  const [state, dispatch] = useReducer(reducer, initShowControl); //控制顯示/隱藏元件
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [isOpenPrice, setIsOpenPrice] = useState(false);
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
 
@@ -45,12 +28,12 @@ function Index() {
               <div className="search-btn">
                 <SearchBtn />
               </div>
-              <div className="filter-btn">
+              <div className="filter-btn" onClick={() => {setIsOpenFilter(!isOpenFilter)}}>
                 <FilterBtn />
               </div>
             </div>
 
-            <div className="main-content">
+            <div className="main-content" style={isOpenFilter ? hiddenStyle : showStyle}>
               {/* category tag */}
               <div className="category-box">
                 <div className="en-category">SUSHI</div>
@@ -247,7 +230,7 @@ function Index() {
             </div>
 
             {/* 主要篩選條件區 */}
-            <div className="prod-filter">
+            <div className="prod-filter" style={isOpenFilter ? showStyle : hiddenStyle}>
               {/* clean or cancel filter */}
               <div className="filter-top">
                 <div className="clean-filter ch-cont-16">
