@@ -8,26 +8,28 @@ import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useReducer } from 'react';
 
-const initShowControl = {openFilterList: false,
+const initShowControl = {
+  openFilterList: false,
   openPriceFilter: true,
   openFlavorFilter: true,
-  openCategoryFilter: true};
+  openCategoryFilter: true,
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'filterList':
-      return {...state, openFilterList: !state.openFilterList};
+      return { ...state, openFilterList: !state.openFilterList };
     case 'priceFilter':
-      return {...state, openPriceFilter: !state.openPriceFilter};      
+      return { ...state, openPriceFilter: !state.openPriceFilter };
     default:
       return state;
-    }
-  };
+  }
+};
 
-function Index() {  
-  const [state, dispatch] = useReducer(reducer, initShowControl);  //控制顯示/隱藏元件
-  const showStyle = {display: 'block'};
-  const hiddenStyle = {display: 'none'};
+function Index() {
+  const [state, dispatch] = useReducer(reducer, initShowControl); //控制顯示/隱藏元件
+  const showStyle = { display: 'block' };
+  const hiddenStyle = { display: 'none' };
 
   return (
     <>
@@ -40,8 +42,12 @@ function Index() {
 
           <div className="classic">
             <div className="search-filter">
-              <div className="search-btn"><SearchBtn /></div>
-              <div className="filter-btn"><FilterBtn /></div>
+              <div className="search-btn">
+                <SearchBtn />
+              </div>
+              <div className="filter-btn">
+                <FilterBtn />
+              </div>
             </div>
 
             <div className="main-content">
@@ -245,7 +251,10 @@ function Index() {
               {/* clean or cancel filter */}
               <div className="filter-top">
                 <div className="clean-filter ch-cont-16">
-                  <img src={require('./../../imgs/tags/trash.png')} alt="trash" />
+                  <img
+                    src={require('./../../imgs/tags/trash.png')}
+                    alt="trash"
+                  />
                   <span>清空條件</span>
                 </div>
                 <div className="cancel-filter ch-cont-16">
@@ -258,7 +267,7 @@ function Index() {
                 <div className="by-price-title">
                   <div className="orange-tag">
                     <OrangeTag className="tag-img" />
-                  </div>                  
+                  </div>
                   <div className="by-price-text en-title-big">By PRICE</div>
                   <div className="down-arrow">
                     <DownArrow size={22} color="gray" />
@@ -276,7 +285,7 @@ function Index() {
                 <div className="by-flavor-title">
                   <div className="orange-tag">
                     <OrangeTag className="tag-img" />
-                  </div>                  
+                  </div>
                   <div className="by-price-text en-title-big">By FLAVOR</div>
                   <div className="down-arrow">
                     <DownArrow size={22} color="gray" />
@@ -343,10 +352,15 @@ function Index() {
                 </div>
               </div>
 
-              <div className="send-filter ch-title-16">
-                送出條件
+              <div className="send-filter-btn-box">
+                <button className="btn-sm btn-primary primeal-btn-sm">
+                  送出條件
+                </button>
               </div>
 
+              {/* <div className="send-filter ch-title-16">
+                送出條件
+              </div> */}
             </div>
           </div>
           <Footer />
