@@ -1,31 +1,81 @@
 @import './../../styles/global.scss';
-.setorderall{
-
-  .set-menu{
-    padding:5px 10px;
-    border: #212121 2px solid;  
-    border-top:none;
-    border-left:none;
-    border-right:none;
+.setmenulist {
+  .set-row {
     display: flex;
   }
-  .set-day{
-    margin-right:4%;
+  .set-list-title {
   }
-  .set-Vector{
-    position:absolute;
-    right:0px;
+  .set-menu-title {
+    align-content: space-around;
+  }
+  .set-day-title {
+    margin: 0 10px;
+    margin-left: 10%;
+  }
+  .set-bento-title {
+    margin-left: 10%;
+  }
+
+  .set-menu {
+    padding: 5px 10px;
+    border: #212121 2px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .set-day {
+    
+  }
+  .set-Vector {
+    position: absolute;
+    right: 0px;
     margin: auto 0;
     flex-grow: 0;
   }
-  .set-sushi-all{
-    display:flex;
+  .set-sushi-all {
+    display: flex;
+    align-content: space-around;
+    margin-left: 4%;
   }
-  .set-sushi-ch{
-    text-align: left;
+  .set-sushi-ch {
     flex-grow: 1;
   }
-  .set-sushi-en{
+  .set-sushi-en {
+    flex-grow: 1;
+  }
+  .set-view-all {
+  }
+  .set-list-right{
+    background-color: #b5b1b0;
+    height: 100%;
+    position:relative;
+  }
+  .bento-img-element{
+    position:absolute;
+    right:8% 
+  }
+}
+
+
+
+
+
+
+
+
+.setfinallistcom {
+  .set-sushi-all {
+    display: flex;
+    align-content: space-around;
+    margin-left: 4%;
+  }
+  .set-sushi-ch {
+    flex-grow: 1;
+  }
+  .set-sushi-en {
     flex-grow: 1;
   }
 }
