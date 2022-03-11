@@ -3,8 +3,13 @@ import './index.scss';
 import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
+import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
+import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
+import {useState} from 'react';
 
 function Index() {
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+
   return (
     <>
       <Header />
@@ -15,12 +20,17 @@ function Index() {
           <br />
 
           <div className="classic">
+            <div className="search-filter">
+              <div className="search-btn"><SearchBtn /></div>
+              <div className="filter-btn" onClick={() => {setIsOpenFilter(!isOpenFilter)}}><FilterBtn /></div>
+            </div>
+
             <div className="main-content">
               {/* category tag */}
               <div className="category-box">
-                <div className="en-title-20">SUSHI</div>
-                <div className="en-title-20">DESSERT</div>
-                <div className="en-title-20">PACKAGE</div>
+                <div className="en-category">SUSHI</div>
+                <div className="en-category">DESSERT</div>
+                <div className="en-category">PACKAGE</div>
               </div>
 
               {/* filter tag */}
@@ -51,8 +61,8 @@ function Index() {
                   <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
 
                   <div className="prod-price-special">
-                    <div className="original-price ch-cont-14">NT_60</div>
-                    <div className="special-price ch-cont-16">NT_50</div>
+                    <div className="original-price ch-cont-16">NT_60</div>
+                    <div className="special-price ch-cont-18">NT_50</div>
                   </div>
 
                   <div className="prod-price-no-discount">
@@ -68,6 +78,9 @@ function Index() {
                     <div className="cart-btn">
                       <Cart />
                     </div>
+                    <button className="add-cart btn-sm btn-primary primeal-btn">
+                      加入購物車
+                    </button>
                   </div>
                 </div>
 
@@ -86,8 +99,8 @@ function Index() {
                   <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
 
                   <div className="prod-price-special">
-                    <div className="original-price ch-cont-14">NT_75</div>
-                    <div className="special-price ch-cont-16">NT_70</div>
+                    <div className="original-price ch-cont-16">NT_75</div>
+                    <div className="special-price ch-cont-18">NT_70</div>
                   </div>
 
                   <div className="prod-price-no-discount">
@@ -103,6 +116,9 @@ function Index() {
                     <div className="cart-btn">
                       <Cart />
                     </div>
+                    <button className="add-cart btn-sm btn-primary primeal-btn">
+                      加入購物車
+                    </button>
                   </div>
                 </div>
 
@@ -121,8 +137,8 @@ function Index() {
                   <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
 
                   <div className="prod-price-special">
-                    <div className="original-price ch-cont-14">NT_65</div>
-                    <div className="special-price ch-cont-16">NT_55</div>
+                    <div className="original-price ch-cont-16">NT_65</div>
+                    <div className="special-price ch-cont-18">NT_55</div>
                   </div>
 
                   <div className="prod-price-no-discount">
@@ -138,6 +154,9 @@ function Index() {
                     <div className="cart-btn">
                       <Cart />
                     </div>
+                    <button className="add-cart btn-sm btn-primary primeal-btn">
+                      加入購物車
+                    </button>
                   </div>
                 </div>
 
@@ -156,8 +175,8 @@ function Index() {
                   <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
 
                   <div className="prod-price-special">
-                    <div className="original-price ch-cont-14">NT_55</div>
-                    <div className="special-price ch-cont-16">NT_45</div>
+                    <div className="original-price ch-cont-16">NT_55</div>
+                    <div className="special-price ch-cont-18">NT_45</div>
                   </div>
 
                   <div className="prod-price-no-discount">
@@ -173,6 +192,9 @@ function Index() {
                     <div className="cart-btn">
                       <Cart />
                     </div>
+                    <button className="add-cart btn-sm btn-primary primeal-btn">
+                      加入購物車
+                    </button>
                   </div>
                 </div>
               </div>
