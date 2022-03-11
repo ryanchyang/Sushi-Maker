@@ -17,7 +17,7 @@ import ShareHistory from './pages/share/ShareHistory';
 import ShareItemsTwoCol from './pages/share/ShareItemsTwoCol';
 // Home
 import Home from './pages/home/Index';
-import LastestNews from './pages/home/LastestNews';
+import LatestNews from './pages/home/LatestNews';
 import NewsDetails from './pages/home/NewsDetails';
 import EvntsDetails from './pages/home/EvntsDetails';
 import EvntsSignUp from './pages/home/EvntsSignUp';
@@ -104,8 +104,8 @@ function App() {
           <Route path="/news/details">
             <NewsDetails />
           </Route>
-          <Route path="/lastest-news">
-            <LastestNews />
+          <Route path="/latest-news">
+            <LatestNews />
           </Route>
           <Route path="/setorder/stepone" exact>
             <StepOne />

@@ -1,8 +1,8 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import './lastest-news.scss';
+import './latest-news.scss';
 import { useState } from 'react';
 
-function LastestNews() {
+function LatestNews() {
   const [focus, setFocus] = useState('news');
   const changeFocus = event => {
     console.log('hi');
@@ -63,14 +63,13 @@ function LastestNews() {
                   ) : (
                     <div></div>
                   )}
-                  {/* <div className="diamond"></div> */}
                   <div className="en-title-14-5">SHARES</div>
                 </div>
               </div>
 
               {/* news-content */}
               <div className="latest-news-content">
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -93,7 +92,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -116,7 +115,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -139,7 +138,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -162,7 +161,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -185,7 +184,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -208,7 +207,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -231,7 +230,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -254,7 +253,7 @@ function LastestNews() {
                     </div>
                   </div>
                 </div>
-                <div className="col-24 col-md-10 col-lg-6 latest-news-card">
+                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
                   <div className="news-img">
                     <img
                       src="/img/home/news/pro-cherry-blossom.png"
@@ -288,4 +287,4 @@ function LastestNews() {
   );
 }
 
-export default LastestNews;
+export default LatestNews;

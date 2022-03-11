@@ -10,7 +10,7 @@
     margin: 0 auto;
     margin-bottom: 5%;
   }
-  .category-item{
+  .category-item {
     cursor: pointer;
   }
   .latest-news-content {
@@ -64,7 +64,7 @@
   }
   @media screen and (min-width: 576px) {
     .latest-news-category-box {
-      width: 80%;
+      width: 60%;
     }
     .latest-news-content {
       display: flex;
