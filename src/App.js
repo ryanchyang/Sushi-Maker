@@ -6,6 +6,10 @@ import ClassicDetail from './pages/classic/Detail';
 import Login from './pages/member/Login';
 import MemIndex from './pages/member/Index';
 import Register from './pages/member/Register';
+import IndexActive from './pages/member/IndexActive';
+import IndexAnalyze from './pages/member/IndexAnalyze';
+import IndexHistoryOrder from './pages/member/IndexHistoryOrder';
+import IndexRevise from './pages/member/IndexRevise';
 // Share
 import Share from './pages/share/Share';
 import ShareFilter from './pages/share/ShareFilter';
@@ -61,6 +65,18 @@ function App() {
           </Route>
           <Route path="/member/register">
             <Register />
+          </Route>
+          <Route path="/member/active">
+            <IndexActive />
+          </Route>
+          <Route path="/member/analyze">
+            <IndexAnalyze />
+          </Route>
+          <Route path="/member/historyorder">
+            <IndexHistoryOrder />
+          </Route>
+          <Route path="/member/revise">
+            <IndexRevise />
           </Route>
           <Route path="/share" exact>
             <Share />
