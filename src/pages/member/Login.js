@@ -77,7 +77,7 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
