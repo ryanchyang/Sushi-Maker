@@ -329,24 +329,21 @@
   width: 100%;
 }
 
-@keyframes buttonmove {
-  from {
-    transform: translateX(0px);
-    opacity: 100;
-  }
-  to {
-    transform: translateX(100px);
-    opacity: 0;
-  }
+.saves-table tr,
+.saves-table th {
+  color: $dark-text;
+  line-height: 35px;
+  min-height: 35px;
+  height: 35px;
 }
 
-@keyframes buttondisappear {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+.saves-table tbody td {
+  @extend .ch-cont-14;
+  line-height: 35px;
+}
+
+.share-item-button {
+  @extend .primeal-btn-sm;
 }
 
 @media screen and (max-width: 1400px) {
@@ -414,6 +411,9 @@
   .detail-section {
     width: 100%;
   }
+  .cate-disabled {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -478,5 +478,14 @@
     font-size: 1.8rem;
     line-height: 3.1rem;
     letter-spacing: 0.45rem;
+  }
+  .cate-disabled {
+    display: none;
+  }
+
+  .share-item-button {
+    width: 81px;
+    height: 34px;
+    border: none;
   }
 }
