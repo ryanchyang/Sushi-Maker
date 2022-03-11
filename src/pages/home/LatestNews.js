@@ -1,4 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import News from './components/News';
+import Pagination from './components/Pagination';
+import Events from './components/Events';
 import './latest-news.scss';
 import { useState } from 'react';
 
@@ -8,6 +11,7 @@ function LatestNews() {
     console.log('hi');
     // setFocus()
   };
+
   return (
     <>
       <Header />
@@ -15,7 +19,7 @@ function LatestNews() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Latest News'} />
-          <div className="news">
+          <div className="latest-news">
             <div className="mycontainer">
               {/* lastest-news top */}
               <div className="lastest-news-nav d-flex justify-content-between align-items-center">
@@ -41,7 +45,8 @@ function LatestNews() {
                     <div></div>
                   )}
                   <div
-                    className="en-title-14-5 category-item"
+                    className="en-title-14-5"
+                    style={{ cursor: 'pointer' }}
                     onClick={() => {
                       changeFocus();
                     }}
@@ -55,7 +60,9 @@ function LatestNews() {
                   ) : (
                     <div></div>
                   )}
-                  <div className="en-title-14-5">EVNETS</div>
+                  <div className="en-title-14-5" style={{ cursor: 'pointer' }}>
+                    EVNETS
+                  </div>
                 </div>
                 <div className="category-name d-flex align-items-center">
                   {focus === 'shares' ? (
@@ -63,220 +70,19 @@ function LatestNews() {
                   ) : (
                     <div></div>
                   )}
-                  <div className="en-title-14-5">SHARES</div>
+                  <div className="en-title-14-5" style={{ cursor: 'pointer' }}>
+                    SHARES
+                  </div>
                 </div>
               </div>
 
               {/* news-content */}
-              <div className="latest-news-content">
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 col-md-10 col-xl-6 latest-news-card">
-                  <div className="news-img">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="news"
-                    />
-                  </div>
-                  <div className="news-text">
-                    <div className="ch-title-16 news-title">
-                      春天來了！羊羹櫻花凍新上市
-                    </div>
-                    <div className="news-content">
-                      <div className="en-cont-14 news-date">2022.05.06</div>
-                      <div className="en-cont-14 news-tag">新品上市</div>
-                      <div className="view-arrow">
-                        <img
-                          src="/img/home/index-arrowsm-black.svg"
-                          alt="arrow"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <News />
+
+              {/* events-content */}
+              <Events />
+              {/* pagination */}
+              <Pagination />
             </div>
           </div>
           <Footer />

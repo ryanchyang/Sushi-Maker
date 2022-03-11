@@ -184,6 +184,7 @@
 .filter-top{   
   float: right;
   display: flex;  
+  margin-bottom: 5%;
 }
 .clean-filter{   
   width: 120px;
@@ -201,6 +202,15 @@
   margin-bottom: 1%;
   margin-right: 1%;
 }
+.by-price-title, .by-flavor-title, .by-category-title{
+  display: flex;
+}
+.down-arrow{
+  display: none;
+}
+.orange-tag{
+  padding: 0.5% 1%;
+}
 .by-price{
   margin-bottom: 8%;
   clear: both;
@@ -209,7 +219,7 @@
   display: inline;
 }
 .by-price-input{
-  margin-top: 2%;
+  margin: 3% 1%;
   display: flex;
 }
 .by-price-input input::-webkit-outer-spin-button,
@@ -235,6 +245,7 @@
     width: 3%;
     height: 25px;
     border-bottom: 1px solid #545454;
+    border-right: none;
 }
 .by-flavor{
   margin-bottom: 8%;
@@ -281,7 +292,8 @@ input.caterory-check{
   padding: 1% 3%;
   float: right;
   margin-right: 8%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
+  cursor: pointer;
 }
 .add-cart{
   display: none;
@@ -331,6 +343,26 @@ input.caterory-check{
   .filter-tag-box{
     margin: 5% 0 5% 9%;
   }
+  .orange-tag{
+    padding: 0% 1%;
+  }  
+  .down-arrow{
+    display: block;
+  }
+  .by-price-input{
+    display: block;
+  }
+  .by-price-input input{
+    margin: 5% 10%;
+    width: 80%;
+  }
+  .by-price-dash-line{
+    margin: 0;
+    width: 50%;
+    height: 25px;
+    border-right: 1px solid #545454;
+    border-bottom: none;
+  }
 }
 
 @media only screen and (min-width: 577px) and (max-width: 960px) {
@@ -340,7 +372,7 @@ input.caterory-check{
 // 字體RWD
 .en-category {
   @extend .en-title-20;
-  transition: 0.5s;
+  // transition: 0.5s;
   @include pad {
       @include mytitle;
       font-size: 1.6rem;
@@ -352,5 +384,21 @@ input.caterory-check{
       font-size: 1.4rem;
       line-height: 2.5rem;
       letter-spacing: 0.25rem;
-  }
+  }  
+}
+.en-title-big {
+  @extend .en-title-24;
+  // transition: 0.5s;
+  @include pad {
+      @include mytitle;
+      font-size: 2.3rem;
+      line-height: 3.4rem;
+      letter-spacing: 0.5rem;
+    }
+  @include mobile {
+      @include mytitle;
+      font-size: 2.2rem;
+      line-height: 2.2rem;
+      letter-spacing: 0.3rem;
+  }  
 }
