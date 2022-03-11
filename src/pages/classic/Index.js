@@ -5,10 +5,29 @@ import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
-import {useState} from 'react';
+import { IoIosArrowDown as DownArrow } from 'react-icons/io';
+import { useState, useReducer } from 'react';
 
-function Index() {
-  const [isOpenFilter, setIsOpenFilter] = useState(false);
+const initShowControl = {openFilterList: false,
+  openPriceFilter: true,
+  openFlavorFilter: true,
+  openCategoryFilter: true};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'filterList':
+      return {...state, openFilterList: !state.openFilterList};
+    case 'priceFilter':
+      return {...state, openPriceFilter: !state.openPriceFilter};      
+    default:
+      return state;
+    }
+  };
+
+function Index() {  
+  const [state, dispatch] = useReducer(reducer, initShowControl);  //控制顯示/隱藏元件
+  const showStyle = {display: 'block'};
+  const hiddenStyle = {display: 'none'};
 
   return (
     <>
@@ -22,7 +41,7 @@ function Index() {
           <div className="classic">
             <div className="search-filter">
               <div className="search-btn"><SearchBtn /></div>
-              <div className="filter-btn" onClick={() => {setIsOpenFilter(!isOpenFilter)}}><FilterBtn /></div>
+              <div className="filter-btn"><FilterBtn /></div>
             </div>
 
             <div className="main-content">
@@ -237,8 +256,13 @@ function Index() {
               {/* by price */}
               <div className="by-price">
                 <div className="by-price-title">
-                  <OrangeTag className="tag-img" />
-                  <div className="by-price-text en-title-24">By PRICE</div>
+                  <div className="orange-tag">
+                    <OrangeTag className="tag-img" />
+                  </div>                  
+                  <div className="by-price-text en-title-big">By PRICE</div>
+                  <div className="down-arrow">
+                    <DownArrow size={22} color="gray" />
+                  </div>
                 </div>
                 <div className="by-price-input">
                   <input type="number" placeholder="最小金額" />
@@ -250,8 +274,13 @@ function Index() {
               {/* by flavor */}
               <div className="by-flavor">
                 <div className="by-flavor-title">
-                  <OrangeTag className="tag-img" />
-                  <div className="by-price-text en-title-24">By FLAVOR</div>
+                  <div className="orange-tag">
+                    <OrangeTag className="tag-img" />
+                  </div>                  
+                  <div className="by-price-text en-title-big">By FLAVOR</div>
+                  <div className="down-arrow">
+                    <DownArrow size={22} color="gray" />
+                  </div>
                 </div>
                 <div className="flavor-tag-box">
                   <div className="flavor-tag ch-title-16">牛肉</div>
@@ -272,8 +301,13 @@ function Index() {
               {/* by category */}
               <div>
                 <div className="by-category-title">
-                  <OrangeTag className="tag-img" />
-                  <div className="by-price-text en-title-24">By CATEGORY</div>
+                  <div className="orange-tag">
+                    <OrangeTag className="tag-img" />
+                  </div>
+                  <div className="by-price-text en-title-big">By CATEGORY</div>
+                  <div className="down-arrow">
+                    <DownArrow size={22} color="gray" />
+                  </div>
                 </div>
                 <div className="category-checkbox-box">
                   <input
