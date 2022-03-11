@@ -83,7 +83,7 @@ function App() {
           <Route path="/share/edit">
             <ShareEdit />
           </Route>
-          <Route path="/share/my-share">
+          <Route path="/share/post">
             <ShareHistory />
           </Route>
           <Route path="/entry" exact>
