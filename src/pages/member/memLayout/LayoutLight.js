@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useLocation,
+} from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../imgs/logo.svg';
 import { ReactComponent as Hamburger } from '../../../imgs/hamburger.svg';
 import { ReactComponent as Cart } from '../../../imgs/cart.svg';
@@ -43,6 +49,9 @@ function Title(props) {
 }
 
 function AsideLeft() {
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
@@ -64,43 +73,53 @@ function AsideLeft() {
                 marginTop: '10%',
               }}
             >
-              <p>會員資訊</p>
-            </div>
-            <div 
-            className="ch-title-16"
-            style={{
-                width: '100%',
-                marginTop: '10%',
-              }}
-            >
-              <p>修改資料</p>
-            </div>
-            <div 
-            className="ch-title-16"
-            style={{
-                width: '100%',
-                marginTop: '10%',
-              }}
-            >
-              <p>營養分析</p>
-            </div>
-            <div 
-            className="ch-title-16"
-            style={{
-                width: '100%',
-                marginTop: '10%',
-              }}
-            >
-              <p className="ch-title-16">活動行程</p>
-            </div>
-            <div 
-            className="ch-title-16"
-            style={{
-                width: '100%',
-                marginTop: '10%',
-              }}
-            >
-              <p className="ch-title-16">我的訂單</p>
+              <Link to="/member">
+                <p>會員資訊</p>
+              </Link>
+              <div
+                className="ch-title-16"
+                style={{
+                  width: '100%',
+                  marginTop: '10%',
+                }}
+              >
+                <Link to="/member/revise">
+                  <p>修改資料</p>
+                </Link>
+              </div>
+              <div
+                className="ch-title-16"
+                style={{
+                  width: '100%',
+                  marginTop: '10%',
+                }}
+              >
+                <Link to="/member/analyze">
+                  <p>營養分析</p>
+                </Link>
+              </div>
+              <div
+                className="ch-title-16"
+                style={{
+                  width: '100%',
+                  marginTop: '10%',
+                }}
+              >
+                <Link to="/member/active">
+                  <p className="ch-title-16">活動行程</p>
+                </Link>
+              </div>
+              <div
+                className="ch-title-16"
+                style={{
+                  width: '100%',
+                  marginTop: '10%',
+                }}
+              >
+                <Link to="/member/historyorder">
+                  <p className="ch-title-16">我的訂單</p>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
