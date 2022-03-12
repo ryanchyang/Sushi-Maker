@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-import {
-  Header,
-  Title,
-  AsideLeft,
-  AsideRight,
-  Footer,
-} from './memLayout/LayoutDark';
+import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useState } from 'react';
-import { BsEyeSlash } from 'react-icons/bs';
+import { Link, useHistory } from 'react-router-dom';
 
 //styled component
 const LoginBody = styled.body`
@@ -83,7 +77,7 @@ function Register() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh'}}>
+        <div style={{ display: 'flex', height: '100vh' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
@@ -268,7 +262,16 @@ function Register() {
                   </button>
                 </RegistForm>
                 <InputForPsw className="ch-cont-14">
-                  已經有帳號了? 登入!
+                  已經有帳號了?
+                  <Link
+                    to="/member/login"
+                    style={{
+                      color: '#f7f6f3',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    登入
+                  </Link>
                 </InputForPsw>
               </InputArea>
             </LoginArea>

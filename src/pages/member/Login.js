@@ -27,7 +27,7 @@ const Slogan = styled.p`
 const LoginArea = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100%;
+  height: auto;
 `;
 
 const LoginForm = styled.form`
@@ -88,7 +88,7 @@ function Login() {
           return setErrorMessage(response.toString());
         }
         // setUser(response.data);
-        history.pushState('/');
+        history.pushState('/member');
       });
     });
   };
@@ -97,7 +97,7 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
@@ -186,7 +186,7 @@ function Login() {
                 </LoginForm>
                 <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
                 <InputRegistLink className="ch-cont-14">
-                  還沒有帳號嗎?{' '}
+                  還沒有帳號嗎?
                   <Link
                     to="/member/register"
                     style={{
