@@ -1,0 +1,86 @@
+@import './../../styles/global.scss';
+.evnts {
+  // mobile version
+  .mobile-evnts-detail {
+    margin-top: 5%;
+  }
+  .evnts-date-tag {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .evnts-img {
+    width: 100%;
+  }
+  .evnts-img img {
+    width: 100%;
+    object-fit: contain;
+  }
+  .evnts-info {
+    display: flex;
+    align-items: center;
+  }
+  .diamond {
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background-color: $light-red;
+    transform: rotate(45deg);
+    margin-right: 2%;
+  }
+  .evnts-info {
+    margin: 5% 0;
+    padding: 0 5%;
+  }
+  .evnts-content {
+    margin-top: 5%;
+    margin-bottom: 20%;
+    padding: 0 5%;
+  }
+  .signup-number {
+    text-align: center;
+  }
+  .signupbtn {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 10%;
+  }
+  // pc version
+  .pc-evnts-detail {
+    margin-top: 10%;
+    margin-bottom: 20%;
+  }
+  .pc-evnts-img,
+  .pc-evnts-content {
+    width: 50%;
+  }
+  .pc-evnts-img img {
+    width: 100%;
+  }
+  .pc-evnts-content {
+    padding-left: 5%;
+  }
+  .pc-evnts-title {
+    padding-top: 2%;
+  }
+  .pc-evnts-date-tag {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+  }
+  .pc-evnts-text {
+    margin: 10% 0%;
+  }
+  .pc-sign-up-in {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  @media screen and (min-width: 577px) {
+    .evnts-info {
+      padding: 0;
+    }
+  }
+}
