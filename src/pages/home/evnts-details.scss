@@ -20,6 +20,8 @@
   .evnts-info {
     display: flex;
     align-items: center;
+    margin: 5% 0;
+    padding: 0 5%;
   }
   .diamond {
     width: 15px;
@@ -29,10 +31,7 @@
     transform: rotate(45deg);
     margin-right: 2%;
   }
-  .evnts-info {
-    margin: 5% 0;
-    padding: 0 5%;
-  }
+
   .evnts-content {
     margin-top: 5%;
     margin-bottom: 20%;

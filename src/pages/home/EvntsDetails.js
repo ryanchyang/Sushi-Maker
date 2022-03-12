@@ -16,14 +16,6 @@ function EvntsDetails() {
                 <div className="lastest-news-nav-breadcrumbs">
                   <p className="en-title-14-10">HOME / LATEST NEWS / EVENTS</p>
                 </div>
-                <div className="lastest-news-nav-right d-flex align-items-center">
-                  <div className="search mx-2">
-                    <img src="/img/home/search-icon.svg" alt="search" />
-                  </div>
-                  <div className="filter">
-                    <img src="/img/home/filter-icon.svg" alt="filter" />
-                  </div>
-                </div>
               </div>
 
               {/* mobile events */}

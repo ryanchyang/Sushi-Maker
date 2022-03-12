@@ -2,6 +2,8 @@ import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import News from './components/News';
 import Pagination from './components/Pagination';
 import Events from './components/Events';
+import NewsFilter from './components/NewsFilter';
+import EvntsFilter from './components/EvntsFilter';
 import './latest-news.scss';
 import { useState } from 'react';
 
