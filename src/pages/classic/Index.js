@@ -13,6 +13,7 @@ function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [prodList, setProdList] = useState([]);  //依分類呈現商品資料
+  const [materials, setMaterials] = useState([]); //材料
   const [priceFilter, setPriceFilter] = useState(["", ""]);  //依金額搜尋([最小金額, 最大金額])
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -30,11 +31,22 @@ function Index() {
       default:
         setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
     }
-  }
+  };
+
+  //控制依金額篩選的輸入欄
+  const handleChangePriceFilter = (e) => {    
+    if(e.target.dataset.pfilter === 'min'){
+      setPriceFilter([e.target.value, priceFilter[1]]);
+    }else if(e.target.dataset.pfilter === 'max'){ 
+      setPriceFilter([priceFilter[0], e.target.value]);
+    }
+  };
 
   useEffect(() => {
     //預設呈現的商品類型為壽司
     setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+    //初始化所有材料
+    setMaterials(data.mtl);
   },[]) 
 
   const showStyle = { display: 'block' };
@@ -330,9 +342,9 @@ function Index() {
                   </div>
                 </div>
                 <div className="by-price-input">
-                  <input type="number" placeholder="最小金額" />
+                  <input type="number" placeholder="最小金額" data-pFilter="min" value={priceFilter[0]} onChange={handleChangePriceFilter} />
                   <div className="by-price-dash-line"></div>
-                  <input type="number" placeholder="最大金額" />
+                  <input type="number" placeholder="最大金額" data-pFilter="max" value={priceFilter[1]} onChange={handleChangePriceFilter} />
                 </div>
               </div>
 
@@ -348,7 +360,14 @@ function Index() {
                   </div>
                 </div>
                 <div className="flavor-tag-box">
-                  <div className="flavor-tag ch-title-16">牛肉</div>
+                  {materials.map((mtl) => {
+                    return (
+                      <>
+                        <div key={mtl.mtl_id} className="flavor-tag ch-title-16" data-mtlid={mtl.mtl_id}>{mtl.mtl_name}</div>
+                      </>
+                    )
+                  })}
+                  {/* <div className="flavor-tag ch-title-16">牛肉</div>
                   <div className="flavor-tag ch-title-16">豬肉</div>
                   <div className="flavor-tag ch-title-16">火腿</div>
                   <div className="flavor-tag ch-title-16">起司</div>
@@ -359,7 +378,7 @@ function Index() {
                   <div className="flavor-tag ch-title-16">番薯/馬鈴薯</div>
                   <div className="flavor-tag ch-title-16">麻糬</div>
                   <div className="flavor-tag ch-title-16">抹茶</div>
-                  <div className="flavor-tag ch-title-16">羊羹/果凍</div>
+                  <div className="flavor-tag ch-title-16">羊羹/果凍</div> */}
                 </div>
               </div>
 
