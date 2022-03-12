@@ -12,6 +12,7 @@ import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
 import zIndex from '@mui/material/styles/zIndex';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken } from '../../utils';
+import { AuthContext } from '../../contexts.js';
 
 //styled component
 const LoginBody = styled.body`
@@ -68,9 +69,10 @@ const PswInput = styled.input`
 `;
 
 function Login() {
+  const {setUser} = useContext(AuthContext);
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState();
   const history = useHistory();
 
   const handleSubmit = e => {
@@ -83,12 +85,15 @@ function Login() {
       setAuthToken(data.token);
 
       getMe().then(response => {
+        console.log(response.data);
+
         if (response.ok !== 1) {
           setAuthToken(null);
           return setErrorMessage(response.toString());
         }
-        // setUser(response.data);
-        history.pushState('/member');
+        setUser(response.data);
+        console.log(response.data);
+        history.push('/member'); //登入成功後導入會員頁
       });
     });
   };
@@ -113,7 +118,7 @@ function Login() {
                   Hello, <br />
                   My Friend
                 </Slogan>
-                <LoginForm method="POST" onSubmit={handleSubmit}>
+                <LoginForm onSubmit={handleSubmit}>
                   <InputTitle className="ch-cont-14">帳號</InputTitle>
                   <input
                     type="text"

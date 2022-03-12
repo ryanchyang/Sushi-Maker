@@ -16,7 +16,7 @@ export const login = (mem_account, mem_pwd) => {
 };
 
 export const getMe = () => {
-  const token = getAuthToken;
+  const token = getAuthToken();
   return fetch(`${BASE_URL}/member/api/auth-list/me`, {
     headers: {
       authorization: `Bearer ${token}`,

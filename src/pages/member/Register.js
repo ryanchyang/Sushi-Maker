@@ -32,7 +32,7 @@ const InputTitle = styled.p`
   color: #212121;
 `;
 const InputForPsw = styled.p`
-  color: #f7f6f3;
+  color: #c4c4c4;
   margin-top: 10%;
   text-align: center;
 `;
