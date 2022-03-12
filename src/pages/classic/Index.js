@@ -14,7 +14,7 @@ function Index() {
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
-  console.log(data);
+
   return (
     <>
       <Header />
@@ -55,7 +55,53 @@ function Index() {
               {/* product list */}
               <div className="prod-list">
                 {/* product card */}
-                <div className="prod-card">
+                {data.data.map((prod) => {
+                  return (
+                    <>
+                    <div className="prod-card" key={prod.id}>
+                  <div className="prod-img-box">
+
+                  {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                  {prod.prod_spe_tag === "" ? "" : (<div className="discount-tag">
+                      <div className="discount-tag-content">{prod.prod_spe_tag}</div>
+                    </div>)}
+                    
+                    <img
+                      src={require('./../../imgs/temp/classic-pro1.png')}
+                      alt="product-image"
+                    />
+                  </div>
+
+                  <div className="prod-name-ch ch-title-22">{prod.prod_ch_name}</div>
+                  <div className="prod-name-en en-title-14-5">{prod.prod_en_name}</div>
+
+                  {/* 判斷是否有特價 */}
+                  {prod.prod_spe_value === 0 ? (<div className="prod-price-no-discount">
+                    <div className="no-discount ch-cont-16">NT_{prod.prod_value}</div>
+                  </div>) : (<div className="prod-price-special">
+                    <div className="original-price ch-cont-16">NT_{prod.prod_value}</div>
+                    <div className="special-price ch-cont-18">NT_{prod.prod_spe_value}</div>
+                  </div>)}   
+
+                  <div className="select-add-cart">
+                    <div className="select-count">
+                      <button>-</button>
+                      <input type="number" value={1} />
+                      <button>+</button>
+                    </div>
+                    <div className="cart-btn">
+                      <Cart />
+                    </div>
+                    <button className="add-cart btn-sm btn-primary primeal-btn">
+                      加入購物車
+                    </button>
+                  </div>
+                </div>
+                    </>
+                  );
+                })}
+
+                {/* <div className="prod-card">
                   <div className="prod-img-box">
                     <div className="discount-tag">
                       <div className="discount-tag-content">25%OFF</div>
@@ -205,7 +251,8 @@ function Index() {
                       加入購物車
                     </button>
                   </div>
-                </div>
+                </div> */}
+
               </div>
 
               {/* pagination */}

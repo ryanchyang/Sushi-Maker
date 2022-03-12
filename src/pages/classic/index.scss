@@ -73,6 +73,7 @@
     width: 60px;;
     border-radius: 15px;
     padding: 5% 15%;
+    text-align: center;
   }
   .prod-name-ch {
     padding-left: 6%;
@@ -83,7 +84,7 @@
   }
   .prod-price-special {
     padding-top: 5%;
-    display: flex; /*切換特價標籤*/
+    display: flex; 
     width: 88%;
     padding-right: 5%;
     margin: 0 auto;
@@ -98,7 +99,6 @@
     color: #b03342;
   }
   .prod-price-no-discount {
-    display: none; /*切換特價標籤*/
     padding-top: 5%;
     width: 88%;
     padding-right: 5%;
