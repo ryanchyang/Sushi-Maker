@@ -7,13 +7,14 @@ import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useReducer } from 'react';
+import data from './testData.json';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
-
+  console.log(data);
   return (
     <>
       <Header />
