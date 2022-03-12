@@ -6,12 +6,37 @@ import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.sv
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
-import { useState, useReducer } from 'react';
+import { useState, useReducer, useEffect } from 'react';
 import data from './testData.json';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
+  const [prodList, setProdList] = useState([]);  //依分類呈現商品資料
+  const [priceFilter, setPriceFilter] = useState(["", ""]);  //依金額搜尋([最小金額, 最大金額])
+
+  //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
+  const handleClickCategory = (e) => {
+    switch(e.target.innerText){
+      case "SUSHI":
+        setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+        break;
+      case "DESSERT":
+        setProdList(data.data.filter(pro => pro.prod_category === "dessert"));
+        break;
+      case "PACKAGE":
+        setProdList(data.data.filter(pro => pro.prod_category === "package"));
+        break;
+      default:
+        setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+    }
+  }
+
+  useEffect(() => {
+    //預設呈現的商品類型為壽司
+    setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+  },[]) 
+
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
 
@@ -37,9 +62,9 @@ function Index() {
             <div className="main-content" style={isOpenFilter ? hiddenStyle : showStyle}>
               {/* category tag */}
               <div className="category-box">
-                <div className="en-category">SUSHI</div>
-                <div className="en-category">DESSERT</div>
-                <div className="en-category">PACKAGE</div>
+                <div className="en-category" onClick={handleClickCategory}>SUSHI</div>
+                <div className="en-category" onClick={handleClickCategory}>DESSERT</div>
+                <div className="en-category" onClick={handleClickCategory}>PACKAGE</div>
               </div>
 
               {/* filter tag */}
@@ -55,7 +80,7 @@ function Index() {
               {/* product list */}
               <div className="prod-list">
                 {/* product card */}
-                {data.data.map((prod) => {
+                {prodList.map((prod) => {
                   return (
                     <>
                     <div className="prod-card" key={prod.id}>
