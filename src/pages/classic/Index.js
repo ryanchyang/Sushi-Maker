@@ -58,7 +58,7 @@ function Index() {
                 <div className="prod-card">
                   <div className="prod-img-box">
                     <div className="discount-tag">
-                      <Discount />
+                      <div className="discount-tag-content">25%OFF</div>
                     </div>
                     <img
                       src={require('./../../imgs/temp/classic-pro1.png')}
