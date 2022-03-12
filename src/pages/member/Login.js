@@ -68,15 +68,15 @@ const PswInput = styled.input`
 `;
 
 function Login() {
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
+  const [mem_account, setMem_account] = useState('');
+  const [mem_pwd, setMem_pwd] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
-    login(account, password).then(data => {
-      //console.log(data);
+    login(mem_account, mem_pwd).then(data => {
+      console.log(data);
       if (data.ok === 0) {
         return setErrorMessage(data.message);
       }
@@ -113,14 +113,14 @@ function Login() {
                   Hello, <br />
                   My Friend
                 </Slogan>
-                <LoginForm onSubmit={handleSubmit}>
+                <LoginForm method="POST" onSubmit={handleSubmit}>
                   <InputTitle className="ch-cont-14">帳號</InputTitle>
                   <input
                     type="text"
-                    value={account}
+                    value={mem_account}
                     className="form-control"
                     onChange={e => {
-                      setAccount(e.target.value);
+                      setMem_account(e.target.value);
                     }}
                     name="mem_account"
                     style={{
@@ -145,11 +145,11 @@ function Login() {
                     <PswInput
                       type="password"
                       className="form-control"
-                      value={password}
+                      value={mem_pwd}
                       onChange={e => {
-                        setPassword(e.target.value);
+                        setMem_pwd(e.target.value);
                       }}
-                      name="mem_password"
+                      name="mem_pwd"
                       style={{
                         borderRadius: 50,
                         height: '40px',
