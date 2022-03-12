@@ -42,6 +42,19 @@ function Index() {
     }
   };
 
+  //處理點擊材料篩選
+  const handelClickFlavor = (e) => {
+    const newData = materials.map((v) => {  
+      //將原有的材料id與被點擊的材料id做比對    
+      if(e.target.dataset.mtlid == v.mtl_id){
+        return {...v, selected: !v.selected};
+      }else{
+        return v;
+      }
+    })
+    setMaterials(newData);
+  };
+
   useEffect(() => {
     //預設呈現的商品類型為壽司
     setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
@@ -51,6 +64,8 @@ function Index() {
 
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
+  const flavorTagNoClick = {color: '#b03342', backgroundColor: 'none'};
+  const flavorTagClicked = {color: '#ffffff', backgroundColor: '#b03342'};
 
   return (
     <>
@@ -363,7 +378,7 @@ function Index() {
                   {materials.map((mtl) => {
                     return (
                       <>
-                        <div key={mtl.mtl_id} className="flavor-tag ch-title-16" data-mtlid={mtl.mtl_id}>{mtl.mtl_name}</div>
+                        <div key={mtl.mtl_id} className="flavor-tag ch-title-16" data-mtlid={mtl.mtl_id} style={mtl.selected ? flavorTagClicked : flavorTagNoClick} onClick={handelClickFlavor}>{mtl.mtl_name}</div>
                       </>
                     )
                   })}
