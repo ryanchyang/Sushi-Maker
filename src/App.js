@@ -52,20 +52,20 @@ import SharePost from './pages/share/ShareHistory';
 
 function App() {
   //判斷使用者是否登入
-  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
 
-  // //renden時再做一次getMe , 避免換頁登出
-  // useEffect(() => {
-  //   getMe().then(response => {
-  //     if (response.ok) {
-  //       setUser(response.data);
-  //     }
-  //   });
-  // }, []);
+  //renden時再做一次getMe , 避免換頁登出
+  useEffect(() => {
+    getMe().then(response => {
+      if (response.ok) {
+        setUser(response.data);
+      }
+    });
+  }, []);
 
   return (
     //如有toke, 將token傳下去
-    // <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser }}>
       <Router>
         <>
           <Switch>
@@ -183,7 +183,7 @@ function App() {
           </Switch>
         </>
       </Router>
-    // </AuthContext.Provider>
+    </AuthContext.Provider>
   );
 }
 
