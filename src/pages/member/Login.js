@@ -92,7 +92,6 @@ function Login() {
           return setErrorMessage(response.toString());
         }
         setUser(response.data);
-        console.log(response.data);
         history.push('/member'); //登入成功後導入會員頁
       });
     });

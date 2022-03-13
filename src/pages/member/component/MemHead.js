@@ -1,4 +1,18 @@
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../../../contexts';
+import { findMem } from '../../../WebApi';
+
 function MemHead() {
+  const [memData, setMemData] = useState(null);
+  const { user } = useContext(AuthContext);
+  const mem_id = user.mem_id;
+
+  useEffect(() => {
+    findMem(mem_id).then(memData => {
+      setMemData(memData[0]);
+    });
+  }, [user]);
+
   return (
     <div className="memHead ">
       <div className="memPhotoArea col-md-6">
@@ -10,7 +24,7 @@ function MemHead() {
           />
         </div>
         <div className="memName">
-          <p className="ch-title-22">RUKA蔣</p>
+          <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
         </div>
         <button className="btn btn-primary primeal-btn-sm ">照片上傳</button>
       </div>

@@ -52,11 +52,12 @@ import SharePost from './pages/share/ShareHistory';
 
 function App() {
   //判斷使用者是否登入
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
 
   //renden時再做一次getMe , 避免換頁登出
   useEffect(() => {
     getMe().then(response => {
+      console.log(response)
       if (response.ok) {
         setUser(response.data);
       }
