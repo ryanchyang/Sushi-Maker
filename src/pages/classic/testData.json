@@ -8,7 +8,7 @@
         "prod_value": 60,
         "prod_spe_tag": "25%OFF",
         "prod_spe_value": 55,
-        "img_path": "/imgs/temp/classic-pro1.png",
+        "img_path": "imgs/temp/classic-pro1.png",
         "material": [15,16]
       },
       {
@@ -17,7 +17,7 @@
         "prod_en_name": "Caramel Salmon with Egg",
         "prod_category": "sushi",
         "prod_value": 55,
-        "prod_spe_tag": "New",
+        "prod_spe_tag": "NEW",
         "prod_spe_value": 0,
         "img_path": "/imgs/temp/classic-pro2.png",
         "material": [2,8]
@@ -61,10 +61,93 @@
         "prod_en_name": "Mixed Vegetables",
         "prod_category": "sushi",
         "prod_value": 55,
+        "prod_spe_tag": "HOT",
+        "prod_spe_value": 48,
+        "img_path": "/imgs/temp/classic-pro2.png",
+        "material": [20,24,28,34]
+      },
+      {
+        "prod_id": 29,
+        "prod_ch_name": "巧克力草莓",
+        "prod_en_name": "Chocolate Strawberry",
+        "prod_category": "dessert",
+        "prod_value": 60,
         "prod_spe_tag": "25%OFF",
+        "prod_spe_value": 55,
+        "img_path": "imgs/temp/classic-pro1.png",
+        "material": [15,16]
+      },
+      {
+        "prod_id": 32,
+        "prod_ch_name": "柑橘胡蘿蔔",
+        "prod_en_name": "Orange Carrot",
+        "prod_category": "dessert",
+        "prod_value": 55,
+        "prod_spe_tag": "NEW",
+        "prod_spe_value": 0,
+        "img_path": "/imgs/temp/classic-pro2.png",
+        "material": [2,8]
+      },
+      {
+        "prod_id": 33,
+        "prod_ch_name": "柚子醬佐蜜桃",
+        "prod_en_name": "Peach with Grapefruit Sauce",
+        "prod_category": "dessert",
+        "prod_value": 70,
+        "prod_spe_tag": "",
+        "prod_spe_value": 0,
+        "img_path": "/imgs/temp/classic-pro3.png",
+        "material": [27,30,37]
+      },
+      {
+        "prod_id": 35,
+        "prod_ch_name": "焦糖布丁",
+        "prod_en_name": "Caramel Pudding",
+        "prod_category": "dessert",
+        "prod_value": 50,
+        "prod_spe_tag": "20%OFF",
+        "prod_spe_value": 40,
+        "img_path": "/imgs/temp/classic-pro4.png",
+        "material": [2,31]
+      },
+      {
+        "prod_id": 38,
+        "prod_ch_name": "蝶豆花藍莓",
+        "prod_en_name": "Butterfly Pea Blueberry",
+        "prod_category": "dessert",
+        "prod_value": 50,
+        "prod_spe_tag": "",
+        "prod_spe_value": 0,
+        "img_path": "/imgs/temp/classic-pro1.png",
+        "material": [2,8]
+      },
+      {
+        "prod_id": 39,
+        "prod_ch_name": "薄荷",
+        "prod_en_name": "Mint",
+        "prod_category": "dessert",
+        "prod_value": 55,
+        "prod_spe_tag": "HOT",
         "prod_spe_value": 48,
         "img_path": "/imgs/temp/classic-pro2.png",
         "material": [20,24,28,34]
       }
-	]
+	],
+    "mtl":[
+        {"mtl_id": 2, "mtl_name": "鮭魚", "selected": false},
+        {"mtl_id": 3, "mtl_name": "鮪魚", "selected": false},
+        {"mtl_id": 4, "mtl_name": "比目魚", "selected": false},
+        {"mtl_id": 5, "mtl_name": "烏賊", "selected": false},
+        {"mtl_id": 6, "mtl_name": "花枝", "selected": false},
+        {"mtl_id": 7, "mtl_name": "章魚", "selected": false},        
+        {"mtl_id": 8, "mtl_name": "玉子燒", "selected": false},
+        {"mtl_id": 15, "mtl_name": "牛排", "selected": false},
+        {"mtl_id": 16, "mtl_name": "雞排", "selected": false},
+        {"mtl_id": 20, "mtl_name": "玉米", "selected": false},
+        {"mtl_id": 24, "mtl_name": "茄子", "selected": false},
+        {"mtl_id": 28, "mtl_name": "小黃瓜", "selected": false},
+        {"mtl_id": 30, "mtl_name": "飛魚卵", "selected": false},
+        {"mtl_id": 34, "mtl_name": "蔥", "selected": false}
+        
+    ]
 }

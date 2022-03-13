@@ -80,6 +80,7 @@ function Index() {
     setSpecialCategoryFilter([{tag: 'new', value: false},{tag: 'hot', value: false},{tag: 'sale', value: false}]);
   }
 
+  //套用篩選條件
   const applyFilter = () => {
     let filteredData = data.data.filter(pro => pro.prod_category === category);
 
