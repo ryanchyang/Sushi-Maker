@@ -49,7 +49,7 @@ function ShareItems() {
                 <div className="d-flex justify-content-between">
                   <p className="mytitle en-title-14-10">HOME / SHARE / ITEMS</p>
                   <div className="d-flex align-items-center">
-                    <Delete className="mx-4 p-2" />
+                    <Delete className="mx-md-4 p-2" />
                   </div>
                 </div>
               </div>

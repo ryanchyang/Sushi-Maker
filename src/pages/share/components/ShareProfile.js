@@ -1,5 +1,3 @@
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../../layout/Layout';
-
 import { ReactComponent as Delete } from '../../../imgs/delete-lg.svg';
 import { ReactComponent as Rect } from '../../../imgs/tags/Rectangle_orange.svg';
 import styles from '../Share.module.scss';
@@ -13,7 +11,7 @@ function ShareProfile() {
             <div className="d-flex justify-content-between">
               <p className="mytitle en-title-14-10">HOME / SHARE / MY-SHARE</p>
               <div className="d-flex align-items-center">
-                <Delete className="mx-4 p-2" />
+                <Delete className="mx-md-4 p-2" />
               </div>
             </div>
             <div
@@ -39,52 +37,33 @@ function ShareProfile() {
               </div>
             </div>
             <div
-              className={`${styles['topic-section']} d-flex  ${styles['mb-50']}`}
+              className={`${styles['topic-section']} d-flex  ${styles['mb-50']} justify-content-center`}
             >
-              <div
-                className={` ${styles['topic-section-box']} d-flex justify-content-center col-8`}
-              >
-                <div className="d-none d-sm-block pt-2">
-                  <div className="d-flex align-items-center mr-3 ">
-                    <Rect />
-                  </div>
+              <div className={`${styles['topic-box']}`}>
+                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
+                  <Rect />
                 </div>
-
-                <div className="d-flex align-items-center">
-                  <a href="#/" className={`${styles['topic-link']}`}>
-                    SAVES
-                  </a>
-                </div>
+                <a href="#/" className={`${styles['topic-link']}`}>
+                  SAVES
+                </a>
               </div>
-              <div
-                className={`${styles['topic-section-box']} d-flex justify-content-center col-8`}
-              >
-                <div className="d-none d-sm-block pt-2">
-                  <div className="d-flex align-items-center mr-3 ">
-                    <Rect />
-                  </div>
-                </div>
 
-                <div className="d-flex align-items-center">
-                  <a href="#/" className={`${styles['topic-link']}`}>
-                    UPLOAD
-                  </a>
+              <div className={`${styles['topic-box']}`}>
+                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
+                  <Rect />
                 </div>
+                <a href="#/" className={`${styles['topic-link']}`}>
+                  UPLOAD
+                </a>
               </div>
-              <div
-                className={`${styles['topic-section-box']} d-flex justify-content-center col-8`}
-              >
-                <div className="d-none d-sm-block pt-2">
-                  <div className="d-flex align-items-center mr-3 ">
-                    <Rect />
-                  </div>
-                </div>
 
-                <div className="d-flex align-items-center">
-                  <a href="#/" className={`${styles['topic-link']}`}>
-                    POST
-                  </a>
+              <div className={`${styles['topic-box']}`}>
+                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
+                  <Rect />
                 </div>
+                <a href="#/" className={`${styles['topic-link']}`}>
+                  POST
+                </a>
               </div>
             </div>
           </div>

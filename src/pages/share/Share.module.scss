@@ -157,7 +157,7 @@
   padding: 10px;
   position: absolute;
   top: 60px;
-  right: 30px;
+  right: 25px;
   cursor: pointer;
 }
 
@@ -181,7 +181,7 @@
   padding: 10px;
   position: absolute;
   top: 120px;
-  right: 30px;
+  right: 25px;
   cursor: pointer;
 }
 
@@ -307,6 +307,17 @@
   width: 700px;
 }
 
+.topic-box {
+  position: relative;
+  margin: 0 50px;
+}
+
+.topic-rect {
+  position: absolute;
+  top: 5px;
+  left: -32px;
+}
+
 .topic-link {
   @extend .en-title-24;
   text-decoration: none;
@@ -351,6 +362,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 150px;
+}
+
+.share-input {
+  height: 40px !important;
 }
 
 @media screen and (max-width: 1400px) {
