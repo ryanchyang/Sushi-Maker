@@ -115,15 +115,16 @@
   }
   @keyframes infiniteSlide {
     0% {
-        transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-        transform: translate3d(-1620px,0,0);    /*位移值= img的width * img數量*/
+      transform: translate3d(-1620px, 0, 0); /*位移值= img的width * img數量*/
     }
   }
   .promotion-list li {
     flex: 0 0 auto;
     display: block;
+    cursor: pointer;
   }
   .promotion-card {
     width: 230px;
@@ -161,6 +162,7 @@
   }
   .index-category-name {
     text-align: center;
+    cursor: pointer;
   }
   .index-category-content {
     padding: 2rem 2rem 2rem;
@@ -179,6 +181,7 @@
   }
   .index-view-more {
     margin-bottom: 2rem;
+    cursor: pointer;
   }
   /* lastest news */
   .index-category-img img {
@@ -219,6 +222,7 @@
   .footer-link,
   .footer-social-icon {
     margin: 0 0.5rem;
+    cursor: pointer;
   }
   @media screen and (min-width: 576px) {
     .en-title-14-5 {
@@ -273,7 +277,7 @@
     .scroll-hint {
       margin-top: 2%;
     }
-    .promotion-wrap{
+    .promotion-wrap {
       max-width: calc(100vw - 25vw);
     }
     .about-us-title {
@@ -376,6 +380,7 @@
       margin: 1rem 0.5rem;
       transform: rotate(45deg);
       background-color: #c4c4c4;
+      cursor: pointer;
     }
     .latest-news-pagination {
       display: flex;

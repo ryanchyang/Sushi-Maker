@@ -1,9 +1,55 @@
 import { Header, Title, AsideLeft, AsideRight } from '../layout/Layout';
 import './index.scss';
+import './../../styles/global.scss';
+import { useState, useEffect } from 'react';
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
 function Index() {
+  const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
+  const [latestNews, setLatestNews] = useState('NEWS');
+
+  // 初始化要資料
+  useEffect(() => {}, []);
+
+  // 處理just for you類別切換
+  const handleJustForYou = e => {
+    const text = e.target.innerText;
+    switch (text) {
+      case 'CUSTOMIZATION':
+        setJftFocus('CUSTOMIZATION');
+        break;
+      case 'MEAL PLAN':
+        setJftFocus('MEAL PLAN');
+        break;
+      default:
+        setJftFocus('CUSTOMIZATION');
+    }
+  };
+
+  // 處理latest news類別切換
+  const handleLatestNews = e => {
+    const text = e.target.innerText;
+    switch (text) {
+      case 'NEWS':
+        setLatestNews('NEWS');
+        break;
+      case 'EVENTS':
+        setLatestNews('EVENTS');
+        break;
+      case 'SHARES':
+        setLatestNews('SHARES');
+        break;
+      default:
+        setLatestNews('NEWS');
+    }
+  };
+
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const showGray = { color: '#c4c4c4' };
+  const hiddenGray = { color: '#212121' };
+
   return (
     <>
       <Header />
@@ -42,19 +88,25 @@ function Index() {
                 </div>
               </div>
               {/* view product & scroll area */}
-              <div className="view-product-area d-flex justify-content-end align-items-center">
-                <p className="en-cont-12 ">View Product</p>
+              <div
+                className="view-product-area d-flex justify-content-end align-items-center"
+                style={{ cursor: 'pointer' }}
+              >
+                <p className="en-cont-12">View Product</p>
                 <div className="view-product-arrow">
                   <img src="/img/home/index-arrowsm.svg" alt="view-product" />
                 </div>
               </div>
               <div className="scroll-hint">
-                <p className="scroll-down">SCROLL</p>
+                <p className="scroll-down" style={{ cursor: 'pointer' }}>
+                  SCROLL
+                </p>
                 <div className="vertical-line">
                   <img src="/img/home/intro-vertical-line.svg" alt="scroll" />
                 </div>
               </div>
             </div>
+
             {/* about us */}
             <div className="home-page">
               <div className="en-title-24 about-us-title">About us</div>
@@ -122,6 +174,7 @@ function Index() {
                 </div>
               </div>
             </div>
+
             {/* promotion */}
             {/* todo scroll down to change bg color */}
             <div className="home-page">
@@ -323,38 +376,82 @@ function Index() {
                 </ul>
               </div>
             </div>
+
             {/* just for you --> */}
             <div className="home-page">
               <Title title={'Just For You'} />
               {/* <div className="page-title">Just For You</div> */}
               <div className="en-title-14-5 index-category d-flex justify-content-evenly">
-                <div className="col-12 index-category-name">CUSTOMIZATION</div>
-                <div className="col-12 index-category-name">MEAL PLAN</div>
-              </div>
-              <div className="index-category-content">
-                <div className="index-category-img d-flex justify-content-center">
-                  <img
-                    className="d-sm-none"
-                    src="/img/home/jfy-mobile-img.svg"
-                    alt="just-for-you"
-                  />
-                  <img
-                    className="d-none d-sm-block"
-                    src="/img/home/jfy-pc-img.svg"
-                    alt="just-for-you"
-                  />
+                <div
+                  className="col-12 index-category-name"
+                  onClick={handleJustForYou}
+                  style={jftFocus === 'CUSTOMIZATION' ? hiddenGray : showGray}
+                >
+                  CUSTOMIZATION
                 </div>
-                <div className="just-for-you-txt">
-                  <p className="ch-title-22 jfy-category-title">客製化服務</p>
-                  <p className="ch-cont-14 jfy-category-content">
-                    創意打造專屬你的壽司
-                    <br />
-                    漂亮擺盤，經驗你的視覺感官
-                  </p>
+                <div
+                  className="col-12 index-category-name"
+                  onClick={handleJustForYou}
+                  style={jftFocus === 'MEAL PLAN' ? hiddenGray : showGray}
+                >
+                  MEAL PLAN
                 </div>
               </div>
-              <div className="index-view-more d-flex justify-content-end">
-                <p className="en-cont-14">Customization</p>
+
+              <div
+                style={jftFocus === 'CUSTOMIZATION' ? showBlock : hiddenBlock}
+              >
+                <div className="index-category-content">
+                  <div className="index-category-img d-flex justify-content-center">
+                    <img
+                      className="d-sm-none"
+                      src="/img/home/jfy-mobile-img.svg"
+                      alt="just-for-you"
+                    />
+                    <img
+                      className="d-none d-sm-block"
+                      src="/img/home/jfy-pc-img.svg"
+                      alt="just-for-you"
+                    />
+                  </div>
+                  <div className="just-for-you-txt">
+                    <p className="ch-title-22 jfy-category-title">客製化服務</p>
+                    <p className="ch-cont-14 jfy-category-content">
+                      創意打造專屬你的壽司
+                      <br />
+                      漂亮擺盤，經驗你的視覺感官
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div style={jftFocus === 'MEAL PLAN' ? showBlock : hiddenBlock}>
+                <div className="index-category-content">
+                  <div className="index-category-img d-flex justify-content-center">
+                    <img
+                      src="/img/home/mealplan-bento.png"
+                      alt="just-for-you"
+                      style={{
+                        width: '60%',
+                        boxShadow: '2px 2px 5px 2px #c4c4c4',
+                      }}
+                    />
+                  </div>
+                  <div className="just-for-you-txt">
+                    <p className="ch-title-22 jfy-category-title mt-5">
+                      套餐規劃
+                    </p>
+                    <p className="ch-cont-14 jfy-category-content">
+                      量身訂做每日套餐
+                      <br />
+                      讓您7天/14天/21天，天天有驚喜
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="index-view-more d-flex justify-content-end align-items-center">
+                <p className="en-cont-14">{jftFocus}</p>
                 <div className="view-product-arrow">
                   <img
                     src="/img/home/index-arrowsm-black.svg"
@@ -368,9 +465,27 @@ function Index() {
               <Title title={'Latest News'} />
               {/* <div className="page-title">Latest News</div> */}
               <div className="en-title-14-5 index-category d-flex justify-content-evenly">
-                <div className="col-8 index-category-name">NEWS</div>
-                <div className="col-8 index-category-name">EVENTS</div>
-                <div className="col-8 index-category-name">SHARES</div>
+                <div
+                  className="col-8 index-category-name"
+                  onClick={handleLatestNews}
+                  style={latestNews === 'NEWS' ? hiddenGray : showGray}
+                >
+                  NEWS
+                </div>
+                <div
+                  className="col-8 index-category-name"
+                  onClick={handleLatestNews}
+                  style={latestNews === 'EVENTS' ? hiddenGray : showGray}
+                >
+                  EVENTS
+                </div>
+                <div
+                  className="col-8 index-category-name"
+                  onClick={handleLatestNews}
+                  style={latestNews === 'SHARES' ? hiddenGray : showGray}
+                >
+                  SHARES
+                </div>
               </div>
               <div className="news-carousel-wrap d-flex overflow-hidden">
                 <div className="col-24 lastest-new-content">
@@ -422,7 +537,11 @@ function Index() {
               </div>
               <div className="latest-news-pagination">
                 <div className="latest-news-left-arrow d-none d-md-block">
-                  <img src="/img/home/left.svg" alt="left-arrow" />
+                  <img
+                    src="/img/home/left.svg"
+                    alt="left-arrow"
+                    style={{ cursor: 'pointer' }}
+                  />
                 </div>
                 <div className="latest-news-dots d-none d-md-block">
                   <ul className="pagination-list">
@@ -434,11 +553,15 @@ function Index() {
                   </ul>
                 </div>
                 <div className="latest-news-right-arrow d-none d-md-block">
-                  <img src="/img/home/right.svg" alt="right-arrow" />
+                  <img
+                    src="/img/home/right.svg"
+                    alt="right-arrow"
+                    style={{ cursor: 'pointer' }}
+                  />
                 </div>
               </div>
-              <div className="index-view-more d-flex justify-content-end">
-                <p className="en-cont-14">Browse News</p>
+              <div className="index-view-more d-flex justify-content-end align-items-center">
+                <p className="en-cont-14">BROWSE {latestNews}</p>
                 <div className="view-product-arrow">
                   <img
                     src="/img/home/index-arrowsm-black.svg"
@@ -455,6 +578,7 @@ function Index() {
                 <img
                   src="/img/home/footer-toproduct-arrow.svg"
                   alt="to-product"
+                  style={{ cursor: 'pointer' }}
                 />
               </div>
               <div className="footer-logo d-none d-md-block">
