@@ -70,6 +70,17 @@ function Index() {
     setSpecialCategoryFilter(newData);
   }
 
+  //重設篩選條件
+  const cleanFilter = (e) => {
+    setPriceFilter(["", ""]);
+    setMaterials(data.mtl);
+    setSpecialCategoryFilter([{tag: 'new', value: false},{tag: 'hot', value: false},{tag: 'sale', value: false}]);
+  }
+
+  const applyFilter = () => {
+    
+  }
+
   useEffect(() => {
     //預設呈現的商品類型為壽司
     setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
@@ -348,7 +359,7 @@ function Index() {
             <div className="prod-filter" style={isOpenFilter ? showStyle : hiddenStyle}>
               {/* clean or cancel filter */}
               <div className="filter-top">
-                <div className="clean-filter ch-cont-16">
+                <div className="clean-filter ch-cont-16" onClick={cleanFilter}>
                   <img
                     src={require('./../../imgs/tags/trash.png')}
                     alt="trash"
@@ -471,10 +482,6 @@ function Index() {
                   送出條件
                 </button>
               </div>
-
-              {/* <div className="send-filter ch-title-16">
-                送出條件
-              </div> */}
             </div>
           </div>
           <Footer />
