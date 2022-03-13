@@ -63,8 +63,6 @@ function Index() {
 
   //處理點擊特殊標籤篩選
   const handelChangeSpecCategory = (e) => {
-    console.log(e);
-    console.log(e.target.dataset.tag);
     const newData = specialCategoryFilter.map((v) => {
       if(e.target.dataset.tag === v.tag){
         return {...v, value: !v.value};
@@ -89,6 +87,11 @@ function Index() {
     const minPrice = priceFilter[0] === "" ? 0 : +priceFilter[0];
     //最大金額
     const maxPrice = priceFilter[1] === "" ? 9999 : +priceFilter[1];  //沒填最大金額時搜尋9999
+    //口味選擇(被選中材料的id陣列)
+    const flavor = materials.filter(mtl => mtl.selected).map(mtl => mtl.mtl_id);
+    //特殊標籤選擇('new'、'hot'、'sale')
+    const specTag = specialCategoryFilter.filter(tag => tag.value).map(tag => tag.tag);
+
     //篩選金額範圍
     filteredData = filteredData.filter(prod => {
       if(prod.prod_spe_value === 0){
@@ -100,9 +103,31 @@ function Index() {
       }
     });
 
-    
-    setProdList(filteredData);
+    //篩選特殊標籤
+    if(specTag.length > 0){  //specTag.length = 0(沒有選擇任何特殊標籤)時視為全選，不做任何過濾條件
+      filteredData = filteredData.filter(prod => {
+        let checkTag = "";
+        //prod_spe_tag對照(XX%OFF轉為sale、HOT轉為hot、NEW轉為new)
+        if(prod.prod_spe_tag.includes("OFF")){
+          checkTag = "sale";
+        }else if(prod.prod_spe_tag !== ""){
+          checkTag = prod.prod_spe_tag.toLowerCase();
+        }
 
+        if(specTag.includes(checkTag)) return true;
+      });
+    }
+
+    //篩選口味
+    if(flavor.length > 0){  //當flavor.length = 0(沒有選擇任何材料)時視為全選，不做任何過濾條件
+      filteredData = filteredData.filter(prod => {
+        for(const m of prod.material){
+          if(flavor.includes(m)) return true;
+        }
+      });
+    }
+
+    setProdList(filteredData);
   }
 
   useEffect(() => {
