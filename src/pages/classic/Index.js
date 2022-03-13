@@ -12,6 +12,7 @@ import data from './testData.json';
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
+  const [category, setCategory] = useState("sushi");
   const [prodList, setProdList] = useState([]);  //依分類呈現商品資料
   const [materials, setMaterials] = useState([]); //材料
   const [priceFilter, setPriceFilter] = useState(["", ""]);  //依金額搜尋([最小金額, 最大金額])
@@ -22,15 +23,19 @@ function Index() {
     switch(e.target.innerText){
       case "SUSHI":
         setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+        setCategory("sushi");
         break;
       case "DESSERT":
         setProdList(data.data.filter(pro => pro.prod_category === "dessert"));
+        setCategory("dessert");
         break;
       case "PACKAGE":
         setProdList(data.data.filter(pro => pro.prod_category === "package"));
+        setCategory("package");
         break;
       default:
         setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+        setCategory("sushi");
     }
   };
 
@@ -78,7 +83,26 @@ function Index() {
   }
 
   const applyFilter = () => {
+    let filteredData = data.data.filter(pro => pro.prod_category === category);
+
+    //最小金額
+    const minPrice = priceFilter[0] === "" ? 0 : +priceFilter[0];
+    //最大金額
+    const maxPrice = priceFilter[1] === "" ? 9999 : +priceFilter[1];  //沒填最大金額時搜尋9999
+    //篩選金額範圍
+    filteredData = filteredData.filter(prod => {
+      if(prod.prod_spe_value === 0){
+        //當商品沒有特價時，用原價來篩選
+        return prod.prod_value >= minPrice && prod.prod_value <= maxPrice;
+      }else{
+        //當商品有特價時，用特價來篩選
+        return prod.prod_spe_value >= minPrice && prod.prod_spe_value <= maxPrice;
+      }
+    });
+
     
+    setProdList(filteredData);
+
   }
 
   useEffect(() => {
@@ -478,7 +502,7 @@ function Index() {
               </div>
 
               <div className="send-filter-btn-box">
-                <button className="btn-sm btn-primary primeal-btn-sm">
+                <button className="btn-sm btn-primary primeal-btn-sm" onClick={applyFilter}>
                   送出條件
                 </button>
               </div>
