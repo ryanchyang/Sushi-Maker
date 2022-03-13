@@ -15,6 +15,7 @@ function Index() {
   const [prodList, setProdList] = useState([]);  //依分類呈現商品資料
   const [materials, setMaterials] = useState([]); //材料
   const [priceFilter, setPriceFilter] = useState(["", ""]);  //依金額搜尋([最小金額, 最大金額])
+  const [specialCategoryFilter, setSpecialCategoryFilter] = useState([{tag: 'new', value: false},{tag: 'hot', value: false},{tag: 'sale', value: false}]);  //依特殊標籤搜尋
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
   const handleClickCategory = (e) => {
@@ -55,6 +56,20 @@ function Index() {
     setMaterials(newData);
   };
 
+  //處理點擊特殊標籤篩選
+  const handelChangeSpecCategory = (e) => {
+    console.log(e);
+    console.log(e.target.dataset.tag);
+    const newData = specialCategoryFilter.map((v) => {
+      if(e.target.dataset.tag === v.tag){
+        return {...v, value: !v.value};
+      }else{
+        return v;
+      }
+    })
+    setSpecialCategoryFilter(newData);
+  }
+
   useEffect(() => {
     //預設呈現的商品類型為壽司
     setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
@@ -64,7 +79,7 @@ function Index() {
 
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
-  const flavorTagNoClick = {color: '#b03342', backgroundColor: 'none'};
+  const flavorTagNoClick = {color: '#b03342', backgroundColor: 'transparent'};
   const flavorTagClicked = {color: '#ffffff', backgroundColor: '#b03342'};
 
   return (
@@ -399,7 +414,7 @@ function Index() {
 
               {/* by category */}
               <div>
-                <div className="by-category-title">
+                <div className="by-category">
                   <div className="orange-tag">
                     <OrangeTag className="tag-img" />
                   </div>
@@ -413,6 +428,9 @@ function Index() {
                     className="caterory-check"
                     type="checkbox"
                     id="new-item"
+                    data-tag="new"
+                    checked={specialCategoryFilter[0].value}
+                    onChange={handelChangeSpecCategory}
                   />
                   <div className="label-box">
                     <label className="ch-title-16" for="new-item">
@@ -423,6 +441,9 @@ function Index() {
                     className="caterory-check"
                     type="checkbox"
                     id="hot-item"
+                    data-tag="hot"
+                    checked={specialCategoryFilter[1].value}
+                    onChange={handelChangeSpecCategory}
                   />
                   <div className="label-box">
                     <label className="ch-title-16" for="hot-item">
@@ -433,6 +454,9 @@ function Index() {
                     className="caterory-check"
                     type="checkbox"
                     id="for-sale"
+                    data-tag="sale"
+                    checked={specialCategoryFilter[2].value}
+                    onChange={handelChangeSpecCategory}
                   />
                   <div className="label-box">
                     <label className="ch-title-16" for="for-sale">

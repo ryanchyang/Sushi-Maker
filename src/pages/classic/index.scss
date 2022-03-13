@@ -222,7 +222,7 @@
   }
   .by-price-title,
   .by-flavor-title,
-  .by-category-title {
+  .by-category {
     display: flex;
   }
   .down-arrow {
@@ -285,8 +285,7 @@
     border-radius: 25px;
     cursor: pointer;
   }
-  .flavor-tag:hover {
-    /*TODO: 點擊變色*/
+  .flavor-tag:hover {    
     color: #ffffff;
     background-color: #b03342;
   }
@@ -396,7 +395,7 @@
       border-bottom: none;
     }
     .flavor-tag-box {
-      display: none;
+      // display: none;
       margin-top: 5%;
       width: 100%;
     }
