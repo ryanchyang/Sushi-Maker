@@ -37,7 +37,7 @@ function ShareEdit() {
                     </h2>
                   </div>
                   <div className="d-flex">
-                    <div className="col-12">
+                    <div className="col-md-12">
                       <form>
                         <div className={`mb-4 form-group`}>
                           <label htmlFor="title" className="ch-cont-14">
@@ -85,6 +85,32 @@ function ShareEdit() {
                             className={`${styles['share-input']} form-control`}
                             id="tag"
                           />
+                          <div
+                            className={`${styles['hashtag-box']} d-flex mt-4 flex-wrap`}
+                          >
+                            <div
+                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
+                            >
+                              <div
+                                className={`${styles['hashtag-tag-text']} ch-cont-14 mr-2`}
+                              >
+                                真好吃真好吃真好吃真好吃真好吃真好吃真好吃真好吃
+                              </div>
+                              <DeleteSm />
+                            </div>
+                            <div
+                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
+                            >
+                              <div className="ch-cont-14 mr-2">真好吃</div>
+                              <DeleteSm />
+                            </div>
+                            <div
+                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
+                            >
+                              <div className="ch-cont-14 mr-2">真好吃</div>
+                              <DeleteSm />
+                            </div>
+                          </div>
                         </div>
                         <div className="d-flex justify-content-end">
                           <button
@@ -102,39 +128,53 @@ function ShareEdit() {
                         </div>
                       </form>
                     </div>
-                    <div className="col-12 d-flex">
-                      <div className="d-flex flex-column">
-                        <label htmlFor="tag" className="ch-cont-14">
-                          預覽
-                        </label>
-                        <div className="d-flex">
-                          <div className="col-12">
-                            <div className="d-flex justify-content-between">
-                              <div>1</div>
-                              <DeleteSm />
+                    <div className="col-12 d-none d-md-block">
+                      <label htmlFor="tag" className="ch-cont-14">
+                        預覽
+                      </label>
+                      <div className=" d-flex flex-wrap">
+                        <div className="d-flex flex-column">
+                          <div className="col">
+                            <div
+                              className={`${styles['edit-preview-box']}d-flex justify-content-between mb-3`}
+                            >
+                              <div className="ch-cont-14 font-weight-bold pt-2">
+                                1
+                              </div>
+                              <DeleteSm
+                                className={`${styles['edit-del-button']}`}
+                              />
                             </div>
                             <div className="d-flex justify-content-center">
                               <div
                                 className={`${styles['share-edit-preview']}`}
                               >
                                 <img
-                                  src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6"
+                                  src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4"
                                   alt=""
                                 />
                               </div>
                             </div>
                           </div>
-                          <div className="col-12">
-                            <div className="d-flex justify-content-between">
-                              <div>1</div>
-                              <DeleteSm />
+                        </div>{' '}
+                        <div className="d-flex flex-column">
+                          <div className="col">
+                            <div
+                              className={`${styles['edit-preview-box']}d-flex justify-content-between mb-3`}
+                            >
+                              <div className="ch-cont-14 font-weight-bold pt-2">
+                                1
+                              </div>
+                              <DeleteSm
+                                className={`${styles['edit-del-button']}`}
+                              />
                             </div>
                             <div className="d-flex justify-content-center">
                               <div
                                 className={`${styles['share-edit-preview']}`}
                               >
                                 <img
-                                  src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6"
+                                  src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4"
                                   alt=""
                                 />
                               </div>
