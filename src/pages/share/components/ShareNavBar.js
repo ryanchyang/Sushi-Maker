@@ -21,7 +21,7 @@ function ShareNavBar() {
               <p className="en-title-14-10">HOME / SHARE</p>
               <div className="d-flex align-items-center">
                 <div
-                  className={`${styles['search-input']} mx-4 d-flex justify-content-end align-items-center`}
+                  className={`${styles['search-input']} d-flex justify-content-end align-items-center`}
                 >
                   <input
                     type="text"
@@ -29,13 +29,15 @@ function ShareNavBar() {
                     className={`${styles['search-input-bar']} ch-cont-14`}
                     placeholder="Search"
                   ></input>
-                  <Search
-                    className={`${styles['search-button']}`}
-                    onClick={() => setSearch(!search)}
-                  />
                 </div>
+                <Search
+                  className={`${styles['button-default']} mr-4`}
+                  onClick={() => setSearch(!search)}
+                />
 
-                <ViewAdjust className="mx-4 d-none d-md-block" />
+                <ViewAdjust
+                  className={`${styles['col-button']} mx-4 d-none d-md-block`}
+                />
                 <button
                   className={`${styles.mysharebutton}  d-none d-md-block en-title-18 ml-4`}
                 >
@@ -46,7 +48,7 @@ function ShareNavBar() {
             <div
               className={`${styles['filter-container']} d-flex justify-content-end mr-3`}
             >
-              <Filter />
+              <Filter className={`${styles['button-default']}`} />
             </div>
           </div>
         </div>

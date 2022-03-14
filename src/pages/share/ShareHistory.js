@@ -17,20 +17,7 @@ function ShareHistory() {
           <div className={`mycontainer`}>
             <div className="myshare-layout d-flex">
               <div className="col-6 flex-column d-none d-lg-flex">
-                <div className="d-flex">
-                  <div className="d-none d-sm-block">
-                    <div className="d-flex align-items-center mr-3 ">
-                      <Rect />
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center">
-                    <div className="ch-cont-16 font-weight-bold mb-5">
-                      已分享貼文
-                    </div>
-                  </div>
-                </div>
-
-                <div className="d-flex">
+                {/* <div className="d-flex">
                   <div className="d-none d-sm-block">
                     <div className="d-flex align-items-center mr-3 ">
                       <Rect />
@@ -41,6 +28,22 @@ function ShareHistory() {
                       留言紀錄
                     </div>
                   </div>
+                </div> */}
+                <div className={`${styles['topic-box']} mb-5`}>
+                  <div className={`${styles['topic-rect']} d-none d-sm-block`}>
+                    <Rect />
+                  </div>
+                  <a href="#/" className={`${styles['subtopic-link']}`}>
+                    已分享貼文
+                  </a>
+                </div>
+                <div className={`${styles['topic-box']}`}>
+                  <div className={`${styles['topic-rect']} d-none d-sm-block`}>
+                    <Rect />
+                  </div>
+                  <a href="#/" className={`${styles['subtopic-link']}`}>
+                    留言紀錄
+                  </a>
                 </div>
               </div>
               <div className="col-lg-18">

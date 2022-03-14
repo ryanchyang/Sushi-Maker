@@ -33,7 +33,7 @@
 }
 
 .search-input {
-  width: 250px;
+  width: 300px;
   overflow: hidden;
   height: 40px;
 }
@@ -175,7 +175,7 @@
   right: -5px;
 }
 
-.search-button {
+.button-default {
   width: 45px;
   height: 45px;
   padding: 10px;
@@ -189,6 +189,13 @@
   position: absolute;
   top: -5px;
   left: -80px;
+  cursor: pointer;
+}
+
+.col-button {
+  width: 45px;
+  height: 45px;
+  padding: 10px 5px;
   cursor: pointer;
 }
 
@@ -211,7 +218,8 @@
 .info-button:hover,
 .del-button:hover,
 .edit-del-button:hover,
-.search-button:hover {
+.button-default:hover,
+.col-button:hover {
   background-color: #e2e2e2;
   background-size: 250px 150px;
   border-radius: 50%;
@@ -367,15 +375,25 @@
   color: $gray;
 }
 
-.topic-link:link {
+.subtopic-link {
+  @extend .ch-cont-16;
+  text-decoration: none;
+  color: $gray;
+  line-height: 2.1;
+}
+
+.topic-link:link,
+.subtopic-link:link {
   text-decoration: none;
 }
 
-.topic-link:hover {
+.topic-link:hover,
+.subtopic-link:hover {
   color: $dark-bg;
 }
 
-.topic-link:active {
+.topic-link:active,
+.subtopic-link:active {
   color: $dark-bg;
 }
 
