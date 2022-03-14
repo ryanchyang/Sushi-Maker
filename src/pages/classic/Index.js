@@ -11,6 +11,7 @@ import data from './testData.json';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
+  const [page, setPage] = useState(1);
   const [category, setCategory] = useState('sushi');
   const [prodList, setProdList] = useState([]); //依分類呈現商品資料
   const [tagShow, setTagShow] = useState([]);
@@ -21,6 +22,7 @@ function Index() {
     { tag: 'hot', value: false },
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
+  const pageProdCount = 6;  //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
   const handleClickCategory = e => {
@@ -227,18 +229,22 @@ function Index() {
 
     if (isClose) setIsOpenFilter(false);
     setTagShow(showTags);
-    setProdList(filteredData);
+    setProdList(filteredData.slice((page - 1) * pageProdCount, page * pageProdCount));  //取當頁所呈現的商品列表
   };
 
+  const applyPage = () => {
+    setProdList(prodList.slice((page - 1) * pageProdCount, page * pageProdCount));   //取當頁所呈現的商品列表
+  }
+
   useEffect(() => {
-    //預設呈現的商品類型為壽司
+    //預設呈現的商品類型為壽司    
     setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
     //初始化所有材料
     setMaterials(data.mtl);
   }, []);
 
-  useEffect(() => {
-    applyFilter(); //當篩選條件其中一個有改變，就重新渲染商品列表
+  useEffect(() => {    
+      applyFilter(); //當篩選條件其中一個有改變，就重新渲染商品列表    
   }, [materials, priceFilter, specialCategoryFilter]);
 
   const showStyle = { display: 'block' };

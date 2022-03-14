@@ -67,6 +67,17 @@
         "material": [20,24,28,34]
       },
       {
+        "prod_id": 14,
+        "prod_ch_name": "綜合野菜",
+        "prod_en_name": "Mixed Vegetables",
+        "prod_category": "sushi",
+        "prod_value": 55,
+        "prod_spe_tag": "HOT",
+        "prod_spe_value": 48,
+        "img_path": "/imgs/temp/classic-pro2.png",
+        "material": [20,24,28,34]
+      },
+      {
         "prod_id": 29,
         "prod_ch_name": "巧克力草莓",
         "prod_en_name": "Chocolate Strawberry",
