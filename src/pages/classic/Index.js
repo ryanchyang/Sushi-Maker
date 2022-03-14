@@ -89,6 +89,14 @@ function Index() {
     ]);
   };
 
+  const removeTag = e => {
+    switch (e.target.dataset.tagtype) {
+      case 'p':
+        setPriceFilter(['', '']);
+        break;
+    }
+  };
+
   //套用篩選條件
   const applyFilter = () => {
     let filteredData = data.data.filter(pro => pro.prod_category === category);
@@ -193,6 +201,10 @@ function Index() {
     setMaterials(data.mtl);
   }, []);
 
+  useEffect(() => {
+    applyFilter(); //當篩選條件其中一個有改變，就重新渲染商品列表
+  }, [materials, priceFilter, specialCategoryFilter]);
+
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
   const flavorTagNoClick = { color: '#b03342', backgroundColor: 'transparent' };
@@ -241,12 +253,25 @@ function Index() {
 
               {/* filter tag */}
               <div className="filter-tag-box">
-                <div className="filter-tag ch-cont-16">
+                {tagShow.map((tag, i) => {
+                  return (
+                    <>
+                      <div className="filter-tag ch-cont-16" key={i}>
+                        {tag.tagName}{' '}
+                        <span data-tagType={tag.type} onClick={removeTag}>
+                          &nbsp;X
+                        </span>
+                      </div>
+                    </>
+                  );
+                })}
+
+                {/* <div className="filter-tag ch-cont-16">
                   鮭魚 <span>&nbsp;X</span>
                 </div>
                 <div className="filter-tag ch-cont-16">
                   200~500 <span>&nbsp;X</span>
-                </div>
+                </div> */}
               </div>
 
               {/* product list */}
