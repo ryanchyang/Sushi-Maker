@@ -1,17 +1,16 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import './index.scss';
-import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
+// import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
-import { useState, useReducer, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import data from './testData.json';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [category, setCategory] = useState('sushi');
   const [prodList, setProdList] = useState([]); //依分類呈現商品資料
   const [tagShow, setTagShow] = useState([]);
@@ -57,7 +56,7 @@ function Index() {
   const handelClickFlavor = e => {
     const newData = materials.map(v => {
       //將原有的材料id與被點擊的材料id做比對
-      if (e.target.dataset.mtlid == v.mtl_id) {
+      if (+e.target.dataset.mtlid === v.mtl_id) {
         return { ...v, selected: !v.selected };
       } else {
         return v;
@@ -295,7 +294,7 @@ function Index() {
 
                           <img
                             src={require('./../../imgs/temp/classic-pro1.png')}
-                            alt="product-image"
+                            alt="product"
                           />
                         </div>
 

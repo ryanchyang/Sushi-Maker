@@ -38,7 +38,7 @@ function Detail() {
                     isDetail ? 'prod-img-box-img-ondetail' : 'prod-img-box-img'
                   }
                   src={require('./../../imgs/temp/classic-pro1.png')}
-                  alt="product-image"
+                  alt="product-detail"
                 />
                 <div
                   className={
@@ -233,7 +233,7 @@ function Detail() {
                   </div>
                   <img
                     src={require('./../../imgs/temp/classic-pro4.png')}
-                    alt="product-image"
+                    alt="product-recommend"
                   />
                 </div>
                 <div className="prod-name-ch ch-title-22">花枝壽司</div>
@@ -254,7 +254,7 @@ function Detail() {
                   </div>
                   <img
                     src={require('./../../imgs/temp/classic-pro1.png')}
-                    alt="product-image"
+                    alt="product-recommend"
                   />
                 </div>
 
@@ -278,7 +278,7 @@ function Detail() {
                   </div>
                   <img
                     src={require('./../../imgs/temp/classic-pro2.png')}
-                    alt="product-image"
+                    alt="product-recommend"
                   />
                 </div>
 
