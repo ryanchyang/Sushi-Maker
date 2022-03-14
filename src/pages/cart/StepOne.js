@@ -27,7 +27,6 @@ function StepOne(props) {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Shopping List'} />
-          <br />
           <div className="mycontainer cart " style={{ padding: '0' }}>
             <div className="bread">HOME/CART</div>
 
@@ -123,7 +122,7 @@ function StepOne(props) {
                             type="number"
                             className="form-control"
                             placeholder="NT$"
-                            defaultValue={0}
+                            // defaultValue={0}
                             min={0}
                           />
                         </div>
@@ -147,13 +146,13 @@ function StepOne(props) {
                 <div className="  next-btn d-flex my-5 ">
                   <button
                     type="button"
-                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5"
+                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
                   >
                     繼續購物
                   </button>
                   <a
                     type="button"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                     href="./StepTwo"
                   >
                     前往結帳

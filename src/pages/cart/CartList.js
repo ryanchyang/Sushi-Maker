@@ -14,7 +14,6 @@ function CartList() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Shopping Cart'} />
-          <br />
           <div className="container cart">
             <div className="bread">HOME/CART</div>
 
@@ -30,8 +29,8 @@ function CartList() {
               </div>
             </div>
             <div className="row my-5 d-flex justify-content-center justify-content-md-end ">
-              <div className="col-24 col-md-8 my-3">
-                <button type="button" className="btn btn-primary  btn-block ">
+              <div className="col-24 col-md-8 my-3 d-flex justify-content-center">
+                <button type="button" className="btn btn-primary  primeal-btn ">
                   繼續購物
                 </button>
               </div>

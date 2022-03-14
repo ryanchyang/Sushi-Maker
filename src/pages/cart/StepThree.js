@@ -12,7 +12,6 @@ function StepThree() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Payment Info'} />
-          <br />
           <div className="mycontainer cart">
             <div className="bread">HOME/CART</div>
             <CartDetail />
@@ -191,13 +190,13 @@ function StepThree() {
               <div className="  d-flex next-btn my-5">
                 <button
                   type="button"
-                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5"
+                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
                 >
                   上一步
                 </button>
                 <a
                   type="button"
-                  className="btn btn-sm btn-primary primeal-btn-sm mx-5"
+                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                   href="./StepFour"
                 >
                   確認付款

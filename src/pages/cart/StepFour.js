@@ -9,8 +9,7 @@ function StepFour() {
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
-          <Title title={'Confirmation❤'} />
-          <br />
+          <Title title={'Confirmation'} />
           <div className="container cart">
             <div className="bread">HOME/CART</div>
             <div className="row"></div>
@@ -43,10 +42,10 @@ function StepFour() {
                     如欲查詢訂單詳情與進度，請至 會員中心{'>'} 歷史訂單 查詢
                   </div>
                   {/* ＢＴＮ 返回按鈕 */}
-                  <div className="col-24 col-md-8 my-3">
+                  <div className="col-24 col-md-8 my-3 d-flex justify-content-md-end justify-content-center ">
                     <button
                       type="button"
-                      className="btn btn-primary  btn-block "
+                      className="btn btn-primary primeal-btn "
                     >
                       繼續購物
                     </button>{' '}

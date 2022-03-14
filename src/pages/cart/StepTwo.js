@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 import StepMap from './StepMap';
 import { Button, Modal } from 'react-bootstrap';
 
-
 // TODO: A  改 LINK
 function StepTwo() {
   // 套餐光箱
@@ -20,7 +19,7 @@ function StepTwo() {
   const modal = (
     <Modal show={map} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30">套餐說明</Modal.Title>
+        <Modal.Title className="en-cont-30">選擇取貨門市</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <>
@@ -52,7 +51,6 @@ function StepTwo() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Shipping Info'} />
-          <br />
           {/* <div className="row"></div> */}
           <div className="mycontainer cart">
             <div className="bread">HOME/CART</div>
@@ -124,7 +122,7 @@ function StepTwo() {
                       <textarea
                         className="form-control textarea"
                         id="exampleFormControlTextarea1"
-                      // maxRows="5"
+                        // maxRows="5"
                       ></textarea>
                     </div>
                   </form>
@@ -133,7 +131,7 @@ function StepTwo() {
               {/* 右側 統計 summary */}
               <CartSum
                 className="d-none d-md-block"
-              // style={{ position: 'fixed' }}
+                // style={{ position: 'fixed' }}
               />
               {/* ----summary-end */}
             </div>
@@ -175,13 +173,13 @@ function StepTwo() {
               <div className="  d-flex next-btn my-5">
                 <button
                   type="button"
-                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5"
+                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
                 >
                   上一步
                 </button>
                 <a
                   type="button"
-                  className="btn btn-sm btn-primary primeal-btn-sm mx-5"
+                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                   href="./StepThree"
                 >
                   下一步
