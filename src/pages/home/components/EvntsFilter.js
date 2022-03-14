@@ -42,17 +42,9 @@ function EvntsFilter() {
           <Collapse in={dateOpen}>
             <div className="d-sm-block">
               <div className="by-date-input">
-                <input
-                  type="text"
-                  placeholder="YYYY/MM/DD/"
-                  onfocus="(this.type='date')"
-                ></input>
+                <input type="date" onfocus="(this.type='date')"></input>
                 <div className="by-date-dash-line"></div>
-                <input
-                  type="text"
-                  placeholder="YYYY/MM/DD/"
-                  onfocus="(this.type='date')"
-                ></input>
+                <input type="date" onfocus="(this.type='date')"></input>
               </div>
             </div>
           </Collapse>

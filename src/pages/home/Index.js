@@ -69,7 +69,7 @@ function Index() {
   const checkTransform = newsIndex => {
     return {
       transform: `translateX(${newsIndex * -75}vw)`,
-      transition: '1s',
+      transition: '1.5s',
     };
   };
 
