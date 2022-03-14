@@ -3,7 +3,8 @@
 
 .cart{
 /* 購物車元件的項目 */
-  
+// height:calc( 100%-93px);  
+
 .prod-item{ 
     border-bottom:1px solid #c4c4c4;
     align-items: center; 
@@ -50,7 +51,8 @@
 .select-count{
     display: flex;
     justify-content: space-between;
-    width: 50%;    
+    width: 100%; 
+    
     border-top: 1px solid #c4c4c4;
     border-bottom: 1px solid #c4c4c4;  
 }
@@ -63,12 +65,12 @@
 .select-count button{
     border:none;
     background: none;
-	padding: 0;
-	cursor: pointer;
+	  padding: 5%;
+  	cursor: pointer;
     font-size: 2.5rem;
 }
 .select-count input{
-    width: 50%; 
+    width: 80%; 
     font-size: 1.8rem;     
     background: none;
     border: none;
@@ -135,11 +137,9 @@
 
 // cartlist 空的購物車圖
 .empty-img{
-   width: 200px;
+  width: 200px;
   height: 200px;
-  margin: 10%;
-  
-
+  margin: 10% ;
 }
 .empty-img img{
 width: 100%;
@@ -171,9 +171,11 @@ input::placeholder {
   padding: 0 0px;
 }
 
+// 下拉選單
 select{
   height: 40px;
-  max-width:100%;
+  padding: 10px 20px;
+    width: 100%;
 }
 
 // stepFour 進度條
@@ -212,5 +214,47 @@ select{
 // .col-md-12{
 // outline: #303030 solid 1px;
 // }
+
+// //購物車套餐光箱表格
+
+table {
+  font-size: 20rem;
+}
+//地圖
+.store-map{
+            margin: 20px auto;
+            width: 100%;
+            height: 600px;
+            background-color: #c4c4c4;
+            
+}
+
+// #map {
+//             /* margin: 10px;
+//             height: 500px;
+//             width: 620px; */
+//             margin: 20px auto;
+//             width: 800px;
+//             height: 600px;
+//             background-color: #c4c4c4;
+//         }
+
+
+
+// 
+
+.cart-detail-title{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.down-arrow {
+  display: block;
+  cursor: pointer;
+}
+.cart-detail {
+  clear: both;
+}
 }
 

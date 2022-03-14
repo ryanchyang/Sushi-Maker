@@ -3,7 +3,23 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ProdItem from './ProdItem';
 // TODO: A  改 LINK
-function StepOne() {
+function StepOne(props) {
+  // counts -> 陣列
+  const { productsInOrder, setProductsInOrder } = props;
+
+  // 處理項目刪除用
+  const handleDelete = id => {
+    //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
+    let newProductsInOrder = [...productsInOrder];
+    //2. 在拷貝出的新陣列(物件)上運算或處理
+    newProductsInOrder = newProductsInOrder.filter((v, i) => {
+      return v.id !== id;
+    });
+
+    //3. 設定回原本的狀態
+    setProductsInOrder(newProductsInOrder);
+  };
+
   return (
     <>
       <Header />
@@ -12,7 +28,7 @@ function StepOne() {
         <div style={{ width: '100%' }}>
           <Title title={'Shopping List'} />
           <br />
-          <div className="mycontainer cart ">
+          <div className="mycontainer cart " style={{ padding: '0' }}>
             <div className="bread">HOME/CART</div>
 
             <div className="list-title ch-cont-14">
@@ -50,6 +66,7 @@ function StepOne() {
                 </div>
               </div>
             </div>
+
             <ProdItem
               //  如果不解購就要降寫id={product.id}
               // key={id}
@@ -82,37 +99,43 @@ function StepOne() {
             <ProdItem />
             <ProdItem />
             {/* TODO: SET info 光箱 */}
-            <div className="list-check ch-cont-14">
+            <div className="list-check ch-cont-14" style={{ padding: '30px' }}>
               <div className="row ">
                 {/* <div className="col-24 "> */}
                 <div className="col-md-5 row"></div>
                 <div className="col-md-19 px-md-5 ">
                   <div className="summary ">
                     <div className="row print-time my-4">
-                      <div className="col-md-12">印製時間</div>
-                      <div className="col-md-8 text-right">35分鐘</div>
+                      <div className="col-12 col-md-12 ">商品數量</div>
+                      <div className="col-12 col-md-8 text-right">總計5項</div>
+                    </div>
+                    <div className="row print-time my-4">
+                      <div className="col-12 col-md-12">印製時間</div>
+                      <div className="col-12 col-md-8 text-right">35分鐘</div>
                     </div>
                     <div className="row discount my-4">
-                      <div className="col-md-12">折抵金額</div>
-                      <div className="col-md-4"></div>
-                      <div className="col-md-4">
+                      <div className="col-12 col-md-12">折抵金額</div>
+                      {/* <div className="col-md-4"></div> */}
+                      <div className="col-12 col-md-8">
                         <div className=" d-flex justify-content-end">
                           <label className="form-label"></label>
                           <input
                             type="number"
                             className="form-control"
                             placeholder="NT$"
+                            defaultValue={0}
+                            min={0}
                           />
                         </div>
                       </div>
 
-                      <div className="col-md-20 text-right">
+                      <small className="col-24 col-md-20 text-right ">
                         會員點數15,000點 可折抵NT$15元
-                      </div>
+                      </small>
                     </div>
                     <div className="row price my-4">
-                      <div className="col-md-12">訂單金額</div>
-                      <div className="col-md-8 text-right ch-cont-24">
+                      <div className="col-12 col-md-12">訂單金額</div>
+                      <div className="col-12 col-md-8 text-right ch-cont-24">
                         NT 3000
                       </div>
                     </div>

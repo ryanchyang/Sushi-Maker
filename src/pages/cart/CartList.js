@@ -1,5 +1,10 @@
 // CartList.js   購物車空白
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+// import SetInfoDetails from './SetInfoDetail';
+
+//
+// import { Button, Modal } from 'bootstrap';
+import React, { useState } from 'react';
 
 function CartList() {
   return (
@@ -18,7 +23,7 @@ function CartList() {
                 <div className="empty text-center">
                   <h3>購物車</h3>
                   <div>購物車中沒有商品 - 請選購商品！</div>
-                  <div className="empty-img">
+                  <div className="empty-img mx-auto">
                     <img src="/img/cart/empty-cart-md.svg" alt="" />
                   </div>
                 </div>
@@ -32,6 +37,7 @@ function CartList() {
               </div>
             </div>
           </div>
+
           <Footer />
         </div>
         <AsideRight />
