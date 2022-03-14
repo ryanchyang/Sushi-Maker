@@ -14,13 +14,20 @@
     cursor: pointer;
   }
   .en-category{
+    width: 50%;
     cursor: pointer;
   }
+  .cate-orange-tag{
+    //display: inline;
+    width: 100%;
+    height: auto;
+    margin-right: 3%;
+  }  
   .category-box {
-    width: 60%;
+    width: 100%;
     display: flex;
-    justify-content: space-between;
-    margin: 0 auto;
+    // justify-content: space-between;
+    // margin: 0 auto;
   }
   .filter-tag-box {
     margin: 2% 0 0 5%;
@@ -327,13 +334,18 @@
   // RWD變數
   @media screen and (max-width: 576px) {
     .category-box {
-      width: 80%;
+      width: 90%;
     }
     .prod-card {
       width: 50%;
     }
+    .cate-orange-tag-img{
+      width: 15px;
+      height: 15px;
+    }
     .en-category {
-      margin-right: 14%;
+      //margin-right: 14%;
+      margin-right: 1%;
     }
     .select-add-cart {
       display: block;
@@ -422,6 +434,7 @@
 .en-category {
   @extend .en-title-20;
   // transition: 0.5s;
+  text-align: center;
   @include pad {
     @include mytitle;
     font-size: 1.6rem;

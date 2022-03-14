@@ -242,6 +242,7 @@ function Index() {
   }, [materials, priceFilter, specialCategoryFilter]);
 
   const showStyle = { display: 'block' };
+  const showStyleInlne = { display: 'inline' };
   const hiddenStyle = { display: 'none' };
   const flavorTagNoClick = { color: '#b03342', backgroundColor: 'transparent' };
   const flavorTagClicked = { color: '#ffffff', backgroundColor: '#b03342' };
@@ -277,13 +278,13 @@ function Index() {
               {/* category tag */}
               <div className="category-box">
                 <div className="en-category" onClick={handleClickCategory}>
-                  SUSHI
+                  <div className="cate-orange-tag" style={category === "sushi" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>SUSHI</span> 
                 </div>
                 <div className="en-category" onClick={handleClickCategory}>
-                  DESSERT
+                <div className="cate-orange-tag" style={category === "dessert" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>DESSERT</span> 
                 </div>
                 <div className="en-category" onClick={handleClickCategory}>
-                  PACKAGE
+                <div className="cate-orange-tag" style={category === "package" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>PACKAGE</span> 
                 </div>
               </div>
 
