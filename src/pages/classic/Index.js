@@ -14,6 +14,7 @@ function Index() {
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [category, setCategory] = useState('sushi');
   const [prodList, setProdList] = useState([]); //依分類呈現商品資料
+  const [tagShow, setTagShow] = useState([]);
   const [materials, setMaterials] = useState([]); //材料
   const [priceFilter, setPriceFilter] = useState(['', '']); //依金額搜尋([最小金額, 最大金額])
   const [specialCategoryFilter, setSpecialCategoryFilter] = useState([
@@ -181,7 +182,7 @@ function Index() {
       }
     });
 
-    console.log(showTags);
+    setTagShow(showTags);
     setProdList(filteredData);
   };
 
