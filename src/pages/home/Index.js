@@ -1,7 +1,8 @@
 import { Header, Title, AsideLeft, AsideRight } from '../layout/Layout';
 import './index.scss';
 import './../../styles/global.scss';
-import data from './news.json';
+import newsData from './news.json';
+import evntsData from './evnts.json';
 import { useState, useEffect } from 'react';
 
 // {
@@ -60,11 +61,8 @@ function Index() {
   const changeContent = e => {
     const index = e.target.id;
     setNewsIndex(index);
-    console.log('e.target.id:', e.target.id);
   };
-  // console.log('newsIndex:', newsIndex);
   const checkTransform = newsIndex => {
-    console.log('newsIndex:', newsIndex);
     return {
       transform: `translateX(${newsIndex * -75}vw)`,
       transition: '1s',
@@ -515,76 +513,170 @@ function Index() {
                 </div>
               </div>
               <div className="overflow-hidden">
-                <div
-                  className="news-carousel-wrap d-flex"
-                  style={checkTransform(newsIndex)}
-                >
-                  {data.map(v => {
-                    return (
-                      <div
-                        className="col-24 latest-new-content"
-                        key={v.news_id}
-                      >
-                        <div className="index-category-img news-img d-flex justify-content-center">
-                          <img
-                            src={'/img/home/news/' + v.news_img_path}
-                            alt="news"
-                          />
-                        </div>
-                        <div className="news-right-wrap">
-                          <div className="news-content-top d-flex justify-content-between">
-                            <div className="ch-title-22 news-title">
-                              {v.news_title}
-                            </div>
-                            <div className="ch-cont-14 news-tag">
-                              {v.news_cate}
-                            </div>
-                          </div>
-                          <div className="ch-cont-14 news-date">
-                            {v.news_start_date}
-                          </div>
-                          <div className="ch-cont-14 news-text d-none d-md-block">
-                            {v.news_detail}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-              <div className="latest-news-pagination">
-                <div className="latest-news-left-arrow d-none d-md-block">
-                  <img
-                    src="/img/home/left.svg"
-                    alt="left-arrow"
-                    style={{ cursor: 'pointer' }}
-                  />
-                </div>
-                <div className="latest-news-dots d-none d-md-block">
-                  <ul className="pagination-list">
-                    {data.map((v, i) => {
+                <div style={latestNews === 'NEWS' ? showBlock : hiddenBlock}>
+                  <div
+                    className="news-carousel-wrap d-flex"
+                    style={checkTransform(newsIndex)}
+                  >
+                    {newsData.map(v => {
                       return (
-                        <li
-                          className="pagination-dots"
-                          key={i}
-                          id={i}
-                          onClick={changeContent}
-                        ></li>
+                        <div
+                          className="col-24 latest-new-content"
+                          key={v.news_id}
+                        >
+                          <div className="index-category-img news-img d-flex justify-content-center">
+                            <img
+                              src={'/img/home/news/' + v.news_img_path}
+                              alt="news"
+                            />
+                          </div>
+                          <div className="news-right-wrap">
+                            <div className="news-content-top d-flex justify-content-between">
+                              <div className="ch-title-22 news-title">
+                                {v.news_title}
+                              </div>
+                              <div className="ch-cont-14 news-tag">
+                                {v.news_cate}
+                              </div>
+                            </div>
+                            <div className="ch-cont-14 news-date">
+                              {v.news_start_date}
+                            </div>
+                            <div className="ch-cont-14 news-text d-none d-md-block">
+                              {v.news_detail}
+                            </div>
+                          </div>
+                        </div>
                       );
                     })}
-                    {/* <li className="pagination-dots"></li>*/}
-                    {/* <li className="pagination-dots"></li>*/}
-                    {/* <li className="pagination-dots"></li>*/}
-                    {/* <li className="pagination-dots"></li>*/}
-                    {/* <li className="pagination-dots"></li>*/}
-                  </ul>
+                  </div>
                 </div>
-                <div className="latest-news-right-arrow d-none d-md-block">
-                  <img
-                    src="/img/home/right.svg"
-                    alt="right-arrow"
-                    style={{ cursor: 'pointer' }}
-                  />
+                <div style={latestNews === 'EVENTS' ? showBlock : hiddenBlock}>
+                  <div
+                    className="news-carousel-wrap d-flex"
+                    style={checkTransform(newsIndex)}
+                  >
+                    {evntsData.map(v => {
+                      return (
+                        <div
+                          className="col-24 latest-new-content"
+                          key={v.evnts_id}
+                        >
+                          <div className="index-category-img news-img d-flex justify-content-center">
+                            <img
+                              src={'/img/home/evnts/' + v.evnts_img_path}
+                              alt="news"
+                            />
+                          </div>
+                          <div className="news-right-wrap">
+                            <div className="news-content-top d-flex justify-content-between">
+                              <div className="ch-title-22 news-title">
+                                {v.evnts_title}
+                              </div>
+                              <div className="ch-cont-14 news-tag">
+                                {v.evnts_cate}
+                              </div>
+                            </div>
+                            <div className="ch-cont-14 news-date">
+                              {v.evnts_date}
+                            </div>
+                            <div className="ch-cont-14 news-text d-none d-md-block">
+                              {v.evnts_detail}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+              <div style={latestNews === 'NEWS' ? showBlock : hiddenBlock}>
+                <div className="latest-news-pagination">
+                  <div className="latest-news-left-arrow d-none d-md-block">
+                    <img
+                      src="/img/home/left.svg"
+                      alt="left-arrow"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        newsIndex > 1
+                          ? setNewsIndex(newsIndex - 1)
+                          : setNewsIndex(0);
+                      }}
+                    />
+                  </div>
+                  <div className="latest-news-dots d-none d-md-block">
+                    <ul className="pagination-list">
+                      {newsData.map((v, i) => {
+                        return (
+                          <li
+                            className="pagination-dots"
+                            key={i}
+                            id={i}
+                            onClick={changeContent}
+                          ></li>
+                        );
+                      })}
+                      {/* <li className="pagination-dots"></li>*/}
+                      {/* <li className="pagination-dots"></li>*/}
+                      {/* <li className="pagination-dots"></li>*/}
+                      {/* <li className="pagination-dots"></li>*/}
+                      {/* <li className="pagination-dots"></li>*/}
+                    </ul>
+                  </div>
+                  <div className="latest-news-right-arrow d-none d-md-block">
+                    <img
+                      src="/img/home/right.svg"
+                      alt="right-arrow"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        newsIndex < newsData.length - 1
+                          ? setNewsIndex(newsIndex + 1)
+                          : setNewsIndex(newsData.length - 1);
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div style={latestNews === 'EVENTS' ? showBlock : hiddenBlock}>
+                <div className="latest-news-pagination">
+                  <div className="latest-news-left-arrow d-none d-md-block">
+                    <img
+                      src="/img/home/left.svg"
+                      alt="left-arrow"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        newsIndex > 1
+                          ? setNewsIndex(newsIndex - 1)
+                          : setNewsIndex(0);
+                      }}
+                    />
+                  </div>
+                  <div className="latest-news-dots d-none d-md-block">
+                    <ul className="pagination-list">
+                      {evntsData.map((v, i) => {
+                        return (
+                          <li
+                            className="pagination-dots"
+                            key={i}
+                            id={i}
+                            onClick={changeContent}
+                          ></li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                  <div className="latest-news-right-arrow d-none d-md-block">
+                    <img
+                      src="/img/home/right.svg"
+                      alt="right-arrow"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        newsIndex < newsData.length - 1
+                          ? setNewsIndex(newsIndex + 1)
+                          : setNewsIndex(newsData.length - 1);
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="index-view-more d-flex justify-content-end align-items-center">
