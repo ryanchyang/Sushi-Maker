@@ -278,13 +278,29 @@ function Index() {
               {/* category tag */}
               <div className="category-box">
                 <div className="en-category" onClick={handleClickCategory}>
-                  <div className="cate-orange-tag" style={category === "sushi" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>SUSHI</span> 
+                  <OrangeTag
+                    className="cate-orange-tag-img"
+                    style={category === 'sushi' ? showStyleInlne : hiddenStyle}
+                  />
+                  <div className="en-category">SUSHI</div>
                 </div>
                 <div className="en-category" onClick={handleClickCategory}>
-                <div className="cate-orange-tag" style={category === "dessert" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>DESSERT</span> 
+                  <OrangeTag
+                    className="cate-orange-tag-img"
+                    style={
+                      category === 'dessert' ? showStyleInlne : hiddenStyle
+                    }
+                  />
+                  <div className="en-category">DESSERT</div>
                 </div>
                 <div className="en-category" onClick={handleClickCategory}>
-                <div className="cate-orange-tag" style={category === "package" ? showStyleInlne : hiddenStyle}><OrangeTag className="cate-orange-tag-img" /></div><span>PACKAGE</span> 
+                  <OrangeTag
+                    className="cate-orange-tag-img"
+                    style={
+                      category === 'package' ? showStyleInlne : hiddenStyle
+                    }
+                  />
+                  <div className="en-category">PACKAGE</div>
                 </div>
               </div>
 
