@@ -24,6 +24,10 @@ function Index() {
   // 初始化要資料
   useEffect(() => {}, []);
 
+  useEffect(() => {
+    setNewsIndex(0);
+  }, [latestNews]);
+
   // 處理just for you類別切換
   const handleJustForYou = e => {
     const text = e.target.innerText;
@@ -59,8 +63,8 @@ function Index() {
 
   // 處理latest news的carousel
   const changeContent = e => {
-    const index = e.target.id;
-    setNewsIndex(index);
+    const index = e.target.dataset.id;
+    setNewsIndex(+index);
   };
   const checkTransform = newsIndex => {
     return {
@@ -488,7 +492,6 @@ function Index() {
             {/* latest news  */}
             <div className="home-page">
               <Title title={'Latest News'} />
-              {/* <div className="page-title">Latest News</div> */}
               <div className="en-title-14-5 index-category d-flex justify-content-evenly">
                 <div
                   className="col-8 index-category-name"
@@ -599,7 +602,7 @@ function Index() {
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         newsIndex > 1
-                          ? setNewsIndex(newsIndex - 1)
+                          ? setNewsIndex(+newsIndex - 1)
                           : setNewsIndex(0);
                       }}
                     />
@@ -611,16 +614,11 @@ function Index() {
                           <li
                             className="pagination-dots"
                             key={i}
-                            id={i}
+                            data-id={i}
                             onClick={changeContent}
                           ></li>
                         );
                       })}
-                      {/* <li className="pagination-dots"></li>*/}
-                      {/* <li className="pagination-dots"></li>*/}
-                      {/* <li className="pagination-dots"></li>*/}
-                      {/* <li className="pagination-dots"></li>*/}
-                      {/* <li className="pagination-dots"></li>*/}
                     </ul>
                   </div>
                   <div className="latest-news-right-arrow d-none d-md-block">
@@ -630,7 +628,7 @@ function Index() {
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         newsIndex < newsData.length - 1
-                          ? setNewsIndex(newsIndex + 1)
+                          ? setNewsIndex(+newsIndex + 1)
                           : setNewsIndex(newsData.length - 1);
                       }}
                     />
@@ -646,7 +644,7 @@ function Index() {
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         newsIndex > 1
-                          ? setNewsIndex(newsIndex - 1)
+                          ? setNewsIndex(+newsIndex - 1)
                           : setNewsIndex(0);
                       }}
                     />
@@ -658,7 +656,7 @@ function Index() {
                           <li
                             className="pagination-dots"
                             key={i}
-                            id={i}
+                            data-id={i}
                             onClick={changeContent}
                           ></li>
                         );
@@ -672,7 +670,7 @@ function Index() {
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
                         newsIndex < newsData.length - 1
-                          ? setNewsIndex(newsIndex + 1)
+                          ? setNewsIndex(+newsIndex + 1)
                           : setNewsIndex(newsData.length - 1);
                       }}
                     />
