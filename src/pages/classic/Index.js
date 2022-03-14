@@ -88,10 +88,45 @@ function Index() {
     ]);
   };
 
+  //移除商品列表上方的tag
   const removeTag = e => {
     switch (e.target.dataset.tagtype) {
+      //移除價格標籤
       case 'p':
         setPriceFilter(['', '']);
+        break;
+      //移除材料標籤
+      case 'c':
+        const newCData = materials.map(v => {
+          if (v.mtl_name === e.target.dataset.tagname) {
+            return { ...v, selected: false }; //把要取消的材料改為false
+          } else {
+            return v;
+          }
+        });
+        setMaterials(newCData);
+        break;
+      //移除特殊標籤
+      case 't':
+        let changedTagName = '';
+        if (e.target.dataset.tagname === '新品') {
+          changedTagName = 'new';
+        } else if (e.target.dataset.tagname === '熱門') {
+          changedTagName = 'hot';
+        } else if (e.target.dataset.tagname === '特價') {
+          changedTagName = 'sale';
+        }
+        const newTData = specialCategoryFilter.map(v => {
+          if (v.tag === changedTagName) {
+            return { ...v, value: false }; //把要取消的特殊標籤改為false
+          } else {
+            return v;
+          }
+        });
+        setSpecialCategoryFilter(newTData);
+        break;
+
+      default:
         break;
     }
   };
@@ -257,7 +292,11 @@ function Index() {
                     <>
                       <div className="filter-tag ch-cont-16" key={i}>
                         {tag.tagName}{' '}
-                        <span data-tagType={tag.type} onClick={removeTag}>
+                        <span
+                          data-tagType={tag.type}
+                          data-tagName={tag.tagName}
+                          onClick={removeTag}
+                        >
                           &nbsp;X
                         </span>
                       </div>
