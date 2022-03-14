@@ -16,6 +16,7 @@
     padding-right: 10px;
 }
 .layout-title{
+    height: 10rem;
     padding: 20px 0 0 30px;
     font-size: 5rem;
 }
@@ -58,8 +59,10 @@
     font-size: 25px;
 }
 .footer{ 
+    height: 4rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     border-top: 1px solid #c4c4c4;
 }
@@ -81,6 +84,7 @@
     color: #575757;
 }
 .footer-icon-box-group{
+    margin: 0 0.5rem;
     display: flex;    
 }
 .footer-icon-box{
