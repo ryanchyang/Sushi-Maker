@@ -13,6 +13,11 @@ $shadow: #ddd4bc;
 $mtl-border: #eed19a;
 
 // 更改 bootstrap 設定
+.form-control {
+  @extend .ch-cont-14;
+  padding: 10px 15px !important;
+  min-height: 40px !important;
+}
 
 // 顏色
 $primary: $tint-red;
