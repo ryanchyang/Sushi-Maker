@@ -132,7 +132,8 @@ function Index() {
   };
 
   //套用篩選條件
-  const applyFilter = () => {
+  const applyFilter = (isClose = false) => {
+    //如果要套用篩選條件後關掉篩選視窗，則isClose要傳true
     let filteredData = data.data.filter(pro => pro.prod_category === category);
 
     //最小金額
@@ -224,6 +225,7 @@ function Index() {
       }
     });
 
+    if (isClose) setIsOpenFilter(false);
     setTagShow(showTags);
     setProdList(filteredData);
   };
@@ -705,7 +707,9 @@ function Index() {
               <div className="send-filter-btn-box">
                 <button
                   className="btn-sm btn-primary primeal-btn-sm"
-                  onClick={applyFilter}
+                  onClick={() => {
+                    applyFilter(true);
+                  }}
                 >
                   送出條件
                 </button>
