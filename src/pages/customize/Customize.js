@@ -1,18 +1,17 @@
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import './customize.scss';
+import MtlLeft from './components/MtlLeft';
+import MtlMid from './components/MtlMid';
+import MtlRight from './components/MtlRight';
 
 function Customize() {
   return (
     <>
-      <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Customization'} />
-          <br />
-
-          <Footer />
+      <div className="container-fluid customize">
+        <div className="row mtlView">
+          <MtlLeft />
+          <MtlMid />
+          <MtlRight />
         </div>
-        <AsideRight />
       </div>
     </>
   );

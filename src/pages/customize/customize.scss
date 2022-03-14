@@ -1,0 +1,239 @@
+@import './../../styles/global.scss';
+
+.left-area,
+.mid-area,
+.right-area {
+  height: 100vh;
+}
+.mtlView {
+  overflow: hidden;
+}
+.logo,
+.menu {
+  min-height: 15rem;
+  padding-bottom: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu {
+  justify-content: flex-end;
+  padding-right: 3rem;
+}
+.left-area,
+.right-area {
+  display: flex;
+}
+.left-area {
+  // transform: translate(-100%);
+  transition: 0.5s ease-in-out;
+}
+.right-area {
+  // transform: translate(100%);
+  transition: 0.5s ease-in-out;
+}
+.la-menu {
+  border-right: 1px $gray solid;
+}
+.ra-menu {
+  border-left: 1px $gray solid;
+}
+.choose {
+  border-bottom: 1px $gray solid;
+  height: 3.5rem;
+}
+.tech,
+.cart,
+.mem,
+.buger {
+  margin: 1rem;
+}
+.mem {
+  width: 3rem;
+  height: 3rem;
+}
+.mem img {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+}
+.dec,
+.ing {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.mtlimg {
+  width: 85px;
+  height: 85px;
+  transition: 0.5s;
+
+  @include pad {
+    width: 65px;
+    height: 65px;
+  }
+
+  @include mobile {
+    width: 55px;
+    height: 55px;
+  }
+}
+.mtlimg > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+}
+.mtlBtn-l,
+.mtlBtn-r {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+.mtlLBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.mtlRBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.mtlBtnIn-L, .mtlBtnIn-R {
+  max-height: calc(100vh - 3rem - 15rem);
+  overflow: scroll;
+
+  // 滾軸樣式
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: $gray;
+    transition: all 0.2s;
+    border-radius: 0.5rem;
+
+    &:hover {
+      background-color: $logo;
+    }
+    &:window-inactive {
+      opacity: 0;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 0;
+  }
+}
+.mtlBtnIn-R {
+  max-height: calc(100vh - 3rem - 15rem - 15rem);
+}
+
+.mtlBtnIn .mtlLBtn:hover {
+  transform: scale(1.03);
+  transition: 0.5s;
+}
+.mtlimg > img:focus {
+  border: 5px solid #eed19a;
+  transition: 0.5s;
+}
+.mtlimg-r {
+  width: 35px;
+  height: 35px;
+  box-sizing: content-box;
+}
+.mtlimg-r > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.la-btn,
+.ra-btn {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  cursor: pointer;
+  position: relative;
+}
+.la-btn-box {
+  position: absolute;
+  opacity: 0;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.logo-box {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  fill: $logo;
+  transition: 0.5s;
+
+  @include pad {
+    width: 55px;
+    height: 55px;
+  }
+
+  @include mobile {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.mtlname {
+  margin-top: 0.5rem; 
+  @extend .ch-cont-14;
+  transition: 0.5s;
+
+  @include pad {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+    letter-spacing: 0.12rem;
+  }
+  @include mobile {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+    letter-spacing: 0.12rem;
+  }
+}
+
+.arrR,
+.arrL {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rectangle {
+  margin: 0 0.5rem;
+}
+
+.layout-title {
+  padding: 20px 0 0 30px;
+  font-size: 5rem;
+
+  @include pad {
+    font-size: 4rem;
+  }
+
+  @include mobile {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.54rem;
+    padding: 20px 0 0 15px;
+  }
+}
