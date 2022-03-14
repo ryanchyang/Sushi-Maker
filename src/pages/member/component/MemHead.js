@@ -12,14 +12,14 @@ function MemHead() {
       setMemData(memData[0]);
     });
   }, [user]);
-
+  
   return (
     <div className="memHead ">
       <div className="memPhotoArea col-md-6">
         <div className="memPhoto">
           <img
             className="memImg"
-            src={require('../../../imgs/ruka.png')}
+            src={memData ? `/img/member/${memData.mem_photo_img_path}` : ''}
             alt="member-photo"
           />
         </div>

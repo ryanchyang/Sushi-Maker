@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { registerMem } from '../../WebApi';
 
 //styled component
 const LoginBody = styled.body`
@@ -64,14 +65,33 @@ const PswInput = styled.input`
   }
 `;
 
-//function
-const handleSubmit = e => {
-  e.preventDefault();
-};
-
 function Register() {
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
+  const [registerData, setRegisterData] = useState({
+    mem_account: '',
+    mem_pwd: '',
+    mem_mobile: '',
+    mem_name: '',
+    mem_nickname: '',
+    mem_gender: '',
+  });
+  const history = useHistory();
+
+  //function
+  const handleRegister = e => {
+    e.preventDefault();
+
+    registerMem(registerData).then(obj => {
+      console.log(obj)
+      if (obj.success) {
+        alert('註冊成功');
+        history.push('/member')
+      }
+    });
+  };
+  const handleChange = e => {
+    const newData = { ...registerData, [e.target.name]: e.target.value };
+    setRegisterData(newData);
+  };
 
   return (
     <>
@@ -90,15 +110,14 @@ function Register() {
               </IconRegisterArea>
 
               <InputArea className="col-6">
-                <RegistForm onSubmit={handleSubmit}>
+                <RegistForm onSubmit={handleRegister}>
                   <InputTitle className="ch-cont-14">帳號</InputTitle>
                   <input
                     type="text"
                     className="form-control"
-                    value={account}
-                    onChange={e => {
-                      setAccount(e.target.value);
-                    }}
+                    value={registerData.mem_account}
+                    name="mem_account"
+                    onChange={handleChange}
                     style={{
                       borderRadius: 50,
                       height: '40px',
@@ -116,10 +135,9 @@ function Register() {
                   <input
                     type="password"
                     className="form-control"
-                    value={password}
-                    onChange={e => {
-                      setPassword(e.target.value);
-                    }}
+                    value={registerData.mem_pwd}
+                    name="mem_pwd"
+                    onChange={handleChange}
                     style={{
                       borderRadius: 50,
                       height: '40px',
@@ -134,12 +152,11 @@ function Register() {
                   <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
                   <InputTitle className="ch-cont-14">手機號碼</InputTitle>
                   <input
-                    type="password"
+                    type="text"
                     className="form-control"
-                    value={password}
-                    onChange={e => {
-                      setPassword(e.target.value);
-                    }}
+                    value={registerData.mem_mobile}
+                    name="mem_mobile"
+                    onChange={handleChange}
                     style={{
                       borderRadius: 50,
                       height: '40px',
@@ -158,12 +175,11 @@ function Register() {
                     <div>
                       <InputTitle className="ch-cont-14">姓名</InputTitle>
                       <input
-                        type="password"
+                        type="text"
                         className="form-control"
-                        value={password}
-                        onChange={e => {
-                          setPassword(e.target.value);
-                        }}
+                        value={registerData.mem_name}
+                        name="mem_name"
+                        onChange={handleChange}
                         style={{
                           borderRadius: 50,
                           height: '40px',
@@ -180,12 +196,11 @@ function Register() {
                     <div>
                       <InputTitle className="ch-cont-14">暱稱</InputTitle>
                       <input
-                        type="password"
+                        type="text"
                         className="form-control"
-                        value={password}
-                        onChange={e => {
-                          setPassword(e.target.value);
-                        }}
+                        value={registerData.mem_nickname}
+                        name="mem_nickname"
+                        onChange={handleChange}
                         style={{
                           borderRadius: 50,
                           height: '40px',
@@ -201,16 +216,14 @@ function Register() {
                       />
                     </div>
                   </div>
-                  <div className="d-flex">
-                    <div>
+                  <div className="d-flex" style={{ width: '100%' }}>
+                    <div style={{ width: '50%' }}>
                       <InputTitle className="ch-cont-14">性別</InputTitle>
-                      <input
-                        type="password"
+                      <select
                         className="form-control"
-                        value={password}
-                        onChange={e => {
-                          setPassword(e.target.value);
-                        }}
+                        value={registerData.mem_gender}
+                        name="mem_gender"
+                        onChange={handleChange}
                         style={{
                           borderRadius: 50,
                           height: '40px',
@@ -222,17 +235,20 @@ function Register() {
                           lineHeight: '1.8rem',
                           letterSpacing: '0.14rem',
                         }}
-                      />
+                      >
+                        <option value="male">男性</option>
+                        <option value="female">女性</option>
+                        <option value="undefined">兩性</option>
+                      </select>
                     </div>
-                    <div>
+                    <div style={{ width: '50%' }}>
                       <InputTitle className="ch-cont-14">生日</InputTitle>
                       <input
-                        type="password"
+                        type="date"
                         className="form-control"
-                        value={password}
-                        onChange={e => {
-                          setPassword(e.target.value);
-                        }}
+                        value={registerData.mem_birthday}
+                        name="mem_birthday"
+                        onChange={handleChange}
                         style={{
                           borderRadius: 50,
                           height: '40px',

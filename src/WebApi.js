@@ -38,3 +38,16 @@ export const findMem = mem_id => {
     }),
   }).then(res => res.json());
 };
+
+//傳輸回後端註冊會員
+export const registerMem = registerData => {
+  return fetch(`${BASE_URL}/member/api/member-register`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      registerData,
+    }),
+  }).then(res => res.json());
+};
