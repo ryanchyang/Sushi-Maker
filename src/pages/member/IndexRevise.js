@@ -17,7 +17,7 @@ function IndexRevise() {
         <div style={{ width: '100%' }}>
           {/* <Title title={''} />
             <br /> */}
-          <div className="mem ">
+          <div className="member ">
             <MemHead />
             {/* 以上不動 */}
 

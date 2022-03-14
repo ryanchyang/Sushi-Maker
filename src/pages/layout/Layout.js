@@ -6,6 +6,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
+import { height } from '@mui/system';
 
 function Header() {
   return (

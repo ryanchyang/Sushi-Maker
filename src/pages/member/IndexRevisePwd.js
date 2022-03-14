@@ -17,7 +17,7 @@ function IndexRevisePwd() {
         <div style={{ width: '100%' }}>
           {/* <Title title={''} />
               <br /> */}
-          <div className="mem ">
+          <div className="member ">
             <MemHead />
             {/* 以上不動 */}
             <div className="memReviseArea col-md-24 mt-5 mb-5">

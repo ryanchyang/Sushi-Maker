@@ -6,12 +6,11 @@ function memIndex() {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex'}}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
-          {/* <Title title={''} />
-          <br /> */}
-          <div className="mem ">
+          {/* <Title title={''} /> */}
+          <div className="member ">
             <MemHead />
             {/* 以上不動 */}
 
