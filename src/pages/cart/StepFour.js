@@ -17,7 +17,7 @@ function StepFour() {
             {/* 先切手機 */}
             <div className="confirmation">
               <div className="row ch-cont-14">
-                <div className="my-3 col-24 col-md-12 ch-cont-24">
+                <div className="my-3 col-24 col-md-12  ch-title-22">
                   您的訂單已成立
                 </div>
 
