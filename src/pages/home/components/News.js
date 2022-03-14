@@ -4,7 +4,7 @@ function News() {
       <div className="latest-news-content">
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -21,7 +21,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -38,7 +38,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -55,7 +55,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -72,7 +72,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -89,7 +89,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -106,7 +106,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -123,7 +123,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -140,7 +140,7 @@ function News() {
         </div>
         <div className="col-24 col-md-10 col-xl-6 latest-news-card">
           <div className="news-img">
-            <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+            <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
           </div>
           <div className="news-text">
             <div className="ch-title-16 news-title">
@@ -165,7 +165,7 @@ export default News;
 <div className="latest-news-content">
   <div className="col-24 col-md-10 col-xl-6 latest-news-card">
     <div className="news-img">
-      <img src="/img/home/news/pro-cherry-blossom.png" alt="news" />
+      <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
     </div>
     <div className="news-text">
       <div className="ch-title-16 news-title">春天來了！羊羹櫻花凍新上市</div>
