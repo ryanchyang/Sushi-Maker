@@ -1,13 +1,24 @@
 import { Header, Title, AsideLeft, AsideRight } from '../layout/Layout';
 import './index.scss';
 import './../../styles/global.scss';
+import data from './news.json';
 import { useState, useEffect } from 'react';
+
+// {
+//     "news_id": "1",
+//     "news_title": "春天來了! 羊羹櫻花凍壽司新上市",
+//     "news_cate": "新品上市",
+//     "news_start_date": "2022-03-01",
+//     "news_detail": "充滿粉紅氣息的春天終於來了! PRIMEAL推出粉色的羊羹櫻花凍口味壽司，清爽口感搭配淡淡的櫻花香，給您不一樣的2022春天! ",
+//     "news_img_path": "new-cherry-blossom.png"
+// }
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
 function Index() {
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [latestNews, setLatestNews] = useState('NEWS');
+  const [newsIndex, setNewsIndex] = useState(0);
 
   // 初始化要資料
   useEffect(() => {}, []);
@@ -43,6 +54,21 @@ function Index() {
       default:
         setLatestNews('NEWS');
     }
+  };
+
+  // 處理latest news的carousel
+  const changeContent = e => {
+    const index = e.target.id;
+    setNewsIndex(index);
+    console.log('e.target.id:', e.target.id);
+  };
+  // console.log('newsIndex:', newsIndex);
+  const checkTransform = newsIndex => {
+    console.log('newsIndex:', newsIndex);
+    return {
+      transform: `translateX(${newsIndex * -75}vw)`,
+      transition: '1s',
+    };
   };
 
   const showBlock = { display: 'block' };
@@ -460,7 +486,8 @@ function Index() {
                 </div>
               </div>
             </div>
-            {/* news  */}
+
+            {/* latest news  */}
             <div className="home-page">
               <Title title={'Latest News'} />
               {/* <div className="page-title">Latest News</div> */}
@@ -487,52 +514,42 @@ function Index() {
                   SHARES
                 </div>
               </div>
-              <div className="news-carousel-wrap d-flex overflow-hidden">
-                <div className="col-24 lastest-new-content">
-                  <div className="index-category-img news-img d-flex justify-content-center">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="promo01"
-                    />
-                  </div>
-                  <div className="news-right-wrap">
-                    <div className="news-content-top d-flex justify-content-between">
-                      <div className="ch-title-22 alert-lightnews-title">
-                        春天來了！
+              <div className="overflow-hidden">
+                <div
+                  className="news-carousel-wrap d-flex"
+                  style={checkTransform(newsIndex)}
+                >
+                  {data.map(v => {
+                    return (
+                      <div
+                        className="col-24 latest-new-content"
+                        key={v.news_id}
+                      >
+                        <div className="index-category-img news-img d-flex justify-content-center">
+                          <img
+                            src={'/img/home/news/' + v.news_img_path}
+                            alt="news"
+                          />
+                        </div>
+                        <div className="news-right-wrap">
+                          <div className="news-content-top d-flex justify-content-between">
+                            <div className="ch-title-22 news-title">
+                              {v.news_title}
+                            </div>
+                            <div className="ch-cont-14 news-tag">
+                              {v.news_cate}
+                            </div>
+                          </div>
+                          <div className="ch-cont-14 news-date">
+                            {v.news_start_date}
+                          </div>
+                          <div className="ch-cont-14 news-text d-none d-md-block">
+                            {v.news_detail}
+                          </div>
+                        </div>
                       </div>
-                      <div className="ch-cont-14 news-tag">新品上市</div>
-                    </div>
-                    <div className="ch-cont-14 news-date">2022.05.06</div>
-                    <div className="ch-cont-14 news-text d-none d-md-block">
-                      春天新品上市！
-                      <br />
-                      清爽羊羹搭配酸甜的櫻花口感
-                      <br />
-                      給你滿滿的初戀滋味
-                    </div>
-                  </div>
-                </div>
-                <div className="col-24 lastest-new-content">
-                  <div className="index-category-img news-img d-flex justify-content-center">
-                    <img
-                      src="/img/home/news/pro-cherry-blossom.png"
-                      alt="promo01"
-                    />
-                  </div>
-                  <div className="news-right-wrap">
-                    <div className="news-content-top d-flex justify-content-between">
-                      <div className="news-title">春天來了！</div>
-                      <div className="news-tag">新品上市</div>
-                    </div>
-                    <div className="news-date">2022.05.06</div>
-                    <div className="news-text d-none d-md-block">
-                      春天新品上市！
-                      <br />
-                      清爽羊羹搭配酸甜的櫻花口感
-                      <br />
-                      給你滿滿的初戀滋味
-                    </div>
-                  </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className="latest-news-pagination">
@@ -545,11 +562,21 @@ function Index() {
                 </div>
                 <div className="latest-news-dots d-none d-md-block">
                   <ul className="pagination-list">
-                    <li className="pagination-dots"></li>
-                    <li className="pagination-dots"></li>
-                    <li className="pagination-dots"></li>
-                    <li className="pagination-dots"></li>
-                    <li className="pagination-dots"></li>
+                    {data.map((v, i) => {
+                      return (
+                        <li
+                          className="pagination-dots"
+                          key={i}
+                          id={i}
+                          onClick={changeContent}
+                        ></li>
+                      );
+                    })}
+                    {/* <li className="pagination-dots"></li>*/}
+                    {/* <li className="pagination-dots"></li>*/}
+                    {/* <li className="pagination-dots"></li>*/}
+                    {/* <li className="pagination-dots"></li>*/}
+                    {/* <li className="pagination-dots"></li>*/}
                   </ul>
                 </div>
                 <div className="latest-news-right-arrow d-none d-md-block">
@@ -570,6 +597,7 @@ function Index() {
                 </div>
               </div>
             </div>
+
             {/* footer */}
             {/* todo scroll down to change bg color */}
             <div className="home-page">

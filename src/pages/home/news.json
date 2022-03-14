@@ -1,0 +1,44 @@
+[
+  {
+    "news_id": "1",
+    "news_title": "春天來了! 羊羹櫻花凍壽司新上市",
+    "news_cate": "新品上市",
+    "news_start_date": "2022-03-01",
+    "news_detail": "充滿粉紅氣息的春天終於來了! PRIMEAL推出粉色的羊羹櫻花凍口味壽司，清爽口感搭配淡淡的櫻花香，給您不一樣的2022春天! ",
+    "news_img_path": "new-cherry-blossom.png"
+  },
+  {
+    "news_id": "2",
+    "news_title": "薯泥肉片壽司新上市",
+    "news_cate": "新品上市",
+    "news_start_date": "2022-02-15",
+    "news_detail": "誰說薯泥肉片只能放在漢堡或吐司裡! 放在醋飯上也好吃，不用猶豫趕快來一顆吧! ",
+    "news_img_path": "new-potato-meat.png"
+  },
+  {
+    "news_id": "9",
+    "news_title": "來勢洶洶的鮭魚季!",
+    "news_cate": "季節特賣",
+    "news_start_date": "2022-04-01",
+    "news_detail": "來勢洶洶的鮭魚季! 限期兩個月，焦糖鮭魚玉子壽司25%off季節特賣中",
+    "news_img_path": "sale-caramel-salmon.png"
+  },
+  {
+    "news_id": "15",
+    "news_title": "喜歡蝦卵的同學們別錯過!",
+    "news_cate": "季節特賣",
+    "news_start_date": "2022-06-15",
+    "news_detail": "蝦卵軍艦 25%off 特賣6/15開跑",
+    "news_img_path": "sale-shrimpegg.png"
+  },
+  {
+    "news_id": "19",
+    "news_title": "帳號安全公告",
+    "news_cate": "會員公告",
+    "news_start_date": "2021-11-03",
+    "news_detail": "為了您的帳號安全，PRIMEAL提醒您定期更新您的密碼。如有任何問題，您可以透過「客服中心」聯繫我們，將有專人盡快協助您。",
+    "news_img_path": "member-2.png"
+  }
+]
+
+
