@@ -12,136 +12,190 @@ import data from './testData.json';
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
-  const [category, setCategory] = useState("sushi");
-  const [prodList, setProdList] = useState([]);  //依分類呈現商品資料
+  const [category, setCategory] = useState('sushi');
+  const [prodList, setProdList] = useState([]); //依分類呈現商品資料
   const [materials, setMaterials] = useState([]); //材料
-  const [priceFilter, setPriceFilter] = useState(["", ""]);  //依金額搜尋([最小金額, 最大金額])
-  const [specialCategoryFilter, setSpecialCategoryFilter] = useState([{tag: 'new', value: false},{tag: 'hot', value: false},{tag: 'sale', value: false}]);  //依特殊標籤搜尋
+  const [priceFilter, setPriceFilter] = useState(['', '']); //依金額搜尋([最小金額, 最大金額])
+  const [specialCategoryFilter, setSpecialCategoryFilter] = useState([
+    { tag: 'new', value: false },
+    { tag: 'hot', value: false },
+    { tag: 'sale', value: false },
+  ]); //依特殊標籤搜尋
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
-  const handleClickCategory = (e) => {
-    switch(e.target.innerText){
-      case "SUSHI":
-        setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
-        setCategory("sushi");
+  const handleClickCategory = e => {
+    switch (e.target.innerText) {
+      case 'SUSHI':
+        setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
+        setCategory('sushi');
         break;
-      case "DESSERT":
-        setProdList(data.data.filter(pro => pro.prod_category === "dessert"));
-        setCategory("dessert");
+      case 'DESSERT':
+        setProdList(data.data.filter(pro => pro.prod_category === 'dessert'));
+        setCategory('dessert');
         break;
-      case "PACKAGE":
-        setProdList(data.data.filter(pro => pro.prod_category === "package"));
-        setCategory("package");
+      case 'PACKAGE':
+        setProdList(data.data.filter(pro => pro.prod_category === 'package'));
+        setCategory('package');
         break;
       default:
-        setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
-        setCategory("sushi");
+        setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
+        setCategory('sushi');
     }
   };
 
   //控制依金額篩選的輸入欄
-  const handleChangePriceFilter = (e) => {    
-    if(e.target.dataset.pfilter === 'min'){
+  const handleChangePriceFilter = e => {
+    if (e.target.dataset.pfilter === 'min') {
       setPriceFilter([e.target.value, priceFilter[1]]);
-    }else if(e.target.dataset.pfilter === 'max'){ 
+    } else if (e.target.dataset.pfilter === 'max') {
       setPriceFilter([priceFilter[0], e.target.value]);
     }
   };
 
   //處理點擊材料篩選
-  const handelClickFlavor = (e) => {
-    const newData = materials.map((v) => {  
-      //將原有的材料id與被點擊的材料id做比對    
-      if(e.target.dataset.mtlid == v.mtl_id){
-        return {...v, selected: !v.selected};
-      }else{
+  const handelClickFlavor = e => {
+    const newData = materials.map(v => {
+      //將原有的材料id與被點擊的材料id做比對
+      if (e.target.dataset.mtlid == v.mtl_id) {
+        return { ...v, selected: !v.selected };
+      } else {
         return v;
       }
-    })
+    });
     setMaterials(newData);
   };
 
   //處理點擊特殊標籤篩選
-  const handelChangeSpecCategory = (e) => {
-    const newData = specialCategoryFilter.map((v) => {
-      if(e.target.dataset.tag === v.tag){
-        return {...v, value: !v.value};
-      }else{
+  const handelChangeSpecCategory = e => {
+    const newData = specialCategoryFilter.map(v => {
+      if (e.target.dataset.tag === v.tag) {
+        return { ...v, value: !v.value };
+      } else {
         return v;
       }
-    })
+    });
     setSpecialCategoryFilter(newData);
-  }
+  };
 
   //重設篩選條件
-  const cleanFilter = (e) => {
-    setPriceFilter(["", ""]);
+  const cleanFilter = e => {
+    setPriceFilter(['', '']);
     setMaterials(data.mtl);
-    setSpecialCategoryFilter([{tag: 'new', value: false},{tag: 'hot', value: false},{tag: 'sale', value: false}]);
-  }
+    setSpecialCategoryFilter([
+      { tag: 'new', value: false },
+      { tag: 'hot', value: false },
+      { tag: 'sale', value: false },
+    ]);
+  };
 
   //套用篩選條件
   const applyFilter = () => {
     let filteredData = data.data.filter(pro => pro.prod_category === category);
 
     //最小金額
-    const minPrice = priceFilter[0] === "" ? 0 : +priceFilter[0];
+    const minPrice = priceFilter[0] === '' ? 0 : +priceFilter[0];
     //最大金額
-    const maxPrice = priceFilter[1] === "" ? 9999 : +priceFilter[1];  //沒填最大金額時搜尋9999
+    const maxPrice = priceFilter[1] === '' ? 9999 : +priceFilter[1]; //沒填最大金額時搜尋9999
     //口味選擇(被選中材料的id陣列)
     const flavor = materials.filter(mtl => mtl.selected).map(mtl => mtl.mtl_id);
     //特殊標籤選擇('new'、'hot'、'sale')
-    const specTag = specialCategoryFilter.filter(tag => tag.value).map(tag => tag.tag);
+    const specTag = specialCategoryFilter
+      .filter(tag => tag.value)
+      .map(tag => tag.tag);
+    //
+    const showTags = [];
 
-    //篩選金額範圍
+    //套用篩選金額範圍
     filteredData = filteredData.filter(prod => {
-      if(prod.prod_spe_value === 0){
+      if (prod.prod_spe_value === 0) {
         //當商品沒有特價時，用原價來篩選
         return prod.prod_value >= minPrice && prod.prod_value <= maxPrice;
-      }else{
+      } else {
         //當商品有特價時，用特價來篩選
-        return prod.prod_spe_value >= minPrice && prod.prod_spe_value <= maxPrice;
+        return (
+          prod.prod_spe_value >= minPrice && prod.prod_spe_value <= maxPrice
+        );
       }
     });
 
-    //篩選特殊標籤
-    if(specTag.length > 0){  //specTag.length = 0(沒有選擇任何特殊標籤)時視為全選，不做任何過濾條件
+    //套用篩選特殊標籤
+    if (specTag.length > 0) {
+      //specTag.length = 0(沒有選擇任何特殊標籤)時視為全選，不做任何過濾條件
       filteredData = filteredData.filter(prod => {
-        let checkTag = "";
+        let checkTag = '';
         //prod_spe_tag對照(XX%OFF轉為sale、HOT轉為hot、NEW轉為new)
-        if(prod.prod_spe_tag.includes("OFF")){
-          checkTag = "sale";
-        }else if(prod.prod_spe_tag !== ""){
+        if (prod.prod_spe_tag.includes('OFF')) {
+          checkTag = 'sale';
+        } else if (prod.prod_spe_tag !== '') {
           checkTag = prod.prod_spe_tag.toLowerCase();
         }
 
-        if(specTag.includes(checkTag)) return true;
+        if (specTag.includes(checkTag)) return true;
       });
     }
 
-    //篩選口味
-    if(flavor.length > 0){  //當flavor.length = 0(沒有選擇任何材料)時視為全選，不做任何過濾條件
+    //套用篩選口味
+    if (flavor.length > 0) {
+      //當flavor.length = 0(沒有選擇任何材料)時視為全選，不做任何過濾條件
       filteredData = filteredData.filter(prod => {
-        for(const m of prod.material){
-          if(flavor.includes(m)) return true;
+        for (const m of prod.material) {
+          if (flavor.includes(m)) return true;
         }
       });
     }
 
+    //處理商品列表上方的篩選標籤
+    //[{tagName: '鮭魚', type: 'c'}, {tagName: '20~50', type: 'p'}, {tagName: '特價', type: 't'}]
+    //金額標籤
+    if (priceFilter[0] !== '' || priceFilter[1] !== '') {
+      //若兩個金額都沒填寫則不處理
+      showTags.push({
+        tagName: `${priceFilter[0] === '' ? '0' : priceFilter[0]}~${
+          priceFilter[1] === '' ? 'max' : priceFilter[1]
+        }`,
+        type: 'p',
+      });
+    }
+    //口味標籤
+    materials.forEach(v => {
+      if (v.selected) showTags.push({ tagName: v.mtl_name, type: 'c' });
+    });
+    //特殊標籤
+    specialCategoryFilter.forEach(v => {
+      if (v.value) {
+        let showTagName = '';
+        switch (v.tag) {
+          case 'new':
+            showTagName = '新品';
+            break;
+          case 'hot':
+            showTagName = '熱門';
+            break;
+          case 'sale':
+            showTagName = '特價';
+            break;
+          default:
+            break;
+        }
+        showTags.push({ tagName: showTagName, type: 't' });
+      }
+    });
+
+    console.log(showTags);
     setProdList(filteredData);
-  }
+  };
 
   useEffect(() => {
     //預設呈現的商品類型為壽司
-    setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
+    setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
     //初始化所有材料
     setMaterials(data.mtl);
-  },[]) 
+  }, []);
 
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
-  const flavorTagNoClick = {color: '#b03342', backgroundColor: 'transparent'};
-  const flavorTagClicked = {color: '#ffffff', backgroundColor: '#b03342'};
+  const flavorTagNoClick = { color: '#b03342', backgroundColor: 'transparent' };
+  const flavorTagClicked = { color: '#ffffff', backgroundColor: '#b03342' };
 
   return (
     <>
@@ -157,17 +211,31 @@ function Index() {
               <div className="search-btn">
                 <SearchBtn />
               </div>
-              <div className="filter-btn" onClick={() => {setIsOpenFilter(!isOpenFilter)}}>
+              <div
+                className="filter-btn"
+                onClick={() => {
+                  setIsOpenFilter(!isOpenFilter);
+                }}
+              >
                 <FilterBtn />
               </div>
             </div>
 
-            <div className="main-content" style={isOpenFilter ? hiddenStyle : showStyle}>
+            <div
+              className="main-content"
+              style={isOpenFilter ? hiddenStyle : showStyle}
+            >
               {/* category tag */}
               <div className="category-box">
-                <div className="en-category" onClick={handleClickCategory}>SUSHI</div>
-                <div className="en-category" onClick={handleClickCategory}>DESSERT</div>
-                <div className="en-category" onClick={handleClickCategory}>PACKAGE</div>
+                <div className="en-category" onClick={handleClickCategory}>
+                  SUSHI
+                </div>
+                <div className="en-category" onClick={handleClickCategory}>
+                  DESSERT
+                </div>
+                <div className="en-category" onClick={handleClickCategory}>
+                  PACKAGE
+                </div>
               </div>
 
               {/* filter tag */}
@@ -183,48 +251,67 @@ function Index() {
               {/* product list */}
               <div className="prod-list">
                 {/* product card */}
-                {prodList.map((prod) => {
+                {prodList.map(prod => {
                   return (
                     <>
-                    <div className="prod-card" key={prod.id}>
-                  <div className="prod-img-box">
+                      <div className="prod-card" key={prod.id}>
+                        <div className="prod-img-box">
+                          {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                          {prod.prod_spe_tag === '' ? (
+                            ''
+                          ) : (
+                            <div className="discount-tag">
+                              <div className="discount-tag-content">
+                                {prod.prod_spe_tag}
+                              </div>
+                            </div>
+                          )}
 
-                  {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                  {prod.prod_spe_tag === "" ? "" : (<div className="discount-tag">
-                      <div className="discount-tag-content">{prod.prod_spe_tag}</div>
-                    </div>)}
-                    
-                    <img
-                      src={require('./../../imgs/temp/classic-pro1.png')}
-                      alt="product-image"
-                    />
-                  </div>
+                          <img
+                            src={require('./../../imgs/temp/classic-pro1.png')}
+                            alt="product-image"
+                          />
+                        </div>
 
-                  <div className="prod-name-ch ch-title-22">{prod.prod_ch_name}</div>
-                  <div className="prod-name-en en-title-14-5">{prod.prod_en_name}</div>
+                        <div className="prod-name-ch ch-title-22">
+                          {prod.prod_ch_name}
+                        </div>
+                        <div className="prod-name-en en-title-14-5">
+                          {prod.prod_en_name}
+                        </div>
 
-                  {/* 判斷是否有特價 */}
-                  {prod.prod_spe_value === 0 ? (<div className="prod-price-no-discount">
-                    <div className="no-discount ch-cont-16">NT_{prod.prod_value}</div>
-                  </div>) : (<div className="prod-price-special">
-                    <div className="original-price ch-cont-16">NT_{prod.prod_value}</div>
-                    <div className="special-price ch-cont-18">NT_{prod.prod_spe_value}</div>
-                  </div>)}   
+                        {/* 判斷是否有特價 */}
+                        {prod.prod_spe_value === 0 ? (
+                          <div className="prod-price-no-discount">
+                            <div className="no-discount ch-cont-16">
+                              NT_{prod.prod_value}
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="prod-price-special">
+                            <div className="original-price ch-cont-16">
+                              NT_{prod.prod_value}
+                            </div>
+                            <div className="special-price ch-cont-18">
+                              NT_{prod.prod_spe_value}
+                            </div>
+                          </div>
+                        )}
 
-                  <div className="select-add-cart">
-                    <div className="select-count">
-                      <button>-</button>
-                      <input type="number" value={1} />
-                      <button>+</button>
-                    </div>
-                    <div className="cart-btn">
-                      <Cart />
-                    </div>
-                    <button className="add-cart btn-sm btn-primary primeal-btn">
-                      加入購物車
-                    </button>
-                  </div>
-                </div>
+                        <div className="select-add-cart">
+                          <div className="select-count">
+                            <button>-</button>
+                            <input type="number" value={1} />
+                            <button>+</button>
+                          </div>
+                          <div className="cart-btn">
+                            <Cart />
+                          </div>
+                          <button className="add-cart btn-sm btn-primary primeal-btn">
+                            加入購物車
+                          </button>
+                        </div>
+                      </div>
                     </>
                   );
                 })}
@@ -380,7 +467,6 @@ function Index() {
                     </button>
                   </div>
                 </div> */}
-
               </div>
 
               {/* pagination */}
@@ -406,7 +492,10 @@ function Index() {
             </div>
 
             {/* 主要篩選條件區 */}
-            <div className="prod-filter" style={isOpenFilter ? showStyle : hiddenStyle}>
+            <div
+              className="prod-filter"
+              style={isOpenFilter ? showStyle : hiddenStyle}
+            >
               {/* clean or cancel filter */}
               <div className="filter-top">
                 <div className="clean-filter ch-cont-16" onClick={cleanFilter}>
@@ -433,9 +522,21 @@ function Index() {
                   </div>
                 </div>
                 <div className="by-price-input">
-                  <input type="number" placeholder="最小金額" data-pFilter="min" value={priceFilter[0]} onChange={handleChangePriceFilter} />
+                  <input
+                    type="number"
+                    placeholder="最小金額"
+                    data-pFilter="min"
+                    value={priceFilter[0]}
+                    onChange={handleChangePriceFilter}
+                  />
                   <div className="by-price-dash-line"></div>
-                  <input type="number" placeholder="最大金額" data-pFilter="max" value={priceFilter[1]} onChange={handleChangePriceFilter} />
+                  <input
+                    type="number"
+                    placeholder="最大金額"
+                    data-pFilter="max"
+                    value={priceFilter[1]}
+                    onChange={handleChangePriceFilter}
+                  />
                 </div>
               </div>
 
@@ -451,12 +552,22 @@ function Index() {
                   </div>
                 </div>
                 <div className="flavor-tag-box">
-                  {materials.map((mtl) => {
+                  {materials.map(mtl => {
                     return (
                       <>
-                        <div key={mtl.mtl_id} className="flavor-tag ch-title-16" data-mtlid={mtl.mtl_id} style={mtl.selected ? flavorTagClicked : flavorTagNoClick} onClick={handelClickFlavor}>{mtl.mtl_name}</div>
+                        <div
+                          key={mtl.mtl_id}
+                          className="flavor-tag ch-title-16"
+                          data-mtlid={mtl.mtl_id}
+                          style={
+                            mtl.selected ? flavorTagClicked : flavorTagNoClick
+                          }
+                          onClick={handelClickFlavor}
+                        >
+                          {mtl.mtl_name}
+                        </div>
                       </>
-                    )
+                    );
                   })}
                   {/* <div className="flavor-tag ch-title-16">牛肉</div>
                   <div className="flavor-tag ch-title-16">豬肉</div>
@@ -528,7 +639,10 @@ function Index() {
               </div>
 
               <div className="send-filter-btn-box">
-                <button className="btn-sm btn-primary primeal-btn-sm" onClick={applyFilter}>
+                <button
+                  className="btn-sm btn-primary primeal-btn-sm"
+                  onClick={applyFilter}
+                >
                   送出條件
                 </button>
               </div>
