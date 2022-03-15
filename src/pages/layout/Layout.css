@@ -70,7 +70,7 @@
     display: inline-block;
     width: 20px; 
     height: 20px; 
-    margin: 8px 0 8px 15px; 
+    margin-left: 1rem; 
 }
 .footer-logo{
     width: 100%; 
@@ -80,7 +80,7 @@
 .copyright{    
     display: inline-block;
     font-size: 1.2rem;
-    margin: 8px 0 8px 20px;
+    margin-left: 1rem;
     color: #575757;
 }
 .footer-icon-box-group{
@@ -90,7 +90,7 @@
 .footer-icon-box{
     width: 15px; 
     height: 15px; 
-    margin: 8px 10px 8px 10px;
+    margin: 0px 10px 5px 10px;
 }
 .footer-fb, .footer-tw, .footer-in{
     width: 100%; 
@@ -106,7 +106,7 @@
         font-size: 2.4rem;
         line-height: 3.6rem;
         letter-spacing: 0.54rem;
-        padding: 20px 0 0 15px;
+        padding: 10px 0 0 15px;
     } 
     .logo-box{
         width: 55px;

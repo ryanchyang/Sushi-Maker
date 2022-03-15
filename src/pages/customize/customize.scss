@@ -8,15 +8,15 @@
 .mtlView {
   overflow: hidden;
 }
-.logo,
-.menu {
+.logoMtl,
+.menuMtl {
   min-height: 15rem;
   padding-bottom: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.menu {
+.menuMtl {
   justify-content: flex-end;
   padding-right: 3rem;
 }
@@ -29,7 +29,7 @@
   transition: 0.5s ease-in-out;
 }
 .right-area {
-  transform: translate(100%);
+  // transform: translate(100%);
   transition: 0.5s ease-in-out;
 }
 .la-menu {
@@ -174,7 +174,7 @@
   cursor: pointer;
 }
 
-.logo-box {
+.logoMtl-box {
   width: 70px;
   height: 70px;
   margin: 0 auto;
