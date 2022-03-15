@@ -23,7 +23,7 @@ function Index() {
     { tag: 'hot', value: false },
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
-  const pageProdCount = 6;  //一頁呈現的商品個數
+  const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
   const handleClickCategory = e => {
@@ -230,7 +230,9 @@ function Index() {
 
     if (isClose) setIsOpenFilter(false);
     setTagShow(showTags);
+
     setProdList(filteredData.slice((currentPage - 1) * pageProdCount, currentPage * pageProdCount));  //取當頁所呈現的商品列表
+
   };
 
   const changePageArrow = (e) => {
@@ -245,6 +247,7 @@ function Index() {
   }
 
   const applyPage = () => {
+
     setProdList(prodList.slice((currentPage - 1) * pageProdCount, currentPage * pageProdCount));   //取當頁所呈現的商品列表
   }
 
@@ -252,15 +255,18 @@ function Index() {
     const initData = data.data.filter(pro => pro.prod_category === 'sushi');
     //預設呈現的商品類型為壽司    
     setProdList(initData);
+
     //初始化所有材料
     setMaterials(data.mtl);
     //初始化總分頁數
     setTotalPage(Math.ceil(initData.length / 6));
   }, []);
 
+
   useEffect(() => {    
       applyFilter(); //當篩選條件其中一個有改變或是點其它分頁，就重新渲染商品列表    
   }, [materials, priceFilter, specialCategoryFilter, currentPage]);
+
 
   const showStyle = { display: 'block' };
   const showStyleInlne = { display: 'inline' };
@@ -620,79 +626,90 @@ function Index() {
               style={isOpenFilter ? showStyle : hiddenStyle}
             >
               {/* clean or cancel filter */}
-              <div className="filter-top">
-                <div className="clean-filter ch-cont-16" onClick={cleanFilter}>
-                  <img
-                    src={require('./../../imgs/tags/trash.png')}
-                    alt="trash"
-                  />
-                  <span>清空條件</span>
+              <div className="d-flex flex-column">
+                <div className="filter-top justify-content-end">
+                  <div
+                    className="clean-filter ch-cont-16"
+                    onClick={cleanFilter}
+                  >
+                    <img
+                      src={require('./../../imgs/tags/trash.png')}
+                      alt="trash"
+                    />
+                    <span>清空條件</span>
+                  </div>
+                  <div className="cancel-filter ch-cont-16">
+                    <span>X</span>
+                  </div>
                 </div>
-                <div className="cancel-filter ch-cont-16">
-                  <span>X</span>
-                </div>
-              </div>
 
-              {/* by price */}
-              <div className="by-price">
-                <div className="by-price-title">
-                  <div className="orange-tag">
-                    <OrangeTag className="tag-img" />
-                  </div>
-                  <div className="by-price-text en-title-big">By PRICE</div>
-                  <div className="down-arrow">
-                    <DownArrow size={22} color="gray" />
+                {/* by price */}
+                <div className="d-flex justify-content-center">
+                  <div className="by-price col-18 d-flex flex-column">
+                    <div className="by-price-title">
+                      <div className="orange-tag">
+                        <OrangeTag className="tag-img" />
+                      </div>
+                      <div className="by-price-text en-title-big">By PRICE</div>
+                      <div className="down-arrow">
+                        <DownArrow size={22} color="gray" />
+                      </div>
+                    </div>
+                    <div className="by-price-input justify-content-between">
+                      <input
+                        type="number"
+                        placeholder="最小金額"
+                        data-pFilter="min"
+                        value={priceFilter[0]}
+                        onChange={handleChangePriceFilter}
+                      />
+                      <div className="by-price-dash-line"></div>
+                      <input
+                        type="number"
+                        placeholder="最大金額"
+                        data-pFilter="max"
+                        value={priceFilter[1]}
+                        onChange={handleChangePriceFilter}
+                      />
+                    </div>
                   </div>
                 </div>
-                <div className="by-price-input">
-                  <input
-                    type="number"
-                    placeholder="最小金額"
-                    data-pFilter="min"
-                    value={priceFilter[0]}
-                    onChange={handleChangePriceFilter}
-                  />
-                  <div className="by-price-dash-line"></div>
-                  <input
-                    type="number"
-                    placeholder="最大金額"
-                    data-pFilter="max"
-                    value={priceFilter[1]}
-                    onChange={handleChangePriceFilter}
-                  />
-                </div>
-              </div>
 
-              {/* by flavor */}
-              <div className="by-flavor">
-                <div className="by-flavor-title">
-                  <div className="orange-tag">
-                    <OrangeTag className="tag-img" />
-                  </div>
-                  <div className="by-price-text en-title-big">By FLAVOR</div>
-                  <div className="down-arrow">
-                    <DownArrow size={22} color="gray" />
-                  </div>
-                </div>
-                <div className="flavor-tag-box">
-                  {materials.map(mtl => {
-                    return (
-                      <>
-                        <div
-                          key={mtl.mtl_id}
-                          className="flavor-tag ch-title-16"
-                          data-mtlid={mtl.mtl_id}
-                          style={
-                            mtl.selected ? flavorTagClicked : flavorTagNoClick
-                          }
-                          onClick={handelClickFlavor}
-                        >
-                          {mtl.mtl_name}
-                        </div>
-                      </>
-                    );
-                  })}
-                  {/* <div className="flavor-tag ch-title-16">牛肉</div>
+                {/* by flavor */}
+                <div className="d-flex justify-content-center">
+                  <div className="by-flavor col-18 d-flex flex-column">
+                    <div className="by-flavor-title">
+                      <div className="orange-tag">
+                        <OrangeTag className="tag-img" />
+                      </div>
+                      <div className="by-price-text en-title-big">
+                        By FLAVOR
+                      </div>
+                      <div className="down-arrow">
+                        <DownArrow size={22} color="gray" />
+                      </div>
+                    </div>
+                    <div className="flavor-tag-box">
+                      {materials.map(mtl => {
+                        return (
+                          <>
+                            <div
+                              key={mtl.mtl_id}
+                              className="flavor-tag ch-title-16"
+                              data-mtlid={mtl.mtl_id}
+                              style={
+                                mtl.selected
+                                  ? flavorTagClicked
+                                  : flavorTagNoClick
+                              }
+                              onClick={handelClickFlavor}
+                            >
+                              {mtl.mtl_name}
+                            </div>
+                          </>
+                        );
+                      })}
+                      {/* <div className="flavor-tag ch-title-16">牛肉</div>
                   <div className="flavor-tag ch-title-16">豬肉</div>
                   <div className="flavor-tag ch-title-16">火腿</div>
                   <div className="flavor-tag ch-title-16">起司</div>
@@ -704,72 +721,81 @@ function Index() {
                   <div className="flavor-tag ch-title-16">麻糬</div>
                   <div className="flavor-tag ch-title-16">抹茶</div>
                   <div className="flavor-tag ch-title-16">羊羹/果凍</div> */}
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* by category */}
-              <div>
-                <div className="by-category">
-                  <div className="orange-tag">
-                    <OrangeTag className="tag-img" />
-                  </div>
-                  <div className="by-price-text en-title-big">By CATEGORY</div>
-                  <div className="down-arrow">
-                    <DownArrow size={22} color="gray" />
+                {/* by category */}
+                <div className="d-flex justify-content-center">
+                  <div className="col-18 d-flex flex-column">
+                    <div className="by-category">
+                      <div className="orange-tag">
+                        <OrangeTag className="tag-img" />
+                      </div>
+                      <div className="by-price-text en-title-big">
+                        By CATEGORY
+                      </div>
+                      <div className="down-arrow">
+                        <DownArrow size={22} color="gray" />
+                      </div>
+                    </div>
+                    <div className="category-checkbox-box">
+                      <input
+                        className="caterory-check"
+                        type="checkbox"
+                        id="new-item"
+                        data-tag="new"
+                        checked={specialCategoryFilter[0].value}
+                        onChange={handelChangeSpecCategory}
+                      />
+                      <div className="label-box">
+                        <label className="ch-title-16" for="new-item">
+                          新品上市
+                        </label>
+                      </div>
+                      <input
+                        className="caterory-check"
+                        type="checkbox"
+                        id="hot-item"
+                        data-tag="hot"
+                        checked={specialCategoryFilter[1].value}
+                        onChange={handelChangeSpecCategory}
+                      />
+                      <div className="label-box">
+                        <label className="ch-title-16" for="hot-item">
+                          熱門商品
+                        </label>
+                      </div>
+                      <input
+                        className="caterory-check"
+                        type="checkbox"
+                        id="for-sale"
+                        data-tag="sale"
+                        checked={specialCategoryFilter[2].value}
+                        onChange={handelChangeSpecCategory}
+                      />
+                      <div className="label-box">
+                        <label className="ch-title-16" for="for-sale">
+                          促銷特價
+                        </label>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="category-checkbox-box">
-                  <input
-                    className="caterory-check"
-                    type="checkbox"
-                    id="new-item"
-                    data-tag="new"
-                    checked={specialCategoryFilter[0].value}
-                    onChange={handelChangeSpecCategory}
-                  />
-                  <div className="label-box">
-                    <label className="ch-title-16" for="new-item">
-                      新品上市
-                    </label>
-                  </div>
-                  <input
-                    className="caterory-check"
-                    type="checkbox"
-                    id="hot-item"
-                    data-tag="hot"
-                    checked={specialCategoryFilter[1].value}
-                    onChange={handelChangeSpecCategory}
-                  />
-                  <div className="label-box">
-                    <label className="ch-title-16" for="hot-item">
-                      熱門商品
-                    </label>
-                  </div>
-                  <input
-                    className="caterory-check"
-                    type="checkbox"
-                    id="for-sale"
-                    data-tag="sale"
-                    checked={specialCategoryFilter[2].value}
-                    onChange={handelChangeSpecCategory}
-                  />
-                  <div className="label-box">
-                    <label className="ch-title-16" for="for-sale">
-                      促銷特價
-                    </label>
+                <div className="d-flex justify-content-center">
+                  <div className="col-18">
+                    <div className="send-filter-btn-box d-flex justify-content-end">
+                      <button
+                        className="btn-sm btn-primary primeal-btn-sm"
+                        onClick={() => {
+                          applyFilter(true);
+                        }}
+                      >
+                        送出條件
+                      </button>
+                    </div>{' '}
                   </div>
                 </div>
-              </div>
-
-              <div className="send-filter-btn-box">
-                <button
-                  className="btn-sm btn-primary primeal-btn-sm"
-                  onClick={() => {
-                    applyFilter(true);
-                  }}
-                >
-                  送出條件
-                </button>
               </div>
             </div>
           </div>

@@ -28,9 +28,11 @@ export const getMe = () => {
 
 //傳輸回後端找資料的API
 export const findMem = mem_id => {
+  const token = getAuthToken();
   return fetch(`${BASE_URL}/member/api/find-member`, {
     method: 'POST',
     headers: {
+       Authorization: `Bearer ${token}`,
       'content-type': 'application/json',
     },
     body: JSON.stringify({
