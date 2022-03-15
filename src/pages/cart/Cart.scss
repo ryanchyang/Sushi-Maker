@@ -241,8 +241,8 @@ table {
 
 
 
-// 
 
+//交易明細 折疊開關的標題
 .cart-detail-title{
   width: 100%;
   display: flex;
@@ -257,5 +257,14 @@ table {
 // .cart-detail {
 //   clear: both;
 // }
+
+//stepfour 上半部文字
+.confirmation{
+  margin:5% 10%;
+}
+.processBar{
+   margin:5% 10%;
+}
+
 }
 

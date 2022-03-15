@@ -10,7 +10,7 @@ function StepFour() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Confirmation'} />
-          <div className="container cart min-hi">
+          <div className="mycontainer cart min-hi">
             <div className="bread">HOME/CART</div>
             <div className="row"></div>
             {/* 先切手機 */}
@@ -59,23 +59,24 @@ function StepFour() {
                 <span data-progress="45"></span>
               </div>
             </div> */}
-
-            <div class="progress">
-              <div
-                className="progress-bar progress-bar-striped"
-                role="progressbar"
-                style={{ width: '30%' }}
-                aria-valuenow="10"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div className="d-flex justify-content-between my-3">
-              <span>訂單已成立</span>
-              <span>壽司列印中</span>
-              <span>準備出貨</span>
-              <span>已出貨</span>
-              <span>請至門市取貨</span>
+            <div className="processBar">
+              <div class="progress">
+                <div
+                  className="progress-bar progress-bar-striped"
+                  role="progressbar"
+                  style={{ width: '30%' }}
+                  aria-valuenow="10"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              <div className="d-flex justify-content-between my-3">
+                <span>訂單已成立</span>
+                <span>壽司列印中</span>
+                <span>準備出貨</span>
+                <span>已出貨</span>
+                <span>請至門市取貨</span>
+              </div>
             </div>
             {/* TODO: 商品詳細清單 */}
             <CartDetail />

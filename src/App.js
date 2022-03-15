@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMe } from './WebApi';
-import { AuthContext } from './contexts';
+// import { AuthContext } from './contexts';
 
 // Classic
 import ClassicIndex from './pages/classic/Index';
@@ -67,7 +67,7 @@ function App() {
 
   return (
     //如有toke, 將token傳下去
-    <AuthContext.Provider value={{ user, setUser }}>
+    // <AuthContext.Provider value={{ user, setUser }}>
       <Router>
         <>
           <Switch>
@@ -188,7 +188,7 @@ function App() {
           </Switch>
         </>
       </Router>
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
   );
 }
 
