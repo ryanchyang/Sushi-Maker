@@ -17,7 +17,6 @@ import IndexRevise from './pages/member/IndexRevise';
 // import CalendarTest from './pages/member/CalendarTest';
 // Share
 import Share from './pages/share/Share';
-import ShareFilter from './pages/share/ShareFilter';
 import ShareItems from './pages/share/ShareItems';
 import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
@@ -104,9 +103,6 @@ function App() {
           </Route>
           <Route path="/share" exact>
             <Share />
-          </Route>
-          <Route path="/share/filter">
-            <ShareFilter />
           </Route>
           <Route path="/share/items/:id?">
             <ShareItems />
