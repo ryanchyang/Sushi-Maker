@@ -88,15 +88,21 @@ body {
   border-radius: 1rem;
 }
 // 對齊title的滿版container
-$min-height : calc(100vh - 14rem);
 .mycontainer {
-  margin: 0;
-  min-height: $min-height;
   @include mobile {
     padding: 0 15px;
   }
   padding: 0 30px;
 }
+
+// 滿版撐高，請放在最外圍，小於100vh會撐高至100vh
+// 溫馨提醒：title下有br標籤請刪掉，不然會出現卷軸
+$min-height : calc(100vh - 14rem);
+.min-hi{
+  margin: 0;
+  min-height: $min-height;
+}
+
 // 瀑布式瀏覽自訂義class
 // .MuiImageListItem-img {
 //   padding: 0 15px;
