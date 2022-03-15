@@ -11,7 +11,7 @@ import { getMe, login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
 import zIndex from '@mui/material/styles/zIndex';
 import { Link, useHistory } from 'react-router-dom';
-import { setAuthToken } from '../../utils';
+import { setAuthToken ,setMemId } from '../../utils';
 // import { AuthContext } from '../../contexts.js';
 
 //styled component
@@ -83,7 +83,7 @@ function Login() {
         return setErrorMessage(data.message);
       }
       setAuthToken(data.token);
-      localStorage.setItem('mem_id', data.info.mem_id);
+      setMemId(data.info.mem_id);
 
       // getMe().then(response => {
       //   console.log(response.data);
