@@ -113,7 +113,7 @@
 
  @media screen and (min-width: 576px) {
    .summary-right{
-      margin: 10%;
+      margin: 0 10%;
 }
 // 總計的地方網頁版才要線
 .summary-right>.row{
@@ -247,14 +247,15 @@ table {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #c4c4c4;
 }
 
-.down-arrow {
-  display: block;
-  cursor: pointer;
-}
-.cart-detail {
-  clear: both;
-}
+// .down-arrow {
+//   // display: block;
+//   // cursor: pointer;
+// }
+// .cart-detail {
+//   clear: both;
+// }
 }
 

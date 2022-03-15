@@ -3,7 +3,7 @@
 function CartSum(props) {
   return (
     <div className="col-24 col-md-12 d-md-block">
-      <div className="summary-right  pt-3">
+      <div className="summary-right mt-2">
         <div className="row "></div>
         <div className="row print-time my-4">
           <div className="col-12 col-md-12 ch-cont-14">印製時間</div>

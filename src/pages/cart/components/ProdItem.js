@@ -1,6 +1,5 @@
 // cart/ProdItem.js stepone 可編輯的item
 import React, { useState } from 'react';
-import './Cart.scss';
 
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 

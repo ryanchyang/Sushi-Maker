@@ -2,7 +2,7 @@
 import { FaBitcoin, FaCcJcb, FaCcMastercard, FaCcVisa } from 'react-icons/fa';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartSum from './CartSum';
-import CartDetail from './CartDetial';
+import CartDetail from './components/CartDetial';
 // TODO: A  改 LINK
 function StepThree() {
   return (
@@ -12,17 +12,17 @@ function StepThree() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Payment Info'} />
-          <div className="mycontainer cart">
+          <div className="mycontainer cart  ch-cont-14 min-hi">
             <div className="bread">HOME/CART</div>
             <CartDetail />
-            <div className="row">
+            <div className="row mt-5">
               <div className="col-md-12">
                 {/* TODO: 信用卡 refs */}
                 <div className="payment-info">
                   <div className="ch-title-22 my-4">信用卡資訊</div>
                   <div class="card-wrapper"></div>
                   <div
-                    className="payment-card"
+                    className="payment-card my-5"
                     style={{
                       width: '80%',
                       height: '80px',
