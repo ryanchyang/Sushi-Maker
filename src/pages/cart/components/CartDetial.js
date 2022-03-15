@@ -31,8 +31,8 @@ function CartDetail() {
 
     <div className="cart-detail ">
       <div className="cart-detail-title" onClick={() => setDateOpen(!dateOpen)}>
-        <div className=" en-title-14">交易明細</div>
-        <div className="cart-detail-title-right d-flex">
+        <div className=" en-title-18">交易明細</div>
+        <div className="cart-detail-title-right d-flex ">
           <div className=" en-title-14">數量</div>
           <div
             className="down-arrow"
@@ -49,7 +49,7 @@ function CartDetail() {
         </div>
       </div>
       <Collapse in={dateOpen}>
-        <div className="">
+        <div>
           {/* 商品詳細資訊 */}
           <ProdItemInfo />
         </div>

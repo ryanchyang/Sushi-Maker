@@ -3,10 +3,10 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 
 import CartSum from './CartSum';
-import CartDetail from './CartDetial';
+import CartDetail from '././components/CartDetial';
 
 import React, { useState } from 'react';
-import StepMap from './StepMap';
+import StepMap from '././components/StepMap';
 import { Button, Modal } from 'react-bootstrap';
 
 // TODO: A  改 LINK
@@ -29,16 +29,16 @@ function StepTwo() {
       <Modal.Footer>
         <Button
           variant="secondary"
-          className="btn btn-sm btn-primary primeal-btn-sm mx-5"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
           onClick={handleClose}
         >
-          Close
+          取消
         </Button>
         <Button
-          variant="btn btn-sm btn-primary primeal-btn-sm mx-5"
+          variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
           onClick={handleClose}
         >
-          Save Changes
+          確認門市
         </Button>
       </Modal.Footer>
     </Modal>
@@ -52,7 +52,7 @@ function StepTwo() {
         <div style={{ width: '100%' }}>
           <Title title={'Shipping Info'} />
           {/* <div className="row"></div> */}
-          <div className="mycontainer cart">
+          <div className="mycontainer cart min-hi">
             <div className="bread">HOME/CART</div>
             {/* 訂單資訊 可以摺疊*/}
             <CartDetail />

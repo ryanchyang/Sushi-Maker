@@ -1,7 +1,7 @@
 //cart/StepOne.js
 
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import ProdItem from './ProdItem';
+import ProdItem from '././components/ProdItem';
 // TODO: A  改 LINK
 function StepOne(props) {
   // counts -> 陣列
@@ -27,7 +27,7 @@ function StepOne(props) {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Shopping List'} />
-          <div className="mycontainer cart " style={{ padding: '0' }}>
+          <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
             <div className="bread">HOME/CART</div>
 
             <div className="list-title ch-cont-14">

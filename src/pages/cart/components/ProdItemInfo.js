@@ -1,6 +1,6 @@
 // cart/ProdItemInfo.js
 
-import './Cart.scss';
+import './../Cart.scss';
 function ProdItemInfo(props) {
   // TODO: 確認清單不會有可以更改數量與手機版印製時間 (done)
   // TODO: 要加商品數量總計算
@@ -32,7 +32,7 @@ function ProdItemInfo(props) {
 
   return (
     <div className="prod-item-info ch-cont-14">
-      <div className="row col-24 my-2   d-flex align-items-center align-middle">
+      <div className="row col-24 my-2  d-flex align-items-center align-middle">
         <div className="col-6 col-md-4 text-center">
           <div className="cart-item-img-info text-center">
             <img alt="" className="img-fluid" src={image} />

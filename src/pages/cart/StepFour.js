@@ -1,6 +1,6 @@
 //cart/StepFour.js
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import CartDetail from './CartDetial';
+import CartDetail from './components/CartDetial';
 // TODO: A  改 LINK
 function StepFour() {
   return (
@@ -10,7 +10,7 @@ function StepFour() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Confirmation'} />
-          <div className="container cart">
+          <div className="container cart min-hi">
             <div className="bread">HOME/CART</div>
             <div className="row"></div>
             {/* 先切手機 */}
@@ -54,10 +54,28 @@ function StepFour() {
               </div>
             </div>
             {/* TODO:進度條 */}
-            <div className="process-bar">
+            {/* <div className="process-bar">
               <div class="animated-progress progress-red">
                 <span data-progress="45"></span>
               </div>
+            </div> */}
+
+            <div class="progress">
+              <div
+                className="progress-bar progress-bar-striped"
+                role="progressbar"
+                style={{ width: '30%' }}
+                aria-valuenow="10"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              ></div>
+            </div>
+            <div className="d-flex justify-content-between my-3">
+              <span>訂單已成立</span>
+              <span>壽司列印中</span>
+              <span>準備出貨</span>
+              <span>已出貨</span>
+              <span>請至門市取貨</span>
             </div>
             {/* TODO: 商品詳細清單 */}
             <CartDetail />

@@ -11,7 +11,7 @@ import {
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// import StoreData from './data/store.json';
+// import StoreData from '../data/store.json';
 
 //  點地圖會可以抓到你目前所在的位置
 function LocationMarker() {
@@ -106,8 +106,8 @@ function StepMap() {
   // StoreData.map((v, index) => {
   return (
     <>
-      <form>
-        <div className="form-row d-flex justify-content-between px-0">
+      <form className="m-4">
+        <div className="form-row d-flex justify-content-between px-0 ch-cont-14">
           <div className="form-group col">
             <label htmlFor="inputArea">縣市 </label>
             <select id="inputArea" className="form-control ">

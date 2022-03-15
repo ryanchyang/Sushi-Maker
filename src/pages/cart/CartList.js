@@ -1,7 +1,7 @@
 // CartList.js   購物車空白
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 // import SetInfoDetails from './SetInfoDetail';
-
+import './Cart.scss';
 //
 // import { Button, Modal } from 'bootstrap';
 import React, { useState } from 'react';
