@@ -1,18 +1,18 @@
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../../contexts';
+// import { AuthContext } from '../../../contexts';
 import { findMem } from '../../../WebApi';
 
 function MemHead() {
   const [memData, setMemData] = useState(null);
-  const { user } = useContext(AuthContext);
-  const mem_id = user.mem_id;
+  // const { user } = useContext(AuthContext);
+  const mem_id = localStorage.getItem('mem_id');
 
   useEffect(() => {
     findMem(mem_id).then(memData => {
       setMemData(memData[0]);
     });
-  }, [user]);
-  
+  }, []);
+
   return (
     <div className="memHead ">
       <div className="memPhotoArea col-md-6">

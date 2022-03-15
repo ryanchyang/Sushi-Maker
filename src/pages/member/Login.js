@@ -12,7 +12,7 @@ import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
 import zIndex from '@mui/material/styles/zIndex';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken } from '../../utils';
-import { AuthContext } from '../../contexts.js';
+// import { AuthContext } from '../../contexts.js';
 
 //styled component
 const LoginBody = styled.body`
@@ -69,7 +69,7 @@ const PswInput = styled.input`
 `;
 
 function Login() {
-  const {setUser} = useContext(AuthContext);
+  // const {setUser} = useContext(AuthContext);
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
   const [errorMessage, setErrorMessage] = useState();
@@ -78,22 +78,25 @@ function Login() {
   const handleSubmit = e => {
     e.preventDefault();
     login(mem_account, mem_pwd).then(data => {
-      console.log(data);
+      console.log(data.info.mem_id);
       if (data.ok === 0) {
         return setErrorMessage(data.message);
       }
       setAuthToken(data.token);
+      localStorage.setItem('mem_id', data.info.mem_id);
 
-      getMe().then(response => {
-        console.log(response.data);
+      // getMe().then(response => {
+      //   console.log(response.data);
 
-        if (response.ok !== 1) {
-          setAuthToken(null);
-          return setErrorMessage(response.toString());
-        }
-        setUser(response.data);
-        history.push('/member'); //登入成功後導入會員頁
-      });
+      //   if (response.ok !== 1) {
+      //     setAuthToken(null);
+      //     return setErrorMessage(response.toString());
+      //   }
+      //   // setUser(response.data);
+      //   history.push('/member'); //登入成功後導入會員頁
+      // });
+
+      history.push('/member'); //登入成功後導入會員頁
     });
   };
 
