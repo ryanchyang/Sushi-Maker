@@ -14,7 +14,7 @@ function MtlRight() {
           <ArrL className="arrL" />
         </div>
         <div className="ra-menu col px-0">
-          <div className="menu">
+          <div className="menuMtl">
             <Help className="tech" />
             <Cart className="cart" />
             <div className="mem">
@@ -49,10 +49,12 @@ function MtlRight() {
               <MtlRBtn />
             </div>
             <div className="btn">
-              <button className="btn-sm btn-primary primeal-btn-outline ">
+              <button className="btn-sm btn-outline-primary primeal-btn-outline my-2">
                 儲存編輯
               </button>
-              <button className="btn-sm btn-primary primeal-btn">下一步</button>
+              <button className="btn-sm btn-primary primeal-btn my-2">
+                下一步
+              </button>
             </div>
           </div>
         </div>

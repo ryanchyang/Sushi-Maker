@@ -8,8 +8,8 @@ function MtlLeft() {
     <>
       <div className="col-6 left-area mx-auto px-0">
         <div className="la-menu col px-0">
-          <div className="logo">
-            <Logo className="logo-box" />
+          <div className="logoMtl">
+            <Logo className="logoMtl-box" />
             <div className="col-12" />
           </div>
           <div className="mtlBtn-l col p-0">
