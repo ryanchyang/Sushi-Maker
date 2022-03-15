@@ -1,17 +1,10 @@
 import styled from 'styled-components';
-import {
-  Header,
-  Title,
-  AsideLeft,
-  AsideRight,
-  Footer,
-} from './memLayout/LayoutDark';
-import { useState, useContext } from 'react';
-import { getMe, login } from '../../WebApi';
+import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
+import { useState } from 'react';
+import { login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
-import zIndex from '@mui/material/styles/zIndex';
 import { Link, useHistory } from 'react-router-dom';
-import { setAuthToken ,setMemId } from '../../utils';
+import { setAuthToken, setMemId } from '../../utils';
 // import { AuthContext } from '../../contexts.js';
 
 //styled component
