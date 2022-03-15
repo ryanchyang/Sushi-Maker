@@ -1,0 +1,134 @@
+[
+    {
+      "prod_id": 2,
+      "prod_ch_name": "肉排三重奏",
+      "prod_en_name": "Triple Meat",
+      "prod_category": "sushi",
+      "prod_value": 60,
+      "prod_spe_tag": "25%OFF",
+      "prod_spe_value": 55,
+      "img_path": "imgs/temp/classic-pro1.png",
+      "material": [15,16]
+    },
+    {
+      "prod_id": 6,
+      "prod_ch_name": "焦糖鮭魚玉子",
+      "prod_en_name": "Caramel Salmon with Egg",
+      "prod_category": "sushi",
+      "prod_value": 55,
+      "prod_spe_tag": "NEW",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro2.png",
+      "material": [2,8]
+    },
+    {
+      "prod_id": 8,
+      "prod_ch_name": "清檸干貝魚子醬",
+      "prod_en_name": "Lemon Scallop with Caviar",
+      "prod_category": "sushi",
+      "prod_value": 70,
+      "prod_spe_tag": "",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro3.png",
+      "material": [27,30,37]
+    },
+    {
+      "prod_id": 9,
+      "prod_ch_name": "酪梨鮭魚魚子",
+      "prod_en_name": "Avocado Salmon with Caviar",
+      "prod_category": "sushi",
+      "prod_value": 50,
+      "prod_spe_tag": "20%OFF",
+      "prod_spe_value": 40,
+      "img_path": "/imgs/temp/classic-pro4.png",
+      "material": [2,31]
+    },
+    {
+      "prod_id": 10,
+      "prod_ch_name": "煙燻鮭魚玉子",
+      "prod_en_name": "Smoked Salmon with Egg",
+      "prod_category": "sushi",
+      "prod_value": 50,
+      "prod_spe_tag": "",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro1.png",
+      "material": [2,8]
+    },
+    {
+      "prod_id": 13,
+      "prod_ch_name": "綜合野菜",
+      "prod_en_name": "Mixed Vegetables",
+      "prod_category": "sushi",
+      "prod_value": 55,
+      "prod_spe_tag": "HOT",
+      "prod_spe_value": 48,
+      "img_path": "/imgs/temp/classic-pro2.png",
+      "material": [20,24,28,34]
+    },
+    {
+      "prod_id": 14,
+      "prod_ch_name": "綜合野菜",
+      "prod_en_name": "Mixed Vegetables",
+      "prod_category": "sushi",
+      "prod_value": 55,
+      "prod_spe_tag": "HOT",
+      "prod_spe_value": 48,
+      "img_path": "/imgs/temp/classic-pro2.png",
+      "material": [20,24,28,34]
+    },
+    {
+      "prod_id": 29,
+      "prod_ch_name": "巧克力草莓",
+      "prod_en_name": "Chocolate Strawberry",
+      "prod_category": "dessert",
+      "prod_value": 60,
+      "prod_spe_tag": "25%OFF",
+      "prod_spe_value": 55,
+      "img_path": "imgs/temp/classic-pro1.png",
+      "material": [15,16]
+    },
+    {
+      "prod_id": 32,
+      "prod_ch_name": "柑橘胡蘿蔔",
+      "prod_en_name": "Orange Carrot",
+      "prod_category": "dessert",
+      "prod_value": 55,
+      "prod_spe_tag": "NEW",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro2.png",
+      "material": [2,8]
+    },
+    {
+      "prod_id": 33,
+      "prod_ch_name": "柚子醬佐蜜桃",
+      "prod_en_name": "Peach with Grapefruit Sauce",
+      "prod_category": "dessert",
+      "prod_value": 70,
+      "prod_spe_tag": "",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro3.png",
+      "material": [27,30,37]
+    },
+    {
+      "prod_id": 35,
+      "prod_ch_name": "焦糖布丁",
+      "prod_en_name": "Caramel Pudding",
+      "prod_category": "dessert",
+      "prod_value": 50,
+      "prod_spe_tag": "20%OFF",
+      "prod_spe_value": 40,
+      "img_path": "/imgs/temp/classic-pro4.png",
+      "material": [2,31]
+    },
+    {
+      "prod_id": 38,
+      "prod_ch_name": "蝶豆花藍莓",
+      "prod_en_name": "Butterfly Pea Blueberry",
+      "prod_category": "dessert",
+      "prod_value": 50,
+      "prod_spe_tag": "",
+      "prod_spe_value": 0,
+      "img_path": "/imgs/temp/classic-pro1.png",
+      "material": [2,8]
+    }
+  ]
