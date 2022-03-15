@@ -10,11 +10,12 @@ import { useState, useEffect } from 'react';
 import data from './testData.json';
 
 function Index() {
-  const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const [page, setPage] = useState(1);
-  const [category, setCategory] = useState('sushi');
+  const [isOpenFilter, setIsOpenFilter] = useState(false);  //是否開啟篩選器選單
+  const [currentPage, setCurrentPage] = useState(1);  //當前分頁
+  const [totalPage, setTotalPage] = useState(0);  //總分頁數
+  const [category, setCategory] = useState('sushi');  //商品分類
   const [prodList, setProdList] = useState([]); //依分類呈現商品資料
-  const [tagShow, setTagShow] = useState([]);
+  const [tagShow, setTagShow] = useState([]);  //商品列表上方的分類標籤
   const [materials, setMaterials] = useState([]); //材料
   const [priceFilter, setPriceFilter] = useState(['', '']); //依金額搜尋([最小金額, 最大金額])
   const [specialCategoryFilter, setSpecialCategoryFilter] = useState([
@@ -229,27 +230,43 @@ function Index() {
 
     if (isClose) setIsOpenFilter(false);
     setTagShow(showTags);
-    setProdList(
-      filteredData.slice((page - 1) * pageProdCount, page * pageProdCount)
-    ); //取當頁所呈現的商品列表
+
+    setProdList(filteredData.slice((currentPage - 1) * pageProdCount, currentPage * pageProdCount));  //取當頁所呈現的商品列表
+
   };
+
+  const changePageArrow = (e) => {
+    if(e.target.dataset.canchange === "true"){
+      //上下頁數在合理範圍時才會換頁
+      setCurrentPage(+e.target.dataset.page);      
+    }
+  }
+
+  const changePage = (e) => {    
+      setCurrentPage(+e.target.dataset.page); 
+  }
 
   const applyPage = () => {
-    setProdList(
-      prodList.slice((page - 1) * pageProdCount, page * pageProdCount)
-    ); //取當頁所呈現的商品列表
-  };
+
+    setProdList(prodList.slice((currentPage - 1) * pageProdCount, currentPage * pageProdCount));   //取當頁所呈現的商品列表
+  }
 
   useEffect(() => {
-    //預設呈現的商品類型為壽司
-    setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
+    const initData = data.data.filter(pro => pro.prod_category === 'sushi');
+    //預設呈現的商品類型為壽司    
+    setProdList(initData);
+
     //初始化所有材料
     setMaterials(data.mtl);
+    //初始化總分頁數
+    setTotalPage(Math.ceil(initData.length / 6));
   }, []);
 
-  useEffect(() => {
-    applyFilter(); //當篩選條件其中一個有改變，就重新渲染商品列表
-  }, [materials, priceFilter, specialCategoryFilter]);
+
+  useEffect(() => {    
+      applyFilter(); //當篩選條件其中一個有改變或是點其它分頁，就重新渲染商品列表    
+  }, [materials, priceFilter, specialCategoryFilter, currentPage]);
+
 
   const showStyle = { display: 'block' };
   const showStyleInlne = { display: 'inline' };
@@ -566,9 +583,22 @@ function Index() {
               <div className="pagination-box">
                 <ul className="pagination ch-cont-16">
                   <li>
-                    <div className="page-prev">&lt;</div>
+                    <div className="page-prev" data-page={currentPage - 1} onClick={changePageArrow} data-canChange={currentPage - 1 >= 1 ? true : false}>&lt;</div>
                   </li>
-                  <li>
+                  {
+                    Array(totalPage).fill(1).map((v, i) => {
+                      console.log(i);
+                      return (
+                        <>
+                          <li key={i}>
+                            <div className="page-number" data-page={i + 1} onClick={changePage}>{i + 1}</div>
+                          </li>
+                        </>
+                      )
+                    })
+                  }
+
+                  {/* <li>
                     <div className="page-number">1</div>
                   </li>
                   <li>
@@ -577,11 +607,17 @@ function Index() {
                   <li>
                     <div className="page-number">3</div>
                   </li>
+                  <li> */}
+
+
                   <li>
-                    <div className="page-next">&gt;</div>
+                    <div className="page-next" data-page={currentPage + 1} data-canChange={currentPage + 1 <= totalPage ? true : false } onClick={changePageArrow}>&gt;</div>
                   </li>
                 </ul>
               </div>
+
+
+
             </div>
 
             {/* 主要篩選條件區 */}
