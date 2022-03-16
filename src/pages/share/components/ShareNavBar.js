@@ -5,7 +5,8 @@ import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
 import styles from '../Share.module.scss';
 
 function ShareNavBar(props) {
-  const { filter, setFilter, search, setSearch } = props;
+  const { filter, setFilter, search, setSearch, colControl, setColControl } =
+    props;
 
   const searchBarHandler = () =>
     search
@@ -37,6 +38,7 @@ function ShareNavBar(props) {
 
                 <ViewAdjust
                   className={`${styles['col-button']} mx-4 d-none d-md-block`}
+                  onClick={() => setColControl(!colControl)}
                 />
                 <button
                   className={`${styles.mysharebutton}  d-none d-md-block en-title-18 ml-4`}

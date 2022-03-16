@@ -1,128 +1,136 @@
-.aside-left{ 
-    border-right: 1px solid #c4c4c4; 
-    height: 100%; 
+.aside-fixed {
+  position: fixed;
+  z-index: 3;
+  background-color: #f7f6f3;
 }
-.aside-right{ 
-    border-left: 1px solid #c4c4c4; 
-    height: 100%; 
+
+.aside-left {
+  border-right: 1px solid #c4c4c4;
+  height: 100%;
 }
-.mobile-top{
-    display: none;
-    justify-content: space-between;
-    padding: 0 30px;
+.aside-right {
+  border-left: 1px solid #c4c4c4;
+  height: 100%;
 }
-.layout-cart-btn-box-top{     
-    padding-top: 40px;
-    padding-right: 10px;
+.mobile-top {
+  display: none;
+  justify-content: space-between;
+  padding: 0 30px;
 }
-.layout-title{
-    height: 10rem;
-    padding: 20px 0 0 30px;
-    font-size: 5rem;
+.layout-cart-btn-box-top {
+  padding-top: 40px;
+  padding-right: 10px;
 }
-.logo-box{ 
-    width: 70px; 
-    height: 70px; 
-    margin: 0 auto; 
-    padding-top: 20px; 
+.layout-title {
+  height: 10rem;
+  padding: 20px 0 0 30px;
+  font-size: 5rem;
 }
-.logo{ 
-    width: 100%; 
-    height: auto; 
-    fill:#989177; 
+.logo-box {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto;
+  padding-top: 20px;
 }
-.layout-hamberger-box{
-    padding-top: 25px;
+.logo {
+  width: 100%;
+  height: auto;
+  fill: #989177;
 }
-.layout-hamberger{ 
-    display: block;
-    margin: 0 auto;   
-    font-size: 30px;    
+.layout-hamberger-box {
+  padding-top: 25px;
 }
-.layout-mem-photo-box{ 
-    margin: 0 auto; 
-    padding-top: 25px;  
-    width: 50px; 
-    height: 50px;
+.layout-hamberger {
+  display: block;
+  margin: 0 auto;
+  font-size: 30px;
 }
-.layout-mem-photo-box img{
-    border-radius: 50%;
-    width: 100%; 
-    height: auto;
+.layout-mem-photo-box {
+  margin: 0 auto;
+  padding-top: 25px;
+  width: 50px;
+  height: 50px;
 }
-.layout-cart-btn-box{
-    padding-top: 50px;
+.layout-mem-photo-box img {
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
 }
-.layout-cart-btn{
-    display: block;
-    margin: 0 auto;   
-    font-size: 25px;
+.layout-cart-btn-box {
+  padding-top: 50px;
 }
-.footer{ 
-    height: 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    border-top: 1px solid #c4c4c4;
+.layout-cart-btn {
+  display: block;
+  margin: 0 auto;
+  font-size: 25px;
 }
-.footer-logo-box{
-    display: inline-block;
-    width: 20px; 
-    height: 20px; 
-    margin-left: 1rem; 
+.footer {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-top: 1px solid #c4c4c4;
 }
-.footer-logo{
-    width: 100%; 
-    height: auto; 
-    fill:#989177;
+.footer-logo-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 1rem;
 }
-.copyright{    
-    display: inline-block;
-    font-size: 1.2rem;
-    margin-left: 1rem;
-    color: #575757;
+.footer-logo {
+  width: 100%;
+  height: auto;
+  fill: #989177;
 }
-.footer-icon-box-group{
-    margin: 0 0.5rem;
-    display: flex;    
+.copyright {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  color: #575757;
 }
-.footer-icon-box{
-    width: 15px; 
-    height: 15px; 
-    margin: 0px 10px 5px 10px;
+.footer-icon-box-group {
+  margin: 0 0.5rem;
+  display: flex;
 }
-.footer-fb, .footer-tw, .footer-in{
-    width: 100%; 
-    height: auto; 
-    fill:#575757;
+.footer-icon-box {
+  width: 15px;
+  height: 15px;
+  margin: 0px 10px 5px 10px;
+}
+.footer-fb,
+.footer-tw,
+.footer-in {
+  width: 100%;
+  height: auto;
+  fill: #575757;
 }
 
 @media screen and (max-width: 576px) {
-    .mobile-adj {
-        display: none; 
-    }    
-    .layout-title{        
-        font-size: 2.4rem;
-        line-height: 3.6rem;
-        letter-spacing: 0.54rem;
-        padding: 10px 0 0 15px;
-    } 
-    .logo-box{
-        width: 55px;
-        height: 55px;
-    }
-    .mobile-top{
-        display: flex; 
-        padding: 0 15px;       
-    }
+  .mobile-adj {
+    display: none;
+  }
+  .layout-title {
+    font-size: 2.4rem;
+    line-height: 3.6rem;
+    letter-spacing: 0.54rem;
+    padding: 10px 0 0 15px;
+  }
+  .logo-box {
+    width: 55px;
+    height: 55px;
+  }
+  .mobile-top {
+    display: flex;
+    padding: 0 15px;
+  }
 }
 @media only screen and (min-width: 577px) and (max-width: 960px) {
-    .logo-box{
-        width: 40px;
-        height: 40px;
-    }
-    .layout-title{        
-        font-size: 4rem;
-    }
+  .logo-box {
+    width: 40px;
+    height: 40px;
+  }
+  .layout-title {
+    font-size: 4rem;
+  }
 }

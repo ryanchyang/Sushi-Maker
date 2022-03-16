@@ -11,7 +11,7 @@ function ShareFilter(props) {
       <div className={`${styles['filter-panel-mask']}`}></div>
       <div
         className={`${styles['filter-panel']}`}
-        style={!filter ? { right: '-100%' } : { right: '12.5%' }}
+        style={!filter ? { right: '-70%' } : { right: '12.5%' }}
       >
         {/* <div className={`${styles['waterfall-container']}`}></div> */}
         <div className={`mycontainer mb-5 classic`}>
