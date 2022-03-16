@@ -6,6 +6,7 @@
   .search-filter {
     display: flex;
     justify-content: flex-end;
+    height: 4rem;
   }
   .search-btn,
   .filter-btn {
@@ -208,14 +209,13 @@
   .mobile-filter-title{
     margin: 0;
   }
-  .prod-filter {
+  .prod-filter-sh {
     background-color: $light-bg;
     overflow: hidden;
     position: fixed;
-    top: 20%;
+    top: 14rem;
     width: 75%;
-    height: 80vh;
-    right: 12.5%;
+    min-height: calc($min-height - 4rem) ;
     transition: 0.3s;
   }
   .filter-top {
@@ -459,10 +459,11 @@
       text-align: center;
       margin: 20% 0 10% 0;
     }
-    .prod-filter{
+    $prod-filter-mb: calc($min-height - 4rem - 80px);
+    .prod-filter-sh{
       width: 100%;
       top: 30%;      
-      // height: 80vh;
+      min-height: $prod-filter-mb ;
       right: 0;
     }
     .mobile-filter-title{
