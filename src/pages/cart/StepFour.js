@@ -1,8 +1,11 @@
 //cart/StepFour.js
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartDetail from './components/CartDetial';
+import { Link, useHistory } from 'react-router-dom';
 // TODO: A  改 LINK
 function StepFour() {
+  // 回上一頁 按鈕
+  let history = useHistory();
   return (
     <>
       <Header />
@@ -43,12 +46,14 @@ function StepFour() {
                   </div>
                   {/* ＢＴＮ 返回按鈕 */}
                   <div className="col-24 col-md-8 my-3 d-flex justify-content-md-end justify-content-center ">
-                    <button
-                      type="button"
-                      className="btn btn-primary primeal-btn "
-                    >
-                      繼續購物
-                    </button>{' '}
+                    <Link to="./CartList">
+                      <button
+                        type="button"
+                        className="btn btn-primary primeal-btn "
+                      >
+                        繼續購物
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -62,12 +67,12 @@ function StepFour() {
             <div className="processBar">
               <div class="progress">
                 <div
-                  className="progress-bar progress-bar-striped"
-                  role="progressbar"
-                  style={{ width: '30%' }}
-                  aria-valuenow="10"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
+                  className="process-bar "
+                  // role="progressbar"
+                  // style={{ width: '30%' }}
+                  // aria-valuenow="10"
+                  // aria-valuemin="0"
+                  // aria-valuemax="100"
                 ></div>
               </div>
               <div className="d-flex justify-content-between my-3">

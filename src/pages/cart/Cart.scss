@@ -46,6 +46,24 @@
 }
 
 }
+.prod-item:hover{
+  background-color: $card-hover;
+  // width: 100%;
+}
+// 交易明細項目商品背景色
+.prod-item-info{
+  background-color: #ffffff;
+  width: 100%;
+  // margin: 2% 0;
+  padding: 0 5%;
+}
+// 交易明細項目商品背景色
+.prod-item-info:hover{
+  background-color: $light-bg;
+  width: 100%;
+
+}
+
 
 /* 購物車數量 - 1 + */
 .select-count{
@@ -146,11 +164,11 @@ width: 100%;
 }
 
 // 頁尾固定
-Footer{
-   /*  */
-    position: sticky;
-    bottom: 0;
-}
+// Footer{
+//    /*  */
+//     position: sticky;
+//     bottom: 0;
+// }
 
 
 
@@ -162,14 +180,14 @@ Footer{
 }
 
 // 所有 input 高度
-input.form-control{
-  height: 40px;
-  padding: 10px 20px;
-}
+// input.form-control{
+//   height: 40px;
+//   padding: 10px 20px;
+// }
 
-input::placeholder {
-  padding: 0 0px;
-}
+// input::placeholder {
+//   padding: 0 0px;
+// }
 
 // 下拉選單
 select{
@@ -264,6 +282,31 @@ table {
 }
 .processBar{
    margin:5% 10%;
+}
+
+.process-bar{
+  width: 100%;
+  height: 30px;
+  background-color: $gray;
+  position: relative;
+  border-radius: 10px;
+}
+.process-bar:before{
+  content: '';
+  position: absolute;
+  width: 30%;
+  height: 10px;
+  border-radius: 10px;
+  background-color: $light-red;
+  animation: processbar 2s ease-in;
+}
+@keyframes processbar{
+  from{
+    width: 0;
+  }
+  to{
+    width: 30%;
+  }
 }
 
 }

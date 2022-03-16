@@ -1,16 +1,8 @@
 import styled from 'styled-components';
-import {
-  Header,
-  Title,
-  AsideLeft,
-  AsideRight,
-  Footer,
-} from './memLayout/LayoutDark';
-import { useState, useContext } from 'react';
-import { getMe, login } from '../../WebApi';
+import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
+import { useState } from 'react';
+import { login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
-import { ReactComponent as EyeShow } from '../../imgs/eye-show.svg';
-import zIndex from '@mui/material/styles/zIndex';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken, setMemId } from '../../utils';
 // import { AuthContext } from '../../contexts.js';
@@ -59,31 +51,30 @@ const InputRegistLink = styled.p`
 `;
 const ErrorMessage = styled.p`
   color: #b03342;
-  height: 20px;
 `;
 
 //顯示關閉密碼icon待開發
-const PswInput = styled.input``;
+const PswInput = styled.input`
+  after::{
+    <BsEyeSlash></BsEyeSlash>
+
+  }
+`;
 
 function Login() {
   // const {setUser} = useContext(AuthContext);
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [showPwd, setShowPwd] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
   const history = useHistory();
-
-  const handleClickPwd = e => {
-    showPwd === true ? setShowPwd(false) : setShowPwd(true);
-  };
 
   const handleSubmit = e => {
     e.preventDefault();
     login(mem_account, mem_pwd).then(data => {
-      if (data.code !== 0) {
-        return setErrorMessage(data.error);
+      console.log(data.info.mem_id);
+      if (data.ok === 0) {
+        return setErrorMessage(data.message);
       }
-
       setAuthToken(data.token);
       setMemId(data.info.mem_id);
 
@@ -106,12 +97,12 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
             <LoginArea>
-              <LoginAreaImg className="col-8" style={{ height: '100vh%'}}>
+              <LoginAreaImg className="col-8">
                 <img
                   src={require('../../imgs/mem/LoginImg.png')}
                   style={{ width: '100%', height: '100%' }}
@@ -143,9 +134,7 @@ function Login() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">
-                    {errorMessage && '帳號錯誤!'}
-                  </ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <div
@@ -154,7 +143,7 @@ function Login() {
                     }}
                   >
                     <PswInput
-                      type={showPwd === false ? 'password' : 'text'}
+                      type="password"
                       className="form-control"
                       value={mem_pwd}
                       onChange={e => {
@@ -172,29 +161,15 @@ function Login() {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    {showPwd === false ? (
-                      <EyeOff
-                        style={{
-                          position: 'absolute',
-                          right: '10px',
-                          top: '8px',
-                        }}
-                        onClick={handleClickPwd}
-                      ></EyeOff>
-                    ) : (
-                      <EyeShow
-                        style={{
-                          position: 'absolute',
-                          right: '10px',
-                          top: '8px',
-                        }}
-                        onClick={handleClickPwd}
-                      ></EyeShow>
-                    )}
+                    <EyeOff
+                      style={{
+                        position: 'absolute',
+                        right: '10px',
+                        top: '8px',
+                      }}
+                    ></EyeOff>
                   </div>
-                  <ErrorMessage className="ch-cont-14">
-                    {errorMessage && '密碼錯誤!'}
-                  </ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
                   <button
                     className="ch-title-22 btn"
                     style={{
