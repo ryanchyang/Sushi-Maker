@@ -290,8 +290,9 @@ function Index() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Classic'} />
+          <br />
 
-          <div className="classic min-hi">
+          <div className="classic">
             <div className="search-filter">
               <div className="search-btn">
                 <SearchBtn />
@@ -666,7 +667,7 @@ function Index() {
 
             {/* 主要篩選條件區 */}
             <div
-              className="prod-filter-sh"
+              className="prod-filter"
               style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
               onTransitionEnd={() => {
                 setIsOpenMainContent(isOpenFilter ? false : true);
