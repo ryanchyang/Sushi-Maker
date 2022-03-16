@@ -3,8 +3,16 @@ import './index.scss';
 import './../../styles/global.scss';
 import newsData from './news.json';
 import evntsData from './evnts.json';
-import promo from './promo.json';
 import { useState, useEffect } from 'react';
+
+// {
+//     "news_id": "1",
+//     "news_title": "春天來了! 羊羹櫻花凍壽司新上市",
+//     "news_cate": "新品上市",
+//     "news_start_date": "2022-03-01",
+//     "news_detail": "充滿粉紅氣息的春天終於來了! PRIMEAL推出粉色的羊羹櫻花凍口味壽司，清爽口感搭配淡淡的櫻花香，給您不一樣的2022春天! ",
+//     "news_img_path": "new-cherry-blossom.png"
+// }
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
@@ -12,7 +20,6 @@ function Index() {
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [latestNews, setLatestNews] = useState('NEWS');
   const [newsIndex, setNewsIndex] = useState(0);
-  const [isHover, setIsHover] = useState(false);
 
   // 初始化要資料
   useEffect(() => {}, []);
@@ -20,19 +27,6 @@ function Index() {
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNews]);
-
-  // 處理carousel hover
-  // ToDo: hover會停止 + 無限輪播牆改用js改寫
-  const handleMouseEnter = e => {
-    console.log('enter');
-    console.log(e.target.dataset.id);
-    setIsHover(true);
-    if (isHover) {
-    }
-  };
-  const handleMouseLeave = e => {
-    console.log('leave');
-  };
 
   // 處理just for you類別切換
   const handleJustForYou = e => {
@@ -215,33 +209,198 @@ function Index() {
               <Title title={'Promotion'} />
               <div className="promotion-wrap">
                 <ul className="promotion-list">
-                  {promo.map((v, i) => {
-                    return (
-                      <li
-                        key={v.prod_id}
-                        data-id={v.prod_id}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      >
-                        <div
-                          className={`bg${Math.ceil(i % 4) * 1} promotioncard`}
-                        >
-                          <div className="promotion-img">
-                            <img
-                              src="/img/home/sushi/鮪魚壽司.png"
-                              alt="tuna-sushi"
-                            />
-                          </div>
-                          <div className="ch-title-22 promotion-prod-ch-name">
-                            {v.prod_ch_name}
-                          </div>
-                          <div className="en-cont-14 promotion-prod-en-name">
-                            {v.prod_en_name}
-                          </div>
-                        </div>
-                      </li>
-                    );
-                  })}
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="promotion-card">
+                      <div className="promotion-img">
+                        <img
+                          src="/img/home/sushi/鮪魚壽司.png"
+                          alt="tuna-sushi"
+                        />
+                      </div>
+                      <div className="ch-title-22 promotion-prod-ch-name">
+                        鮪魚壽司
+                      </div>
+                      <div className="en-title-18 promotion-prod-en-name">
+                        Tuna Sushi
+                      </div>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </div>

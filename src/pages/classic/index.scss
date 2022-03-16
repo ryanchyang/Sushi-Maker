@@ -213,7 +213,7 @@
   .filter-top {
     float: right;
     display: flex;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
   }
   .clean-filter {
     width: 120px;
@@ -243,7 +243,7 @@
     padding: 0.5% 1%;
   }
   .by-price {
-    margin-bottom: 2%;
+    margin-bottom: 7%;
     clear: both;
   }
   .by-price-text {
@@ -276,7 +276,6 @@
   }
   .by-price-input input::placeholder {
     color: #c4c4c4;
-    @extend .ch-title-16;
   }
   .by-price-dash-line {
     margin: 0 3%;
@@ -286,7 +285,7 @@
     border-right: none;
   }
   .by-flavor {
-    margin-bottom: 2%;
+    margin-bottom: 7%;
   }
   .flavor-tag-box {
     width: 100%;
