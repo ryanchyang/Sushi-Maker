@@ -10,6 +10,7 @@ import data from './testData.json';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
+  const [isOpenMainContent, setIsOpenMainContent] = useState(true); //是否開啟主要商品列表
   const [currentPage, setCurrentPage] = useState(1); //當前分頁
   const [totalPage, setTotalPage] = useState(0); //總分頁數
   const [category, setCategory] = useState('sushi'); //商品分類
@@ -276,7 +277,7 @@ function Index() {
 
   const showStyle = { display: 'block' };
   const showStyleInlne = { display: 'inline' };
-  const hiddenStyle = { display: 'none' };
+  const hiddenStyle = { display: 'none'};  
   const flavorTagNoClick = { color: '#b03342', backgroundColor: 'transparent' };
   const flavorTagClicked = { color: '#ffffff', backgroundColor: '#b03342' };
   const pageNoSelected = { border: '1px solid #575757', color: '#575757' };
@@ -300,6 +301,7 @@ function Index() {
                 className="filter-btn"
                 onClick={() => {
                   setIsOpenFilter(!isOpenFilter);
+                  //setIsOpenMainContent(!isOpenMainContent);
                 }}
               >
                 <FilterBtn />
@@ -309,7 +311,7 @@ function Index() {
             {/* 商品呈現區 */}
             <div
               className="main-content"
-              style={isOpenFilter ? hiddenStyle : showStyle}
+              style={isOpenMainContent ? showStyle : hiddenStyle}
             >
               {/* category tag */}
               <div className="category-box">
@@ -666,7 +668,10 @@ function Index() {
             {/* 主要篩選條件區 */}
             <div
               className="prod-filter"
-              style={isOpenFilter ? showStyle : hiddenStyle}
+              style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
+              onTransitionEnd={() => {
+                setIsOpenMainContent(isOpenFilter ? false : true);
+              }}
             >
               {/* clean or cancel filter */}
               <div className="d-flex flex-column">
@@ -681,13 +686,13 @@ function Index() {
                     />
                     <span>清空條件</span>
                   </div>
-                  <div className="cancel-filter ch-cont-16">
+                  {/* <div className="cancel-filter ch-cont-16">
                     <span>X</span>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* by price */}
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mobile-filter-title">
                   <div className="by-price col-18 d-flex flex-column">
                     <div className="by-price-title">
                       <div className="orange-tag">
@@ -719,7 +724,7 @@ function Index() {
                 </div>
 
                 {/* by flavor */}
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mobile-filter-title">
                   <div className="by-flavor col-18 d-flex flex-column">
                     <div className="by-flavor-title">
                       <div className="orange-tag">
@@ -769,7 +774,7 @@ function Index() {
                 </div>
 
                 {/* by category */}
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mobile-filter-title">
                   <div className="col-18 d-flex flex-column">
                     <div className="by-category">
                       <div className="orange-tag">
@@ -836,7 +841,7 @@ function Index() {
                       >
                         送出條件
                       </button>
-                    </div>{' '}
+                    </div>
                   </div>
                 </div>
               </div>
