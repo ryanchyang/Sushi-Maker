@@ -8,12 +8,36 @@ import IconButton from '@mui/material/IconButton';
 import styles from '../Share.module.scss';
 
 import { ReactComponent as Heart } from '../../../imgs/heart.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useCurrentWidth from '../hooks/useCurrentWidth';
 
-export default function Masonry(props) {
-  const { columns, gap } = props;
+const breakpoints = {
+  xs: 0,
+  sm: 600,
+  md: 960,
+  lg: 1280,
+};
 
+const getColumns = width => {
+  if (width < breakpoints.sm) {
+    return 2;
+  } else if (width < breakpoints.md) {
+    return 2;
+  } else if (width < breakpoints.lg) {
+    return 3;
+  } else {
+    return 4;
+  }
+};
+
+export default function Masonry() {
+  const currentWidth = useCurrentWidth();
+  const [columns, setColumns] = useState(getColumns(currentWidth));
   const [hover, setHover] = useState(-1);
+
+  const updateDimensions = () => {
+    setColumns(getColumns(currentWidth));
+  };
 
   const hoverHandler = i => {
     let obj = {
@@ -30,9 +54,13 @@ export default function Masonry(props) {
     }
   };
 
+  useEffect(() => {
+    updateDimensions();
+  }, [currentWidth]);
+
   return (
     <div className={`d-flex flex-column ${styles['masonry-index']}`}>
-      <ImageList variant="masonry" cols={columns} gap={gap * 10}>
+      <ImageList variant="masonry" cols={columns} gap={columns * 10}>
         {itemData.map((item, i) => (
           <ImageListItem
             key={i}

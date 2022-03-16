@@ -1,8 +1,5 @@
 @import './../../styles/global.scss';
 .step {
-  .set-row {
-    display: flex;
-  }
   .set-all-content {
     margin: 5% 0 5% 0;
     position: relative;
@@ -81,13 +78,10 @@
   }
 
   @media screen and (max-width: 600px) {
-    .set-content{
-      padding-bottom:10%;
-    }
     .set-title {
       margin: auto;
       padding: 10px;
-      border: 1px solid #212121;
+      border: 0px solid #212121;
       border-radius: 13px;
       background-color: #f7f6f3;
       position: absolute;
@@ -101,7 +95,7 @@
       padding: 8% 4%;
       width: 85%;
       height: 60%;
-      border: 1px solid #212121;
+      border: 0px solid #212121;
       border-radius: 13px;
       justify-content: center;
       display: flex;
@@ -109,21 +103,8 @@
       position: relative;
     }
   }
-  .setoreder-btn-all{
-    margin-top: 10%;
-    margin-bottom: 10%;
-  }
-  .setorder-btn{
-    border: 1px solid #b03342;
-    color: #b03342;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-.set-menu-final{
 
-}
+
 
   
 }

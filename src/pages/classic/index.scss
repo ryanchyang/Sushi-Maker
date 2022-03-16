@@ -206,10 +206,9 @@
     line-height: 40px;
     cursor: pointer;
   }
-  .mobile-filter-title {
+  .mobile-filter-title{
     margin: 0;
   }
-
   .prod-filter-sh {
     background-color: $light-bg;
     overflow: hidden;
@@ -217,19 +216,6 @@
     top: 14rem;
     width: 75%;
     min-height: calc($min-height - 4rem) ;
-
-  .prod-filter-ryan {
-    width: 85%;
-    margin: 0 auto;
-    background-color: $light-bg;
-    overflow: hidden;
-    transition: 0.3s;
-  }
-  .prod-filter {
-    width: 85%;
-    margin: 5% auto 0 auto;
-    background-color: $light-bg;
-    overflow: hidden;
     transition: 0.3s;
   }
   .filter-top {
@@ -473,21 +459,14 @@
       text-align: center;
       margin: 20% 0 10% 0;
     }
-
     $prod-filter-mb: calc($min-height - 4rem - 80px);
     .prod-filter-sh{
       width: 100%;
       top: 30%;      
       min-height: $prod-filter-mb ;
-
-    .prod-filter {
-      width: 100%;
-      top: 30%;
-      // height: 80vh;
-
       right: 0;
     }
-    .mobile-filter-title {
+    .mobile-filter-title{
       margin: 0 0 5% 10%;
     }
   }
