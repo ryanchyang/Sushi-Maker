@@ -3,6 +3,7 @@ import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useState } from 'react';
 import { login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
+import { ReactComponent as EyeShow } from '../../imgs/eye-show.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken, setMemId } from '../../utils';
 // import { AuthContext } from '../../contexts.js';
@@ -51,6 +52,7 @@ const InputRegistLink = styled.p`
 `;
 const ErrorMessage = styled.p`
   color: #b03342;
+  height: 20px;
 `;
 
 //顯示關閉密碼icon待開發
@@ -66,7 +68,12 @@ function Login() {
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
   const [errorMessage, setErrorMessage] = useState();
+  const [showPwd, setShowPwd] = useState(false);
   const history = useHistory();
+
+  const handleClickPwd = e => {
+    showPwd === true ? setShowPwd(false) : setShowPwd(true);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -134,7 +141,9 @@ function Login() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">
+                    {errorMessage && '帳號錯誤!'}
+                  </ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <div
@@ -143,7 +152,7 @@ function Login() {
                     }}
                   >
                     <PswInput
-                      type="password"
+                      type={showPwd === false ? 'password' : 'text'}
                       className="form-control"
                       value={mem_pwd}
                       onChange={e => {
@@ -161,15 +170,29 @@ function Login() {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    <EyeOff
-                      style={{
-                        position: 'absolute',
-                        right: '10px',
-                        top: '8px',
-                      }}
-                    ></EyeOff>
+                    {showPwd === false ? (
+                      <EyeOff
+                        style={{
+                          position: 'absolute',
+                          right: '10px',
+                          top: '8px',
+                        }}
+                        onClick={handleClickPwd}
+                      ></EyeOff>
+                    ) : (
+                      <EyeShow
+                        style={{
+                          position: 'absolute',
+                          right: '10px',
+                          top: '8px',
+                        }}
+                        onClick={handleClickPwd}
+                      ></EyeShow>
+                    )}
                   </div>
-                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">
+                    {errorMessage && '密碼錯誤!'}
+                  </ErrorMessage>
                   <button
                     className="ch-title-22 btn"
                     style={{

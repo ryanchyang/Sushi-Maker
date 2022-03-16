@@ -46,7 +46,7 @@ function Title(props) {
 function AsideLeft() {
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
+      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed ">
         <div className="aside-left">
           <div className="logo-box">
             <Logo className="logo" />
@@ -63,7 +63,7 @@ function AsideRight() {
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
+      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed ">
         <div className="aside-right">
           <div className="layout-hamberger-box">
             <Hamburger className="layout-hamberger" />
