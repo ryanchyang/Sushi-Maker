@@ -13,6 +13,7 @@ export const setMemId = mem_id => {
   return localStorage.setItem(MEM_ID, mem_id);
 };
 
+//取memID
 export const getMemId = () => {
   return localStorage.getItem(MEM_ID);
 }

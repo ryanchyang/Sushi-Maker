@@ -16,7 +16,7 @@ export const login = (mem_account, mem_pwd) => {
   }).then(res => res.json());
 };
 
-//設定token的API
+//先留著 換頁render用
 export const getMe = () => {
   const token = getAuthToken();
   return fetch(`${BASE_URL}/member/api/auth-list/me`, {
@@ -26,7 +26,7 @@ export const getMe = () => {
   }).then(res => res.json());
 };
 
-//傳輸回後端找資料的API
+//token拿資料步驟2 : 傳輸回後端找資料的API
 export const findMem = mem_id => {
   const token = getAuthToken();
   return fetch(`${BASE_URL}/member/api/find-member`, {
