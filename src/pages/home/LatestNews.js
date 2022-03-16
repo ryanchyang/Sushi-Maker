@@ -5,11 +5,34 @@ import Events from './components/Events';
 import NewsFilter from './components/NewsFilter';
 import EvntsFilter from './components/EvntsFilter';
 import './latest-news.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import config from '../../Config';
 
 function LatestNews() {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [focus, setFocus] = useState('NEWS');
+  const [newsData, setNewsData] = useState([]);
+  const [evntsData, setEvntsData] = useState([]);
+
+  const getNewsData = async () => {
+    const res = await fetch(config.NEWS_PATH);
+    const obj = await res.json();
+    console.log('obj:', obj);
+    setNewsData(obj.data);
+  };
+
+  const getEvntsData = async () => {
+    const res = await fetch(config.EVNTS_PATH);
+    const obj = await res.json();
+    console.log('obj:', obj);
+    setEvntsData(obj.data);
+  };
+
+  // 初始化要資料
+  useEffect(() => {
+    getNewsData();
+    getEvntsData();
+  }, []);
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
   const handleClickCategory = e => {
@@ -116,10 +139,11 @@ function LatestNews() {
                 </div>
 
                 {/* news-content */}
-                <News />
+                {focus === 'NEWS' && <News newsData={newsData} />}
 
                 {/* events-content */}
-                <Events />
+                {focus === 'EVENTS' && <Events evntsData={evntsData} />}
+
                 {/* pagination */}
                 <Pagination />
               </div>
