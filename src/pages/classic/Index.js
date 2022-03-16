@@ -292,7 +292,7 @@ function Index() {
           <Title title={'Classic'} />
           <br />
 
-          <div className="classic">
+          <div className="classic min-hi">
             <div className="search-filter">
               <div className="search-btn">
                 <SearchBtn />
@@ -610,7 +610,6 @@ function Index() {
                     {Array(totalPage)
                       .fill(1)
                       .map((v, i) => {
-                        console.log(i);
                         return (
                           <>
                             <li key={i}>
@@ -667,7 +666,7 @@ function Index() {
 
             {/* 主要篩選條件區 */}
             <div
-              className="prod-filter"
+              className="prod-filter-sh"
               style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
               onTransitionEnd={() => {
                 setIsOpenMainContent(isOpenFilter ? false : true);
