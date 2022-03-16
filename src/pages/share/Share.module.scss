@@ -8,11 +8,15 @@
   height: 4rem;
   line-height: 1;
 }
-
+.ml-100 {
+  margin-left: 100px;
+}
 .mb-30 {
   margin-bottom: 30px;
 }
-
+.mt-60 {
+  margin-top: 60px;
+}
 .mb-50 {
   margin-bottom: 50px;
 }
@@ -511,6 +515,26 @@
   transition: 0.3s;
 }
 
+.col-controller-panel {
+  position: relative;
+  padding: 20px 50px;
+  z-index: 3;
+  width: 75%;
+  height: 20%;
+  position: fixed;
+  top: 0;
+  right: 12.5%;
+  transition: 0.3s;
+  // border-bottom: 1px solid $gray;
+  background-color: $light-bg;
+}
+
+.col-controller-del-btn {
+  position: absolute;
+  top: 45%;
+  right: 9%;
+}
+
 @media screen and (max-width: 1400px) {
   .items-box {
     flex-direction: column;
@@ -661,5 +685,8 @@
     font-size: 1.8rem;
     line-height: 1.6rem;
     letter-spacing: 0.16rem;
+  }
+  .search-input {
+    width: 200px;
   }
 }

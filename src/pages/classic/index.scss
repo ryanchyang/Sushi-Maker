@@ -205,13 +205,13 @@
     line-height: 40px;
     cursor: pointer;
   }
-  .mobile-filter-title{
+  .mobile-filter-title {
     margin: 0;
   }
 
   .prod-filter-ryan {
     width: 85%;
-    margin: 5% auto 0 auto;
+    margin: 0 auto;
     background-color: $light-bg;
     overflow: hidden;
     transition: 0.3s;
@@ -468,13 +468,13 @@
       text-align: center;
       margin: 20% 0 10% 0;
     }
-    .prod-filter{
+    .prod-filter {
       width: 100%;
-      top: 30%;      
+      top: 30%;
       // height: 80vh;
       right: 0;
     }
-    .mobile-filter-title{
+    .mobile-filter-title {
       margin: 0 0 5% 10%;
     }
   }

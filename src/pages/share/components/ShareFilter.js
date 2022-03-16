@@ -16,11 +16,13 @@ function ShareFilter(props) {
         {/* <div className={`${styles['waterfall-container']}`}></div> */}
         <div className={`mycontainer mb-5 classic`}>
           {/* 主要篩選條件區 */}
-          <div className="prod-filter">
+          <div className="prod-filter-ryan">
             {/* clean or cancel filter */}
             <div className="d-flex flex-column">
               <div className="filter-top justify-content-end">
-                <div className={`clean-filter ch-cont-16 ${styles['mr-100']}`}>
+                <div
+                  className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
+                >
                   <img
                     src={require('./../../../imgs/tags/trash.png')}
                     alt="trash"
