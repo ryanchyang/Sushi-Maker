@@ -22,7 +22,7 @@ function Index() {
     { tag: 'hot', value: false },
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
-  const [filterData, setFilterData] = useState([]);  //套用篩選條件後的商品列表
+  const [filterData, setFilterData] = useState([]); //套用篩選條件後的商品列表
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -306,6 +306,7 @@ function Index() {
               </div>
             </div>
 
+            {/* 商品呈現區 */}
             <div
               className="main-content"
               style={isOpenFilter ? hiddenStyle : showStyle}
@@ -589,43 +590,48 @@ function Index() {
 
               {/* pagination */}
               {/* 當總商品數量大於一頁的商品數量時才會有分頁按鈕可按 */}
-              {filterData.length > pageProdCount ? (<div className="pagination-box">
-                <ul className="pagination ch-cont-16">
-                  <li> {/* 上一頁按鈕 */}
-                    <div
-                      className="page-prev"
-                      data-page={currentPage - 1}
-                      onClick={changePageArrow}
-                      data-canChange={currentPage - 1 >= 1 ? true : false}
-                    >
-                      &lt;
-                    </div>
-                  </li>
-                  {Array(totalPage)
-                    .fill(1)
-                    .map((v, i) => {
-                      console.log(i);
-                      return (
-                        <>
-                          <li key={i}>  {/* 各分頁按鈕 */}
-                            <div
-                              className="page-number"
-                              data-page={i + 1}
-                              onClick={changePage}
-                              style={
-                                currentPage === i + 1
-                                  ? pageSelected
-                                  : pageNoSelected
-                              }
-                            >
-                              {i + 1}
-                            </div>
-                          </li>
-                        </>
-                      );
-                    })}
+              {filterData.length > pageProdCount ? (
+                <div className="pagination-box">
+                  <ul className="pagination ch-cont-16">
+                    <li>
+                      {' '}
+                      {/* 上一頁按鈕 */}
+                      <div
+                        className="page-prev"
+                        data-page={currentPage - 1}
+                        onClick={changePageArrow}
+                        data-canChange={currentPage - 1 >= 1 ? true : false}
+                      >
+                        &lt;
+                      </div>
+                    </li>
+                    {Array(totalPage)
+                      .fill(1)
+                      .map((v, i) => {
+                        console.log(i);
+                        return (
+                          <>
+                            <li key={i}>
+                              {' '}
+                              {/* 各分頁按鈕 */}
+                              <div
+                                className="page-number"
+                                data-page={i + 1}
+                                onClick={changePage}
+                                style={
+                                  currentPage === i + 1
+                                    ? pageSelected
+                                    : pageNoSelected
+                                }
+                              >
+                                {i + 1}
+                              </div>
+                            </li>
+                          </>
+                        );
+                      })}
 
-                  {/* <li>
+                    {/* <li>
                     <div className="page-number">1</div>
                   </li>
                   <li>
@@ -636,21 +642,25 @@ function Index() {
                   </li>
                   <li> */}
 
-                  <li> {/* 下一頁按鈕 */}
-                    <div
-                      className="page-next"
-                      data-page={currentPage + 1}
-                      data-canChange={
-                        currentPage + 1 <= totalPage ? true : false
-                      }
-                      onClick={changePageArrow}
-                    >
-                      &gt;
-                    </div>
-                  </li>
-                </ul>
-              </div>) : ""}
-              
+                    <li>
+                      {' '}
+                      {/* 下一頁按鈕 */}
+                      <div
+                        className="page-next"
+                        data-page={currentPage + 1}
+                        data-canChange={
+                          currentPage + 1 <= totalPage ? true : false
+                        }
+                        onClick={changePageArrow}
+                      >
+                        &gt;
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
 
             {/* 主要篩選條件區 */}
