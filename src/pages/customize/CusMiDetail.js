@@ -8,7 +8,6 @@ function CusMiDetail() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Customization'} />
-          <br />
 
           <Footer />
         </div>

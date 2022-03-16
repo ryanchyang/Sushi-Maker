@@ -1,291 +1,349 @@
 @import './../../styles/global.scss';
+@import './../layout/Layout.css';
 
-.left-area,
-.mid-area,
-.right-area {
-  height: 100vh;
-}
-.mtlView {
-  position: relative;
-  overflow: hidden;
-}
-.logoMtl,
-.menuMtl {
-  min-height: 15rem;
-  padding-bottom: 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.menuMtl {
-  justify-content: flex-end;
-  padding-right: 3rem;
-}
-.left-area,
-.right-area {
-  display: flex;
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-  flex: 0 0 25%;
-  max-width: 25%;
+// 平板&手機header
+.mtlHeader{
+  .layout-title{
+    display: none;
+  }
+  .mobile-top{
+    display: none;
+    justify-content: space-between;
+    padding: 0 30px;
+  
+    @include pad {
+      display: flex;
+      padding: 0 15px;
 
-  @include pad {
-    position: absolute;
-    display: flex;
-    z-index: 1;
-    flex: 0 0 87.5%;
-    max-width: 87.5%;
-  }
-  @include mobile {
-    position: absolute;
-    display: flex;
-    z-index: 1;
-    flex: 0 0 87.5%;
-    max-width: 87.5%;
-  }
-}
-.left-area {
-  transition: 0.5s ease-in-out;
-
-  @include pad {
-    transform: translate(-100%);
-  }
-  @include mobile {
-    transform: translate(-100%);
-  }
-}
-.right-area {
-  transition: 0.5s ease-in-out;
-
-  @include pad {
-    transform: translate(100%);
-    right: 0%;
-  }
-  @include mobile {
-    transform: translate(100%);
-    right: 0%;
-  }
-}
-.mid-area {
-  flex-basis: 0;
-  flex-grow: 1;
-  max-width: 100%;
-
-  @include pad {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-  @include mobile {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-}
-.la-menu {
-  border-right: 1px $gray solid;
-  background-color: $light-bg;
-}
-.ra-menu {
-  border-left: 1px $gray solid;
-  background-color: $light-bg;
-}
-.choose {
-  border-bottom: 1px $gray solid;
-  height: 3.5rem;
-}
-.tech,
-.cart,
-.mem,
-.buger {
-  margin: 1rem;
-}
-.mem {
-  width: 3rem;
-  height: 3rem;
-}
-.mem img {
-  border-radius: 50%;
-  width: 100%;
-  height: auto;
-}
-.dec,
-.ing {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-.mtlimg {
-  width: 85px;
-  height: 85px;
-  transition: 0.5s;
-
-  @include pad {
-    width: 65px;
-    height: 65px;
-  }
-
-  @include mobile {
-    width: 55px;
-    height: 55px;
-  }
-}
-.mtlimg > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 5px solid transparent;
-}
-.mtlBtn-l,
-.mtlBtn-r {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0.5rem;
-}
-.mtlLBtn {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-}
-.mtlRBtn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-}
-.mtlBtnIn-L,
-.mtlBtnIn-R {
-  max-height: calc(100vh - 3rem - 15rem);
-  overflow: scroll;
-
-  // 滾軸樣式
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 0;
-    background-color: $gray;
-    transition: all 0.2s;
-    border-radius: 0.5rem;
-
-    &:hover {
-      background-color: $logo;
+      .logo-box {
+        width: 55px;
+        height: 55px;
+      }
     }
-    &:window-inactive {
-      opacity: 0;
+    @include mobile {
+      display: flex;
+      padding: 0 15px;
+
+      .logo-box {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
+}
 
-  &::-webkit-scrollbar-track {
-    border-radius: 0;
+// 內容物class
+.customize {
+  .left-area,
+  .mid-area,
+  .right-area {
+    height: 100vh;
   }
-}
-.mtlBtnIn-R {
-  max-height: calc(100vh - 3rem - 15rem - 15rem);
-}
+  .mtlView {
+    position: relative;
+    overflow: hidden;
+  }
+  .logoMtl,
+  .menuMtl {
+    min-height: 15rem;
+    padding-bottom: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-.mtlBtnIn .mtlLBtn:hover {
-  transform: scale(1.03);
-  transition: 0.5s;
-}
-.mtlimg > img:focus {
-  border: 5px solid #eed19a;
-  transition: 0.5s;
-}
-.mtlimg-r {
-  width: 35px;
-  height: 35px;
-  box-sizing: content-box;
-}
-.mtlimg-r > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-.la-btn,
-.ra-btn {
-  margin: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 2rem;
-  cursor: pointer;
-  position: relative;
-}
-.la-btn-box {
-  position: absolute;
-  opacity: 0;
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
-}
+    @include pad {
+      display: none;
+    }
 
-.logoMtl-box {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto;
-  fill: $logo;
-  transition: 0.5s;
+    @include mobile {
+      display: none;
+    }
+  }
+  .menuMtl {
+    justify-content: flex-end;
+    padding-right: 3rem;
+  }
+  .left-area,
+  .right-area {
+    display: flex;
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+    flex: 0 0 25%;
 
-  @include pad {
-    width: 55px;
-    height: 55px;
+    @include pad {
+      position: absolute;
+      display: flex;
+      z-index: 1;
+      flex: 0 0 87.5%;
+      max-width: 87.5%;
+    }
+    @include mobile {
+      position: absolute;
+      display: flex;
+      z-index: 1;
+      flex: 0 0 87.5%;
+      max-width: 87.5%;
+    }
+  }
+  .left-area {
+    transition: 0.5s ease-in-out;
+
+    @include pad {
+      transform: translate(-100%);
+    }
+    @include mobile {
+      transform: translate(-100%);
+    }
+  }
+  .right-area {
+    transition: 0.5s ease-in-out;
+
+    @include pad {
+      transform: translate(100%);
+      right: 0;
+    }
+    @include mobile {
+      transform: translate(100%);
+      right: 0;
+    }
+  }
+  .mid-area {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+
+    @include pad {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+    @include mobile {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  .la-menu {
+    border-right: 1px $gray solid;
+    background-color: $light-bg;
+  }
+  .ra-menu {
+    border-left: 1px $gray solid;
+    background-color: $light-bg;
+  }
+  .choose {
+    border-bottom: 1px $gray solid;
+    height: 3.5rem;
+  }
+  .tech,
+  .cart,
+  .mem,
+  .buger {
+    margin: 1rem;
+  }
+  .mem {
+    width: 3rem;
+    height: 3rem;
+  }
+  .mem img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+  }
+  .dec,
+  .ing {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .mtlimg {
+    width: 85px;
+    height: 85px;
+    transition: 0.5s;
+
+    @include pad {
+      width: 65px;
+      height: 65px;
+    }
+
+    @include mobile {
+      width: 55px;
+      height: 55px;
+    }
+  }
+  .mtlimg > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid transparent;
+  }
+  .mtlBtn-l,
+  .mtlBtn-r {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
+  .mtlLBtn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  .mtlRBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  $mtlBtnCalc: calc(100vh - 3rem - 15rem);
+  $mtlBtnCalcR: calc(100vh - 3rem - 30rem);
+  .mtlBtnIn-L,
+  .mtlBtnIn-R {
+    max-height: $mtlBtnCalc;
+    overflow: scroll;
+
+    // 滾軸樣式
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 0;
+      background-color: $gray;
+      transition: all 0.2s;
+      border-radius: 0.5rem;
+
+      &:hover {
+        background-color: $logo;
+      }
+      &:window-inactive {
+        opacity: 0;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: 0;
+    }
+
+    @include pad{
+      max-height: 100vh;
+    }
+    @include mobile{
+      max-height: 100vh;
+    }
+  }
+  .mtlBtnIn-R {
+    max-height: $mtlBtnCalcR;
+
+    @include pad{
+      max-height: $mtlBtnCalc;
+    }
+    @include mobile{
+      max-height: $mtlBtnCalc;
+    }
   }
 
-  @include mobile {
-    width: 40px;
-    height: 40px;
+  .mtlBtnIn .mtlLBtn:hover {
+    transform: scale(1.03);
+    transition: 0.5s;
   }
-}
-
-.mtlname {
-  margin-top: 0.5rem;
-  @extend .ch-cont-14;
-  transition: 0.5s;
-
-  @include pad {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-    letter-spacing: 0.12rem;
+  .mtlimg > img:focus {
+    border: 5px solid #eed19a;
+    transition: 0.5s;
   }
-  @include mobile {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-    letter-spacing: 0.12rem;
+  .mtlimg-r {
+    width: 35px;
+    height: 35px;
+    box-sizing: content-box;
   }
-}
-
-.arrR,
-.arrL {
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.rectangle {
-  margin: 0 0.5rem;
-}
-
-.layout-title {
-  padding: 20px 0 0 30px;
-  font-size: 5rem;
-
-  @include pad {
-    font-size: 4rem;
+  .mtlimg-r > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .la-btn,
+  .ra-btn {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    cursor: pointer;
+    position: relative;
+  }
+  .la-btn-box {
+    position: absolute;
+    opacity: 0;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
   }
 
-  @include mobile {
-    font-size: 2.4rem;
-    line-height: 3.6rem;
-    letter-spacing: 0.54rem;
-    padding: 20px 0 0 15px;
+  .logoMtl-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    fill: $logo;
+    transition: 0.5s;
+
+    @include pad {
+      width: 55px;
+      height: 55px;
+    }
+
+    @include mobile {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .mtlname {
+    margin-top: 0.5rem;
+    @extend .ch-cont-14;
+    transition: 0.5s;
+
+    @include pad {
+      font-size: 1.2rem;
+      line-height: 1.7rem;
+      letter-spacing: 0.12rem;
+    }
+    @include mobile {
+      font-size: 1.2rem;
+      line-height: 1.7rem;
+      letter-spacing: 0.12rem;
+    }
+  }
+
+  .arrR,
+  .arrL {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rectangle {
+    margin: 0 0.5rem;
+  }
+
+  .layout-title {
+    padding: 20px 0 0 30px;
+    font-size: 5rem;
+
+    @include pad {
+      font-size: 4rem;
+    }
+
+    @include mobile {
+      font-size: 2.4rem;
+      line-height: 3.6rem;
+      letter-spacing: 0.54rem;
+      padding: 20px 0 0 15px;
+    }
   }
 }
