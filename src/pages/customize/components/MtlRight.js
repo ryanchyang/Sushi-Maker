@@ -2,16 +2,16 @@ import { ReactComponent as Hamburger } from '../../../imgs/hamburger.svg';
 import { ReactComponent as Cart } from '../../../imgs/cart.svg';
 import { ReactComponent as Help } from '../../../imgs/help-circle.svg';
 import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
-import { ReactComponent as ArrR } from '../../../imgs/arrow-right-noccircle.svg';
+import { ReactComponent as ArrL } from '../../../imgs/arrow-left-noccircle.svg';
 import MtlRBtn from './MtlRBtn';
 
 function MtlRight() {
   return (
     <>
-      <div className="right-area mx-auto px-0">
+      <div className="col-6 right-area mx-auto px-0">
         <div className="ra-btn">
           <input type="checkbox" className="la-btn-box" />
-          <ArrR className="arrR" />
+          <ArrL className="arrL" />
         </div>
         <div className="ra-menu col px-0">
           <div className="menuMtl">

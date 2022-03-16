@@ -4,8 +4,8 @@ import { ReactComponent as ViewAdjust } from '../../../imgs/viewAdjust.svg';
 import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
 import styles from '../Share.module.scss';
 
-function ShareNavBar(props) {
-  const { filter, setFilter, search, setSearch } = props;
+function ShareNavBar() {
+  const [search, setSearch] = useState(false);
 
   const searchBarHandler = () =>
     search
@@ -48,10 +48,7 @@ function ShareNavBar(props) {
             <div
               className={`${styles['filter-container']} d-flex justify-content-end mr-3`}
             >
-              <Filter
-                className={`${styles['button-default']}`}
-                onClick={() => setFilter(!filter)}
-              />
+              <Filter className={`${styles['button-default']}`} />
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 import MtlLBtn from './MtlLBtn';
 import { ReactComponent as Logo } from '../../../imgs/logo.svg';
 import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
-import { ReactComponent as ArrL } from '../../../imgs/arrow-left-noccircle.svg';
+import { ReactComponent as ArrR } from '../../../imgs/arrow-right-noccircle.svg';
 
 function MtlLeft() {
   return (
     <>
-      <div className="left-area mx-auto px-0">
+      <div className="col-6 left-area mx-auto px-0">
         <div className="la-menu col px-0">
           <div className="logoMtl">
             <Logo className="logoMtl-box" />
@@ -66,7 +66,7 @@ function MtlLeft() {
         </div>
         <div className="la-btn">
           <input type="checkbox" className="la-btn-box" />
-          <ArrL className="arrL" />
+          <ArrR className="arrR" />
         </div>
       </div>
     </>

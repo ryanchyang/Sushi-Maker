@@ -6,9 +6,9 @@ function memIndex() {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex'}}>
         <AsideLeft />
-        <div style={{ widtd: '100%' }}>
+        <div style={{ width: '100%' }}>
           {/* <Title title={''} /> */}
           <div className="member ">
             <MemHead />
@@ -16,42 +16,16 @@ function memIndex() {
 
             <div className="mycontainer">
               <div className="memInfoArea">
-                <div className="memInfo col-md-12 col-24 mx-3 px-5" >
-                  <table class="table table-borderless col-16">
-                    <thead>
-                      <tr>
-                        <td className='ch-title-22'>會員資訊</td>
-                      </tr>
-                    </thead>
-                    <tbody className='ch-cont-18 '>
-                      <tr>
-                        <td>會員暱稱:</td>
-                        <td>Mark</td>
-                        
-                      </tr>
-                      <tr>
-                        <td>會員等級:</td>
-                        <td>金牌</td>
-                        
-                      </tr>
-                      <tr>
-                        <td>會員總積分:</td>
-                        <td>5000</td>
-                      </tr>
-                      <tr>
-                        <td>會員優惠券:</td>
-                        <td>5000</td>
-                      </tr>
-                      <tr>
-                        <td>會員現有積分:</td>
-                        <td>5000</td>
-                      </tr>
-                      <tr>
-                        <td>會員積分規則:</td>
-                        <td>5000</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div className="memInfo col-md-12 col-24 mx-3">
+                  <ul className="ch-cont-18">
+                    <li className="ch-title-22 mt-4">會員資訊</li>
+                    <li>會員暱稱</li>
+                    <li>會員等級</li>
+                    <li>會員總積分</li>
+                    <li>會員優惠券</li>
+                    <li>會員現有積分</li>
+                    <li>會員積分規則</li>
+                  </ul>
                 </div>
                 <div className="memSet col-md-12 col-24 mx-3 d-flex">
                   <div className="setImg">

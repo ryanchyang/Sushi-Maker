@@ -1,18 +1,17 @@
-import { useEffect, useState } from 'react';
-import { getMemId } from '../../../utils';
+import { useContext, useEffect, useState } from 'react';
+// import { AuthContext } from '../../../contexts';
 import { findMem } from '../../../WebApi';
 
 function MemHead() {
   const [memData, setMemData] = useState(null);
-  const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
-  
-  //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
+  // const { user } = useContext(AuthContext);
+  const mem_id = localStorage.getItem('mem_id');
+
   useEffect(() => {
-    // TODO步驟2. 請參考WebApi 這支檔案裡的findMem這支, 只要把function名還有 ${BASE_URL}後的這串網址/member/api/find-member 改成自己的就好了(這串網址是你自訂的router的網址) 
-    findMem(mem_id).then(obj => {
-      setMemData(obj[0]);
-    });//做到這裡如果node端API沒寫錯就會拿到你所需的資料了
-  }, [memData]);
+    findMem(mem_id).then(memData => {
+      setMemData(memData[0]);
+    });
+  }, []);
 
   return (
     <div className="memHead ">
