@@ -11,7 +11,7 @@ import { ReactComponent as Heart } from '../../../imgs/heart.svg';
 import { useState, useEffect } from 'react';
 import useCurrentWidth from '../hooks/useCurrentWidth';
 
-const breakpoints = { 
+const breakpoints = {
   xs: 0,
   sm: 600,
   md: 960,
