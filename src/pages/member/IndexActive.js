@@ -18,7 +18,6 @@ function IndexActive() {
           {/* <Title title={''} />
               <br /> */}
           <div className="member ">
-            <div>123</div>
             <MemHead />
             {/* 以上不動 */}
           </div>

@@ -6,6 +6,7 @@
   height: 100vh;
 }
 .mtlView {
+  position: relative;
   overflow: hidden;
 }
 .logoMtl,
@@ -23,20 +24,70 @@
 .left-area,
 .right-area {
   display: flex;
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  flex: 0 0 25%;
+  max-width: 25%;
+
+  @include pad {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    flex: 0 0 87.5%;
+    max-width: 87.5%;
+  }
+  @include mobile {
+    position: absolute;
+    display: flex;
+    z-index: 1;
+    flex: 0 0 87.5%;
+    max-width: 87.5%;
+  }
 }
 .left-area {
-  // transform: translate(-100%);
   transition: 0.5s ease-in-out;
+
+  @include pad {
+    transform: translate(-100%);
+  }
+  @include mobile {
+    transform: translate(-100%);
+  }
 }
 .right-area {
-  // transform: translate(100%);
   transition: 0.5s ease-in-out;
+
+  @include pad {
+    transform: translate(100%);
+    right: 0%;
+  }
+  @include mobile {
+    transform: translate(100%);
+    right: 0%;
+  }
+}
+.mid-area {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+
+  @include pad {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  @include mobile {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }
 .la-menu {
   border-right: 1px $gray solid;
+  background-color: $light-bg;
 }
 .ra-menu {
   border-left: 1px $gray solid;
+  background-color: $light-bg;
 }
 .choose {
   border-bottom: 1px $gray solid;
@@ -106,7 +157,8 @@
   align-items: center;
   padding: 0.5rem;
 }
-.mtlBtnIn-L, .mtlBtnIn-R {
+.mtlBtnIn-L,
+.mtlBtnIn-R {
   max-height: calc(100vh - 3rem - 15rem);
   overflow: scroll;
 
@@ -193,7 +245,7 @@
 }
 
 .mtlname {
-  margin-top: 0.5rem; 
+  margin-top: 0.5rem;
   @extend .ch-cont-14;
   transition: 0.5s;
 

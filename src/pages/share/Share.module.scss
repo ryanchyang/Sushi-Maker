@@ -24,6 +24,10 @@
   margin-bottom: 80px;
 }
 
+.mr-100 {
+  margin-right: 100px;
+}
+
 .filter-container {
   margin-top: 80px;
   padding: 0 70px;
@@ -47,7 +51,7 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid $dark-text;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .search-input-bar:focus {
@@ -182,6 +186,13 @@
   cursor: pointer;
 }
 
+.button-default-lg {
+  width: 50px;
+  height: 50px;
+  padding: 0px;
+  cursor: pointer;
+}
+
 .del-button {
   width: 45px;
   height: 45px;
@@ -219,9 +230,9 @@
 .del-button:hover,
 .edit-del-button:hover,
 .button-default:hover,
-.col-button:hover {
+.col-button:hover,
+.button-default-lg:hover {
   background-color: #e2e2e2;
-  background-size: 250px 150px;
   border-radius: 50%;
   transition: none;
 }
@@ -433,9 +444,6 @@
   @extend .ch-title-14;
 }
 
-.share-input {
-}
-
 .share-edit-attach {
   width: 100%;
   height: 100px;
@@ -481,6 +489,26 @@
   height: 100%;
   object-fit: contain;
   object-position: center center;
+}
+
+// .filter-panel-mask {
+//   background-color: $light-bg;
+//   z-index: -1;
+//   position: absolute;
+//   top: 0;
+//   width: 75%;
+//   left: 12.5%;
+//   height: 200px;
+// }
+
+.filter-panel {
+  background-color: $light-bg;
+  overflow: hidden;
+  position: fixed;
+  top: 20%;
+  width: 75%;
+  right: 12.5%;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 1400px) {
