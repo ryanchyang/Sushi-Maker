@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ReactComponent as Search } from '../../../imgs/search.svg';
 import { ReactComponent as ViewAdjust } from '../../../imgs/viewAdjust.svg';
 import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
@@ -40,10 +41,11 @@ function ShareNavBar(props) {
                   className={`${styles['col-button']} mx-4 d-none d-md-block`}
                   onClick={() => setColControl(!colControl)}
                 />
+
                 <button
                   className={`${styles.mysharebutton}  d-none d-md-block en-title-18 ml-4`}
                 >
-                  My Share
+                  <Link to="/share/saves">My Share</Link>
                 </button>
               </div>
             </div>

@@ -8,6 +8,9 @@
   height: 4rem;
   line-height: 1;
 }
+.mysharebutton:hover {
+  text-decoration: none;
+}
 .ml-100 {
   margin-left: 100px;
 }
@@ -395,6 +398,7 @@
   text-decoration: none;
   color: $gray;
   line-height: 2.1;
+  cursor: pointer;
 }
 
 .topic-link:link,

@@ -2,8 +2,8 @@ import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ShareNavBar from './components/ShareNavBar';
 import Masonry from './components/Masonry';
 import ShareFilter from './components/ShareFilter';
-
 import ShareColController from './components/ShareColController';
+
 import useCurrentWidth from './hooks/useCurrentWidth';
 
 import { useState, useEffect } from 'react';
