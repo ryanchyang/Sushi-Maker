@@ -1,6 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import './index.scss';
-// import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
@@ -23,6 +22,7 @@ function Index() {
     { tag: 'hot', value: false },
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
+  const [filterData, setFilterData] = useState([]);  //套用篩選條件後的商品列表
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -229,8 +229,9 @@ function Index() {
     });
 
     if (isClose) setIsOpenFilter(false);
-    setTagShow(showTags);
 
+    setTagShow(showTags);
+    setFilterData(filteredData);
     setProdList(
       filteredData.slice(
         (currentPage - 1) * pageProdCount,
@@ -587,9 +588,10 @@ function Index() {
               </div>
 
               {/* pagination */}
-              <div className="pagination-box">
+              {/* 當總商品數量大於一頁的商品數量時才會有分頁按鈕可按 */}
+              {filterData.length > pageProdCount ? (<div className="pagination-box">
                 <ul className="pagination ch-cont-16">
-                  <li>
+                  <li> {/* 上一頁按鈕 */}
                     <div
                       className="page-prev"
                       data-page={currentPage - 1}
@@ -605,7 +607,7 @@ function Index() {
                       console.log(i);
                       return (
                         <>
-                          <li key={i}>
+                          <li key={i}>  {/* 各分頁按鈕 */}
                             <div
                               className="page-number"
                               data-page={i + 1}
@@ -634,7 +636,7 @@ function Index() {
                   </li>
                   <li> */}
 
-                  <li>
+                  <li> {/* 下一頁按鈕 */}
                     <div
                       className="page-next"
                       data-page={currentPage + 1}
@@ -647,7 +649,8 @@ function Index() {
                     </div>
                   </li>
                 </ul>
-              </div>
+              </div>) : ""}
+              
             </div>
 
             {/* 主要篩選條件區 */}
