@@ -111,7 +111,7 @@ function Login() {
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
             <LoginArea>
-              <LoginAreaImg className="col-8" style={{ height: '100vh'}}>
+              <LoginAreaImg className="col-8" style={{ height: '100vh%'}}>
                 <img
                   src={require('../../imgs/mem/LoginImg.png')}
                   style={{ width: '100%', height: '100%' }}
