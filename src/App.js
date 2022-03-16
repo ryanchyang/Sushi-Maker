@@ -49,6 +49,7 @@ import CartStepTwo from './pages/cart/StepTwo';
 import CartStepThree from './pages/cart/StepThree';
 import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
+import SharePost from './pages/share/ShareHistory';
 
 function App() {
   //判斷使用者是否登入
