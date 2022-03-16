@@ -1,7 +1,7 @@
 //cart/StepTwo.js
 
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-
+import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from '././components/CartDetial';
 
@@ -15,7 +15,8 @@ function StepTwo() {
   const [map, setMap] = useState(false);
   const handleClose = () => setMap(false);
   const handleShow = () => setMap(true);
-
+  // 回上一頁 按鈕
+  let history = useHistory();
   const modal = (
     <Modal show={map} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -174,16 +175,28 @@ function StepTwo() {
                 <button
                   type="button"
                   className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                  onClick={() => {
+                    // 轉至上一頁
+                    history.goBack();
+                  }}
                 >
                   上一步
                 </button>
-                <a
+                <Link to="./StepThree">
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                  >
+                    下一步
+                  </button>
+                </Link>
+                {/* <a
                   type="button"
                   className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                   href="./StepThree"
                 >
                   下一步
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

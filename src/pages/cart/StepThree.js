@@ -1,10 +1,13 @@
 //cart/StepThree.js
 import { FaBitcoin, FaCcJcb, FaCcMastercard, FaCcVisa } from 'react-icons/fa';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from './components/CartDetial';
 // TODO: A  改 LINK
 function StepThree() {
+  // 回上一頁 按鈕
+  let history = useHistory();
   return (
     <>
       <Header />
@@ -191,16 +194,28 @@ function StepThree() {
                 <button
                   type="button"
                   className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                  onClick={() => {
+                    // 轉至上一頁
+                    history.goBack();
+                  }}
                 >
                   上一步
                 </button>
-                <a
+                <Link to="./StepFour">
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                  >
+                    確認付款
+                  </button>
+                </Link>
+                {/* <a
                   type="button"
                   className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                   href="./StepFour"
                 >
                   確認付款
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

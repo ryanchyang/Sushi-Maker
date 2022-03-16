@@ -1,11 +1,14 @@
 //cart/StepOne.js
 
+import { Link, useHistory } from 'react-router-dom';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ProdItem from '././components/ProdItem';
 // TODO: A  改 LINK
 function StepOne(props) {
   // counts -> 陣列
   const { productsInOrder, setProductsInOrder } = props;
+  // 回上一頁 按鈕
+  let history = useHistory();
 
   // 處理項目刪除用
   const handleDelete = id => {
@@ -147,16 +150,28 @@ function StepOne(props) {
                   <button
                     type="button"
                     className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                    onClick={() => {
+                      // 轉至上一頁
+                      history.goBack();
+                    }}
                   >
                     繼續購物
                   </button>
-                  <a
+                  <Link to="./StepTwo">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    >
+                      前往結帳
+                    </button>
+                  </Link>
+                  {/* <a
                     type="button"
                     className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                     href="./StepTwo"
                   >
                     前往結帳
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>
