@@ -9,11 +9,22 @@ import { useRef, useState } from 'react';
 function ShareEdit() {
   const fileInputRef = useRef(null);
   const [files, setFiles] = useState({});
+  const [filesPreview, setFilesPreview] = useState(null);
 
   const fileInputHandler = () => {
     if (!fileInputRef.current) return '新增、拖曳照片';
     let filesLength = fileInputRef.current.files.length;
     if (filesLength !== 0) return `選擇${filesLength}個檔案`;
+  };
+
+  const filePreviewHandler = e => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      setFilesPreview(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -72,8 +83,9 @@ function ShareEdit() {
                             id="images"
                             multiple
                             style={{ display: 'none' }}
-                            onChange={() => {
-                              setFiles(fileInputRef.current.files);
+                            onChange={e => {
+                              setFiles(e.target.files);
+                              filePreviewHandler(e);
                             }}
                           />
                           <div
@@ -171,10 +183,11 @@ function ShareEdit() {
                               <div
                                 className={`${styles['share-edit-preview']}`}
                               >
-                                <img
-                                  src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4"
-                                  alt=""
-                                />
+                                {filesPreview ? (
+                                  <img src={filesPreview} alt="" />
+                                ) : (
+                                  ''
+                                )}
                               </div>
                             </div>
                           </div>
