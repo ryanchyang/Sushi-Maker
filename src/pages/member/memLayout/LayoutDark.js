@@ -63,7 +63,16 @@ function AsideRight() {
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
+      <aside
+        className="col-lg-3 col-md-3 col-3 p-0 mobile-adj"
+        style={{
+          position: 'fixed',
+          zIndex: 99,
+          right: 0,
+          height: '100%',
+          backgroundColor: '#212121',
+        }}
+      >
         <div className="aside-right" style={{ border: 'none' }}>
           <div className="layout-hamberger-box">
             <Hamburger className="layout-hamberger" />
