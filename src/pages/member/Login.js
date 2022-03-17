@@ -3,8 +3,10 @@ import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useState } from 'react';
 import { login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
+import { ReactComponent as EyeShow } from '../../imgs/eye-show.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken, setMemId } from '../../utils';
+import LoginForgetPwd from './component/LoginForgetPwd';
 // import { AuthContext } from '../../contexts.js';
 
 //styled component
@@ -22,6 +24,7 @@ const LoginArea = styled.div`
   display: flex;
   justify-content: space-between;
   height: auto;
+  margin-right: 15%;
 `;
 
 const LoginForm = styled.form`
@@ -43,6 +46,7 @@ const InputForPsw = styled.p`
   color: #f7f6f3;
   margin-top: 33px;
   text-align: center;
+  cursor: pointer;
 `;
 const InputRegistLink = styled.p`
   color: #c4c4c4;
@@ -51,6 +55,7 @@ const InputRegistLink = styled.p`
 `;
 const ErrorMessage = styled.p`
   color: #b03342;
+  height: 20px;
 `;
 
 //顯示關閉密碼icon待開發
@@ -66,17 +71,27 @@ function Login() {
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
   const [errorMessage, setErrorMessage] = useState();
+  const [showPwd, setShowPwd] = useState(false);
+  const [forgetPwd, setForgetPwd] = useState(false);
   const history = useHistory();
+
+  const handleClickPwd = e => {
+    showPwd === true ? setShowPwd(false) : setShowPwd(true);
+  };
+  const handleClickForgetPwd = e => {
+    setForgetPwd(true);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
     login(mem_account, mem_pwd).then(data => {
       console.log(data.info.mem_id);
-      if (data.ok === 0) {
-        return setErrorMessage(data.message);
+      if (data.code !== 0) {
+        return setErrorMessage(data.error);
+      } else {
+        setAuthToken(data.token);
+        setMemId(data.info.mem_id);
       }
-      setAuthToken(data.token);
-      setMemId(data.info.mem_id);
 
       // getMe().then(response => {
       //   console.log(response.data);
@@ -97,12 +112,13 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', height: '100vh' }}>
           <AsideLeft />
+          <AsideRight />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
             <LoginArea>
-              <LoginAreaImg className="col-8">
+              <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
                 <img
                   src={require('../../imgs/mem/LoginImg.png')}
                   style={{ width: '100%', height: '100%' }}
@@ -134,7 +150,9 @@ function Login() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">
+                    {errorMessage && '帳號錯誤!'}
+                  </ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <div
@@ -143,7 +161,7 @@ function Login() {
                     }}
                   >
                     <PswInput
-                      type="password"
+                      type={showPwd === false ? 'password' : 'text'}
                       className="form-control"
                       value={mem_pwd}
                       onChange={e => {
@@ -161,15 +179,31 @@ function Login() {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    <EyeOff
-                      style={{
-                        position: 'absolute',
-                        right: '10px',
-                        top: '8px',
-                      }}
-                    ></EyeOff>
+                    {showPwd === false ? (
+                      <EyeOff
+                        style={{
+                          position: 'absolute',
+                          right: '10px',
+                          top: '8px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={handleClickPwd}
+                      ></EyeOff>
+                    ) : (
+                      <EyeShow
+                        style={{
+                          position: 'absolute',
+                          right: '10px',
+                          top: '8px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={handleClickPwd}
+                      ></EyeShow>
+                    )}
                   </div>
-                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">
+                    {errorMessage && '密碼錯誤!'}
+                  </ErrorMessage>
                   <button
                     className="ch-title-22 btn"
                     style={{
@@ -184,7 +218,12 @@ function Login() {
                     登入
                   </button>
                 </LoginForm>
-                <InputForPsw className="ch-cont-14">忘記密碼?</InputForPsw>
+                <InputForPsw
+                  className="ch-cont-14"
+                  onClick={handleClickForgetPwd}
+                >
+                  忘記密碼?
+                </InputForPsw>
                 <InputRegistLink className="ch-cont-14">
                   還沒有帳號嗎?
                   <Link
@@ -198,11 +237,14 @@ function Login() {
                   </Link>
                 </InputRegistLink>
               </InputArea>
+              <LoginForgetPwd
+                forgetPwd={forgetPwd}
+                setForgetPwd={setForgetPwd}
+              />
             </LoginArea>
 
             {/* <Footer /> */}
           </div>
-          <AsideRight />
         </div>
       </LoginBody>
     </>
