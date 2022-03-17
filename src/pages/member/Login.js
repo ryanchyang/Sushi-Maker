@@ -205,14 +205,13 @@ function Login() {
                     {errorMessage && '密碼錯誤!'}
                   </ErrorMessage>
                   <button
-                    className="ch-title-22 btn"
+                    className="ch-title-22 btn btn-sm primeal-btn"
                     style={{
-                      borderRadius: 50,
                       marginTop: '61px',
                       height: '40px',
                       color: '#575757',
                       background: '#f7f6f3',
-                      transition: '0.5s',
+                      width: '100%',
                     }}
                   >
                     登入

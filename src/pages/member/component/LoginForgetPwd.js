@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { ReactComponent as DeleteLg } from '../../../imgs/delete-lg.svg';
-import { ReactComponent as Del } from '../../../imgs/del.svg';
+import { ReactComponent as DeleteSm } from '../../../imgs/delete-sm.svg';
 
 //styled component
 const Slogan = styled.p`
@@ -13,7 +12,7 @@ const Slogan = styled.p`
   margin-bottom: 84px;
 `;
 
-const LoginForm = styled.form`
+const PwdCheckForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -39,15 +38,15 @@ const ErrorMessage = styled.p`
 const PswInput = styled.input``;
 
 //function
-const handleSubmit = e => {
-  e.preventDefault();
-};
+
 
 function LoginForgetPwd(props) {
   const { forgetPwd, setForgetPwd } = props;
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
-  console.log(forgetPwd);
+  const [men_account, setMen_account] = useState('');
+
+  const handleSubmit = e => {
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -59,22 +58,22 @@ function LoginForgetPwd(props) {
             : { right: '12.5%', height: '100%', zIndex: 1 }
         }
       >
-        <DeleteLg
+        <DeleteSm
           onClick={() => {
             setForgetPwd(false);
           }}
-          style={{ position: 'absolute', top: 0, right: 0, cursor: 'pointer' }}
-        ></DeleteLg>
+          style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
+        ></DeleteSm>
 
         <Slogan>Pleae confirm your Email</Slogan>
-        <LoginForm onSubmit={handleSubmit}>
+        <PwdCheckForm onSubmit={handleSubmit}>
           <InputTitle className="ch-cont-14">請輸入您的帳號</InputTitle>
           <input
             type="text"
             className="form-control"
-            value={account}
+            value={men_account}
             onChange={e => {
-              setAccount(e.target.value);
+              setMen_account(e.target.value);
             }}
             style={{
               borderRadius: 50,
@@ -89,18 +88,16 @@ function LoginForgetPwd(props) {
           />
           <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
           <button
-            className="ch-title-22"
+            className="btn btn-primary primeal-btn"
             style={{
-              borderRadius: 50,
               marginTop: '90px',
+              width: '100%',
               height: '40px',
-              color: '#f7f6f3',
-              background: '#b03342',
             }}
           >
             送出
           </button>
-        </LoginForm>
+        </PwdCheckForm>
       </ForgetPwdArea>
     </>
   );
