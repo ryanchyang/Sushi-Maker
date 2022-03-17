@@ -21,9 +21,11 @@ function ShareUpload() {
     if (Object.keys(item).length === 0) {
       credit = '5000 pt';
     } else {
-      credit = cateCredits.map(cateCredit =>
-        cateCredit.cate === item.cate ? `${5000 + cateCredit.credit} pt` : ''
-      );
+      credit = cateCredits
+        .map(cateCredit =>
+          cateCredit.cate === item.cate ? `${5000 + cateCredit.credit} pt` : ''
+        )
+        .join('');
     }
 
     return (

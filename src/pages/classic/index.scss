@@ -221,7 +221,7 @@
     position: fixed;
     top: 14rem;
     width: 75%;
-    min-height: calc($min-height-lg - 4rem) ;
+    min-height: calc($min-height-lg - 4rem);
     transition: 0.3s;
   }
   .prod-filter {
@@ -482,10 +482,10 @@
       right: 0;
     }
     $prod-filter-mb: calc($min-height-lg - 4rem - 80px);
-    .prod-filter-sh{
+    .prod-filter-sh {
       width: 100%;
-      top: 30%;      
-      min-height: $prod-filter-mb ;
+      top: 30%;
+      min-height: $prod-filter-mb;
     }
     .mobile-filter-title {
       margin: 0 0 5% 10%;
