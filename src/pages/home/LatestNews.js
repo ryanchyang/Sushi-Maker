@@ -1,6 +1,6 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import News from './components/News';
-import Pagination from './components/Pagination';
+// import Pagination from './components/Pagination';
 import Events from './components/Events';
 import NewsFilter from './components/NewsFilter';
 import EvntsFilter from './components/EvntsFilter';
@@ -8,9 +8,10 @@ import './latest-news.scss';
 import { useState, useEffect } from 'react';
 import config from '../../Config';
 
-function LatestNews() {
+function LatestNews(props) {
+  const { latestNewsCate } = props;
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const [focus, setFocus] = useState('NEWS');
+  const [focus, setFocus] = useState(latestNewsCate);
   const [newsData, setNewsData] = useState([]);
   const [evntsData, setEvntsData] = useState([]);
 
@@ -34,24 +35,17 @@ function LatestNews() {
     getEvntsData();
   }, []);
 
-  //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
+  //處理點擊分類商品
   const handleClickCategory = e => {
     switch (e.target.innerText) {
       case 'NEWS':
         setFocus('NEWS');
-        // setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
         break;
       case 'EVENTS':
         setFocus('EVENTS');
-        // setProdList(data.data.filter(pro => pro.prod_category === "dessert"));
-        break;
-      case 'SHARES':
-        setFocus('SHARES');
-        // setProdList(data.data.filter(pro => pro.prod_category === "package"));
         break;
       default:
         setFocus('news');
-      // setProdList(data.data.filter(pro => pro.prod_category === "sushi"));
     }
   };
 
@@ -122,20 +116,6 @@ function LatestNews() {
                       EVENTS
                     </div>
                   </div>
-                  <div className="category-name d-flex align-items-center">
-                    {focus === 'SHARES' ? (
-                      <div className="diamond"></div>
-                    ) : (
-                      <div></div>
-                    )}
-                    <div
-                      className="en-title-14-5"
-                      style={{ cursor: 'pointer' }}
-                      onClick={handleClickCategory}
-                    >
-                      SHARES
-                    </div>
-                  </div>
                 </div>
 
                 {/* news-content */}
@@ -145,7 +125,7 @@ function LatestNews() {
                 {focus === 'EVENTS' && <Events evntsData={evntsData} />}
 
                 {/* pagination */}
-                <Pagination />
+                {/* <Pagination /> */}
               </div>
 
               {/* filter */}

@@ -4,13 +4,15 @@ import './../../styles/global.scss';
 import newsData from './news.json';
 import evntsData from './evnts.json';
 import promo from './promo.json';
+import BackToTop from './components/BackToTop';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
-function Index() {
+function Index(props) {
+  const { latestNewsCate, setLatestNewsCate } = props;
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
-  const [latestNews, setLatestNews] = useState('NEWS');
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
 
@@ -19,7 +21,7 @@ function Index() {
 
   useEffect(() => {
     setNewsIndex(0);
-  }, [latestNews]);
+  }, [latestNewsCate]);
 
   // 處理carousel hover
   // ToDo: hover會停止 + 無限輪播牆改用js改寫
@@ -54,16 +56,16 @@ function Index() {
     const text = e.target.innerText;
     switch (text) {
       case 'NEWS':
-        setLatestNews('NEWS');
+        setLatestNewsCate('NEWS');
         break;
       case 'EVENTS':
-        setLatestNews('EVENTS');
+        setLatestNewsCate('EVENTS');
         break;
       case 'SHARES':
-        setLatestNews('SHARES');
+        setLatestNewsCate('SHARES');
         break;
       default:
-        setLatestNews('NEWS');
+        setLatestNewsCate('NEWS');
     }
   };
 
@@ -79,6 +81,7 @@ function Index() {
     };
   };
 
+  // 動態調整CSS inline style
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
   const showGray = { color: '#c4c4c4' };
@@ -319,7 +322,23 @@ function Index() {
                 </div>
               </div>
 
-              <div className="index-view-more d-flex justify-content-end align-items-center">
+              <Link
+                to={() => {
+                  switch (jftFocus) {
+                    case 'CUSTOMIZATION':
+                      return `${'/customize'}`;
+                    case 'MEAL PLAN':
+                      return `${'/setorder/stepstart'}`;
+                    default:
+                      return `${'/customize'}`;
+                  }
+                }}
+                className="index-view-more d-flex justify-content-end align-items-center"
+                style={{
+                  textDecoration: 'none',
+                  color: '#212121',
+                }}
+              >
                 <p className="en-cont-14">{jftFocus}</p>
                 <div className="view-product-arrow">
                   <img
@@ -327,7 +346,7 @@ function Index() {
                     alt="view-customization"
                   />
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* latest news  */}
@@ -337,27 +356,29 @@ function Index() {
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNews === 'NEWS' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'NEWS' ? hiddenGray : showGray}
                 >
                   NEWS
                 </div>
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNews === 'EVENTS' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'EVENTS' ? hiddenGray : showGray}
                 >
                   EVENTS
                 </div>
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNews === 'SHARES' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'SHARES' ? hiddenGray : showGray}
                 >
                   SHARES
                 </div>
               </div>
               <div className="overflow-hidden">
-                <div style={latestNews === 'NEWS' ? showBlock : hiddenBlock}>
+                <div
+                  style={latestNewsCate === 'NEWS' ? showBlock : hiddenBlock}
+                >
                   <div
                     className="news-carousel-wrap d-flex"
                     style={checkTransform(newsIndex)}
@@ -395,7 +416,9 @@ function Index() {
                     })}
                   </div>
                 </div>
-                <div style={latestNews === 'EVENTS' ? showBlock : hiddenBlock}>
+                <div
+                  style={latestNewsCate === 'EVENTS' ? showBlock : hiddenBlock}
+                >
                   <div
                     className="news-carousel-wrap d-flex"
                     style={checkTransform(newsIndex)}
@@ -434,7 +457,7 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div style={latestNews === 'NEWS' ? showBlock : hiddenBlock}>
+              <div style={latestNewsCate === 'NEWS' ? showBlock : hiddenBlock}>
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
                     <img
@@ -476,7 +499,9 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div style={latestNews === 'EVENTS' ? showBlock : hiddenBlock}>
+              <div
+                style={latestNewsCate === 'EVENTS' ? showBlock : hiddenBlock}
+              >
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
                     <img
@@ -518,15 +543,33 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="index-view-more d-flex justify-content-end align-items-center">
-                <p className="en-cont-14">BROWSE {latestNews}</p>
+              <Link
+                to={() => {
+                  switch (latestNewsCate) {
+                    case 'NEWS':
+                      return `${'/latest-news'}`;
+                    case 'EVNETS':
+                      return `${'/latest-news'}`;
+                    case 'SHARES':
+                      return `${'/share'}`;
+                    default:
+                      return `${'/latest-news'}`;
+                  }
+                }}
+                className="index-view-more d-flex justify-content-end align-items-center"
+                style={{
+                  textDecoration: 'none',
+                  color: '#212121',
+                }}
+              >
+                <p className="en-cont-14">BROWSE {latestNewsCate}</p>
                 <div className="view-product-arrow">
                   <img
                     src="/img/home/index-arrowsm-black.svg"
                     alt="browse-news"
                   />
                 </div>
-              </div>
+              </Link>
             </div>
 
             {/* footer */}
@@ -577,10 +620,7 @@ function Index() {
               </div>
             </div>
             {/* back to top */}
-            <div className="back-to-top d-none d-sm-block">
-              <p className="back-to-top-text">Back To Top</p>
-              <img src="/img/home/index-backtotop.svg" alt="back-to-top" />
-            </div>
+            <BackToTop />
           </div>
           <AsideRight />
         </div>

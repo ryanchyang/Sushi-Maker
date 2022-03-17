@@ -7,6 +7,7 @@ import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { height } from '@mui/system';
+import NavPage from './components/NavPage';
 
 function Header() {
   return (
@@ -66,7 +67,10 @@ function AsideRight() {
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed">
         <div className="aside-right">
           <div className="layout-hamberger-box">
-            <Hamburger className="layout-hamberger" />
+            <Hamburger
+              className="layout-hamberger"
+              style={{ cursor: 'pointer' }}
+            />
           </div>
           <div className="layout-mem-photo-box">
             <img src={require('./../../imgs/ruka.png')} alt="member-photo" />
