@@ -65,3 +65,17 @@ export const registerMem = registerData => {
     }),
   }).then(res => res.json());
 };
+
+//傳回後端修改資料
+export const reviseMem = (memInfo, mem_id) => {
+  return fetch(`${BASE_URL}/member/api/member-revise`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      memInfo,
+      mem_id,
+    }),
+  }).then(res => res.json());
+};
