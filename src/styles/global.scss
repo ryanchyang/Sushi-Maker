@@ -97,10 +97,19 @@ body {
 
 // 滿版撐高，請放在最外圍，小於100vh會撐高至100vh
 // 溫馨提醒：title下有br標籤請刪掉，不然會出現卷軸
-$min-height : calc(100vh - 14rem);
+$min-height-lg : calc(100vh - 14rem);
+$min-height-md : calc(100vh - 12rem);
+$min-height-sm : calc(100vh - 11rem);
 .min-hi{
   margin: 0;
-  min-height: $min-height;
+  min-height: $min-height-lg;
+
+  @include pad {
+    min-height: $min-height-md;
+  }
+  @include mobile {
+    min-height: $min-height-sm;
+  }
 }
 
 // 瀑布式瀏覽自訂義class
