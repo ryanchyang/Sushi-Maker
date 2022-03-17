@@ -1,5 +1,8 @@
 @import './../../styles/global.scss';
 .news {
+  a:-webkit-any-link {
+    text-decoration: none;
+  }
   // mobile version
   .mobile-news-detail {
     margin-top: 5%;

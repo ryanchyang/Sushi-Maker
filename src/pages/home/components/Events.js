@@ -1,6 +1,6 @@
 function Events(props) {
   const { evntsData } = props;
-  console.log('props:', props);
+  // console.log('props:', props);
   // [
   //     {
   //         evnts_id: 1,
@@ -23,6 +23,7 @@ function Events(props) {
   // ]
 
   // 調整SQL時間格式
+  
   const dateFormat = date => {
     let d = new Date(date),
       month = '' + (d.getMonth() + 1),
@@ -35,37 +36,15 @@ function Events(props) {
     return [year, month, day].join('-');
   };
 
-  // 判斷活動報名時間是否還沒到
-  const checkSignUpDate = (d, now) => {
-    if (d.getFullYear() > now.getFullYear()) {
-      return true;
-    } else if (d.getFullYear() === now.getFullYear()) {
-      if (d.getMonth() > now.getMonth()) {
-        return true;
-      } else if (d.getMonth() === now.getMonth()) {
-        if (d.getDate() >= now.getDate()) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    } else {
-      return false;
-    }
-  };
 
   // 計算報名人數後回傳狀態
-  // Todo: 判斷是否截止 或是 還沒開始報名
   const status = (pres, max, start, end) => {
     console.log('hi');
     let msg = '';
     const now = new Date();
     const startD = new Date(start);
     const endD = new Date(end);
-    if (
-      startD.getMonth() < now.getMonth() ||
-      endD.getMonth() > now.getMonth()
-    ) {
+    if (startD < now && endD > now) {
       const percentage = parseInt(pres) / parseInt(max);
       if (percentage === 1) {
         msg = '報名額滿';
@@ -74,15 +53,11 @@ function Events(props) {
       } else if (percentage < 0.8) {
         msg = '熱烈報名中';
       }
-    } else if (startD.getMonth() > now.getMonth()) {
+    } else if (startD > now && endD > now) {
       msg = '敬請期待';
-    } else if (endD.getMonth() < now.getMonth()) {
+    } else if (endD < now) {
       msg = '報名截止';
     }
-
-    // let now = new Date();
-    // const checkDate = checkSignUpDate(d, now);
-
     return msg;
   };
 

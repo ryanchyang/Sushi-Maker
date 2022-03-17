@@ -1,10 +1,26 @@
 // 前端 API 路徑
+// API請寫在自己的分類下方~~~~~
 
 const host = 'http://localhost:3500';
 
 const config = {
+  // 首頁
+
+  // 新聞活動
   NEWS_PATH: `${host}/latest-news/api/news`,
   EVNTS_PATH: `${host}/latest-news/api/evnts`,
+  NEWSD_PATH: `${host}/latest-news/api/newsdetail`,
+  EVNTSD_PATH: `${host}/latest-news/api/evntsdetail`,
+
+  // 經典商品
+
+  // 客製商品
+
+  // 套餐
+
+  // 分享牆
+
+  //會員
 };
 
 export default config;

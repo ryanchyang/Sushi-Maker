@@ -130,13 +130,13 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/latest-news/events/signup">
+          <Route path="/latest-news/events/signup" exact>
             <EvntsSignUp />
           </Route>
-          <Route path="/latest-news/events">
+          <Route path="/latest-news/eventsdetail/:id" exact>
             <EvntsDetails />
           </Route>
-          <Route path="/latest-news/news/">
+          <Route path="/latest-news/newsdetail/:id" exact>
             <NewsDetails />
           </Route>
           <Route path="/latest-news">

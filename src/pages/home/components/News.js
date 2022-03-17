@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 function News(props) {
   const { newsData } = props;
-  console.log('props:', props);
+
+  // console.log('props:', props);
+
   // News Data :
   // [
   //     {
@@ -31,31 +35,46 @@ function News(props) {
     return [year, month, day].join('-');
   };
 
+  const getNewsID = id => {
+    console.log('hi');
+    console.log('news_id:', id);
+  };
   return (
     <>
       <div className="latest-news-content">
         {newsData.map((v, i) => {
           return (
-            <div
-              className="col-24 col-md-10 col-xl-6 latest-news-card"
-              key={v.news_id}
-            >
-              <div className="news-img">
-                <img src={'/img/home/news/' + v.news_img_path} alt="news" />
-              </div>
-              <div className="news-text">
-                <div className="ch-title-16 news-title">{v.news_title}</div>
-                <div className="news-content">
-                  <div className="en-cont-14 news-date">
-                    {dateFormat(v.news_start_date)}
-                  </div>
-                  <div className="en-cont-14 news-tag">{v.news_cate}</div>
-                  <div className="view-arrow">
-                    <img src="/img/home/index-arrowsm-black.svg" alt="arrow" />
+            <>
+              <Link
+                to={'/latest-news/newsdetail/' + v.news_id}
+                style={{ textDecoration: 'none', color: '#212121' }}
+                className="col-24 col-md-10 col-xl-6 latest-news-card"
+                key={v.news_id}
+                data-id={v.news_id}
+                onClick={() => {
+                  getNewsID(v.news_id);
+                }}
+              >
+                <div className="news-img">
+                  <img src={'/img/home/news/' + v.news_img_path} alt="news" />
+                </div>
+                <div className="news-text">
+                  <div className="ch-title-16 news-title">{v.news_title}</div>
+                  <div className="news-content">
+                    <div className="en-cont-14 news-date">
+                      {dateFormat(v.news_start_date)}
+                    </div>
+                    <div className="en-cont-14 news-tag">{v.news_cate}</div>
+                    <div className="view-arrow">
+                      <img
+                        src="/img/home/index-arrowsm-black.svg"
+                        alt="arrow"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </Link>
+            </>
           );
         })}
         {/*<div className="col-24 col-md-10 col-xl-6 latest-news-card">
