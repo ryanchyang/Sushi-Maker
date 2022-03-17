@@ -13,6 +13,7 @@ const config = {
   EVNTSD_PATH: `${host}/latest-news/api/evntsdetail/`,
 
   // 經典商品
+  GET_INIT_PRODS: `${host}/classic/api/getprods`,
 
   // 客製商品
 

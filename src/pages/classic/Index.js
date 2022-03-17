@@ -7,6 +7,7 @@ import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useEffect } from 'react';
 import data from './testData.json';
+import config from '../../Config';
 
 function Index() {
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
@@ -24,7 +25,7 @@ function Index() {
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
   const [filterData, setFilterData] = useState([]); //套用篩選條件後的商品列表
-  const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{pid, count}]
+  const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{pid, pname, count}]
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -265,13 +266,16 @@ function Index() {
   };
 
   //加入購物車
-  const addToCart = id => {};
+  const addToCart = id => {
+    let addProd = buyProdCount.find(p => p.pid === +id);
+    alert(`你已成功將${addProd.count}個${addProd.pname}加入至購物車`);
+  };
 
   //初始化所有商品的購買數量(皆為1)
   const initProdBuyCount = prodList => {
     const prodCount = [];
     prodList.forEach(prod => {
-      prodCount.push({ pid: prod.prod_id, count: 1 });
+      prodCount.push({ pid: prod.prod_id, pname: prod.prod_ch_name ,count: 1 });
     });
     setBuyProdCount(prodCount);
   };
@@ -328,7 +332,15 @@ function Index() {
     setBuyProdCount(newData);
   };
 
+  const getInitData = async() => {
+    const res = await fetch(config.GET_INIT_PRODS);
+    const obj = await res.json();
+    console.log(obj.rows);
+    return obj.rows;
+  }
+
   useEffect(() => {
+    getInitData();
     const initData = data.data.filter(pro => pro.prod_category === 'sushi');
     //預設呈現的商品類型為壽司
     setProdList(initData);
@@ -506,7 +518,7 @@ function Index() {
                           <button
                             className="add-cart btn-sm btn-primary primeal-btn"
                             onClick={() => {
-                              addToCart(prod.prod_id);
+                              addToCart(pid);
                             }}
                           >
                             加入購物車
