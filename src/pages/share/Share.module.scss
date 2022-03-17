@@ -1,4 +1,5 @@
 @import '../../styles/global.scss';
+$min-height: calc(64.5vh);
 
 .mysharebutton {
   border-radius: 30rem;
@@ -11,6 +12,19 @@
 .mysharebutton:hover {
   text-decoration: none;
 }
+.share-display-none {
+  display: none;
+}
+
+.share-filter-top {
+  float: right;
+  display: flex;
+}
+.share-min-height {
+  margin: 0;
+  min-height: $min-height;
+}
+
 .ml-100 {
   margin-left: 100px;
 }
@@ -232,16 +246,23 @@
   animation-name: buttonmove;
 }
 
+.upload-del-button {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
 .message-button:hover,
 .info-button:hover,
 .del-button:hover,
 .edit-del-button:hover,
 .button-default:hover,
 .col-button:hover,
-.button-default-lg:hover {
+.button-default-lg:hover,
+.upload-del-button:hover {
   background-color: #e2e2e2;
   border-radius: 50%;
   transition: none;
+  opacity: 1;
 }
 
 .info-button {
@@ -414,6 +435,10 @@
 .topic-link:active,
 .subtopic-link:active {
   color: $dark-bg;
+}
+
+.preview-img {
+  height: 25vh;
 }
 
 .preview-img img {

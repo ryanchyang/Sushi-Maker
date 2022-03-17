@@ -30,7 +30,7 @@ export default function Masonry(props) {
   };
 
   return (
-    <div className={`d-flex flex-column ${styles['masonry-index']}`}>
+    <div className={`flex-column ${styles['masonry-index']} `}>
       <ImageList variant="masonry" cols={columns} gap={gap * 10}>
         {itemData.map((item, i) => (
           <ImageListItem

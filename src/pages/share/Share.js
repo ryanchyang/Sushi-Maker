@@ -29,6 +29,7 @@ const getColumns = width => {
 };
 function Share() {
   const [filter, setFilter] = useState(false);
+  const [masonryContainer, setMasonryContainer] = useState(true);
   const [search, setSearch] = useState(false);
   const [colControl, setColControl] = useState(false);
 
@@ -67,11 +68,26 @@ function Share() {
             gap={gap}
             setGap={setGap}
           />
-          <div className={`${styles['waterfall-container']}`}>
-            <Masonry columns={columns} gap={gap} />
+          <div className={` ${styles['share-min-height']}`}>
+            <div
+              className={`${styles['waterfall-container']} ${
+                masonryContainer ? 'd-flex' : styles['share-display-none']
+              }`}
+            >
+              <Masonry
+                columns={columns}
+                gap={gap}
+                masonryContainer={masonryContainer}
+              />
+            </div>
           </div>
-          <ShareFilter filter={filter} setFilter={setFilter} />
-          <Footer />
+          <ShareFilter
+            filter={filter}
+            setFilter={setFilter}
+            masonryContainer={masonryContainer}
+            setMasonryContainer={setMasonryContainer}
+          />
+          {/* <Footer /> */}
         </div>
         <AsideRight />
       </div>

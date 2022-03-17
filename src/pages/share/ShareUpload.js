@@ -1,13 +1,38 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 
-import Masonry from './components/Masonry';
 import ShareProfile from './components/ShareProfile';
 
 import { ReactComponent as Trash } from '../../imgs/tags/trash-line.svg';
 
 import styles from './Share.module.scss';
+import { useState } from 'react';
 
 function ShareUpload() {
+  const [uploadItem, setUploadItem] = useState({});
+
+  const creditHandler = item => {
+    let credit;
+
+    const cateCredits = [
+      { cate: '經典', credit: 300 },
+      { cate: '客製', credit: 500 },
+      { cate: '套餐', credit: 800 },
+    ];
+    if (Object.keys(item).length === 0) {
+      credit = '5000 pt';
+    } else {
+      credit = cateCredits.map(cateCredit =>
+        cateCredit.cate === item.cate ? `${5000 + cateCredit.credit} pt` : ''
+      );
+    }
+
+    return (
+      <h3 className={`en-cont-28 ${item.cate ? 'text-primary' : ''}`}>
+        {credit}
+      </h3>
+    );
+  };
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -21,13 +46,16 @@ function ShareUpload() {
                 <div className="ch-cont-14 font-weight-bold mb-5">商品預覽</div>
                 <div className="d-flex justify-content-center mb-5">
                   <div className={`${styles['preview-img']} col-18 `}>
-                    <img src="/img/home/sushi/金華火腿壽司.png" alt="" />
+                    <img
+                      src={uploadItem.img ?? '/img/home/sushi/紅豆抹茶壽司.png'}
+                      alt=""
+                    />
                   </div>
                 </div>
 
                 <div className="ch-cont-14 font-weight-bold mb-5">會員積分</div>
                 <div className="d-flex justify-content-center mb-5">
-                  <h3 className="en-cont-28">5000 pt</h3>
+                  {creditHandler(uploadItem)}
                 </div>
               </div>
               <div className="col-lg-18">
@@ -50,67 +78,35 @@ function ShareUpload() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="font-weight-normal ">鮪魚蛋壽司</td>
-                      <td className="font-weight-bold">2022/3/18</td>
-                      <td className={`${styles['cate-disabled']} `}>經典</td>
-                      <td style={{ width: '20%' }}>
-                        <button
-                          className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
+                    {uploadData.map(data => {
+                      return (
+                        <tr
+                          key={data.id}
+                          onMouseEnter={() => setUploadItem(data)}
+                          onMouseLeave={() => setUploadItem({})}
                         >
-                          分享
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-weight-normal ">鮭魚壽司</td>
-                      <td className="font-weight-bold">2022/3/18</td>
-                      <td className={`${styles['cate-disabled']} `}>客製</td>
-                      <td style={{ width: '20%' }}>
-                        <button
-                          className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
-                        >
-                          分享
-                        </button>
-                        {/* <Trash className="mb-2" /> */}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-weight-normal ">玉子燒壽司</td>
-                      <td className="font-weight-bold">2022/3/18</td>
-                      <td className={`${styles['cate-disabled']} `}>套餐</td>
-                      <td style={{ width: '20%' }}>
-                        <button
-                          className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
-                        >
-                          分享
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-weight-normal ">玉子燒壽司</td>
-                      <td className="font-weight-bold">2022/3/18</td>
-                      <td className={`${styles['cate-disabled']} `}>經典</td>
-                      <td style={{ width: '20%' }}>
-                        <button
-                          className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
-                        >
-                          分享
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="font-weight-normal ">玉子燒壽司</td>
-                      <td className="font-weight-bold">2022/3/18</td>
-                      <td className={`${styles['cate-disabled']} `}>經典</td>
-                      <td style={{ width: '20%' }}>
-                        <button
-                          className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
-                        >
-                          分享
-                        </button>
-                      </td>
-                    </tr>
+                          <td className="font-weight-normal ">{data.name}</td>
+                          <td className="font-weight-bold">{data.date}</td>
+                          <td className={`${styles['cate-disabled']} `}>
+                            {data.cate}
+                          </td>
+                          <td style={{ width: '22%' }}>
+                            <button
+                              className={`${styles['share-item-button']} btn-sm btn-primary mr-md-4`}
+                            >
+                              分享
+                            </button>
+                            {data.id === uploadItem.id ? (
+                              <Trash
+                                className={`${styles['upload-del-button']} mb-2`}
+                              />
+                            ) : (
+                              ''
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -124,5 +120,43 @@ function ShareUpload() {
     </>
   );
 }
+
+const uploadData = [
+  {
+    id: 1,
+    name: '鮪魚蛋壽司',
+    date: '2022/3/18',
+    cate: '經典',
+    img: '/img/home/sushi/金華火腿壽司.png',
+  },
+  {
+    id: 2,
+    name: '玉子燒壽司',
+    date: '2022/3/18',
+    cate: '套餐',
+    img: '/img/home/sushi/牛排壽司.png',
+  },
+  {
+    id: 3,
+    name: '鮪魚蛋壽司',
+    date: '2022/3/18',
+    cate: '經典',
+    img: '/img/home/sushi/花枝壽司.png',
+  },
+  {
+    id: 4,
+    name: '玉子燒壽司',
+    date: '2022/3/18',
+    cate: '客製',
+    img: '/img/home/sushi/肉排三重奏壽司.png',
+  },
+  {
+    id: 5,
+    name: '鮪魚蛋壽司',
+    date: '2022/3/18',
+    cate: '經典',
+    img: '/img/home/sushi/玉子海苔壽司.png',
+  },
+];
 
 export default ShareUpload;

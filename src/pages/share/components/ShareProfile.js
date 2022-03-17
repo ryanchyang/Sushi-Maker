@@ -13,9 +13,7 @@ function ShareProfile() {
         <div className={`${styles['topic-box']}`}>
           <div
             className={`${styles['topic-rect']} d-none d-sm-block`}
-            style={
-              activeTopic === topic ? { opacity: '100%' } : { opacity: '0' }
-            }
+            style={activeTopic === topic ? { opacity: '1' } : { opacity: '0' }}
           >
             <Rect />
           </div>
