@@ -221,7 +221,7 @@
     position: fixed;
     top: 14rem;
     width: 75%;
-    min-height: calc($min-height - 4rem) ;
+    min-height: calc($min-height-lg - 4rem) ;
     transition: 0.3s;
   }
   .prod-filter {
@@ -481,7 +481,7 @@
       // height: 80vh;
       right: 0;
     }
-    $prod-filter-mb: calc($min-height - 4rem - 80px);
+    $prod-filter-mb: calc($min-height-lg - 4rem - 80px);
     .prod-filter-sh{
       width: 100%;
       top: 30%;      
