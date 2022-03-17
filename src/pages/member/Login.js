@@ -7,6 +7,7 @@ import { ReactComponent as EyeShow } from '../../imgs/eye-show.svg';
 import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken, setMemId } from '../../utils';
 import LoginForgetPwd from './component/LoginForgetPwd';
+import LoginForgetPwdVcode from './component/LoginForgetPwdVcode';
 // import { AuthContext } from '../../contexts.js';
 
 //styled component
@@ -73,6 +74,7 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState();
   const [showPwd, setShowPwd] = useState(false);
   const [forgetPwd, setForgetPwd] = useState(false);
+  const [accountPass, setAccountPass] = useState(false);
   const history = useHistory();
 
   const handleClickPwd = e => {
@@ -239,8 +241,15 @@ function Login() {
               <LoginForgetPwd
                 forgetPwd={forgetPwd}
                 setForgetPwd={setForgetPwd}
+                accountPass={accountPass}
+                setAccountPass={setAccountPass}
+              />
+              <LoginForgetPwdVcode 
+                accountPass={accountPass}
+                setAccountPass={setAccountPass}
               />
             </LoginArea>
+            
 
             {/* <Footer /> */}
           </div>

@@ -15,6 +15,18 @@ export const login = (mem_account, mem_pwd) => {
     }),
   }).then(res => res.json());
 };
+//忘記密碼頁帳號驗證API
+export const accountCheck = mem_account => {
+  return fetch(`${BASE_URL}/member/api/accountCheck`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_account,
+    }),
+  }).then(res => res.json());
+};
 
 //先留著 換頁render用
 export const getMe = () => {
@@ -32,7 +44,7 @@ export const findMem = mem_id => {
   return fetch(`${BASE_URL}/member/api/find-member`, {
     method: 'POST',
     headers: {
-       Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       'content-type': 'application/json',
     },
     body: JSON.stringify({
