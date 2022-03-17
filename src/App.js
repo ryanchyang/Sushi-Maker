@@ -21,8 +21,7 @@ import ShareItems from './pages/share/ShareItems';
 import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
-import ShareHistory from './pages/share/ShareHistory';
-import ShareHistory2 from './pages/share/ShareHistory2';
+import SharePost from './pages/share/SharePost';
 import ShareItemsTwoCol from './pages/share/ShareItemsTwoCol';
 // Home
 import Home from './pages/home/Index';
@@ -50,7 +49,6 @@ import CartStepTwo from './pages/cart/StepTwo';
 import CartStepThree from './pages/cart/StepThree';
 import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
-import SharePost from './pages/share/ShareHistory';
 
 function App() {
   //判斷使用者是否登入
@@ -121,10 +119,7 @@ function App() {
             <ShareEdit />
           </Route>
           <Route path="/share/post">
-            <ShareHistory />
-          </Route>
-          <Route path="/share/post2">
-            <ShareHistory2 />
+            <SharePost />
           </Route>
           <Route path="/entry" exact>
             <Entry />

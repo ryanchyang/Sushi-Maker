@@ -8,24 +8,23 @@
   height: 4rem;
   line-height: 1;
 }
-
-.mb-30 {
-  margin-bottom: 30px;
+.mysharebutton:hover {
+  text-decoration: none;
 }
-
-.mb-50 {
-  margin-bottom: 50px;
-}
-
 .ml-100 {
   margin-left: 100px;
 }
-.mt-45 {
-  margin-top: 45px;
+.mb-30 {
+  margin-bottom: 30px;
 }
-
 .mt-60 {
   margin-top: 60px;
+}
+.mb-50 {
+  margin-bottom: 50px;
+}
+.mt-45 {
+  margin-top: 45px;
 }
 
 .mb-80 {
@@ -399,6 +398,7 @@
   text-decoration: none;
   color: $gray;
   line-height: 2.1;
+  cursor: pointer;
 }
 
 .topic-link:link,

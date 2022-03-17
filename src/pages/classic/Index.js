@@ -261,6 +261,10 @@ function Index() {
     ); //取當頁所呈現的商品列表
   };
 
+  const addToCart = id => {
+    console.log(id);
+  };
+
   useEffect(() => {
     const initData = data.data.filter(pro => pro.prod_category === 'sushi');
     //預設呈現的商品類型為壽司
@@ -277,7 +281,7 @@ function Index() {
 
   const showStyle = { display: 'block' };
   const showStyleInlne = { display: 'inline' };
-  const hiddenStyle = { display: 'none'};  
+  const hiddenStyle = { display: 'none' };
   const flavorTagNoClick = { color: '#b03342', backgroundColor: 'transparent' };
   const flavorTagClicked = { color: '#ffffff', backgroundColor: '#b03342' };
   const pageNoSelected = { border: '1px solid #575757', color: '#575757' };
@@ -292,7 +296,7 @@ function Index() {
           <Title title={'Classic'} />
           <br />
 
-          <div className="classic">
+          <div className="classic min-hi">
             <div className="search-filter">
               <div className="search-btn">
                 <SearchBtn />
@@ -301,7 +305,6 @@ function Index() {
                 className="filter-btn"
                 onClick={() => {
                   setIsOpenFilter(!isOpenFilter);
-                  //setIsOpenMainContent(!isOpenMainContent);
                 }}
               >
                 <FilterBtn />
@@ -375,7 +378,7 @@ function Index() {
                 {prodList.map(prod => {
                   return (
                     <>
-                      <div className="prod-card" key={prod.id}>
+                      <div className="prod-card" key={prod.prod_id}>
                         <div className="prod-img-box">
                           {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
                           {prod.prod_spe_tag === '' ? (
@@ -425,10 +428,20 @@ function Index() {
                             <input type="number" value={1} />
                             <button>+</button>
                           </div>
-                          <div className="cart-btn">
+                          <div
+                            className="cart-btn"
+                            onClick={() => {
+                              addToCart(prod.prod_id);
+                            }}
+                          >
                             <Cart />
                           </div>
-                          <button className="add-cart btn-sm btn-primary primeal-btn">
+                          <button
+                            className="add-cart btn-sm btn-primary primeal-btn"
+                            onClick={() => {
+                              addToCart(prod.prod_id);
+                            }}
+                          >
                             加入購物車
                           </button>
                         </div>
@@ -436,158 +449,6 @@ function Index() {
                     </>
                   );
                 })}
-
-                {/* <div className="prod-card">
-                  <div className="prod-img-box">
-                    <div className="discount-tag">
-                      <div className="discount-tag-content">25%OFF</div>
-                    </div>
-                    <img
-                      src={require('./../../imgs/temp/classic-pro1.png')}
-                      alt="product-image"
-                    />
-                  </div>
-
-                  <div className="prod-name-ch ch-title-22">鮭魚壽司</div>
-                  <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
-
-                  <div className="prod-price-special">
-                    <div className="original-price ch-cont-16">NT_60</div>
-                    <div className="special-price ch-cont-18">NT_50</div>
-                  </div>
-
-                  <div className="prod-price-no-discount">
-                    <div className="no-discount ch-cont-16">NT_60</div>
-                  </div>
-
-                  <div className="select-add-cart">
-                    <div className="select-count">
-                      <button>-</button>
-                      <input type="number" value={1} />
-                      <button>+</button>
-                    </div>
-                    <div className="cart-btn">
-                      <Cart />
-                    </div>
-                    <button className="add-cart btn-sm btn-primary primeal-btn">
-                      加入購物車
-                    </button>
-                  </div>
-                </div>
-
-                <div className="prod-card">
-                  <div className="prod-img-box">
-                    <div className="discount-tag">
-                      <Discount />
-                    </div>
-                    <img
-                      src={require('./../../imgs/temp/classic-pro2.png')}
-                      alt="product-image"
-                    />
-                  </div>
-
-                  <div className="prod-name-ch ch-title-22">海膽壽司</div>
-                  <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
-
-                  <div className="prod-price-special">
-                    <div className="original-price ch-cont-16">NT_75</div>
-                    <div className="special-price ch-cont-18">NT_70</div>
-                  </div>
-
-                  <div className="prod-price-no-discount">
-                    <div className="no-discount ch-cont-16">NT_60</div>
-                  </div>
-
-                  <div className="select-add-cart">
-                    <div className="select-count">
-                      <button>-</button>
-                      <input type="number" value={1} />
-                      <button>+</button>
-                    </div>
-                    <div className="cart-btn">
-                      <Cart />
-                    </div>
-                    <button className="add-cart btn-sm btn-primary primeal-btn">
-                      加入購物車
-                    </button>
-                  </div>
-                </div>
-
-                <div className="prod-card">
-                  <div className="prod-img-box">
-                    <div className="discount-tag">
-                      <Discount />
-                    </div>
-                    <img
-                      src={require('./../../imgs/temp/classic-pro3.png')}
-                      alt="product-image"
-                    />
-                  </div>
-
-                  <div className="prod-name-ch ch-title-22">飛魚卵壽司</div>
-                  <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
-
-                  <div className="prod-price-special">
-                    <div className="original-price ch-cont-16">NT_65</div>
-                    <div className="special-price ch-cont-18">NT_55</div>
-                  </div>
-
-                  <div className="prod-price-no-discount">
-                    <div className="no-discount ch-cont-16">NT_60</div>
-                  </div>
-
-                  <div className="select-add-cart">
-                    <div className="select-count">
-                      <button>-</button>
-                      <input type="number" value={1} />
-                      <button>+</button>
-                    </div>
-                    <div className="cart-btn">
-                      <Cart />
-                    </div>
-                    <button className="add-cart btn-sm btn-primary primeal-btn">
-                      加入購物車
-                    </button>
-                  </div>
-                </div>
-
-                <div className="prod-card">
-                  <div className="prod-img-box">
-                    <div className="discount-tag">
-                      <Discount />
-                    </div>
-                    <img
-                      src={require('./../../imgs/temp/classic-pro4.png')}
-                      alt="product-image"
-                    />
-                  </div>
-
-                  <div className="prod-name-ch ch-title-22">花枝壽司</div>
-                  <div className="prod-name-en en-title-14-5">Salmon Sushi</div>
-
-                  <div className="prod-price-special">
-                    <div className="original-price ch-cont-16">NT_55</div>
-                    <div className="special-price ch-cont-18">NT_45</div>
-                  </div>
-
-                  <div className="prod-price-no-discount">
-                    <div className="no-discount ch-cont-16">NT_60</div>
-                  </div>
-
-                  <div className="select-add-cart">
-                    <div className="select-count">
-                      <button>-</button>
-                      <input type="number" value={1} />
-                      <button>+</button>
-                    </div>
-                    <div className="cart-btn">
-                      <Cart />
-                    </div>
-                    <button className="add-cart btn-sm btn-primary primeal-btn">
-                      加入購物車
-                    </button>
-                  </div>
-                </div> */}
               </div>
 
               {/* pagination */}
@@ -610,7 +471,6 @@ function Index() {
                     {Array(totalPage)
                       .fill(1)
                       .map((v, i) => {
-                        console.log(i);
                         return (
                           <>
                             <li key={i}>
@@ -667,7 +527,7 @@ function Index() {
 
             {/* 主要篩選條件區 */}
             <div
-              className="prod-filter"
+              className="prod-filter-sh"
               style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
               onTransitionEnd={() => {
                 setIsOpenMainContent(isOpenFilter ? false : true);

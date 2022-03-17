@@ -2,7 +2,42 @@ import { ReactComponent as Delete } from '../../../imgs/delete-lg.svg';
 import { ReactComponent as Rect } from '../../../imgs/tags/Rectangle_orange.svg';
 import styles from '../Share.module.scss';
 
+import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
 function ShareProfile() {
+  const [activeTopic, setActiveTopic] = useState('saves');
+
+  const topicTemplate = topic => {
+    return (
+      <>
+        <div className={`${styles['topic-box']}`}>
+          <div
+            className={`${styles['topic-rect']} d-none d-sm-block`}
+            style={
+              activeTopic === topic ? { opacity: '100%' } : { opacity: '0' }
+            }
+          >
+            <Rect />
+          </div>
+          <NavLink
+            to={`/share/${topic}`}
+            className={`${styles['topic-link']}`}
+            style={{ color: '#c4c4c4' }}
+            activeStyle={{ color: '#212121' }}
+            isActive={match => {
+              if (!match) return false;
+
+              setActiveTopic(topic);
+              return true;
+            }}
+          >
+            {topic.toUpperCase()}
+          </NavLink>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <div className={`mycontainer`}>
@@ -39,32 +74,9 @@ function ShareProfile() {
             <div
               className={`${styles['topic-section']} d-flex  ${styles['mb-50']} justify-content-center`}
             >
-              <div className={`${styles['topic-box']}`}>
-                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
-                  <Rect />
-                </div>
-                <a href="#/" className={`${styles['topic-link']}`}>
-                  SAVES
-                </a>
-              </div>
-
-              <div className={`${styles['topic-box']}`}>
-                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
-                  <Rect />
-                </div>
-                <a href="#/" className={`${styles['topic-link']}`}>
-                  UPLOAD
-                </a>
-              </div>
-
-              <div className={`${styles['topic-box']}`}>
-                <div className={`${styles['topic-rect']} d-none d-sm-block`}>
-                  <Rect />
-                </div>
-                <a href="#/" className={`${styles['topic-link']}`}>
-                  POST
-                </a>
-              </div>
+              {topicTemplate('saves')}
+              {topicTemplate('upload')}
+              {topicTemplate('post')}
             </div>
           </div>
         </div>

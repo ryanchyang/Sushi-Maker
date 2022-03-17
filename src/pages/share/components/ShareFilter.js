@@ -20,7 +20,9 @@ function ShareFilter(props) {
             {/* clean or cancel filter */}
             <div className="d-flex flex-column">
               <div className="filter-top justify-content-end">
-                <div className={`clean-filter ch-cont-16 ${styles['mr-100']}`}>
+                <div
+                  className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
+                >
                   <img
                     src={require('./../../../imgs/tags/trash.png')}
                     alt="trash"
