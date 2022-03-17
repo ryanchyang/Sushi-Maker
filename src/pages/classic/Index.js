@@ -24,6 +24,7 @@ function Index() {
     { tag: 'sale', value: false },
   ]); //依特殊標籤搜尋
   const [filterData, setFilterData] = useState([]); //套用篩選條件後的商品列表
+  const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{prodId, count}]
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -261,8 +262,14 @@ function Index() {
     ); //取當頁所呈現的商品列表
   };
 
-  const addToCart = id => {
-    console.log(id);
+  const addToCart = id => {};
+
+  const initProdBuyCount = prodList => {
+    const prodCount = [];
+    prodList.forEach(prod => {
+      prodCount.push({ pid: prod.prod_id, count: 1 });
+    });
+    setBuyProdCount(prodCount);
   };
 
   useEffect(() => {
@@ -273,6 +280,8 @@ function Index() {
     setMaterials(data.mtl);
     //初始化總分頁數
     setTotalPage(Math.ceil(initData.length / 6));
+    //初始化商品購買數量
+    initProdBuyCount(data.data);
   }, []);
 
   useEffect(() => {
@@ -425,7 +434,7 @@ function Index() {
                         <div className="select-add-cart">
                           <div className="select-count">
                             <button>-</button>
-                            <input type="number" value={1} />
+                            <input type="number" value={0} />
                             <button>+</button>
                           </div>
                           <div
