@@ -4,7 +4,18 @@ import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
 import { ReactComponent as Plus } from '../../imgs/plus.svg';
 
+import { useRef, useState } from 'react';
+
 function ShareEdit() {
+  const fileInputRef = useRef(null);
+  const [files, setFiles] = useState({});
+
+  const fileInputHandler = () => {
+    if (!fileInputRef.current) return '新增、拖曳照片';
+    let filesLength = fileInputRef.current.files.length;
+    if (filesLength !== 0) return `選擇${filesLength}個檔案`;
+  };
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -55,15 +66,26 @@ function ShareEdit() {
                             照片
                           </label>
                           <input
+                            ref={fileInputRef}
                             type="file"
                             className="form-control-file"
                             id="images"
+                            multiple
+                            style={{ display: 'none' }}
+                            onChange={() => {
+                              setFiles(fileInputRef.current.files);
+                            }}
                           />
                           <div
                             className={`${styles['share-edit-attach']} d-flex flex-column align-items-center justify-content-center`}
+                            onClick={() => {
+                              fileInputRef.current.click();
+                            }}
                           >
                             <Plus />
-                            <div className="ch-cont-14">新增、拖曳照片</div>
+                            <div className="ch-cont-14">
+                              {fileInputHandler()}
+                            </div>
                           </div>
                         </div>
                         <div className="form-group">
