@@ -1,5 +1,6 @@
 [
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "170945",
@@ -9,6 +10,7 @@
         "storeY": "25056390.9685318"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "200376",
@@ -18,6 +20,7 @@
         "storeY": "25050944"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "239721",
@@ -27,6 +30,7 @@
         "storeY": "25048396"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "216337",
@@ -36,6 +40,7 @@
         "storeY": "25050888"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "201302",
@@ -45,6 +50,7 @@
         "storeY": "25048086"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "138583",
@@ -54,6 +60,7 @@
         "storeY": "25045127"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "239743",
@@ -63,6 +70,7 @@
         "storeY": "25061936"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "237301",
@@ -72,6 +80,7 @@
         "storeY": "25058106"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "166832",
@@ -81,6 +90,7 @@
         "storeY": "25046070"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "185682",
@@ -90,6 +100,7 @@
         "storeY": "25050941.9492939"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "236825",
@@ -99,6 +110,7 @@
         "storeY": "25050398"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "232041",
@@ -108,6 +120,7 @@
         "storeY": "25051417"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "197652",
@@ -117,6 +130,7 @@
         "storeY": "25051596"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "238670",
@@ -126,6 +140,7 @@
         "storeY": "25051325"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "238337",
@@ -135,6 +150,7 @@
         "storeY": "25051819"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "237242",
@@ -144,6 +160,7 @@
         "storeY": "25049671.9448837"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "991551",
@@ -153,6 +170,7 @@
         "storeY": "25051768.9521709"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "209100",
@@ -162,6 +180,7 @@
         "storeY": "25051628"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "193236",
@@ -171,6 +190,7 @@
         "storeY": "25051836"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "249935",
@@ -180,6 +200,7 @@
         "storeY": "25057296.9713977"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "173988",
@@ -189,6 +210,7 @@
         "storeY": "25056236"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "140276",
@@ -198,6 +220,7 @@
         "storeY": "25058555"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "187806",
@@ -207,6 +230,7 @@
         "storeY": "25060341"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "135089",
@@ -216,6 +240,7 @@
         "storeY": "25057384"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "174006",
@@ -225,6 +250,7 @@
         "storeY": "25051891.9526621"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "148579",
@@ -234,6 +260,7 @@
         "storeY": "25058524.975786"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "215851",
@@ -243,6 +270,7 @@
         "storeY": "25059074.9779365"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "160074",
@@ -252,6 +280,7 @@
         "storeY": "25052598"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "896241",
@@ -261,6 +290,7 @@
         "storeY": "25058645"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "164803",
@@ -270,6 +300,7 @@
         "storeY": "25058359"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "188681",
@@ -279,6 +310,7 @@
         "storeY": "25052392"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "990352",
@@ -288,6 +320,7 @@
         "storeY": "25050878"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "210694",
@@ -297,6 +330,7 @@
         "storeY": "25050325"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "135643",
@@ -306,6 +340,7 @@
         "storeY": "25063718.99407"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "230355",
@@ -315,6 +350,7 @@
         "storeY": "25050645"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "181680",
@@ -324,6 +360,7 @@
         "storeY": "25052768"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "207850",
@@ -333,6 +370,7 @@
         "storeY": "25063818"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "883223",
@@ -342,6 +380,7 @@
         "storeY": "25051083"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "197009",
@@ -351,6 +390,7 @@
         "storeY": "25063732"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "213903",
@@ -360,6 +400,7 @@
         "storeY": "25049883"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "189710",
@@ -369,6 +410,7 @@
         "storeY": "25055525.9654823"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "961055",
@@ -378,6 +420,7 @@
         "storeY": "25052477"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "240709",
@@ -387,6 +430,7 @@
         "storeY": "25048780"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "902908",
@@ -396,6 +440,7 @@
         "storeY": "25045677"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "175043",
@@ -405,6 +450,7 @@
         "storeY": "25047815.9386224"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "141992",
@@ -414,6 +460,7 @@
         "storeY": "25053224"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "173531",
@@ -423,6 +470,7 @@
         "storeY": "25053926.959716"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "916527",
@@ -432,6 +480,7 @@
         "storeY": "25048327"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "171421",
@@ -441,6 +490,7 @@
         "storeY": "25050205"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "186168",
@@ -450,6 +500,7 @@
         "storeY": "25051650.9516713"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "915270",
@@ -459,6 +510,7 @@
         "storeY": "25047157"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "240651",
@@ -468,6 +520,7 @@
         "storeY": "25056578.9692269"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "184782",
@@ -477,6 +530,7 @@
         "storeY": "25054422"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "237437",
@@ -486,6 +540,7 @@
         "storeY": "25048468"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "207610",
@@ -495,6 +550,7 @@
         "storeY": "25059896"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "199267",
@@ -504,6 +560,7 @@
         "storeY": "25061025.9847241"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "114554",
@@ -513,6 +570,7 @@
         "storeY": "25054074.9604227"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "211804",
@@ -522,6 +580,7 @@
         "storeY": "25051960"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "215758",
@@ -531,6 +590,7 @@
         "storeY": "25058078"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "112684",
@@ -540,6 +600,7 @@
         "storeY": "25059856"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "165976",
@@ -549,6 +610,7 @@
         "storeY": "25049098.9429572"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "214799",
@@ -558,6 +620,7 @@
         "storeY": "25047914"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "214803",
@@ -567,6 +630,7 @@
         "storeY": "25051089"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "185165",
@@ -576,6 +640,7 @@
         "storeY": "25050408.9471678"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "135610",
@@ -585,6 +650,7 @@
         "storeY": "25062110.9882123"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "164618",
@@ -594,6 +660,7 @@
         "storeY": "25050443"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "206879",
@@ -603,6 +670,7 @@
         "storeY": "25048158"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "906209",
@@ -612,6 +680,7 @@
         "storeY": "25050146"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "241207",
@@ -621,6 +690,7 @@
         "storeY": "25052738.9557778"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "186331",
@@ -630,6 +700,7 @@
         "storeY": "25052698"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "241090",
@@ -639,6 +710,7 @@
         "storeY": "25049187"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "松山區",
         "storeID": "190145",
@@ -648,6 +720,7 @@
         "storeY": "25056714"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "237699",
@@ -657,6 +730,7 @@
         "storeY": "25033373"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "149697",
@@ -666,6 +740,7 @@
         "storeY": "25029185.8733115"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "238289",
@@ -675,6 +750,7 @@
         "storeY": "25031971"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "151335",
@@ -684,6 +760,7 @@
         "storeY": "25036561"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "202110",
@@ -693,6 +770,7 @@
         "storeY": "25033642"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "194723",
@@ -702,6 +780,7 @@
         "storeY": "25033867"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "200044",
@@ -711,6 +790,7 @@
         "storeY": "25033867"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "239455",
@@ -720,6 +800,7 @@
         "storeY": "25028461.8706686"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "978798",
@@ -729,6 +810,7 @@
         "storeY": "25027177.8662635"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "211170",
@@ -738,6 +820,7 @@
         "storeY": "25026986.8656184"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "990721",
@@ -747,6 +830,7 @@
         "storeY": "25040914"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "211066",
@@ -756,6 +840,7 @@
         "storeY": "25040833"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "190330",
@@ -765,6 +850,7 @@
         "storeY": "25042566.9199801"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "212232",
@@ -774,6 +860,7 @@
         "storeY": "25045709"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "135241",
@@ -783,6 +870,7 @@
         "storeY": "25043534"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "930637",
@@ -792,6 +880,7 @@
         "storeY": "25041152"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "136716",
@@ -801,6 +890,7 @@
         "storeY": "25033679"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "164490",
@@ -810,6 +900,7 @@
         "storeY": "25024536"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "981901",
@@ -819,6 +910,7 @@
         "storeY": "25036845"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "144315",
@@ -828,6 +920,7 @@
         "storeY": "25040657"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "195955",
@@ -837,6 +930,7 @@
         "storeY": "25041718"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "185143",
@@ -846,6 +940,7 @@
         "storeY": "25028011"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "127723",
@@ -855,6 +950,7 @@
         "storeY": "25040821"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "118970",
@@ -864,6 +960,7 @@
         "storeY": "25040764"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "906564",
@@ -873,6 +970,7 @@
         "storeY": "25026747"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "198781",
@@ -882,6 +980,7 @@
         "storeY": "25043770.9240663"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "211332",
@@ -891,6 +990,7 @@
         "storeY": "25049192"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "991702",
@@ -900,6 +1000,7 @@
         "storeY": "25035809"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "993041",
@@ -909,6 +1010,7 @@
         "storeY": "25043212.9222209"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "135425",
@@ -918,6 +1020,7 @@
         "storeY": "25041321"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "174970",
@@ -927,6 +1030,7 @@
         "storeY": "25029133"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "147299",
@@ -936,6 +1040,7 @@
         "storeY": "25032912"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "159269",
@@ -945,6 +1050,7 @@
         "storeY": "25046844.9347933"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "196040",
@@ -954,6 +1060,7 @@
         "storeY": "25042721"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "241148",
@@ -963,6 +1070,7 @@
         "storeY": "25049192"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "215688",
@@ -972,6 +1080,7 @@
         "storeY": "25043477"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "158738",
@@ -981,6 +1090,7 @@
         "storeY": "25037269.9012747"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "228673",
@@ -990,6 +1100,7 @@
         "storeY": "25028207"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "237459",
@@ -999,6 +1110,7 @@
         "storeY": "25031868"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "216212",
@@ -1008,6 +1120,7 @@
         "storeY": "25026175"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "216201",
@@ -1017,6 +1130,7 @@
         "storeY": "25039333"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "213707",
@@ -1026,6 +1140,7 @@
         "storeY": "25036732"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "216463",
@@ -1035,6 +1150,7 @@
         "storeY": "25034775"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "970901",
@@ -1044,6 +1160,7 @@
         "storeY": "25025814"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "206695",
@@ -1053,6 +1170,7 @@
         "storeY": "25044634"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "231462",
@@ -1062,6 +1180,7 @@
         "storeY": "25042601"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "200871",
@@ -1071,6 +1190,7 @@
         "storeY": "25045547"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "202464",
@@ -1080,6 +1200,7 @@
         "storeY": "25038729"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "165987",
@@ -1089,6 +1210,7 @@
         "storeY": "25034597"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "122212",
@@ -1098,6 +1220,7 @@
         "storeY": "25024081.855584"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "202350",
@@ -1107,6 +1230,7 @@
         "storeY": "25048426"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "198758",
@@ -1116,6 +1240,7 @@
         "storeY": "25041610"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "135012",
@@ -1125,6 +1250,7 @@
         "storeY": "25039373.9088148"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "164216",
@@ -1134,6 +1260,7 @@
         "storeY": "25034285"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "120515",
@@ -1143,6 +1270,7 @@
         "storeY": "25025802.8616135"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "195807",
@@ -1152,6 +1280,7 @@
         "storeY": "25024493"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "961000",
@@ -1161,6 +1290,7 @@
         "storeY": "25022205"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "130132",
@@ -1170,6 +1300,7 @@
         "storeY": "25042080.9182198"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "135942",
@@ -1179,6 +1310,7 @@
         "storeY": "25038253"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "214146",
@@ -1188,6 +1320,7 @@
         "storeY": "25047270"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "206684",
@@ -1197,6 +1330,7 @@
         "storeY": "25034435"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "121079",
@@ -1206,6 +1340,7 @@
         "storeY": "25040552.9129775"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "128036",
@@ -1215,6 +1350,7 @@
         "storeY": "25040158"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "144636",
@@ -1224,6 +1360,7 @@
         "storeY": "25038664"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "200907",
@@ -1233,6 +1370,7 @@
         "storeY": "25039884"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "870504",
@@ -1242,6 +1380,7 @@
         "storeY": "25047321"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "198389",
@@ -1251,6 +1390,7 @@
         "storeY": "25034526"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "120353",
@@ -1260,6 +1400,7 @@
         "storeY": "25037658"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "231783",
@@ -1269,6 +1410,7 @@
         "storeY": "25039636"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "238360",
@@ -1278,6 +1420,7 @@
         "storeY": "25037520.9021823"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "193247",
@@ -1287,6 +1430,7 @@
         "storeY": "25039499"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "963556",
@@ -1296,6 +1440,7 @@
         "storeY": "25031145"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "240569",
@@ -1305,6 +1450,7 @@
         "storeY": "25023487.8532766"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "122186",
@@ -1314,6 +1460,7 @@
         "storeY": "25047029.9355361"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "214559",
@@ -1323,6 +1470,7 @@
         "storeY": "25041836"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "119478",
@@ -1332,6 +1480,7 @@
         "storeY": "25027156"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "135562",
@@ -1341,6 +1490,7 @@
         "storeY": "25018663"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "215253",
@@ -1350,6 +1500,7 @@
         "storeY": "25044790.9275384"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "信義區",
         "storeID": "197733",
@@ -1359,6 +1510,7 @@
         "storeY": "25040167"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "231059",
@@ -1368,6 +1520,7 @@
         "storeY": "25017604"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "921633",
@@ -1377,6 +1530,7 @@
         "storeY": "25033718"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "249706",
@@ -1386,6 +1540,7 @@
         "storeY": "25031191.8805121"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "175032",
@@ -1395,6 +1550,7 @@
         "storeY": "25038516"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "975962",
@@ -1404,6 +1560,7 @@
         "storeY": "25038646"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238935",
@@ -1413,6 +1570,7 @@
         "storeY": "25043523"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "237389",
@@ -1422,6 +1580,7 @@
         "storeY": "25013953"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "189271",
@@ -1431,6 +1590,7 @@
         "storeY": "25030427"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "975973",
@@ -1440,6 +1600,7 @@
         "storeY": "25025650"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "901293",
@@ -1449,6 +1610,7 @@
         "storeY": "25030018"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "182269",
@@ -1458,6 +1620,7 @@
         "storeY": "25043722"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "227670",
@@ -1467,6 +1630,7 @@
         "storeY": "25041598"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "957285",
@@ -1476,6 +1640,7 @@
         "storeY": "25042522"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "240031",
@@ -1485,6 +1650,7 @@
         "storeY": "25028362"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238533",
@@ -1494,6 +1660,7 @@
         "storeY": "25028195.8700811"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "237910",
@@ -1503,6 +1670,7 @@
         "storeY": "25020451"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "167581",
@@ -1512,6 +1680,7 @@
         "storeY": "25042924"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "216050",
@@ -1521,6 +1690,7 @@
         "storeY": "25042414"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "128058",
@@ -1530,6 +1700,7 @@
         "storeY": "25024613"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "894359",
@@ -1539,6 +1710,7 @@
         "storeY": "25023057"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "196268",
@@ -1548,6 +1720,7 @@
         "storeY": "25014683"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "209867",
@@ -1557,6 +1730,7 @@
         "storeY": "25026717"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "855572",
@@ -1566,6 +1740,7 @@
         "storeY": "25022220"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "171063",
@@ -1575,6 +1750,7 @@
         "storeY": "25026918"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "214571",
@@ -1584,6 +1760,7 @@
         "storeY": "25026457"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "196316",
@@ -1593,6 +1770,7 @@
         "storeY": "25020640"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "217271",
@@ -1602,6 +1780,7 @@
         "storeY": "25036636"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "249382",
@@ -1611,6 +1790,7 @@
         "storeY": "25021004"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "167950",
@@ -1620,6 +1800,7 @@
         "storeY": "25033052"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "985246",
@@ -1629,6 +1810,7 @@
         "storeY": "25038687.9066647"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "239248",
@@ -1638,6 +1820,7 @@
         "storeY": "25028386.8706027"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "962601",
@@ -1647,6 +1830,7 @@
         "storeY": "25036371"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "197744",
@@ -1656,6 +1840,7 @@
         "storeY": "25033281.8881702"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "166739",
@@ -1665,6 +1850,7 @@
         "storeY": "25029811"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "972594",
@@ -1674,6 +1860,7 @@
         "storeY": "25017810"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "207137",
@@ -1683,6 +1870,7 @@
         "storeY": "25041212"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "959155",
@@ -1692,6 +1880,7 @@
         "storeY": "25033650"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "135492",
@@ -1701,6 +1890,7 @@
         "storeY": "25034291"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "158509",
@@ -1710,6 +1900,7 @@
         "storeY": "25034224"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "961217",
@@ -1719,6 +1910,7 @@
         "storeY": "25033141"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "127620",
@@ -1728,6 +1920,7 @@
         "storeY": "25042638"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "975869",
@@ -1737,6 +1930,7 @@
         "storeY": "25041794"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "895020",
@@ -1746,6 +1940,7 @@
         "storeY": "25028706"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "193384",
@@ -1755,6 +1950,7 @@
         "storeY": "25040086"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238500",
@@ -1764,6 +1960,7 @@
         "storeY": "25033201"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "185268",
@@ -1773,6 +1970,7 @@
         "storeY": "25026283"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "882482",
@@ -1782,6 +1980,7 @@
         "storeY": "25044269"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "193960",
@@ -1791,6 +1990,7 @@
         "storeY": "25025634"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "865362",
@@ -1800,6 +2000,7 @@
         "storeY": "25023193"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "158956",
@@ -1809,6 +2010,7 @@
         "storeY": "25036558"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "121770",
@@ -1818,6 +2020,7 @@
         "storeY": "25040571.9131566"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "946919",
@@ -1827,6 +2030,7 @@
         "storeY": "25042696"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "202017",
@@ -1836,6 +2040,7 @@
         "storeY": "25031553"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "970288",
@@ -1845,6 +2050,7 @@
         "storeY": "25023345"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "199876",
@@ -1854,6 +2060,7 @@
         "storeY": "25042191"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "202453",
@@ -1863,6 +2070,7 @@
         "storeY": "25039938.9109956"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "121161",
@@ -1872,6 +2080,7 @@
         "storeY": "25042254.9191018"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "975630",
@@ -1881,6 +2090,7 @@
         "storeY": "25031426"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "143253",
@@ -1890,6 +2100,7 @@
         "storeY": "25038255.9052184"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "241193",
@@ -1899,6 +2110,7 @@
         "storeY": "25042485"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "956248",
@@ -1908,6 +2120,7 @@
         "storeY": "25043521"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "186319",
@@ -1917,6 +2130,7 @@
         "storeY": "25030944"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "144290",
@@ -1926,6 +2140,7 @@
         "storeY": "25020682.8437036"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "182258",
@@ -1935,6 +2150,7 @@
         "storeY": "25044105"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "170392",
@@ -1944,6 +2160,7 @@
         "storeY": "25032264"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "216108",
@@ -1953,6 +2170,7 @@
         "storeY": "25032399"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "207056",
@@ -1962,6 +2180,7 @@
         "storeY": "25041252"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "215530",
@@ -1971,6 +2190,7 @@
         "storeY": "25025447.860453"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "916712",
@@ -1980,6 +2200,7 @@
         "storeY": "25034700"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "147141",
@@ -1989,6 +2210,7 @@
         "storeY": "25034565.8922844"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "975087",
@@ -1998,6 +2220,7 @@
         "storeY": "25040605"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "186537",
@@ -2007,6 +2230,7 @@
         "storeY": "25042130"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "190570",
@@ -2016,6 +2240,7 @@
         "storeY": "25023666.8543539"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238186",
@@ -2025,6 +2250,7 @@
         "storeY": "25036237.8981803"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238016",
@@ -2034,6 +2260,7 @@
         "storeY": "25022127"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "195760",
@@ -2043,6 +2270,7 @@
         "storeY": "25033724"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "149125",
@@ -2052,6 +2280,7 @@
         "storeY": "25027566"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "211561",
@@ -2061,6 +2290,7 @@
         "storeY": "25031752"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "214582",
@@ -2070,6 +2300,7 @@
         "storeY": "25043441"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "249968",
@@ -2079,6 +2310,7 @@
         "storeY": "25028694"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "186434",
@@ -2088,6 +2320,7 @@
         "storeY": "25025102"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "962184",
@@ -2097,6 +2330,7 @@
         "storeY": "25042381"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "121356",
@@ -2106,6 +2340,7 @@
         "storeY": "25019418.8397112"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "170819",
@@ -2115,6 +2350,7 @@
         "storeY": "25026015"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "186467",
@@ -2124,6 +2360,7 @@
         "storeY": "25028588"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "238522",
@@ -2133,6 +2370,7 @@
         "storeY": "25028544"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "963305",
@@ -2142,6 +2380,7 @@
         "storeY": "25041525"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "167190",
@@ -2151,6 +2390,7 @@
         "storeY": "25038776"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "211435",
@@ -2160,6 +2400,7 @@
         "storeY": "25027860"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "996154",
@@ -2169,6 +2410,7 @@
         "storeY": "25038084"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "213833",
@@ -2178,6 +2420,7 @@
         "storeY": "25021970"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "240787",
@@ -2187,6 +2430,7 @@
         "storeY": "25025776.861565"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "201287",
@@ -2196,6 +2440,7 @@
         "storeY": "25027420"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "121275",
@@ -2205,6 +2450,7 @@
         "storeY": "25022687.8508142"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "129350",
@@ -2214,6 +2460,7 @@
         "storeY": "25018066"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "863698",
@@ -2223,6 +2470,7 @@
         "storeY": "25030789"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "239226",
@@ -2232,6 +2480,7 @@
         "storeY": "25041136"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "929110",
@@ -2241,6 +2490,7 @@
         "storeY": "25040194"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "239776",
@@ -2250,6 +2500,7 @@
         "storeY": "25025232"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "915568",
@@ -2259,6 +2510,7 @@
         "storeY": "25023917"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "237909",
@@ -2268,6 +2520,7 @@
         "storeY": "25025481"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "180920",
@@ -2277,6 +2530,7 @@
         "storeY": "25020982"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "174796",
@@ -2286,6 +2540,7 @@
         "storeY": "25023523"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "201704",
@@ -2295,6 +2550,7 @@
         "storeY": "25040430"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "146931",
@@ -2304,6 +2560,7 @@
         "storeY": "25040157.9120739"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "239732",
@@ -2313,6 +2570,7 @@
         "storeY": "25030523"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "211642",
@@ -2322,6 +2580,7 @@
         "storeY": "25030757"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "959122",
@@ -2331,6 +2590,7 @@
         "storeY": "25036114"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "197353",
@@ -2340,6 +2600,7 @@
         "storeY": "25041067"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "207012",
@@ -2349,6 +2610,7 @@
         "storeY": "25023665"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "121600",
@@ -2358,6 +2620,7 @@
         "storeY": "25018364"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "192576",
@@ -2367,6 +2630,7 @@
         "storeY": "25041614"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "236973",
@@ -2376,6 +2640,7 @@
         "storeY": "25032581"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "241573",
@@ -2385,6 +2650,7 @@
         "storeY": "25043896"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大安區",
         "storeID": "155083",
@@ -2394,6 +2660,7 @@
         "storeY": "25033280.8879243"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "160247",
@@ -2403,6 +2670,7 @@
         "storeY": "25080221.0517084"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "196660",
@@ -2412,6 +2680,7 @@
         "storeY": "25055797"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "865834",
@@ -2421,6 +2690,7 @@
         "storeY": "25058067"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185110",
@@ -2430,6 +2700,7 @@
         "storeY": "25059861"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "996741",
@@ -2439,6 +2710,7 @@
         "storeY": "25052637.9555284"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "131995",
@@ -2448,6 +2720,7 @@
         "storeY": "25050372.9478745"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "170989",
@@ -2457,6 +2730,7 @@
         "storeY": "25051786"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185604",
@@ -2466,6 +2740,7 @@
         "storeY": "25068315"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "171683",
@@ -2475,6 +2750,7 @@
         "storeY": "25078255.0448769"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "228477",
@@ -2484,6 +2760,7 @@
         "storeY": "25060414"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "238957",
@@ -2493,6 +2770,7 @@
         "storeY": "25050953.949763"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "928357",
@@ -2502,6 +2780,7 @@
         "storeY": "25064911"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "130394",
@@ -2511,6 +2790,7 @@
         "storeY": "25060280"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "167260",
@@ -2520,6 +2800,7 @@
         "storeY": "25052263"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "166175",
@@ -2529,6 +2810,7 @@
         "storeY": "25055827"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "237530",
@@ -2538,6 +2820,7 @@
         "storeY": "25050044"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "111636",
@@ -2547,6 +2830,7 @@
         "storeY": "25048693.9419164"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "136129",
@@ -2556,6 +2840,7 @@
         "storeY": "25053126.9573998"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "197191",
@@ -2565,6 +2850,7 @@
         "storeY": "25064566"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "239813",
@@ -2574,6 +2860,7 @@
         "storeY": "25051856"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "206765",
@@ -2583,6 +2870,7 @@
         "storeY": "25052136"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "239972",
@@ -2592,6 +2880,7 @@
         "storeY": "25051757"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "209719",
@@ -2601,6 +2890,7 @@
         "storeY": "25051872"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "946230",
@@ -2610,6 +2900,7 @@
         "storeY": "25059767"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "141051",
@@ -2619,6 +2910,7 @@
         "storeY": "25058118"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "240949",
@@ -2628,6 +2920,7 @@
         "storeY": "25082822"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "215943",
@@ -2637,6 +2930,7 @@
         "storeY": "25083555"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "886059",
@@ -2646,6 +2940,7 @@
         "storeY": "25046915"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "238681",
@@ -2655,6 +2950,7 @@
         "storeY": "25057908"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "237415",
@@ -2664,6 +2960,7 @@
         "storeY": "25065000"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "874230",
@@ -2673,6 +2970,7 @@
         "storeY": "25061745"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "200963",
@@ -2682,6 +2980,7 @@
         "storeY": "25058585.9765602"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "237286",
@@ -2691,6 +2990,7 @@
         "storeY": "25051835"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "209339",
@@ -2700,6 +3000,7 @@
         "storeY": "25062235"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "148144",
@@ -2709,6 +3010,7 @@
         "storeY": "25052614"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "972778",
@@ -2718,6 +3020,7 @@
         "storeY": "25051235.9507704"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "114510",
@@ -2727,6 +3030,7 @@
         "storeY": "25061017"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "985279",
@@ -2736,6 +3040,7 @@
         "storeY": "25057829"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "929006",
@@ -2745,6 +3050,7 @@
         "storeY": "25081976"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "165183",
@@ -2754,6 +3060,7 @@
         "storeY": "25084047"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "167433",
@@ -2763,6 +3070,7 @@
         "storeY": "25082521"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "241595",
@@ -2772,6 +3080,7 @@
         "storeY": "25061810.9876236"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "240020",
@@ -2781,6 +3090,7 @@
         "storeY": "25063043"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "197766",
@@ -2790,6 +3100,7 @@
         "storeY": "25062707"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185408",
@@ -2799,6 +3110,7 @@
         "storeY": "25054554"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "865890",
@@ -2808,6 +3120,7 @@
         "storeY": "25055064"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "916572",
@@ -2817,6 +3130,7 @@
         "storeY": "25048989"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "183697",
@@ -2826,6 +3140,7 @@
         "storeY": "25056417"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "960096",
@@ -2835,6 +3150,7 @@
         "storeY": "25049430"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "170325",
@@ -2844,6 +3160,7 @@
         "storeY": "25048533"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "136842",
@@ -2853,6 +3170,7 @@
         "storeY": "25048589.9416118"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "991584",
@@ -2862,6 +3180,7 @@
         "storeY": "25051615.9519404"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185659",
@@ -2871,6 +3190,7 @@
         "storeY": "25053828.9597612"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "146850",
@@ -2880,6 +3200,7 @@
         "storeY": "25060037.9814439"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "239167",
@@ -2889,6 +3210,7 @@
         "storeY": "25058208.9749991"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "906782",
@@ -2898,6 +3220,7 @@
         "storeY": "25054931"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "956156",
@@ -2907,6 +3230,7 @@
         "storeY": "25055017"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "164777",
@@ -2916,6 +3240,7 @@
         "storeY": "25054752"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "123260",
@@ -2925,6 +3250,7 @@
         "storeY": "25052824"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185154",
@@ -2934,6 +3260,7 @@
         "storeY": "25084665"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "833077",
@@ -2943,6 +3270,7 @@
         "storeY": "25063256"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "240754",
@@ -2952,6 +3280,7 @@
         "storeY": "25052399.9547634"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "138206",
@@ -2961,6 +3290,7 @@
         "storeY": "25051316"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "228167",
@@ -2970,6 +3300,7 @@
         "storeY": "25057286"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "186559",
@@ -2979,6 +3310,7 @@
         "storeY": "25054700"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "214526",
@@ -2988,6 +3320,7 @@
         "storeY": "25079744.0499053"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "960074",
@@ -2997,6 +3330,7 @@
         "storeY": "25050779"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "197560",
@@ -3006,6 +3340,7 @@
         "storeY": "25058983"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "137144",
@@ -3015,6 +3350,7 @@
         "storeY": "25066674"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "165172",
@@ -3024,6 +3360,7 @@
         "storeY": "25062475"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "241425",
@@ -3033,6 +3370,7 @@
         "storeY": "25053385"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "194572",
@@ -3042,6 +3380,7 @@
         "storeY": "25059978"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "865694",
@@ -3051,6 +3390,7 @@
         "storeY": "25054597"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "240019",
@@ -3060,6 +3400,7 @@
         "storeY": "25053931"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "874388",
@@ -3069,6 +3410,7 @@
         "storeY": "25060395"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "149789",
@@ -3078,6 +3420,7 @@
         "storeY": "25050914"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "239215",
@@ -3087,6 +3430,7 @@
         "storeY": "25067269"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "209904",
@@ -3096,6 +3440,7 @@
         "storeY": "25057276"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "217330",
@@ -3105,6 +3450,7 @@
         "storeY": "25066041"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "240743",
@@ -3114,6 +3460,7 @@
         "storeY": "25050136"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "201715",
@@ -3123,6 +3470,7 @@
         "storeY": "25055007.9641108"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "188588",
@@ -3132,6 +3480,7 @@
         "storeY": "25051479"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "213626",
@@ -3141,6 +3490,7 @@
         "storeY": "25079591"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185051",
@@ -3150,6 +3500,7 @@
         "storeY": "25082837"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "241159",
@@ -3159,6 +3510,7 @@
         "storeY": "25058018"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "214766",
@@ -3168,6 +3520,7 @@
         "storeY": "25065894"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "185796",
@@ -3177,6 +3530,7 @@
         "storeY": "25060299"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "883865",
@@ -3186,6 +3540,7 @@
         "storeY": "25050922"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "194077",
@@ -3195,6 +3550,7 @@
         "storeY": "25080310"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "833468",
@@ -3204,6 +3560,7 @@
         "storeY": "25064819"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "186663",
@@ -3213,6 +3570,7 @@
         "storeY": "25083755"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "956673",
@@ -3222,6 +3580,7 @@
         "storeY": "25066902"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "239547",
@@ -3231,6 +3590,7 @@
         "storeY": "25064840"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "951195",
@@ -3240,6 +3600,7 @@
         "storeY": "25065641"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "238843",
@@ -3249,6 +3610,7 @@
         "storeY": "25064434"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "121655",
@@ -3258,6 +3620,7 @@
         "storeY": "25062420.9898518"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "958107",
@@ -3267,6 +3630,7 @@
         "storeY": "25064859"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "213589",
@@ -3276,6 +3640,7 @@
         "storeY": "25047182"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "865926",
@@ -3285,6 +3650,7 @@
         "storeY": "25065028"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "190905",
@@ -3294,6 +3660,7 @@
         "storeY": "25055987.9672078"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "956732",
@@ -3303,6 +3670,7 @@
         "storeY": "25060247"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "216315",
@@ -3312,6 +3680,7 @@
         "storeY": "25060348"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "236607",
@@ -3321,6 +3690,7 @@
         "storeY": "25060509.9831696"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "864864",
@@ -3330,6 +3700,7 @@
         "storeY": "25060160"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "231299",
@@ -3339,6 +3710,7 @@
         "storeY": "25051169"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "142814",
@@ -3348,6 +3720,7 @@
         "storeY": "25052833.9562396"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "237149",
@@ -3357,6 +3730,7 @@
         "storeY": "25066242.0030776"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "197685",
@@ -3366,6 +3740,7 @@
         "storeY": "25083639"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "227658",
@@ -3375,6 +3750,7 @@
         "storeY": "25079765"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "119445",
@@ -3384,6 +3760,7 @@
         "storeY": "25062535"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "148292",
@@ -3393,6 +3770,7 @@
         "storeY": "25063791"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "128069",
@@ -3402,6 +3780,7 @@
         "storeY": "25056124"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "148133",
@@ -3411,6 +3790,7 @@
         "storeY": "25048193"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "971867",
@@ -3420,6 +3800,7 @@
         "storeY": "25051165"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "970749",
@@ -3429,6 +3810,7 @@
         "storeY": "25049147"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "128025",
@@ -3438,6 +3820,7 @@
         "storeY": "25051907.9532991"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "200804",
@@ -3447,6 +3830,7 @@
         "storeY": "25066862.0054526"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "184999",
@@ -3456,6 +3840,7 @@
         "storeY": "25060377"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中山區",
         "storeID": "170196",
@@ -3465,6 +3850,7 @@
         "storeY": "25056450"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "193557",
@@ -3474,6 +3860,7 @@
         "storeY": "25043516"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "158864",
@@ -3483,6 +3870,7 @@
         "storeY": "25043751"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "110817",
@@ -3492,6 +3880,7 @@
         "storeY": "25045748"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "186157",
@@ -3501,6 +3890,7 @@
         "storeY": "25043153.9228778"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "197157",
@@ -3510,6 +3900,7 @@
         "storeY": "25032981"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "170978",
@@ -3519,6 +3910,7 @@
         "storeY": "25042552"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "991562",
@@ -3528,6 +3920,7 @@
         "storeY": "25036515"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "237220",
@@ -3537,6 +3930,7 @@
         "storeY": "25033082"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "214054",
@@ -3546,6 +3940,7 @@
         "storeY": "25045116"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "128302",
@@ -3555,6 +3950,7 @@
         "storeY": "25039050"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "135296",
@@ -3564,6 +3960,7 @@
         "storeY": "25038452"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "202006",
@@ -3573,6 +3970,7 @@
         "storeY": "25047200.9369198"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "169565",
@@ -3582,6 +3980,7 @@
         "storeY": "25047200.9369198"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "214722",
@@ -3591,6 +3990,7 @@
         "storeY": "25022488.8505301"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "975788",
@@ -3600,6 +4000,7 @@
         "storeY": "25040172"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "199441",
@@ -3609,6 +4010,7 @@
         "storeY": "25028017"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "240411",
@@ -3618,6 +4020,7 @@
         "storeY": "25023381"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "208819",
@@ -3627,6 +4030,7 @@
         "storeY": "25044468"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "207171",
@@ -3636,6 +4040,7 @@
         "storeY": "25046870"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "237666",
@@ -3645,6 +4050,7 @@
         "storeY": "25042845"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "216865",
@@ -3654,6 +4060,7 @@
         "storeY": "25035302.8952524"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "237688",
@@ -3663,6 +4070,7 @@
         "storeY": "25037951"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "214733",
@@ -3672,6 +4080,7 @@
         "storeY": "25044943.9291606"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "239385",
@@ -3681,6 +4090,7 @@
         "storeY": "25035486"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "236629",
@@ -3690,6 +4100,7 @@
         "storeY": "25043946"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "213752",
@@ -3699,6 +4110,7 @@
         "storeY": "25031040"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "199245",
@@ -3708,6 +4120,7 @@
         "storeY": "25032037"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "249669",
@@ -3717,6 +4130,7 @@
         "storeY": "25023970"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "202512",
@@ -3726,6 +4140,7 @@
         "storeY": "25040309"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "189178",
@@ -3735,6 +4150,7 @@
         "storeY": "25016335.8289325"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "127790",
@@ -3744,6 +4160,7 @@
         "storeY": "25044167"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "844860",
@@ -3753,6 +4170,7 @@
         "storeY": "25026586"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "237460",
@@ -3762,6 +4180,7 @@
         "storeY": "25037241"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "237758",
@@ -3771,6 +4190,7 @@
         "storeY": "25046575"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "960339",
@@ -3780,6 +4200,7 @@
         "storeY": "25046575"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "118899",
@@ -3789,6 +4210,7 @@
         "storeY": "25026082.8633141"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "874872",
@@ -3798,6 +4220,7 @@
         "storeY": "25013669"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "184139",
@@ -3807,6 +4230,7 @@
         "storeY": "25040840"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "896067",
@@ -3816,6 +4240,7 @@
         "storeY": "25042148"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "236618",
@@ -3825,6 +4250,7 @@
         "storeY": "25045552.9310439"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "201586",
@@ -3834,6 +4260,7 @@
         "storeY": "25044275.9267998"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "190743",
@@ -3843,6 +4270,7 @@
         "storeY": "25014415"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "874252",
@@ -3852,6 +4280,7 @@
         "storeY": "25044106"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "184955",
@@ -3861,6 +4290,7 @@
         "storeY": "25041380"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "170299",
@@ -3870,6 +4300,7 @@
         "storeY": "25045985.9327584"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "212483",
@@ -3879,6 +4310,7 @@
         "storeY": "25046061"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "213648",
@@ -3888,6 +4320,7 @@
         "storeY": "25047924"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "199968",
@@ -3897,6 +4330,7 @@
         "storeY": "25047133.4366581"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "211620",
@@ -3906,6 +4340,7 @@
         "storeY": "25024728"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "148236",
@@ -3915,6 +4350,7 @@
         "storeY": "25037107"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "119582",
@@ -3924,6 +4360,7 @@
         "storeY": "25042408"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "985280",
@@ -3933,6 +4370,7 @@
         "storeY": "25034431"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "148591",
@@ -3942,6 +4380,7 @@
         "storeY": "25025584"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "185279",
@@ -3951,6 +4390,7 @@
         "storeY": "25034476"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "942722",
@@ -3960,6 +4400,7 @@
         "storeY": "25021950"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "216027",
@@ -3969,6 +4410,7 @@
         "storeY": "25034191"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "164939",
@@ -3978,6 +4420,7 @@
         "storeY": "25031165"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "900474",
@@ -3987,6 +4430,7 @@
         "storeY": "25045500"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "956260",
@@ -3996,6 +4440,7 @@
         "storeY": "25031515"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "135872",
@@ -4005,6 +4450,7 @@
         "storeY": "25045166.9298991"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "227728",
@@ -4014,6 +4460,7 @@
         "storeY": "25040780"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "209409",
@@ -4023,6 +4470,7 @@
         "storeY": "25044122"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "230654",
@@ -4032,6 +4480,7 @@
         "storeY": "25044001"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "211686",
@@ -4041,6 +4490,7 @@
         "storeY": "25042315"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "199980",
@@ -4050,6 +4500,7 @@
         "storeY": "25044747"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "166359",
@@ -4059,6 +4510,7 @@
         "storeY": "25044703"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "136565",
@@ -4068,6 +4520,7 @@
         "storeY": "25040321"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "198068",
@@ -4077,6 +4530,7 @@
         "storeY": "25034531"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "196246",
@@ -4086,6 +4540,7 @@
         "storeY": "25024038"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "921965",
@@ -4095,6 +4550,7 @@
         "storeY": "25027316"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "154482",
@@ -4104,6 +4560,7 @@
         "storeY": "25015592.8263138"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "184793",
@@ -4113,6 +4570,7 @@
         "storeY": "25035540"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "996110",
@@ -4122,6 +4580,7 @@
         "storeY": "25047041"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "971890",
@@ -4131,6 +4590,7 @@
         "storeY": "25044642"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "149583",
@@ -4140,6 +4600,7 @@
         "storeY": "25046208"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "972321",
@@ -4149,6 +4610,7 @@
         "storeY": "25042442"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "187057",
@@ -4158,6 +4620,7 @@
         "storeY": "25026358"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "118420",
@@ -4167,6 +4630,7 @@
         "storeY": "25029933.876647"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "183309",
@@ -4176,6 +4640,7 @@
         "storeY": "25029670"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "210764",
@@ -4185,6 +4650,7 @@
         "storeY": "25045078"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "202497",
@@ -4194,6 +4660,7 @@
         "storeY": "25042294.919846"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "中正區",
         "storeID": "186489",
@@ -4203,6 +4670,7 @@
         "storeY": "25012656.8160143"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "122463",
@@ -4212,6 +4680,7 @@
         "storeY": "25065332.0002231"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "962542",
@@ -4221,6 +4690,7 @@
         "storeY": "25065797"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "966164",
@@ -4230,6 +4700,7 @@
         "storeY": "25050911"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "240226",
@@ -4239,6 +4710,7 @@
         "storeY": "25057605"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "183848",
@@ -4248,6 +4720,7 @@
         "storeY": "25057469"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "212139",
@@ -4257,6 +4730,7 @@
         "storeY": "25068714"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "180056",
@@ -4266,6 +4740,7 @@
         "storeY": "25049806"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "196497",
@@ -4275,6 +4750,7 @@
         "storeY": "25049582"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "143965",
@@ -4284,6 +4760,7 @@
         "storeY": "25068602.0117343"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "137052",
@@ -4293,6 +4770,7 @@
         "storeY": "25065876"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "190938",
@@ -4302,6 +4780,7 @@
         "storeY": "25058295"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "155418",
@@ -4311,6 +4790,7 @@
         "storeY": "25051846.9532297"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "238382",
@@ -4320,6 +4800,7 @@
         "storeY": "25069242.0139955"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "198677",
@@ -4329,6 +4810,7 @@
         "storeY": "25050444"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "240927",
@@ -4338,6 +4820,7 @@
         "storeY": "25065387.0004226"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "143677",
@@ -4347,6 +4830,7 @@
         "storeY": "25050874.9497457"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "185327",
@@ -4356,6 +4840,7 @@
         "storeY": "25071883"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "190916",
@@ -4365,6 +4850,7 @@
         "storeY": "25053845"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "241171",
@@ -4374,6 +4860,7 @@
         "storeY": "25073903"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "239156",
@@ -4383,6 +4870,7 @@
         "storeY": "25057043"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "992967",
@@ -4392,6 +4880,7 @@
         "storeY": "25071451"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "240824",
@@ -4401,6 +4890,7 @@
         "storeY": "25059775"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "180687",
@@ -4410,6 +4900,7 @@
         "storeY": "25064094"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "238038",
@@ -4419,6 +4910,7 @@
         "storeY": "25073077"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "239787",
@@ -4428,6 +4920,7 @@
         "storeY": "25054200"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "120526",
@@ -4437,6 +4930,7 @@
         "storeY": "25070781.0192413"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "977290",
@@ -4446,6 +4940,7 @@
         "storeY": "25054271"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "184988",
@@ -4455,6 +4950,7 @@
         "storeY": "25052223.9545664"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "238212",
@@ -4464,6 +4960,7 @@
         "storeY": "25055701"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "992336",
@@ -4473,6 +4970,7 @@
         "storeY": "25072542"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "166049",
@@ -4482,6 +4980,7 @@
         "storeY": "25065754.0017678"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "202280",
@@ -4491,6 +4990,7 @@
         "storeY": "25055121"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "128494",
@@ -4500,6 +5000,7 @@
         "storeY": "25053291"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "891176",
@@ -4509,6 +5010,7 @@
         "storeY": "25058493"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "996523",
@@ -4518,6 +5020,7 @@
         "storeY": "25060779"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "136831",
@@ -4527,6 +5030,7 @@
         "storeY": "25057195"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "241399",
@@ -4536,6 +5040,7 @@
         "storeY": "25063251.9929942"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "971672",
@@ -4545,6 +5050,7 @@
         "storeY": "25050371"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "大同區",
         "storeID": "217352",
@@ -4554,6 +5060,7 @@
         "storeY": "25056876"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "184737",
@@ -4563,6 +5070,7 @@
         "storeY": "25019961"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "195911",
@@ -4572,6 +5080,7 @@
         "storeY": "25043794"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "149446",
@@ -4581,6 +5090,7 @@
         "storeY": "25024629"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "136406",
@@ -4590,6 +5100,7 @@
         "storeY": "25046236.9337394"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "975663",
@@ -4599,6 +5110,7 @@
         "storeY": "25042891"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "184494",
@@ -4608,6 +5120,7 @@
         "storeY": "25042837"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "131799",
@@ -4617,6 +5130,7 @@
         "storeY": "25043142.9229482"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "180540",
@@ -4626,6 +5140,7 @@
         "storeY": "25044045"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "241311",
@@ -4635,6 +5150,7 @@
         "storeY": "25023510"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "215655",
@@ -4644,6 +5160,7 @@
         "storeY": "25034817"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "196039",
@@ -4653,6 +5170,7 @@
         "storeY": "25045649"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "201427",
@@ -4662,6 +5180,7 @@
         "storeY": "25044060"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "185833",
@@ -4671,6 +5190,7 @@
         "storeY": "25044383"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "130361",
@@ -4680,6 +5200,7 @@
         "storeY": "25047300.9374451"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "143666",
@@ -4689,6 +5210,7 @@
         "storeY": "25042826.9218063"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "231428",
@@ -4698,6 +5220,7 @@
         "storeY": "25038829"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "238739",
@@ -4707,6 +5230,7 @@
         "storeY": "25019972"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "148052",
@@ -4716,6 +5240,7 @@
         "storeY": "25026092.863386"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "215932",
@@ -4725,6 +5250,7 @@
         "storeY": "25038297"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "886222",
@@ -4734,6 +5260,7 @@
         "storeY": "25038402"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "215921",
@@ -4743,6 +5270,7 @@
         "storeY": "25028055"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "197559",
@@ -4752,6 +5280,7 @@
         "storeY": "25044047"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "239411",
@@ -4761,6 +5290,7 @@
         "storeY": "25033843"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "117748",
@@ -4770,6 +5300,7 @@
         "storeY": "25020124"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "187781",
@@ -4779,6 +5310,7 @@
         "storeY": "25034099"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "197124",
@@ -4788,6 +5320,7 @@
         "storeY": "25029696"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "975951",
@@ -4797,6 +5330,7 @@
         "storeY": "25033164"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "922197",
@@ -4806,6 +5340,7 @@
         "storeY": "25046539"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "149675",
@@ -4815,6 +5350,7 @@
         "storeY": "25031538"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "214397",
@@ -4824,6 +5360,7 @@
         "storeY": "25044335"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "149321",
@@ -4833,6 +5370,7 @@
         "storeY": "25040659.9142688"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "232269",
@@ -4842,6 +5380,7 @@
         "storeY": "25042593"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "238463",
@@ -4851,6 +5390,7 @@
         "storeY": "25025253"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "162977",
@@ -4860,6 +5400,7 @@
         "storeY": "25026218.8639004"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "216876",
@@ -4869,6 +5410,7 @@
         "storeY": "25027924"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "238027",
@@ -4878,6 +5420,7 @@
         "storeY": "25026189"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "166876",
@@ -4887,6 +5430,7 @@
         "storeY": "25020479"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "216430",
@@ -4896,6 +5440,7 @@
         "storeY": "25025062.8599195"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "213844",
@@ -4905,6 +5450,7 @@
         "storeY": "25031338"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "181808",
@@ -4914,6 +5460,7 @@
         "storeY": "25035449"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "992130",
@@ -4923,6 +5470,7 @@
         "storeY": "25041138"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "190927",
@@ -4932,6 +5480,7 @@
         "storeY": "25039208.9092117"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "119146",
@@ -4941,6 +5490,7 @@
         "storeY": "25045579"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "187389",
@@ -4950,6 +5500,7 @@
         "storeY": "25036831.9009187"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "228396",
@@ -4959,6 +5510,7 @@
         "storeY": "25036634"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "186711",
@@ -4968,6 +5520,7 @@
         "storeY": "25026766.8659438"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "158853",
@@ -4977,6 +5530,7 @@
         "storeY": "25036110.8984322"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "125967",
@@ -4986,6 +5540,7 @@
         "storeY": "25036581"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "846604",
@@ -4995,6 +5550,7 @@
         "storeY": "25032052"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "129095",
@@ -5004,6 +5560,7 @@
         "storeY": "25023758"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "214320",
@@ -5013,6 +5570,7 @@
         "storeY": "25045307"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "996372",
@@ -5022,6 +5580,7 @@
         "storeY": "25044847.9288597"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "188599",
@@ -5031,6 +5590,7 @@
         "storeY": "25021671.847996"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "237482",
@@ -5040,6 +5600,7 @@
         "storeY": "25045121"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "萬華區",
         "storeID": "153250",
@@ -5049,6 +5610,7 @@
         "storeY": "25027372"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "214386",
@@ -5058,6 +5620,7 @@
         "storeY": "24980245"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "119711",
@@ -5067,6 +5630,7 @@
         "storeY": "24986750.7249986"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "189695",
@@ -5076,6 +5640,7 @@
         "storeY": "24984598.7175942"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "199290",
@@ -5085,6 +5650,7 @@
         "storeY": "24981110"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "968388",
@@ -5094,6 +5660,7 @@
         "storeY": "24982614"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "855398",
@@ -5103,6 +5670,7 @@
         "storeY": "24989113"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "185394",
@@ -5112,6 +5680,7 @@
         "storeY": "24988536"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "875200",
@@ -5121,6 +5690,7 @@
         "storeY": "24983168"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "230090",
@@ -5130,6 +5700,7 @@
         "storeY": "24988949"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "237275",
@@ -5139,6 +5710,7 @@
         "storeY": "24987251"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "190123",
@@ -5148,6 +5720,7 @@
         "storeY": "24989247"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "962346",
@@ -5157,6 +5730,7 @@
         "storeY": "24998561"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "236803",
@@ -5166,6 +5740,7 @@
         "storeY": "25002804"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "991894",
@@ -5175,6 +5750,7 @@
         "storeY": "25008059"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "211077",
@@ -5184,6 +5760,7 @@
         "storeY": "24983682"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "127550",
@@ -5193,6 +5770,7 @@
         "storeY": "25004490"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "138446",
@@ -5202,6 +5780,7 @@
         "storeY": "24982563.7105334"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "883544",
@@ -5211,6 +5790,7 @@
         "storeY": "24987419"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "113160",
@@ -5220,6 +5800,7 @@
         "storeY": "24987687.7282581"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "201829",
@@ -5229,6 +5810,7 @@
         "storeY": "24987804"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "216382",
@@ -5238,6 +5820,7 @@
         "storeY": "24988652"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "190189",
@@ -5247,6 +5830,7 @@
         "storeY": "24998811.7669326"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "202431",
@@ -5256,6 +5840,7 @@
         "storeY": "25000271"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "855354",
@@ -5265,6 +5850,7 @@
         "storeY": "24985137"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "180595",
@@ -5274,6 +5860,7 @@
         "storeY": "24997622"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "237644",
@@ -5283,6 +5870,7 @@
         "storeY": "24990277"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "174888",
@@ -5292,6 +5880,7 @@
         "storeY": "24997875"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "985718",
@@ -5301,6 +5890,7 @@
         "storeY": "24993450.7488682"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "199670",
@@ -5310,6 +5900,7 @@
         "storeY": "24995788"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "240260",
@@ -5319,6 +5910,7 @@
         "storeY": "24995084"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "183572",
@@ -5328,6 +5920,7 @@
         "storeY": "24987990"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "990053",
@@ -5337,6 +5930,7 @@
         "storeY": "24988586"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "121068",
@@ -5346,6 +5940,7 @@
         "storeY": "24991642.7419925"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "208967",
@@ -5355,6 +5950,7 @@
         "storeY": "24981762"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "149594",
@@ -5364,6 +5960,7 @@
         "storeY": "25007884"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "190156",
@@ -5373,6 +5970,7 @@
         "storeY": "25000010"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "885609",
@@ -5382,6 +5980,7 @@
         "storeY": "25000959"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "158772",
@@ -5391,6 +5990,7 @@
         "storeY": "24999963"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "211295",
@@ -5400,6 +6000,7 @@
         "storeY": "24999419"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "165943",
@@ -5409,6 +6010,7 @@
         "storeY": "25002163"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "148683",
@@ -5418,6 +6020,7 @@
         "storeY": "25001730.7777972"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "187817",
@@ -5427,6 +6030,7 @@
         "storeY": "25004655"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "996143",
@@ -5436,6 +6040,7 @@
         "storeY": "24987633"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "210225",
@@ -5445,6 +6050,7 @@
         "storeY": "24991236"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "238418",
@@ -5454,6 +6060,7 @@
         "storeY": "24992714"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "229610",
@@ -5463,6 +6070,7 @@
         "storeY": "24991526"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "135528",
@@ -5472,6 +6080,7 @@
         "storeY": "24999312"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "119489",
@@ -5481,6 +6090,7 @@
         "storeY": "25000183"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "975054",
@@ -5490,6 +6100,7 @@
         "storeY": "24996421"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "198286",
@@ -5499,6 +6110,7 @@
         "storeY": "25000956"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "961424",
@@ -5508,6 +6120,7 @@
         "storeY": "24992502"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "200309",
@@ -5517,6 +6130,7 @@
         "storeY": "24995484"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "文山區",
         "storeID": "190042",
@@ -5526,6 +6140,7 @@
         "storeY": "25002325"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "140210",
@@ -5535,6 +6150,7 @@
         "storeY": "25042837"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "200480",
@@ -5544,6 +6160,7 @@
         "storeY": "25040928"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "144795",
@@ -5553,6 +6170,7 @@
         "storeY": "25059421"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "202420",
@@ -5562,6 +6180,7 @@
         "storeY": "25054043"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "121622",
@@ -5571,6 +6190,7 @@
         "storeY": "25045086.9284587"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "148100",
@@ -5580,6 +6200,7 @@
         "storeY": "25055919"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "240237",
@@ -5589,6 +6210,7 @@
         "storeY": "25038393"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "202501",
@@ -5598,6 +6220,7 @@
         "storeY": "25054399"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "185213",
@@ -5607,6 +6230,7 @@
         "storeY": "25050920"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "896539",
@@ -5616,6 +6240,7 @@
         "storeY": "25050252"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "978628",
@@ -5625,6 +6250,7 @@
         "storeY": "25046297.9326264"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "185822",
@@ -5634,6 +6260,7 @@
         "storeY": "25047641"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "132998",
@@ -5643,6 +6270,7 @@
         "storeY": "25044149"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "209269",
@@ -5652,6 +6280,7 @@
         "storeY": "25056649"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "186353",
@@ -5661,6 +6290,7 @@
         "storeY": "25055177.9631611"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "135078",
@@ -5670,6 +6300,7 @@
         "storeY": "25050525.9475115"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "144326",
@@ -5679,6 +6310,7 @@
         "storeY": "25052247"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "166843",
@@ -5688,6 +6320,7 @@
         "storeY": "25052582"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "197375",
@@ -5697,6 +6330,7 @@
         "storeY": "25056063"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "192875",
@@ -5706,6 +6340,7 @@
         "storeY": "25056311"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "169864",
@@ -5715,6 +6350,7 @@
         "storeY": "25048773"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "186076",
@@ -5724,6 +6360,7 @@
         "storeY": "25039379"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "159384",
@@ -5733,6 +6370,7 @@
         "storeY": "25056909"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "166865",
@@ -5742,6 +6380,7 @@
         "storeY": "25053038"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "193524",
@@ -5751,6 +6390,7 @@
         "storeY": "25052247"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "142870",
@@ -5760,6 +6400,7 @@
         "storeY": "25034819.8920517"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "188326",
@@ -5769,6 +6410,7 @@
         "storeY": "25049098"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "240916",
@@ -5778,6 +6420,7 @@
         "storeY": "25057143"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "164641",
@@ -5787,6 +6430,7 @@
         "storeY": "25041587"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "238669",
@@ -5796,6 +6440,7 @@
         "storeY": "25056118.966438"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "138815",
@@ -5805,6 +6450,7 @@
         "storeY": "25049094"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "976633",
@@ -5814,6 +6460,7 @@
         "storeY": "25046466"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "241584",
@@ -5823,6 +6470,7 @@
         "storeY": "25059102"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "170864",
@@ -5832,6 +6480,7 @@
         "storeY": "25053227"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "896458",
@@ -5841,6 +6490,7 @@
         "storeY": "25051977"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "南港區",
         "storeID": "142917",
@@ -5850,6 +6500,7 @@
         "storeY": "25058890"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "186401",
@@ -5859,6 +6510,7 @@
         "storeY": "25073334.0272518"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "201841",
@@ -5868,6 +6520,7 @@
         "storeY": "25070196"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "211963",
@@ -5877,6 +6530,7 @@
         "storeY": "25058315"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "154507",
@@ -5886,6 +6540,7 @@
         "storeY": "25068831.0113421"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "212519",
@@ -5895,6 +6550,7 @@
         "storeY": "25060813"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "210546",
@@ -5904,6 +6560,7 @@
         "storeY": "25069854"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "239949",
@@ -5913,6 +6570,7 @@
         "storeY": "25064378"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "250038",
@@ -5922,6 +6580,7 @@
         "storeY": "25068245"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "197940",
@@ -5931,6 +6590,7 @@
         "storeY": "25062409"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "194882",
@@ -5940,6 +6600,7 @@
         "storeY": "25061750"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "860770",
@@ -5949,6 +6610,7 @@
         "storeY": "25066119"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "208794",
@@ -5958,6 +6620,7 @@
         "storeY": "25083635"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "159513",
@@ -5967,6 +6630,7 @@
         "storeY": "25056887"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "961848",
@@ -5976,6 +6640,7 @@
         "storeY": "25084854"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "238371",
@@ -5985,6 +6650,7 @@
         "storeY": "25064635"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "188452",
@@ -5994,6 +6660,7 @@
         "storeY": "25063894"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "171085",
@@ -6003,6 +6670,7 @@
         "storeY": "25084476.0663005"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "962391",
@@ -6012,6 +6680,7 @@
         "storeY": "25082263"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "122452",
@@ -6021,6 +6690,7 @@
         "storeY": "25067733.0070043"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "113089",
@@ -6030,6 +6700,7 @@
         "storeY": "25084554.065992"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "217477",
@@ -6039,6 +6710,7 @@
         "storeY": "25074982"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "239628",
@@ -6048,6 +6720,7 @@
         "storeY": "25078199"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "177485",
@@ -6057,6 +6730,7 @@
         "storeY": "25068865"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "216935",
@@ -6066,6 +6740,7 @@
         "storeY": "25067211"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "171720",
@@ -6075,6 +6750,7 @@
         "storeY": "25067675"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "136222",
@@ -6084,6 +6760,7 @@
         "storeY": "25086572"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "249212",
@@ -6093,6 +6770,7 @@
         "storeY": "25079848"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "209502",
@@ -6102,6 +6780,7 @@
         "storeY": "25088377"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "237404",
@@ -6111,6 +6790,7 @@
         "storeY": "25084383"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "122430",
@@ -6120,6 +6800,7 @@
         "storeY": "25084528"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "195704",
@@ -6129,6 +6810,7 @@
         "storeY": "25085967"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "991850",
@@ -6138,6 +6820,7 @@
         "storeY": "25088435.0795571"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "189400",
@@ -6147,6 +6830,7 @@
         "storeY": "25078026"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "170314",
@@ -6156,6 +6840,7 @@
         "storeY": "25079267"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "186179",
@@ -6165,6 +6850,7 @@
         "storeY": "25067765"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "882792",
@@ -6174,6 +6860,7 @@
         "storeY": "25072662"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "202291",
@@ -6183,6 +6870,7 @@
         "storeY": "25073374"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "200066",
@@ -6192,6 +6880,7 @@
         "storeY": "25058593"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "230436",
@@ -6201,6 +6890,7 @@
         "storeY": "25057912"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "158118",
@@ -6210,6 +6900,7 @@
         "storeY": "25071908"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "200251",
@@ -6219,6 +6910,7 @@
         "storeY": "25071378"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "165334",
@@ -6228,6 +6920,7 @@
         "storeY": "25078978"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "212195",
@@ -6237,6 +6930,7 @@
         "storeY": "25071936"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "948502",
@@ -6246,6 +6940,7 @@
         "storeY": "25072185"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "198079",
@@ -6255,6 +6950,7 @@
         "storeY": "25075598"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "185888",
@@ -6264,6 +6960,7 @@
         "storeY": "25056893"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "123123",
@@ -6273,6 +6970,7 @@
         "storeY": "25072068"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "968643",
@@ -6282,6 +6980,7 @@
         "storeY": "25082278.0581049"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "181200",
@@ -6291,6 +6990,7 @@
         "storeY": "25080680"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "185338",
@@ -6300,6 +7000,7 @@
         "storeY": "25082040"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "196464",
@@ -6309,6 +7010,7 @@
         "storeY": "25083033"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "241001",
@@ -6318,6 +7020,7 @@
         "storeY": "25079726"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "181451",
@@ -6327,6 +7030,7 @@
         "storeY": "25079757"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "216485",
@@ -6336,6 +7040,7 @@
         "storeY": "25074963"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "241137",
@@ -6345,6 +7050,7 @@
         "storeY": "25080625"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "956743",
@@ -6354,6 +7060,7 @@
         "storeY": "25065267"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "999083",
@@ -6363,6 +7070,7 @@
         "storeY": "25072742"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "952615",
@@ -6372,6 +7080,7 @@
         "storeY": "25054867"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "197755",
@@ -6381,6 +7090,7 @@
         "storeY": "25062924"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "214179",
@@ -6390,6 +7100,7 @@
         "storeY": "25076249"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "171199",
@@ -6399,6 +7110,7 @@
         "storeY": "25075833"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "159454",
@@ -6408,6 +7120,7 @@
         "storeY": "25080078.0508802"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "166094",
@@ -6417,6 +7130,7 @@
         "storeY": "25074075.0298223"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "183996",
@@ -6426,6 +7140,7 @@
         "storeY": "25080753"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "163822",
@@ -6435,6 +7150,7 @@
         "storeY": "25076165"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "198116",
@@ -6444,6 +7160,7 @@
         "storeY": "25080918"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "985707",
@@ -6453,6 +7170,7 @@
         "storeY": "25080175"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "240581",
@@ -6462,6 +7180,7 @@
         "storeY": "25078288"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "239695",
@@ -6471,6 +7190,7 @@
         "storeY": "25082000"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "135104",
@@ -6480,6 +7200,7 @@
         "storeY": "25086132.071647"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "127505",
@@ -6489,6 +7210,7 @@
         "storeY": "25082437"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "197043",
@@ -6498,6 +7220,7 @@
         "storeY": "25079905.0501864"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "184472",
@@ -6507,6 +7230,7 @@
         "storeY": "25078233"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "229517",
@@ -6516,6 +7240,7 @@
         "storeY": "25082152"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "864325",
@@ -6525,6 +7250,7 @@
         "storeY": "25082374"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "240536",
@@ -6534,6 +7260,7 @@
         "storeY": "25079529"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "900636",
@@ -6543,6 +7270,7 @@
         "storeY": "25082275"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "240570",
@@ -6552,6 +7280,7 @@
         "storeY": "25079060"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "166614",
@@ -6561,6 +7290,7 @@
         "storeY": "25068161"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "166474",
@@ -6570,6 +7300,7 @@
         "storeY": "25073353.0272618"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "230207",
@@ -6579,6 +7310,7 @@
         "storeY": "25076813"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "231864",
@@ -6588,6 +7320,7 @@
         "storeY": "25083088"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "114772",
@@ -6597,6 +7330,7 @@
         "storeY": "25085048.0681607"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "143172",
@@ -6606,6 +7340,7 @@
         "storeY": "25086626.0738107"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "230159",
@@ -6615,6 +7350,7 @@
         "storeY": "25077407"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "190477",
@@ -6624,6 +7360,7 @@
         "storeY": "25081342.0552655"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "201014",
@@ -6633,6 +7370,7 @@
         "storeY": "25068081"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "197227",
@@ -6642,6 +7380,7 @@
         "storeY": "25073432"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "164733",
@@ -6651,6 +7390,7 @@
         "storeY": "25075874"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "913621",
@@ -6660,6 +7400,7 @@
         "storeY": "25084548"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "173874",
@@ -6669,6 +7410,7 @@
         "storeY": "25073409.026992"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "119261",
@@ -6678,6 +7420,7 @@
         "storeY": "25078726"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "980355",
@@ -6687,6 +7430,7 @@
         "storeY": "25078520.0452965"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "199669",
@@ -6696,6 +7440,7 @@
         "storeY": "25072353"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "內湖區",
         "storeID": "158657",
@@ -6705,6 +7450,7 @@
         "storeY": "25069845"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "174028",
@@ -6714,6 +7460,7 @@
         "storeY": "25118061.1841008"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "131984",
@@ -6723,6 +7470,7 @@
         "storeY": "25084129"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "208853",
@@ -6732,6 +7480,7 @@
         "storeY": "25088355"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "131401",
@@ -6741,6 +7490,7 @@
         "storeY": "25094792.1030257"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "955348",
@@ -6750,6 +7500,7 @@
         "storeY": "25111915"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "184508",
@@ -6759,6 +7510,7 @@
         "storeY": "25089475"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "148524",
@@ -6768,6 +7520,7 @@
         "storeY": "25097251"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "241160",
@@ -6777,6 +7530,7 @@
         "storeY": "25091105.0903824"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "170587",
@@ -6786,6 +7540,7 @@
         "storeY": "25118781.1867462"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "200815",
@@ -6795,6 +7550,7 @@
         "storeY": "25118703"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "129372",
@@ -6804,6 +7560,7 @@
         "storeY": "25114359"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "198817",
@@ -6813,6 +7570,7 @@
         "storeY": "25123138"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "976286",
@@ -6822,6 +7580,7 @@
         "storeY": "25116888"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "215677",
@@ -6831,6 +7590,7 @@
         "storeY": "25124054.2050803"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "177463",
@@ -6840,6 +7600,7 @@
         "storeY": "25116464"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "190891",
@@ -6849,6 +7610,7 @@
         "storeY": "25119864"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "132909",
@@ -6858,6 +7620,7 @@
         "storeY": "25137791"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "214283",
@@ -6867,6 +7630,7 @@
         "storeY": "25137934"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "240950",
@@ -6876,6 +7640,7 @@
         "storeY": "25089878.0858212"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "170473",
@@ -6885,6 +7650,7 @@
         "storeY": "25137299"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "206710",
@@ -6894,6 +7660,7 @@
         "storeY": "25092411"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "190293",
@@ -6903,6 +7670,7 @@
         "storeY": "25097087"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "228592",
@@ -6912,6 +7680,7 @@
         "storeY": "25092049"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "960513",
@@ -6921,6 +7690,7 @@
         "storeY": "25100437"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "198057",
@@ -6930,6 +7700,7 @@
         "storeY": "25101810"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "185567",
@@ -6939,6 +7710,7 @@
         "storeY": "25093999"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "121127",
@@ -6948,6 +7720,7 @@
         "storeY": "25089097"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "135414",
@@ -6957,6 +7730,7 @@
         "storeY": "25081019"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "198091",
@@ -6966,6 +7740,7 @@
         "storeY": "25094324"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "187758",
@@ -6975,6 +7750,7 @@
         "storeY": "25118896"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "992945",
@@ -6984,6 +7760,7 @@
         "storeY": "25092423.0950332"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "231277",
@@ -6993,6 +7770,7 @@
         "storeY": "25087443"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "217341",
@@ -7002,6 +7780,7 @@
         "storeY": "25086206.0732768"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "216119",
@@ -7011,6 +7790,7 @@
         "storeY": "25102871.1312543"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "163707",
@@ -7020,6 +7800,7 @@
         "storeY": "25107718"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "111278",
@@ -7029,6 +7810,7 @@
         "storeY": "25085879.0719334"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "200930",
@@ -7038,6 +7820,7 @@
         "storeY": "25093424.098631"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "195900",
@@ -7047,6 +7830,7 @@
         "storeY": "25088459"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "232281",
@@ -7056,6 +7840,7 @@
         "storeY": "25079794"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "960775",
@@ -7065,6 +7850,7 @@
         "storeY": "25136941"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "190617",
@@ -7074,6 +7860,7 @@
         "storeY": "25105828"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "872832",
@@ -7083,6 +7870,7 @@
         "storeY": "25136886"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "153261",
@@ -7092,6 +7880,7 @@
         "storeY": "25083135.0623844"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "184405",
@@ -7101,6 +7890,7 @@
         "storeY": "25089297"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "132574",
@@ -7110,6 +7900,7 @@
         "storeY": "25091682.092139"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "215471",
@@ -7119,6 +7910,7 @@
         "storeY": "25108799.1519319"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "957366",
@@ -7128,6 +7920,7 @@
         "storeY": "25096115"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "216072",
@@ -7137,6 +7930,7 @@
         "storeY": "25104034.1352557"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "140416",
@@ -7146,6 +7940,7 @@
         "storeY": "25080383"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "966278",
@@ -7155,6 +7950,7 @@
         "storeY": "25086269"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "213855",
@@ -7164,6 +7960,7 @@
         "storeY": "25084292"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "154297",
@@ -7173,6 +7970,7 @@
         "storeY": "25084220"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "151416",
@@ -7182,6 +7980,7 @@
         "storeY": "25082178.0591777"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "200929",
@@ -7191,6 +7990,7 @@
         "storeY": "25105707"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "890900",
@@ -7200,6 +8000,7 @@
         "storeY": "25098488"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "896160",
@@ -7209,6 +8010,7 @@
         "storeY": "25102057"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "170130",
@@ -7218,6 +8020,7 @@
         "storeY": "25089307.0841116"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "957193",
@@ -7227,6 +8030,7 @@
         "storeY": "25094826.1031095"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "992381",
@@ -7236,6 +8040,7 @@
         "storeY": "25089629.0851161"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "161549",
@@ -7245,6 +8050,7 @@
         "storeY": "25085355.0702844"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "992370",
@@ -7254,6 +8060,7 @@
         "storeY": "25083225"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "213567",
@@ -7263,6 +8070,7 @@
         "storeY": "25104145"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "171764",
@@ -7272,6 +8080,7 @@
         "storeY": "25095529"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "237563",
@@ -7281,6 +8090,7 @@
         "storeY": "25094652"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "997571",
@@ -7290,6 +8100,7 @@
         "storeY": "25090706"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "197515",
@@ -7299,6 +8110,7 @@
         "storeY": "25086292"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "210823",
@@ -7308,6 +8120,7 @@
         "storeY": "25118573"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "171409",
@@ -7317,6 +8130,7 @@
         "storeY": "25084425.0668005"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "190592",
@@ -7326,6 +8140,7 @@
         "storeY": "25105272"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "128807",
@@ -7335,6 +8150,7 @@
         "storeY": "25109080.1528175"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "238511",
@@ -7344,6 +8160,7 @@
         "storeY": "25109746"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "180861",
@@ -7353,6 +8170,7 @@
         "storeY": "25112439"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "187541",
@@ -7362,6 +8180,7 @@
         "storeY": "25100917.1244407"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "215909",
@@ -7371,6 +8190,7 @@
         "storeY": "25107814.1484265"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "181118",
@@ -7380,6 +8200,7 @@
         "storeY": "25110892"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "988326",
@@ -7389,6 +8210,7 @@
         "storeY": "25088952"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "185556",
@@ -7398,6 +8220,7 @@
         "storeY": "25094805"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "155223",
@@ -7407,6 +8230,7 @@
         "storeY": "25106284"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "217282",
@@ -7416,6 +8240,7 @@
         "storeY": "25118849"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "193731",
@@ -7425,6 +8250,7 @@
         "storeY": "25101557"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "士林區",
         "storeID": "216692",
@@ -7434,6 +8260,7 @@
         "storeY": "25088391"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "851721",
@@ -7443,6 +8270,7 @@
         "storeY": "25128150"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "187552",
@@ -7452,6 +8280,7 @@
         "storeY": "25130534"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "230757",
@@ -7461,6 +8290,7 @@
         "storeY": "25124541"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "128874",
@@ -7470,6 +8300,7 @@
         "storeY": "25137918"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "155496",
@@ -7479,6 +8310,7 @@
         "storeY": "25125606.2108754"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "936244",
@@ -7488,6 +8320,7 @@
         "storeY": "25133059"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "980436",
@@ -7497,6 +8330,7 @@
         "storeY": "25113726"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "238625",
@@ -7506,6 +8340,7 @@
         "storeY": "25135692.7461313"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "239145",
@@ -7515,6 +8350,7 @@
         "storeY": "25139090"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "962483",
@@ -7524,6 +8360,7 @@
         "storeY": "25115351"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "165839",
@@ -7533,6 +8370,7 @@
         "storeY": "25118635"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "935805",
@@ -7542,6 +8380,7 @@
         "storeY": "25133288"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "181060",
@@ -7551,6 +8390,7 @@
         "storeY": "25133616"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "128818",
@@ -7560,6 +8400,7 @@
         "storeY": "25117452"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "216991",
@@ -7569,6 +8410,7 @@
         "storeY": "25113202"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "186526",
@@ -7578,6 +8420,7 @@
         "storeY": "25123024"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "187286",
@@ -7587,6 +8430,7 @@
         "storeY": "25130170.2271446"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "171166",
@@ -7596,6 +8440,7 @@
         "storeY": "25145234"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "993649",
@@ -7605,6 +8450,7 @@
         "storeY": "25128370.221039"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "996637",
@@ -7614,6 +8460,7 @@
         "storeY": "25137517"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "230609",
@@ -7623,6 +8470,7 @@
         "storeY": "25124844"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "865454",
@@ -7632,6 +8480,7 @@
         "storeY": "25126287"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "241403",
@@ -7641,6 +8490,7 @@
         "storeY": "25109460"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "948649",
@@ -7650,6 +8500,7 @@
         "storeY": "25109879"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "170071",
@@ -7659,6 +8510,7 @@
         "storeY": "25116486"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "139140",
@@ -7668,6 +8520,7 @@
         "storeY": "25119251.1892766"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "238555",
@@ -7677,6 +8530,7 @@
         "storeY": "25141050.2649339"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "197995",
@@ -7686,6 +8540,7 @@
         "storeY": "25136464"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "993720",
@@ -7695,6 +8550,7 @@
         "storeY": "25137204.251437"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "217008",
@@ -7704,6 +8560,7 @@
         "storeY": "25135226.2445209"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "138170",
@@ -7713,6 +8570,7 @@
         "storeY": "25140187"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "874573",
@@ -7722,6 +8580,7 @@
         "storeY": "25114053"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "928531",
@@ -7731,6 +8590,7 @@
         "storeY": "25116865"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "130637",
@@ -7740,6 +8600,7 @@
         "storeY": "25117715.1831022"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "239684",
@@ -7749,6 +8610,7 @@
         "storeY": "25114740"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "993454",
@@ -7758,6 +8620,7 @@
         "storeY": "25128990"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "128335",
@@ -7767,6 +8630,7 @@
         "storeY": "25110590"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "960753",
@@ -7776,6 +8640,7 @@
         "storeY": "25114959"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "232029",
@@ -7785,6 +8650,7 @@
         "storeY": "25137477"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "195438",
@@ -7794,6 +8660,7 @@
         "storeY": "25126562"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "228776",
@@ -7803,6 +8670,7 @@
         "storeY": "25119674"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "962209",
@@ -7812,6 +8680,7 @@
         "storeY": "25105640"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "230816",
@@ -7821,6 +8690,7 @@
         "storeY": "25113651"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "186087",
@@ -7830,6 +8700,7 @@
         "storeY": "25121492.196287"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "185464",
@@ -7839,6 +8710,7 @@
         "storeY": "25118622"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "237150",
@@ -7848,6 +8720,7 @@
         "storeY": "25112015.1633288"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "167466",
@@ -7857,6 +8730,7 @@
         "storeY": "25120688"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "240558",
@@ -7866,6 +8740,7 @@
         "storeY": "25109047.152886"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "214607",
@@ -7875,6 +8750,7 @@
         "storeY": "25152493"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "936255",
@@ -7884,6 +8760,7 @@
         "storeY": "25134852"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "197205",
@@ -7893,6 +8770,7 @@
         "storeY": "25137221"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "236984",
@@ -7902,6 +8780,7 @@
         "storeY": "25114096"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "833332",
@@ -7911,6 +8790,7 @@
         "storeY": "25121604"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "249108",
@@ -7920,6 +8800,7 @@
         "storeY": "25125037"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "186696",
@@ -7929,6 +8810,7 @@
         "storeY": "25117540.1827255"
     },
     {
+        "cityID": 1,
         "storeCity": "台北市",
         "storeTown": "北投區",
         "storeID": "213637",

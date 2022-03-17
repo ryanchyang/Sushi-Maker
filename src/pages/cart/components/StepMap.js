@@ -1,5 +1,5 @@
 // StepMap.js 選店地址
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import {
   MapContainer,
@@ -11,8 +11,9 @@ import {
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// import StoreData from '../data/store.json';
-
+import AreaData from '../data/store_area.json';
+import StoreData from '../data/store.json';
+import MultipleMarkers from './MultipleMarkers';
 //  點地圖會可以抓到你目前所在的位置
 function LocationMarker() {
   const [position, setPosition] = useState(null);
@@ -27,7 +28,7 @@ function LocationMarker() {
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={position} icon={iconNow}>
       <Popup>You are here</Popup>
     </Marker>
   );
@@ -47,96 +48,203 @@ const icon = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-icon.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
 });
-
-function MultipleMarkers() {
-  return arrCoordinates.map((coordinates, index) => {
-    // console.log('v', v);
-    return (
-      <Marker key={index} position={coordinates} icon={icon}>
-        {/* <Popup>{v.storeName}門市</Popup> */}
-      </Marker>
-    );
-  });
-}
+// 所在位置的icon 圖樣
+const iconNow = L.icon({
+  iconSize: [25, 41],
+  iconAnchor: [10, 41],
+  popupAnchor: [2, -40],
+  iconUrl:
+    'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
+});
+// function MultipleMarkers() {
+//   return arrCoordinates.map((coordinata, index) => {
+//     return <Marker key={index} position={coordinata} icon={icon}></Marker>;
+//   });
+// }
 
 function StepMap() {
-  // const [store, setStore] = useState([]);
   // const position = [51.505, -0.09];
-  // ---------------
-  // let map = L.map('map').setView([25.03, 121.54], 13); //初始中心點
+  const [init, setInit] = useState(AreaData);
+  const [city, setCity] = useState(AreaData.city);
+  const [cityId, setCityId] = useState(0);
+  const [area, setArea] = useState(AreaData.area);
+  const [areaId, setAreaId] = useState(0);
+  const [store, setStore] = useState(AreaData.store);
+  const [storeId, setStoreId] = useState(0);
+  const [storeName, setStoreName] = useState('');
+  // 縣市+行政區
+  useEffect(() => {
+    console.log('area:', area);
+    let a = init.area.filter(v => {
+      // console.log('v.store_city' + v.store_city_id);
+      // console.log('cityId' + cityId);
+      // console.log(+v.store_city_id === +cityId);
+      return v.store_city_id == cityId;
+    });
+    // console.log('a12332112313213', a);
+    setArea(a);
+  }, [cityId]);
+  // 行政區+門市
+  /*
+  useEffect(() => {
+    console.log('store:', store);
+    let b = init.store.filter(v => {
+      // console.log('v.store_city_id' + v.store_city_id);
+      // console.log('v.store_area_id:' + v.store_area_id);
+      // console.log('typeof  v.store_', typeof v.store_area_id);
+      // console.log('typeof ', typeof +areaId);
+      // console.log('area id ===', +v.store_area_id == +areaId);
+      return v.store_area_id == +areaId;
+    });
+    console.log('BBB332112313213', b);
+    setStore(b);
+  }, [areaId]);
+*/
 
-  // var Jawg_Sunny = L.tileLayer(
-  //   'https://{s}.tile.jawg.io/jawg-sunny/{z}/{x}/{y}{r}.png?access-token={accessToken}',
-  //   {
-  //     attribution:
-  //       '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  //     minZoom: 0,
-  //     maxZoom: 22,
-  //     subdomains: 'abcd',
-  //     accessToken:
-  //       'YR1KwDGBWLiThGFOeyYWRjm7p8MXSWg7PQGaqGXNokIJNZt7xFwLEBYzf1DhJ3t7',
-  //   }
-  // );
+  // 門市ID
+  useEffect(() => {
+    // console.log('store:', store);
+    let b = init.store.filter(v => {
+      // console.log('v.store_city_id' + v.store_city_id);
+      // console.log('v.store_area_id:' + v.store_area_id);
+      // console.log('typeof  v.store_', typeof v.store_area_id);
+      // console.log('typeof ', typeof +areaId);
+      // console.log('area id ===', +v.store_area_id == +areaId);
+      return v.store_area_id == +areaId;
+    });
+    console.log('BBB332112313213', b);
+    setStore(b);
 
-  // Jawg_Sunny.addTo(map);
+    // 抓XY
+    // 抓出店的XY 改成陣列
+    // const positionXY = b.map((v, i) => {
+    //   // console.log('lat', +v.store_latitude);
+    //   // console.log('lot', +v.store_longtitude);
+    //   console.log('[v.store_latitude, v.store_longtitude]', [
+    //     +v.store_latitude,
+    //     +v.store_longtitude,
+    //   ]);
+    //   return [+v.store_latitude, +v.store_longtitude];
+    // });
+  }, [areaId]);
 
-  // var coordinateArray = [
-  //   { coordinate: [25.02, 121.535], storeName: '讚讚門市' }, //門市資料
-  //   { coordinate: [25.049187, 121.566344], storeName: '棒棒門市' },
-  //   { coordinate: [25.056714, 121.560524], storeName: '鳩鳩門市' },
-  //   { coordinate: [25.05639, 121.548287], storeName: '上弘門市' },
-  //   { coordinate: [25.04, 121.555], storeName: '寰寰門市' },
-  // ];
+  // function MultipleMarkers() {
+  //   return store.map((v, i) => {
+  //     const positionXY = [+v.store_latitude, +v.store_longtitude];
+  //     console.log('v', v, positionXY);
+  //     return (
+  //       <Marker key={i} position={positionXY} icon={icon}>
+  //         <Popup>{v.store_name}</Popup>
+  //       </Marker>
+  //     );
+  //   });
+  // }
 
-  // coordinateArray.forEach(ele => {
-  //   //將門市資料綁到地標標誌上
-  //   L.marker(ele['coordinate'], {
-  //     title: ele['storeName'],
-  //     opacity: 1.0,
-  //   })
-  //     // .addTo(map)
-  //     .bindPopup(`${ele['storeName']}`)
-  //     .on('click', showStore);
+  //  縣市 input
+  const inputCity = (
+    <div className="form-group col">
+      <label htmlFor="inputCity">縣市 </label>
+      <select
+        id="inputCity"
+        className="form-control"
+        onChange={e => {
+          // console.log(1231321313);
+          setCityId(+e.target.value);
+        }}
+      >
+        <option>Choose...</option>
+        {city.map((v, i) => {
+          return (
+            <option key={i} value={v.store_city_id}>
+              {v.store_city}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+  // 行政區 select input
+  const inputArea = (
+    <div className="form-group col">
+      <label htmlFor="inputArea">行政區 </label>
+      <select
+        id="inputArea"
+        className="form-control "
+        onChange={e => {
+          setAreaId(e.target.value);
+        }}
+      >
+        <option selected>Choose...</option>
+        {area.map((v, i) => {
+          return (
+            <option key={i} value={v.store_area_id}>
+              {v.store_area}
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+  // 門市 select input
+  const inputStore = (
+    <div className="form-group col px-0">
+      <label htmlFor="inputStore ">門市</label>
+      <select
+        id="inputStore"
+        className="form-control"
+        onChange={e => {
+          setStoreName(e.target.value + '門市');
+          // console.log(e.target.value);
+          // setStore(e.target.value);
+        }}
+      >
+        <option selected>Choose...</option>
+        {store.map((v, i) => {
+          return (
+            <option key={i} value={v.store_name}>
+              {v.store_name}門市 ({v.store_address})
+            </option>
+          );
+        })}
+      </select>
+    </div>
+  );
+
+  // 抓出店的XY 改成陣列
+  // const positionXY = store.map((v, i) => {
+  //   // console.log('lat', +v.store_latitude);
+  //   // console.log('lot', +v.store_longtitude);
+  //   // console.log('[v.store_latitude, v.store_longtitude]', [
+  //   //   +v.store_latitude,
+  //   //   +v.store_longtitude,
+  //   // ]);
+  //   return [+v.store_latitude, +v.store_longtitude];
   // });
 
-  // function showStore(e) {
-  //   var storeName = e.target.getPopup().getContent();
-  //   document.querySelector('.store').innerHTML = storeName;
+  // 多重標記
+  // function MultipleMarkers() {
+  //   return store.map((sv, index) => {
+  //     return positionXY.map((v, index) => {
+  //       // console.log('v', v);
+  //       return (
+  //         <Marker key={index} position={v} icon={icon}>
+  //           <Popup>{sv.store_name}</Popup>
+  //         </Marker>
+  //       );
+  //     });
+  //   });
   // }
+
   // StoreData.map((v, index) => {
   return (
     <>
       <form className="m-4">
         <div className="form-row d-flex justify-content-between px-0 ch-cont-14">
-          <div className="form-group col">
-            <label htmlFor="inputArea">縣市 </label>
-            <select id="inputArea" className="form-control ">
-              <option>台北 </option>
-              {/* <option>{v.storeCity} </option> */}
-            </select>
-          </div>
-          <div className="form-group col">
-            <label htmlFor="inputState">行政區 </label>
-            <select id="inputState" className="form-control ">
-              <option selected>Choose...</option>
-              <option>大安區</option>
-              <option>信義區</option>
-              <option>中正區</option>
-
-              {/* <option>{v.storeTown}</option> */}
-            </select>
-          </div>
+          {inputCity}
+          {inputArea}
         </div>
-        <div className="form-group col px-0">
-          <label htmlFor="inputStore">門市</label>
-          <select id="inputStore" className="form-control">
-            <option selected>Choose...</option>
-            <option selected>12321門市</option>
-            <option selected>22231門市</option>
-
-            {/* <option>{v.storeName}門市</option> */}
-          </select>
-        </div>
+        {inputStore}
         <div
           className="store-map"
           id="map"
@@ -158,22 +266,21 @@ function StepMap() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LocationMarker />
-            <Marker
+            {/* <Marker
               position={[25.032, 121.539]}
-              // icon={greenIcon}
               eventHandlers={{
                 click: () => {
                   console.log('marker01');
                   <Popup>Hello world</Popup>;
                 },
               }}
-            />
-            <MultipleMarkers />
+            /> */}
+            <MultipleMarkers store={store} arrCoordinates={arrCoordinates} />
           </MapContainer>
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span className="store"></span>
+          <span className="store">{storeName}</span>
         </div>
       </form>
     </>
