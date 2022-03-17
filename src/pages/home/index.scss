@@ -63,6 +63,15 @@
     margin-bottom: 2rem;
     text-align: center;
     font-size: 16px;
+    animation: scrolldown 0.5s alternate ease infinite;
+  }
+  @keyframes scrolldown {
+    from {
+      transform: translateY(3px);
+    }
+    to {
+      transform: translateY(-2px);
+    }
   }
   .scroll-down {
     margin-bottom: 0.5rem;
@@ -443,9 +452,21 @@
       bottom: 2%;
       z-index: 100;
       cursor: pointer;
+      animation: easein 0.5s alternate ease-in;
     }
     .back-to-top-text {
       margin-bottom: 1rem;
+    }
+    @keyframes easein {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ import newsData from './news.json';
 import evntsData from './evnts.json';
 import promo from './promo.json';
 import BackToTop from './components/BackToTop';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
@@ -15,6 +15,7 @@ function Index(props) {
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
+  const scrollTo = useRef(null);
 
   // 初始化要資料
   useEffect(() => {}, []);
@@ -22,6 +23,13 @@ function Index(props) {
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNewsCate]);
+
+  // 處理第一頁Scroll To
+  const goToAboutUs = () =>
+    window.scrollTo({
+      top: scrollTo.current.offsetTop - 150,
+      behavior: 'smooth',
+    });
 
   // 處理carousel hover
   // ToDo: hover會停止 + 無限輪播牆改用js改寫
@@ -135,7 +143,11 @@ function Index(props) {
                 </div>
               </div>
               <div className="scroll-hint">
-                <p className="scroll-down" style={{ cursor: 'pointer' }}>
+                <p
+                  className="scroll-down"
+                  style={{ cursor: 'pointer' }}
+                  onClick={goToAboutUs}
+                >
                   SCROLL
                 </p>
                 <div className="vertical-line">
@@ -146,7 +158,9 @@ function Index(props) {
 
             {/* about us */}
             <div className="home-page">
-              <div className="en-title-24 about-us-title">About us</div>
+              <div className="en-title-24 about-us-title" ref={scrollTo}>
+                About us
+              </div>
               <div className="about-us-content">
                 <div className="about-us-text-area">
                   <div className="about-title">
