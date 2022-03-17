@@ -45,7 +45,7 @@ function LoginForgetPwd(props) {
   const [men_account, setMen_account] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = e => {
+  const handleForgetPwdSubmit = e => {
     e.preventDefault();
     accountCheck(men_account).then(obj => {
       if (obj.code !== 0) {
@@ -82,7 +82,7 @@ function LoginForgetPwd(props) {
         ></DeleteSm>
 
         <Slogan>Pleae confirm your Email</Slogan>
-        <PwdCheckForm onSubmit={handleSubmit}>
+        <PwdCheckForm onSubmit={handleForgetPwdSubmit}>
           <InputTitle className="ch-cont-14">請輸入您的帳號</InputTitle>
           <input
             type="text"

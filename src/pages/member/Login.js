@@ -87,25 +87,13 @@ function Login() {
   const handleSubmit = e => {
     e.preventDefault();
     login(mem_account, mem_pwd).then(data => {
-      console.log(data.info.mem_id);
+      console.log(data);
       if (data.code !== 0) {
         return setErrorMessage(data.error);
       } else {
         setAuthToken(data.token);
         setMemId(data.info.mem_id);
       }
-
-      // getMe().then(response => {
-      //   console.log(response.data);
-
-      //   if (response.ok !== 1) {
-      //     setAuthToken(null);
-      //     return setErrorMessage(response.toString());
-      //   }
-      //   // setUser(response.data);
-      //   history.push('/member'); //登入成功後導入會員頁
-      // });
-
       history.push('/member'); //登入成功後導入會員頁
     });
   };
@@ -244,12 +232,11 @@ function Login() {
                 accountPass={accountPass}
                 setAccountPass={setAccountPass}
               />
-              <LoginForgetPwdVcode 
+              <LoginForgetPwdVcode
                 accountPass={accountPass}
                 setAccountPass={setAccountPass}
               />
             </LoginArea>
-            
 
             {/* <Footer /> */}
           </div>

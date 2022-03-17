@@ -12,7 +12,7 @@ function MemHead() {
     findMem(mem_id).then(obj => {
       setMemData(obj[0]);
     });//做到這裡如果node端API沒寫錯就會拿到你所需的資料了
-  }, [memData]);
+  }, []);
 
   return (
     <div className="memHead ">

@@ -7,8 +7,21 @@ import {
 } from './memLayout/LayoutLight';
 import './index.scss';
 import MemHead from './component/MemHead';
+import { useEffect, useState } from 'react';
+import { findMem } from '../../WebApi';
+import { getMemId } from '../../utils';
 
 function IndexRevise() {
+  const [memInfo, setMemInfo] = useState('');
+  const mem_id = getMemId('mem_id');
+
+  useEffect(() => {
+    // TODO步驟2. 請參考WebApi 這支檔案裡的findMem這支, 只要把function名還有 ${BASE_URL}後的這串網址/member/api/find-member 改成自己的就好了(這串網址是你自訂的router的網址)
+    findMem(mem_id).then(obj => {
+      setMemInfo(obj[0]);
+    }); //做到這裡如果node端API沒寫錯就會拿到你所需的資料了
+  }, []);
+
   return (
     <>
       <Header />
@@ -29,6 +42,7 @@ function IndexRevise() {
                     <label className="reviseLabel ch-cont-14"> 帳號</label>
                     <input
                       type="text"
+                      value={memInfo.mem_account}
                       className="form-control revInpBig ch-cont-14"
                     />
                   </div>
@@ -37,6 +51,7 @@ function IndexRevise() {
                     <label className="reviseLabel ch-cont-14"> 密碼</label>
                     <input
                       type="text"
+                      value={"*******"}
                       className="form-control revInpBig ch-cont-14"
                     />
                     <button className="btn btn-primary primeal-btn revPswBtn">
@@ -53,6 +68,10 @@ function IndexRevise() {
                         <label className="reviseLabel ch-cont-14"> 姓名</label>
                         <input
                           type="text"
+                          value={memInfo.mem_name}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                           className="form-control revInpSm ch-cont-14"
                         />
                       </div>
@@ -60,6 +79,10 @@ function IndexRevise() {
                         <label className="reviseLabel ch-cont-14"> 暱稱</label>
                         <input
                           type="text"
+                          value={memInfo.mem_nickname}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                           className="form-control revInpSm ch-cont-14 ml-4"
                         />
                       </div>
@@ -69,6 +92,10 @@ function IndexRevise() {
                       <label className="reviseLabel ch-cont-14">手機號碼</label>
                       <input
                         type="text"
+                        value={memInfo.mem_mobile}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                         className="form-control revInpBig ch-cont-14"
                       />
                     </div>
@@ -80,24 +107,36 @@ function IndexRevise() {
                         <label className="reviseLabel ch-cont-14"> 性別</label>
                         <input
                           type="text"
+                          value={memInfo.mem_gender}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                           className="form-control revInpSm ch-cont-14"
                         />
                       </div>
-                      <div className="memInpuSm">
+                      <div className="memInpuSm mb-1">
                         <label className="reviseLabel ch-cont-14"> 生日</label>
                         <input
                           type="text"
+                          value={memInfo.mem_birthday}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                           className="form-control revInpSm ch-cont-14 ml-4"
                         />
                       </div>
                     </div>
                     <div className="memInpbtBig my-5 ">
-                      <label className="reviseLabel ch-cont-14">郵件</label>
+                      {/* <label className="reviseLabel ch-cont-14">郵件</label>
                       <input
                         type="text"
+                        value={memInfo.mem_mobile}
+                          onChange={e => {
+                            setMemInfo(e.target.value)
+                          }}
                         className="form-control revInpBig ch-cont-14"
-                      />
-                      <button className="btn btn-primary primeal-btn revPswBtn mb-5">
+                      /> */}
+                      <button className="btn btn-primary primeal-btn revPswBtn mb-5 mt-5">
                         提交修改
                       </button>
                     </div>

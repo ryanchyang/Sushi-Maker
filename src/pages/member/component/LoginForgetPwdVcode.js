@@ -36,16 +36,10 @@ const ErrorMessage = styled.p`
   color: #b03342;
 `;
 
-//function
-const handleSubmit = e => {
-  e.preventDefault();
-};
 
 function LoginForgetPwdVcode(props) {
   const { accountPass, setAccountPass } = props;
-
-  const [account, setAccount] = useState('');
-  const [password, setPassword] = useState('');
+  const [validCode, setValidCode] = useState('');
 
   const handleClickClose = () => {
     setAccountPass(false);
@@ -66,14 +60,14 @@ function LoginForgetPwdVcode(props) {
           style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
         ></DeleteSm>
         <Slogan>Pleae confirm your Vcode</Slogan>
-        <LoginForm onSubmit={handleSubmit}>
+        <LoginForm >
           <InputTitle className="ch-cont-14">請輸入驗證碼</InputTitle>
           <input
             type="text"
             className="form-control"
-            value={account}
+            value={validCode}
             onChange={e => {
-              setAccount(e.target.value);
+              setValidCode(e.target.value);
             }}
             style={{
               borderRadius: 50,

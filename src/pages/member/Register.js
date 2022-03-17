@@ -236,6 +236,7 @@ function Register() {
                           letterSpacing: '0.14rem',
                         }}
                       >
+                        <option value="select">請選擇</option>
                         <option value="male">男性</option>
                         <option value="female">女性</option>
                         <option value="undefined">兩性</option>
