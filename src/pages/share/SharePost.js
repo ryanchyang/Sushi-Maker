@@ -38,7 +38,7 @@ function SharePost() {
                     className={`${styles['topic-rect']} d-none d-sm-block`}
                     style={
                       subTopic === 'shared'
-                        ? { opacity: '100%' }
+                        ? { opacity: '1' }
                         : { opacity: '0' }
                     }
                   >
@@ -61,7 +61,7 @@ function SharePost() {
                     className={`${styles['topic-rect']} d-none d-sm-block`}
                     style={
                       subTopic === 'comment'
-                        ? { opacity: '100%' }
+                        ? { opacity: '1' }
                         : { opacity: '0' }
                     }
                   >

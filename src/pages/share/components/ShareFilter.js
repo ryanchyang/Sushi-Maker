@@ -5,13 +5,14 @@ import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
 import { ReactComponent as OrangeTag } from '../../../imgs/tags/Rectangle_orange.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 function ShareFilter(props) {
-  const { filter, setFilter } = props;
+  const { filter, setFilter, masonryContainer, setMasonryContainer } = props;
   return (
     <>
       <div className={`${styles['filter-panel-mask']}`}></div>
       <div
         className={`${styles['filter-panel']}`}
         style={!filter ? { right: '-100%' } : { right: '12.5%' }}
+        onTransitionEnd={() => filter && setMasonryContainer(!masonryContainer)}
       >
         {/* <div className={`${styles['waterfall-container']}`}></div> */}
         <div className={`mycontainer mb-5 classic`}>
@@ -19,7 +20,9 @@ function ShareFilter(props) {
           <div className="prod-filter-ryan">
             {/* clean or cancel filter */}
             <div className="d-flex flex-column">
-              <div className="filter-top justify-content-end">
+              <div
+                className={`${styles['share-filter-top']} justify-content-end`}
+              >
                 <div
                   className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
                 >
@@ -32,7 +35,10 @@ function ShareFilter(props) {
                 <div>
                   <DeleteSm
                     className={`${styles['button-default-lg']}`}
-                    onClick={() => setFilter(!filter)}
+                    onClick={() => {
+                      setFilter(!filter);
+                      setMasonryContainer(!masonryContainer);
+                    }}
                   />
                 </div>
               </div>
@@ -99,6 +105,11 @@ function ShareFilter(props) {
                     <div className="flavor-tag ch-title-16">麻糬</div>
                     <div className="flavor-tag ch-title-16">抹茶</div>
                     <div className="flavor-tag ch-title-16">羊羹/果凍</div>
+                    <div className="flavor-tag ch-title-16">干貝</div>
+                    <div className="flavor-tag ch-title-16">明太子</div>
+                    <div className="flavor-tag ch-title-16">番薯/馬鈴薯</div>
+                    <div className="flavor-tag ch-title-16">麻糬</div>
+                    <div className="flavor-tag ch-title-16">抹茶</div>
                   </div>
                 </div>
               </div>
@@ -138,7 +149,7 @@ function ShareFilter(props) {
                     <button className="btn-sm btn-primary primeal-btn-sm">
                       送出條件
                     </button>
-                  </div>{' '}
+                  </div>
                 </div>
               </div>
             </div>
