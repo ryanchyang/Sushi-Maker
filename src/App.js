@@ -33,6 +33,7 @@ import EvntsSignUp from './pages/home/EvntsSignUp';
 import Entry from './pages/home/components/Entry';
 // import NavPage from './pages/home/components/NavPage';
 //setorder
+import StepStart from './pages/setorder/StepStart';
 import StepOne from './pages/setorder/StepOne';
 import StepTwo from './pages/setorder/StepTwo';
 import StepThree from './pages/setorder/StepThree';
@@ -145,6 +146,9 @@ function App() {
           </Route>
           <Route path="/latest-news">
             <LatestNews />
+          </Route>
+          <Route path="/setorder/stepstart" exact>
+            <StepStart />
           </Route>
           <Route path="/setorder/stepone" exact>
             <StepOne />
