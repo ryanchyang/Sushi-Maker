@@ -9,8 +9,8 @@ const config = {
   // 新聞活動
   NEWS_PATH: `${host}/latest-news/api/news`,
   EVNTS_PATH: `${host}/latest-news/api/evnts`,
-  NEWSD_PATH: `${host}/latest-news/api/newsdetail`,
-  EVNTSD_PATH: `${host}/latest-news/api/evntsdetail`,
+  NEWSD_PATH: `${host}/latest-news/api/newsdetail/`,
+  EVNTSD_PATH: `${host}/latest-news/api/evntsdetail/`,
 
   // 經典商品
 
