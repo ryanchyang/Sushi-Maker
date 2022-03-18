@@ -136,7 +136,7 @@ function App() {
               setLatestNewsCate={setLatestNewsCate}
             />
           </Route>
-          <Route path="/latest-news/events/signup" exact>
+          <Route path="/latest-news/eventsdetail/signup/:id" exact>
             <EvntsSignUp />
           </Route>
           <Route path="/latest-news/eventsdetail/:id" exact>

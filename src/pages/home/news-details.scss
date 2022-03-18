@@ -19,6 +19,7 @@
   .news-img img {
     width: 100%;
     object-fit: contain;
+    box-shadow: 3px 3px 5px 2px rgb(195, 195, 195);
   }
   .news-content {
     margin-top: 5%;
@@ -37,7 +38,9 @@
     width: 50%;
   }
   .pc-news-img img {
-    width: 100%;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 3px 3px 5px 2px rgb(195, 195, 195);
   }
   .pc-news-title {
     padding-top: 2%;

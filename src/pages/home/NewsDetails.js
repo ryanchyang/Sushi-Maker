@@ -32,9 +32,7 @@ function NewsDetails() {
     console.log('hi');
     const res = await fetch(config.NEWSD_PATH + `${id}`);
     const obj = await res.json();
-    console.log('obj:', obj);
     setNewsDetail(obj.data);
-    console.log(newsDetail);
   };
 
   useEffect(() => {
@@ -73,21 +71,24 @@ function NewsDetails() {
               {/* mobile latest-news-content */}
               <div className="mobile-news-detail d-sm-none">
                 <div className="ch-title-18 news-title">
-                  {newsDetail[0].news_title}
+                  {newsDetail[0]?.news_title ?? ''}
                 </div>
                 <div className="news-date-tag">
                   <div className="en-cont-14 news-date">
-                    {dateFormat(newsDetail[0].news_start_date)}
+                    {dateFormat(newsDetail[0]?.news_start_date ?? '')}
                   </div>
                   <div className="ch-cont-14 news-tag">
-                    {newsDetail[0].news_cate}
+                    {newsDetail[0]?.news_cate ?? ''}
                   </div>
                 </div>
                 <div className="news-img">
-                  <img src="/img/home/news/new-cherry-blossom.png" alt="news" />
+                  <img
+                    src={'/img/home/news/' + newsDetail[0]?.news_img_path ?? ''}
+                    alt="news"
+                  />
                 </div>
                 <div className="ch-cont-16 news-content">
-                  {newsDetail[0].news_detail}
+                  {newsDetail[0]?.news_detail ?? ''}
                 </div>
                 <div className="ch-cont-14 news-warning">
                   ※ 商品均以實體成品為主，圖片僅供參考
@@ -101,24 +102,26 @@ function NewsDetails() {
                 <div className="pc-news-detail d-flex justify-content-between">
                   <div className="pc-news-img">
                     <img
-                      src="/img/home/news/new-cherry-blossom.png"
+                      src={
+                        '/img/home/news/' + newsDetail[0]?.news_img_path ?? ''
+                      }
                       alt="news"
                     />
                   </div>
                   <div className="pc-news-content">
                     <div className="ch-title-18 pc-news-title">
-                      {newsDetail[0].news_title}
+                      {newsDetail[0]?.news_title ?? ''}
                     </div>
                     <div className="pc-news-date-tag">
                       <div className="en-cont-14 pc-news-date">
-                        {dateFormat(newsDetail[0].news_start_date)}
+                        {dateFormat(newsDetail[0]?.news_start_date ?? '')}
                       </div>
                       <div className="ch-cont-14 pc-news-tag">
-                        {newsDetail[0].news_cate}
+                        {newsDetail[0]?.news_cate ?? ''}
                       </div>
                     </div>
                     <div className="ch-cont-16 pc-new-text">
-                      {newsDetail[0].news_detail}
+                      {newsDetail[0]?.news_detail ?? ''}
                     </div>
                     <div className="ch-cont-14 pc-news-warning">
                       ※ 商品均以實體成品為主，圖片僅供參考

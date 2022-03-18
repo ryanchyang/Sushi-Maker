@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Events(props) {
   const { evntsData } = props;
   // console.log('props:', props);
@@ -23,7 +25,7 @@ function Events(props) {
   // ]
 
   // 調整SQL時間格式
-  
+
   const dateFormat = date => {
     let d = new Date(date),
       month = '' + (d.getMonth() + 1),
@@ -35,7 +37,6 @@ function Events(props) {
 
     return [year, month, day].join('-');
   };
-
 
   // 計算報名人數後回傳狀態
   const status = (pres, max, start, end) => {
@@ -66,9 +67,12 @@ function Events(props) {
       <div className="latest-news-content">
         {evntsData.map((v, i) => {
           return (
-            <div
+            <Link
+              to={'/latest-news/eventsdetail/' + v.evnts_id}
+              style={{ textDecoration: 'none', color: '#212121' }}
               className="col-24 col-md-10 col-xl-6 latest-news-card"
               key={v.evnts_id}
+              data-id={v.news_id}
             >
               <div className="news-img">
                 <img src={'/img/home/evnts/' + v.evnts_img_path} alt="events" />
@@ -95,7 +99,7 @@ function Events(props) {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

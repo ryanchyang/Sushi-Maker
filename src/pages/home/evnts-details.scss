@@ -16,6 +16,7 @@
   .evnts-img img {
     width: 100%;
     object-fit: contain;
+    box-shadow: 3px 3px 5px 2px rgb(195, 195, 195);
   }
   .evnts-info {
     display: flex;
@@ -31,7 +32,6 @@
     transform: rotate(45deg);
     margin-right: 2%;
   }
-
   .evnts-content {
     margin-top: 5%;
     margin-bottom: 20%;
@@ -39,6 +39,11 @@
   }
   .signup-number {
     text-align: center;
+  }
+  span {
+    color: $tint-red;
+    font-size: 20px;
+    font-weight: 500;
   }
   .signupbtn {
     display: flex;
@@ -57,6 +62,7 @@
   }
   .pc-evnts-img img {
     width: 100%;
+    box-shadow: 3px 3px 5px 2px rgb(195, 195, 195);
   }
   .pc-evnts-content {
     padding-left: 5%;
@@ -80,6 +86,9 @@
   @media screen and (min-width: 577px) {
     .evnts-info {
       padding: 0;
+    }
+    .pc-signup-number {
+      width: 50%;
     }
   }
 }

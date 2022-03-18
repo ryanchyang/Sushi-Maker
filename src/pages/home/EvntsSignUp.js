@@ -1,8 +1,41 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import './evnts-signup.scss';
-import { useState } from 'react';
+import config from '../../Config';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 function EvntsSignUp() {
-  const [selectedValue, setSelectedValue] = useState('');
+  const [evntsInfo, setEvntsInfo] = useState([]);
+
+  const { id } = useParams();
+  console.log('id:', id);
+
+  const getEvntsInfo = async () => {
+    console.log('hihi');
+    const res = await fetch(config.EVNTSD_PATH + `${id}`);
+    const obj = await res.json();
+    console.log('obj:', obj);
+    setEvntsInfo(obj.data);
+  };
+
+  useEffect(() => {
+    console.log('hi');
+    getEvntsInfo();
+  }, []);
+
+  // 處理時間格式
+  const dateFormat = date => {
+    let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
+
   // Input State
   const [fields, setFields] = useState({
     name: '',
@@ -25,7 +58,7 @@ function EvntsSignUp() {
   const handleSubmit = e => {
     e.preventDefault();
     // 作驗証
-    const formData = new FormData(e.target);
+    // const formData = new FormData(e.target);
     // console.log(formData.get('username'));
     // console.log(formData.get('email'));
     // console.log(formData.get('password'));
@@ -78,44 +111,83 @@ function EvntsSignUp() {
               {/* evnts-signup */}
               <div className="evnts-block">
                 <div className="evnts-info-area">
-                  <div className="evnts-info-top d-flex">
+                  <div className="evnts-info-top d-flex justify-content-between">
                     <div className="evnts-info-top-text">
-                      <div class="ch-title-18 evnts-title">PRIMEAL試吃餐會</div>
-                      <div class="en-cont-14 evnts-date">2022.05.20</div>
-                      <div class="ch-cont-14 evnts-tag">品牌推廣</div>
+                      <div className="ch-title-22 evnts-title">
+                        {evntsInfo[0]?.evnts_title ?? ''}
+                      </div>
+                      <div className="en-cont-16 evnts-date">
+                        {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
+                      </div>
+                      <div className="ch-cont-16 evnts-tag">
+                        {evntsInfo[0]?.evnts_cate ?? ''}
+                      </div>
                     </div>
-                    <div class="evnts-img">
-                      <img src="/img/home/evnts/event-1.png" alt="events" />
+                    <div className="evnts-img">
+                      <img
+                        src={
+                          '/img/home/evnts/' + evntsInfo[0]?.evnts_img_path ??
+                          ''
+                        }
+                        alt="events"
+                      />
                     </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
-                    <div className="ch-cont-14 info-title">活動時間:</div>
-                    <div className="ch-cont-14 info-content">13:00-16:00</div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-14 info-title">活動地點:</div>
-                    <div className="ch-cont-14 info-content">
-                      台北市大安區復興南路一段390號2樓
+                    <div className="ch-cont-16 info-title">報名開始:</div>
+                    <div className="ch-cont-16 info-content">
+                      {dateFormat(evntsInfo[0]?.evnts_signup_start_date ?? '')}
                     </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
-                    <div className="ch-cont-14 info-title">活動人數:</div>
-                    <div className="ch-cont-14 info-content">上限20人</div>
+                    <div className="ch-cont-16 info-title">報名截止:</div>
+                    <div className="ch-cont-16 info-content">
+                      {dateFormat(evntsInfo[0]?.evnts_signup_end_date ?? '')}
+                    </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
-                    <div className="ch-cont-14 info-title">活動主講人:</div>
-                    <div className="ch-cont-14 info-content">旭收 老師</div>
+                    <div className="ch-cont-16 info-title">活動日期:</div>
+                    <div className="ch-cont-16 info-content">
+                      {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
+                    </div>
                   </div>
-                  <div class="ch-cont-14 evnts-content">
-                    有吃過3D列印食物嗎? <br />
-                    快來參加PRIMEAL舉辦的試吃餐會，帶你認識3D列印食物的過程，試吃體驗全新不同的飲食口感。
+                  <div className="evnts-info">
+                    <div className="diamond"></div>
+                    <div className="ch-cont-16 info-title">活動時間:</div>
+                    <div className="ch-cont-16 info-content">
+                      {evntsInfo[0]?.evnts_start_time ?? ''}-
+                      {evntsInfo[0]?.evnts_end_time ?? ''}
+                    </div>
+                  </div>
+                  <div className="evnts-info">
+                    <div className="diamond"></div>
+                    <div className="ch-cont-16 info-title">活動地點:</div>
+                    <div className="ch-cont-16 info-content">
+                      {evntsInfo[0]?.evnts_location ?? ''}
+                    </div>
+                  </div>
+                  <div className="evnts-info">
+                    <div className="diamond"></div>
+                    <div className="ch-cont-16 info-title">活動人數:</div>
+                    <div className="ch-cont-16 info-content">
+                      上限{evntsInfo[0]?.evnts_max_num ?? ''}人
+                    </div>
+                  </div>
+                  <div className="evnts-info">
+                    <div className="diamond"></div>
+                    <div className="ch-cont-16 info-title">活動主講人:</div>
+                    <div className="ch-cont-16 info-content">
+                      {evntsInfo[0]?.evnts_host ?? ''}
+                    </div>
+                  </div>
+                  <div className="ch-cont-16 evnts-content">
+                    {evntsInfo[0]?.evnts_detail ?? ''}
                   </div>
                 </div>
-                <div className="ch-cont-14 evnts-signup-area">
+                <div className="ch-cont-16 evnts-signup-area">
                   <form
                     onSubmit={handleSubmit}
                     onInvalid={handleInvalid}
@@ -185,9 +257,10 @@ function EvntsSignUp() {
                       className="form-select"
                       name="number"
                       id="number"
-                      value={selectedValue}
+                      value={fields.number}
                       onChange={handleFieldChange}
                     >
+                      <option value="none">請選擇</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
