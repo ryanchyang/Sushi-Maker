@@ -23,17 +23,28 @@ function EvntsSignUp() {
     getEvntsInfo();
   }, []);
 
-  // 處理時間格式
+  // 處理日期格式
   const dateFormat = date => {
-    let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    if (!date) {
+      return '';
+    } else {
+      let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
+  };
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
+  // 處理時間格式
+  const timeFormat = time => {
+    if (!time) {
+      return '';
+    } else {
+      return time.substring(0, 5);
+    }
   };
 
   // Input State
@@ -158,8 +169,8 @@ function EvntsSignUp() {
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">活動時間:</div>
                     <div className="ch-cont-16 info-content">
-                      {evntsInfo[0]?.evnts_start_time ?? ''}-
-                      {evntsInfo[0]?.evnts_end_time ?? ''}
+                      {timeFormat(evntsInfo[0]?.evnts_start_time ?? '')}-
+                      {timeFormat(evntsInfo[0]?.evnts_end_time ?? '')}
                     </div>
                   </div>
                   <div className="evnts-info">
@@ -174,13 +185,6 @@ function EvntsSignUp() {
                     <div className="ch-cont-16 info-title">活動人數:</div>
                     <div className="ch-cont-16 info-content">
                       上限{evntsInfo[0]?.evnts_max_num ?? ''}人
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">活動主講人:</div>
-                    <div className="ch-cont-16 info-content">
-                      {evntsInfo[0]?.evnts_host ?? ''}
                     </div>
                   </div>
                   <div className="ch-cont-16 evnts-content">

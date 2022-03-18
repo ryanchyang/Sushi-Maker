@@ -64,9 +64,6 @@ function App() {
     });
   }, []);
 
-  //判斷用戶從首頁選擇哪個類型的最新消息
-  const [latestNewsCate, setLatestNewsCate] = useState('NEWS');
-
   return (
     //如有toke, 將token傳下去
     // <AuthContext.Provider value={{ user, setUser }}>
@@ -131,10 +128,7 @@ function App() {
           <NavPage />
           </Route>*/}
           <Route path="/" exact>
-            <Home
-              latestNewsCate={latestNewsCate}
-              setLatestNewsCate={setLatestNewsCate}
-            />
+            <Home />
           </Route>
           <Route path="/latest-news/eventsdetail/signup/:id" exact>
             <EvntsSignUp />
@@ -145,8 +139,8 @@ function App() {
           <Route path="/latest-news/newsdetail/:id" exact>
             <NewsDetails />
           </Route>
-          <Route path="/latest-news">
-            <LatestNews latestNewsCate={latestNewsCate} />
+          <Route path="/latest-news/:cate" exact>
+            <LatestNews />
           </Route>
           <Route path="/setorder/stepstart" exact>
             <StepStart />

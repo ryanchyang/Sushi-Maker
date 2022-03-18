@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 
 function EvntsDetails() {
   const [evntsDetail, setEvntsDetail] = useState([]);
+  const [active, setActive] = useState(null);
   const { id } = useParams();
-  console.log('id:', id);
 
+  // get Data
   const getEvntsDetail = async () => {
-    console.log('hihi');
     const res = await fetch(config.EVNTSD_PATH + `${id}`);
     const obj = await res.json();
     console.log('obj:', obj);
@@ -20,21 +20,46 @@ function EvntsDetails() {
   };
 
   useEffect(() => {
-    console.log('hi');
     getEvntsDetail();
   }, []);
 
-  // 處理時間格式
+  // 判斷 Link to 是否可點擊
+  useEffect(() => {
+    const now = new Date();
+    const evntsSingUpDate = new Date(
+      evntsDetail[0]?.evnts_signup_start_date ?? ''
+    );
+    // console.log('now', now);
+    // console.log('evntsSingUpDate', evntsSingUpDate);
+
+    if (evntsSingUpDate > now) setActive(false);
+    if (evntsSingUpDate < now) setActive(true);
+  }, [evntsDetail]);
+
+  // const hiddenBtn = { opacity: 0 };
+
+  // 處理日期格式
   const dateFormat = date => {
-    let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
+    if (!date) {
+      return '';
+    } else {
+      let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
+  };
 
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
+  // 處理時間格式
+  const timeFormat = time => {
+    if (!time) {
+      return '';
+    } else {
+      return time.substring(0, 5);
+    }
   };
 
   return (
@@ -99,8 +124,8 @@ function EvntsDetails() {
                   <div className="diamond"></div>
                   <div className="ch-cont-16 info-title">活動時間:</div>
                   <div className="ch-cont-16 info-content">
-                    {evntsDetail[0]?.evnts_start_time ?? ''}-
-                    {evntsDetail[0]?.evnts_end_time ?? ''}
+                    {timeFormat(evntsDetail[0]?.evnts_start_time ?? '')}-
+                    {timeFormat(evntsDetail[0]?.evnts_end_time ?? '')}
                   </div>
                 </div>
                 <div className="evnts-info">
@@ -117,34 +142,41 @@ function EvntsDetails() {
                     上限{evntsDetail[0]?.evnts_max_num ?? ''}人
                   </div>
                 </div>
-                <div className="evnts-info">
-                  <div className="diamond"></div>
-                  <div className="ch-cont-16 info-title">活動主講人:</div>
-                  <div className="ch-cont-16 info-content">
-                    {evntsDetail[0]?.evnts_host ?? ''}
-                  </div>
-                </div>
                 <div className="ch-cont-16 evnts-content">
                   {evntsDetail[0]?.evnts_detail ?? ''}
                 </div>
-                <div className="ch-title-18 signup-number">
-                  目前已報名人數{' '}
-                  <span>{evntsDetail[0]?.evnts_pres_num ?? ''}</span>人
-                </div>
-                <div className="signupbtn">
+                <div
+                  className={
+                    active === null
+                      ? 'mobile-sign-up-hidden'
+                      : 'mobile-sign-up-show'
+                  }
+                >
+                  <div className="ch-title-18 signup-number">
+                    目前已報名人數{' '}
+                    <span>{evntsDetail[0]?.evnts_pres_num ?? ''}</span>人
+                  </div>
                   <Link
                     to={
-                      '/latest-news/eventsdetail/signup/' +
-                        evntsDetail[0]?.evnts_id ?? ''
+                      active
+                        ? '/latest-news/eventsdetail/signup/' +
+                            evntsDetail[0]?.evnts_id ?? ''
+                        : '#'
                     }
-                    className="btn-sm btn-primary primeal-btn text-align-center"
                     style={{
                       textDecoration: 'none',
-                      textAlign: 'center',
-                      paddingTop: '7px',
                     }}
+                    className={active ? 'signupbtn' : 'signupbtn nopointer'}
                   >
-                    點我去報名
+                    <div
+                      className={
+                        active
+                          ? 'btn-sm btn-primary primeal-btn d-flex justify-content-center align-items-center'
+                          : 'btn-sm disabled ch-title-18 d-flex justify-content-center align-items-center'
+                      }
+                    >
+                      {active ? '點我去報名' : '敬請期待'}
+                    </div>
                   </Link>
                 </div>
               </div>
@@ -199,8 +231,8 @@ function EvntsDetails() {
                     <div className="diamond"></div>
                     <div className="ch-cont-16 pc-info-title">活動時間:</div>
                     <div className="ch-cont-16 pc-info-content">
-                      {evntsDetail[0]?.evnts_start_time ?? ''}-
-                      {evntsDetail[0]?.evnts_end_time ?? ''}
+                      {timeFormat(evntsDetail[0]?.evnts_start_time ?? '')}-
+                      {timeFormat(evntsDetail[0]?.evnts_end_time ?? '')}
                     </div>
                   </div>
                   <div className="evnts-info">
@@ -217,38 +249,42 @@ function EvntsDetails() {
                       上限{evntsDetail[0]?.evnts_max_num ?? ''}人
                     </div>
                   </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 pc-info-title">活動主講人:</div>
-                    <div className="ch-cont-16 pc-info-content">
-                      {evntsDetail[0]?.evnts_host ?? ''}
-                    </div>
-                  </div>
                   <div className="ch-cont-16 pc-evnts-text">
                     {evntsDetail[0]?.evnts_detail ?? ''}
                   </div>
-                  <div className="pc-sign-up-in">
+                  <div
+                    className={
+                      active === null ? 'pc-sign-up-in' : 'pc-sign-up-show'
+                    }
+                  >
                     <div className="ch-title-18 pc-signup-number">
                       目前已報名人數{' '}
                       <span>{evntsDetail[0]?.evnts_pres_num ?? ''}</span>人
                     </div>
-                    <div className="pc-signupbtn">
-                      <Link
-                        to={
-                          '/latest-news/eventsdetail/signup/' +
-                            evntsDetail[0]?.evnts_id ?? ''
+                    <Link
+                      to={
+                        active
+                          ? '/latest-news/eventsdetail/signup/' +
+                              evntsDetail[0]?.evnts_id ?? ''
+                          : '#'
+                      }
+                      style={{
+                        textDecoration: 'none',
+                      }}
+                      className={
+                        active ? 'pc-signupbtn' : 'pc-signupbtn nopointer'
+                      }
+                    >
+                      <div
+                        className={
+                          active
+                            ? 'btn-sm btn-primary primeal-btn d-flex justify-content-center align-items-center'
+                            : 'btn-sm disabled d-flex justify-content-center align-items-center'
                         }
-                        className="btn-sm btn-primary primeal-btn text-align-center"
-                        style={{
-                          textDecoration: 'none',
-                          textAlign: 'center',
-                          paddingTop: '7px',
-                          width: '100px',
-                        }}
                       >
-                        點我去報名
-                      </Link>
-                    </div>
+                        {active ? '點我去報名' : '敬請期待'}
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>

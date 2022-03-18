@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
 function Index(props) {
-  const { latestNewsCate, setLatestNewsCate } = props;
+  const [latestNewsCate, setLatestNewsCate] = useState('news');
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
@@ -61,19 +61,19 @@ function Index(props) {
 
   // 處理latest news類別切換
   const handleLatestNews = e => {
-    const text = e.target.innerText;
+    const text = e.target.innerText.toLowerCase();
     switch (text) {
-      case 'NEWS':
-        setLatestNewsCate('NEWS');
+      case 'news':
+        setLatestNewsCate('news');
         break;
-      case 'EVENTS':
-        setLatestNewsCate('EVENTS');
+      case 'events':
+        setLatestNewsCate('events');
         break;
-      case 'SHARES':
-        setLatestNewsCate('SHARES');
+      case 'shares':
+        setLatestNewsCate('shares');
         break;
       default:
-        setLatestNewsCate('NEWS');
+        setLatestNewsCate('news');
     }
   };
 
@@ -370,28 +370,28 @@ function Index(props) {
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNewsCate === 'NEWS' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'news' ? hiddenGray : showGray}
                 >
                   NEWS
                 </div>
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNewsCate === 'EVENTS' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'events' ? hiddenGray : showGray}
                 >
                   EVENTS
                 </div>
                 <div
                   className="col-8 index-category-name"
                   onClick={handleLatestNews}
-                  style={latestNewsCate === 'SHARES' ? hiddenGray : showGray}
+                  style={latestNewsCate === 'shares' ? hiddenGray : showGray}
                 >
                   SHARES
                 </div>
               </div>
               <div className="overflow-hidden">
                 <div
-                  style={latestNewsCate === 'NEWS' ? showBlock : hiddenBlock}
+                  style={latestNewsCate === 'news' ? showBlock : hiddenBlock}
                 >
                   <div
                     className="news-carousel-wrap d-flex"
@@ -431,7 +431,7 @@ function Index(props) {
                   </div>
                 </div>
                 <div
-                  style={latestNewsCate === 'EVENTS' ? showBlock : hiddenBlock}
+                  style={latestNewsCate === 'events' ? showBlock : hiddenBlock}
                 >
                   <div
                     className="news-carousel-wrap d-flex"
@@ -471,7 +471,7 @@ function Index(props) {
                   </div>
                 </div>
               </div>
-              <div style={latestNewsCate === 'NEWS' ? showBlock : hiddenBlock}>
+              <div style={latestNewsCate === 'news' ? showBlock : hiddenBlock}>
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
                     <img
@@ -514,7 +514,7 @@ function Index(props) {
                 </div>
               </div>
               <div
-                style={latestNewsCate === 'EVENTS' ? showBlock : hiddenBlock}
+                style={latestNewsCate === 'events' ? showBlock : hiddenBlock}
               >
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
@@ -560,14 +560,14 @@ function Index(props) {
               <Link
                 to={() => {
                   switch (latestNewsCate) {
-                    case 'NEWS':
-                      return `${'/latest-news'}`;
-                    case 'EVNETS':
-                      return `${'/latest-news'}`;
-                    case 'SHARES':
+                    case 'news':
+                      return `${'/latest-news/' + latestNewsCate}`;
+                    case 'events':
+                      return `${'/latest-news/' + latestNewsCate}`;
+                    case 'shares':
                       return `${'/share'}`;
                     default:
-                      return `${'/latest-news'}`;
+                      return `${'/latest-news/news'}`;
                   }
                 }}
                 className="index-view-more d-flex justify-content-end align-items-center"
@@ -576,7 +576,9 @@ function Index(props) {
                   color: '#212121',
                 }}
               >
-                <p className="en-cont-14">BROWSE {latestNewsCate}</p>
+                <p className="en-cont-14">
+                  BROWSE {latestNewsCate.toUpperCase()}
+                </p>
                 <div className="view-product-arrow">
                   <img
                     src="/img/home/index-arrowsm-black.svg"

@@ -1,17 +1,21 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import News from './components/News';
+import './../../styles/global.scss';
 // import Pagination from './components/Pagination';
 import Events from './components/Events';
 import NewsFilter from './components/NewsFilter';
 import EvntsFilter from './components/EvntsFilter';
 import './latest-news.scss';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import config from '../../Config';
+import { Link } from 'react-router-dom';
 
-function LatestNews(props) {
-  const { latestNewsCate } = props;
+function LatestNews() {
+  const { cate } = useParams();
+  console.log(cate);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
-  const [focus, setFocus] = useState(latestNewsCate);
+  // const [focus, setFocus] = useState(cate);
   const [newsData, setNewsData] = useState([]);
   const [evntsData, setEvntsData] = useState([]);
 
@@ -36,18 +40,18 @@ function LatestNews(props) {
   }, []);
 
   //處理點擊分類商品
-  const handleClickCategory = e => {
-    switch (e.target.innerText) {
-      case 'NEWS':
-        setFocus('NEWS');
-        break;
-      case 'EVENTS':
-        setFocus('EVENTS');
-        break;
-      default:
-        setFocus('news');
-    }
-  };
+  // const handleClickCategory = e => {
+  //   switch (e.target.innerText.toLowercase()) {
+  //     case 'news':
+  //       setFocus('news');
+  //       break;
+  //     case 'events':
+  //       setFocus('events');
+  //       break;
+  //     default:
+  //       setFocus('news');
+  //   }
+  // };
 
   const showStyle = { display: 'block' };
   const hiddenStyle = { display: 'none' };
@@ -88,8 +92,12 @@ function LatestNews(props) {
               >
                 {/* latest news category */}
                 <div className="latest-news-category-box">
-                  <div className="category-name d-flex align-items-center">
-                    {focus === 'NEWS' ? (
+                  <Link
+                    to={'/latest-news/news'}
+                    style={{ textDecoration: 'none', color: '#212121' }}
+                    className="category-name d-flex align-items-center"
+                  >
+                    {cate === 'news' ? (
                       <div className="diamond"></div>
                     ) : (
                       <div></div>
@@ -97,13 +105,17 @@ function LatestNews(props) {
                     <div
                       className="en-title-14-5"
                       style={{ cursor: 'pointer' }}
-                      onClick={handleClickCategory}
+                      // onClick={handleClickCategory}
                     >
                       NEWS
                     </div>
-                  </div>
-                  <div className="category-name d-flex align-items-center">
-                    {focus === 'EVENTS' ? (
+                  </Link>
+                  <Link
+                    to={'/latest-news/events'}
+                    style={{ textDecoration: 'none', color: '#212121' }}
+                    className="category-name d-flex align-items-center"
+                  >
+                    {cate === 'events' ? (
                       <div className="diamond"></div>
                     ) : (
                       <div></div>
@@ -111,18 +123,18 @@ function LatestNews(props) {
                     <div
                       className="en-title-14-5"
                       style={{ cursor: 'pointer' }}
-                      onClick={handleClickCategory}
+                      // onClick={handleClickCategory}
                     >
                       EVENTS
                     </div>
-                  </div>
+                  </Link>
                 </div>
 
                 {/* news-content */}
-                {focus === 'NEWS' && <News newsData={newsData} />}
+                {cate === 'news' && <News newsData={newsData} />}
 
                 {/* events-content */}
-                {focus === 'EVENTS' && <Events evntsData={evntsData} />}
+                {cate === 'events' && <Events evntsData={evntsData} />}
 
                 {/* pagination */}
                 {/* <Pagination /> */}
@@ -133,12 +145,8 @@ function LatestNews(props) {
                 className="prod-filter"
                 style={isOpenFilter ? showStyle : hiddenStyle}
               >
-                {isOpenFilter && focus === 'NEWS' && (
-                  <NewsFilter focus={focus} />
-                )}
-                {isOpenFilter && focus === 'EVENTS' && (
-                  <EvntsFilter focus={focus} />
-                )}
+                {isOpenFilter && cate === 'news' && <NewsFilter />}
+                {isOpenFilter && cate === 'events' && <EvntsFilter />}
               </div>
             </div>
           </div>

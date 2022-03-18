@@ -78,10 +78,32 @@
   .pc-evnts-text {
     margin: 10% 0%;
   }
-  .pc-sign-up-in {
+  .pc-sign-up-hidden .mobile-sign-up-hidden {
+    opacity: 0;
+  }
+  .pc-sign-up-show {
+    opacity: 1;
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+  .mobile-sign-up-show {
+    opacity: 1;
+  }
+  .disabled {
+    pointer-events: none;
+    color: #fff;
+    background-color: $gray;
+    border-radius: 30px;
+    width: 130px;
+    height: 34px;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+    letter-spacing: 0.315rem;
+    margin: 5% auto;
+  }
+  .nopointer {
+    pointer-events: none;
   }
   @media screen and (min-width: 577px) {
     .evnts-info {
@@ -89,6 +111,19 @@
     }
     .pc-signup-number {
       width: 50%;
+    }
+    .disabled {
+      @include mytitle;
+      pointer-events: none;
+      color: #fff;
+      background-color: $gray;
+      border-radius: 30px;
+      width: 210px;
+      height: 44px;
+      border: none;
+      font-size: 1.8rem;
+      line-height: 1.6rem;
+      letter-spacing: 0.16rem;
     }
   }
 }

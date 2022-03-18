@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 function NewsDetails() {
   const [newsDetail, setNewsDetail] = useState([]);
-
   // SQL
   // [
   //   {
@@ -39,17 +38,19 @@ function NewsDetails() {
     getNewsDetail();
   }, []);
 
-  // 處理時間格式
+  // 處理日期格式
   const dateFormat = date => {
-    let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-
-    return [year, month, day].join('-');
+    if (!date) {
+      return '';
+    } else {
+      let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+      if (month.length < 2) month = '0' + month;
+      if (day.length < 2) day = '0' + day;
+      return [year, month, day].join('-');
+    }
   };
 
   return (
