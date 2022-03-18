@@ -250,12 +250,20 @@ function Index() {
     setTagShow(showTags);
     setFilterData(filteredData);
     setTotalPage(Math.ceil(filteredData.length / 6));
-    setProdList(
-      filteredData.slice(
-        (currentPage - 1) * pageProdCount,
-        currentPage * pageProdCount
-      )
-    ); //取當頁所呈現的商品列表
+
+    //取當頁所呈現的商品列表
+    if(isCategory.length > 0){
+      //若是點選上方三大分類，則分頁從1開始
+      setProdList(filteredData.slice(0, pageProdCount)); 
+      setCurrentPage(1);
+    }else{
+      setProdList(
+        filteredData.slice(
+          (currentPage - 1) * pageProdCount,
+          currentPage * pageProdCount
+        )
+      ); 
+    }    
   };
 
   //點擊商品分頁的箭頭按鈕
