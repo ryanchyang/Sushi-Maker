@@ -20,7 +20,8 @@ const config = {
   // 套餐
 
   // 分享牆
-
+  GET_SHARE_PRODS: `${host}/api/share/`,
+  HOST: `${host}`,
   //會員
 };
 

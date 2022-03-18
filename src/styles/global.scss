@@ -97,10 +97,10 @@ body {
 
 // 滿版撐高，請放在最外圍，小於100vh會撐高至100vh
 // 溫馨提醒：title下有br標籤請刪掉，不然會出現卷軸
-$min-height-lg : calc(100vh - 14rem);
-$min-height-md : calc(100vh - 12rem);
-$min-height-sm : calc(100vh - 11rem);
-.min-hi{
+$min-height-lg: calc(100vh - 14rem);
+$min-height-md: calc(100vh - 12rem);
+$min-height-sm: calc(100vh - 11rem);
+.min-hi {
   margin: 0;
   min-height: $min-height-lg;
 
@@ -118,7 +118,8 @@ $min-height-sm : calc(100vh - 11rem);
 // }
 
 .MuiImageListItemBar-title {
-  font-size: 1.8rem !important;
+  font-size: 1.6rem !important;
+  margin-bottom: 0.8rem;
 }
 
 // .MuiImageListItemBar-root:hover {

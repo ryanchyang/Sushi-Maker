@@ -8,6 +8,7 @@ import useCurrentWidth from './hooks/useCurrentWidth';
 
 import { useState, useEffect } from 'react';
 import styles from './Share.module.scss';
+import config from '../../Config';
 
 const breakpoints = {
   xs: 0,
@@ -37,14 +38,33 @@ function Share() {
   const [columns, setColumns] = useState(getColumns(currentWidth));
   const [gap, setGap] = useState(4);
 
+  const [shareItemsData, setShareItemsData] = useState([]);
+
   const updateDimensions = () => {
     setColumns(getColumns(currentWidth));
     setGap(getColumns(currentWidth));
   };
 
+  const getShareItems = async () => {
+    const response = await fetch(config.GET_SHARE_PRODS, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
   useEffect(() => {
     updateDimensions();
   }, [currentWidth]);
+
+  // Fetching data
+  useEffect(() => {
+    (async () => {
+      const result = await getShareItems();
+
+      setShareItemsData(result.data);
+    })();
+  }, []);
 
   return (
     <>
@@ -74,11 +94,7 @@ function Share() {
                 masonryContainer ? 'd-flex' : styles['share-display-none']
               }`}
             >
-              <Masonry
-                columns={columns}
-                gap={gap}
-                masonryContainer={masonryContainer}
-              />
+              <Masonry columns={columns} gap={gap} data={shareItemsData} />
             </div>
           </div>
           <ShareFilter
