@@ -66,6 +66,20 @@ export const registerMem = registerData => {
   }).then(res => res.json());
 };
 
+//傳輸回後端發送註冊信
+export const registerMail = registerData => {
+  return fetch(`${BASE_URL}/email/api/member-registermail`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      registerData,
+    }),
+  }).then(res => res.json());
+};
+
+
 //傳回後端修改資料
 export const reviseMem = (memInfo, mem_id) => {
   return fetch(`${BASE_URL}/member/api/member-revise`, {

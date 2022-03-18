@@ -8,9 +8,8 @@ import {
 import './index.scss';
 import MemHead from './component/MemHead';
 import { useEffect, useState } from 'react';
-import { findMem } from '../../WebApi';
+import { findMem, reviseMem } from '../../WebApi';
 import { getMemId } from '../../utils';
-import { reviseMem } from '../../WebApi';
 
 function IndexRevise() {
   const [memInfo, setMemInfo] = useState({
@@ -21,11 +20,11 @@ function IndexRevise() {
     mem_birthday: '',
   });
   const mem_id = getMemId('mem_id');
+
   useEffect(() => {
-    // TODO步驟2. 請參考WebApi 這支檔案裡的findMem這支, 只要把function名還有 ${BASE_URL}後的這串網址/member/api/find-member 改成自己的就好了(這串網址是你自訂的router的網址)
     findMem(mem_id).then(obj => {
       setMemInfo(obj[0]);
-    }); //做到這裡如果node端API沒寫錯就會拿到你所需的資料了
+    });
   }, []);
 
   const handleReviseClick = e => {
@@ -35,6 +34,10 @@ function IndexRevise() {
         alert('修改成功');
       }
     });
+  };
+  const handleChange = e => {
+    const newData = { ...memInfo, [e.target.name]: e.target.value };
+    setMemInfo(newData);
   };
 
   return (
@@ -59,6 +62,7 @@ function IndexRevise() {
                       type="text"
                       value={memInfo.mem_account}
                       className="form-control revInpBig ch-cont-14"
+                      disabled
                     />
                   </div>
 
@@ -68,6 +72,7 @@ function IndexRevise() {
                       type="text"
                       value={'*******'}
                       className="form-control revInpBig ch-cont-14"
+                      disabled
                     />
                     <button className="btn btn-primary primeal-btn revPswBtn">
                       修改密碼
@@ -85,9 +90,7 @@ function IndexRevise() {
                           type="text"
                           value={memInfo.mem_name}
                           name="mem_name"
-                          onChange={e => {
-                            setMemInfo(e.target.value);
-                          }}
+                          onChange={handleChange}
                           className="form-control revInpSm ch-cont-14"
                         />
                       </div>
@@ -97,9 +100,7 @@ function IndexRevise() {
                           type="text"
                           value={memInfo.mem_nickname}
                           name="mem_nickname"
-                          onChange={e => {
-                            setMemInfo(e.target.value);
-                          }}
+                          onChange={handleChange}
                           className="form-control revInpSm ch-cont-14 ml-4"
                         />
                       </div>
@@ -111,9 +112,7 @@ function IndexRevise() {
                         type="text"
                         name="mem_mobile"
                         value={memInfo.mem_mobile}
-                        onChange={e => {
-                          setMemInfo(e.target.value);
-                        }}
+                        onChange={handleChange}
                         className="form-control revInpBig ch-cont-14"
                       />
                     </div>
@@ -123,25 +122,26 @@ function IndexRevise() {
                     <div className="memInpBt ">
                       <div className="memInpuSm">
                         <label className="reviseLabel ch-cont-14"> 性別</label>
-                        <input
+                        <select
                           type="text"
                           name="mem_gender"
                           value={memInfo.mem_gender}
-                          onChange={e => {
-                            setMemInfo(e.target.value);
-                          }}
+                          onChange={handleChange}
                           className="form-control revInpSm ch-cont-14"
-                        />
+                        >
+                        <option value="select">請選擇</option>
+                        <option value="male">男性</option>
+                        <option value="female">女性</option>
+                        <option value="undefined">兩性</option>
+                        </select>
                       </div>
                       <div className="memInpuSm mb-1">
                         <label className="reviseLabel ch-cont-14"> 生日</label>
                         <input
-                          type="text"
+                          type="date"
                           value={memInfo.mem_birthday}
                           name="mem_birthday"
-                          onChange={e => {
-                            setMemInfo(e.target.value);
-                          }}
+                          onChange={handleChange}
                           className="form-control revInpSm ch-cont-14 ml-4"
                         />
                       </div>

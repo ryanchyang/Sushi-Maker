@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { registerMem } from '../../WebApi';
+import { registerMem, registerMail } from '../../WebApi';
 
 //styled component
 const LoginBody = styled.body`
@@ -74,6 +74,7 @@ function Register() {
     mem_nickname: '',
     mem_gender: '',
   });
+
   const history = useHistory();
 
   //function
@@ -87,6 +88,14 @@ function Register() {
         history.push('/member')
       }
     });
+
+    // registerMail(registerData).then(obj => {
+    //   console.log(obj);
+    //   if (obj.success) {
+    //     alert('發送成功');
+    //     history.push('/member');
+    //   }
+    // });
   };
   const handleChange = e => {
     const newData = { ...registerData, [e.target.name]: e.target.value };
