@@ -10,6 +10,7 @@ import data from './testData.json';
 import config from '../../Config';
 
 function Index() {
+  const [allData, setAllData] = useState([]);
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
   const [isOpenMainContent, setIsOpenMainContent] = useState(true); //是否開啟主要商品列表
   const [currentPage, setCurrentPage] = useState(1); //當前分頁
@@ -32,20 +33,30 @@ function Index() {
   const handleClickCategory = e => {
     switch (e.target.innerText) {
       case 'SUSHI':
-        setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
+        const dataByCategory1 = allData.filter(pro => pro.c_prod_cate === 'sushi');
+        // setProdList(allData.filter(pro => pro.c_prod_cate === 'sushi'));
+        setProdList(dataByCategory1);
         setCategory('sushi');
+        applyFilter(false, dataByCategory1);
         break;
       case 'DESSERT':
-        setProdList(data.data.filter(pro => pro.prod_category === 'dessert'));
+        const dataByCategory2 = allData.filter(pro => pro.c_prod_cate === 'dessert');
+        // setProdList(allData.filter(pro => pro.c_prod_cate === 'dessert'));
+        setProdList(dataByCategory2);
         setCategory('dessert');
+        applyFilter(false, dataByCategory2);
         break;
       case 'PACKAGE':
-        setProdList(data.data.filter(pro => pro.prod_category === 'package'));
+        const dataByCategory3 = allData.filter(pro => pro.c_prod_cate === 'package');
+        // setProdList(allData.filter(pro => pro.c_prod_cate === 'package'));
+        setProdList(dataByCategory3);
         setCategory('package');
+        applyFilter(false, dataByCategory3);
         break;
       default:
-        setProdList(data.data.filter(pro => pro.prod_category === 'sushi'));
+        setProdList(allData.filter(pro => pro.c_prod_cate === 'sushi'));
         setCategory('sushi');
+        applyFilter();
     }
   };
 
@@ -138,9 +149,15 @@ function Index() {
   };
 
   //套用篩選條件
-  const applyFilter = (isClose = false) => {
+  const applyFilter = (isClose = false, isCategory = []) => {
     //如果要套用篩選條件後關掉篩選視窗，則isClose要傳true
-    let filteredData = data.data.filter(pro => pro.prod_category === category);
+    //如果要直接套用上方三分類(SUSHI、DESSERT、PACKAGE)的資料，可以直接傳進來
+    let filteredData = [];
+    if(isCategory.length > 0){
+      filteredData = isCategory;
+    }else{
+      filteredData = allData.filter(pro => pro.c_prod_cate === category);
+    }
 
     //最小金額
     const minPrice = priceFilter[0] === '' ? 0 : +priceFilter[0];
@@ -152,18 +169,17 @@ function Index() {
     const specTag = specialCategoryFilter
       .filter(tag => tag.value)
       .map(tag => tag.tag);
-    //
     const showTags = [];
 
     //套用篩選金額範圍
     filteredData = filteredData.filter(prod => {
-      if (prod.prod_spe_value === 0) {
+      if (prod.c_prod_spe_value === 0) {
         //當商品沒有特價時，用原價來篩選
-        return prod.prod_value >= minPrice && prod.prod_value <= maxPrice;
+        return prod.c_prod_value >= minPrice && prod.c_prod_value <= maxPrice;
       } else {
         //當商品有特價時，用特價來篩選
         return (
-          prod.prod_spe_value >= minPrice && prod.prod_spe_value <= maxPrice
+          prod.c_prod_spe_value >= minPrice && prod.c_prod_spe_value <= maxPrice
         );
       }
     });
@@ -173,27 +189,25 @@ function Index() {
       //specTag.length = 0(沒有選擇任何特殊標籤)時視為全選，不做任何過濾條件
       filteredData = filteredData.filter(prod => {
         let checkTag = '';
-        //prod_spe_tag對照(XX%OFF轉為sale、HOT轉為hot、NEW轉為new)
-        if (prod.prod_spe_tag.includes('OFF')) {
+        //c_prod_special_tag對照(XX%OFF轉為sale、HOT轉為hot、NEW轉為new)
+        if (prod.c_prod_special_tag.includes('OFF')) {
           checkTag = 'sale';
-        } else if (prod.prod_spe_tag !== '') {
-          checkTag = prod.prod_spe_tag.toLowerCase();
+        } else if (prod.c_prod_special_tag !== '') {
+          checkTag = prod.c_prod_special_tag.toLowerCase();
         }
 
         if (specTag.includes(checkTag)) return true;
       });
     }
-
     //套用篩選口味
     if (flavor.length > 0) {
       //當flavor.length = 0(沒有選擇任何材料)時視為全選，不做任何過濾條件
       filteredData = filteredData.filter(prod => {
-        for (const m of prod.material) {
-          if (flavor.includes(m)) return true;
+        for (const m of prod.c_prod_material_arr.split(',')) {          
+          if (flavor.includes(+m)) return true;
         }
       });
     }
-
     //處理商品列表上方的篩選標籤
     //[{tagName: '鮭魚', type: 'c'}, {tagName: '20~50', type: 'p'}, {tagName: '特價', type: 't'}]
     //金額標籤
@@ -235,6 +249,7 @@ function Index() {
 
     setTagShow(showTags);
     setFilterData(filteredData);
+    setTotalPage(Math.ceil(filteredData.length / 6));
     setProdList(
       filteredData.slice(
         (currentPage - 1) * pageProdCount,
@@ -275,7 +290,7 @@ function Index() {
   const initProdBuyCount = prodList => {
     const prodCount = [];
     prodList.forEach(prod => {
-      prodCount.push({ pid: prod.prod_id, pname: prod.prod_ch_name ,count: 1 });
+      prodCount.push({ pid: prod.pid, pname: prod.c_prod_ch_name ,count: 1 });
     });
     setBuyProdCount(prodCount);
   };
@@ -332,24 +347,25 @@ function Index() {
     setBuyProdCount(newData);
   };
 
-  const getInitData = async() => {
-    const res = await fetch(config.GET_INIT_PRODS);
-    const obj = await res.json();
-    console.log(obj.rows);
-    return obj.rows;
-  }
-
   useEffect(() => {
-    getInitData();
-    const initData = data.data.filter(pro => pro.prod_category === 'sushi');
-    //預設呈現的商品類型為壽司
-    setProdList(initData);
-    //初始化所有材料
-    setMaterials(data.mtl);
-    //初始化總分頁數
-    setTotalPage(Math.ceil(initData.length / 6));
-    //初始化商品購買數量
-    initProdBuyCount(data.data);
+    const fetchData = async() => {
+      const res = await fetch(config.GET_INIT_PRODS);
+      const obj = await res.json();
+      const rowData = obj.rows;   //data.data
+      setAllData(rowData);
+
+      const initData = rowData.filter(pro => pro.c_prod_cate === 'sushi');
+      //預設呈現的商品類型為壽司
+      setProdList(initData);
+      //初始化所有材料
+      setMaterials(data.mtl);
+      //初始化總分頁數
+      setTotalPage(Math.ceil(initData.length / 6));
+      //初始化商品購買數量
+      initProdBuyCount(rowData);
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -453,50 +469,54 @@ function Index() {
               <div className="prod-list">
                 {/* product card */}
                 {prodList.map(prod => {                  
-                  const pid = prod.prod_id;
-                  let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count;
+                  const pid = prod.pid;
+                  {/* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */}
+                  let buyCount = buyProdCount.filter(p => p.pid === pid);
+                  buyCount = +buyCount[0]?.count ?? 0;
+
                   return (
                     <>
                       <div className="prod-card" key={pid}>
                         <div className="prod-img-box">
                           {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                          {prod.prod_spe_tag === '' ? (
+                          {prod.c_prod_special_tag === '' ? (
                             ''
                           ) : (
                             <div className="discount-tag">
                               <div className="discount-tag-content">
-                                {prod.prod_spe_tag}
+                                {prod.c_prod_special_tag}
                               </div>
                             </div>
                           )}
 
                           <img
-                            src={require('./../../imgs/temp/classic-pro1.png')}
+                            // src={require('./../../imgs/temp/classic-pro1.png')}
+                            src={`http://localhost:3500${prod.c_prod_img_path}`}
                             alt="product"
                           />
                         </div>
 
                         <div className="prod-name-ch ch-title-22">
-                          {prod.prod_ch_name}
+                          {prod.c_prod_ch_name}
                         </div>
                         <div className="prod-name-en en-title-14-5">
-                          {prod.prod_en_name}
+                          {prod.c_prod_en_name}
                         </div>
 
                         {/* 判斷是否有特價 */}
-                        {prod.prod_spe_value === 0 ? (
+                        {prod.c_prod_spe_value === 0 ? (
                           <div className="prod-price-no-discount">
                             <div className="no-discount ch-cont-16">
-                              NT_{prod.prod_value}
+                              NT_{prod.c_prod_value}
                             </div>
                           </div>
                         ) : (
                           <div className="prod-price-special">
                             <div className="original-price ch-cont-16">
-                              NT_{prod.prod_value}
+                              NT_{prod.c_prod_value}
                             </div>
                             <div className="special-price ch-cont-18">
-                              NT_{prod.prod_spe_value}
+                              NT_{prod.c_prod_spe_value}
                             </div>
                           </div>
                         )}
