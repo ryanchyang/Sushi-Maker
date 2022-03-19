@@ -1,11 +1,27 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { ReactComponent as Heart } from '../../imgs/tags/heart.svg';
 import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import config from '../../Config';
 import './detail.scss';
 
-function Detail() {
+function Detail() {  
   const [isDetail, setIsDetail] = useState(false);
+  const [data, setData] = useState({});
+  const { id } = useParams();  //取得url上的product id
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const prodRes = await fetch(config.GET_PROD + `/${id}`);
+      const prodObj = await prodRes.json();
+      const prod = prodObj.rows[0];
+      setData(prod);
+      console.log(prod);
+    };
+
+    fetchData();
+  },[]);
 
   return (
     <>
@@ -30,14 +46,14 @@ function Detail() {
                     isDetail ? 'all-size-title-ondetail' : 'all-size-title'
                   }
                 >
-                  <div className="prod-ch-name ch-title-big">鮭魚壽司</div>
-                  <div className="prod-en-name eh-title-big">Salmon Sushi</div>
+                  <div className="prod-ch-name ch-title-big">{data.c_prod_ch_name}</div>
+                  <div className="prod-en-name eh-title-big">{data.c_prod_en_name}</div>
                 </div>
                 <img
                   className={
                     isDetail ? 'prod-img-box-img-ondetail' : 'prod-img-box-img'
                   }
-                  src={require('./../../imgs/temp/classic-pro1.png')}
+                  src={`http://localhost:3500${data.c_prod_img_path}`}
                   alt="product-detail"
                 />
                 <div
@@ -73,22 +89,23 @@ function Detail() {
                   isDetail ? 'prod-detail-right-ondetail' : 'prod-detail-right'
                 }
               >
-                <div className="prod-ch-name ch-title-big">鮭魚壽司</div>
-                <div className="prod-en-name eh-title-big">Salmon Sushi</div>
+                <div className="prod-ch-name ch-title-big">{data.c_prod_ch_name}</div>
+                <div className="prod-en-name eh-title-big">{data.c_prod_en_name}</div>
                 <div className="like-heart">
                   <Heart />
                 </div>
                 <div className="prod-price">
-                  <div className="ch-title-large">NT_$500</div>
+                  {/* 如果沒有特價就用原價顯示 */}
+                  <div className="ch-title-large">NT_${+data.c_prod_spe_value === 0 ? data.c_prod_value : data.c_prod_spe_value}</div>
                   <div className="prod-stock en-title-mid">PRICE</div>
                 </div>
                 <div className="prod-printtime">
-                  <div className="ch-title-large">30_SEC</div>
+                  <div className="ch-title-large">{data.c_prod_print_time}_SEC</div>
                   <div className="prod-print en-title-mid">PRINT TIME</div>
                 </div>
                 <div className="prod-desc">
                   <div className="prod-desc-content ch-content-sm">
-                    美味的列印鮭魚搭配特製芥末，底層列印壽司米迸出新口感。
+                    {data.c_prod_desc}
                   </div>
                   <div className="prod-desc-title en-title-16">DESCRIPTION</div>
                 </div>

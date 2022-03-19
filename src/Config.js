@@ -15,6 +15,7 @@ const config = {
 
   // 經典商品
   GET_INIT_PRODS: `${host}/classic/api/getprods`,
+  GET_PROD: `${host}/classic/api/getprod`,
   GET_INIT_MTLS: `${host}/classic/api/getmtls`,
 
   // 客製商品
