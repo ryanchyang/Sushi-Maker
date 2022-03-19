@@ -54,7 +54,7 @@ export const findMem = mem_id => {
 };
 
 //傳輸回後端註冊會員
-export const registerMem = registerData => {
+export const registerMem = (registerData, verify_code) => {
   return fetch(`${BASE_URL}/member/api/member-register`, {
     method: 'POST',
     headers: {
@@ -62,6 +62,7 @@ export const registerMem = registerData => {
     },
     body: JSON.stringify({
       registerData,
+      verify_code,
     }),
   }).then(res => res.json());
 };

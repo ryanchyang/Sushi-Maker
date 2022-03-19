@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { registerMem, registerMail } from '../../WebApi';
 
@@ -74,27 +74,32 @@ function Register() {
     mem_nickname: '',
     mem_gender: '',
   });
-
+  const [vCode, setVcode] = useState('');
   const history = useHistory();
+  const verify_code = localStorage.getItem('verify_code');
 
   //function
   const handleRegister = e => {
     e.preventDefault();
-
-    // registerMem(registerData).then(obj => {
-    //   console.log(obj)
-    //   if (obj.success) {
-    //     alert('註冊成功');
-    //     history.push('/member')
-    //   }
-    // });
-
-    registerMail(registerData).then(obj => {
-      console.log(obj);
-      if (obj.success) {
-        alert('發送成功');
-      }
-    });
+    if (verify_code) {
+      registerMem(registerData, verify_code).then(obj => {
+        console.log(obj);
+        if (obj.success) {
+          alert('註冊成功');
+        }
+      });
+    } else {
+      registerMail(registerData).then(obj => {
+        console.log(obj);
+        if (obj.success) {
+          alert('發送成功');
+          localStorage.setItem('verify_code', obj.verify_code);
+          setTimeout(() => {
+            localStorage.removeItem('verify_code');
+          }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
+        }
+      });
+    }
   };
   const handleChange = e => {
     const newData = { ...registerData, [e.target.name]: e.target.value };
@@ -273,18 +278,38 @@ function Register() {
                       />
                     </div>
                   </div>
-                  <button
-                    className="ch-title-22 primeal-btn btn-primary"
-                    style={{
-                      borderRadius: 50,
-                      marginTop: '15%',
-                      height: '40px',
-                      color: '#f7f6f3',
-                      background: '#b03342',
-                    }}
+
+                  <div
+                    style={
+                      !verify_code ? { display: 'block' } : { display: 'none' }
+                    }
                   >
-                    註冊
-                  </button>
+                    <button
+                      className="ch-title-22 btn btn-sm primeal-btn btn-primary"
+                      style={{
+                        marginTop: '15%',
+                        height: '40px',
+                      }}
+                    >
+                      發送註冊驗證碼
+                    </button>
+                  </div>
+                  <div
+                    style={
+                      verify_code ? { display: 'block' } : { display: 'none' }
+                    }
+                  >
+                    <input type="text" />
+                    <button
+                      className="ch-title-22 btn btn-sm primeal-btn btn-primary"
+                      style={{
+                        marginTop: '15%',
+                        height: '40px',
+                      }}
+                    >
+                      輸入驗證碼並註冊
+                    </button>
+                  </div>
                 </RegistForm>
                 <InputForPsw className="ch-cont-14">
                   已經有帳號了?
