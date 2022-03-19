@@ -73,11 +73,11 @@ function Register() {
     mem_name: '',
     mem_nickname: '',
     mem_gender: '',
+    memInpVcode: '',
   });
   const [vCode, setVcode] = useState('');
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
-
   //function
   const handleRegister = e => {
     e.preventDefault();
@@ -94,6 +94,7 @@ function Register() {
         if (obj.success) {
           alert('發送成功');
           localStorage.setItem('verify_code', obj.verify_code);
+          setVcode(obj.verify_code);
           setTimeout(() => {
             localStorage.removeItem('verify_code');
           }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
@@ -280,9 +281,7 @@ function Register() {
                   </div>
 
                   <div
-                    style={
-                      !verify_code ? { display: 'block' } : { display: 'none' }
-                    }
+                    style={!vCode ? { display: 'block' } : { display: 'none' }}
                   >
                     <button
                       className="ch-title-22 btn btn-sm primeal-btn btn-primary"
@@ -295,11 +294,32 @@ function Register() {
                     </button>
                   </div>
                   <div
-                    style={
-                      verify_code ? { display: 'block' } : { display: 'none' }
-                    }
+                    style={vCode ? { display: 'block' } : { display: 'none' }}
                   >
-                    <input type="text" />
+                    <div style={{ width: '100%' }}>
+                      <InputTitle className="ch-cont-14">
+                        請輸入驗證碼
+                      </InputTitle>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="memInpVcode"
+                        style={{
+                          borderRadius: 50,
+                          height: '20px',
+                          width: '97%',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                          marginLeft: '3%',
+                        }}
+                        value={registerData.memInpVcode}
+                        onChange={handleChange}
+                      />
+                    </div>
                     <button
                       className="ch-title-22 btn btn-sm primeal-btn btn-primary"
                       style={{
