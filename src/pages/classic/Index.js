@@ -96,8 +96,9 @@ function Index() {
 
   //重設篩選條件
   const cleanFilter = e => {
+    const resetMtls = materials.map(m => {return {...m, selected: false}});
     setPriceFilter(['', '']);
-    setMaterials(data.mtl);
+    setMaterials(resetMtls);
     setSpecialCategoryFilter([
       { tag: 'new', value: false },
       { tag: 'hot', value: false },
@@ -357,20 +358,27 @@ function Index() {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await fetch(config.GET_INIT_PRODS);
-      const obj = await res.json();
-      const rowData = obj.rows;   //data.data
-      setAllData(rowData);
+      //取得所有商品資料
+      const prodRes = await fetch(config.GET_INIT_PRODS);
+      const prodObj = await prodRes.json();
+      const prods = prodObj.rows;   //data.data
+      setAllData(prods);
 
-      const initData = rowData.filter(pro => pro.c_prod_cate === 'sushi');
+      //取得所有食材資料
+      const mtlRes = await fetch(config.GET_INIT_MTLS);
+      const mtlObj = await mtlRes.json();
+      const mtls = mtlObj.rows;
+      console.log(mtls);
+
+      const initData = prods.filter(pro => pro.c_prod_cate === 'sushi');
       //預設呈現的商品類型為壽司
       setProdList(initData);
       //初始化所有材料
-      setMaterials(data.mtl);
+      setMaterials(mtls);
       //初始化總分頁數
       setTotalPage(Math.ceil(initData.length / 6));
       //初始化商品購買數量
-      initProdBuyCount(rowData);
+      initProdBuyCount(prods);
     };
 
     fetchData();
