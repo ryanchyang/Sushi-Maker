@@ -139,7 +139,7 @@ function App() {
           <Route path="/latest-news/newsdetail/:id" exact>
             <NewsDetails />
           </Route>
-          <Route path="/latest-news/:cate" exact>
+          <Route path="/latest-news/:cate?" exact>
             <LatestNews />
           </Route>
           <Route path="/setorder/stepstart" exact>

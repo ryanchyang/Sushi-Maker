@@ -11,6 +11,7 @@ const config = {
   EVNTS_PATH: `${host}/latest-news/api/evnts`,
   NEWSD_PATH: `${host}/latest-news/api/newsdetail/`,
   EVNTSD_PATH: `${host}/latest-news/api/evntsdetail/`,
+  POST_SINGUP_PATH: `${host}/latest-news/api/signup`,
 
   // 經典商品
   GET_INIT_PRODS: `${host}/classic/api/getprods`,

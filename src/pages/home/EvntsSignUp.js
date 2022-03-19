@@ -2,10 +2,19 @@ import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import './evnts-signup.scss';
 import config from '../../Config';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { getMemId } from '../../utils';
+import SignUpModal from './components/SignUpModal';
 
 function EvntsSignUp() {
   const [evntsInfo, setEvntsInfo] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [signUpResult, setSignUpResult] = useState(null);
+  const history = useHistory();
+  // todo: membe_id先寫死
+  const mem_id = 1;
+  // const mem_id = getMemId();
+  // console.log('mem_id:', mem_id);
 
   const { id } = useParams();
   console.log('id:', id);
@@ -61,46 +70,112 @@ function EvntsSignUp() {
     name: '',
     mobile: '',
     email: '',
+    number: '',
   });
+
+  // 處理欄位改變
   const handleFieldChange = e => {
     const newData = { ...fields, [e.target.name]: e.target.value };
     setFields(newData);
   };
-  const handleSubmit = e => {
-    e.preventDefault();
-    // 作驗証
-    // const formData = new FormData(e.target);
-    // console.log(formData.get('username'));
-    // console.log(formData.get('email'));
-    // console.log(formData.get('password'));
 
-    // 獲取同名稱的checkbox
-    //console.log(formData.getAll('likeList'))
+  // 驗證並處理欄位錯誤訊息
+  const handleValidation = () => {
+    let formIsValid = true;
+    let errorMsg = {};
+    // 提交前作驗証，並自定義fieldsError訊息
+    console.log('fields:', fields);
 
-    // 驗証成功，用fetch或ajax送到伺服器
+    // 格式規則
+    const name_re = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
+    const email_re =
+      /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+
+    // name
+    if (!fields.name) {
+      formIsValid = false;
+      errorMsg.name = '姓名欄位不可為空';
+    } else if (fields.name && name_re.test(fields.name)) {
+      formIsValid = false;
+      errorMsg.name = '姓名欄位不可包含特殊符號';
+    }
+
+    // mobile
+    if (!fields.mobile) {
+      formIsValid = false;
+      errorMsg.mobile = '連絡電話不可為空';
+    } else if (fields.mobile && !mobile_re.test(fields.mobile)) {
+      formIsValid = false;
+      errorMsg.mobile = '連絡電話格式不正確';
+    }
+
+    // email
+    if (!fields.email) {
+      formIsValid = false;
+      errorMsg.email = '信箱不可為空';
+    } else if (fields.email && !email_re.test(fields.email)) {
+      formIsValid = false;
+      errorMsg.email = '信箱格式錯誤';
+    }
+
+    // number
+    if (!fields.number) {
+      formIsValid = false;
+      errorMsg.number = '請選擇參加人數';
+    }
+
+    setFieldsError(errorMsg);
+    return formIsValid;
   };
-  const handleInvalid = e => {
-    e.preventDefault();
-    const updatedFieldsError = {
-      ...fieldsError,
-      [e.target.name]: e.target.validationMessage,
-    };
 
-    // 3. 設定回錯誤訊息狀態
-    setFieldsError(updatedFieldsError);
-  };
-
-  // 當整個表單每次有更動時會觸發
-  // 認定使用者輸入某個欄位(更正某個有錯誤的欄位)
-  // 清空某個欄位錯誤訊息
+  // 當欄位有更動時，處理清空錯誤訊息
   const handleChange = e => {
     const updatedFieldError = {
       ...fieldsError,
       [e.target.name]: '',
     };
-
-    // 3. 設定回錯誤訊息狀態
     setFieldsError(updatedFieldError);
+  };
+
+  // 提交
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    if (handleValidation()) {
+      // console.log('form submitted.');
+
+      // get form data
+      const formData = new FormData(e.target);
+      const dataObj = {};
+      for (let i of formData) {
+        dataObj[i[0]] = i[1];
+      }
+      dataObj.mem_id = mem_id;
+      console.log({ dataObj });
+
+      // fetch
+      const r = fetch(config.POST_SINGUP_PATH, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataObj),
+      })
+        .then(r => r.json())
+        .then(obj => {
+          console.log(obj);
+          if (obj.success) {
+            setSignUpResult(true);
+            setModalShow(true);
+          } else {
+            setSignUpResult(false);
+            setModalShow(true);
+          }
+        });
+    } else {
+      console.log('form has errors.');
+    }
   };
 
   return (
@@ -194,9 +269,16 @@ function EvntsSignUp() {
                 <div className="ch-cont-16 evnts-signup-area">
                   <form
                     onSubmit={handleSubmit}
-                    onInvalid={handleInvalid}
+                    // onInvalid={handleInvalid}
                     onChange={handleChange}
                   >
+                    <input
+                      name="evnts_id"
+                      id="evnts_id"
+                      value={evntsInfo[0]?.evnts_id ?? ''}
+                      hidden
+                      readOnly
+                    />
                     <div className="singup-column d-flex justify-content-between align-items-center">
                       <label htmlFor="form-label">參加者姓名</label>
                       <label className="form-label text-primary ch-cont-12">
@@ -211,7 +293,6 @@ function EvntsSignUp() {
                       value={fields.name}
                       onChange={handleFieldChange}
                       placeholder="參加者姓名"
-                      required
                     />
                     {fieldsError.name !== '' && (
                       <div className="error">{fieldsError.name}</div>
@@ -223,13 +304,13 @@ function EvntsSignUp() {
                       </label>
                     </div>
                     <input
-                      type="number"
+                      type="text"
                       className="form-control"
                       id="mobile"
                       name="mobile"
                       placeholder="09XX-XXX-XXX"
+                      data-pattern="09\d{2}-?\d{3}-?\d{3}"
                       onChange={handleFieldChange}
-                      required
                     />
                     {fieldsError.mobile !== '' && (
                       <div className="error">{fieldsError.mobile}</div>
@@ -241,14 +322,13 @@ function EvntsSignUp() {
                       </label>
                     </div>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
                       id="email"
                       name="email"
                       value={fields.email}
                       placeholder="123@test.com"
                       onChange={handleFieldChange}
-                      required
                     />
                     {fieldsError.email !== '' && (
                       <div className="error">{fieldsError.email}</div>
@@ -271,6 +351,9 @@ function EvntsSignUp() {
                       <option value="4">4</option>
                       <option value="5">5</option>
                     </select>
+                    {fieldsError.number !== '' && (
+                      <div className="error">{fieldsError.number}</div>
+                    )}
                     <div className="singup-column sign-up-comment">
                       <label
                         htmlFor="exampleFormControlTextarea1"
@@ -287,10 +370,16 @@ function EvntsSignUp() {
                       ></textarea>
                     </div>
                     <div className="button-group">
-                      <button className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1">
+                      <button
+                        type="submit"
+                        className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1"
+                      >
                         重新填寫
                       </button>
-                      <button className="btn-sm btn-primary primeal-btn mx-1">
+                      <button
+                        type="submit"
+                        className="btn-sm btn-primary primeal-btn mx-1"
+                      >
                         送出報名
                       </button>
                     </div>
@@ -303,6 +392,14 @@ function EvntsSignUp() {
         </div>
         <AsideRight />
       </div>
+      <SignUpModal
+        show={modalShow}
+        signUpResult={signUpResult}
+        onHide={() => {
+          setModalShow(false);
+          history.push('/latest-news/events');
+        }}
+      />
     </>
   );
 }
