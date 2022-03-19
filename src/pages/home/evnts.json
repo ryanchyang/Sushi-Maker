@@ -5,7 +5,7 @@
     "evnts_cate": "品牌推廣",
     "evnts_date": "2022-05-20",
     "evnts_detail": "有吃過3D列印食物嗎? 快來參加PRIMEAL舉辦的試吃餐會，帶你認識3D列印食物的過程，試吃體驗全新不同的飲食口感。",
-    "evnts_img_path": "event-1.png"
+    "evnts_img_path": "/img/home/evnts/event-1.png"
   },
   {
     "evnts_id": "2",
@@ -13,7 +13,7 @@
     "evnts_cate": "講座活動",
     "evnts_date": "2022-05-07",
     "evnts_detail": "講師 Daniel', '你知道人一天要攝取多少營養素嗎? 五大營養素知多少? 快來參加講座，還能一對一與講師諮詢，打造你的最佳飲食計畫!",
-    "evnts_img_path": "event-2.png"
+    "evnts_img_path": "/img/home/evnts/event-2.png"
   },
   {
     "evnts_id": "3",
@@ -21,7 +21,7 @@
     "evnts_cate": "親子活動",
     "evnts_date": "2022-06-04",
     "evnts_detail": "大朋友與小朋友都愛的壽司，手作壽司大賽激發你的無限創意，前三名得獎者PRIMEAL將會贈送精美小禮物，歡迎大朋友小朋友一同手拉手來參加!",
-    "evnts_img_path": "event-3.png"
+    "evnts_img_path": "/img/home/evnts/event-3.png"
   },
   {
     "evnts_id": "4",
@@ -29,7 +29,7 @@
     "evnts_cate": "品牌推廣",
     "evnts_date": "2022-04-13",
     "evnts_detail": "本次邀請到3D食品列印推廣講師Ryan，Ryan在3D列印領域已累積數年的資深經歷，近年來致力推廣食品列印，希望能促進飲食文化的進步與革新，同時減少糧食浪費的議題，歡迎對此議題有興趣的朋友一同參與!",
-    "evnts_img_path": "event-4.png"
+    "evnts_img_path": "/img/home/evnts/event-4.png"
   },
   {
     "evnts_id": "5",
@@ -37,6 +37,6 @@
     "evnts_cate": "親子活動",
     "evnts_date": "2022-06-25",
     "evnts_detail": "PRIMEAL每月定期舉辦生日派對，邀請壽星與好友們一齊慶祝，名額有限，趕快報名，當月壽星請出示相關證件，PRIMEAL將提供精美小禮物唷!",
-    "evnts_img_path": "event-5.png"
+    "evnts_img_path": "/img/home/evnts/event-5.png"
   }
 ]

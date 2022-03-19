@@ -24,7 +24,10 @@ function BackToTop() {
     <>
       <div className="back-to-top d-none d-sm-block" onClick={scrollToTop}>
         <p className="back-to-top-text">Back To Top</p>
-        <img src="/img/home/index-backtotop.svg" alt="back-to-top" />
+        <img
+          src={`http://localhost:3500/img/home/index-backtotop.svg`}
+          alt="back-to-top"
+        />
       </div>
     </>
   );

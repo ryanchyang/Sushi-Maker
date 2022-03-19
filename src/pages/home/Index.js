@@ -109,7 +109,10 @@ function Index(props) {
               {/* todo: scroll down opacity 0 */}
               <div className="d-none d-sm-block">
                 <div className="pc-index-top">
-                  <img src="/img/home/pc-logo+text.svg" alt="pc-logo" />
+                  <img
+                    src={`http://localhost:3500/img/home/pc-logo+text.svg`}
+                    alt="pc-logo"
+                  />
                 </div>
               </div>
               {/* index content */}
@@ -122,11 +125,14 @@ function Index(props) {
                 {/* todo: content-bottom 當火車頭 */}
                 <div className="content-bottom d-flex justify-content-evenly">
                   <div className="col-12 index-cube-img">
-                    <img src="/img/home/intro-constructing.svg" alt="cube" />
+                    <img
+                      src={`http://localhost:3500/img/home/intro-constructing.svg`}
+                      alt="cube"
+                    />
                   </div>
                   <div className="col-12 index-cube-txt">
                     <img
-                      src="/img/home/intro-constructing-txt.svg"
+                      src={`http://localhost:3500/img/home/intro-constructing-txt.svg`}
                       alt="description"
                     />
                   </div>
@@ -139,7 +145,10 @@ function Index(props) {
               >
                 <p className="en-cont-12">View Product</p>
                 <div className="view-product-arrow">
-                  <img src="/img/home/index-arrowsm.svg" alt="view-product" />
+                  <img
+                    src={`http://localhost:3500/img/home/index-arrowsm.svg`}
+                    alt="view-product"
+                  />
                 </div>
               </div>
               <div className="scroll-hint">
@@ -151,7 +160,10 @@ function Index(props) {
                   SCROLL
                 </p>
                 <div className="vertical-line">
-                  <img src="/img/home/intro-vertical-line.svg" alt="scroll" />
+                  <img
+                    src={`http://localhost:3500/img/home/intro-vertical-line.svg`}
+                    alt="scroll"
+                  />
                 </div>
               </div>
             </div>
@@ -177,7 +189,10 @@ function Index(props) {
                   </div>
                 </div>
                 <div className="about-img">
-                  <img src="/img/home/index-aboutus01.svg" alt="aboutus01" />
+                  <img
+                    src={`http://localhost:3500/img/home/index-aboutus01.svg`}
+                    alt="aboutus01"
+                  />
                 </div>
               </div>
             </div>
@@ -200,7 +215,10 @@ function Index(props) {
                   </div>
                 </div>
                 <div className="about-img">
-                  <img src="/img/home/index-aboutus02.svg" alt="aboutus02" />
+                  <img
+                    src={`http://localhost:3500/img/home/index-aboutus02.svg`}
+                    alt="aboutus02"
+                  />
                 </div>
               </div>
             </div>
@@ -221,7 +239,10 @@ function Index(props) {
                   </div>
                 </div>
                 <div className="about-img">
-                  <img src="/img/home/index-aboutus03.svg" alt="aboutus03" />
+                  <img
+                    src={`http://localhost:3500/img/home/index-aboutus03.svg`}
+                    alt="aboutus03"
+                  />
                 </div>
               </div>
             </div>
@@ -245,7 +266,7 @@ function Index(props) {
                         >
                           <div className="promotion-img">
                             <img
-                              src="/img/home/sushi/鮪魚壽司.png"
+                              src={`http://localhost:3500/img/home/sushi/鮪魚壽司.png`}
                               alt="tuna-sushi"
                             />
                           </div>
@@ -291,12 +312,12 @@ function Index(props) {
                   <div className="index-category-img d-flex justify-content-center">
                     <img
                       className="d-sm-none"
-                      src="/img/home/jfy-mobile-img.svg"
+                      src={`http://localhost:3500/img/home/jfy-mobile-img.svg`}
                       alt="just-for-you"
                     />
                     <img
                       className="d-none d-sm-block"
-                      src="/img/home/jfy-pc-img.svg"
+                      src={`http://localhost:3500/img/home/jfy-pc-img.svg`}
                       alt="just-for-you"
                     />
                   </div>
@@ -315,7 +336,7 @@ function Index(props) {
                 <div className="index-category-content">
                   <div className="index-category-img d-flex justify-content-center">
                     <img
-                      src="/img/home/mealplan-bento.png"
+                      src={`http://localhost:3500/img/home/mealplan-bento.png`}
                       alt="just-for-you"
                       style={{
                         width: '60%',
@@ -356,7 +377,7 @@ function Index(props) {
                 <p className="en-cont-14">{jftFocus}</p>
                 <div className="view-product-arrow">
                   <img
-                    src="/img/home/index-arrowsm-black.svg"
+                    src={`http://localhost:3500/img/home/index-arrowsm-black.svg`}
                     alt="view-customization"
                   />
                 </div>
@@ -405,7 +426,7 @@ function Index(props) {
                         >
                           <div className="index-category-img news-img d-flex justify-content-center">
                             <img
-                              src={'/img/home/news/' + v.news_img_path}
+                              src={`http://localhost:3500${v.news_img_path}`}
                               alt="news"
                             />
                           </div>
@@ -445,7 +466,7 @@ function Index(props) {
                         >
                           <div className="index-category-img news-img d-flex justify-content-center">
                             <img
-                              src={'/img/home/evnts/' + v.evnts_img_path}
+                              src={`http://localhost:3500${v.evnts_img_path}`}
                               alt="news"
                             />
                           </div>
@@ -475,7 +496,7 @@ function Index(props) {
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
                     <img
-                      src="/img/home/left.svg"
+                      src={`http://localhost:3500/img/home/left.svg`}
                       alt="left-arrow"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
@@ -501,7 +522,7 @@ function Index(props) {
                   </div>
                   <div className="latest-news-right-arrow d-none d-md-block">
                     <img
-                      src="/img/home/right.svg"
+                      src={`http://localhost:3500/img/home/right.svg`}
                       alt="right-arrow"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
@@ -519,7 +540,7 @@ function Index(props) {
                 <div className="latest-news-pagination">
                   <div className="latest-news-left-arrow d-none d-md-block">
                     <img
-                      src="/img/home/left.svg"
+                      src={`http://localhost:3500/img/home/left.svg`}
                       alt="left-arrow"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
@@ -545,7 +566,7 @@ function Index(props) {
                   </div>
                   <div className="latest-news-right-arrow d-none d-md-block">
                     <img
-                      src="/img/home/right.svg"
+                      src={`http://localhost:3500/img/home/right.svg`}
                       alt="right-arrow"
                       style={{ cursor: 'pointer' }}
                       onClick={() => {
@@ -581,7 +602,7 @@ function Index(props) {
                 </p>
                 <div className="view-product-arrow">
                   <img
-                    src="/img/home/index-arrowsm-black.svg"
+                    src={`http://localhost:3500/img/home/index-arrowsm-black.svg`}
                     alt="browse-news"
                   />
                 </div>
@@ -594,13 +615,16 @@ function Index(props) {
               <Title title={''} />
               <div className="footer-top">
                 <img
-                  src="/img/home/footer-toproduct-arrow.svg"
+                  src={`http://localhost:3500/img/home/footer-toproduct-arrow.svg`}
                   alt="to-product"
                   style={{ cursor: 'pointer' }}
                 />
               </div>
               <div className="footer-logo d-none d-md-block">
-                <img src="/img/home/footer-pc-logo.svg" alt="footer-logo" />
+                <img
+                  src={`http://localhost:3500/img/home/footer-pc-logo.svg`}
+                  alt="footer-logo"
+                />
               </div>
               <div className="footer-bottom">
                 <div className="footer-contact">
@@ -622,13 +646,22 @@ function Index(props) {
               </div>
               <div className="footer-social">
                 <div className="footer-social-icon">
-                  <img src="/img/home/facebook.svg" alt="facebook" />
+                  <img
+                    src={`http://localhost:3500/img/home/facebook.svg`}
+                    alt="facebook"
+                  />
                 </div>
                 <div className="footer-social-icon">
-                  <img src="/img/home/twitter.svg" alt="twitter" />
+                  <img
+                    src={`http://localhost:3500/img/home/twitter.svg`}
+                    alt="twitter"
+                  />
                 </div>
                 <div className="footer-social-icon">
-                  <img src="/img/home/instagram.svg" alt="instagram" />
+                  <img
+                    src={`http://localhost:3500/img/home/instagram.svg`}
+                    alt="instagram"
+                  />
                 </div>
               </div>
               <div className="en-cont-12 footer-copy-right">

@@ -72,7 +72,10 @@ function LatestNews() {
                 </div>
                 <div className="lastest-news-nav-right d-flex align-items-center">
                   <div className="search mx-2" style={{ cursor: 'pointer' }}>
-                    <img src="/img/home/search-icon.svg" alt="search" />
+                    <img
+                      src={`http://localhost:3500/img/home/search-icon.svg`}
+                      alt="search"
+                    />
                   </div>
                   <div
                     className="filter"
@@ -81,7 +84,10 @@ function LatestNews() {
                       setIsOpenFilter(!isOpenFilter);
                     }}
                   >
-                    <img src="/img/home/filter-icon.svg" alt="filter" />
+                    <img
+                      src={`http://localhost:3500/img/home/filter-icon.svg`}
+                      alt="filter"
+                    />
                   </div>
                 </div>
               </div>
