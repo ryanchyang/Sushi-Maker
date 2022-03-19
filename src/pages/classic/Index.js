@@ -6,6 +6,7 @@ import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import data from './testData.json';
 import config from '../../Config';
 
@@ -493,31 +494,33 @@ function Index() {
                   return (
                     <>
                       <div className="prod-card" key={pid}>
-                        <div className="prod-img-box">
-                          {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                          {prod.c_prod_special_tag === '' ? (
-                            ''
-                          ) : (
-                            <div className="discount-tag">
-                              <div className="discount-tag-content">
-                                {prod.c_prod_special_tag}
+                        <Link to={`/classic/detail/${prod.pid}`} style={{textDecoration:'none', color: '#212121'}}>  {/* 點擊圖片可連到商品詳細頁 */}
+                          <div className="prod-img-box">
+                            {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                            {prod.c_prod_special_tag === '' ? (
+                              ''
+                            ) : (
+                              <div className="discount-tag">
+                                <div className="discount-tag-content">
+                                  {prod.c_prod_special_tag}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
 
-                          <img
-                            // src={require('./../../imgs/temp/classic-pro1.png')}
-                            src={`http://localhost:3500${prod.c_prod_img_path}`}
-                            alt="product"
-                          />
-                        </div>
+                            <img
+                              // src={require('./../../imgs/temp/classic-pro1.png')}
+                              src={`http://localhost:3500${prod.c_prod_img_path}`}
+                              alt="product"
+                            />
+                          </div>
 
-                        <div className="prod-name-ch ch-title-22">
-                          {prod.c_prod_ch_name}
-                        </div>
-                        <div className="prod-name-en en-title-14-5">
-                          {prod.c_prod_en_name}
-                        </div>
+                          <div className="prod-name-ch ch-title-22">
+                            {prod.c_prod_ch_name}
+                          </div>
+                          <div className="prod-name-en en-title-14-5">
+                            {prod.c_prod_en_name}
+                          </div>
+                        </Link>
 
                         {/* 判斷是否有特價 */}
                         {prod.c_prod_spe_value === 0 ? (

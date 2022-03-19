@@ -73,7 +73,7 @@ function App() {
           <Route path="/classic" exact>
             <ClassicIndex />
           </Route>
-          <Route path="/classic/detail">
+          <Route path="/classic/detail/:id?">
             <ClassicDetail />
           </Route>
           <Route path="/member" exact>
