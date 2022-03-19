@@ -81,21 +81,20 @@ function Register() {
   const handleRegister = e => {
     e.preventDefault();
 
-    registerMem(registerData).then(obj => {
-      console.log(obj)
-      if (obj.success) {
-        alert('註冊成功');
-        history.push('/member')
-      }
-    });
-
-    // registerMail(registerData).then(obj => {
-    //   console.log(obj);
+    // registerMem(registerData).then(obj => {
+    //   console.log(obj)
     //   if (obj.success) {
-    //     alert('發送成功');
-    //     history.push('/member');
+    //     alert('註冊成功');
+    //     history.push('/member')
     //   }
     // });
+
+    registerMail(registerData).then(obj => {
+      console.log(obj);
+      if (obj.success) {
+        alert('發送成功');
+      }
+    });
   };
   const handleChange = e => {
     const newData = { ...registerData, [e.target.name]: e.target.value };

@@ -68,7 +68,7 @@ export const registerMem = registerData => {
 
 //傳輸回後端發送註冊信
 export const registerMail = registerData => {
-  return fetch(`${BASE_URL}/email/api/member-registermail`, {
+  return fetch(`${BASE_URL}/member/api/member-registermail`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
