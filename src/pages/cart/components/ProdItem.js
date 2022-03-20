@@ -38,15 +38,15 @@ function ProdItem(props) {
   const handleShow = () => setShow(true);
 
   const modal = (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} >
       <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30">套餐說明</Modal.Title>
+        <Modal.Title className="en-cont-30 m-3">套餐說明</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <div className="en-cont-14">
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">
           加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
         </div>
-        <table class="table table-hover">
+        <table className="table table-hover">
           <tbody className="">
             <tr>
               <th scope="row" className="en-cont-36">
@@ -107,7 +107,7 @@ function ProdItem(props) {
                   Salmon Sushi Bento
                 </div>
               </td>
-            </tr>{' '}
+            </tr>
             <tr>
               <th scope="row" className="en-cont-36">
                 6
@@ -119,7 +119,7 @@ function ProdItem(props) {
                   Salmon Sushi Bento
                 </div>
               </td>
-            </tr>{' '}
+            </tr>
             <tr>
               <th scope="row" className="en-cont-36">
                 7
@@ -138,7 +138,7 @@ function ProdItem(props) {
       <Modal.Footer>
         <Button
           variant="secondary"
-          className="btn btn-sm btn-primary primeal-btn-sm mx-5"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={handleClose}
         >
           Close

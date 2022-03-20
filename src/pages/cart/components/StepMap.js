@@ -1,6 +1,6 @@
 // StepMap.js 選店地址
 import React, { useEffect, useState } from 'react';
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+
 import {
   MapContainer,
   Marker,
@@ -12,7 +12,6 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 import AreaData from '../data/store_area.json';
-import StoreData from '../data/store.json';
 import MultipleMarkers from './MultipleMarkers';
 //  點地圖會可以抓到你目前所在的位置
 function LocationMarker() {
@@ -29,7 +28,7 @@ function LocationMarker() {
 
   return position === null ? null : (
     <Marker position={position} icon={iconNow}>
-      <Popup>You are here</Popup>
+      <Popup>目前所在位置</Popup>
     </Marker>
   );
 }
@@ -40,14 +39,7 @@ var arrCoordinates = [
   [25.022, 121.543],
   [25.034, 121.537],
 ];
-// mark icon 圖樣大小
-const icon = L.icon({
-  iconSize: [25, 41],
-  iconAnchor: [10, 41],
-  popupAnchor: [2, -40],
-  iconUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
-});
+
 // 所在位置的icon 圖樣
 const iconNow = L.icon({
   iconSize: [25, 41],
@@ -129,17 +121,6 @@ function StepMap() {
     // });
   }, [areaId]);
 
-  // function MultipleMarkers() {
-  //   return store.map((v, i) => {
-  //     const positionXY = [+v.store_latitude, +v.store_longtitude];
-  //     console.log('v', v, positionXY);
-  //     return (
-  //       <Marker key={i} position={positionXY} icon={icon}>
-  //         <Popup>{v.store_name}</Popup>
-  //       </Marker>
-  //     );
-  //   });
-  // }
 
   //  縣市 input
   const inputCity = (
@@ -222,21 +203,9 @@ function StepMap() {
   //   return [+v.store_latitude, +v.store_longtitude];
   // });
 
-  // 多重標記
-  // function MultipleMarkers() {
-  //   return store.map((sv, index) => {
-  //     return positionXY.map((v, index) => {
-  //       // console.log('v', v);
-  //       return (
-  //         <Marker key={index} position={v} icon={icon}>
-  //           <Popup>{sv.store_name}</Popup>
-  //         </Marker>
-  //       );
-  //     });
-  //   });
-  // }
 
-  // StoreData.map((v, index) => {
+
+
   return (
     <>
       <form className="m-4">
@@ -275,7 +244,7 @@ function StepMap() {
                 },
               }}
             /> */}
-            <MultipleMarkers store={store} arrCoordinates={arrCoordinates} />
+            <MultipleMarkers store={store} setStoreName={setStoreName} />
           </MapContainer>
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>

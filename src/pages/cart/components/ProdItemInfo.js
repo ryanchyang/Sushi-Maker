@@ -1,4 +1,4 @@
-// cart/ProdItemInfo.js
+// cart/components/ProdItemInfo.js(包在開關選單中的交易明細內容)(step2-4 頁中都會有)
 
 import './../Cart.scss';
 function ProdItemInfo(props) {
@@ -31,6 +31,8 @@ function ProdItemInfo(props) {
   } = props;
 
   return (
+
+    
     <div className="prod-item-info ch-cont-14">
       <div className="row col-24 my-2  d-flex align-items-center align-middle">
         <div className="col-6 col-md-4 text-center">

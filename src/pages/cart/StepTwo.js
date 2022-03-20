@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 import StepMap from '././components/StepMap';
 import { Button, Modal } from 'react-bootstrap';
 
-// TODO: A  改 LINK
 function StepTwo() {
   // 套餐光箱
   const [map, setMap] = useState(false);
@@ -20,9 +19,9 @@ function StepTwo() {
   const modal = (
     <Modal show={map} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30">選擇取貨門市</Modal.Title>
+        <Modal.Title className="en-cont-30 m-3">選擇取貨門市</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ margin: '0 3%' }}>
         <>
           <StepMap />
         </>
@@ -35,8 +34,9 @@ function StepTwo() {
         >
           取消
         </Button>
+        {/*TODO: 確認門市要送出表單並存到DB mem */}
         <Button
-          variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+          variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
           onClick={handleClose}
         >
           確認門市

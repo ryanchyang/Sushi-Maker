@@ -1,10 +1,8 @@
 // CartList.js   購物車空白
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-// import SetInfoDetails from './SetInfoDetail';
 import './Cart.scss';
 import { Link, useHistory } from 'react-router-dom';
 
-// import { Button, Modal } from 'bootstrap';
 import React, { useState } from 'react';
 
 function CartList() {
@@ -35,7 +33,7 @@ function CartList() {
               <div className="col-24 col-md-8 my-3 d-flex justify-content-center">
                 <button
                   type="button"
-                  className="btn btn-primary  primeal-btn "
+                  className="btn btn-primary  primeal-btn"
                   onClick={() => {
                     // 轉至上一頁
                     history.goBack();

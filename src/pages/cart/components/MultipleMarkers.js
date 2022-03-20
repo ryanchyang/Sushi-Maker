@@ -1,12 +1,7 @@
+//cart/components/MultipleMarkers.js 地圖中的選擇行政區要出現多比mark選
 import React, { useEffect, useState } from 'react';
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  useMapEvents,
-} from 'react-leaflet';
+
+import { Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -19,20 +14,28 @@ const icon = L.icon({
   shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
 });
 function MultipleMarkers(props) {
-  const { store } = props;
+  const { store, setStoreName } = props;
   return store.map((v, i) => {
     const positionXY = [+v.store_longtitude, +v.store_latitude];
     console.log('v', v, positionXY);
     return (
       <Marker
         key={i}
+        value={v.store_name }
         position={positionXY}
         icon={icon}
-        onClick={e => {
-          console.log(e.target);
+        data={v.store_address}
+        eventHandlers={{
+          click: e => {
+            console.log(e.target.options.value);
+            props.setStoreName(e.target.options.value + '門市');
+          },
         }}
+        // onClick={e => {
+        //   console.log(e.target.value);
+        // }}
       >
-        <Popup>{v.store_name}</Popup>
+        <Popup>{v.store_name}門市</Popup>
       </Marker>
     );
   });
