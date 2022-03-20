@@ -24,18 +24,20 @@
     .prod-img-box-ondetail{
       position: relative;
       width: 100%;    
-      text-align: center;    
+      text-align: center;
   }
 
     .prod-img-box-img{
         width: 70%; 
         height: auto;
         object-fit: cover;
+        padding: 10%;
     }
     .prod-img-box-img-ondetail{      
       width: 40%;    
       height: auto;
       object-fit: cover;
+      padding: 10%;
   }
     .all-size-title{
       display: none;   
@@ -68,7 +70,8 @@
     .material-tag-box{
       margin-bottom: 20%;
       width: 100%;
-      height: auto;      
+      height: auto;  
+      cursor: pointer;    
     }
     .material-tag-box img{
       width: 30%;
@@ -114,14 +117,17 @@
         justify-content: space-evenly;
     }
     .prod-card {
-        /* text-align: center; */
         width: 22%;
         height: auto;
         margin-bottom: 5%;
         padding-bottom: 2%;
+        transition: transform 0.5s;
+        cursor: pointer;
     }
     .prod-card:hover{   
         background-color: #ffffff;
+        transform: scale(1.1);
+        transition: transform 0.6s;
     }
     .recommend{
         margin-top: 22%;
@@ -135,11 +141,21 @@
         width: 90%;
         height: auto;
         object-fit: cover;
+        padding: 12%;
     }
     .discount-tag {
         position: absolute;
         right: 10%;
         top: 12%;
+      }
+      .discount-tag-content {
+        background-color: #841d29;
+        color: #ffffff;
+        width: 60px;
+        border-radius: 15px;
+        padding: 5% 15%;
+        text-align: center;
+        margin-left: 0%;
       }
       .prod-name-ch {
         padding-left: 6%;
@@ -164,9 +180,7 @@
       .special-price {
         color: #b03342;
       }
-      .prod-price-no-discount{
-        display: none;        /*切換特價標籤*/
-        padding-top: 5%;  
+      .prod-price-no-discount{        
         width: 88%;
         padding-right: 5%;
         margin: 0 auto;  
@@ -375,6 +389,10 @@
     }
     .add-cart{
       margin: 10% 30%;
+    }
+    .discount-tag-content{
+      padding: 3% 10%;    
+      margin-left: 15%;
     }
   }
 
