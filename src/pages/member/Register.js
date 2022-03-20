@@ -39,6 +39,7 @@ const InputForPsw = styled.p`
 `;
 const ErrorMessage = styled.p`
   color: #b03342;
+  height: 20px;
 `;
 const IconRegisterArea = styled.div`
   margin-top: 18%;
@@ -76,6 +77,7 @@ function Register() {
     memInpVcode: '',
   });
   const [vCode, setVcode] = useState('');
+  const [errorMessageMail, setErrorMessageMail] = useState('')
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
   //function
@@ -98,6 +100,8 @@ function Register() {
           setTimeout(() => {
             localStorage.removeItem('verify_code');
           }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
+        }else {
+          setErrorMessageMail(obj.errorMessage)
         }
       });
     }
@@ -143,7 +147,7 @@ function Register() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">{errorMessageMail}</ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <input
@@ -163,7 +167,7 @@ function Register() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">密碼錯誤!</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14"></ErrorMessage>
                   <InputTitle className="ch-cont-14">手機號碼</InputTitle>
                   <input
                     type="text"
@@ -182,9 +186,7 @@ function Register() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">
-                    手機格式錯誤!
-                  </ErrorMessage>
+                  <ErrorMessage className="ch-cont-14"></ErrorMessage>
                   <div className="d-flex mb-3">
                     <div>
                       <InputTitle className="ch-cont-14">姓名</InputTitle>
@@ -288,6 +290,7 @@ function Register() {
                       style={{
                         marginTop: '15%',
                         height: '40px',
+                        width: '100%',
                       }}
                     >
                       發送註冊驗證碼
@@ -296,39 +299,43 @@ function Register() {
                   <div
                     style={vCode ? { display: 'block' } : { display: 'none' }}
                   >
-                    <div style={{ width: '100%' }}>
-                      <InputTitle className="ch-cont-14">
-                        請輸入驗證碼
-                      </InputTitle>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="memInpVcode"
-                        style={{
-                          borderRadius: 50,
-                          height: '20px',
-                          width: '97%',
-                          background: '#212121',
-                          border: '1px solid #f7f6f3',
-                          color: '#f7f6f3',
-                          fontSize: '1.4rem',
-                          lineHeight: '1.8rem',
-                          letterSpacing: '0.14rem',
-                          marginLeft: '3%',
-                        }}
-                        value={registerData.memInpVcode}
-                        onChange={handleChange}
-                      />
-                    </div>
+                    <div style={{ width: '100%', display:'flex', justifyContent:"space-between"}}>
+                      <div style={{width:"49%", marginTop:"5%"}}>
+                        <InputTitle className="ch-cont-14">
+                          請輸入驗證碼
+                        </InputTitle>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="memInpVcode"
+                          style={{
+                            borderRadius: 50,
+                            height: '20px',
+                            width: '97%',
+                            background: '#212121',
+                            border: '1px solid #f7f6f3',
+                            color: '#f7f6f3',
+                            fontSize: '1.4rem',
+                            lineHeight: '1.8rem',
+                            letterSpacing: '0.14rem',
+                            marginLeft: '3%',
+                          }}
+                          value={registerData.memInpVcode}
+                          onChange={handleChange}
+                        />
+                      </div>
+                    
                     <button
                       className="ch-title-22 btn btn-sm primeal-btn btn-primary"
                       style={{
                         marginTop: '15%',
                         height: '40px',
+                        width:"49%"
                       }}
                     >
-                      輸入驗證碼並註冊
+                      註冊
                     </button>
+                    </div>
                   </div>
                 </RegistForm>
                 <InputForPsw className="ch-cont-14">

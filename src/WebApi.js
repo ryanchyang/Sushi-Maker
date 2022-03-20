@@ -67,6 +67,15 @@ export const registerMem = (registerData, verify_code) => {
   }).then(res => res.json());
 };
 
+//將大頭照資料傳回後端
+
+export const memDoUpload = async fd => {
+  return await fetch(`${BASE_URL}/member/api/member-img-upload`, {
+    method: 'POST',
+    body: fd,
+  }).then(res => res.json());
+};
+
 //傳輸回後端發送註冊信
 export const registerMail = registerData => {
   return fetch(`${BASE_URL}/member/api/member-registermail`, {
@@ -79,7 +88,6 @@ export const registerMail = registerData => {
     }),
   }).then(res => res.json());
 };
-
 
 //傳回後端修改資料
 export const reviseMem = (memInfo, mem_id) => {

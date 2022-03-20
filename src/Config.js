@@ -26,6 +26,7 @@ const config = {
   GET_SHARE_PRODS: `${host}/api/share/`,
   HOST: `${host}`,
   //會員
+  MEM_PHOTO: `${host}+/img/member`,
 };
 
 export default config;
