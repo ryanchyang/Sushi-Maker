@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 function BackToTop() {
   const { y: pageYOffset } = useWindowScroll();
   const [visible, setVisible] = useState(false);
+
   // Back to top
   useEffect(() => {
     if (pageYOffset > 3000) {

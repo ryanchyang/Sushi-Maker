@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ReactComponent as Logo } from '../../imgs/logo.svg';
 import { ReactComponent as Hamburger } from '../../imgs/hamburger.svg';
 import { ReactComponent as Cart } from '../../imgs/cart.svg';
@@ -8,6 +8,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { height } from '@mui/system';
 import NavPage from './components/NavPage';
+import { useWindowScroll } from 'react-use';
 
 function Header() {
   return (
@@ -44,10 +45,30 @@ function Title(props) {
   );
 }
 
-function AsideLeft() {
+function AsideLeft(props) {
+  // 首頁動態改變背景顏色
+  const { changeBG, setChangeBG, pageYOffset } = props;
+  useEffect(() => {
+    if (pageYOffset <= 3000 || pageYOffset >= 6300) {
+      setChangeBG(true);
+    } else if (pageYOffset >= 3000) {
+      setChangeBG(false);
+    }
+  }, [pageYOffset]);
+
+  const darkBG = {
+    backgroundColor: '#212121',
+    color: '#ffffff',
+    transition: '1.5s',
+  };
+  const lightBG = { backgroundColor: '#f7f6f3', transition: '1.5s' };
+
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed">
+      <aside
+        className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed"
+        style={changeBG ? darkBG : lightBG}
+      >
         <div className="aside-left">
           <div className="logo-box">
             <Logo className="logo" />
@@ -58,13 +79,33 @@ function AsideLeft() {
   );
 }
 
-function AsideRight() {
+function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
+  const { changeBG, setChangeBG, pageYOffset } = props;
+
+  // 首頁動態改變背景顏色
+  useEffect(() => {
+    if (pageYOffset <= 3000 || pageYOffset >= 6300) {
+      setChangeBG(true);
+    } else if (pageYOffset >= 3000) {
+      setChangeBG(false);
+    }
+  }, [pageYOffset]);
+
+  const darkBG = {
+    backgroundColor: '#212121',
+    color: '#ffffff',
+    transition: '1.5s',
+  };
+  const lightBG = { backgroundColor: '#f7f6f3', transition: '1.5s' };
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed">
+      <aside
+        className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed"
+        style={changeBG ? darkBG : lightBG}
+      >
         <div className="aside-right">
           <div className="layout-hamberger-box">
             <Hamburger

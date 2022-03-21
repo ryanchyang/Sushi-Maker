@@ -5,6 +5,7 @@ import newsData from './news.json';
 import evntsData from './evnts.json';
 import promo from './promo.json';
 import BackToTop from './components/BackToTop';
+import { useWindowScroll } from 'react-use';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -16,6 +17,8 @@ function Index(props) {
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
   const scrollTo = useRef(null);
+  const { y: pageYOffset } = useWindowScroll();
+  const [changeBG, setChangeBG] = useState(null);
 
   // 初始化要資料
   useEffect(() => {}, []);
@@ -23,6 +26,16 @@ function Index(props) {
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNewsCate]);
+
+  // 處理背景變色
+  console.log('pageYOffset:', pageYOffset);
+  useEffect(() => {
+    if (pageYOffset <= 3000 || pageYOffset >= 6300) {
+      setChangeBG(true);
+    } else if (pageYOffset >= 3000) {
+      setChangeBG(false);
+    }
+  }, [pageYOffset]);
 
   // 處理第一頁Scroll To
   const goToAboutUs = () =>
@@ -94,13 +107,23 @@ function Index(props) {
   const hiddenBlock = { display: 'none' };
   const showGray = { color: '#c4c4c4' };
   const hiddenGray = { color: '#212121' };
+  const darkBG = {
+    backgroundColor: '#212121',
+    color: '#ffffff',
+    transition: '1.5s',
+  };
+  const lightBG = { backgroundColor: '#f7f6f3', transition: '1.5s' };
 
   return (
     <>
       <Header />
-      <div className="home">
+      <div className="home" style={changeBG ? darkBG : lightBG}>
         <div style={{ display: 'flex' }}>
-          <AsideLeft />
+          <AsideLeft
+            changeBG={changeBG}
+            setChangeBG={setChangeBG}
+            pageYOffset={pageYOffset}
+          />
           <div style={{ width: '100%' }}>
             <Title title={''} />
             <br />
@@ -671,7 +694,11 @@ function Index(props) {
             {/* back to top */}
             <BackToTop />
           </div>
-          <AsideRight />
+          <AsideRight
+            changeBG={changeBG}
+            setChangeBG={setChangeBG}
+            pageYOffset={pageYOffset}
+          />
         </div>
       </div>
     </>
