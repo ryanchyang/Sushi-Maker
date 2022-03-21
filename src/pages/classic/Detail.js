@@ -1,6 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { ReactComponent as Heart } from '../../imgs/tags/heart.svg';
-import { ReactComponent as Discount } from '../../imgs/tags/discount_25.svg';
 import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import config from '../../Config';

@@ -6,8 +6,7 @@ import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import data from './testData.json';
+import { Link } from 'react-router-dom';
 import config from '../../Config';
 
 function Index() {
