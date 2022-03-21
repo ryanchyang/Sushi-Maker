@@ -1,8 +1,20 @@
 import { Header, AsideLeft, AsideRight, Footer } from './memLayout/LayoutLight';
 import './index.scss';
+import { findMem } from '../../WebApi';
+import { useEffect, useState } from 'react';
+import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
 
-function memIndex() {
+function MemIndex() {
+  const [memData, setMemData] = useState(null);
+  const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
+
+  useEffect(() => {
+    findMem(mem_id).then(obj => {
+      setMemData(obj[0]);
+    }); 
+  }, []);
+
   return (
     <>
       <Header />
@@ -16,39 +28,33 @@ function memIndex() {
 
             <div className="mycontainer">
               <div className="memInfoArea">
-                <div className="memInfo col-md-12 col-24 mx-3 px-5" >
+                <div className="memInfo col-md-12 col-24 mx-3 px-5">
                   <table class="table table-borderless col-16">
                     <thead>
                       <tr>
-                        <td className='ch-title-22'>會員資訊</td>
+                        <td className="ch-title-22">會員資訊</td>
                       </tr>
                     </thead>
-                    <tbody className='ch-cont-18 '>
+                    <tbody className="ch-cont-18 ">
                       <tr>
                         <td>會員暱稱:</td>
-                        <td>Mark</td>
-                        
+                        <td>{memData ? memData.mem_nickname : ''}</td>
                       </tr>
                       <tr>
                         <td>會員等級:</td>
-                        <td>金牌</td>
-                        
+                        <td>{memData ? memData.mem_level : ''}</td>
                       </tr>
                       <tr>
                         <td>會員總積分:</td>
-                        <td>5000</td>
-                      </tr>
-                      <tr>
-                        <td>會員優惠券:</td>
-                        <td>5000</td>
+                        <td>{memData ? memData.mem_total_credit : ''}</td>
                       </tr>
                       <tr>
                         <td>會員現有積分:</td>
-                        <td>5000</td>
+                        <td>{memData ? memData.mem_credit : ''}</td>
                       </tr>
                       <tr>
                         <td>會員積分規則:</td>
-                        <td>5000</td>
+                        
                       </tr>
                     </tbody>
                   </table>
@@ -91,4 +97,4 @@ function memIndex() {
   );
 }
 
-export default memIndex;
+export default MemIndex;
