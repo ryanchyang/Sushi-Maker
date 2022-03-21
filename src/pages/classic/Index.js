@@ -357,6 +357,13 @@ function Index() {
     setBuyProdCount(newData);
   };
 
+  //每次點擊商品詳細頁，都要將pid存到localstorage以供歷史查詢
+  const saveHistory = (pid) => {
+    let newHistory = localStorage.getItem('history') ?? '';
+    newHistory +=  pid + ',';
+    localStorage.setItem("history", newHistory);
+  }
+
   useEffect(() => {
     const fetchData = async() => {
       //取得所有商品資料
@@ -494,7 +501,7 @@ function Index() {
                   return (
                     <>
                       <div className="prod-card" key={pid}>
-                        <Link to={`/classic/detail/${prod.pid}`} style={{textDecoration:'none', color: '#212121'}}>  {/* 點擊圖片可連到商品詳細頁 */}
+                        <Link to={`/classic/detail/${prod.pid}`} style={{textDecoration:'none', color: '#212121'}} onClick={() => {saveHistory(pid)}}>  {/* 點擊圖片可連到商品詳細頁 */}
                           <div className="prod-img-box">
                             {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
                             {prod.c_prod_special_tag === '' ? (
