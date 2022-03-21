@@ -360,7 +360,7 @@ function Index() {
   //每次點擊商品詳細頁，都要將pid存到localstorage以供歷史查詢
   const saveHistory = (pid) => {
     let newHistory = localStorage.getItem('history') ?? '';
-    newHistory +=  pid + ',';
+    newHistory +=  pid + '-';
     localStorage.setItem("history", newHistory);
   }
 
@@ -376,7 +376,6 @@ function Index() {
       const mtlRes = await fetch(config.GET_INIT_MTLS);
       const mtlObj = await mtlRes.json();
       const mtls = mtlObj.rows;
-      console.log(mtls);
 
       const initData = prods.filter(pro => pro.c_prod_cate === 'sushi');
       //預設呈現的商品類型為壽司

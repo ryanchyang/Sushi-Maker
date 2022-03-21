@@ -1,9 +1,42 @@
 @import './../../styles/global.scss';
+
+.classic-history-title{
+  color: #212121;
+  cursor: pointer;
+  position: fixed;
+  bottom: 4%;
+  right: 4%;
+}
+.classic-history-img-list{
+  position: fixed;
+  bottom: 10%;
+  right: 3.7%;
+}
+.classic-history-img-box{
+  border-radius: 50%;
+  background-image: url('./bgicon.png');
+  background-size: 90px 90px;
+  width: 80px;
+  height: 80px; 
+  display: flex;
+  align-items: center; 
+  margin: 5% auto;
+  cursor: pointer;
+}
+.classic-history-img-box img{
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  margin: auto;
+}
+.classic-history-name{
+  text-align: center;
+}
+
 .classic {
   .main-content {
     /* display: none; */
-  }
-
+  }  
   //去掉input focus時的框線
   input:focus{
     outline: none;
