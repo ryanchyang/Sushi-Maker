@@ -16,19 +16,28 @@ function Index(props) {
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
-  const scrollTo = useRef(null);
-  const { y: pageYOffset } = useWindowScroll();
   const [changeBG, setChangeBG] = useState(null);
 
-  // 初始化要資料
+  const { y: pageYOffset } = useWindowScroll();
+
+  const scrollTo = useRef();
+  const processRef = useRef();
+  const cubeImgRef = useRef();
+  const textImgRef = useRef();
+
+  // ToDo:初始化要資料
   useEffect(() => {}, []);
 
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNewsCate]);
 
+  useEffect(() => {
+    setTime();
+  }, []);
+
   // 處理背景變色
-  console.log('pageYOffset:', pageYOffset);
+  // console.log('pageYOffset:', pageYOffset);
   useEffect(() => {
     if (pageYOffset <= 3000 || pageYOffset >= 6300) {
       setChangeBG(true);
@@ -36,6 +45,41 @@ function Index(props) {
       setChangeBG(false);
     }
   }, [pageYOffset]);
+
+  // 處理Intro製成變化圖片
+  let start = 0;
+  const setTime = () => {
+    setInterval(changeCubeImg, 2000);
+    // setInterval(changeTextImg, 2000);
+  };
+  const changeCubeImg = () => {
+    if (start > 2) {
+      start = 0;
+    }
+    if (start === 0) {
+      console.log('0');
+      processRef.current.innerText = 'Constructing...';
+      cubeImgRef.current.src =
+        'http://localhost:3500/img/home/intro-constructing.svg';
+      textImgRef.current.src =
+        'http://localhost:3500/img/home/intro-constructing-txt.svg';
+    } else if (start === 1) {
+      console.log('1');
+      processRef.current.innerText = 'Materializing...';
+      cubeImgRef.current.src =
+        'http://localhost:3500/img/home/intro-materializing.svg';
+      textImgRef.current.src =
+        'http://localhost:3500/img/home/intro-materializing-txt.svg';
+    } else if (start === 2) {
+      console.log('2');
+      processRef.current.innerText = 'Printing...';
+      cubeImgRef.current.src =
+        'http://localhost:3500/img/home/intro-printing.svg';
+      textImgRef.current.src =
+        'http://localhost:3500/img/home/intro-printing-txt.svg';
+    }
+    start++;
+  };
 
   // 處理第一頁Scroll To
   const goToAboutUs = () =>
@@ -130,31 +174,39 @@ function Index(props) {
             <div className="home-page">
               {/* PC index top */}
               {/* todo: scroll down opacity 0 */}
-              <div className="d-none d-sm-block">
-                <div className="pc-index-top">
-                  <img
-                    src={`http://localhost:3500/img/home/pc-logo+text.svg`}
-                    alt="pc-logo"
-                  />
+              {pageYOffset < 900 && (
+                <div className="d-none d-sm-block">
+                  <div className="pc-index-top">
+                    <img
+                      src={`http://localhost:3500/img/home/pc-logo+text.svg`}
+                      alt="pc-logo"
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
+
               {/* index content */}
               {/* todo: 下排圖片改變時，process的innerHTML要換字 */}
               <div className="index-content">
                 <div className="en-title-14-5 content-top d-flex justify-content-between">
                   <div className="col-12 number">NO.897532</div>
-                  <div className="col-12 process">Constructing...</div>
+                  <div className="col-12 process" ref={processRef}>
+                    Constructing...
+                  </div>
                 </div>
                 {/* todo: content-bottom 當火車頭 */}
                 <div className="content-bottom d-flex justify-content-evenly">
                   <div className="col-12 index-cube-img">
                     <img
+                      ref={cubeImgRef}
+                      // src={images[currentImage]}
                       src={`http://localhost:3500/img/home/intro-constructing.svg`}
                       alt="cube"
                     />
                   </div>
                   <div className="col-12 index-cube-txt">
                     <img
+                      ref={textImgRef}
                       src={`http://localhost:3500/img/home/intro-constructing-txt.svg`}
                       alt="description"
                     />
@@ -166,7 +218,16 @@ function Index(props) {
                 className="view-product-area d-flex justify-content-end align-items-center"
                 style={{ cursor: 'pointer' }}
               >
-                <p className="en-cont-12">View Product</p>
+                <Link
+                  to={'/classic'}
+                  className="en-cont-12"
+                  style={{
+                    textDecoration: 'none',
+                    color: '#ffffff',
+                  }}
+                >
+                  View Product
+                </Link>
                 <div className="view-product-arrow">
                   <img
                     src={`http://localhost:3500/img/home/index-arrowsm.svg`}
@@ -174,12 +235,8 @@ function Index(props) {
                   />
                 </div>
               </div>
-              <div className="scroll-hint">
-                <p
-                  className="scroll-down"
-                  style={{ cursor: 'pointer' }}
-                  onClick={goToAboutUs}
-                >
+              <div className="scroll-hint" style={{ cursor: 'pointer' }}>
+                <p className="scroll-down" onClick={goToAboutUs}>
                   SCROLL
                 </p>
                 <div className="vertical-line">
@@ -633,7 +690,6 @@ function Index(props) {
             </div>
 
             {/* footer */}
-            {/* todo scroll down to change bg color */}
             <div className="home-page">
               <Title title={''} />
               <div className="footer-top">

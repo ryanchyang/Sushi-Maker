@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { ReactComponent as Logo } from '../../imgs/logo.svg';
 import { ReactComponent as Hamburger } from '../../imgs/hamburger.svg';
+import { ReactComponent as HamburgerLight } from '../../imgs/hamburgerLight.svg';
 import { ReactComponent as Cart } from '../../imgs/cart.svg';
+import { ReactComponent as CartLight } from '../../imgs/cartLight.svg';
 import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
@@ -46,8 +48,10 @@ function Title(props) {
 }
 
 function AsideLeft(props) {
-  // 首頁動態改變背景顏色
+  // 動態改變首頁的背景顏色
   const { changeBG, setChangeBG, pageYOffset } = props;
+
+  // 背景色
   useEffect(() => {
     if (pageYOffset <= 3000 || pageYOffset >= 6300) {
       setChangeBG(true);
@@ -108,16 +112,27 @@ function AsideRight(props) {
       >
         <div className="aside-right">
           <div className="layout-hamberger-box">
-            <Hamburger
-              className="layout-hamberger"
-              style={{ cursor: 'pointer' }}
-            />
+            {changeBG ? (
+              <HamburgerLight
+                className="layout-hamberger"
+                style={{ cursor: 'pointer' }}
+              />
+            ) : (
+              <Hamburger
+                className="layout-hamberger"
+                style={{ cursor: 'pointer' }}
+              />
+            )}
           </div>
-          <div className="layout-mem-photo-box">
+          <div className="layout-mem-photo-box" style={{ cursor: 'pointer' }}>
             <img src={require('./../../imgs/ruka.png')} alt="member-photo" />
           </div>
-          <div className="layout-cart-btn-box">
-            <Cart className="layout-cart-btn" />
+          <div className="layout-cart-btn-box" style={{ cursor: 'pointer' }}>
+            {changeBG ? (
+              <CartLight className="layout-cart-btn" />
+            ) : (
+              <Cart className="layout-cart-btn" />
+            )}
           </div>
         </div>
       </aside>
