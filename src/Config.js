@@ -17,6 +17,7 @@ const config = {
   GET_INIT_PRODS: `${host}/classic/api/getprods`,
   GET_PROD: `${host}/classic/api/getprod`,
   GET_INIT_MTLS: `${host}/classic/api/getmtls`,
+  GET_HISTORYS: `${host}/classic/api/gethistory`,
 
   // 客製商品
 
