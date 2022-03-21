@@ -3,25 +3,81 @@
 import { Link, useHistory } from 'react-router-dom';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ProdItem from '././components/ProdItem';
-// TODO: A  改 LINK
+
+// TODO: 資料庫拿資料
+// member id =1 鮮血死 測試用
+import config from '../../Config';
+import { useState, useEffect } from 'react';
+
+// import CartOne from './../data/cartone.json';
+
 function StepOne(props) {
   // counts -> 陣列
-  const { productsInOrder, setProductsInOrder } = props;
+  // const { productsInOrder, setProductsInOrder } = props;
   // 回上一頁 按鈕
   let history = useHistory();
+  const [list, setList] = useState({});
+  const mem_id = 1;
 
-  // 處理項目刪除用
-  const handleDelete = id => {
-    //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
-    let newProductsInOrder = [...productsInOrder];
-    //2. 在拷貝出的新陣列(物件)上運算或處理
-    newProductsInOrder = newProductsInOrder.filter((v, i) => {
-      return v.id !== id;
-    });
-
-    //3. 設定回原本的狀態
-    setProductsInOrder(newProductsInOrder);
+  const getList = async () => {
+    console.log('hi');
+    const res = await fetch(config.GET_CART + `${mem_id}`);
+    const obj = await res.json();
+    console.log('obj:', obj);
+    // console.log('cm:', obj.data.cm);
+    // console.log('cs:', obj.data.cs);
+    // console.log('set:', obj.data.set);
+    setList(obj.data);
   };
+  console.log(list.cm);
+  useEffect(() => {
+    getList();
+    // console.log(getList());
+  }, []);
+
+  // // 處理項目刪除用
+  // const handleDelete = id => {
+  //   //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
+  //   let newProductsInOrder = [...productsInOrder];
+  //   //2. 在拷貝出的新陣列(物件)上運算或處理
+  //   newProductsInOrder = newProductsInOrder.filter((v, i) => {
+  //     return v.id !== id;
+  //   });
+
+  //   //3. 設定回原本的狀態
+  //   setProductsInOrder(newProductsInOrder);
+  // };
+
+  // const [productsInOrder, setProductsInOrder] = useState(list);
+  // console.log('list', list);
+  // console.log('productsInOrder', productsInOrder);
+
+  const [csOrder, setCsOrder] = useState(list.cs);
+  const [cmOrder, setCmOrder] = useState(list.cm);
+  const [setOrder, setSetOrder] = useState(list.set);
+
+  console.log('csOrder', csOrder);
+  // Summary
+  // 計算目前所有的商品數量
+  // const productCount = () => {
+  //   let totalCount = 0;
+
+  //   for (let i = 0; i < productsInOrder.length; i++) {
+  //     totalCount += productsInOrder[i].count;
+  //   }
+  //   return totalCount;
+  // };
+
+  // // 計算目前所有的商品總價
+  // const total = () => {
+  //   let sum = 0;
+
+  //   for (let i = 0; i < productsInOrder.length; i++) {
+  //     sum += productsInOrder[i].count * productsInOrder[i].price;
+  //   }
+
+  //   return sum;
+  // };
 
   return (
     <>
@@ -32,7 +88,6 @@ function StepOne(props) {
           <Title title={'Shopping List'} />
           <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
             <div className="bread">HOME/CART</div>
-
             <div className="list-title ch-cont-14">
               <div className="row  my-2 d-flex align-items-center">
                 <div className="col-md-24 d-none d-md-flex">
@@ -69,37 +124,8 @@ function StepOne(props) {
               </div>
             </div>
 
-            <ProdItem
-              //  如果不解購就要降寫id={product.id}
-              // key={id}
-              // id={id}
-              // name={name}
-              // category={category}
-              // price={price}
-              // image={image}
-              // count={count}
-              // setCount={setCount}
-              // count={product.count}
-              setCount={newCount => {
-                //1. 先從原本的陣列拷貝出一個新陣列(在這上面處理)
-                // const newProductsInOrder = [...productsInOrder];
-                //2. 運算處理：更新陣列中對應商品數量
-                // 更新陣列中本商品索引值，如果小於1以1來更新
-                // newProductsInOrder[i].count = newCount < 1 ? 1 : newCount;
-                //3. 設定回原本的狀態
-                // setProductsInOrder(newProductsInOrder);
-              }}
-              handleDelete={() => {
-                // handleDelete(id);
-              }}
-              handleSetInfo={() => {
-                // handleSetInfo(id);
-              }}
-            />
+            <ProdItem cs={list.cs} cm={list.cm} set={list.set} />
 
-            <ProdItem />
-            <ProdItem />
-            <ProdItem />
             {/* TODO: SET info 光箱 */}
             <div className="list-check ch-cont-14" style={{ padding: '30px' }}>
               <div className="row ">
@@ -109,7 +135,9 @@ function StepOne(props) {
                   <div className="summary ">
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12 ">商品數量</div>
-                      <div className="col-12 col-md-8 text-right">總計5項</div>
+                      <div className="col-12 col-md-8 text-right">
+                        總計5項
+                      </div>
                     </div>
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12">印製時間</div>
