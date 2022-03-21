@@ -3,6 +3,11 @@
   .main-content {
     /* display: none; */
   }
+
+  //去掉input focus時的框線
+  input:focus{
+    outline: none;
+  }
   .search-filter {
     display: flex;
     justify-content: flex-end;

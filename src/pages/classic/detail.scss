@@ -2,6 +2,10 @@
 .classic-detail{
     //有-ondetail後綴字的都是按了呈現詳細資料後的CSS
 
+    //去掉input focus時的框線
+    input:focus{
+      outline: none;
+    }
     .detail-content{
         margin: 0 auto;  
         display: flex;

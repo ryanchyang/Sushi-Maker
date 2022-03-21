@@ -12,6 +12,7 @@ function Detail() {
   const [materials, setMaterials] = useState([]);   //食材資料(3個)
   const [recommends, setRecommendeds] = useState([]);  //推薦商品資料(3個)
   const [selectedMaterial, setSelectedMaterial] = useState({});  //目前選定的食材資料
+  const [buyCount, setBuyCount] = useState(1);
   const { id } = useParams();  //取得url上的product id
 
   //點擊食材圖片
@@ -19,6 +20,38 @@ function Detail() {
     const material = materials.find(m => m.mtl_id === mid);
     setSelectedMaterial(material);
   }
+
+  //輸入商品數量
+  const changeCountByType = (count) => {
+    //商品數量不能小於0或是大於99
+    if(count <= 0 || count > 99){
+      return false;
+    }
+    
+    setBuyCount(count);
+  };
+
+  //點擊商品減少按鈕(-1)
+  const changeCountByMinus = () => {
+    //商品數量若小於等於1，則不能再減少數量(需大於0)
+    if(buyCount <= 1){
+      return false;
+    }
+
+    const newCount = buyCount - 1;
+    setBuyCount(newCount);    
+  };
+
+  //點擊商品增加按鈕(+1)
+  const changeCountByAdd = () => {
+    //商品數量若大於等於99，則不能再增加數量
+    if(buyCount >= 99){
+      return false;
+    }
+
+    const newCount = buyCount + 1;
+    setBuyCount(newCount);    
+  };
 
   useEffect(() => {
     const fetchData = async() => {
@@ -140,9 +173,9 @@ function Detail() {
             <div>
               <div className="select-add-cart">
                 <div className="select-count">
-                  <button>-</button>
-                  <input type="number" value={1} />
-                  <button>+</button>
+                  <button onClick={() => changeCountByMinus()}>-</button>
+                  <input type="number" value={buyCount} onChange={(e) => changeCountByType(+e.target.value)} />
+                  <button onClick={() => changeCountByAdd()}>+</button>
                 </div>
                 <button className="add-cart btn-sm btn-primary primeal-btn">
                   加入購物車
@@ -175,7 +208,7 @@ function Detail() {
                     </div>
                   </div>
                   <div className="material-item">
-                    <div className="material-content ch-cont-18">挪威</div>
+                    <div className="material-content ch-cont-18">{selectedMaterial.mtl_origin}</div>
                     <div className="material-title en-cont-16">ORIGIN</div>
                   </div>
                   <div className="material-item">
