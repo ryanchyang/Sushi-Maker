@@ -124,6 +124,7 @@ function ShareItemImgs(props) {
         {itemImgs.map((imgObj, i) => {
           return (
             <div
+              key={i}
               className={`${styles['small-img-container']}`}
               style={selectedImg === i ? { outline: '3px solid #eed19a' } : {}}
               onClick={() => {

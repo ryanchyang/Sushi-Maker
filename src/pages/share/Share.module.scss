@@ -394,13 +394,24 @@ $min-height: calc(64.5vh);
 .img-arrow-left {
   position: absolute;
   left: 10px;
-  top: calc(50% - 20px);
+  $top: calc(50% - 20px);
+  top: $top;
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 .img-arrow-right {
   position: absolute;
   right: 10px;
-  top: calc(50% - 20px);
+  $top: calc(50% - 20px);
+  top: $top;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.img-arrow-left:hover,
+.img-arrow-right:hover {
+  opacity: 1;
 }
 
 .img-container img {
