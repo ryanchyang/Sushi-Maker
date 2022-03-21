@@ -139,7 +139,9 @@ function ShareItems() {
                 </button>
               </div>
               <ShareItemImgs itemImgs={itemImgs} />
-              <div className={`${styles['img-desc']} d-flex ch-cont-16`}>
+              <div
+                className={`${styles['img-desc']} d-flex ch-cont-16 justify-content-center`}
+              >
                 {shareDesc}
               </div>
             </div>

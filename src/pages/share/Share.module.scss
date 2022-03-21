@@ -378,13 +378,17 @@ $min-height: calc(64.5vh);
   width: 100%;
 }
 
+.img-big-container {
+  position: relative;
+  transition: 0.2s;
+}
+
 .img-container {
   min-width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  transition: 0.2s;
 }
 
 .img-arrow-left {
