@@ -28,15 +28,11 @@ const config = {
   GET_PROD_DETAILS: `${host}/api/share/items/`,
   HOST: `${host}`,
   //會員
-<<<<<<< HEAD
   MEM_PHOTO: `${host}/img/member`,
-=======
-  MEM_PHOTO: `${host}+/img/member`,
 
   // 購物車
   // 得到購物車清單 stepone
   GET_CART: `${host}/api/cart/stepone/`,
->>>>>>> 3360c2dc57ce335f52aa7cb2ccdc67b7709874f1
 };
 
 export default config;
