@@ -24,9 +24,10 @@ const config = {
 
   // 分享牆
   GET_SHARE_PRODS: `${host}/api/share/`,
+  GET_PROD_DETAILS: `${host}/api/share/items/`,
   HOST: `${host}`,
   //會員
-  MEM_PHOTO: `${host}+/img/member`,
+  MEM_PHOTO: `${host}/img/member`,
 };
 
 export default config;

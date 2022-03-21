@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 // import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 import HeartTemplate from './HeartTemplate';
+import ItemInfoTemplate from './ItemInfoTemplate';
+import ItemSavesTemplate from './ItemSavesTemplate';
 
 import styles from '../Share.module.scss';
 import config from '../../../Config';
+import { style } from '@mui/system';
 
 // import { ReactComponent as Heart } from '../../../imgs/heart.svg';
 // import { ReactComponent as HeartOutline } from '../../../imgs/heart-outline.svg';
@@ -21,7 +25,7 @@ const savesHandler = data => {
 const hoverHandler = (id, hover) => {
   let obj = {
     background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
+      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
       'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     opacity: 1,
     transition: '0.2s',
@@ -33,17 +37,9 @@ const hoverHandler = (id, hover) => {
   }
 };
 
-// const heartTemplate = (id, saves) => {
-//   const isSaveItem = saves.some(save => save.share_item_id === id);
-//   if (isSaveItem) {
-//     return <HeartFill style={{ padding: '0 5px' }} onClick={() => {}} />;
-//   } else {
-//     return <HeartOutline style={{ padding: '0 5px' }} />;
-//   }
-// };
-
 export default function Masonry(props) {
   const { columns, gap, data } = props;
+  const history = useHistory(null);
 
   const [saves, setSaves] = useState([]);
   const [hover, setHover] = useState(-1);
@@ -52,7 +48,11 @@ export default function Masonry(props) {
     setSaves(savesHandler(data));
   }, [data]);
 
-  console.log(saves);
+  const goToItem = e => {
+    const itemId = e.target.dataset.item;
+    history.push(`/share/items/${itemId}`);
+  };
+  // console.log(saves);
 
   return (
     <div className={`flex-column ${styles['masonry-index']} `}>
@@ -66,16 +66,33 @@ export default function Masonry(props) {
             <img
               src={
                 config.HOST +
-                `/${item.share_imgPath}?w=450&fit=crop&auto=format`
+                `/${item.share_imgPath}?w=500&fit=crop&auto=format`
               }
               srcSet={
                 config.HOST +
-                `/${item.share_imgPath}?w=450&fit=crop&auto=format&dpr=2 2x`
+                `/${item.share_imgPath}?w=500&fit=crop&auto=format&dpr=2 2x`
               }
               alt={item.share_title}
               loading="lazy"
+              data-item={item.share_item_id}
+              onClick={e => {
+                goToItem(e);
+              }}
+              className={`${styles['image-list-img']}`}
+            />
+
+            <ImageListItemBar
+              position="below"
+              title={
+                <ItemInfoTemplate
+                  memPhoto={item.mem_photo_img_path}
+                  memNickname={item.mem_nickname}
+                />
+              }
+              actionIcon={<ItemSavesTemplate savesCount={item.saves_count} />}
             />
             <ImageListItemBar
+              position="top"
               sx={hoverHandler(item.share_item_id, hover)}
               title={item.share_title}
               subtitle={item.share_desc}

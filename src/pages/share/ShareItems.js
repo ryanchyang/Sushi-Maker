@@ -1,14 +1,78 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import styles from './Share.module.scss';
-import { ReactComponent as ArrowRight } from '../../imgs/arrow-right.svg';
-import { ReactComponent as ArrowLeft } from '../../imgs/arrow-left.svg';
+
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
-import { ReactComponent as Shin } from './imgs/shin.svg';
+import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
+import { ReactComponent as Commenter } from './imgs/user.svg';
 import { ReactComponent as Heart } from '../../imgs/heart.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
+import { ReactComponent as PriceTag } from '../../imgs/priceTag.svg';
+import { ReactComponent as TimeClock } from '../../imgs/timeClock.svg';
+
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import config from '../../Config';
+import ShareItemImgs from './components/ShareItemImgs';
 
 function ShareItems() {
+  const [msgbtn, setMsgbtn] = useState(false);
+  const [infobtn, setInfobtn] = useState(false);
+  const [msgdiv, setMsgdiv] = useState(false);
+  const [infodiv, setInfodiv] = useState(false);
+
+  const [itemDetails, setItemDetails] = useState([]);
+
+  const {
+    mem_nickname: postMemName,
+    mem_photo_img_path: postMemImg,
+    share_title: shareTitle,
+    share_desc: shareDesc,
+    saves_count: savesCount,
+    orders_value: orderVal,
+    orders_print_time: orderPrint,
+    share_imgs: itemImgs = [],
+    share_comments: shareComments = [],
+  } = itemDetails;
+
+  const { id } = useParams();
+
+  const getItemDetails = async () => {
+    const response = await fetch(config.GET_PROD_DETAILS + `${id}`, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
+  // Fetching data
+  useEffect(() => {
+    (async () => {
+      const result = await getItemDetails();
+
+      setItemDetails(result.data[0]);
+    })();
+  }, []);
+
+  console.log(itemDetails);
+
+  const btnMoveTemplate = () => {
+    return msgbtn || infobtn
+      ? {
+          transform: 'translateX(80px)',
+          transition: 'transform 0.3s, opacity 0.2s',
+          opacity: 0,
+        }
+      : {
+          transform: 'translateX(0px)',
+          transition: 'transform 0.3s, opacity 0.2s',
+          opacity: 1,
+        };
+  };
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -21,64 +85,248 @@ function ShareItems() {
                 <div className="d-flex justify-content-between">
                   <p className="mytitle en-title-14-10">HOME / SHARE / ITEMS</p>
                   <div className="d-flex align-items-center">
-                    {' '}
                     <Delete className="mx-md-4 p-2" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className={`mycontainer ${styles['mb-30']}`}>
+          <div
+            className={`mycontainer ${styles['mb-30']} ${styles['items-box']} d-flex`}
+          >
             <div
               className={`${styles['img-section']} col d-flex align-items-center flex-column`}
             >
-              <Message className={`${styles['message-button']}`} />
-              <Info className={`${styles['info-button']}`} />
+              <Message
+                className={`${styles['message-button']} `}
+                style={btnMoveTemplate()}
+                onClick={() => {
+                  setMsgbtn(true);
+                }}
+                onTransitionEnd={() => {
+                  msgbtn && setMsgdiv(true);
+                }}
+              />
+              <Info
+                className={`${styles['info-button']}`}
+                style={btnMoveTemplate()}
+                onClick={() => {
+                  setInfobtn(true);
+                }}
+                onTransitionEnd={() => {
+                  infobtn && setInfodiv(true);
+                }}
+              />
               <div className={`d-flex ${styles['img-info']}`}>
-                <div className={`${styles['profile-img']} mb-3 mr-3`}>
-                  <Shin />
+                <div className={`${styles['profile-img']} mb-3 mr-md-3 mr-2`}>
+                  <img src={config.MEM_PHOTO + `/${postMemImg}`} alt="" />
                 </div>
-                <div className="d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3">
-                  <h2 className="mytitle ch-title-22 ">
-                    印出來的壽司 good job!!
+                <div
+                  className={`${styles['img-title-box']} d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3`}
+                >
+                  <h2 className={`${styles['img-title']} pt-2`}>
+                    {shareTitle}
                   </h2>
-                  <h3 className="en-cont-14">Shin</h3>
+                  <h3 className="en-cont-14">{postMemName}</h3>
                 </div>
                 <button
-                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center`}
+                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
                 >
                   <Heart style={{ padding: '10px' }} />
-                  <div className="en-cont-16 text-white">15</div>
+                  <div className="en-cont-16 text-white d-none d-lg-block">
+                    {savesCount}
+                  </div>
                 </button>
               </div>
-              <div
-                className={`${styles['img-info']} d-flex justify-content-center`}
-              >
-                <div className={`${styles['img-container']} mb-5`}>
-                  <img src={itemData[3].img} alt="bed"></img>
-                </div>
-                <ArrowLeft className={`${styles['img-arrow-left']}`} />
-                <ArrowRight className={`${styles['img-arrow-right']}`} />
-              </div>
-              <div
-                className={`${styles['img-carousel']} d-flex justify-content-center ${styles['mb-80']}`}
-              >
-                <div className={`${styles['small-img-container']}`}>
-                  <img
-                    src="https://images.unsplash.com/photo-1549388604-817d15aa0110"
-                    alt="bed"
-                  ></img>
-                </div>
-                <div className={`${styles['small-img-container']}`}>
-                  <img src={itemData[1].img} alt="bed"></img>
-                </div>
-                <div className={`${styles['small-img-container']}`}>
-                  <img src={itemData[4].img} alt="bed"></img>
-                </div>
-              </div>
+              <ShareItemImgs itemImgs={itemImgs} />
               <div className={`${styles['img-desc']} d-flex ch-cont-16`}>
-                這個壽司超炫!!如果下次朋友有揪我一定二話不說再買R!!!這個壽司超炫!!如果下次朋友有揪我一定二話不說再買R!!!
-                愛因斯坦講過一句值得人反覆尋思的話，提出一個問題往往比解決一個更重要。
+                {shareDesc}
+              </div>
+            </div>
+            <div className={`${styles['popup-section']} d-flex`}>
+              <div
+                className={`${styles['detail-section']}  d-flex flex-column`}
+                style={!infodiv ? {} : { width: '560px', padding: '0 15px' }}
+                onTransitionEnd={() => {
+                  !infodiv && setInfobtn(false);
+                }}
+              >
+                <div
+                  style={{}}
+                  className={`${styles['detail-section-box']} d-flex flex-column`}
+                >
+                  <div
+                    className={`d-flex mb-3 border-bottom ${styles['detail-header']}`}
+                  >
+                    <DeleteSm
+                      className={`${styles['del-button']}`}
+                      onClick={() => {
+                        setInfodiv(false);
+                      }}
+                    />
+                    <h2 className="en-title-18 mr-4">Info</h2>
+                  </div>
+                  <div className={`${styles['info-section']} mb-5`}>
+                    <div className="d-flex mt-3 mb-5">
+                      <div className="d-flex flex-grow-1">
+                        <PriceTag className="mr-3" />
+                        <h3 className="en-cont-18">NT_$500</h3>
+                      </div>
+                      <div className="d-flex  flex-grow-1">
+                        <TimeClock className="mr-3" />
+                        <h3 className="en-cont-18">40_MIN</h3>
+                      </div>
+                    </div>
+                    <div className={`${styles['tag-box']}`}>
+                      <div className={`${styles['tag']} ch-title-16`}>
+                        #超好吃
+                      </div>
+                      <div className={`${styles['tag']} ch-title-16`}>
+                        #下次再揪阿
+                      </div>
+                      <div className={`${styles['tag']} ch-title-16`}> #香</div>
+                      <div className={`${styles['tag']} ch-title-16`}>
+                        #最近有活動!!大家趕快去買!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className={`${styles['message-section']}  d-flex flex-column`}
+                style={!msgdiv ? {} : { width: '560px', padding: '0 15px' }}
+                onTransitionEnd={() => {
+                  !msgdiv && setMsgbtn(false);
+                }}
+              >
+                <div
+                  className={`${styles['message-section-box']}  d-flex flex-column`}
+                >
+                  <div
+                    className={`d-flex mb-3 border-bottom ${styles['comment-header']}`}
+                  >
+                    <DeleteSm
+                      className={`${styles['del-button']}`}
+                      onClick={() => {
+                        setMsgdiv(false);
+                      }}
+                    />
+                    <h2 className="en-title-18 mr-4 ">Comments</h2>
+                    <h3 className="en-title-18">{'7'}</h3>
+                  </div>
+                  <div className={`${styles['comment-section']} mb-4`}>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Shinder Lin
+                        </h2>
+                        <p className="ch-cont-14">非常好吃的壽司</p>
+                        <p className="en-cont-12">36 mins ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Miles Teng
+                        </h2>
+                        <p className="ch-cont-14">拍得很好看</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Joe Shih
+                        </h2>
+                        <p className="ch-cont-14">Looks amazing✨</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Joe Shih
+                        </h2>
+                        <p className="ch-cont-14">Looks amazing✨</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Joe Shih
+                        </h2>
+                        <p className="ch-cont-14">Looks amazing✨</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Joe Shih
+                        </h2>
+                        <p className="ch-cont-14">Looks amazing✨</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                    <div className="d-flex mt-5 mb-3">
+                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
+                        <Commenter />
+                      </div>
+                      <div className="d-flex flex-column ">
+                        <h2 className="en-cont-14 mb-3 font-weight-bold">
+                          Joe Shih
+                        </h2>
+                        <p className="ch-cont-14">Looks amazing✨</p>
+                        <p className="en-cont-12">1 hour ago</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className={`${styles['my-comment']} d-flex mr-3`}>
+                    <div className="d-flex flex-column w-100">
+                      <div className="d-flex mb-3">
+                        <div className={`${styles['profile-img-sm']} mr-3 `}>
+                          <Commenter />
+                        </div>
+                        <TextareaAutosize
+                          maxRows={1}
+                          className={`${styles['comment-textarea']} ch-cont-14 w-100`}
+                          placeholder=" 我的想法..."
+                        />
+                      </div>
+                      <div className="d-flex justify-content-end">
+                        <button
+                          className={`${styles['save-button-sm-border']} ch-title-14 mr-3 mb-3 btn-sm btn-outline-primary`}
+                        >
+                          取消
+                        </button>
+                        <button
+                          className={`${styles['save-button-sm']} ch-title-14 mb-3 btn-sm btn-primary`}
+                        >
+                          發佈
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
