@@ -8,6 +8,8 @@ import BackToTop from './components/BackToTop';
 import { useWindowScroll } from 'react-use';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Entry from './components/Entry';
+import zIndex from '@mui/material/styles/zIndex';
 
 // 變色的classname屬性要用props傳送，用三元運算流程判斷
 // React Observe 資料變化改變CSS https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E8%AA%8D%E8%AD%98-intersection-observer-api-%E5%AF%A6%E4%BD%9C-lazy-loading-%E5%92%8C-infinite-scroll-c8d434ad218c
@@ -17,6 +19,7 @@ function Index(props) {
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
   const [changeBG, setChangeBG] = useState(null);
+  const [open, setOpen] = useState(true);
 
   const { y: pageYOffset } = useWindowScroll();
 
@@ -50,7 +53,6 @@ function Index(props) {
   let start = 0;
   const setTime = () => {
     setInterval(changeCubeImg, 2000);
-    // setInterval(changeTextImg, 2000);
   };
   const changeCubeImg = () => {
     if (start > 2) {
@@ -161,6 +163,7 @@ function Index(props) {
   return (
     <>
       <Header />
+      {open && <Entry open={open} setOpen={setOpen} />}
       <div className="home" style={changeBG ? darkBG : lightBG}>
         <div style={{ display: 'flex' }}>
           <AsideLeft
@@ -174,7 +177,7 @@ function Index(props) {
             <div className="home-page">
               {/* PC index top */}
               {/* todo: scroll down opacity 0 */}
-              {pageYOffset < 900 && (
+              {/*{pageYOffset < 900 && (
                 <div className="d-none d-sm-block">
                   <div className="pc-index-top">
                     <img
@@ -183,10 +186,9 @@ function Index(props) {
                     />
                   </div>
                 </div>
-              )}
+              )}*/}
 
               {/* index content */}
-              {/* todo: 下排圖片改變時，process的innerHTML要換字 */}
               <div className="index-content">
                 <div className="en-title-14-5 content-top d-flex justify-content-between">
                   <div className="col-12 number">NO.897532</div>
@@ -194,12 +196,10 @@ function Index(props) {
                     Constructing...
                   </div>
                 </div>
-                {/* todo: content-bottom 當火車頭 */}
                 <div className="content-bottom d-flex justify-content-evenly">
                   <div className="col-12 index-cube-img">
                     <img
                       ref={cubeImgRef}
-                      // src={images[currentImage]}
                       src={`http://localhost:3500/img/home/intro-constructing.svg`}
                       alt="cube"
                     />
@@ -692,13 +692,17 @@ function Index(props) {
             {/* footer */}
             <div className="home-page">
               <Title title={''} />
-              <div className="footer-top">
+              <Link
+                to={'./classic'}
+                className="footer-top"
+                style={{ textDecoration: 'none' }}
+              >
                 <img
                   src={`http://localhost:3500/img/home/footer-toproduct-arrow.svg`}
                   alt="to-product"
                   style={{ cursor: 'pointer' }}
                 />
-              </div>
+              </Link>
               <div className="footer-logo d-none d-md-block">
                 <img
                   src={`http://localhost:3500/img/home/footer-pc-logo.svg`}

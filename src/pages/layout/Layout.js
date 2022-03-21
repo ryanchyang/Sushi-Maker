@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ReactComponent as Logo } from '../../imgs/logo.svg';
+import { ReactComponent as LogoLight } from '../../imgs/logoLight.svg';
 import { ReactComponent as Hamburger } from '../../imgs/hamburger.svg';
 import { ReactComponent as HamburgerLight } from '../../imgs/hamburgerLight.svg';
 import { ReactComponent as Cart } from '../../imgs/cart.svg';
@@ -75,7 +76,11 @@ function AsideLeft(props) {
       >
         <div className="aside-left">
           <div className="logo-box">
-            <Logo className="logo" />
+            {changeBG ? (
+              <LogoLight className="logo" />
+            ) : (
+              <Logo className="logo" />
+            )}
           </div>
         </div>
       </aside>

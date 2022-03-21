@@ -1,4 +1,7 @@
 .entry {
+  position: fixed;
+  top: 0;
+  left: 0;
   background-color: #212121;
   width: 100%;
   height: 100vh;
@@ -23,11 +26,24 @@
     margin-top: 1rem;
   }
   .progress-done {
+    transition: 1s ease 0.3s;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 500;
     height: 100%;
-    width: 20%;
+    width: 100%;
     border-radius: 2rem;
     background: #b03342;
     box-shadow: 2px 0px 3px -5px #b03342, 2px 0px 5px #b03342;
+    animation: progressbar 5s ease-in;
+  }
+  @keyframes progressbar {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
   }
   .loading-txt {
     color: #ffffff;
