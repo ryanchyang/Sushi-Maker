@@ -1,4 +1,5 @@
-import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Header, Title, AsideLeft, Footer } from '../layout/Layout';
+import AsideRight from './AsideRight';  //右邊layout多了歷史查詢功能，因此拉出來自製
 import './index.scss';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
