@@ -32,7 +32,7 @@ function Entry(props) {
             <div className="progress">
               <div
                 className="en-cont-18 progress-done"
-                onTransitionEnd={() => {
+                onAnimationEnd={() => {
                   console.log('transitionend');
                   setOpen(false);
                 }}

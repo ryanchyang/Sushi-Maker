@@ -35,7 +35,7 @@
     border-radius: 2rem;
     background: #b03342;
     box-shadow: 2px 0px 3px -5px #b03342, 2px 0px 5px #b03342;
-    animation: progressbar 5s ease-in;
+    animation: progressbar 5s ease-in-out;
   }
   @keyframes progressbar {
     from {

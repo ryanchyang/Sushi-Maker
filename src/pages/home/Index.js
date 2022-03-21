@@ -19,7 +19,7 @@ function Index(props) {
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
   const [changeBG, setChangeBG] = useState(null);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState('');
 
   const { y: pageYOffset } = useWindowScroll();
 
@@ -29,7 +29,9 @@ function Index(props) {
   const textImgRef = useRef();
 
   // ToDo:初始化要資料
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setOpen(true);
+  }, []);
 
   useEffect(() => {
     setNewsIndex(0);
