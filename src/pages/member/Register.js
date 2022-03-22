@@ -8,14 +8,15 @@ import { setAuthToken, setMemId } from '../../utils';
 //styled component
 const LoginBody = styled.body`
   background: #212121;
+  position: relative;
 `;
 const LoginArea = styled.div`
   display: flex;
   justify-content: space-around;
-  height: 75%;
+  height: 85%;
   width: 75%;
   position: fix;
-  top: 13%;
+  top: 9%;
   left: 10%;
   padding: 0;
   background-color: rgba(255, 255, 255, 0.3);
@@ -24,7 +25,7 @@ const LoginArea = styled.div`
 
 const RegistForm = styled.form`
   display: flex;
-  margin-top: 20%;
+  margin-top: 10%;
   flex-direction: column;
 `;
 const InputArea = styled.div`
@@ -119,7 +120,7 @@ function Register() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex', height:'100vh'}}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
             {/* <Title title={''} /> */}
