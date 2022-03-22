@@ -3,6 +3,7 @@ import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { registerMem, registerMail } from '../../WebApi';
+import { setAuthToken, setMemId } from '../../utils';
 
 //styled component
 const LoginBody = styled.body`
@@ -77,7 +78,7 @@ function Register() {
     memInpVcode: '',
   });
   const [vCode, setVcode] = useState('');
-  const [errorMessageMail, setErrorMessageMail] = useState('')
+  const [errorMessageMail, setErrorMessageMail] = useState('');
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
   //function
@@ -88,6 +89,9 @@ function Register() {
         console.log(obj);
         if (obj.success) {
           alert('註冊成功');
+          setAuthToken(obj.token);
+          setMemId(obj.info.mem_id);
+          history.push('/member');
         }
       });
     } else {
@@ -100,8 +104,8 @@ function Register() {
           setTimeout(() => {
             localStorage.removeItem('verify_code');
           }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
-        }else {
-          setErrorMessageMail(obj.errorMessage)
+        } else {
+          setErrorMessageMail(obj.errorMessage);
         }
       });
     }
@@ -147,7 +151,9 @@ function Register() {
                       letterSpacing: '0.14rem',
                     }}
                   />
-                  <ErrorMessage className="ch-cont-14">{errorMessageMail}</ErrorMessage>
+                  <ErrorMessage className="ch-cont-14">
+                    {errorMessageMail}
+                  </ErrorMessage>
 
                   <InputTitle className="ch-cont-14">密碼</InputTitle>
                   <input
@@ -299,8 +305,14 @@ function Register() {
                   <div
                     style={vCode ? { display: 'block' } : { display: 'none' }}
                   >
-                    <div style={{ width: '100%', display:'flex', justifyContent:"space-between"}}>
-                      <div style={{width:"49%", marginTop:"5%"}}>
+                    <div
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <div style={{ width: '49%', marginTop: '5%' }}>
                         <InputTitle className="ch-cont-14">
                           請輸入驗證碼
                         </InputTitle>
@@ -324,17 +336,17 @@ function Register() {
                           onChange={handleChange}
                         />
                       </div>
-                    
-                    <button
-                      className="ch-title-22 btn btn-sm primeal-btn btn-primary"
-                      style={{
-                        marginTop: '15%',
-                        height: '40px',
-                        width:"49%"
-                      }}
-                    >
-                      註冊
-                    </button>
+
+                      <button
+                        className="ch-title-22 btn btn-sm primeal-btn btn-primary"
+                        style={{
+                          marginTop: '15%',
+                          height: '40px',
+                          width: '49%',
+                        }}
+                      >
+                        註冊
+                      </button>
                     </div>
                   </div>
                 </RegistForm>
