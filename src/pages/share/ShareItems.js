@@ -3,14 +3,14 @@ import styles from './Share.module.scss';
 
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
-import { ReactComponent as Commenter } from './imgs/user.svg';
+
 import { ReactComponent as Heart } from '../../imgs/heart.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
 
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 import ShareItemImgs from './components/ShareItemImgs';
 import ItemDetailsInfo from './components/ItemDetailsInfo';
+import ItemDetailsComments from './components/ItemDetailsComments';
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -35,6 +35,7 @@ function ShareItems() {
     orders_print_time: orderPrint,
     share_imgs: itemImgs = [],
     share_comments: shareComments = [],
+    share_tags: shareTags = [],
   } = itemDetails;
 
   const { id } = useParams();
@@ -55,8 +56,6 @@ function ShareItems() {
       setItemDetails(result.data[0]);
     })();
   }, []);
-
-  console.log(itemDetails);
 
   const btnMoveTemplate = () => {
     return msgbtn || infobtn
@@ -152,26 +151,12 @@ function ShareItems() {
                   !infodiv && setInfobtn(false);
                 }}
               >
-                <div
-                  style={{}}
-                  className={`${styles['detail-section-box']} d-flex flex-column`}
-                >
-                  <div
-                    className={`d-flex mb-3 border-bottom ${styles['detail-header']}`}
-                  >
-                    <DeleteSm
-                      className={`${styles['del-button']}`}
-                      onClick={() => {
-                        setInfodiv(false);
-                      }}
-                    />
-                    <h2 className="en-title-18 mr-4">Info</h2>
-                  </div>
-                  <ItemDetailsInfo
-                    orderVal={orderVal}
-                    orderPrint={orderPrint}
-                  />
-                </div>
+                <ItemDetailsInfo
+                  orderVal={orderVal}
+                  orderPrint={orderPrint}
+                  shareTags={shareTags}
+                  setInfodiv={setInfodiv}
+                />
               </div>
               <div
                 className={`${styles['message-section']}  d-flex flex-column`}
@@ -180,134 +165,11 @@ function ShareItems() {
                   !msgdiv && setMsgbtn(false);
                 }}
               >
-                <div
-                  className={`${styles['message-section-box']}  d-flex flex-column`}
-                >
-                  <div
-                    className={`d-flex mb-3 border-bottom ${styles['comment-header']}`}
-                  >
-                    <DeleteSm
-                      className={`${styles['del-button']}`}
-                      onClick={() => {
-                        setMsgdiv(false);
-                      }}
-                    />
-                    <h2 className="en-title-18 mr-4 ">Comments</h2>
-                    <h3 className="en-title-18">{'7'}</h3>
-                  </div>
-                  <div className={`${styles['comment-section']} mb-4`}>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Shinder Lin
-                        </h2>
-                        <p className="ch-cont-14">非常好吃的壽司</p>
-                        <p className="en-cont-12">36 mins ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Miles Teng
-                        </h2>
-                        <p className="ch-cont-14">拍得很好看</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Joe Shih
-                        </h2>
-                        <p className="ch-cont-14">Looks amazing✨</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Joe Shih
-                        </h2>
-                        <p className="ch-cont-14">Looks amazing✨</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Joe Shih
-                        </h2>
-                        <p className="ch-cont-14">Looks amazing✨</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Joe Shih
-                        </h2>
-                        <p className="ch-cont-14">Looks amazing✨</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                    <div className="d-flex mt-5 mb-3">
-                      <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
-                        <Commenter />
-                      </div>
-                      <div className="d-flex flex-column ">
-                        <h2 className="en-cont-14 mb-3 font-weight-bold">
-                          Joe Shih
-                        </h2>
-                        <p className="ch-cont-14">Looks amazing✨</p>
-                        <p className="en-cont-12">1 hour ago</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={`${styles['my-comment']} d-flex mr-3`}>
-                    <div className="d-flex flex-column w-100">
-                      <div className="d-flex mb-3">
-                        <div className={`${styles['profile-img-sm']} mr-3 `}>
-                          <Commenter />
-                        </div>
-                        <TextareaAutosize
-                          maxRows={1}
-                          className={`${styles['comment-textarea']} ch-cont-14 w-100`}
-                          placeholder=" 我的想法..."
-                        />
-                      </div>
-                      <div className="d-flex justify-content-end">
-                        <button
-                          className={`${styles['save-button-sm-border']} ch-title-14 mr-3 mb-3 btn-sm btn-outline-primary`}
-                        >
-                          取消
-                        </button>
-                        <button
-                          className={`${styles['save-button-sm']} ch-title-14 mb-3 btn-sm btn-primary`}
-                        >
-                          發佈
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ItemDetailsComments
+                  setMsgdiv={setMsgdiv}
+                  shareComments={shareComments}
+                  postMemImg={postMemImg}
+                />
               </div>
             </div>
           </div>
