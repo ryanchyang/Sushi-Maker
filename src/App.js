@@ -14,7 +14,6 @@ import IndexActive from './pages/member/IndexActive';
 import IndexAnalyze from './pages/member/IndexAnalyze';
 import IndexHistoryOrder from './pages/member/IndexHistoryOrder';
 import IndexRevise from './pages/member/IndexRevise';
-// import CalendarTest from './pages/member/CalendarTest';
 // Share
 import Share from './pages/share/Share';
 import ShareItems from './pages/share/ShareItems';
@@ -93,9 +92,6 @@ function App() {
           <Route path="/member/active">
             <IndexActive />
           </Route>
-          {/*<Route path="/member/calendar">
-            <CalendarTest />
-          </Route>*/}
           <Route path="/member/analyze">
             <IndexAnalyze />
           </Route>

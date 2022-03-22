@@ -8,19 +8,26 @@ import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
 import { useState, useEffect } from 'react';
+// import { useWindowScroll } from 'react-use';
 import styles from './Share.module.scss';
 import config from '../../Config';
 
 function Share() {
+  //controll
   const [filter, setFilter] = useState(false);
   const [masonryContainer, setMasonryContainer] = useState(true);
   const [search, setSearch] = useState(false);
   const [colControl, setColControl] = useState(false);
 
+  //window handler
+  // const { y: pageYOffset } = useWindowScroll();
   const currentWidth = useCurrentWidth();
+
+  //masonry
   const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
   const [gap, setGap] = useState(4);
-
+  
+  //data
   const [shareItemsData, setShareItemsData] = useState([]);
 
   const updateDimensions = () => {

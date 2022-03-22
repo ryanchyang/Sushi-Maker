@@ -33,7 +33,7 @@ const LoginForm = styled.form`
   flex-direction: column;
 `;
 const InputArea = styled.div`
-  margin-top: 15%;
+  margin-top: 10%;
   padding: 0;
 `;
 const LoginAreaImg = styled.div`
@@ -41,7 +41,7 @@ const LoginAreaImg = styled.div`
 `;
 const InputTitle = styled.p`
   color: #f7f6f3;
-  margin-top: 48px;
+  margin-top: 10%;
 `;
 const InputForPsw = styled.p`
   color: #f7f6f3;
@@ -102,7 +102,7 @@ function Login() {
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height: '100vh' }}>
+        <div style={{ display: 'flex' }}>
           <AsideLeft />
           <AsideRight />
           <div style={{ width: '100%' }}>
@@ -197,7 +197,7 @@ function Login() {
                   <button
                     className="ch-title-22 btn btn-sm primeal-btn"
                     style={{
-                      marginTop: '61px',
+                      marginTop: '15%',
                       height: '40px',
                       color: '#575757',
                       background: '#f7f6f3',

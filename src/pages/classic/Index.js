@@ -6,11 +6,14 @@ import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.sv
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../Config';
 
+import { Button, Modal } from 'react-bootstrap';
+
 function Index() {
+ 
   const [allData, setAllData] = useState([]);
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
   const [isOpenMainContent, setIsOpenMainContent] = useState(true); //是否開啟主要商品列表
@@ -298,12 +301,41 @@ function Index() {
     ); //取當頁所呈現的商品列表
   };
 
+  // 加入購物車光箱
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   //加入購物車
   const addToCart = id => {
+    const isLogin = localStorage.getItem('mem_id') !== null;
     let addProd = buyProdCount.find(p => p.pid === +id);
-    alert(`你已成功將${addProd.count}個${addProd.pname}加入至購物車`);
+    console.log(addProd);
+
+    // alert(`你已成功將${addProd.count}個${addProd.pname}加入至購物車`);
   };
 
+  const modal = (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2" >
+          您的商品已加入購物車
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
   //初始化所有商品的購買數量(皆為1)
   const initProdBuyCount = prodList => {
     const prodCount = [];
@@ -590,14 +622,17 @@ function Index() {
                                 +
                               </button>
                             </div>
+
                             <div
                               className="cart-btn"
                               onClick={() => {
                                 addToCart(pid);
                               }}
                             >
-                              <Cart />
+                              {modal}
+                              <Cart onClick={handleShow} />
                             </div>
+
                             <button
                               className="add-cart btn-sm btn-primary primeal-btn"
                               onClick={() => {

@@ -34,30 +34,6 @@ function EvntsSignUp(props) {
     getEvntsInfo();
   }, []);
 
-  // 處理日期格式
-  const dateFormat = date => {
-    if (!date) {
-      return '';
-    } else {
-      let d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [year, month, day].join('-');
-    }
-  };
-
-  // 處理時間格式
-  const timeFormat = time => {
-    if (!time) {
-      return '';
-    } else {
-      return time.substring(0, 5);
-    }
-  };
-
   // Input State
   const [fields, setFields] = useState({
     name: '',
@@ -140,6 +116,17 @@ function EvntsSignUp(props) {
     setFieldsError(updatedFieldError);
   };
 
+  // 清除重新填寫
+  const clearFormHandler = () => {
+    setFields({
+      name: '',
+      mobile: '',
+      email: '',
+      number: '',
+      comment: '',
+    });
+  };
+
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
@@ -214,7 +201,7 @@ function EvntsSignUp(props) {
                           {evntsInfo[0]?.evnts_title ?? ''}
                         </div>
                         <div className="en-cont-16 evnts-date">
-                          {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
+                          {evntsInfo[0]?.evnts_date ?? ''}
                         </div>
                         <div className="ch-cont-16 evnts-tag">
                           {evntsInfo[0]?.evnts_cate ?? ''}
@@ -223,8 +210,8 @@ function EvntsSignUp(props) {
                       <div className="evnts-img">
                         <img
                           src={
-                            '/img/home/evnts/' + evntsInfo[0]?.evnts_img_path ??
-                            ''
+                            `http://localhost:3500` +
+                              evntsInfo[0]?.evnts_img_path ?? ''
                           }
                           alt="events"
                         />
@@ -234,31 +221,29 @@ function EvntsSignUp(props) {
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">報名開始:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(
-                          evntsInfo[0]?.evnts_signup_start_date ?? ''
-                        )}
+                        {evntsInfo[0]?.evnts_signup_start_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">報名截止:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(evntsInfo[0]?.evnts_signup_end_date ?? '')}
+                        {evntsInfo[0]?.evnts_signup_end_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">活動日期:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
+                        {evntsInfo[0]?.evnts_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">活動時間:</div>
                       <div className="ch-cont-16 info-content">
-                        {timeFormat(evntsInfo[0]?.evnts_start_time ?? '')}-
-                        {timeFormat(evntsInfo[0]?.evnts_end_time ?? '')}
+                        {evntsInfo[0]?.evnts_start_time ?? ''}-
+                        {evntsInfo[0]?.evnts_end_time ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
@@ -384,13 +369,13 @@ function EvntsSignUp(props) {
                           id="comment"
                           name="comment"
                           onChange={handleFieldChange}
-                          maxRows="5"
                         ></textarea>
                       </div>
                       <div className="button-group">
                         <button
-                          type="submit"
+                          type="reset"
                           className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1"
+                          onClick={clearFormHandler}
                         >
                           重新填寫
                         </button>

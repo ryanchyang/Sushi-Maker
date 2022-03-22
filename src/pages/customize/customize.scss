@@ -33,11 +33,19 @@
 }
 
 // 內容物class
+$areaHeight: calc( 100vh - 80px );
 .customize {
   .left-area,
   .mid-area,
   .right-area {
     height: 100vh;
+
+    @include pad{
+      height: $areaHeight;
+    }
+    @include mobile{
+      height: $areaHeight;
+    }
   }
   .mtlView {
     position: relative;
@@ -86,28 +94,34 @@
       max-width: 87.5%;
     }
   }
+
+  $laBtn: calc( -100% + 30px);
   .left-area {
     transition: 0.5s ease-in-out;
 
     @include pad {
-      transform: translate(-100%);
+      transform: translate($laBtn);
+      left: 0;
     }
     @include mobile {
-      transform: translate(-100%);
+      transform: translate($laBtn);
+      left: 0;
     }
   }
+  $raBtn: calc( 100% - 30px);
   .right-area {
     transition: 0.5s ease-in-out;
 
     @include pad {
-      transform: translate(100%);
+      transform: translate($raBtn);
       right: 0;
     }
     @include mobile {
-      transform: translate(100%);
+      transform: translate($raBtn);
       right: 0;
     }
   }
+
   .mid-area {
     flex-basis: 0;
     flex-grow: 1;
@@ -238,6 +252,8 @@
   }
   .mtlBtnIn-R {
     max-height: $mtlBtnCalcR;
+    display: flex;
+    flex-direction: column-reverse;
 
     @include pad{
       max-height: $mtlBtnCalc;
@@ -251,7 +267,7 @@
     transform: scale(1.03);
     transition: 0.5s;
   }
-  .mtlimg > img:focus {
+  .imgActive {
     border: 5px solid #eed19a;
     transition: 0.5s;
   }
@@ -267,13 +283,21 @@
   }
   .la-btn,
   .ra-btn {
+    display: none;
     margin: 0.5rem;
-    display: flex;
     justify-content: center;
     align-items: center;
     width: 2rem;
     cursor: pointer;
     position: relative;
+
+    @include pad{
+      display: flex;
+    }
+    @include mobile{
+      display: flex;
+    }
+
   }
   .la-btn-box {
     position: absolute;
@@ -281,6 +305,7 @@
     height: 30px;
     width: 30px;
     cursor: pointer;
+  
   }
 
   .logoMtl-box {
@@ -344,6 +369,31 @@
       line-height: 3.6rem;
       letter-spacing: 0.54rem;
       padding: 20px 0 0 15px;
+    }
+  }
+  .threedArea{
+    width: 100%;
+    height: 100%;
+    // background-color: #aef;
+  }
+
+  .trail{
+    @extend .en-title-14-10;
+    height: 3rem;
+    padding-left: 5%;
+
+    @include pad {
+      @include mytitle;
+      font-size: 1.4rem;
+      line-height: 2.1rem;
+      letter-spacing: 0.2rem;
+    }
+
+    @include mobile{
+      @include mytitle;
+      font-size: 1.2rem;
+      line-height: 1.8rem;
+      letter-spacing: 0.08rem;
     }
   }
 }
