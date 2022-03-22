@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { ReactComponent as DeleteSm } from '../../../imgs/delete-sm.svg';
-import { accountCheck } from '../../../WebApi';
-import { setAuthToken, setMemId } from '../../../utils';
+import { vcodeCheck } from '../../../WebApi';
 
 //styled component
 const Slogan = styled.p`
@@ -14,11 +13,11 @@ const Slogan = styled.p`
   margin-bottom: 15%;
 `;
 
-const PwdCheckForm = styled.form`
+const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
-const ForgetPwdArea = styled.div`
+const InputArea = styled.div`
   padding-right: 3%;
   padding-left: 3%;
   padding-top: 8%;
@@ -28,36 +27,34 @@ const ForgetPwdArea = styled.div`
   overflow: hidden;
   z-index: 1;
 `;
+
 const InputTitle = styled.p`
   color: #212121;
   margin-top: 15%;
 `;
+
 const ErrorMessage = styled.p`
   color: #b03342;
-  height: 20px;
 `;
 
-//function
-
-function LoginForgetPwd(props) {
-  const { forgetPwd, setForgetPwd } = props;
-  const { setAccountPass } = props;
-  const [men_account, setMen_account] = useState('');
+function LoginForgetPwdVcodeNew(props) {
+  const { accountPass, setAccountPass } = props;
   const [errorMessage, setErrorMessage] = useState('');
+  const [vCodeCheck, setVCodeCheck] = useState(false);
+  const [validCode, setValidCode] = useState('');
+  const verify_code = localStorage.getItem('verify_code');
 
-  const handleForgetPwdSubmit = e => {
+  const handleClickClose = () => {
+    setAccountPass(false);
+  };
+  const handleVcodeSubmit = e => {
     e.preventDefault();
-    accountCheck(men_account).then(obj => {
-      if (obj.code !== 0) {
-        return setErrorMessage(obj.error);
+    vcodeCheck(validCode, verify_code).then(obj => {
+      console.log(obj.success);
+      if (obj.success === false) {
+        setErrorMessage(obj.errorMessage);
       } else {
-        localStorage.setItem('verify_code', obj.verify_code);
-        setTimeout(() => {
-          localStorage.removeItem('verify_code');
-        }, 1000 * 60 * 5);
-        setAccountPass(true);
-        setForgetPwd(false);
-        setMemId(obj.info.mem_id);
+        setVCodeCheck(true);
         setErrorMessage('');
       }
     });
@@ -65,36 +62,27 @@ function LoginForgetPwd(props) {
 
   return (
     <>
-      <ForgetPwdArea
+      <InputArea
         className="col-5"
         style={
-          !forgetPwd
-            ? {
-                right: '-100%',
-                height: '100%',
-                zIndex: 1,
-                transitionDelay: '0.5s',
-              }
+          !accountPass
+            ? { right: '-100%', height: '100%', zIndex: 1 }
             : { right: '12.5%', height: '100%', zIndex: 1 }
         }
       >
         <DeleteSm
-          onClick={() => {
-            setForgetPwd(false);
-            setErrorMessage('');
-          }}
+          onClick={handleClickClose}
           style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
         ></DeleteSm>
-
-        <Slogan>Pleae confirm your Email</Slogan>
-        <PwdCheckForm onSubmit={handleForgetPwdSubmit}>
-          <InputTitle className="ch-cont-14">請輸入您的帳號</InputTitle>
+        <Slogan>Please confirm your Vcode</Slogan>
+        <LoginForm onSubmit={handleVcodeSubmit}>
+          <InputTitle className="ch-cont-14">請輸入驗證碼</InputTitle>
           <input
             type="text"
             className="form-control"
-            value={men_account}
+            value={validCode}
             onChange={e => {
-              setMen_account(e.target.value);
+              setValidCode(e.target.value);
             }}
             style={{
               borderRadius: 50,
@@ -107,23 +95,21 @@ function LoginForgetPwd(props) {
               letterSpacing: '0.14rem',
             }}
           />
-          <ErrorMessage className="ch-cont-14">
-            {errorMessage && errorMessage}
-          </ErrorMessage>
+          <ErrorMessage className="ch-cont-14">{errorMessage}</ErrorMessage>
           <button
             className="btn btn-primary primeal-btn"
             style={{
-              marginTop: '20%',
+              marginTop: '90px',
               width: '100%',
               height: '40px',
             }}
           >
             送出
           </button>
-        </PwdCheckForm>
-      </ForgetPwdArea>
+        </LoginForm>
+      </InputArea>
     </>
   );
 }
 
-export default LoginForgetPwd;
+export default LoginForgetPwdVcodeNew;

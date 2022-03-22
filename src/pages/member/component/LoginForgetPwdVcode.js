@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { ReactComponent as DeleteSm } from '../../../imgs/delete-sm.svg';
+import { vcodeCheck } from '../../../WebApi';
 
 //styled component
 const Slogan = styled.p`
@@ -9,7 +10,7 @@ const Slogan = styled.p`
   font-size: 3.6rem;
   line-height: 5.4rem;
   letter-spacing: 0.81rem;
-  margin-bottom: 84px;
+  margin-bottom: 15%;
 `;
 
 const LoginForm = styled.form`
@@ -19,7 +20,7 @@ const LoginForm = styled.form`
 const InputArea = styled.div`
   padding-right: 3%;
   padding-left: 3%;
-  padding-top: 10%;
+  padding-top: 8%;
   background: #f7f6f3;
   position: fixed;
   transition: 0.5s;
@@ -29,20 +30,34 @@ const InputArea = styled.div`
 
 const InputTitle = styled.p`
   color: #212121;
-  margin-top: 48px;
+  margin-top: 15%;
 `;
 
 const ErrorMessage = styled.p`
   color: #b03342;
 `;
 
-
 function LoginForgetPwdVcode(props) {
   const { accountPass, setAccountPass } = props;
+  const [errorMessage, setErrorMessage] = useState('');
+  const [vCodeCheck, setVCodeCheck] = useState(false);
   const [validCode, setValidCode] = useState('');
+  const verify_code = localStorage.getItem('verify_code');
 
   const handleClickClose = () => {
     setAccountPass(false);
+  };
+  const handleVcodeSubmit = e => {
+    e.preventDefault();
+    vcodeCheck(validCode, verify_code).then(obj => {
+      console.log(obj.success);
+      if (obj.success === false) {
+        setErrorMessage(obj.errorMessage);
+      } else {
+        setVCodeCheck(true);
+        setErrorMessage('');
+      }
+    });
   };
 
   return (
@@ -59,8 +74,8 @@ function LoginForgetPwdVcode(props) {
           onClick={handleClickClose}
           style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
         ></DeleteSm>
-        <Slogan>Pleae confirm your Vcode</Slogan>
-        <LoginForm >
+        <Slogan>Please confirm your Vcode</Slogan>
+        <LoginForm onSubmit={handleVcodeSubmit}>
           <InputTitle className="ch-cont-14">請輸入驗證碼</InputTitle>
           <input
             type="text"
@@ -80,7 +95,7 @@ function LoginForgetPwdVcode(props) {
               letterSpacing: '0.14rem',
             }}
           />
-          <ErrorMessage className="ch-cont-14">帳號錯誤!</ErrorMessage>
+          <ErrorMessage className="ch-cont-14">{errorMessage}</ErrorMessage>
           <button
             className="btn btn-primary primeal-btn"
             style={{

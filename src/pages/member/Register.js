@@ -16,7 +16,7 @@ const LoginArea = styled.div`
   height: 85%;
   width: 75%;
   position: fix;
-  top: 9%;
+  top: %;
   left: 10%;
   padding: 0;
   background-color: rgba(255, 255, 255, 0.3);

@@ -27,6 +27,19 @@ export const accountCheck = mem_account => {
     }),
   }).then(res => res.json());
 };
+//忘記密碼頁驗證碼驗證API
+export const vcodeCheck = (validCode, verify_code) => {
+  return fetch(`${BASE_URL}/member/api/revise-pwd-vcode`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      validCode,
+      verify_code,
+    }),
+  }).then(res => res.json());
+};
 
 //先留著 換頁render用
 export const getMe = () => {
