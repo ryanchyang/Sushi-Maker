@@ -4,7 +4,6 @@ import MtlLeft from './components/MtlLeft';
 import MtlMid from './components/MtlMid';
 import MtlRight from './components/MtlRight';
 import { useEffect, useState } from 'react';
-import { mtlData } from './sushiMtlTest';
 import config from '../../Config';
 
 function Customize() {
