@@ -140,6 +140,17 @@ function EvntsSignUp(props) {
     setFieldsError(updatedFieldError);
   };
 
+  // 清除重新填寫
+  const clearFormHandler = () => {
+    setFields({
+      name: '',
+      mobile: '',
+      email: '',
+      number: '',
+      comment: '',
+    });
+  };
+
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
@@ -384,13 +395,13 @@ function EvntsSignUp(props) {
                           id="comment"
                           name="comment"
                           onChange={handleFieldChange}
-                          maxRows="5"
                         ></textarea>
                       </div>
                       <div className="button-group">
                         <button
-                          type="submit"
+                          type="reset"
                           className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1"
+                          onClick={clearFormHandler}
                         >
                           重新填寫
                         </button>

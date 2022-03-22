@@ -20,7 +20,7 @@ function Events(props) {
   //         evnts_detail: '有吃過3D列印食物嗎? 快來參加PRIMEAL舉辦的試吃餐會，帶你認識3D列印食物的過程，試吃體驗全新不同的飲食口感。',
   //         evnts_upload_date: 2022 - 01 - 24T16: 00: 00.000Z,
   //         evnts_edit_datetime: 2022 - 03 - 31T00: 00: 00.000Z,
-  //         evnts_img_path: 'event-1.png'
+  //         evnts_img_path: '/img/home/evnts/event-1.png'
   //     }
   // ]
 

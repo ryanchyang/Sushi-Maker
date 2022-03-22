@@ -18,7 +18,7 @@ function News(props) {
   //   花香，給您不一樣的2022春天! ',
   //       news_upload_date: 2022-02-21T16:00:00.000Z,
   //       news_edit_datetime: Invalid Date,
-  //       news_img_path: 'new-cherry-blossom.png',
+  //       news_img_path: '/img/home/news/new-cherry-blossom.png',
   //       news_prod_url: 'null'
   //     }
   // ]
