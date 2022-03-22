@@ -92,6 +92,14 @@
   .filter-tag span {
     cursor: pointer;
   }
+  .no-result{
+    text-align: center;
+    padding-top: 17%;
+  }
+  .no-result span{
+    padding-left: 2%;
+    line-height: 3rem;
+  }
   .prod-list {
     padding: 3% 5% 0 5%;
     display: flex;

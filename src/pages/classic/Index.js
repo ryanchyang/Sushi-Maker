@@ -496,111 +496,123 @@ function Index() {
                 </div> */}
               </div>
 
-              {/* product list */}
-              <div className="prod-list">
-                {/* product card */}
-                {prodList.map(prod => {
-                  const pid = prod.pid;
-                  {
-                    /* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */
-                  }
-                  let buyCount = buyProdCount.filter(p => p.pid === pid);
-                  buyCount = +buyCount[0]?.count ?? 0;
+              {prodList.length === 0 ? (
+                <div className="no-result">
+                  {' '}
+                  {/* no product data */}
+                  <div className="search-btn ch-title-22">
+                    <SearchBtn />
+                    <span>查無符合條件的商品，請重新篩選或清空篩選條件</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="prod-list">
+                  {' '}
+                  {/* product list */}
+                  {/* product card */}
+                  {prodList.map(prod => {
+                    const pid = prod.pid;
+                    {
+                      /* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */
+                    }
+                    let buyCount = buyProdCount.filter(p => p.pid === pid);
+                    buyCount = +buyCount[0]?.count ?? 0;
 
-                  return (
-                    <>
-                      <div className="prod-card" key={pid}>
-                        <Link
-                          to={`/classic/detail/${prod.pid}`}
-                          style={{ textDecoration: 'none', color: '#212121' }}
-                          onClick={() => {
-                            saveHistory(pid);
-                          }}
-                        >
-                          {' '}
-                          {/* 點擊圖片可連到商品詳細頁 */}
-                          <div className="prod-img-box">
-                            {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                            {prod.c_prod_special_tag === '' ? (
-                              ''
-                            ) : (
-                              <div className="discount-tag">
-                                <div className="discount-tag-content">
-                                  {prod.c_prod_special_tag}
+                    return (
+                      <>
+                        <div className="prod-card" key={pid}>
+                          <Link
+                            to={`/classic/detail/${prod.pid}`}
+                            style={{ textDecoration: 'none', color: '#212121' }}
+                            onClick={() => {
+                              saveHistory(pid);
+                            }}
+                          >
+                            {' '}
+                            {/* 點擊圖片可連到商品詳細頁 */}
+                            <div className="prod-img-box">
+                              {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                              {prod.c_prod_special_tag === '' ? (
+                                ''
+                              ) : (
+                                <div className="discount-tag">
+                                  <div className="discount-tag-content">
+                                    {prod.c_prod_special_tag}
+                                  </div>
                                 </div>
+                              )}
+
+                              <img
+                                // src={require('./../../imgs/temp/classic-pro1.png')}
+                                src={`http://localhost:3500${prod.c_prod_img_path}`}
+                                alt="product"
+                              />
+                            </div>
+                            <div className="prod-name-ch ch-title-22">
+                              {prod.c_prod_ch_name}
+                            </div>
+                            <div className="prod-name-en en-title-14-5">
+                              {prod.c_prod_en_name}
+                            </div>
+                          </Link>
+
+                          {/* 判斷是否有特價 */}
+                          {prod.c_prod_spe_value === 0 ? (
+                            <div className="prod-price-no-discount">
+                              <div className="no-discount ch-cont-16">
+                                NT_{prod.c_prod_value}
                               </div>
-                            )}
-
-                            <img
-                              // src={require('./../../imgs/temp/classic-pro1.png')}
-                              src={`http://localhost:3500${prod.c_prod_img_path}`}
-                              alt="product"
-                            />
-                          </div>
-                          <div className="prod-name-ch ch-title-22">
-                            {prod.c_prod_ch_name}
-                          </div>
-                          <div className="prod-name-en en-title-14-5">
-                            {prod.c_prod_en_name}
-                          </div>
-                        </Link>
-
-                        {/* 判斷是否有特價 */}
-                        {prod.c_prod_spe_value === 0 ? (
-                          <div className="prod-price-no-discount">
-                            <div className="no-discount ch-cont-16">
-                              NT_{prod.c_prod_value}
                             </div>
-                          </div>
-                        ) : (
-                          <div className="prod-price-special">
-                            <div className="original-price ch-cont-16">
-                              NT_{prod.c_prod_value}
+                          ) : (
+                            <div className="prod-price-special">
+                              <div className="original-price ch-cont-16">
+                                NT_{prod.c_prod_value}
+                              </div>
+                              <div className="special-price ch-cont-18">
+                                NT_{prod.c_prod_spe_value}
+                              </div>
                             </div>
-                            <div className="special-price ch-cont-18">
-                              NT_{prod.c_prod_spe_value}
-                            </div>
-                          </div>
-                        )}
+                          )}
 
-                        <div className="select-add-cart">
-                          <div className="select-count">
-                            <button onClick={e => changeCountByMinus(pid)}>
-                              -
-                            </button>
-                            <input
-                              type="number"
-                              value={buyCount}
-                              onChange={e =>
-                                changeCountByType(+e.target.value, pid)
-                              }
-                            />
-                            <button onClick={e => changeCountByAdd(pid)}>
-                              +
+                          <div className="select-add-cart">
+                            <div className="select-count">
+                              <button onClick={e => changeCountByMinus(pid)}>
+                                -
+                              </button>
+                              <input
+                                type="number"
+                                value={buyCount}
+                                onChange={e =>
+                                  changeCountByType(+e.target.value, pid)
+                                }
+                              />
+                              <button onClick={e => changeCountByAdd(pid)}>
+                                +
+                              </button>
+                            </div>
+                            <div
+                              className="cart-btn"
+                              onClick={() => {
+                                addToCart(pid);
+                              }}
+                            >
+                              <Cart />
+                            </div>
+                            <button
+                              className="add-cart btn-sm btn-primary primeal-btn"
+                              onClick={() => {
+                                addToCart(pid);
+                              }}
+                            >
+                              加入購物車
                             </button>
                           </div>
-                          <div
-                            className="cart-btn"
-                            onClick={() => {
-                              addToCart(pid);
-                            }}
-                          >
-                            <Cart />
-                          </div>
-                          <button
-                            className="add-cart btn-sm btn-primary primeal-btn"
-                            onClick={() => {
-                              addToCart(pid);
-                            }}
-                          >
-                            加入購物車
-                          </button>
                         </div>
-                      </div>
-                    </>
-                  );
-                })}
-              </div>
+                      </>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* pagination */}
               {/* 當總商品數量大於一頁的商品數量時才會有分頁按鈕可按 */}
