@@ -6,11 +6,42 @@ import ShareComment from './components/ShareComment';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as Rect } from '../../imgs/tags/Rectangle_orange.svg';
 import styles from './Share.module.scss';
+import config from '../../Config';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function SharePost() {
   const [subTopic, setSubTopic] = useState('shared');
+  const [postItemsData, setPostItemsData] = useState([]);
+  const [commentsData, setCommentsData] = useState([]);
+
+  const getUserSharePost = async () => {
+    const response = await fetch(config.GET_USER_SHARE_POST, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
+  const getUserShareComment = async () => {
+    const response = await fetch(config.GET_USER_SHARE_COMMENT, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
+  // Fetching data
+  useEffect(() => {
+    (async () => {
+      const resultPost = await getUserSharePost();
+      const resultComment = await getUserShareComment();
+
+      setPostItemsData(resultPost.data);
+      setCommentsData(resultComment.data);
+    })();
+  }, []);
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -81,8 +112,16 @@ function SharePost() {
                 </div>
               </div>
               <div className="col-lg-18">
-                {subTopic === 'shared' ? <Masonry columns={3} gap={3} /> : ''}
-                {subTopic === 'comment' ? <ShareComment /> : ''}
+                {subTopic === 'shared' ? (
+                  <Masonry columns={4} gap={3} data={postItemsData} />
+                ) : (
+                  ''
+                )}
+                {subTopic === 'comment' ? (
+                  <ShareComment commentsData={commentsData} />
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           </div>

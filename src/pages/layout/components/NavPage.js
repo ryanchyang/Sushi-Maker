@@ -98,6 +98,17 @@ function NavPage(props) {
               <p className="ch-title-22 ch-txt">分享牆</p>
             </Link>
             <Link
+              to={'/latest-news/news'}
+              className="nav-content"
+              style={{ textDecoration: 'none', color: '#ffffff' }}
+              onClick={() => {
+                setNavIsOpen(false);
+              }}
+            >
+              <p className="en-title-20 en-txt">Latest News</p>
+              <p className="ch-title-22 ch-txt">最新消息</p>
+            </Link>
+            <Link
               to={'/member'}
               className="nav-content"
               style={{ textDecoration: 'none', color: '#ffffff' }}

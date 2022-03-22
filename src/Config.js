@@ -28,6 +28,9 @@ const config = {
   GET_SHARE_PRODS: `${host}/api/share/`,
   GET_PROD_DETAILS: `${host}/api/share/items/`,
   GET_USER_SHARE_PRODS: `${host}/api/share/saves`,
+  GET_USER_SHARE_UPLOAD: `${host}/api/share/upload`,
+  GET_USER_SHARE_POST: `${host}/api/share/post`,
+  GET_USER_SHARE_COMMENT: `${host}/api/share/comment`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
