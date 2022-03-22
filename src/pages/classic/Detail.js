@@ -5,65 +5,73 @@ import { Link, useParams } from 'react-router-dom';
 import config from '../../Config';
 import './detail.scss';
 
-function Detail() {  
-  const [isDetail, setIsDetail] = useState(false);  //是否開啟詳細資料
-  const [data, setData] = useState({});  //商品詳細資料
-  const [materials, setMaterials] = useState([]);   //食材資料(3個)
-  const [recommends, setRecommendeds] = useState([]);  //推薦商品資料(3個)
-  const [selectedMaterial, setSelectedMaterial] = useState({});  //目前選定的食材資料
+function Detail() {
+  const [isDetail, setIsDetail] = useState(false); //是否開啟詳細資料
+  const [data, setData] = useState({}); //商品詳細資料
+  const [materials, setMaterials] = useState([]); //食材資料(3個)
+  const [recommends, setRecommendeds] = useState([]); //推薦商品資料(3個)
+  const [selectedMaterial, setSelectedMaterial] = useState({}); //目前選定的食材資料
   const [buyCount, setBuyCount] = useState(1);
-  const { id } = useParams();  //取得url上的product id
+  const { id } = useParams(); //取得url上的product id
 
   //點擊食材圖片
-  const changeMtl = (mid) => {
+  const changeMtl = mid => {
     const material = materials.find(m => m.mtl_id === mid);
     setSelectedMaterial(material);
-  }
+  };
 
   //輸入商品數量
-  const changeCountByType = (count) => {
+  const changeCountByType = count => {
     //商品數量不能小於0或是大於99
-    if(count <= 0 || count > 99){
+    if (count <= 0 || count > 99) {
       return false;
     }
-    
+
     setBuyCount(count);
   };
 
   //點擊商品減少按鈕(-1)
   const changeCountByMinus = () => {
     //商品數量若小於等於1，則不能再減少數量(需大於0)
-    if(buyCount <= 1){
+    if (buyCount <= 1) {
       return false;
     }
 
     const newCount = buyCount - 1;
-    setBuyCount(newCount);    
+    setBuyCount(newCount);
   };
 
   //點擊商品增加按鈕(+1)
   const changeCountByAdd = () => {
     //商品數量若大於等於99，則不能再增加數量
-    if(buyCount >= 99){
+    if (buyCount >= 99) {
       return false;
     }
 
     const newCount = buyCount + 1;
-    setBuyCount(newCount);    
+    setBuyCount(newCount);
+  };
+
+  //每次點擊商品詳細頁，都要將pid存到localstorage以供歷史查詢
+  const saveHistory = pid => {
+    let newHistory = localStorage.getItem('history') ?? '';
+    newHistory += pid + '-';
+    localStorage.setItem('history', newHistory);
   };
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       const prodRes = await fetch(config.GET_PROD + `/${id}`);
       const prodObj = await prodRes.json();
       setData(prodObj.rows[0]);
       setMaterials(prodObj.rows[1]);
-      setSelectedMaterial((prodObj.rows[1])[0]);
+      setSelectedMaterial(prodObj.rows[1][0]);
       setRecommendeds(prodObj.rows[2]);
     };
 
     fetchData();
-  },[]);
+    window.scrollTo(0, 0); //re-render後強制回到top
+  }, []);
 
   return (
     <>
@@ -88,8 +96,12 @@ function Detail() {
                     isDetail ? 'all-size-title-ondetail' : 'all-size-title'
                   }
                 >
-                  <div className="prod-ch-name ch-title-big">{data.c_prod_ch_name}</div>
-                  <div className="prod-en-name eh-title-big">{data.c_prod_en_name}</div>
+                  <div className="prod-ch-name ch-title-big">
+                    {data.c_prod_ch_name}
+                  </div>
+                  <div className="prod-en-name eh-title-big">
+                    {data.c_prod_en_name}
+                  </div>
                 </div>
                 <img
                   className={
@@ -105,18 +117,22 @@ function Detail() {
                       : 'material-tag-group'
                   }
                 >
-                  {
-                    materials.map(m => {
-                      return (
-                        <div className="material-tag-box" key={m.mtl_id} onClick={() => {changeMtl(m.mtl_id)}}>
-                          <img
-                            src={require('./../../imgs/temp/material1.png')}
-                            alt="material"
-                          />
-                        </div>                       
-                      )
-                    })
-                  }
+                  {materials.map(m => {
+                    return (
+                      <div
+                        className="material-tag-box"
+                        key={m.mtl_id}
+                        onClick={() => {
+                          changeMtl(m.mtl_id);
+                        }}
+                      >
+                        <img
+                          src={require('./../../imgs/temp/material1.png')}
+                          alt="material"
+                        />
+                      </div>
+                    );
+                  })}
 
                   {/* <div className="material-tag-box">
                     <img
@@ -136,7 +152,6 @@ function Detail() {
                       alt=""
                     />
                   </div> */}
-
                 </div>
               </div>
 
@@ -145,18 +160,29 @@ function Detail() {
                   isDetail ? 'prod-detail-right-ondetail' : 'prod-detail-right'
                 }
               >
-                <div className="prod-ch-name ch-title-big">{data.c_prod_ch_name}</div>
-                <div className="prod-en-name eh-title-big">{data.c_prod_en_name}</div>
+                <div className="prod-ch-name ch-title-big">
+                  {data.c_prod_ch_name}
+                </div>
+                <div className="prod-en-name eh-title-big">
+                  {data.c_prod_en_name}
+                </div>
                 <div className="like-heart">
                   <Heart />
                 </div>
                 <div className="prod-price">
                   {/* 如果沒有特價就用原價顯示 */}
-                  <div className="ch-title-large">NT_${+data.c_prod_spe_value === 0 ? data.c_prod_value : data.c_prod_spe_value}</div>
+                  <div className="ch-title-large">
+                    NT_$
+                    {+data.c_prod_spe_value === 0
+                      ? data.c_prod_value
+                      : data.c_prod_spe_value}
+                  </div>
                   <div className="prod-stock en-title-mid">PRICE</div>
                 </div>
                 <div className="prod-printtime">
-                  <div className="ch-title-large">{data.c_prod_print_time}_SEC</div>
+                  <div className="ch-title-large">
+                    {data.c_prod_print_time}_SEC
+                  </div>
                   <div className="prod-print en-title-mid">PRINT TIME</div>
                 </div>
                 <div className="prod-desc">
@@ -173,7 +199,11 @@ function Detail() {
               <div className="select-add-cart">
                 <div className="select-count">
                   <button onClick={() => changeCountByMinus()}>-</button>
-                  <input type="number" value={buyCount} onChange={(e) => changeCountByType(+e.target.value)} />
+                  <input
+                    type="number"
+                    value={buyCount}
+                    onChange={e => changeCountByType(+e.target.value)}
+                  />
                   <button onClick={() => changeCountByAdd()}>+</button>
                 </div>
                 <button className="add-cart btn-sm btn-primary primeal-btn">
@@ -207,7 +237,9 @@ function Detail() {
                     </div>
                   </div>
                   <div className="material-item">
-                    <div className="material-content ch-cont-18">{selectedMaterial.mtl_origin}</div>
+                    <div className="material-content ch-cont-18">
+                      {selectedMaterial.mtl_origin}
+                    </div>
                     <div className="material-title en-cont-16">ORIGIN</div>
                   </div>
                   <div className="material-item">
@@ -217,7 +249,9 @@ function Detail() {
                     <div className="material-title en-cont-16">MFD</div>
                   </div>
                   <div className="material-item">
-                    <div className="material-content ch-cont-18">{selectedMaterial.mtl_raw_matrials}</div>
+                    <div className="material-content ch-cont-18">
+                      {selectedMaterial.mtl_raw_matrials}
+                    </div>
                     <div className="material-title en-cont-16">RM</div>
                   </div>
                 </div>
@@ -302,37 +336,60 @@ function Detail() {
               {recommends.map((r, i) => {
                 return (
                   //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
-                  <div className={recommends.length === i + 1 ? "prod-card last-recommend" : "prod-card"} key={r.pid}>
-                  <Link to={`/classic/detail/${r.pid}`} style={{textDecoration:'none', color: '#212121'}}>
-                    <div className="recommend-prod-img-box">
-                      {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                      {r.c_prod_special_tag === '' ? (
-                              ''
-                            ) : (
-                              <div className="discount-tag">
-                                <div className="discount-tag-content">
-                                  {r.c_prod_special_tag}
-                                </div>
-                              </div>
-                            )}
-                      <img
-                        src={`http://localhost:3500${r.c_prod_img_path}`}
-                        alt="product-recommend"
-                      />
-                    </div>
-                    <div className="prod-name-ch ch-title-22">{r.c_prod_ch_name}</div>
-                    <div className="prod-name-en en-title-14-5">{r.c_prod_en_name}</div>
-                    {r.c_prod_spe_value === 0 ? (
-                      <div className="prod-price-no-discount">
-                        <div className="no-discount ch-cont-16">NT_{r.c_prod_value}</div>
+                  <div
+                    className={
+                      recommends.length === i + 1
+                        ? 'prod-card last-recommend'
+                        : 'prod-card'
+                    }
+                    key={r.pid}
+                  >
+                    <Link
+                      to={`/classic/detail/${r.pid}`}
+                      style={{ textDecoration: 'none', color: '#212121' }}
+                      onClick={() => {
+                        saveHistory(r.pid);
+                      }}
+                    >
+                      <div className="recommend-prod-img-box">
+                        {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                        {r.c_prod_special_tag === '' ? (
+                          ''
+                        ) : (
+                          <div className="discount-tag">
+                            <div className="discount-tag-content">
+                              {r.c_prod_special_tag}
+                            </div>
+                          </div>
+                        )}
+                        <img
+                          src={`http://localhost:3500${r.c_prod_img_path}`}
+                          alt="product-recommend"
+                        />
                       </div>
-                    ) : (
-                      <div className="prod-price-special">
-                        <div className="original-price ch-cont-14">NT_{r.c_prod_value}</div>
-                        <div className="special-price ch-cont-16">NT_{r.c_prod_spe_value}</div>
+                      <div className="prod-name-ch ch-title-22">
+                        {r.c_prod_ch_name}
                       </div>
-                    )}
-                    {/* <div className="prod-price-special">
+                      <div className="prod-name-en en-title-14-5">
+                        {r.c_prod_en_name}
+                      </div>
+                      {r.c_prod_spe_value === 0 ? (
+                        <div className="prod-price-no-discount">
+                          <div className="no-discount ch-cont-16">
+                            NT_{r.c_prod_value}
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="prod-price-special">
+                          <div className="original-price ch-cont-14">
+                            NT_{r.c_prod_value}
+                          </div>
+                          <div className="special-price ch-cont-16">
+                            NT_{r.c_prod_spe_value}
+                          </div>
+                        </div>
+                      )}
+                      {/* <div className="prod-price-special">
                       <div className="original-price ch-cont-14">NT_55</div>
                       <div className="special-price ch-cont-16">NT_45</div>
                     </div>
@@ -341,11 +398,8 @@ function Detail() {
                     </div> */}
                     </Link>
                   </div>
-                )
+                );
               })}
-
-
-
 
               {/* <div className="prod-card">
                 <div className="recommend-prod-img-box">

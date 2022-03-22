@@ -73,9 +73,11 @@ function App() {
           <Route path="/classic" exact>
             <ClassicIndex />
           </Route>
-          <Route path="/classic/detail/:id?">
-            <ClassicDetail />
-          </Route>
+          {/* 為了在詳細頁轉到詳細頁時強制re-render  */}
+          <Route
+            path="/classic/detail/:id?"
+            render={() => <ClassicDetail key={Date.now()} />}
+          />
           <Route path="/member" exact>
             <MemIndex />
           </Route>

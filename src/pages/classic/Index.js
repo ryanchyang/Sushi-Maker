@@ -1,5 +1,5 @@
 import { Header, Title, AsideLeft, Footer } from '../layout/Layout';
-import AsideRight from './AsideRight';  //右邊layout多了歷史查詢功能，因此拉出來自製
+import AsideRight from './AsideRight'; //右邊layout多了歷史查詢功能，因此拉出來自製
 import './index.scss';
 import { ReactComponent as Cart } from '../../imgs/tags/add_cart.svg';
 import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.svg';
@@ -34,21 +34,27 @@ function Index() {
   const handleClickCategory = e => {
     switch (e.target.innerText) {
       case 'SUSHI':
-        const dataByCategory1 = allData.filter(pro => pro.c_prod_cate === 'sushi');
+        const dataByCategory1 = allData.filter(
+          pro => pro.c_prod_cate === 'sushi'
+        );
         // setProdList(allData.filter(pro => pro.c_prod_cate === 'sushi'));
         setProdList(dataByCategory1);
         setCategory('sushi');
         applyFilter(false, dataByCategory1);
         break;
       case 'DESSERT':
-        const dataByCategory2 = allData.filter(pro => pro.c_prod_cate === 'dessert');
+        const dataByCategory2 = allData.filter(
+          pro => pro.c_prod_cate === 'dessert'
+        );
         // setProdList(allData.filter(pro => pro.c_prod_cate === 'dessert'));
         setProdList(dataByCategory2);
         setCategory('dessert');
         applyFilter(false, dataByCategory2);
         break;
       case 'PACKAGE':
-        const dataByCategory3 = allData.filter(pro => pro.c_prod_cate === 'package');
+        const dataByCategory3 = allData.filter(
+          pro => pro.c_prod_cate === 'package'
+        );
         // setProdList(allData.filter(pro => pro.c_prod_cate === 'package'));
         setProdList(dataByCategory3);
         setCategory('package');
@@ -97,7 +103,9 @@ function Index() {
 
   //重設篩選條件
   const cleanFilter = e => {
-    const resetMtls = materials.map(m => {return {...m, selected: false}});
+    const resetMtls = materials.map(m => {
+      return { ...m, selected: false };
+    });
     setPriceFilter(['', '']);
     setMaterials(resetMtls);
     setSpecialCategoryFilter([
@@ -155,9 +163,9 @@ function Index() {
     //如果要套用篩選條件後關掉篩選視窗，則isClose要傳true
     //如果要直接套用上方三分類(SUSHI、DESSERT、PACKAGE)的資料，可以直接傳進來
     let filteredData = [];
-    if(isCategory.length > 0){
+    if (isCategory.length > 0) {
       filteredData = isCategory;
-    }else{
+    } else {
       filteredData = allData.filter(pro => pro.c_prod_cate === category);
     }
 
@@ -205,7 +213,7 @@ function Index() {
     if (flavor.length > 0) {
       //當flavor.length = 0(沒有選擇任何材料)時視為全選，不做任何過濾條件
       filteredData = filteredData.filter(prod => {
-        for (const m of prod.c_prod_material_arr.split(',')) {          
+        for (const m of prod.c_prod_material_arr.split(',')) {
           if (flavor.includes(+m)) return true;
         }
       });
@@ -254,18 +262,18 @@ function Index() {
     setTotalPage(Math.ceil(filteredData.length / 6));
 
     //取當頁所呈現的商品列表
-    if(isCategory.length > 0){
+    if (isCategory.length > 0) {
       //若是點選上方三大分類，則分頁從1開始
-      setProdList(filteredData.slice(0, pageProdCount)); 
+      setProdList(filteredData.slice(0, pageProdCount));
       setCurrentPage(1);
-    }else{
+    } else {
       setProdList(
         filteredData.slice(
           (currentPage - 1) * pageProdCount,
           currentPage * pageProdCount
         )
-      ); 
-    }    
+      );
+    }
   };
 
   //點擊商品分頁的箭頭按鈕
@@ -300,7 +308,7 @@ function Index() {
   const initProdBuyCount = prodList => {
     const prodCount = [];
     prodList.forEach(prod => {
-      prodCount.push({ pid: prod.pid, pname: prod.c_prod_ch_name ,count: 1 });
+      prodCount.push({ pid: prod.pid, pname: prod.c_prod_ch_name, count: 1 });
     });
     setBuyProdCount(prodCount);
   };
@@ -308,68 +316,68 @@ function Index() {
   //輸入商品數量
   const changeCountByType = (count, pid) => {
     //商品數量不能小於0或是大於99
-    if(count <= 0 || count > 99){
+    if (count <= 0 || count > 99) {
       return false;
     }
 
     const newData = buyProdCount.map(p => {
-      if(p.pid === +pid){
-        return {...p, count: count};
-      }else{
+      if (p.pid === +pid) {
+        return { ...p, count: count };
+      } else {
         return p;
       }
-    }); 
+    });
 
     setBuyProdCount(newData);
   };
 
   //點擊商品減少按鈕(-1)
-  const changeCountByMinus = (pid) => {
+  const changeCountByMinus = pid => {
     const newData = buyProdCount.map(p => {
-      if(p.pid === +pid){
+      if (p.pid === +pid) {
         //商品數量若小於等於1，則不能再減少數量(需大於0)
-        if(p.count <= 1){
-          return {...p, count: p.count};
+        if (p.count <= 1) {
+          return { ...p, count: p.count };
         }
-        return {...p, count: p.count - 1};
-      }else{
+        return { ...p, count: p.count - 1 };
+      } else {
         return p;
       }
-    }); 
+    });
 
     setBuyProdCount(newData);
   };
 
   //點擊商品增加按鈕(+1)
-  const changeCountByAdd = (pid) => {
+  const changeCountByAdd = pid => {
     const newData = buyProdCount.map(p => {
-      if(p.pid === +pid){
+      if (p.pid === +pid) {
         //商品數量若大於等於99，則不能再增加數量
-        if(p.count >= 99){
-          return {...p, count: p.count};
+        if (p.count >= 99) {
+          return { ...p, count: p.count };
         }
-        return {...p, count: p.count + 1};
-      }else{
+        return { ...p, count: p.count + 1 };
+      } else {
         return p;
       }
-    }); 
+    });
 
     setBuyProdCount(newData);
   };
 
   //每次點擊商品詳細頁，都要將pid存到localstorage以供歷史查詢
-  const saveHistory = (pid) => {
+  const saveHistory = pid => {
     let newHistory = localStorage.getItem('history') ?? '';
-    newHistory +=  pid + '-';
-    localStorage.setItem("history", newHistory);
-  }
+    newHistory += pid + '-';
+    localStorage.setItem('history', newHistory);
+  };
 
   useEffect(() => {
-    const fetchData = async() => {
+    const fetchData = async () => {
       //取得所有商品資料
       const prodRes = await fetch(config.GET_INIT_PRODS);
       const prodObj = await prodRes.json();
-      const prods = prodObj.rows;   //data.data
+      const prods = prodObj.rows; //data.data
       setAllData(prods);
 
       //取得所有食材資料
@@ -491,16 +499,26 @@ function Index() {
               {/* product list */}
               <div className="prod-list">
                 {/* product card */}
-                {prodList.map(prod => {                  
+                {prodList.map(prod => {
                   const pid = prod.pid;
-                  {/* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */}
+                  {
+                    /* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */
+                  }
                   let buyCount = buyProdCount.filter(p => p.pid === pid);
                   buyCount = +buyCount[0]?.count ?? 0;
 
                   return (
                     <>
                       <div className="prod-card" key={pid}>
-                        <Link to={`/classic/detail/${prod.pid}`} style={{textDecoration:'none', color: '#212121'}} onClick={() => {saveHistory(pid)}}>  {/* 點擊圖片可連到商品詳細頁 */}
+                        <Link
+                          to={`/classic/detail/${prod.pid}`}
+                          style={{ textDecoration: 'none', color: '#212121' }}
+                          onClick={() => {
+                            saveHistory(pid);
+                          }}
+                        >
+                          {' '}
+                          {/* 點擊圖片可連到商品詳細頁 */}
                           <div className="prod-img-box">
                             {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
                             {prod.c_prod_special_tag === '' ? (
@@ -519,7 +537,6 @@ function Index() {
                               alt="product"
                             />
                           </div>
-
                           <div className="prod-name-ch ch-title-22">
                             {prod.c_prod_ch_name}
                           </div>
@@ -548,9 +565,19 @@ function Index() {
 
                         <div className="select-add-cart">
                           <div className="select-count">
-                            <button onClick={(e) => changeCountByMinus(pid)}>-</button>
-                            <input type="number" value={buyCount} onChange={(e) => changeCountByType(+e.target.value, pid)}/>
-                            <button onClick={(e) => changeCountByAdd(pid)}>+</button>
+                            <button onClick={e => changeCountByMinus(pid)}>
+                              -
+                            </button>
+                            <input
+                              type="number"
+                              value={buyCount}
+                              onChange={e =>
+                                changeCountByType(+e.target.value, pid)
+                              }
+                            />
+                            <button onClick={e => changeCountByAdd(pid)}>
+                              +
+                            </button>
                           </div>
                           <div
                             className="cart-btn"
