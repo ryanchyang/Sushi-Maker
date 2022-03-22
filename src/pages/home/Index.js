@@ -771,6 +771,7 @@ function Index(props) {
               changeBG={changeBG}
               setChangeBG={setChangeBG}
               pageYOffset={pageYOffset}
+              navIsOpen={navIsOpen}
               setNavIsOpen={setNavIsOpen}
             />
           </div>

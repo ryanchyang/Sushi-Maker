@@ -10,7 +10,8 @@ import NavPage from '../layout/components/NavPage';
 function EvntsDetails(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const [evntsDetail, setEvntsDetail] = useState([]);
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState('');
+  const [btnStatus, setBtnStatus] = useState('');
   const { id } = useParams();
 
   // get Data
@@ -25,44 +26,42 @@ function EvntsDetails(props) {
     getEvntsDetail();
   }, []);
 
-  // 判斷 Link to 是否可點擊
+  // 判斷Link to是否可點擊  1.敬請期待 2.報名額滿
   useEffect(() => {
     const now = new Date();
     const evntsSingUpDate = new Date(
       evntsDetail[0]?.evnts_signup_start_date ?? ''
     );
-    // console.log('now', now);
-    // console.log('evntsSingUpDate', evntsSingUpDate);
+    const presentNum = parseInt(evntsDetail[0]?.evnts_pres_num);
+    const maxNum = parseInt(evntsDetail[0]?.evnts_max_num);
 
-    if (evntsSingUpDate > now) setActive(false);
-    if (evntsSingUpDate < now) setActive(true);
+    if (
+      evntsSingUpDate > now ||
+      (evntsSingUpDate < now && presentNum === maxNum)
+    ) {
+      setActive(false);
+    } else if (evntsSingUpDate < now) {
+      setActive(true);
+    }
   }, [evntsDetail]);
 
-  // const hiddenBtn = { opacity: 0 };
-
-  // 處理日期格式
-  const dateFormat = date => {
-    if (!date) {
-      return '';
-    } else {
-      let d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-      if (month.length < 2) month = '0' + month;
-      if (day.length < 2) day = '0' + day;
-      return [year, month, day].join('-');
-    }
-  };
-
-  // 處理時間格式
-  const timeFormat = time => {
-    if (!time) {
-      return '';
-    } else {
-      return time.substring(0, 5);
-    }
-  };
+  // [{
+  //   evnts_id: 1,
+  //   evnts_title: '試吃餐會',
+  //   evnts_cate: '品牌推廣',
+  //   evnts_pres_num: 15,
+  //   evnts_max_num: 20,
+  //   evnts_signup_start_date: '2022-02-01',
+  //   evnts_signup_end_date: '2022-04-30',
+  //   evnts_date: '2022-05-20',
+  //   evnts_start_time: '13:00',
+  //   evnts_end_time: '17:00',
+  //   evnts_location: '台北市大安區復興南路一段390號2樓',
+  //   evnts_host: 'null',
+  //   evnts_detail: '有吃過3D列印食物嗎? 快來參加PRIMEAL舉辦的試吃餐會，帶你認識3D列印食物的過程，試吃體驗全新不同的飲食口感。',
+  //   evnts_img_path: '/img/home/evnts/event-1.png',
+  //   status: '熱烈報名中'
+  // }]
 
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
@@ -96,7 +95,7 @@ function EvntsDetails(props) {
                   </div>
                   <div className="evnts-date-tag">
                     <div className="en-cont-16 evnts-date">
-                      {dateFormat(evntsDetail[0]?.evnts_date ?? '')}
+                      {evntsDetail[0]?.evnts_date ?? ''}
                     </div>
                     <div className="ch-cont-16 evnts-tag">
                       {evntsDetail[0]?.evnts_cate ?? ''}
@@ -105,8 +104,8 @@ function EvntsDetails(props) {
                   <div className="evnts-img">
                     <img
                       src={
-                        '/img/home/evnts/' + evntsDetail[0]?.evnts_img_path ??
-                        ''
+                        `http://localhost:3500` +
+                          evntsDetail[0]?.evnts_img_path ?? ''
                       }
                       alt="events"
                     />
@@ -115,31 +114,29 @@ function EvntsDetails(props) {
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">報名開始:</div>
                     <div className="ch-cont-16 info-content">
-                      {dateFormat(
-                        evntsDetail[0]?.evnts_signup_start_date ?? ''
-                      )}
+                      {evntsDetail[0]?.evnts_signup_start_date ?? ''}
                     </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">報名截止:</div>
                     <div className="ch-cont-16 info-content">
-                      {dateFormat(evntsDetail[0]?.evnts_signup_end_date ?? '')}
+                      {evntsDetail[0]?.evnts_signup_end_date ?? ''}
                     </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">活動日期:</div>
                     <div className="ch-cont-16 info-content">
-                      {dateFormat(evntsDetail[0]?.evnts_date ?? '')}
+                      {evntsDetail[0]?.evnts_date ?? ''}
                     </div>
                   </div>
                   <div className="evnts-info">
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">活動時間:</div>
                     <div className="ch-cont-16 info-content">
-                      {timeFormat(evntsDetail[0]?.evnts_start_time ?? '')}-
-                      {timeFormat(evntsDetail[0]?.evnts_end_time ?? '')}
+                      {evntsDetail[0]?.evnts_start_time ?? ''}-
+                      {evntsDetail[0]?.evnts_end_time ?? ''}
                     </div>
                   </div>
                   <div className="evnts-info">
@@ -161,7 +158,7 @@ function EvntsDetails(props) {
                   </div>
                   <div
                     className={
-                      active === null
+                      active === ''
                         ? 'mobile-sign-up-hidden'
                         : 'mobile-sign-up-show'
                     }
@@ -189,7 +186,7 @@ function EvntsDetails(props) {
                             : 'btn-sm disabled ch-title-18 d-flex justify-content-center align-items-center'
                         }
                       >
-                        {active ? '點我去報名' : '敬請期待'}
+                        {active ? '點我去報名' : '未開放報名'}
                       </div>
                     </Link>
                   </div>
@@ -201,8 +198,8 @@ function EvntsDetails(props) {
                   <div className="pc-evnts-img">
                     <img
                       src={
-                        '/img/home/evnts/' + evntsDetail[0]?.evnts_img_path ??
-                        ''
+                        `http://localhost:3500` +
+                          evntsDetail[0]?.evnts_img_path ?? ''
                       }
                       alt="events"
                     />
@@ -213,7 +210,7 @@ function EvntsDetails(props) {
                     </div>
                     <div className="pc-evnts-date-tag">
                       <div className="en-cont-16 pc-evnts-date">
-                        {dateFormat(evntsDetail[0]?.evnts_date ?? '')}
+                        {evntsDetail[0]?.evnts_date ?? ''}
                       </div>
                       <div className="ch-cont-16 pc-evnts-tag">
                         {evntsDetail[0]?.evnts_cate ?? ''}
@@ -223,33 +220,29 @@ function EvntsDetails(props) {
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">報名開始:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(
-                          evntsDetail[0]?.evnts_signup_start_date ?? ''
-                        )}
+                        {evntsDetail[0]?.evnts_signup_start_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">報名截止:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(
-                          evntsDetail[0]?.evnts_signup_end_date ?? ''
-                        )}
+                        {evntsDetail[0]?.evnts_signup_end_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 info-title">活動日期:</div>
                       <div className="ch-cont-16 info-content">
-                        {dateFormat(evntsDetail[0]?.evnts_date ?? '')}
+                        {evntsDetail[0]?.evnts_date ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
                       <div className="diamond"></div>
                       <div className="ch-cont-16 pc-info-title">活動時間:</div>
                       <div className="ch-cont-16 pc-info-content">
-                        {timeFormat(evntsDetail[0]?.evnts_start_time ?? '')}-
-                        {timeFormat(evntsDetail[0]?.evnts_end_time ?? '')}
+                        {evntsDetail[0]?.evnts_start_time ?? ''}-
+                        {evntsDetail[0]?.evnts_end_time ?? ''}
                       </div>
                     </div>
                     <div className="evnts-info">
@@ -299,7 +292,7 @@ function EvntsDetails(props) {
                               : 'btn-sm disabled d-flex justify-content-center align-items-center'
                           }
                         >
-                          {active ? '點我去報名' : '敬請期待'}
+                          {active ? '點我去報名' : '未開放報名'}
                         </div>
                       </Link>
                     </div>

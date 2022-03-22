@@ -13,7 +13,10 @@ function NewsFilter() {
       <div className="filter-area">
         <div className="filter-top">
           <div className="clean-filter ch-cont-16">
-            <img src="/img/home/trashcan.svg" alt="trash" />
+            <img
+              src={`http://localhost:3500/img/home/trashcan.svg`}
+              alt="trash"
+            />
             <span>清空條件</span>
           </div>
           <div className="cancel-filter ch-cont-16">
@@ -37,9 +40,15 @@ function NewsFilter() {
               >
                 {/* {console.log('open:', open)} */}
                 {dateOpen ? (
-                  <img src="/img/home/uparrow.svg" alt="up" />
+                  <img
+                    src={`http://localhost:3500/img/home/uparrow.svg`}
+                    alt="up"
+                  />
                 ) : (
-                  <img src="/img/home/downarrow.svg" alt="down" />
+                  <img
+                    src={`http://localhost:3500/img/home/downarrow.svg`}
+                    alt="down"
+                  />
                 )}
               </div>
             </div>
@@ -68,9 +77,15 @@ function NewsFilter() {
                 aria-expanded={cateOpen}
               >
                 {cateOpen ? (
-                  <img src="/img/home/uparrow.svg" alt="up" />
+                  <img
+                    src={`http://localhost:3500/img/home/uparrow.svg`}
+                    alt="up"
+                  />
                 ) : (
-                  <img src="/img/home/downarrow.svg" alt="down" />
+                  <img
+                    src={`http://localhost:3500/img/home/downarrow.svg`}
+                    alt="down"
+                  />
                 )}
               </div>
             </div>
