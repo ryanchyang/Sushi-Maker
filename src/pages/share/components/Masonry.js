@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { useHistory } from 'react-router-dom';
-// import Box from '@mui/material/Box';
-import ImageList from '@mui/material/ImageList';
+
+// import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Masonry from '@mui/lab/Masonry';
 
 import HeartTemplate from './HeartTemplate';
 import ItemInfoTemplate from './ItemInfoTemplate';
@@ -11,7 +12,6 @@ import ItemSavesTemplate from './ItemSavesTemplate';
 
 import styles from '../Share.module.scss';
 import config from '../../../Config';
-import { style } from '@mui/system';
 
 // import { ReactComponent as Heart } from '../../../imgs/heart.svg';
 // import { ReactComponent as HeartOutline } from '../../../imgs/heart-outline.svg';
@@ -37,7 +37,7 @@ const hoverHandler = (id, hover) => {
   }
 };
 
-export default function Masonry(props) {
+export const MyMasonry = forwardRef((props, ref) => {
   const { columns, gap, data } = props;
   const history = useHistory(null);
 
@@ -55,13 +55,14 @@ export default function Masonry(props) {
   // console.log(saves);
 
   return (
-    <div className={`flex-column ${styles['masonry-index']} `}>
-      <ImageList variant="masonry" cols={columns} gap={gap * 10}>
+    <div className={`flex-column ${styles['masonry-index']} `} ref={ref}>
+      <Masonry columns={columns} spacing={gap * 1.2}>
         {data.map((item, i) => (
           <ImageListItem
-            key={item.share_item_id}
-            onMouseEnter={() => setHover(item.share_item_id)}
+            key={i}
+            onMouseEnter={() => setHover(i)}
             onMouseLeave={() => setHover(-1)}
+            style={{ paddingBottom: '30px' }}
           >
             <img
               src={
@@ -80,7 +81,6 @@ export default function Masonry(props) {
               }}
               className={`${styles['image-list-img']}`}
             />
-
             <ImageListItemBar
               position="below"
               title={
@@ -93,7 +93,7 @@ export default function Masonry(props) {
             />
             <ImageListItemBar
               position="top"
-              sx={hoverHandler(item.share_item_id, hover)}
+              sx={hoverHandler(i, hover)}
               title={item.share_title}
               subtitle={item.share_desc}
               actionIcon={
@@ -102,59 +102,9 @@ export default function Masonry(props) {
             />
           </ImageListItem>
         ))}
-      </ImageList>
+      </Masonry>
     </div>
   );
-}
+});
 
-// const itemData = [
-//   {
-//     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-//     title: 'Bed',
-//     desc: 'The Mastering the Mechanics webinar series also describes required sentence elements and varying sentence types. Please see these archived webinars for more information.',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-//     title: 'Books',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-//     title: 'Sink',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-//     title: 'Kitchen',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-//     title: 'Blinds',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-//     title: 'Chairs',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-//     title: 'Laptop',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-//     title: 'Doors',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-//     title: 'Coffee',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-//     title: 'Storage',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-//     title: 'Candle',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-//     title: 'Coffee table',
-//   },
-// ];
+export default MyMasonry;
