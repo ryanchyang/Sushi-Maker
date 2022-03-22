@@ -19,20 +19,25 @@ function ProdItem(props) {
   const [countcs, setCountcs] = useState([]);
   const [countcm, setCountcm] = useState([]);
   const [countset, setCountset] = useState([]);
-
+  console.log(countcs);
+  console.log(countcm);
   useEffect(() => {
     setCountcs(props.cs);
     setCountcm(props.cm);
     setCountset(props.set);
   }, [props]);
 
-  useEffect(() => {}, [countcs, countcm, countset]);
+  useEffect(() => { }, [countcs, countcm, countset]);
 
   //改變cm數量輸入欄
   const changeCMCount = (count, pid) => {
+    // 先拷貝一層
     const newData = [...countcm];
+    // 找出要的/點到的pid 跟 map 出來的484 同一個 
     const data = newData.find(cm => cm.product_id == pid);
+    // 找出 點到的product_id 是在 陣列中的第幾個 (在 cm 的陣列中 可能會有多個商品)
     const index = newData.findIndex(cm => cm.product_id == pid);
+    // newData 用splice 去分割 抓到是第幾個index 淺層拷貝並覆寫
     newData.splice(index, 1, { ...data, orders_amount: +count });
     setCountcm(newData);
   };
@@ -47,15 +52,21 @@ function ProdItem(props) {
       ...data,
       orders_amount: +data.orders_amount - 1,
     });
-
     */
+    // 新德的寫法
+    //
     const newData = [...countcm];
+    //
     const newData2 = newData.map(v => {
+      //
       if (pid === v.product_id) {
+        //
         if (v.orders_amount > 1) {
+          //
           return { ...v, orders_amount: +v.orders_amount - 1 };
         }
       }
+      //
       return { ...v };
     });
 
@@ -85,14 +96,25 @@ function ProdItem(props) {
 
   //減少cs數量(-1)
   const minusCSCount = pid => {
+    // const newData = [...countcs];
+    // const data = newData.find(cs => cs.product_id == pid);
+    // const index = newData.findIndex(cs => cs.product_id == pid);
+    // newData.splice(index, 1, {
+    //   ...data,
+    //   orders_amount: +data.orders_amount - 1,
+    // });
+
     const newData = [...countcs];
-    const data = newData.find(cs => cs.product_id == pid);
-    const index = newData.findIndex(cs => cs.product_id == pid);
-    newData.splice(index, 1, {
-      ...data,
-      orders_amount: +data.orders_amount - 1,
+    const newData2 = newData.map(v => {
+      if (pid === v.product_id) {
+        if (v.orders_amount > 1) {
+          return { ...v, orders_amount: +v.orders_amount - 1 };
+        }
+      }
+      return { ...v };
     });
-    setCountcs(newData);
+
+    setCountcs(newData2);
   };
 
   //增加cs數量(+1)
@@ -118,14 +140,26 @@ function ProdItem(props) {
 
   //減少set數量(-1)
   const minusSETCount = pid => {
+    // const newData = [...countset];
+    // const data = newData.find(set => set.product_id == pid);
+    // const index = newData.findIndex(set => set.product_id == pid);
+    // newData.splice(index, 1, {
+    //   ...data,
+    //   orders_amount: +data.orders_amount - 1,
+    // });
+
     const newData = [...countset];
-    const data = newData.find(set => set.product_id == pid);
-    const index = newData.findIndex(set => set.product_id == pid);
-    newData.splice(index, 1, {
-      ...data,
-      orders_amount: +data.orders_amount - 1,
+    const newData2 = newData.map(v => {
+      if (pid === v.product_id) {
+        if (v.orders_amount > 1) {
+          return { ...v, orders_amount: +v.orders_amount - 1 };
+        }
+      }
+      return { ...v };
     });
-    setCountset(newData);
+
+
+    setCountset(newData2);
   };
 
   //增加set數量(+1)
@@ -147,6 +181,137 @@ function ProdItem(props) {
 
   return (
     <>
+      {countset?.map((v, i) => {
+        return (
+          <div className="prod-item ch-cont-14 " key={'set' + i}>
+            <div className="row my-2  d-flex align-items-center ">
+              <div className="col-md-24 d-flex">
+                <div className="col-md-2 col-3 align-items-center">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexCheckDefault"
+                    ></label>
+                  </div>
+                </div>
+                <div className="col-md-4 col-6 align-items-center">
+                  <div className="cart-item-img">
+                    <img alt="" className="img-fluid" src="" />
+                  </div>
+                </div>
+                <div
+                  className={
+                    `d-flex ` +
+                    `flex-md-row flex-column ` +
+                    `col-9 col-md-10 justify-content-between ` +
+                    `flex-grow-1 align-items-center`
+                  }
+                >
+                  <div className="col-md-8 my-md-3 align-items-center">
+                    {v.set_name}
+                  </div>
+                  <div className="col-md-8 my-md-3 align-items-center">
+                    {v.orders_value}元
+                  </div>
+                  <div className="col-md-8 my-md-3 align-items-center">
+                    <div className="select-count">
+                      <button
+                        onClick={() => {
+                          // 加入判斷條件 不能小於1
+                          minusSETCount(v.product_id);
+                        }}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        value={v.orders_amount}
+                        onChange={e => {
+                          changeSETCount(+e.target.value, v.product_id);
+                        }}
+                      />
+                      <button
+                        onClick={() => {
+                          // 加入判斷條件 不能小於1
+                          addSETCount(v.product_id);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                    {/* </div> */}
+                  </div>
+                </div>
+                <div className="col-md-2 d-none d-md-flex align-items-center">
+                  {v.orders_print_time}秒
+                </div>
+                <div className="col-md-2 d-none d-md-flex align-items-center ">
+                  ${v.orders_value * v.orders_amount}
+                </div>
+                <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
+                  <div className="prod-item-icon ">
+                    <img src="/img/cart/icon-trash.svg" alt="" />
+                  </div>
+
+                  {/* //光箱 */}
+                  {
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title className="en-cont-30 m-3">
+                          套餐說明
+                        </Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body style={{ margin: '0 3%' }}>
+                        <div className="en-cont-14 pb-2">
+                          加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
+                        </div>
+                        <table className="table table-hover">
+                          <tbody className="">
+                            {v.set_info_array.map((v, i) => {
+                              return (
+                                <tr key={i + 1}>
+                                  <th scope="row" className="en-cont-36">
+                                    {i + 1}
+                                  </th>
+                                  <td className="en-cont-14">
+                                    <div>
+                                      {v.bento_ch_name}
+                                      <br />
+                                      {v.bento_en_name}
+                                    </div>
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </Modal.Body>
+                      <Modal.Footer>
+                        <Button
+                          variant="secondary"
+                          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                          onClick={handleClose}
+                        >
+                          Close
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
+                  }
+                  <div className="prod-item-icon" onClick={handleShow}>
+                    <img src="/img/cart/icon-info.svg" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
       {countcs?.map((v, i) => {
         return (
           <div className="prod-item ch-cont-14 " key={'cs' + i}>
@@ -217,7 +382,7 @@ function ProdItem(props) {
                   {v.orders_print_time}秒
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center ">
-                  小計
+                  ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                   <div className="prod-item-icon ">
@@ -311,7 +476,7 @@ function ProdItem(props) {
                   {v.orders_print_time}秒
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center ">
-                  小計
+                  ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                   <div className="prod-item-icon ">
@@ -327,137 +492,7 @@ function ProdItem(props) {
           </div>
         );
       })}
-      {countset?.map((v, i) => {
-        return (
-          <div className="prod-item ch-cont-14 " key={'set' + i}>
-            <div className="row my-2  d-flex align-items-center ">
-              <div className="col-md-24 d-flex">
-                <div className="col-md-2 col-3 align-items-center">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      value=""
-                      id="flexCheckDefault"
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    ></label>
-                  </div>
-                </div>
-                <div className="col-md-4 col-6 align-items-center">
-                  <div className="cart-item-img">
-                    <img alt="" className="img-fluid" src="" />
-                  </div>
-                </div>
-                <div
-                  className={
-                    `d-flex ` +
-                    `flex-md-row flex-column ` +
-                    `col-9 col-md-10 justify-content-between ` +
-                    `flex-grow-1 align-items-center`
-                  }
-                >
-                  <div className="col-md-8 my-md-3 align-items-center">
-                    {v.set_name}
-                  </div>
-                  <div className="col-md-8 my-md-3 align-items-center">
-                    {v.orders_value}元
-                  </div>
-                  <div className="col-md-8 my-md-3 align-items-center">
-                    <div className="select-count">
-                      <button
-                        onClick={() => {
-                          // 加入判斷條件 不能小於1
-                          minusSETCount(v.product_id);
-                        }}
-                      >
-                        -
-                      </button>
-                      <input
-                        type="number"
-                        value={v.orders_amount}
-                        onChange={e => {
-                          changeSETCount(+e.target.value, v.product_id);
-                        }}
-                      />
-                      <button
-                        onClick={() => {
-                          // 加入判斷條件 不能小於1
-                          addSETCount(v.product_id);
-                        }}
-                      >
-                        +
-                      </button>
-                    </div>
-                    {/* </div> */}
-                  </div>
-                </div>
-                <div className="col-md-2 d-none d-md-flex align-items-center">
-                  {v.orders_print_time}秒
-                </div>
-                <div className="col-md-2 d-none d-md-flex align-items-center ">
-                  小計
-                </div>
-                <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon ">
-                    <img src="/img/cart/icon-trash.svg" alt="" />
-                  </div>
-
-                  {/* //光箱 */}
-                  {
-                    <Modal show={show} onHide={handleClose}>
-                      <Modal.Header closeButton>
-                        <Modal.Title className="en-cont-30 m-3">
-                          套餐說明
-                        </Modal.Title>
-                      </Modal.Header>
-                      <Modal.Body style={{ margin: '0 3%' }}>
-                        <div className="en-cont-14 pb-2">
-                          加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
-                        </div>
-                        <table className="table table-hover">
-                          <tbody className="">
-                            {v.set_info_array.map((v, i) => {
-                              return (
-                                <tr key={i + 1}>
-                                  <th scope="row" className="en-cont-36">
-                                    {i + 1}
-                                  </th>
-                                  <td className="en-cont-14">
-                                    <div>
-                                      {v.bento_ch_name}
-                                      <br />
-                                      {v.bento_en_name}
-                                    </div>
-                                  </td>
-                                </tr>
-                              );
-                            })}
-                          </tbody>
-                        </table>
-                      </Modal.Body>
-                      <Modal.Footer>
-                        <Button
-                          variant="secondary"
-                          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-                          onClick={handleClose}
-                        >
-                          Close
-                        </Button>
-                      </Modal.Footer>
-                    </Modal>
-                  }
-                  <div className="prod-item-icon" onClick={handleShow}>
-                    <img src="/img/cart/icon-info.svg" alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })}
+     
     </>
   );
 }

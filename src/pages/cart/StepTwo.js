@@ -16,34 +16,34 @@ function StepTwo() {
   const handleShow = () => setMap(true);
   // 回上一頁 按鈕
   let history = useHistory();
-  const modal = (
-    <Modal show={map} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30 m-3">選擇取貨門市</Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{ margin: '0 3%' }}>
-        <>
-          <StepMap />
-        </>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button
-          variant="secondary"
-          className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
-          onClick={handleClose}
-        >
-          取消
-        </Button>
-        {/*TODO: 確認門市要送出表單並存到DB mem */}
-        <Button
-          variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
-          onClick={handleClose}
-        >
-          確認門市
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
+  // const modal = (
+  //   <Modal show={map} onHide={handleClose}>
+  //     <Modal.Header closeButton>
+  //       <Modal.Title className="en-cont-30 m-3">選擇取貨門市</Modal.Title>
+  //     </Modal.Header>
+  //     <Modal.Body style={{ margin: '0 3%' }}>
+  //       <>
+  //         <StepMap />
+  //       </>
+  //     </Modal.Body>
+  //     <Modal.Footer>
+  //       <Button
+  //         variant="secondary"
+  //         className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+  //         onClick={handleClose}
+  //       >
+  //         取消
+  //       </Button>
+  //       {/*TODO: 確認門市要送出表單並存到DB mem */}
+  //       <Button
+  //         variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+  //         onClick={handleClose}
+  //       >
+  //         確認門市
+  //       </Button>
+  //     </Modal.Footer>
+  //   </Modal>
+  // );
 
   return (
     <>
@@ -126,6 +126,46 @@ function StepTwo() {
                         // maxRows="5"
                       ></textarea>
                     </div>
+                    <div className="my-4 mx-5">
+                      {/* TODO: map 光箱 */}
+                      {
+                        <Modal show={map} onHide={handleClose}>
+                          <Modal.Header closeButton>
+                            <Modal.Title className="en-cont-30 m-3">
+                              選擇取貨門市
+                            </Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body style={{ margin: '0 3%' }}>
+                            <>
+                              <StepMap />
+                            </>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button
+                              variant="secondary"
+                              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                              onClick={handleClose}
+                            >
+                              取消
+                            </Button>
+                            {/*TODO: 確認門市要送出表單並存到DB mem */}
+                            <Button
+                              variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                              onClick={handleClose}
+                            >
+                              確認門市
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                      }
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
+                        onClick={handleShow}
+                      >
+                        選擇取貨門市
+                      </button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -136,38 +176,6 @@ function StepTwo() {
               />
               {/* ----summary-end */}
             </div>
-            {/* <div className="row"> */}
-            <div className="col-md-12">
-              {/* TODO: map 光箱 */}
-              {modal}
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
-                onClick={handleShow}
-              >
-                光箱 選擇取貨門市
-              </button>
-              {/*  ----------*/}
-              {/* 開關寫法 */}
-              {/* <a
-                type="button"
-                className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
-                href="#collapseExample"
-                data-toggle="collapse"
-                role="button"
-                aria-expanded="false"
-                aria-controls="collapseExample"
-                data-target="#collapseExample"
-              >
-                開關 選擇取貨門市
-              </a>
-              <div className="collapse" id="collapseExample">
-                <StepMap />
-              </div> */}
-              {/* -------------- */}
-            </div>
-            {/* -------------- */}
-            {/* </div> */}
 
             {/* 下一步 */}
             <div className="row  d-flex justify-content-center justify-content-md-end">
