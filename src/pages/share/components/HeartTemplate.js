@@ -12,15 +12,13 @@ function HeartTemplate(props) {
       <IconButton
         sx={{ color: 'rgba(255, 100, 100, 0.9)' }}
         aria-label={`info about ${item.share_title}`}
+        onClick={() => {
+          setSaves(
+            saves.filter(save => save.share_item_id !== item.share_item_id)
+          );
+        }}
       >
-        <HeartFill
-          style={{ padding: '0 5px' }}
-          onClick={() => {
-            setSaves(
-              saves.filter(save => save.share_item_id !== item.share_item_id)
-            );
-          }}
-        />
+        <HeartFill style={{ padding: '0 5px' }} />
       </IconButton>
     );
   } else {
@@ -28,13 +26,11 @@ function HeartTemplate(props) {
       <IconButton
         sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
         aria-label={`info about ${item.share_title}`}
+        onClick={() => {
+          setSaves([...saves, item]);
+        }}
       >
-        <HeartOutline
-          style={{ padding: '0 5px' }}
-          onClick={() => {
-            setSaves([...saves, item]);
-          }}
-        />
+        <HeartOutline style={{ padding: '0 5px' }} />
       </IconButton>
     );
   }
