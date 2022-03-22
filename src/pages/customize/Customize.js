@@ -4,12 +4,14 @@ import MtlLeft from './components/MtlLeft';
 import MtlMid from './components/MtlMid';
 import MtlRight from './components/MtlRight';
 import { useEffect, useState } from 'react';
+// import { mtlData } from './sushiMtlTest';
 import config from '../../Config';
 
 function Customize() {
   const [mtlDataSQL, setMtlDataSQL] = useState({});
   const [addMtlData, setAddMtlData] = useState({});
 
+  // 接SQL資料
   useEffect(() => {
     const catchData = async () => {
       const mtlRes = await fetch(config.GET_MTLS);
@@ -20,6 +22,7 @@ function Customize() {
     };
     catchData();
   }, []);
+  // console.log('mtlDataSQL:', mtlDataSQL);
 
   return (
     <>

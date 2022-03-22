@@ -52,22 +52,24 @@ function MtlLeft(props) {
               </div>
             </div>
             <div className="mtlBtnIn-L d-flex flex-wrap pt-3 px-2">
-              {props.mtlData.map((e) => {
-                const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e;
+              {Object.keys(props.mtlData).length === 0
+                ? ''
+                : props.mtlData.map((e) => {
+                    const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e;
 
-                return (
-                  <MtlLBtn
-                    key={mtl_id}
-                    mtl_id={mtl_id}
-                    mtl_name={mtl_name}
-                    mtl_cate={mtl_cate}
-                    mtl_img_path={mtl_img_path}
-                    setMtlActive={setMtlActive}
-                    mtlActive={mtlActive}
-                    setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
-                  />
-                );
-              })}
+                    return (
+                      <MtlLBtn
+                        key={mtl_id}
+                        mtl_id={mtl_id}
+                        mtl_name={mtl_name}
+                        mtl_cate={mtl_cate}
+                        mtl_img_path={mtl_img_path}
+                        setMtlActive={setMtlActive}
+                        mtlActive={mtlActive}
+                        setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
+                      />
+                    );
+                  })}
             </div>
           </div>
         </div>
