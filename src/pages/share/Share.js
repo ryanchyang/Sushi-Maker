@@ -5,29 +5,12 @@ import ShareFilter from './components/ShareFilter';
 import ShareColController from './components/ShareColController';
 
 import useCurrentWidth from './hooks/useCurrentWidth';
+import getCurrentColumns from './helpers/getCurrentColumns';
 
 import { useState, useEffect } from 'react';
 import styles from './Share.module.scss';
 import config from '../../Config';
 
-const breakpoints = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-};
-
-const getColumns = width => {
-  if (width < breakpoints.sm) {
-    return 2;
-  } else if (width < breakpoints.md) {
-    return 2;
-  } else if (width < breakpoints.lg) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
 function Share() {
   const [filter, setFilter] = useState(false);
   const [masonryContainer, setMasonryContainer] = useState(true);
@@ -35,14 +18,14 @@ function Share() {
   const [colControl, setColControl] = useState(false);
 
   const currentWidth = useCurrentWidth();
-  const [columns, setColumns] = useState(getColumns(currentWidth));
+  const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
   const [gap, setGap] = useState(4);
 
   const [shareItemsData, setShareItemsData] = useState([]);
 
   const updateDimensions = () => {
-    setColumns(getColumns(currentWidth));
-    setGap(getColumns(currentWidth));
+    setColumns(getCurrentColumns(currentWidth));
+    setGap(getCurrentColumns(currentWidth));
   };
 
   const getShareItems = async () => {

@@ -4,38 +4,42 @@ import { useState, useEffect } from 'react';
 import Masonry from './components/Masonry';
 import ShareProfile from './components/ShareProfile';
 import styles from './Share.module.scss';
+import config from '../../Config';
 
 import useCurrentWidth from './hooks/useCurrentWidth';
+import getCurrentColumns from './helpers/getCurrentColumns';
 
-const breakpoints = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-};
-
-const getColumns = width => {
-  if (width < breakpoints.sm) {
-    return 2;
-  } else if (width < breakpoints.md) {
-    return 2;
-  } else if (width < breakpoints.lg) {
-    return 3;
-  } else {
-    return 4;
-  }
-};
 function ShareSaves() {
   const currentWidth = useCurrentWidth();
-  const [columns, setColumns] = useState(getColumns(currentWidth));
+  const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
+
+  const [userShareItemsData, setUserShareItemsData] = useState([]);
 
   const updateDimensions = () => {
-    setColumns(getColumns(currentWidth));
+    setColumns(getCurrentColumns(currentWidth));
+  };
+
+  const getUserShareItems = async () => {
+    const response = await fetch(config.GET_USER_SHARE_PRODS, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
   };
 
   useEffect(() => {
     updateDimensions();
   }, [currentWidth]);
+
+  // Fetching data
+  useEffect(() => {
+    (async () => {
+      const result = await getUserShareItems();
+
+      setUserShareItemsData(result.data);
+    })();
+  }, []);
+
   return (
     <>
       <div style={{ display: 'flex' }}>
@@ -44,7 +48,11 @@ function ShareSaves() {
           <Title title={'Share'} />
           <ShareProfile />
           <div className={`${styles['waterfall-container']}`}>
-            <Masonry columns={columns} gap={columns} />
+            <Masonry
+              columns={columns}
+              gap={columns}
+              data={userShareItemsData}
+            />
           </div>
 
           <br />
