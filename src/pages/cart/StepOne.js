@@ -18,23 +18,40 @@ function StepOne(props) {
   let history = useHistory();
   const [list, setList] = useState({});
   const mem_id = 1;
+  //const {cs = [], cm = [], set = []} = list;
 
-  const getList = async () => {
-    console.log('hi');
-    const res = await fetch(config.GET_CART + `${mem_id}`);
-    const obj = await res.json();
-    console.log('obj:', obj);
-    // console.log('cm:', obj.data.cm);
-    // console.log('cs:', obj.data.cs);
-    // console.log('set:', obj.data.set);
-    setList(obj.data);
-  };
-  console.log(list.cm);
+  // const getList = async () => {
+  //   console.log('hi');
+  //   const res = await fetch(config.GET_CART + `${mem_id}`);
+  //   const obj = await res.json();
+  //   console.log('obj:', obj);
+  //   // console.log('cm:', obj.data.cm);
+  //   // console.log('cs:', obj.data.cs);
+  //   // console.log('set:', obj.data.set);
+  //   setList(obj.data);
+  // };
+  // console.log(list.cm);
+  // useEffect(() => {
+  //   getList();
+  //   // console.log(getList());
+  // }, []);
+
   useEffect(() => {
+    const getList = async () => {      
+      const res = await fetch(config.GET_CART + `${mem_id}`);
+      const obj = await res.json();
+      // console.log('obj:', obj);
+      // console.log('cm:', obj.data.cm);
+      // console.log('cs:', obj.data.cs);
+      // console.log('set:', obj.data.set);
+      setList(obj.data);      
+    };
     getList();
-    // console.log(getList());
   }, []);
 
+  useEffect(() => {
+    console.log(list);
+  }, [list]);
   // // 處理項目刪除用
   // const handleDelete = id => {
   //   //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
@@ -56,7 +73,7 @@ function StepOne(props) {
   const [cmOrder, setCmOrder] = useState(list.cm);
   const [setOrder, setSetOrder] = useState(list.set);
 
-  console.log('csOrder', csOrder);
+  // console.log('csOrder', csOrder);
   // Summary
   // 計算目前所有的商品數量
   // const productCount = () => {
