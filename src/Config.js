@@ -20,6 +20,7 @@ const config = {
   GET_HISTORYS: `${host}/classic/api/gethistory`,
 
   // 客製商品
+  GET_MTLS: `${host}/customize/api/getmtls`,
 
   // 套餐
 
