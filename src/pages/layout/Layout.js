@@ -10,7 +10,6 @@ import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { height } from '@mui/system';
-import NavPage from './components/NavPage';
 import { useWindowScroll } from 'react-use';
 
 function Header() {
@@ -91,7 +90,7 @@ function AsideLeft(props) {
 function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
-  const { changeBG, setChangeBG, pageYOffset } = props;
+  const { changeBG, setChangeBG, pageYOffset, setNavIsOpen } = props;
 
   // 首頁動態改變背景顏色
   useEffect(() => {
@@ -121,11 +120,17 @@ function AsideRight(props) {
               <HamburgerLight
                 className="layout-hamberger"
                 style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  setNavIsOpen(true);
+                }}
               />
             ) : (
               <Hamburger
                 className="layout-hamberger"
                 style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  setNavIsOpen(true);
+                }}
               />
             )}
           </div>

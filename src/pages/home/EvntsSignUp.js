@@ -5,8 +5,10 @@ import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { getMemId } from '../../utils';
 import SignUpModal from './components/SignUpModal';
+import NavPage from '../layout/components/NavPage';
 
-function EvntsSignUp() {
+function EvntsSignUp(props) {
+  const { navIsOpen, setNavIsOpen } = props;
   const [evntsInfo, setEvntsInfo] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [signUpResult, setSignUpResult] = useState(null);
@@ -178,219 +180,236 @@ function EvntsSignUp() {
     }
   };
 
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Events'} />
-          <div className="evnts-signup">
-            <div className="mycontainer min-hi">
-              {/* lastest-news top */}
-              <div className="lastest-news-nav d-flex justify-content-between align-items-center">
-                <div className="lastest-news-nav-breadcrumbs">
-                  <p className="en-title-14-10">HOME / LATEST NEWS / EVENTS</p>
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Events'} />
+            <div className="evnts-signup">
+              <div className="mycontainer min-hi">
+                {/* lastest-news top */}
+                <div className="lastest-news-nav d-flex justify-content-between align-items-center">
+                  <div className="lastest-news-nav-breadcrumbs">
+                    <p className="en-title-14-10">
+                      HOME / LATEST NEWS / EVENTS
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              {/* evnts-signup */}
-              <div className="evnts-block">
-                <div className="evnts-info-area">
-                  <div className="evnts-info-top d-flex justify-content-between">
-                    <div className="evnts-info-top-text">
-                      <div className="ch-title-22 evnts-title">
-                        {evntsInfo[0]?.evnts_title ?? ''}
+                {/* evnts-signup */}
+                <div className="evnts-block">
+                  <div className="evnts-info-area">
+                    <div className="evnts-info-top d-flex justify-content-between">
+                      <div className="evnts-info-top-text">
+                        <div className="ch-title-22 evnts-title">
+                          {evntsInfo[0]?.evnts_title ?? ''}
+                        </div>
+                        <div className="en-cont-16 evnts-date">
+                          {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
+                        </div>
+                        <div className="ch-cont-16 evnts-tag">
+                          {evntsInfo[0]?.evnts_cate ?? ''}
+                        </div>
                       </div>
-                      <div className="en-cont-16 evnts-date">
+                      <div className="evnts-img">
+                        <img
+                          src={
+                            '/img/home/evnts/' + evntsInfo[0]?.evnts_img_path ??
+                            ''
+                          }
+                          alt="events"
+                        />
+                      </div>
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">報名開始:</div>
+                      <div className="ch-cont-16 info-content">
+                        {dateFormat(
+                          evntsInfo[0]?.evnts_signup_start_date ?? ''
+                        )}
+                      </div>
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">報名截止:</div>
+                      <div className="ch-cont-16 info-content">
+                        {dateFormat(evntsInfo[0]?.evnts_signup_end_date ?? '')}
+                      </div>
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">活動日期:</div>
+                      <div className="ch-cont-16 info-content">
                         {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
                       </div>
-                      <div className="ch-cont-16 evnts-tag">
-                        {evntsInfo[0]?.evnts_cate ?? ''}
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">活動時間:</div>
+                      <div className="ch-cont-16 info-content">
+                        {timeFormat(evntsInfo[0]?.evnts_start_time ?? '')}-
+                        {timeFormat(evntsInfo[0]?.evnts_end_time ?? '')}
                       </div>
                     </div>
-                    <div className="evnts-img">
-                      <img
-                        src={
-                          '/img/home/evnts/' + evntsInfo[0]?.evnts_img_path ??
-                          ''
-                        }
-                        alt="events"
-                      />
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">活動地點:</div>
+                      <div className="ch-cont-16 info-content">
+                        {evntsInfo[0]?.evnts_location ?? ''}
+                      </div>
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">活動人數:</div>
+                      <div className="ch-cont-16 info-content">
+                        上限{evntsInfo[0]?.evnts_max_num ?? ''}人
+                      </div>
+                    </div>
+                    <div className="ch-cont-16 evnts-content">
+                      {evntsInfo[0]?.evnts_detail ?? ''}
                     </div>
                   </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">報名開始:</div>
-                    <div className="ch-cont-16 info-content">
-                      {dateFormat(evntsInfo[0]?.evnts_signup_start_date ?? '')}
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">報名截止:</div>
-                    <div className="ch-cont-16 info-content">
-                      {dateFormat(evntsInfo[0]?.evnts_signup_end_date ?? '')}
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">活動日期:</div>
-                    <div className="ch-cont-16 info-content">
-                      {dateFormat(evntsInfo[0]?.evnts_date ?? '')}
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">活動時間:</div>
-                    <div className="ch-cont-16 info-content">
-                      {timeFormat(evntsInfo[0]?.evnts_start_time ?? '')}-
-                      {timeFormat(evntsInfo[0]?.evnts_end_time ?? '')}
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">活動地點:</div>
-                    <div className="ch-cont-16 info-content">
-                      {evntsInfo[0]?.evnts_location ?? ''}
-                    </div>
-                  </div>
-                  <div className="evnts-info">
-                    <div className="diamond"></div>
-                    <div className="ch-cont-16 info-title">活動人數:</div>
-                    <div className="ch-cont-16 info-content">
-                      上限{evntsInfo[0]?.evnts_max_num ?? ''}人
-                    </div>
-                  </div>
-                  <div className="ch-cont-16 evnts-content">
-                    {evntsInfo[0]?.evnts_detail ?? ''}
-                  </div>
-                </div>
-                <div className="ch-cont-16 evnts-signup-area">
-                  <form
-                    onSubmit={handleSubmit}
-                    // onInvalid={handleInvalid}
-                    onChange={handleChange}
-                  >
-                    <input
-                      name="evnts_id"
-                      id="evnts_id"
-                      value={evntsInfo[0]?.evnts_id ?? ''}
-                      hidden
-                      readOnly
-                    />
-                    <div className="singup-column d-flex justify-content-between align-items-center">
-                      <label htmlFor="form-label">參加者姓名</label>
-                      <label className="form-label text-primary ch-cont-12">
-                        必填
-                      </label>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      name="name"
-                      value={fields.name}
-                      onChange={handleFieldChange}
-                      placeholder="參加者姓名"
-                    />
-                    {fieldsError.name !== '' && (
-                      <div className="error">{fieldsError.name}</div>
-                    )}
-                    <div className="singup-column d-flex justify-content-between align-items-center">
-                      <label htmlFor="form-label ">連絡電話</label>
-                      <label className="form-label text-primary ch-cont-12">
-                        必填
-                      </label>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="mobile"
-                      name="mobile"
-                      placeholder="09XX-XXX-XXX"
-                      data-pattern="09\d{2}-?\d{3}-?\d{3}"
-                      onChange={handleFieldChange}
-                    />
-                    {fieldsError.mobile !== '' && (
-                      <div className="error">{fieldsError.mobile}</div>
-                    )}
-                    <div className="singup-column d-flex justify-content-between align-items-center">
-                      <label htmlFor="form-label">連絡Email</label>
-                      <label className="form-label text-primary ch-cont-12">
-                        必填
-                      </label>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="email"
-                      name="email"
-                      value={fields.email}
-                      placeholder="123@test.com"
-                      onChange={handleFieldChange}
-                    />
-                    {fieldsError.email !== '' && (
-                      <div className="error">{fieldsError.email}</div>
-                    )}
-                    <div className="ch-cont-14">(活動通知將透過Email發送)</div>
-                    <label htmlFor="form-label mr-5" className="singup-column">
-                      參加人數
-                    </label>
-                    <select
-                      className="form-select"
-                      name="number"
-                      id="number"
-                      value={fields.number}
-                      onChange={handleFieldChange}
+                  <div className="ch-cont-16 evnts-signup-area">
+                    <form
+                      onSubmit={handleSubmit}
+                      // onInvalid={handleInvalid}
+                      onChange={handleChange}
                     >
-                      <option value="none">請選擇</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                    </select>
-                    {fieldsError.number !== '' && (
-                      <div className="error">{fieldsError.number}</div>
-                    )}
-                    <div className="singup-column sign-up-comment">
-                      <label
-                        htmlFor="exampleFormControlTextarea1"
-                        className="form-label ch-cont-14"
-                      >
-                        特殊備註
-                      </label>
-                      <textarea
-                        className="form-control textarea"
-                        id="comment"
-                        name="comment"
+                      <input
+                        name="evnts_id"
+                        id="evnts_id"
+                        value={evntsInfo[0]?.evnts_id ?? ''}
+                        hidden
+                        readOnly
+                      />
+                      <div className="singup-column d-flex justify-content-between align-items-center">
+                        <label htmlFor="form-label">參加者姓名</label>
+                        <label className="form-label text-primary ch-cont-12">
+                          必填
+                        </label>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        name="name"
+                        value={fields.name}
                         onChange={handleFieldChange}
-                        maxRows="5"
-                      ></textarea>
-                    </div>
-                    <div className="button-group">
-                      <button
-                        type="submit"
-                        className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1"
+                        placeholder="參加者姓名"
+                      />
+                      {fieldsError.name !== '' && (
+                        <div className="error">{fieldsError.name}</div>
+                      )}
+                      <div className="singup-column d-flex justify-content-between align-items-center">
+                        <label htmlFor="form-label ">連絡電話</label>
+                        <label className="form-label text-primary ch-cont-12">
+                          必填
+                        </label>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="09XX-XXX-XXX"
+                        data-pattern="09\d{2}-?\d{3}-?\d{3}"
+                        onChange={handleFieldChange}
+                      />
+                      {fieldsError.mobile !== '' && (
+                        <div className="error">{fieldsError.mobile}</div>
+                      )}
+                      <div className="singup-column d-flex justify-content-between align-items-center">
+                        <label htmlFor="form-label">連絡Email</label>
+                        <label className="form-label text-primary ch-cont-12">
+                          必填
+                        </label>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="email"
+                        name="email"
+                        value={fields.email}
+                        placeholder="123@test.com"
+                        onChange={handleFieldChange}
+                      />
+                      {fieldsError.email !== '' && (
+                        <div className="error">{fieldsError.email}</div>
+                      )}
+                      <div className="ch-cont-14">
+                        (活動通知將透過Email發送)
+                      </div>
+                      <label
+                        htmlFor="form-label mr-5"
+                        className="singup-column"
                       >
-                        重新填寫
-                      </button>
-                      <button
-                        type="submit"
-                        className="btn-sm btn-primary primeal-btn mx-1"
+                        參加人數
+                      </label>
+                      <select
+                        className="form-select"
+                        name="number"
+                        id="number"
+                        value={fields.number}
+                        onChange={handleFieldChange}
                       >
-                        送出報名
-                      </button>
-                    </div>
-                  </form>
+                        <option value="none">請選擇</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                      {fieldsError.number !== '' && (
+                        <div className="error">{fieldsError.number}</div>
+                      )}
+                      <div className="singup-column sign-up-comment">
+                        <label
+                          htmlFor="exampleFormControlTextarea1"
+                          className="form-label ch-cont-14"
+                        >
+                          特殊備註
+                        </label>
+                        <textarea
+                          className="form-control textarea"
+                          id="comment"
+                          name="comment"
+                          onChange={handleFieldChange}
+                          maxRows="5"
+                        ></textarea>
+                      </div>
+                      <div className="button-group">
+                        <button
+                          type="submit"
+                          className="btn-sm btn-primary primeal-btn primeal-btn-outline mx-1"
+                        >
+                          重新填寫
+                        </button>
+                        <button
+                          type="submit"
+                          className="btn-sm btn-primary primeal-btn mx-1"
+                        >
+                          送出報名
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
       <SignUpModal
         show={modalShow}

@@ -54,6 +54,9 @@ function App() {
   //判斷使用者是否登入
   const [user, setUser] = useState('');
 
+  // 判斷使用者是否點擊漢堡
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
   //renden時再做一次getMe , 避免換頁登出
   useEffect(() => {
     getMe().then(response => {
@@ -127,19 +130,19 @@ function App() {
           <NavPage />
           </Route>*/}
           <Route path="/" exact>
-            <Home />
+            <Home navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/latest-news/eventsdetail/signup/:id" exact>
-            <EvntsSignUp />
+            <EvntsSignUp navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/latest-news/eventsdetail/:id" exact>
-            <EvntsDetails />
+            <EvntsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/latest-news/newsdetail/:id" exact>
-            <NewsDetails />
+            <NewsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/latest-news/:cate?" exact>
-            <LatestNews />
+            <LatestNews navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/setorder/stepstart" exact>
             <StepStart />

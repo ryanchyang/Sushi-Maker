@@ -10,8 +10,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import config from '../../Config';
 import { Link } from 'react-router-dom';
+import NavPage from '../layout/components/NavPage';
 
-function LatestNews() {
+function LatestNews(props) {
+  const { navIsOpen, setNavIsOpen } = props;
   const { cate } = useParams();
   console.log(cate);
   const [isOpenFilter, setIsOpenFilter] = useState(false);
@@ -53,48 +55,53 @@ function LatestNews() {
   //   }
   // };
 
-  const showStyle = { display: 'block' };
-  const hiddenStyle = { display: 'none' };
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
 
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Latest News'} />
-          <div className="latest-news">
-            <div className="mycontainer">
-              {/* lastest-news top */}
-              <div className="lastest-news-nav d-flex justify-content-between align-items-center">
-                <div className="lastest-news-nav-breadcrumbs">
-                  <p className="en-title-14-10">HOME / LATEST NEWS</p>
-                </div>
-                <div className="lastest-news-nav-right d-flex align-items-center">
-                  <div className="search mx-2" style={{ cursor: 'pointer' }}>
-                    <img
-                      src={`http://localhost:3500/img/home/search-icon.svg`}
-                      alt="search"
-                    />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Latest News'} />
+            <div className="latest-news">
+              <div className="mycontainer">
+                {/* lastest-news top */}
+                <div className="lastest-news-nav d-flex justify-content-between align-items-center">
+                  <div className="lastest-news-nav-breadcrumbs">
+                    <p className="en-title-14-10">HOME / LATEST NEWS</p>
                   </div>
-                  <div
-                    className="filter"
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      setIsOpenFilter(!isOpenFilter);
-                    }}
-                  >
-                    <img
-                      src={`http://localhost:3500/img/home/filter-icon.svg`}
-                      alt="filter"
-                    />
+                  <div className="lastest-news-nav-right d-flex align-items-center">
+                    <div className="search mx-2" style={{ cursor: 'pointer' }}>
+                      <img
+                        src={`http://localhost:3500/img/home/search-icon.svg`}
+                        alt="search"
+                      />
+                    </div>
+                    <div
+                      className="filter"
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        setIsOpenFilter(!isOpenFilter);
+                      }}
+                    >
+                      <img
+                        src={`http://localhost:3500/img/home/filter-icon.svg`}
+                        alt="filter"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div
                 className="main-content"
-                style={isOpenFilter ? hiddenStyle : showStyle}
+                style={isOpenFilter ? hiddenBlock : showBlock}
               >
                 {/* latest news category */}
                 <div className="latest-news-category-box">
@@ -149,16 +156,16 @@ function LatestNews() {
               {/* filter */}
               <div
                 className="prod-filter"
-                style={isOpenFilter ? showStyle : hiddenStyle}
+                style={isOpenFilter ? showBlock : hiddenBlock}
               >
                 {isOpenFilter && cate === 'news' && <NewsFilter />}
                 {isOpenFilter && cate === 'events' && <EvntsFilter />}
               </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

@@ -9,7 +9,7 @@ function Entry(props) {
       <div
         className="entry"
         style={
-          open ? { opacity: 1, zIndex: 100 } : { opacity: 0, zIndex: -100 }
+          open ? { opacity: 1, zIndex: 200 } : { opacity: 0, zIndex: -100 }
         }
       >
         <div className="entry-area">
