@@ -41,11 +41,11 @@ function Index(props) {
   }, []);
 
   // 處理背景變色
-  // console.log('pageYOffset:', pageYOffset);
+  console.log('pageYOffset:', pageYOffset);
   useEffect(() => {
-    if (pageYOffset <= 3000 || pageYOffset >= 6300) {
+    if (pageYOffset <= 3500 || pageYOffset >= 6500) {
       setChangeBG(true);
-    } else if (pageYOffset >= 2600) {
+    } else if (pageYOffset > 3500) {
       setChangeBG(false);
     }
   }, [pageYOffset]);
@@ -60,21 +60,21 @@ function Index(props) {
       start = 0;
     }
     if (start === 0) {
-      console.log('0');
+      // console.log('0');
       processRef.current.innerText = 'Constructing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-constructing.svg';
       textImgRef.current.src =
         'http://localhost:3500/img/home/intro-constructing-txt.svg';
     } else if (start === 1) {
-      console.log('1');
+      // console.log('1');
       processRef.current.innerText = 'Materializing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-materializing.svg';
       textImgRef.current.src =
         'http://localhost:3500/img/home/intro-materializing-txt.svg';
     } else if (start === 2) {
-      console.log('2');
+      // console.log('2');
       processRef.current.innerText = 'Printing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-printing.svg';
@@ -164,7 +164,7 @@ function Index(props) {
   return (
     <>
       <Header />
-      {open && <Entry open={open} setOpen={setOpen} />}
+      {/*{open && <Entry open={open} setOpen={setOpen} />}*/}
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
       )}
@@ -177,9 +177,8 @@ function Index(props) {
               pageYOffset={pageYOffset}
             />
             <div style={{ width: '100%' }}>
-              <Title title={''} />
-              <br />
               <div className="home-page">
+                <Title title={''} />
                 {/* PC index top */}
                 {/* todo: scroll down opacity 0 */}
                 {/*{pageYOffset < 900 && (
@@ -335,7 +334,8 @@ function Index(props) {
               {/* promotion */}
               {/* todo scroll down to change bg color */}
               <div className="home-page">
-                <Title title={'Promotion'} />
+                {/* <Title title={'Promotion'} /> */}
+                <div className="page-title en-title-24">Promotion</div>
                 <div className="promotion-wrap">
                   <ul className="promotion-list">
                     {promo.map((v, i) => {
@@ -373,8 +373,8 @@ function Index(props) {
 
               {/* just for you --> */}
               <div className="home-page">
-                <Title title={'Just For You'} />
-                {/* <div className="page-title">Just For You</div> */}
+                {/*<Title title={'Just For You'} />*/}
+                <div className="page-title en-title-24">Just For You</div>
                 <div className="en-title-14-5 index-category d-flex justify-content-evenly">
                   <div
                     className="col-12 index-category-name"
@@ -475,7 +475,8 @@ function Index(props) {
 
               {/* latest news  */}
               <div className="home-page">
-                <Title title={'Latest News'} />
+                {/*<Title title={'Latest News'} />*/}
+                <div className="page-title en-title-24">Latest News</div>
                 <div className="en-title-14-5 index-category d-flex justify-content-evenly">
                   <div
                     className="col-8 index-category-name"
@@ -520,8 +521,8 @@ function Index(props) {
                               />
                             </div>
                             <div className="news-right-wrap">
-                              <div className="news-content-top d-flex justify-content-between">
-                                <div className="ch-title-22 news-title">
+                              <div className="news-content-top d-flex justify-content-between align-items-center">
+                                <div className="ch-title-18 news-title">
                                   {v.news_title}
                                 </div>
                                 <div className="ch-cont-14 news-tag">
@@ -704,7 +705,7 @@ function Index(props) {
 
               {/* footer */}
               <div className="home-page">
-                <Title title={''} />
+                {/* <Title title={''} />*/}
                 <Link
                   to={'./classic'}
                   className="footer-top"
