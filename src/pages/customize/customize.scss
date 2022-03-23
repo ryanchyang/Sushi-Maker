@@ -252,8 +252,10 @@ $areaHeight: calc( 100vh - 80px );
   }
   .mtlBtnIn-R {
     max-height: $mtlBtnCalcR;
+    min-height: $mtlBtnCalcR;
     display: flex;
     flex-direction: column-reverse;
+    justify-content: flex-end;
 
     @include pad{
       max-height: $mtlBtnCalc;

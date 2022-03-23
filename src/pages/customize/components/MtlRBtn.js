@@ -1,4 +1,5 @@
 import { ReactComponent as Del } from '../../../imgs/del.svg';
+import config from '../../../Config';
 
 function MtlRBtn(props) {
   const {
@@ -20,7 +21,7 @@ function MtlRBtn(props) {
   return (
     <div className="mtlRBtn my-3 mx-4" key={mtl_id}>
       <div className="mtlimg-r">
-        <img src={mtl_img_path} alt={mtl_name} />
+        <img src={`${config.HOST}${mtl_img_path}`} alt={mtl_name} />
       </div>
       <div className="mtlname-r ch-cont-16 col px-4">{mtl_name}</div>
       <Del className="mtlDelIcon" onClick={del} />
