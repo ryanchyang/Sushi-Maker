@@ -310,7 +310,18 @@ function Index() {
   const addToCart = id => {
     const isLogin = localStorage.getItem('mem_id') !== null;
     let addProd = buyProdCount.find(p => p.pid === +id);
-    console.log(addProd);
+    console.log({...addProd, islogin: isLogin});
+
+    fetch(config.ADD_CART, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        "pid": addProd.pid,
+        "count": addProd.count
+      }),
+    }).then(res => res.json());
 
     // alert(`你已成功將${addProd.count}個${addProd.pname}加入至購物車`);
   };
@@ -445,6 +456,7 @@ function Index() {
 
   return (
     <>
+      {modal}
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
@@ -629,7 +641,6 @@ function Index() {
                                 addToCart(pid);
                               }}
                             >
-                              {modal}
                               <Cart onClick={handleShow} />
                             </div>
 
