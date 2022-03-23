@@ -55,8 +55,8 @@ export const MyMasonry = forwardRef((props, ref) => {
   // console.log(saves);
 
   return (
-    <div className={`flex-column ${styles['masonry-index']} `} ref={ref}>
-      <Masonry columns={columns} spacing={gap * 1.2}>
+    <div className={`flex-column ${styles['masonry-index']}  `} ref={ref}>
+      <Masonry columns={columns} spacing={gap * 1.2} style={{ margin: '0' }}>
         {data.map((item, i) => (
           <ImageListItem
             key={i}

@@ -21,7 +21,6 @@ function ShareFilter(props) {
   const [tagsInput, setTagsInput] = useState([]);
   const [suggestedTags, setSuggestedTags] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState([]);
 
   const filterDispatchHandler = e => {
     const type = e.target.dataset.type;
@@ -42,10 +41,25 @@ function ShareFilter(props) {
   };
 
   const getFoundTags = async () => {
-    const response = await fetch(config.GET_TAGS, {
+    try {
+      const response = await fetch(config.GET_TAGS, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(tagsInput[0]),
+      });
+      if (!response.ok) throw new Error('no tags found!');
+      const itemsArr = await response.json();
+      return itemsArr;
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const filterGetData = async () => {
+    const response = await fetch(config.GET_FILTER_ITEMS, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(tagsInput[0]),
+      body: JSON.stringify(filterState),
     });
     const itemsArr = await response.json();
     return itemsArr;
@@ -117,6 +131,7 @@ function ShareFilter(props) {
           {filterState.tags.map((tag, i) => {
             return (
               <div
+                key={i}
                 className={`${styles['filter-hashtag-tag']} d-flex align-items-center`}
               >
                 <div
@@ -143,7 +158,7 @@ function ShareFilter(props) {
     if (Object.keys(tagsInput).length === 0) return;
     (async () => {
       const result = await getFoundTags();
-      if (result.status === 'fail') {
+      if (!result) {
         setFoundTags([]);
       } else {
         setFoundTags(result.data);
@@ -179,6 +194,7 @@ function ShareFilter(props) {
               >
                 <div
                   className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
+                  onClick={() => dispatch({ type: 'RESET' })}
                 >
                   <img
                     src={require('./../../../imgs/tags/trash.png')}
@@ -213,6 +229,7 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最小金額"
+                      value={filterState.minPrice}
                       data-type="minPrice"
                       onChange={e => {
                         filterDispatchHandler(e);
@@ -222,6 +239,7 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最大金額"
+                      value={filterState.maxPrice}
                       data-type="maxPrice"
                       onChange={e => {
                         filterDispatchHandler(e);
@@ -274,6 +292,7 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最小時間"
+                      value={filterState.minTime}
                       data-type="minTime"
                       onChange={e => {
                         filterDispatchHandler(e);
@@ -283,6 +302,7 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最大時間"
+                      value={filterState.maxTime}
                       data-type="maxTime"
                       onChange={e => {
                         filterDispatchHandler(e);
@@ -294,7 +314,10 @@ function ShareFilter(props) {
               <div className="d-flex justify-content-center">
                 <div className="col-18">
                   <div className="send-filter-btn-box d-flex justify-content-end">
-                    <button className="btn-sm btn-primary primeal-btn-sm">
+                    <button
+                      className="btn-sm btn-primary primeal-btn-sm"
+                      onClick={filterGetData}
+                    >
                       送出條件
                     </button>
                   </div>

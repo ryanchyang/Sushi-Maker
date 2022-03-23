@@ -33,7 +33,8 @@ const config = {
   GET_USER_SHARE_UPLOAD: `${host}/api/share/upload`,
   GET_USER_SHARE_POST: `${host}/api/share/post`,
   GET_USER_SHARE_COMMENT: `${host}/api/share/comment`,
-  GET_TAGS: `${host}/api/share/filter`,
+  GET_FILTER_ITEMS: `${host}/api/share/filter`,
+  GET_TAGS: `${host}/api/share/filter/tags`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
