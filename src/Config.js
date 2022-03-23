@@ -6,9 +6,6 @@ const host = 'http://localhost:3500';
 const config = {
   // 首頁
   PROMO_PATH: `${host}/home/api/promo`,
-  NEWS_RANDOM_PATH: `${host}/home/api/news`,
-  EVNTS_RANDOM_PATH: `${host}/home/api/evnts`,
-  SHARES_RANDOM_PATH: `${host}/home/api/shares`,
 
   // 新聞活動
   NEWS_PATH: `${host}/latest-news/api/news`,

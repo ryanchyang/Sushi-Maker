@@ -1,15 +1,14 @@
 import './entry.scss';
-import { useState } from 'react';
 
 function Entry(props) {
-  const { open, setOpen } = props;
+  const { entryOpen, setEntryOpen } = props;
 
   return (
     <>
       <div
         className="entry"
         style={
-          open ? { opacity: 1, zIndex: 200 } : { opacity: 0, zIndex: -100 }
+          entryOpen ? { opacity: 1, zIndex: 200 } : { opacity: 0, zIndex: -100 }
         }
       >
         <div className="entry-area">
@@ -34,7 +33,7 @@ function Entry(props) {
                 className="en-cont-18 progress-done"
                 onAnimationEnd={() => {
                   console.log('transitionend');
-                  setOpen(false);
+                  setEntryOpen(false);
                 }}
               ></div>
             </div>

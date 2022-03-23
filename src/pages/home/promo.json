@@ -1,90 +1,58 @@
 [
   {
-    "prod_id": 2,
-    "prod_ch_name": "肉排三重奏",
-    "prod_en_name": "Triple Meat",
-    "prod_category": "sushi",
-    "prod_value": 60,
-    "prod_spe_tag": "25%OFF",
-    "prod_spe_value": 55,
-    "img_path": "imgs/temp/classic-pro1.png",
-    "material": [15, 16]
+    "pid": 11,
+    "c_prod_ch_name": "鮪魚",
+    "c_prod_en_name": "Tuna ",
+    "c_prod_special_tag": "25%OFF",
+    "c_prod_img_path": "/img/classic/tuna.png"
   },
   {
-    "prod_id": 6,
-    "prod_ch_name": "焦糖鮭魚玉子",
-    "prod_en_name": "Caramel Salmon with Egg",
-    "prod_category": "sushi",
-    "prod_value": 55,
-    "prod_spe_tag": "NEW",
-    "prod_spe_value": 0,
-    "img_path": "/imgs/temp/classic-pro2.png",
-    "material": [2, 8]
+    "pid": 36,
+    "c_prod_ch_name": "綠茶",
+    "c_prod_en_name": "Green Tea",
+    "c_prod_special_tag": "New",
+    "c_prod_img_path": "/img/classic/greentea.png"
   },
   {
-    "prod_id": 8,
-    "prod_ch_name": "清檸干貝魚子醬",
-    "prod_en_name": "Lemon Scallop with Caviar",
-    "prod_category": "sushi",
-    "prod_value": 70,
-    "prod_spe_tag": "",
-    "prod_spe_value": 0,
-    "img_path": "/imgs/temp/classic-pro3.png",
-    "material": [27, 30, 37]
+    "pid": 19,
+    "c_prod_ch_name": "酪梨軍艦",
+    "c_prod_en_name": "Avocado Warship Roll",
+    "c_prod_special_tag": "New",
+    "c_prod_img_path": "/img/classic/avocadowarshiproll.png"
   },
   {
-    "prod_id": 9,
-    "prod_ch_name": "酪梨鮭魚魚子",
-    "prod_en_name": "Avocado Salmon with Caviar",
-    "prod_category": "sushi",
-    "prod_value": 50,
-    "prod_spe_tag": "20%OFF",
-    "prod_spe_value": 40,
-    "img_path": "/imgs/temp/classic-pro4.png",
-    "material": [2, 31]
+    "pid": 25,
+    "c_prod_ch_name": "柚香愛玉",
+    "c_prod_en_name": "Grapefruit Ice Jelly",
+    "c_prod_special_tag": "20%OFF",
+    "c_prod_img_path": "/img/classic/grapefruiticejelly.png"
   },
   {
-    "prod_id": 10,
-    "prod_ch_name": "煙燻鮭魚玉子",
-    "prod_en_name": "Smoked Salmon with Egg",
-    "prod_category": "sushi",
-    "prod_value": 50,
-    "prod_spe_tag": "",
-    "prod_spe_value": 0,
-    "img_path": "/imgs/temp/classic-pro1.png",
-    "material": [2, 8]
+    "pid": 5,
+    "c_prod_ch_name": "薯泥肉片",
+    "c_prod_en_name": "Meat with Mashed Potatoes",
+    "c_prod_special_tag": "New",
+    "c_prod_img_path": "/img/classic/meatmashedpotatoes.png"
   },
   {
-    "prod_id": 13,
-    "prod_ch_name": "綜合野菜",
-    "prod_en_name": "Mixed Vegetables",
-    "prod_category": "sushi",
-    "prod_value": 55,
-    "prod_spe_tag": "HOT",
-    "prod_spe_value": 48,
-    "img_path": "/imgs/temp/classic-pro2.png",
-    "material": [20, 24, 28, 34]
+    "pid": 28,
+    "c_prod_ch_name": "醬燒麻糬",
+    "c_prod_en_name": "Mochi with Soy Sauce",
+    "c_prod_special_tag": "25%OFF",
+    "c_prod_img_path": "/img/classic/mochiwithsoysauce.png"
   },
   {
-    "prod_id": 14,
-    "prod_ch_name": "綜合野菜",
-    "prod_en_name": "Mixed Vegetables",
-    "prod_category": "sushi",
-    "prod_value": 55,
-    "prod_spe_tag": "HOT",
-    "prod_spe_value": 48,
-    "img_path": "/imgs/temp/classic-pro2.png",
-    "material": [20, 24, 28, 34]
+    "pid": 16,
+    "c_prod_ch_name": "紅蘿蔔地瓜泥",
+    "c_prod_en_name": "Carrot with Mashed Sweet Potato",
+    "c_prod_special_tag": "25%OFF",
+    "c_prod_img_path": "/img/classic/carrotmashedsweetpotato.png"
   },
   {
-    "prod_id": 29,
-    "prod_ch_name": "巧克力草莓",
-    "prod_en_name": "Chocolate Strawberry",
-    "prod_category": "dessert",
-    "prod_value": 60,
-    "prod_spe_tag": "25%OFF",
-    "prod_spe_value": 55,
-    "img_path": "imgs/temp/classic-pro1.png",
-    "material": [15, 16]
+    "pid": 17,
+    "c_prod_ch_name": "野菜茄子明太子",
+    "c_prod_en_name": "Vegetable&Eggplant with Mentaiko",
+    "c_prod_special_tag": "20%OFF",
+    "c_prod_img_path": "/img/classic/vegetableeggplantmentaiko.png"
   }
 ]

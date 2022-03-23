@@ -3,13 +3,15 @@ import './index.scss';
 import './../../styles/global.scss';
 import newsData from './news.json';
 import evntsData from './evnts.json';
-import promo from './promo.json';
+// import promoData from './promo.json';
+import sharesData from './shares.json';
 import BackToTop from './components/BackToTop';
 import { useWindowScroll } from 'react-use';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Entry from './components/Entry';
+// import Entry from './components/Entry';
 import NavPage from '../layout/components/NavPage';
+import config from '../../Config';
 
 function Index(props) {
   const { navIsOpen, setNavIsOpen } = props;
@@ -18,7 +20,8 @@ function Index(props) {
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
   const [changeBG, setChangeBG] = useState(null);
-  const [open, setOpen] = useState('');
+  const [entryOpen, setEntryOpen] = useState('');
+  const [promoData, setPromoData] = useState([]);
 
   const { y: pageYOffset } = useWindowScroll();
 
@@ -27,18 +30,23 @@ function Index(props) {
   const cubeImgRef = useRef();
   const textImgRef = useRef();
 
+  const getPromoData = async () => {
+    const res = await fetch(config.PROMO_PATH);
+    const promoObj = await res.json();
+    console.log('promoObj:', promoObj);
+    setPromoData(promoObj.data);
+  };
+
   // ToDo:初始化要資料
   useEffect(() => {
-    setOpen(true);
+    // setEntryOpen(true);
+    setTime();
+    getPromoData();
   }, []);
 
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNewsCate]);
-
-  useEffect(() => {
-    setTime();
-  }, []);
 
   // 處理背景變色
   console.log('pageYOffset:', pageYOffset);
@@ -164,7 +172,7 @@ function Index(props) {
   return (
     <>
       <Header />
-      {/*{open && <Entry open={open} setOpen={setOpen} />}*/}
+      {/*{entryOpen && <Entry entryOpen={entryOpen} setEntryOpen={setEntryOpen} />}*/}
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
       )}
@@ -338,35 +346,38 @@ function Index(props) {
                 <div className="page-title en-title-24">Promotion</div>
                 <div className="promotion-wrap">
                   <ul className="promotion-list">
-                    {promo.map((v, i) => {
-                      return (
-                        <li
-                          key={v.prod_id}
-                          data-id={v.prod_id}
-                          onMouseEnter={handleMouseEnter}
-                          onMouseLeave={handleMouseLeave}
-                        >
-                          <div
-                            className={`bg${
-                              Math.ceil(i % 4) * 1
-                            } promotioncard`}
+                    {promoData &&
+                      promoData.map((v, i) => {
+                        return (
+                          <li
+                            key={'promo' + v.pid}
+                            data-id={v.pid}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                           >
-                            <div className="promotion-img">
-                              <img
-                                src={`http://localhost:3500/img/home/sushi/鮪魚壽司.png`}
-                                alt="tuna-sushi"
-                              />
+                            <div
+                              className={`bg${
+                                Math.ceil(i % 4) * 1
+                              } promotioncard`}
+                            >
+                              <div className="promotion-img">
+                                <img
+                                  src={
+                                    `http://localhost:3500` + v.c_prod_img_path
+                                  }
+                                  alt="tuna-sushi"
+                                />
+                              </div>
+                              <div className="ch-title-22 promotion-prod-ch-name">
+                                {v.c_prod_ch_name}
+                              </div>
+                              <div className="en-cont-14 promotion-prod-en-name">
+                                {v.c_prod_en_name}
+                              </div>
                             </div>
-                            <div className="ch-title-22 promotion-prod-ch-name">
-                              {v.prod_ch_name}
-                            </div>
-                            <div className="en-cont-14 promotion-prod-en-name">
-                              {v.prod_en_name}
-                            </div>
-                          </div>
-                        </li>
-                      );
-                    })}
+                          </li>
+                        );
+                      })}
                   </ul>
                 </div>
               </div>
@@ -516,7 +527,7 @@ function Index(props) {
                           >
                             <div className="index-category-img news-img d-flex justify-content-center">
                               <img
-                                src={`http://localhost:3500${v.news_img_path}`}
+                                src={`http://localhost:3500` + v.news_img_path}
                                 alt="news"
                               />
                             </div>
@@ -532,7 +543,7 @@ function Index(props) {
                               <div className="ch-cont-14 news-date">
                                 {v.news_start_date}
                               </div>
-                              <div className="ch-cont-14 news-text d-none d-md-block">
+                              <div className="ch-cont-14 news-text">
                                 {v.news_detail}
                               </div>
                             </div>
@@ -563,8 +574,8 @@ function Index(props) {
                               />
                             </div>
                             <div className="news-right-wrap">
-                              <div className="news-content-top d-flex justify-content-between">
-                                <div className="ch-title-22 news-title">
+                              <div className="news-content-top d-flex justify-content-between align-items-center">
+                                <div className="ch-title-18 news-title">
                                   {v.evnts_title}
                                 </div>
                                 <div className="ch-cont-14 news-tag">
@@ -574,8 +585,50 @@ function Index(props) {
                               <div className="ch-cont-14 news-date">
                                 {v.evnts_date}
                               </div>
-                              <div className="ch-cont-14 news-text d-none d-md-block">
+                              <div className="ch-cont-14 news-text">
                                 {v.evnts_detail}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div
+                    style={
+                      latestNewsCate === 'shares' ? showBlock : hiddenBlock
+                    }
+                  >
+                    <div
+                      className="news-carousel-wrap d-flex"
+                      style={checkTransform(newsIndex)}
+                    >
+                      {sharesData.map(v => {
+                        return (
+                          <div
+                            className="col-24 latest-new-content"
+                            key={v.share_item_id}
+                          >
+                            <div className="index-category-img shares-img d-flex justify-content-center">
+                              <img
+                                src={`http://localhost:3500/` + v.share_imgPath}
+                                alt="news"
+                              />
+                            </div>
+                            <div className="news-right-wrap">
+                              <div className="news-content-top d-flex justify-content-between align-items-center">
+                                <div className="ch-title-18 news-title">
+                                  {v.share_title}
+                                </div>
+                                <div className="ch-cont-14 news-tag">
+                                  {v.item_hash}
+                                </div>
+                              </div>
+                              {/*<div className="ch-cont-14 news-date">
+                                {v.news_start_date}
+                              </div>*/}
+                              <div className="ch-cont-14 news-text">
+                                {v.share_desc}
                               </div>
                             </div>
                           </div>
@@ -588,7 +641,7 @@ function Index(props) {
                   style={latestNewsCate === 'news' ? showBlock : hiddenBlock}
                 >
                   <div className="latest-news-pagination">
-                    <div className="latest-news-left-arrow d-none d-md-block">
+                    <div className="latest-news-left-arrow d-none d-sm-block">
                       <img
                         src={`http://localhost:3500/img/home/left.svg`}
                         alt="left-arrow"
@@ -600,7 +653,7 @@ function Index(props) {
                         }}
                       />
                     </div>
-                    <div className="latest-news-dots d-none d-md-block">
+                    <div className="latest-news-dots d-none d-sm-block">
                       <ul className="pagination-list">
                         {newsData.map((v, i) => {
                           return (
@@ -614,7 +667,7 @@ function Index(props) {
                         })}
                       </ul>
                     </div>
-                    <div className="latest-news-right-arrow d-none d-md-block">
+                    <div className="latest-news-right-arrow d-none d-sm-block">
                       <img
                         src={`http://localhost:3500/img/home/right.svg`}
                         alt="right-arrow"
@@ -632,7 +685,7 @@ function Index(props) {
                   style={latestNewsCate === 'events' ? showBlock : hiddenBlock}
                 >
                   <div className="latest-news-pagination">
-                    <div className="latest-news-left-arrow d-none d-md-block">
+                    <div className="latest-news-left-arrow d-none d-sm-block">
                       <img
                         src={`http://localhost:3500/img/home/left.svg`}
                         alt="left-arrow"
@@ -644,7 +697,7 @@ function Index(props) {
                         }}
                       />
                     </div>
-                    <div className="latest-news-dots d-none d-md-block">
+                    <div className="latest-news-dots d-none d-sm-block">
                       <ul className="pagination-list">
                         {evntsData.map((v, i) => {
                           return (
@@ -658,7 +711,51 @@ function Index(props) {
                         })}
                       </ul>
                     </div>
-                    <div className="latest-news-right-arrow d-none d-md-block">
+                    <div className="latest-news-right-arrow d-none d-sm-block">
+                      <img
+                        src={`http://localhost:3500/img/home/right.svg`}
+                        alt="right-arrow"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                          newsIndex < newsData.length - 1
+                            ? setNewsIndex(+newsIndex + 1)
+                            : setNewsIndex(newsData.length - 1);
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style={latestNewsCate === 'shares' ? showBlock : hiddenBlock}
+                >
+                  <div className="latest-news-pagination">
+                    <div className="latest-news-left-arrow d-none d-sm-block">
+                      <img
+                        src={`http://localhost:3500/img/home/left.svg`}
+                        alt="left-arrow"
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => {
+                          newsIndex > 1
+                            ? setNewsIndex(+newsIndex - 1)
+                            : setNewsIndex(0);
+                        }}
+                      />
+                    </div>
+                    <div className="latest-news-dots d-none d-sm-block">
+                      <ul className="pagination-list">
+                        {sharesData.map((v, i) => {
+                          return (
+                            <li
+                              className="pagination-dots"
+                              key={i}
+                              data-id={i}
+                              onClick={changeContent}
+                            ></li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                    <div className="latest-news-right-arrow d-none d-sm-block">
                       <img
                         src={`http://localhost:3500/img/home/right.svg`}
                         alt="right-arrow"
