@@ -58,7 +58,7 @@ function ShareFilter(props) {
   const filterGetData = async () => {
     const response = await fetch(config.GET_FILTER_ITEMS, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(filterState),
     });
     const itemsArr = await response.json();
