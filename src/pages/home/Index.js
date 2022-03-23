@@ -43,7 +43,7 @@ function Index(props) {
   // 處理背景變色
   console.log('pageYOffset:', pageYOffset);
   useEffect(() => {
-    if (pageYOffset <= 3500 || pageYOffset >= 6500) {
+    if (pageYOffset <= 3500 || pageYOffset >= 6800) {
       setChangeBG(true);
     } else if (pageYOffset > 3500) {
       setChangeBG(false);
