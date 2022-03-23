@@ -9,12 +9,19 @@ import { ReactComponent as OrangeTag } from '../../../imgs/tags/Rectangle_orange
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 
 function ShareFilter(props) {
-  const { filter, setFilter, masonryContainer, setMasonryContainer, dispatch } =
-    props;
+  const {
+    filter,
+    setFilter,
+    masonryContainer,
+    setMasonryContainer,
+    filterState,
+    dispatch,
+  } = props;
 
   const [tagsInput, setTagsInput] = useState([]);
   const [suggestedTags, setSuggestedTags] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
 
   const filterDispatchHandler = e => {
     const type = e.target.dataset.type;
@@ -53,25 +60,81 @@ function ShareFilter(props) {
     }
   };
 
+  const checkSelectedTags = e => {
+    const isSelected = filterState.tags.some(tag => tag === e.target.innerText);
+    if (!isSelected) {
+      return [...filterState.tags, e.target.innerText];
+    } else {
+      return filterState.tags;
+    }
+  };
+
+  const checkRemovedTags = e =>
+    filterState.tags.filter(tag => tag !== e.target.previousSibling.innerText);
+
   const tagsAreaHandler = () => {
     if (tagsInput.length === 0) {
       return suggestedTags.map((tag, i) => {
         return (
-          <div className="flavor-tag ch-title-16" key={i}>
+          <div
+            className="flavor-tag ch-title-16"
+            key={i}
+            onClick={e => {
+              dispatch({ type: 'TAGS', tags: checkSelectedTags(e) });
+            }}
+          >
             {tag.item_hash}
           </div>
         );
       });
-    } else if (foundTags.length && tagsInput.length) {
+    }
+    if (tagsInput.length && foundTags.length) {
       return foundTags.map((tag, i) => {
         return (
-          <div className="flavor-tag ch-title-16" key={i}>
+          <div
+            className="flavor-tag ch-title-16"
+            key={i}
+            onClick={e => {
+              dispatch({ type: 'TAGS', tags: checkSelectedTags(e) });
+            }}
+          >
             {tag.item_hash}
           </div>
         );
       });
+    }
+    if (tagsInput.length && foundTags.length === 0) {
+      return <div className="ch-title-16">查無結果</div>;
+    }
+  };
+
+  const selectedTagsHandler = () => {
+    if (filterState.tags.length === 0) {
+      return <div className="en-title-14-10 text-grey">Suggestions</div>;
     } else {
-      return <div className="flavor-tag ch-title-16">查無結果</div>;
+      return (
+        <div className="flavor-tag-box">
+          {filterState.tags.map((tag, i) => {
+            return (
+              <div
+                className={`${styles['filter-hashtag-tag']} d-flex align-items-center`}
+              >
+                <div
+                  className={`${styles['hashtag-tag-text']} ch-cont-14 mr-2`}
+                >
+                  {tag}
+                </div>
+                <DeleteSm
+                  style={{ cursor: 'pointer' }}
+                  onClick={e => {
+                    dispatch({ type: 'TAGS', tags: checkRemovedTags(e) });
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
     }
   };
 
@@ -188,7 +251,7 @@ function ShareFilter(props) {
                       onChange={e => tagsInputHandler(e)}
                     />
                   </div>
-                  <div className="en-title-14-10 text-grey">Suggestions</div>
+                  {selectedTagsHandler()}
                   <div className="flavor-tag-box">{tagsAreaHandler()}</div>
                 </div>
               </div>

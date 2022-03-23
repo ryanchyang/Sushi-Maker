@@ -164,6 +164,7 @@ function Share() {
             setFilter={setFilter}
             masonryContainer={masonryContainer}
             setMasonryContainer={setMasonryContainer}
+            filterState={filterState}
             dispatch={dispatchFilter}
           />
           {/* <Footer /> */}

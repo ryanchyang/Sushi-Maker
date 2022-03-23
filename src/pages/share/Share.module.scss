@@ -542,6 +542,16 @@ $min-height: calc(64.5vh);
   border-radius: 20px;
 }
 
+.filter-hashtag-tag {
+  max-width: 100%;
+  height: 32px;
+  padding: 0 1.5%;
+  margin-right: 1.5%;
+  margin-bottom: 10px;
+  border: 1px solid $dark-text;
+  border-radius: 20px;
+}
+
 .hashtag-tag-text {
   width: 100%;
   overflow: hidden;
