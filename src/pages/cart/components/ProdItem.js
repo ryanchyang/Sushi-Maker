@@ -16,24 +16,34 @@ function ProdItem(props) {
   //        orders_print_time:90
   //        orders_category:'cls',
   //    }
+
+  // 計算單品數量
   const [countcs, setCountcs] = useState([]);
   const [countcm, setCountcm] = useState([]);
   const [countset, setCountset] = useState([]);
-  console.log(countcs);
-  console.log(countcm);
+
+  // console.log(countcs);
+  // console.log(countcm);
+
   useEffect(() => {
     setCountcs(props.cs);
     setCountcm(props.cm);
     setCountset(props.set);
   }, [props]);
 
-  useEffect(() => { }, [countcs, countcm, countset]);
+  useEffect(() => {}, [countcs, countcm, countset]);
+
+  // 計算小計金額
+
+  const [subtotalcs, setSubtotalcs] = useState();
+  const [subtotalcm, setSubtotalcm] = useState('');
+  const [subtotalset, setSubtotalset] = useState('');
 
   //改變cm數量輸入欄
   const changeCMCount = (count, pid) => {
     // 先拷貝一層
     const newData = [...countcm];
-    // 找出要的/點到的pid 跟 map 出來的484 同一個 
+    // 找出要的/點到的pid 跟 map 出來的484 同一個
     const data = newData.find(cm => cm.product_id == pid);
     // 找出 點到的product_id 是在 陣列中的第幾個 (在 cm 的陣列中 可能會有多個商品)
     const index = newData.findIndex(cm => cm.product_id == pid);
@@ -158,7 +168,6 @@ function ProdItem(props) {
       return { ...v };
     });
 
-
     setCountset(newData2);
   };
 
@@ -217,7 +226,7 @@ function ProdItem(props) {
                     {v.set_name}
                   </div>
                   <div className="col-md-8 my-md-3 align-items-center">
-                    {v.orders_value}元
+                    {v.orders_value}元/個
                   </div>
                   <div className="col-md-8 my-md-3 align-items-center">
                     <div className="select-count">
@@ -333,7 +342,11 @@ function ProdItem(props) {
                 </div>
                 <div className="col-md-4 col-6 align-items-center">
                   <div className="cart-item-img">
-                    <img alt="" className="img-fluid" src="{image}" />
+                    <img
+                      alt={v.cs_prod_img_path}
+                      className="img-fluid"
+                      src={`http://localhost:3500${v.c_prod_img_path}`}
+                    />
                   </div>
                 </div>
                 <div
@@ -379,7 +392,7 @@ function ProdItem(props) {
                   </div>
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center">
-                  {v.orders_print_time}秒
+                  {v.orders_print_time}秒/個
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center ">
                   ${v.orders_value * v.orders_amount}
@@ -420,9 +433,9 @@ function ProdItem(props) {
                 <div className="col-md-4 col-6 align-items-center">
                   <div className="cart-item-img">
                     <img
-                      alt=""
+                      alt={v.cm_prod_img_path}
                       className="img-fluid"
-                      src={v.cm_prod_img_path}
+                      src={`http://localhost:3500${v.cm_prod_img_path}`}
                     />
                   </div>
                 </div>
@@ -473,7 +486,7 @@ function ProdItem(props) {
                   </div>
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center">
-                  {v.orders_print_time}秒
+                  {v.orders_print_time}秒/個
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center ">
                   ${v.orders_value * v.orders_amount}
@@ -492,7 +505,6 @@ function ProdItem(props) {
           </div>
         );
       })}
-     
     </>
   );
 }

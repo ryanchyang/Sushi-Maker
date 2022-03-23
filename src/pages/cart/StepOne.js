@@ -17,7 +17,7 @@ function StepOne(props) {
   // 回上一頁 按鈕
   let history = useHistory();
   const [list, setList] = useState({});
-  const mem_id = 1;
+  const mem_id = 4;
   //const {cs = [], cm = [], set = []} = list;
 
   // const getList = async () => {
@@ -37,25 +37,38 @@ function StepOne(props) {
   // }, []);
 
   useEffect(() => {
-    const getList = async () => {      
-      const res = await fetch(config.GET_CART + `${mem_id}`);
+    const getList = async () => {
+      const res = await fetch(config.GET_CART_ORDER + `${mem_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
       // console.log('cm:', obj.data.cm);
       // console.log('cs:', obj.data.cs);
       // console.log('set:', obj.data.set);
-      setList(obj.data);      
+      setList(obj.data);
     };
     getList();
   }, []);
 
   useEffect(() => {
     console.log(list);
+    // console.log('cs', list.cs?.length);
+    // console.log(' cs', list.cs?.length);
+    // console.log(' cm', list.cm?.length);
+    // console.log(' set', list.set?.length);
+    console.log(
+      ' plus!!!',
+      list.cs?.length + list.cm?.length + list.set?.length
+    );
   }, [list]);
-  // // 處理項目刪除用
+  // console.log('length cs', list.cs?.length);
+  // console.log('length cm', list.cm?.length);
+  // console.log('length set', list.set?.length);
+  // console.log('plus');
+  
+  // 處理項目刪除用
   // const handleDelete = id => {
   //   //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
-  //   let newProductsInOrder = [...productsInOrder];
+  //   let newData = [...data];
   //   //2. 在拷貝出的新陣列(物件)上運算或處理
   //   newProductsInOrder = newProductsInOrder.filter((v, i) => {
   //     return v.id !== id;
@@ -152,9 +165,7 @@ function StepOne(props) {
                   <div className="summary ">
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12 ">商品數量</div>
-                      <div className="col-12 col-md-8 text-right">
-                        總計5項
-                      </div>
+                      <div className="col-12 col-md-8 text-right">總計5項</div>
                     </div>
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12">印製時間</div>
