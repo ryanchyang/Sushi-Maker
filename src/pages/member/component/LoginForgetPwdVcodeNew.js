@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { ReactComponent as DeleteSm } from '../../../imgs/delete-sm.svg';
-import { vcodeCheck } from '../../../WebApi';
+import { resetPwd } from '../../../WebApi';
+import { useHistory } from 'react-router-dom';
 
 //styled component
 const Slogan = styled.p`
@@ -38,26 +39,28 @@ const ErrorMessage = styled.p`
 `;
 
 function LoginForgetPwdVcodeNew(props) {
-  const { accountPass, setAccountPass } = props;
+  const { vCodePass, setVcodePass } = props;
   const [errorMessage, setErrorMessage] = useState('');
-  const [vCodeCheck, setVCodeCheck] = useState(false);
-  const [validCode, setValidCode] = useState('');
-  const verify_code = localStorage.getItem('verify_code');
 
+  const [newPassword, setNewPassword] = useState('');
+  const [newCheckPassword, setNewCheckPassword] = useState('');
+  const mem_id = localStorage.getItem('mem_id');
+  const history = useHistory()
   const handleClickClose = () => {
-    setAccountPass(false);
+    setVcodePass(false);
   };
-  const handleVcodeSubmit = e => {
+  const handlePwdSubmit = e => {
     e.preventDefault();
-    vcodeCheck(validCode, verify_code).then(obj => {
-      console.log(obj.success);
-      if (obj.success === false) {
-        setErrorMessage(obj.errorMessage);
-      } else {
-        setVCodeCheck(true);
-        setErrorMessage('');
-      }
-    });
+    if (newPassword === newCheckPassword) {
+      resetPwd(newPassword, mem_id).then(obj => {
+        if (obj.success === false) {
+          setErrorMessage(obj.errorMessage);
+        } else {
+          alert('修改成功! 請重新登入');
+          history.push('/member/login')
+        }
+      });
+    }
   };
 
   return (
@@ -65,7 +68,7 @@ function LoginForgetPwdVcodeNew(props) {
       <InputArea
         className="col-5"
         style={
-          !accountPass
+          !vCodePass
             ? { right: '-100%', height: '100%', zIndex: 1 }
             : { right: '12.5%', height: '100%', zIndex: 1 }
         }
@@ -74,15 +77,35 @@ function LoginForgetPwdVcodeNew(props) {
           onClick={handleClickClose}
           style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
         ></DeleteSm>
-        <Slogan>Please confirm your Vcode</Slogan>
-        <LoginForm onSubmit={handleVcodeSubmit}>
-          <InputTitle className="ch-cont-14">請輸入驗證碼</InputTitle>
+        <Slogan>Reset your Password</Slogan>
+        <LoginForm onSubmit={handlePwdSubmit}>
+          <InputTitle className="ch-cont-14">請輸入新密碼</InputTitle>
           <input
             type="text"
             className="form-control"
-            value={validCode}
+            value={newPassword}
             onChange={e => {
-              setValidCode(e.target.value);
+              setNewPassword(e.target.value);
+            }}
+            style={{
+              borderRadius: 50,
+              height: '40px',
+              background: '#212121',
+              border: '1px solid #f7f6f3',
+              color: '#f7f6f3',
+              fontSize: '1.4rem',
+              lineHeight: '1.8rem',
+              letterSpacing: '0.14rem',
+            }}
+          />
+          <ErrorMessage className="ch-cont-14">{errorMessage}</ErrorMessage>
+          <InputTitle className="ch-cont-14">請再次輸入密碼</InputTitle>
+          <input
+            type="text"
+            className="form-control"
+            value={newCheckPassword}
+            onChange={e => {
+              setNewCheckPassword(e.target.value);
             }}
             style={{
               borderRadius: 50,

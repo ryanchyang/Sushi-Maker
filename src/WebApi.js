@@ -40,6 +40,19 @@ export const vcodeCheck = (validCode, verify_code) => {
     }),
   }).then(res => res.json());
 };
+//忘記密碼頁修改密碼API
+export const resetPwd = (newPassword, mem_id) => {
+  return fetch(`${BASE_URL}/member/api/reset-pwd`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      newPassword,
+      mem_id,
+    }),
+  }).then(res => res.json());
+};
 
 //先留著 換頁render用
 export const getMe = () => {

@@ -38,9 +38,8 @@ const ErrorMessage = styled.p`
 `;
 
 function LoginForgetPwdVcode(props) {
-  const { accountPass, setAccountPass } = props;
+  const { accountPass, setAccountPass, setVcodePass } = props;
   const [errorMessage, setErrorMessage] = useState('');
-  const [vCodeCheck, setVCodeCheck] = useState(false);
   const [validCode, setValidCode] = useState('');
   const verify_code = localStorage.getItem('verify_code');
 
@@ -54,7 +53,8 @@ function LoginForgetPwdVcode(props) {
       if (obj.success === false) {
         setErrorMessage(obj.errorMessage);
       } else {
-        setVCodeCheck(true);
+        setVcodePass(true);
+        setAccountPass(false)
         setErrorMessage('');
       }
     });
@@ -66,7 +66,7 @@ function LoginForgetPwdVcode(props) {
         className="col-5"
         style={
           !accountPass
-            ? { right: '-100%', height: '100%', zIndex: 1 }
+            ? { right: '-100%', height: '100%', zIndex: 1 ,transitionDelay: '0.5s'}
             : { right: '12.5%', height: '100%', zIndex: 1 }
         }
       >

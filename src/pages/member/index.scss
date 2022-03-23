@@ -76,6 +76,15 @@
         display: flex;
         overflow: hidden;
         width: 100%;
+        position: relative;
+    }
+    .carouContainer{
+        transform: translate3d(0,0,0);
+        transition-duration: 1s;
+        transition-property: all;
+        transition-timing-function: ease;
+        position: relative;
+        display: flex;
     }
     .memShare {
         padding: 0;
@@ -86,6 +95,7 @@
     .carouImg {
         width: 40%;
         border-radius:50%;
+        
     }
     .Cimg {
         width:180px;
@@ -177,6 +187,27 @@
         flex-direction: column;
         align-items: center
     }
+
+    .buttonLeft {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        }
+        .buttonRight {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        }
    
     
     

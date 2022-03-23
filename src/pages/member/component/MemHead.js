@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { getMemId } from '../../../utils';
 import { findMem } from '../../../WebApi';
 import { memDoUpload } from '../../../WebApi';
+import Carousel from './Carousel';
 
 function MemHead() {
   const [memData, setMemData] = useState(null);
+
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
 
@@ -70,23 +72,7 @@ function MemHead() {
       </div>
 
       <div className="memShare col-md-12 ml-5">
-        <div className="divCarou">
-          <div className="carouImg mx-3">
-            <img className="Cimg" src="/img/member/shareImg.png" alt="" />
-          </div>
-          <div className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </div>
-          <div className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </div>
-          <div className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </div>
-        </div>
-        <button className="btn btn-primary primeal-btn-sm share-btn">
-          觀看全部收藏
-        </button>
+        <Carousel/>
       </div>
     </div>
   );

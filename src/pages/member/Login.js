@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { setAuthToken, setMemId } from '../../utils';
 import LoginForgetPwd from './component/LoginForgetPwd';
 import LoginForgetPwdVcode from './component/LoginForgetPwdVcode';
+import LoginForgetPwdVcodeNew from './component/LoginForgetPwdVcodeNew';
 // import { AuthContext } from '../../contexts.js';
 
 //styled component
@@ -75,6 +76,7 @@ function Login() {
   const [showPwd, setShowPwd] = useState(false);
   const [forgetPwd, setForgetPwd] = useState(false);
   const [accountPass, setAccountPass] = useState(false);
+  const [vCodePass, setVcodePass] = useState(false);
   const history = useHistory();
 
   const handleClickPwd = e => {
@@ -235,6 +237,11 @@ function Login() {
               <LoginForgetPwdVcode
                 accountPass={accountPass}
                 setAccountPass={setAccountPass}
+                setVcodePass={setVcodePass}
+              />
+              <LoginForgetPwdVcodeNew
+                vCodePass={vCodePass}
+                setVcodePass={setVcodePass}
               />
             </LoginArea>
 
