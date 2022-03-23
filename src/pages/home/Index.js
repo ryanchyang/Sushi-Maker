@@ -9,7 +9,7 @@ import BackToTop from './components/BackToTop';
 import { useWindowScroll } from 'react-use';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-// import Entry from './components/Entry';
+import Entry from './components/Entry';
 import NavPage from '../layout/components/NavPage';
 import config from '../../Config';
 
@@ -39,7 +39,7 @@ function Index(props) {
 
   // ToDo:初始化要資料
   useEffect(() => {
-    // setEntryOpen(true);
+    setEntryOpen(true);
     setTime();
     getPromoData();
   }, []);
@@ -172,7 +172,7 @@ function Index(props) {
   return (
     <>
       <Header />
-      {/*{entryOpen && <Entry entryOpen={entryOpen} setEntryOpen={setEntryOpen} />}*/}
+      {entryOpen && <Entry entryOpen={entryOpen} setEntryOpen={setEntryOpen} />}
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
       )}

@@ -13,7 +13,9 @@ import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import { useState } from 'react';
+import config from '../../Config';
+import { getMemId } from '../../utils';
+import { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 
 const locales = {
@@ -51,8 +53,21 @@ const events = [
 ];
 
 function IndexActive() {
-  // const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
-  // const [allEvent, setAllEvent] = useState(events);
+  const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
+  const [allEvent, setAllEvent] = useState(events);
+  // todo: membe_id先寫死
+  const mem_id = 1;
+
+  const getActive = async () => {
+    const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
+    const obj = await res.json();
+    console.log('obj:', obj);
+    setAllEvent(obj.data);
+  };
+
+  useEffect(() => {
+    getActive();
+  });
 
   // 處理活動更新
   // const handleAddEvent = () => {

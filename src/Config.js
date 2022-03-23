@@ -38,7 +38,7 @@ const config = {
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
-
+  ACTIVE_PATH: `${host}/member/api/active`,
   // 購物車
   // 得到購物車清單 stepone
   GET_CART: `${host}/api/cart/stepone/`,

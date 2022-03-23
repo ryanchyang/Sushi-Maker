@@ -22,7 +22,7 @@ function EvntsSignUp(props) {
   console.log('id:', id);
 
   const getEvntsInfo = async () => {
-    console.log('hihi');
+    // console.log('hihi');
     const res = await fetch(config.EVNTSD_PATH + `${id}`);
     const obj = await res.json();
     console.log('obj:', obj);
