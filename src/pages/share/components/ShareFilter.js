@@ -1,11 +1,102 @@
 import styles from '../Share.module.scss';
 import '../../classic/index.scss';
+import config from '../../../Config';
+
+import { useState, useEffect } from 'react';
 
 import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
 import { ReactComponent as OrangeTag } from '../../../imgs/tags/Rectangle_orange.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
+
 function ShareFilter(props) {
-  const { filter, setFilter, masonryContainer, setMasonryContainer } = props;
+  const { filter, setFilter, masonryContainer, setMasonryContainer, dispatch } =
+    props;
+
+  const [tagsInput, setTagsInput] = useState([]);
+  const [suggestedTags, setSuggestedTags] = useState([]);
+  const [foundTags, setFoundTags] = useState([]);
+
+  const filterDispatchHandler = e => {
+    const type = e.target.dataset.type;
+    if (type) {
+      return dispatch({
+        type: `${type.toUpperCase()}`,
+        [type]: e.target.value,
+      });
+    }
+  };
+
+  const getSuggestedTags = async () => {
+    const response = await fetch(config.GET_TAGS, {
+      method: 'GET',
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
+  const getFoundTags = async () => {
+    const response = await fetch(config.GET_TAGS, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(tagsInput[0]),
+    });
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
+  const tagsInputHandler = e => {
+    const value = e.target.value;
+    if (value) {
+      setTagsInput([{ tagInput: e.target.value }]);
+    } else {
+      setTagsInput([]);
+    }
+  };
+
+  const tagsAreaHandler = () => {
+    if (tagsInput.length === 0) {
+      return suggestedTags.map((tag, i) => {
+        return (
+          <div className="flavor-tag ch-title-16" key={i}>
+            {tag.item_hash}
+          </div>
+        );
+      });
+    } else if (foundTags.length && tagsInput.length) {
+      return foundTags.map((tag, i) => {
+        return (
+          <div className="flavor-tag ch-title-16" key={i}>
+            {tag.item_hash}
+          </div>
+        );
+      });
+    } else {
+      return <div className="flavor-tag ch-title-16">查無結果</div>;
+    }
+  };
+
+  // Finding tags when tag input changed
+  useEffect(() => {
+    if (Object.keys(tagsInput).length === 0) return;
+    (async () => {
+      const result = await getFoundTags();
+      if (result.status === 'fail') {
+        setFoundTags([]);
+      } else {
+        setFoundTags(result.data);
+      }
+    })();
+  }, [tagsInput]);
+
+  // Fetching data
+  useEffect(() => {
+    (async () => {
+      const result = await getSuggestedTags();
+
+      setSuggestedTags(result.data);
+    })();
+  }, []);
+
   return (
     <>
       <div className={`${styles['filter-panel-mask']}`}></div>
@@ -59,13 +150,19 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最小金額"
-                      data-pFilter="min"
+                      data-type="minPrice"
+                      onChange={e => {
+                        filterDispatchHandler(e);
+                      }}
                     />
                     <div className="by-price-dash-line"></div>
                     <input
                       type="number"
                       placeholder="最大金額"
-                      data-pFilter="max"
+                      data-type="maxPrice"
+                      onChange={e => {
+                        filterDispatchHandler(e);
+                      }}
                     />
                   </div>
                 </div>
@@ -86,31 +183,13 @@ function ShareFilter(props) {
                   <div className="by-price-input justify-content-between">
                     <input
                       style={{ width: '100%' }}
-                      type="number"
+                      type="text"
                       placeholder="搜尋標籤"
-                      data-pFilter="min"
+                      onChange={e => tagsInputHandler(e)}
                     />
                   </div>
                   <div className="en-title-14-10 text-grey">Suggestions</div>
-                  <div className="flavor-tag-box">
-                    <div className="flavor-tag ch-title-16">牛肉</div>
-                    <div className="flavor-tag ch-title-16">豬肉</div>
-                    <div className="flavor-tag ch-title-16">火腿</div>
-                    <div className="flavor-tag ch-title-16">起司</div>
-                    <div className="flavor-tag ch-title-16">鮭魚卵</div>
-                    <div className="flavor-tag ch-title-16">鮮蝦/蝦卵</div>
-                    <div className="flavor-tag ch-title-16">干貝</div>
-                    <div className="flavor-tag ch-title-16">明太子</div>
-                    <div className="flavor-tag ch-title-16">番薯/馬鈴薯</div>
-                    <div className="flavor-tag ch-title-16">麻糬</div>
-                    <div className="flavor-tag ch-title-16">抹茶</div>
-                    <div className="flavor-tag ch-title-16">羊羹/果凍</div>
-                    <div className="flavor-tag ch-title-16">干貝</div>
-                    <div className="flavor-tag ch-title-16">明太子</div>
-                    <div className="flavor-tag ch-title-16">番薯/馬鈴薯</div>
-                    <div className="flavor-tag ch-title-16">麻糬</div>
-                    <div className="flavor-tag ch-title-16">抹茶</div>
-                  </div>
+                  <div className="flavor-tag-box">{tagsAreaHandler()}</div>
                 </div>
               </div>
 
@@ -132,13 +211,19 @@ function ShareFilter(props) {
                     <input
                       type="number"
                       placeholder="最小時間"
-                      data-pFilter="min"
+                      data-type="minTime"
+                      onChange={e => {
+                        filterDispatchHandler(e);
+                      }}
                     />
                     <div className="by-price-dash-line"></div>
                     <input
                       type="number"
                       placeholder="最大時間"
-                      data-pFilter="max"
+                      data-type="maxTime"
+                      onChange={e => {
+                        filterDispatchHandler(e);
+                      }}
                     />
                   </div>
                 </div>

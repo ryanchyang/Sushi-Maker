@@ -8,10 +8,54 @@ import useCurrentScroll from './hooks/useCurrentScroll';
 import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useReducer } from 'react';
 // import { useWindowScroll } from 'react-use';
 import styles from './Share.module.scss';
 import config from '../../Config';
+
+const initFilterState = {
+  minPrice: '',
+  maxPrice: '',
+  tags: [],
+  minTime: '',
+  maxTime: '',
+};
+
+const filterStateReducer = (state, action) => {
+  if (action.type === 'MINPRICE') {
+    return {
+      ...state,
+      minPrice: action.minPrice,
+    };
+  }
+  if (action.type === 'MAXPRICE') {
+    return {
+      ...state,
+      maxPrice: action.maxPrice,
+    };
+  }
+  if (action.type === 'TAGS') {
+    return {
+      ...state,
+      tags: action.tags,
+    };
+  }
+  if (action.type === 'MINTIME') {
+    return {
+      ...state,
+      minTime: action.minTime,
+    };
+  }
+  if (action.type === 'MAXTIME') {
+    return {
+      ...state,
+      maxTime: action.maxTime,
+    };
+  }
+  if (action.type === 'RESET') {
+    return initFilterState;
+  }
+};
 
 function Share() {
   //controll
@@ -19,6 +63,11 @@ function Share() {
   const [masonryContainer, setMasonryContainer] = useState(true);
   const [search, setSearch] = useState(false);
   const [colControl, setColControl] = useState(false);
+  // filter
+  const [filterState, dispatchFilter] = useReducer(
+    filterStateReducer,
+    initFilterState
+  );
 
   //window handler
   const currentWidth = useCurrentWidth();
@@ -115,6 +164,7 @@ function Share() {
             setFilter={setFilter}
             masonryContainer={masonryContainer}
             setMasonryContainer={setMasonryContainer}
+            dispatch={dispatchFilter}
           />
           {/* <Footer /> */}
         </div>
