@@ -426,7 +426,7 @@ function Index() {
       //取得所有食材資料
       const mtlRes = await fetch(config.GET_INIT_MTLS);
       const mtlObj = await mtlRes.json();
-      const mtls = mtlObj.rows;
+      const mtls = mtlObj.rows.splice(20);
 
       const initData = prods.filter(pro => pro.c_prod_cate === 'sushi');
       //預設呈現的商品類型為壽司
