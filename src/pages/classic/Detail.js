@@ -1,9 +1,11 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { ReactComponent as Heart } from '../../imgs/tags/heart.svg';
-import { useState, useEffect } from 'react';
+import { ReactComponent as HeartFill } from '../../imgs/tags/heart-fill.svg';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import config from '../../Config';
 import './detail.scss';
+import { Button, Modal } from 'react-bootstrap';
 
 function Detail() {
   const [isDetail, setIsDetail] = useState(false); //是否開啟詳細資料
@@ -11,8 +13,10 @@ function Detail() {
   const [materials, setMaterials] = useState([]); //食材資料(3個)
   const [recommends, setRecommendeds] = useState([]); //推薦商品資料(3個)
   const [selectedMaterial, setSelectedMaterial] = useState({}); //目前選定的食材資料
+  const [isLike, setIsLike] = useState(false); //該商品是否被收藏
   const [buyCount, setBuyCount] = useState(1);
   const { id } = useParams(); //取得url上的product id
+  const lightBox = useRef();
 
   //點擊食材圖片
   const changeMtl = mid => {
@@ -59,22 +63,90 @@ function Detail() {
     localStorage.setItem('history', newHistory);
   };
 
+  //點擊收藏
+  const handleLike = async() => {
+    //判斷有無登入
+    const isLogin = localStorage.getItem('mem_id') !== null;
+    if (isLogin) {
+      await fetch(config.HANDLE_LIKE, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          memid: localStorage.getItem('mem_id'),
+          pid: data.pid,
+          category: data.c_prod_cate,
+        }),
+      });
+
+      setIsLike(!isLike);
+    } else {
+      handleShow();
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
+      //取得商品詳細資料
       const prodRes = await fetch(config.GET_PROD + `/${id}`);
       const prodObj = await prodRes.json();
       setData(prodObj.rows[0]);
       setMaterials(prodObj.rows[1]);
       setSelectedMaterial(prodObj.rows[1][0]);
       setRecommendeds(prodObj.rows[2]);
+      // console.log(prodObj.rows[0]);
+
+      //取得商品是否被收藏
+      const likeRes = await fetch(config.GET_LIKE, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          memid: localStorage.getItem('mem_id'),
+          pid: prodObj.rows[0].pid,
+          category: prodObj.rows[0].c_prod_cate,
+        }),
+      });
+      const likeObj = await likeRes.json();
+      setIsLike(likeObj.isLike);
     };
 
     fetchData();
     window.scrollTo(0, 0); //re-render後強制回到top
+    console.log(lightBox); 
   }, []);
+
+  const hiddenStyle = { display: 'none' };
+  const showStyle = { display: 'block' };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
+      {
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ margin: '0 3%' }}>
+            <div className="en-cont-14 pb-2" ref={lightBox}>
+              您的商品已加入購物車
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+              onClick={handleClose}
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      }
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
@@ -166,8 +238,9 @@ function Detail() {
                 <div className="prod-en-name eh-title-big">
                   {data.c_prod_en_name}
                 </div>
-                <div className="like-heart">
-                  <Heart />
+                <div className="like-heart" onClick={handleLike}>
+                  <Heart style={isLike ? hiddenStyle : showStyle} />
+                  <HeartFill style={isLike ? showStyle : hiddenStyle} />
                 </div>
                 <div className="prod-price">
                   {/* 如果沒有特價就用原價顯示 */}
