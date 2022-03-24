@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from '././components/CartDetial';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import StepMap from '././components/StepMap';
 import { Button, Modal } from 'react-bootstrap';
 
@@ -20,7 +20,9 @@ function StepTwo() {
   // 回上一頁 按鈕
   let history = useHistory();
 
+  const inputStoreId = useRef(null);
   const [getStoreId, setGetStoreId] = useState('');
+  console.log('jklkjlkjlkj', inputStoreId.current?.value);
 
   // 畫面右側小計
   const [sum, setSum] = useState([]);
@@ -267,11 +269,14 @@ function StepTwo() {
                         name="store_id"
                         id="store_id"
                         value={getStoreId}
-                        // hidden
-                        setGetStoreId={setGetStoreId}
+                        hidden
                       />
                       {
-                        <Modal show={map} onHide={handleClose}>
+                        <Modal
+                          show={map}
+                          onHide={handleClose}
+                          setGetStoreId={setGetStoreId}
+                        >
                           <Modal.Header closeButton>
                             <Modal.Title className="en-cont-30 m-3">
                               選擇取貨門市
@@ -279,7 +284,7 @@ function StepTwo() {
                           </Modal.Header>
                           <Modal.Body style={{ margin: '0 3%' }}>
                             <>
-                              <StepMap />
+                              <StepMap ref={inputStoreId} />
                             </>
                           </Modal.Body>
                           <Modal.Footer>
@@ -293,8 +298,10 @@ function StepTwo() {
                             {/*TODO: 確認門市要送出表單並存到DB mem */}
                             <Button
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
-                              onClick={handleClose}
-                              type="submit"
+                              onClick={() =>
+                                setGetStoreId(inputStoreId.current?.value)
+                              }
+                              // type="submit"
                             >
                               確認門市
                             </Button>
@@ -332,14 +339,14 @@ function StepTwo() {
                   >
                     上一步
                   </button>
-                  {/* <Link to="./StepThree"> */}
-                  <button
-                    type="submit"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                  >
-                    下一步
-                  </button>
-                  {/* </Link> */}
+                  <Link to="./StepThree">
+                    <button
+                      type="submit"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    >
+                      下一步
+                    </button>
+                  </Link>
                   {/* <a
                   type="button"
                   className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"

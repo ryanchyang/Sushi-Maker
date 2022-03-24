@@ -1,5 +1,5 @@
 // StepMap.js 選店地址
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 
 import {
   MapContainer,
@@ -48,7 +48,7 @@ const iconNow = L.icon({
 //   });
 // }
 
-function StepMap(props) {
+const StepMap = forwardRef((props, ref) => {
   // const position = [51.505, -0.09];
   const [init, setInit] = useState(AreaData);
   const [city, setCity] = useState(AreaData.city);
@@ -58,7 +58,7 @@ function StepMap(props) {
   const [store, setStore] = useState(AreaData.store);
   const [storeId, setStoreId] = useState(0);
   const [storeName, setStoreName] = useState('');
-  const inputStoreId = useRef(null);
+  // const inputStoreId = useRef(null);
 
   // 縣市+行政區
   useEffect(() => {
@@ -198,8 +198,8 @@ function StepMap(props) {
   //   return [+v.store_latitude, +v.store_longtitude];
   // });
 
-  const Sid = inputStoreId.current?.value;
-  console.log('Sid@@@', Sid); //找出SID 往上傳
+  // const Sid = inputStoreId.current?.value;
+  // console.log('Sid@@@', Sid); //找出SID 往上傳
 
   const { setGetStoreId } = props;
 
@@ -234,7 +234,7 @@ function StepMap(props) {
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
           <span className="store">
             <input
-              ref={inputStoreId}
+              ref={ref}
               dataId="123"
               type="text"
               // hidden
@@ -249,5 +249,5 @@ function StepMap(props) {
     </>
   );
   // });
-}
+});
 export default StepMap;
