@@ -31,6 +31,7 @@ function Index() {
   const [filterData, setFilterData] = useState([]); //套用篩選條件後的商品列表
   const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{pid, pname, count}]
   const [search, setSearch] = useState(false); //是否開啟搜尋框
+  const [searchText, setSearchText] = useState('');
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -172,6 +173,12 @@ function Index() {
       filteredData = allData.filter(pro => pro.c_prod_cate === category);
     }
 
+    if (searchText !== '') {
+      filteredData = filteredData.filter(data =>
+        data.c_prod_ch_name.includes(searchText)
+      );
+    }
+
     //最小金額
     const minPrice = priceFilter[0] === '' ? 0 : +priceFilter[0];
     //最大金額
@@ -277,6 +284,11 @@ function Index() {
         )
       );
     }
+  };
+
+  //處理搜尋框輸入
+  const handleChangeSearch = e => {
+    setSearchText(e.target.value);
   };
 
   //點擊商品分頁的箭頭按鈕
@@ -442,7 +454,7 @@ function Index() {
 
   useEffect(() => {
     applyFilter(); //當篩選條件其中一個有改變或是點其它分頁，就重新渲染商品列表
-  }, [materials, priceFilter, specialCategoryFilter, currentPage]);
+  }, [materials, priceFilter, specialCategoryFilter, searchText, currentPage]);
 
   const showStyle = { display: 'block' };
   const showStyleInlne = { display: 'inline' };
@@ -475,6 +487,8 @@ function Index() {
                     type="text"
                     style={searchBarHandler()}
                     className="search-input-bar ch-cont-14"
+                    value={searchText}
+                    onChange={handleChangeSearch}
                     placeholder="Search"
                   ></input>
                 </div>
