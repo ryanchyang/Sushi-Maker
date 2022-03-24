@@ -56,6 +56,9 @@ function App() {
   // 判斷使用者是否點擊漢堡
   const [navIsOpen, setNavIsOpen] = useState(false);
 
+  // Entry蓋版只跑一次
+  const [entryOpen, setEntryOpen] = useState('');
+
   //renden時再做一次getMe , 避免換頁登出
   useEffect(() => {
     getMe().then(response => {
@@ -64,6 +67,7 @@ function App() {
         setUser(response.data);
       }
     });
+    setEntryOpen(true);
   }, []);
 
   return (
@@ -119,14 +123,13 @@ function App() {
           <Route path="/share/post">
             <SharePost />
           </Route>
-          <Route path="/entry" exact>
-            <Entry />
-          </Route>
-          {/*<Route path="/nav" exact>
-          <NavPage />
-          </Route>*/}
           <Route path="/" exact>
-            <Home navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            <Home
+              navIsOpen={navIsOpen}
+              setNavIsOpen={setNavIsOpen}
+              entryOpen={entryOpen}
+              setEntryOpen={setEntryOpen}
+            />
           </Route>
           <Route path="/latest-news/eventsdetail/signup/:id" exact>
             <EvntsSignUp navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />

@@ -50,6 +50,7 @@
     justify-content: center;
     margin-top: 5%;
     margin-bottom: 10%;
+    cursor: pointer;
   }
   // pc version
   .pc-evnts-detail {
@@ -104,6 +105,9 @@
   }
   .nopointer {
     pointer-events: none;
+  }
+  .pc-signupbtn {
+    cursor: pointer;
   }
   @media screen and (min-width: 577px) {
     .evnts-info {

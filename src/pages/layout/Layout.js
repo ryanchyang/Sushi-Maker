@@ -11,6 +11,7 @@ import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { height } from '@mui/system';
 import { useWindowScroll } from 'react-use';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -76,9 +77,19 @@ function AsideLeft(props) {
         <div className="aside-left">
           <div className="logo-box">
             {changeBG ? (
-              <LogoLight className="logo" />
+              <Link to={'/'}>
+                <img
+                  src={`http://localhost:3500/img/home/logoLight.svg`}
+                  alt="logo"
+                />
+              </Link>
             ) : (
-              <Logo className="logo" />
+              <Link to={'/'}>
+                <img
+                  src={`http://localhost:3500/img/home/logo.svg`}
+                  alt="logo"
+                />
+              </Link>
             )}
           </div>
         </div>

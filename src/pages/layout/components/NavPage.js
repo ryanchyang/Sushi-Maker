@@ -22,7 +22,7 @@ function NavPage(props) {
             alt="close"
           />
         </div>
-        <div className="nav-bottom">
+        {/*<div className="nav-bottom">
           <img
             className="login-icon"
             src={`http://localhost:3500/img/home/login.svg`}
@@ -33,7 +33,7 @@ function NavPage(props) {
             src={`http://localhost:3500/img/home/cart.svg`}
             alt="login"
           />
-        </div>
+        </div>*/}
         <div className="navbar-content">
           <div className="nav-img">
             <img

@@ -14,13 +14,12 @@ import NavPage from '../layout/components/NavPage';
 import config from '../../Config';
 
 function Index(props) {
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, entryOpen, setEntryOpen } = props;
   const [latestNewsCate, setLatestNewsCate] = useState('news');
   const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
   const [newsIndex, setNewsIndex] = useState(0);
   const [isHover, setIsHover] = useState(false);
   const [changeBG, setChangeBG] = useState(null);
-  const [entryOpen, setEntryOpen] = useState('');
   const [promoData, setPromoData] = useState([]);
 
   const { y: pageYOffset } = useWindowScroll();
@@ -39,7 +38,7 @@ function Index(props) {
 
   // ToDo:初始化要資料
   useEffect(() => {
-    setEntryOpen(true);
+    // setEntryOpen(true);
     setTime();
     getPromoData();
   }, []);
