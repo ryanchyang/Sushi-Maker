@@ -208,6 +208,7 @@ function ShareFilter(props) {
                   className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
                   onClick={() => {
                     dispatch({ type: 'RESET' });
+                    setNoFound('');
                     (async () => {
                       const result = await getShareItems();
 
@@ -225,7 +226,6 @@ function ShareFilter(props) {
                   <DeleteSm
                     className={`${styles['button-default-lg']}`}
                     onClick={() => {
-                      setNoFound('');
                       setFilter(!filter);
                       setMasonryContainer(!masonryContainer);
                     }}

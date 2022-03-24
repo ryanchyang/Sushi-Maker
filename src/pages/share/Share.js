@@ -90,6 +90,27 @@ function Share() {
     return itemsObj;
   };
 
+  const getFilterUpdate = () => {
+    let count = '';
+    const filterStatus = { isFilter: false, num: '' };
+
+    const updateStatusTemplate = () => {
+      filterStatus.isFilter = true;
+      count = +count + 1;
+      filterStatus.num = count;
+    };
+    if (filterState.minPrice || filterState.maxPrice) {
+      updateStatusTemplate();
+    }
+    if (filterState.tags.length) {
+      updateStatusTemplate();
+    }
+    if (filterState.minTime || filterState.maxTime) {
+      updateStatusTemplate();
+    }
+    return filterStatus;
+  };
+
   const updateDimensions = () => {
     setColumns(getCurrentColumns(currentWidth));
     setGap(getCurrentColumns(currentWidth));
@@ -98,6 +119,10 @@ function Share() {
   const checkScrollUpdate = () => {
     const masonryHeight = scrollRef.current?.offsetHeight;
     if (!masonryHeight) return;
+
+    const isFilter = getFilterUpdate().isFilter;
+    if (isFilter) return;
+
     if (masonryHeight < currentScroll + window.innerHeight) {
       (async () => {
         const result = await getShareItems();
@@ -137,6 +162,7 @@ function Share() {
             setSearch={setSearch}
             colControl={colControl}
             setColControl={setColControl}
+            filterNum={getFilterUpdate().num}
           />
           <ShareColController
             colControl={colControl}

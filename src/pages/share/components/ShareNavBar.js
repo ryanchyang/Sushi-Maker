@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Search } from '../../../imgs/search.svg';
 import { ReactComponent as ViewAdjust } from '../../../imgs/viewAdjust.svg';
@@ -6,8 +6,15 @@ import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
 import styles from '../Share.module.scss';
 
 function ShareNavBar(props) {
-  const { filter, setFilter, search, setSearch, colControl, setColControl } =
-    props;
+  const {
+    filter,
+    setFilter,
+    search,
+    setSearch,
+    colControl,
+    setColControl,
+    filterNum,
+  } = props;
 
   const searchBarHandler = () =>
     search
@@ -52,6 +59,9 @@ function ShareNavBar(props) {
             <div
               className={`${styles['filter-container']} d-flex justify-content-end mr-3`}
             >
+              <div className={`${styles['filter-container-num']}`}>
+                {filterNum}
+              </div>
               <Filter
                 className={`${styles['button-default']}`}
                 onClick={() => setFilter(!filter)}

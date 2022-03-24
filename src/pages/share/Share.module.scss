@@ -57,6 +57,12 @@ $min-height: calc(64.5vh);
   margin-top: 80px;
   padding: 0 70px;
 }
+
+.filter-container-num {
+  color: $tint-red;
+  font-size: 14px;
+  font-weight: bold;
+}
 .waterfall-container {
   padding: 0 100px;
 }

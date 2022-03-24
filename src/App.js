@@ -108,9 +108,10 @@ function App() {
           <Route path="/share" exact>
             <Share />
           </Route>
-          <Route path="/share/items/:id?">
-            <ShareItems />
-          </Route>
+          <Route
+            path="/share/items/:id?"
+            render={() => <ShareItems key={Date.now()} />}
+          ></Route>
           <Route path="/share/saves">
             <ShareSaves />
           </Route>

@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 
 function HeartTemplate(props) {
   const { saves, setSaves, item } = props;
+
   const isSaveItem = saves.some(
     save => save.share_item_id === item.share_item_id
   );

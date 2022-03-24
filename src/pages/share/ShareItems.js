@@ -11,6 +11,9 @@ import { ReactComponent as Message } from '../../imgs/message.svg';
 import ShareItemImgs from './components/ShareItemImgs';
 import ItemDetailsInfo from './components/ItemDetailsInfo';
 import ItemDetailsComments from './components/ItemDetailsComments';
+import Masonry from './components/Masonry';
+import useCurrentWidth from './hooks/useCurrentWidth';
+import getCurrentColumns from './helpers/getCurrentColumns';
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -24,6 +27,16 @@ function ShareItems() {
   const [infodiv, setInfodiv] = useState(false);
 
   const [itemDetails, setItemDetails] = useState([]);
+
+  //data
+  const [filterItemsData, setFilterItemsData] = useState([]);
+
+  //window handler
+  const currentWidth = useCurrentWidth();
+
+  //masonry
+  const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
+  const [gap, setGap] = useState(4);
 
   const {
     mem_nickname: postMemName,
@@ -48,6 +61,34 @@ function ShareItems() {
     return itemsArr;
   };
 
+  const getFilterData = async () => {
+    try {
+      const response = await fetch(config.GET_FILTER_ITEMS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          minPrice: '',
+          maxPrice: '',
+          tags: shareTags.map(tag => tag.item_hash) ?? [],
+          minTime: '',
+          maxTime: '',
+        }),
+      });
+      if (!response.ok) throw new Error('No items match your search!');
+
+      const itemsObj = await response.json();
+
+      return itemsObj;
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const updateDimensions = () => {
+    setColumns(getCurrentColumns(currentWidth));
+    setGap(getCurrentColumns(currentWidth));
+  };
+
   // Fetching data
   useEffect(() => {
     (async () => {
@@ -56,6 +97,19 @@ function ShareItems() {
       setItemDetails(result.data[0]);
     })();
   }, []);
+
+  // Fetching filterItem data
+  useEffect(() => {
+    (async () => {
+      const result = await getFilterData();
+      setFilterItemsData(result.data);
+    })();
+  }, [shareTags]);
+
+  // Update column with current Width
+  useEffect(() => {
+    updateDimensions();
+  }, [currentWidth]);
 
   const btnMoveTemplate = () => {
     return msgbtn || infobtn
@@ -89,88 +143,96 @@ function ShareItems() {
               </div>
             </div>
           </div>
-          <div
-            className={`mycontainer ${styles['mb-30']} ${styles['items-box']} d-flex`}
-          >
+          <div className="d-flex flex-column">
             <div
-              className={`${styles['img-section']} col d-flex align-items-center flex-column`}
+              className={`mycontainer ${styles['mb-30']} ${styles['items-box']} d-flex mb-5`}
             >
-              <Message
-                className={`${styles['message-button']} `}
-                style={btnMoveTemplate()}
-                onClick={() => {
-                  setMsgbtn(true);
-                }}
-                onTransitionEnd={() => {
-                  msgbtn && setMsgdiv(true);
-                }}
-              />
-              <Info
-                className={`${styles['info-button']}`}
-                style={btnMoveTemplate()}
-                onClick={() => {
-                  setInfobtn(true);
-                }}
-                onTransitionEnd={() => {
-                  infobtn && setInfodiv(true);
-                }}
-              />
-              <div className={`d-flex ${styles['img-info']}`}>
-                <div className={`${styles['profile-img']} mb-3 mr-md-3 mr-2`}>
-                  <img src={config.MEM_PHOTO + `/${postMemImg}`} alt="" />
+              <div
+                className={`${styles['img-section']} col d-flex align-items-center flex-column`}
+              >
+                <Message
+                  className={`${styles['message-button']} `}
+                  style={btnMoveTemplate()}
+                  onClick={() => {
+                    setMsgbtn(true);
+                  }}
+                  onTransitionEnd={() => {
+                    msgbtn && setMsgdiv(true);
+                  }}
+                />
+                <Info
+                  className={`${styles['info-button']}`}
+                  style={btnMoveTemplate()}
+                  onClick={() => {
+                    setInfobtn(true);
+                  }}
+                  onTransitionEnd={() => {
+                    infobtn && setInfodiv(true);
+                  }}
+                />
+                <div className={`d-flex ${styles['img-info']}`}>
+                  <div className={`${styles['profile-img']} mb-3 mr-md-3 mr-2`}>
+                    <img src={config.MEM_PHOTO + `/${postMemImg}`} alt="" />
+                  </div>
+                  <div
+                    className={`${styles['img-title-box']} d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3`}
+                  >
+                    <h2 className={`${styles['img-title']} pt-2`}>
+                      {shareTitle}
+                    </h2>
+                    <h3 className="en-cont-14">{postMemName}</h3>
+                  </div>
+                  <button
+                    className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
+                  >
+                    <Heart style={{ padding: '10px' }} />
+                    <div className="en-cont-16 text-white d-none d-lg-block">
+                      {savesCount}
+                    </div>
+                  </button>
+                </div>
+                <ShareItemImgs itemImgs={itemImgs} />
+                <div
+                  className={`${styles['img-desc']} d-flex ch-cont-16 justify-content-center`}
+                >
+                  {shareDesc}
+                </div>
+              </div>
+              <div className={`${styles['popup-section']} d-flex`}>
+                <div
+                  className={`${styles['detail-section']}  d-flex flex-column`}
+                  style={!infodiv ? {} : { width: '560px', padding: '0 15px' }}
+                  onTransitionEnd={() => {
+                    !infodiv && setInfobtn(false);
+                  }}
+                >
+                  <ItemDetailsInfo
+                    orderVal={orderVal}
+                    orderPrint={orderPrint}
+                    shareTags={shareTags}
+                    setInfodiv={setInfodiv}
+                  />
                 </div>
                 <div
-                  className={`${styles['img-title-box']} d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3`}
+                  className={`${styles['message-section']}  d-flex flex-column`}
+                  style={!msgdiv ? {} : { width: '560px', padding: '0 15px' }}
+                  onTransitionEnd={() => {
+                    !msgdiv && setMsgbtn(false);
+                  }}
                 >
-                  <h2 className={`${styles['img-title']} pt-2`}>
-                    {shareTitle}
-                  </h2>
-                  <h3 className="en-cont-14">{postMemName}</h3>
+                  <ItemDetailsComments
+                    setMsgdiv={setMsgdiv}
+                    shareComments={shareComments}
+                    postMemImg={postMemImg}
+                  />
                 </div>
-                <button
-                  className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
-                >
-                  <Heart style={{ padding: '10px' }} />
-                  <div className="en-cont-16 text-white d-none d-lg-block">
-                    {savesCount}
-                  </div>
-                </button>
-              </div>
-              <ShareItemImgs itemImgs={itemImgs} />
-              <div
-                className={`${styles['img-desc']} d-flex ch-cont-16 justify-content-center`}
-              >
-                {shareDesc}
               </div>
             </div>
-            <div className={`${styles['popup-section']} d-flex`}>
-              <div
-                className={`${styles['detail-section']}  d-flex flex-column`}
-                style={!infodiv ? {} : { width: '560px', padding: '0 15px' }}
-                onTransitionEnd={() => {
-                  !infodiv && setInfobtn(false);
-                }}
-              >
-                <ItemDetailsInfo
-                  orderVal={orderVal}
-                  orderPrint={orderPrint}
-                  shareTags={shareTags}
-                  setInfodiv={setInfodiv}
-                />
-              </div>
-              <div
-                className={`${styles['message-section']}  d-flex flex-column`}
-                style={!msgdiv ? {} : { width: '560px', padding: '0 15px' }}
-                onTransitionEnd={() => {
-                  !msgdiv && setMsgbtn(false);
-                }}
-              >
-                <ItemDetailsComments
-                  setMsgdiv={setMsgdiv}
-                  shareComments={shareComments}
-                  postMemImg={postMemImg}
-                />
-              </div>
+            <div className="d-flex justify-content-center en-title-24 my-5">
+              You may also like
+            </div>
+            <div className={`${styles['waterfall-container']}`}>
+              <Masonry columns={columns} gap={gap} data={filterItemsData} />
             </div>
           </div>
           <br />
@@ -182,55 +244,4 @@ function ShareItems() {
   );
 }
 
-// const itemData = [
-//   {
-//     img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-//     title: 'Bed',
-//     desc: 'The Mastering the Mechanics webinar series also describes required sentence elements and varying sentence types. Please see these archived webinars for more information.',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-//     title: 'Books',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-//     title: 'Sink',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-//     title: 'Kitchen',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-//     title: 'Blinds',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-//     title: 'Chairs',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-//     title: 'Laptop',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-//     title: 'Doors',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-//     title: 'Coffee',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-//     title: 'Storage',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-//     title: 'Candle',
-//   },
-//   {
-//     img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-//     title: 'Coffee table',
-//   },
-// ];
 export default ShareItems;
