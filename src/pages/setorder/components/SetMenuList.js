@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { ReactComponent as SetContent } from './../../../imgs/setorder/icon-info.svg';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import SetMenuFinal from './SetMenuFinal';
-import Meal from './../SetMeal.json';
+// import Meal from './../SetMeal.json';
 function SetMenuList(props) {
   // 套餐光箱
   const [show, setShow] = useState(false);
