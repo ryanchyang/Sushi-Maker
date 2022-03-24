@@ -128,3 +128,26 @@ export const reviseMem = (memInfo, mem_id) => {
     }),
   }).then(res => res.json());
 };
+//傳回活動資訊for member
+export const eventsInfo = async () => {
+  return await fetch(`${BASE_URL}/member/api/find-eventsInfo`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({}),
+  }).then(res => res.json());
+};
+
+//傳回歷史訂單明細for member
+export const orderInfo = async mem_id => {
+  return await fetch(`${BASE_URL}/member/api/historyOrder`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id,
+    }),
+  }).then(res => res.json());
+};
