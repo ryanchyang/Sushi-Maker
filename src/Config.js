@@ -37,6 +37,7 @@ const config = {
   GET_USER_SHARE_COMMENT: `${host}/api/share/comment`,
   GET_FILTER_ITEMS: `${host}/api/share/filter`,
   GET_TAGS: `${host}/api/share/filter/tags`,
+  TOGGLE_SAVE: `${host}/api/share/toggle/save`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,

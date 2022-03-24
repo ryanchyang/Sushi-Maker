@@ -2,12 +2,36 @@ import { ReactComponent as HeartOutline } from '../../../imgs/heart-outline.svg'
 import { ReactComponent as HeartFill } from '../../../imgs/heart-fill.svg';
 import IconButton from '@mui/material/IconButton';
 
+import config from '../../../Config';
+
 function HeartTemplate(props) {
   const { saves, setSaves, item } = props;
 
   const isSaveItem = saves.some(
     save => save.share_item_id === item.share_item_id
   );
+
+  const toggleSaveItem = async (itemId, action) => {
+    try {
+      let method;
+      if (action === 'ADD') {
+        method = 'POST';
+      }
+      if (action === 'REMOVE') {
+        method = 'DELETE';
+      }
+
+      const response = await fetch(config.TOGGLE_SAVE, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemId: itemId, memberId: '1' }),
+      });
+      if (!response.ok) throw new Error('Something went wrong!');
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   if (isSaveItem) {
     return (
       <IconButton
@@ -17,6 +41,7 @@ function HeartTemplate(props) {
           setSaves(
             saves.filter(save => save.share_item_id !== item.share_item_id)
           );
+          toggleSaveItem(item.share_item_id, 'REMOVE');
         }}
       >
         <HeartFill style={{ padding: '0 5px' }} />
@@ -29,6 +54,7 @@ function HeartTemplate(props) {
         aria-label={`info about ${item.share_title}`}
         onClick={() => {
           setSaves([...saves, item]);
+          toggleSaveItem(item.share_item_id, 'ADD');
         }}
       >
         <HeartOutline style={{ padding: '0 5px' }} />
