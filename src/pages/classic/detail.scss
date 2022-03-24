@@ -16,7 +16,7 @@
     .detail-content-ondetail{
       margin: 0 20% 0 0;
       display: flex;
-      width: 80%;
+      width: 90%;
       margin-bottom: 1%; 
       transition: 1.5s;          
   }
@@ -264,14 +264,14 @@
 .detail-btn{  
   float: right;
   display: flex;   
-  padding-top: 8%;
+  padding-top: 3%;
   padding-right: 6%;
   cursor: pointer;
 }
 .detail-btn-ondetail{
   display: none;   
   float: right;
-  padding-top: 8%;
+  padding-top: 6%;
   padding-right: 6%;
   cursor: pointer;
 }

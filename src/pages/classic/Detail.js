@@ -202,14 +202,14 @@ function Detail() {
                     {data.c_prod_en_name}
                   </div>
                 </div>
-                
+                <div>
                 <img
                   className={
                     isDetail ? 'prod-img-box-img-ondetail' : 'prod-img-box-img'
                   }
                   src={`http://localhost:3500${data.c_prod_img_path}`}
                   alt="product-detail"
-                />
+                /></div>
                 <div
                   className={
                     isDetail
