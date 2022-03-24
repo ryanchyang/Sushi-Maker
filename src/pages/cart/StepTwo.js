@@ -21,7 +21,7 @@ function StepTwo() {
   let history = useHistory();
 
   // 畫面右側小計
-  const [sum, setSum] = useState({});
+  const [sum, setSum] = useState([]);
   // TODO:  member id =1 鮮血死 測試用
   const mem_id = 1;
   // const mem_id = getMemId();
@@ -33,36 +33,37 @@ function StepTwo() {
     const getSum = async () => {
       const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
       const obj = await res.json();
-      console.log('obj:', obj);
+      // console.log('obj:', obj);
       setSum(obj.data);
     };
     getSum();
   }, []);
-  console.log('sum', sum);
+  // console.log('sum', sum);
   useEffect(() => {
-    console.log(sum);
+    // console.log(sum);
   }, [sum]);
 
   // ------
+  const cart_id = 1;
   // Input State 要填寫的資料欄位
   const [fields, setFields] = useState({
     buyer: '',
-    mobile: '',
+    buyer_mobile: '',
     picker: '',
     order_notes: '',
-    store_id: '',
+    store_id: '1',
   });
 
   // Error Message State
   const [fieldsError, setFieldsError] = useState({
     buyer: '',
-    mobile: '',
+    buyer_mobile: '',
     picker: '',
   });
 
   // 處理欄位改變
   const handleFieldChange = e => {
-    const newData = { ...fields, [e.target.buyer]: e.target.value };
+    const newData = { ...fields, [e.target.name]: e.target.value };
     setFields(newData);
   };
 
@@ -76,8 +77,6 @@ function StepTwo() {
     // 格式規則
     const buyer_re = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     const mobile_re = /^09\d{2}-?\d{3}-?\d{3}$/;
-    // const email_re =
-    //   /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 
     // buyer
     if (!fields.buyer) {
@@ -88,13 +87,13 @@ function StepTwo() {
       errorMsg.buyer = '姓名欄位不可包含特殊符號';
     }
 
-    // mobile
-    if (!fields.mobile) {
+    // buyer_mobile
+    if (!fields.buyer_mobile) {
       formIsValid = false;
-      errorMsg.mobile = '連絡電話不可為空';
-    } else if (fields.mobile && !mobile_re.test(fields.mobile)) {
+      errorMsg.buyer_mobile = '連絡電話不可為空';
+    } else if (fields.buyer_mobile && !mobile_re.test(fields.buyer_mobile)) {
       formIsValid = false;
-      errorMsg.mobile = '連絡電話格式不正確';
+      errorMsg.buyer_mobile = '連絡電話格式不正確';
     }
 
     setFieldsError(errorMsg);
@@ -126,7 +125,7 @@ function StepTwo() {
     e.preventDefault();
 
     if (handleValidation()) {
-      // console.log('form submitted.');
+      //   console.log('form submitted.');
 
       // get form data
       const formData = new FormData(e.target);
@@ -135,10 +134,10 @@ function StepTwo() {
         dataObj[i[0]] = i[1];
       }
       dataObj.mem_id = mem_id;
-      console.log({ dataObj });
+      console.log('dataObj', { dataObj });
 
       // fetch
-      const r = fetch(config.POST_SINGUP_PATH, {
+      const r = fetch(config.POST_CART_INFO, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,11 +149,6 @@ function StepTwo() {
           console.log(obj);
           if (obj.success) {
             console.log(obj.success);
-            //   setSignUpResult(true);
-            //   setModalShow(true);
-            // } else {
-            //   setSignUpResult(false);
-            //   setModalShow(true);
           }
         });
     } else {
@@ -176,8 +170,10 @@ function StepTwo() {
             <CartDetail />
             <form
               onSubmit={handleSubmit}
-              // onInvalid={handleInvalid}
+              // onInvalid={handleValid}
               onChange={handleChange}
+              // className="needs-validation"
+              // noValidate
             >
               <div className="row mt-5">
                 <div className="col-md-12 col-24">
@@ -202,9 +198,7 @@ function StepTwo() {
                       />
                       {/* TODO: check name??buyer */}
                       {fieldsError.buyer !== '' && (
-                        <div className="invalid-feedback">
-                          {fieldsError.buyer}
-                        </div>
+                        <div className="error">{fieldsError.buyer}</div>
                       )}
                     </div>
                     <div className="my-4">
@@ -218,17 +212,15 @@ function StepTwo() {
                       <input
                         type="text"
                         className="form-control "
-                        id="mobile"
-                        name="mobile"
+                        id="buyer_mobile"
+                        name="buyer_mobile"
                         placeholder="09XX-XXX-XXX"
                         data-pattern="09\d{2}-?\d{3}-?\d{3}"
                         onChange={handleFieldChange}
                         required
                       />
-                      {fieldsError.mobile !== '' && (
-                        <div className="invalid-feedback">
-                          {fieldsError.mobile}
-                        </div>
+                      {fieldsError.buyer_mobile !== '' && (
+                        <div className="error">{fieldsError.buyer_mobile}</div>
                       )}
                     </div>
                     <div className="my-4">
@@ -267,6 +259,14 @@ function StepTwo() {
                     </div>
                     <div className="my-4 mx-5">
                       {/* TODO: map 光箱 */}
+                      <input
+                        type="text"
+                        className="form-control "
+                        name="store_id"
+                        id="store_id"
+                        // value={storeId}
+                        hidden
+                      />
                       {
                         <Modal show={map} onHide={handleClose}>
                           <Modal.Header closeButton>
@@ -328,14 +328,14 @@ function StepTwo() {
                   >
                     上一步
                   </button>
-                  <Link to="./StepThree">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    >
-                      下一步
-                    </button>
-                  </Link>
+                  {/* <Link to="./StepThree"> */}
+                  <button
+                    type="submit"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                  >
+                    下一步
+                  </button>
+                  {/* </Link> */}
                   {/* <a
                   type="button"
                   className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"

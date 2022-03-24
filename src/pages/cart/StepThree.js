@@ -1,14 +1,43 @@
 //cart/StepThree.js
-import { FaBitcoin, FaCcJcb, FaCcMastercard, FaCcVisa } from 'react-icons/fa';
+// import { FaBitcoin, FaCcJcb, FaCcMastercard, FaCcVisa } from 'react-icons/fa';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from './components/CartDetial';
 import CreditCard from './components/CreditCard';
+
+import React, { useState, useEffect } from 'react';
+
+// TODO: 資料庫拿資料
+import config from '../../Config';
 // TODO: A  改 LINK
 function StepThree() {
   // 回上一頁 按鈕
   let history = useHistory();
+
+  // 畫面右側小計
+  const [sum, setSum] = useState([]);
+  // TODO:  member id =1 鮮血死 測試用
+  const mem_id = 1;
+  // const mem_id = getMemId();
+  // console.log('mem_id:', mem_id);
+
+  // const { id } = useParams();
+  // console.log('id:', id);
+  useEffect(() => {
+    const getSum = async () => {
+      const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
+      const obj = await res.json();
+      console.log('obj:', obj);
+      setSum(obj.data);
+    };
+    getSum();
+  }, []);
+  console.log('sum', sum);
+  useEffect(() => {
+    console.log(sum);
+  }, [sum]);
+
   return (
     <>
       <Header />
@@ -24,10 +53,10 @@ function StepThree() {
                 {/* TODO: 信用卡 refs */}
                 <div className="payment-info">
                   <div className="ch-title-22 my-4">信用卡資訊</div>
-                  <CreditCard/>
+                  <CreditCard />
                 </div>
               </div>
-              <CartSum className="d-none d-md-block" />
+              <CartSum sum={sum} className="d-none d-md-block" />
               {/* 總計 */}
             </div>
             {/* 下一步 */}
@@ -51,7 +80,6 @@ function StepThree() {
                     確認付款
                   </button>
                 </Link>
-              
               </div>
             </div>
           </div>

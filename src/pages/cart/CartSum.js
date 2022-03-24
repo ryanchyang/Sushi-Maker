@@ -5,7 +5,7 @@ function CartSum(props) {
   console.log('sum', sum); //確認接到的是什麼
   return (
     <div className="col-24 col-md-12 d-md-block">
-      {sum.map((v, i) => {
+      {sum?.map((v, i) => {
         return (
           <div className="summary-right mt-2" key={'sum' + i}>
             <div className="row "></div>

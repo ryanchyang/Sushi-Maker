@@ -39,7 +39,7 @@ function CartDetail() {
             aria-controls="example-collapse-text"
             aria-expanded={dateOpen}
           >
-            {console.log('open:', dateOpen)}
+            {/* {console.log('open:', dateOpen)} */}
             {dateOpen ? (
               <img src="/img/cart/uparrow.svg" alt="up" />
             ) : (
