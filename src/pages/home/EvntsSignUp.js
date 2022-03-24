@@ -11,7 +11,7 @@ function EvntsSignUp(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const [evntsInfo, setEvntsInfo] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [signUpResult, setSignUpResult] = useState(null);
+  const [signUpResult, setSignUpResult] = useState('');
   const history = useHistory();
   // todo: membe_id先寫死
   // const mem_id = 1;
@@ -259,6 +259,15 @@ function EvntsSignUp(props) {
                         上限{evntsInfo[0]?.evnts_max_num ?? ''}人
                       </div>
                     </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">可報名人數:</div>
+                      <div className="ch-cont-16 info-content">
+                        {(evntsInfo[0]?.evnts_max_num ?? '') -
+                          (evntsInfo[0]?.evnts_pres_num ?? '')}
+                        人
+                      </div>
+                    </div>
                     <div className="ch-cont-16 evnts-content">
                       {evntsInfo[0]?.evnts_detail ?? ''}
                     </div>
@@ -346,12 +355,24 @@ function EvntsSignUp(props) {
                         value={fields.number}
                         onChange={handleFieldChange}
                       >
-                        <option value="none">請選擇</option>
+                        {Array(
+                          (evntsInfo[0]?.evnts_max_num ?? '') -
+                            (evntsInfo[0]?.evnts_pres_num ?? '') +
+                            1
+                        )
+                          .fill(1)
+                          .map((v, i) => {
+                            if (i === 0) {
+                              return <option value={i}>請選擇</option>;
+                            } else {
+                              return <option value={i}>{i}</option>;
+                            }
+                          })}
+                        {/*<option value="0">請選擇</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <option value="4">4</option>*/}
                       </select>
                       {fieldsError.number !== '' && (
                         <div className="error">{fieldsError.number}</div>
@@ -400,7 +421,11 @@ function EvntsSignUp(props) {
         signUpResult={signUpResult}
         onHide={() => {
           setModalShow(false);
-          history.push('/latest-news/events');
+          if (signUpResult) {
+            history.push('/latest-news/events');
+          } else {
+            history.push(`/latest-news/eventsdetail/signup/${id}`);
+          }
         }}
       />
     </>

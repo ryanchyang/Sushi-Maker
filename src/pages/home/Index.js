@@ -359,6 +359,9 @@ function Index(props) {
                                 Math.ceil(i % 4) * 1
                               } promotioncard`}
                             >
+                              <div className="en-cont-28 promotion-tag">
+                                {v.c_prod_special_tag}
+                              </div>
                               <div className="promotion-img">
                                 <img
                                   src={

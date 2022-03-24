@@ -156,7 +156,7 @@ function EvntsDetails(props) {
                   <div className="evnts-info">
                     <div className="diamond"></div>
                     <div className="ch-cont-16 info-title">活動地點:</div>
-                    <div className="ch-cont-16 info-content">
+                    <div className="ch-cont-14 info-content">
                       {evntsDetail[0]?.evnts_location ?? ''}
                     </div>
                   </div>
@@ -165,6 +165,15 @@ function EvntsDetails(props) {
                     <div className="ch-cont-16 info-title">活動人數:</div>
                     <div className="ch-cont-16 info-content">
                       上限{evntsDetail[0]?.evnts_max_num ?? ''}人
+                    </div>
+                  </div>
+                  <div className="evnts-info">
+                    <div className="diamond"></div>
+                    <div className="ch-cont-16 info-title">可報名人數:</div>
+                    <div className="ch-cont-16 info-content">
+                      {(evntsDetail[0]?.evnts_max_num ?? '') -
+                        (evntsDetail[0]?.evnts_pres_num ?? '')}
+                      人
                     </div>
                   </div>
                   <div className="ch-cont-16 evnts-content">
@@ -263,6 +272,15 @@ function EvntsDetails(props) {
                       <div className="ch-cont-16 pc-info-title">活動人數:</div>
                       <div className="ch-cont-16 pc-info-content">
                         上限{evntsDetail[0]?.evnts_max_num ?? ''}人
+                      </div>
+                    </div>
+                    <div className="evnts-info">
+                      <div className="diamond"></div>
+                      <div className="ch-cont-16 info-title">可報名人數:</div>
+                      <div className="ch-cont-16 info-content">
+                        {(evntsDetail[0]?.evnts_max_num ?? '') -
+                          (evntsDetail[0]?.evnts_pres_num ?? '')}
+                        人
                       </div>
                     </div>
                     <div className="ch-cont-16 pc-evnts-text">
