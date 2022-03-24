@@ -12,7 +12,6 @@ const HistoryOrder = () => {
   const [historyOrderInfo, setHistoryOrderInfo] = useState('');
   const [clickToggle, setClickToggle] = useState(false);
   const mem_id = localStorage.getItem('mem_id');
-  console.log(clickToggle);
 
   const handleClickToggle = () => {
     if (clickToggle === true) {
@@ -42,42 +41,81 @@ const HistoryOrder = () => {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>#0000001</td>
-            <td>2022/4/30</td>
-            <td>已出貨</td>
-            <td>NT$ 1000 元</td>
-            <td>30 分鐘</td>
-            <td onClick={handleClickToggle} style={{ cursor: 'pointer' }}>
-              交易明細 {clickToggle ? <SelectClose /> : <SelectOpen />}
-            </td>
-          </tr>
-        </tbody>
       </table>
-      <Accordion
-        className="col-md-20"
-        style={
-          clickToggle
-            ? { display: 'block', transition: '1s' }
-            : { display: 'none', transition: '1s' }
-        }
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography sx={{ width: '10%', flexShrink: 0 }}>商品圖片</Typography>
-          <Typography sx={{ width: '10%', flexShrink: 0 }}>商品名稱</Typography>
-          <Typography sx={{ width: '10%', flexShrink: 0 }}>件數</Typography>
-          <Typography sx={{ width: '10%', flexShrink: 0 }}>金額</Typography>
-          <Typography sx={{ width: '10%', flexShrink: 0 }}>印製時間</Typography>
-        </AccordionSummary>
-        <AccordionDetails className="w-100">
-          <Typography>{/* 商品詳細資訊 */}</Typography>
-        </AccordionDetails>
-      </Accordion>
+      {historyOrderInfo &&
+        historyOrderInfo.newData2.map(data => {
+          return (
+            <>
+              <table className="table col-md-20">
+                <tbody>
+                  <tr>
+                    <td>{data.order_num}</td>
+                    <td>{data.cart_checkout_date}</td>
+                    <td>{data.cart_status}</td>
+                    <td>NT$ {data.cart_value} 元</td>
+                    <td>{data.cart_total_print_time} 分鐘</td>
+                    <td
+                      onClick={handleClickToggle}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      交易明細 {clickToggle ? <SelectClose /> : <SelectOpen />}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div
+                className="col-md-20"
+                style={
+                  clickToggle
+                    ? { display: 'block', transition: '1s' }
+                    : { display: 'none', transition: '1s' }
+                }
+              >
+                <div style={{}}>
+                  {historyOrderInfo.newData &&
+                    historyOrderInfo.newData
+                      .filter(d => d.cart_id === data.cart_id)
+                      .map(info => {
+                        return (
+                          <>
+                            <div
+                              style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                marginBottom: '5%',
+                                textAlign: 'left',
+                
+                              }}
+                            >
+                              <div style={{ border: '1px solid red' }} className="col-4">
+                                圖片
+                              </div>
+                              <div style={{ border: '1px solid red' }} className="col-4">
+                                {info.c_prod_ch_name}
+                              </div>
+                              <div style={{ border: '1px solid red' }} className="col-4">
+                                件數
+                              </div>
+                              <div style={{ border: '1px solid red' }} className="col-4">
+                                金額
+                              </div>
+                              <div style={{ border: '1px solid red' }} className="col-4">
+                                印製時間
+                              </div>
+                            </div>
+                          </>
+                        );
+                      })}
+                </div>
+
+                <AccordionDetails className="w-100">
+                  <Typography>{/* 商品詳細資訊 */}</Typography>
+                </AccordionDetails>
+              </div>
+            </>
+          );
+        })}
     </div>
   );
 };
