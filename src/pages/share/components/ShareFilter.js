@@ -71,7 +71,7 @@ function ShareFilter(props) {
       setNoFound('');
       setShareItemsData(itemsObj.data);
     } catch (err) {
-      setNoFound('沒有符合的查詢結果🤔');
+      setNoFound('查無符合條件的貼文，請重新篩選或清空篩選條件');
       setShareItemsData([]);
       console.error(err.message);
     }

@@ -478,7 +478,9 @@ function Index() {
                     placeholder="Search"
                   ></input>
                 </div>
-                <div><SearchBtn onClick={() => setSearch(!search)} /></div>
+                <div>
+                  <SearchBtn onClick={() => setSearch(!search)} />
+                </div>
               </div>
               <div
                 className="filter-btn"

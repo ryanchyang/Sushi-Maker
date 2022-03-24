@@ -10,6 +10,8 @@ import HeartTemplate from './HeartTemplate';
 import ItemInfoTemplate from './ItemInfoTemplate';
 import ItemSavesTemplate from './ItemSavesTemplate';
 
+import { ReactComponent as SearchBtn } from '../../../imgs/search.svg';
+
 import styles from '../Share.module.scss';
 import config from '../../../Config';
 
@@ -38,7 +40,7 @@ const hoverHandler = (id, hover) => {
 };
 
 export const MyMasonry = forwardRef((props, ref) => {
-  const { columns, gap, data } = props;
+  const { columns, gap, data, noFound } = props;
   const history = useHistory(null);
 
   const [saves, setSaves] = useState([]);
@@ -54,8 +56,17 @@ export const MyMasonry = forwardRef((props, ref) => {
   };
   // console.log(saves);
 
-  return (
-    <div className={`flex-column ${styles['masonry-index']}  `} ref={ref}>
+  const noFoundTemplate = () => {
+    return (
+      <div className="ch-title-22 d-flex justify-content-center">
+        <SearchBtn />
+        <span>{noFound}</span>
+      </div>
+    );
+  };
+
+  const masonryTemplate = () => {
+    return (
       <Masonry columns={columns} spacing={gap * 1.2} style={{ margin: '0' }}>
         {data.map((item, i) => (
           <ImageListItem
@@ -103,6 +114,13 @@ export const MyMasonry = forwardRef((props, ref) => {
           </ImageListItem>
         ))}
       </Masonry>
+    );
+  };
+
+  return (
+    <div className={`flex-column ${styles['masonry-index']}`} ref={ref}>
+      {noFound ? noFoundTemplate() : ''}
+      {data.length === 0 ? '' : masonryTemplate()}
     </div>
   );
 });

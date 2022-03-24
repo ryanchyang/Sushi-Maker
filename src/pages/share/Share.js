@@ -178,12 +178,12 @@ function Share() {
                 masonryContainer ? '' : styles['share-display-none']
               }`}
             >
-              <div>{noFound}</div>
               <Masonry
                 columns={columns}
                 gap={gap}
                 data={shareItemsData}
                 ref={scrollRef}
+                noFound={noFound}
               />
             </div>
           </div>
