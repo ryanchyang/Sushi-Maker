@@ -1,5 +1,6 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import SetMenuFinal from './SetMenuFinal';
+import SetMenuFinal from './components/SetMenuFinal';
+import { Link, useHistory } from 'react-router-dom';
 import './SetOrderAll.scss';
 // import './SetOrderAll.scss';
 function SetOrderFinal() {
@@ -30,23 +31,15 @@ function SetOrderFinal() {
                 </div>
                 <div className="set-list-right col-5">
                   <div className="set-view-all ">
-                    <div className="bento-view-buttom">
-                      <div className="set-row">
-                        <div className="btn-sm btn-primary primeal-btn-outline-sm mx-5">
-                          btn-1
-                        </div>
-                        <div className="btn-sm btn-primary primeal-btn-outline-sm mx-5">
-                          btn-2
-                        </div>
-                      </div>
-                    </div>
-                    <div className="bento-img-element mx-auto">
-                      <img
-                        src={require('./../../imgs/setorder/tokyo-salmon-set.png')}
-                        alt="bento-image"
-                      />
-                    </div>
+                    <div className="bento-view-buttom"></div>
                     <div className="bento-sushi-menu"></div>
+                  </div>
+                  <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
+                    <Link to="./setorderList">
+                      <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
+                        下一步
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>

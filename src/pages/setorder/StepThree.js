@@ -1,48 +1,95 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
-function Order() {
+function StepThree() {
+  //上一個的答案
+  const data = useLocation();
+  // console.log('data.state', data.state);
+  const question1 = data.state;
+  // console.log('第一題的答案', x);
+  // function lastMemory() {
+  //   // console.log('hello');
+  //   // const arr = [1, 2];
+  //   // arr.splice(1, 0);
+  //   // // console.log('測試arr', arr);
+  //   // const allAnswer = [x, data.state];
+  //   // console.log('a', allAnswer);
+  // }
+
+  const [selected2, setSelected2] = useState(1);
+  const lists = [
+    { id: 1, title: '普通' },
+    { id: 2, title: '小孩' },
+    { id: 3, title: '年長' },
+    { id: 4, title: '精準' },
+  ];
+
+  const handleColor = row => {
+    setSelected2(row.id);
+  };
+  const answerClicked = { color: '#f7f6f3', backgroundColor: '#b03342' };
+  const answerNoClick = { color: '#b03342', backgroundColor: 'transparent' };
   return (
     <>
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
-          <Title title={'JUST FOR YOU-three'} />
-          <br />
+          <Title title={'JUST FOR YOU'} />
           <div className="step">
-            <div className="mycontainer">
+            <div className="mycontainer min-hi">
               <div className="set-all-content">
-                <div className="set-title col-12">
-                  <div className="step-mob-title set-text-center ">
-                    讓我們來幫您規劃您的專屬菜單
+                <div className="set-title col-12 set-title-0">
+                  <div className="step-mob-title set-text-center set-title-3">
+                    規劃您的專屬菜單
                   </div>
                 </div>
                 <div className="set-question-box">
-                  <div className="ch-title-22 set-text-center set-content my-5">
-                  想要什麼樣的主題?
+                  <div className="ch-title-22 set-text-center set-content my-5 pb-5 ">
+                    喜歡什麼主題?
                   </div>
-                  <div className="setoreder-btn-all set-row set-text-center">
-                    <div className="btn-sm btn-primary primeal-btn-outline-sm setorder-btn">
-                      普通
-                    </div>
-                    <div className="btn-sm btn-primary primeal-btn-outline-sm setorder-btn">
-                      小孩
-                    </div>
-                    <div className="btn-sm btn-primary primeal-btn-outline-sm setorder-btn">
-                      年長
-                    </div>
-                    <div className="btn-sm btn-primary primeal-btn-outline-sm setorder-btn">
-                      精準
-                    </div>
+                  <div className="setorder-btn-all set-text-center ">
+                    {lists.map(list => (
+                      <button
+                        className="set-question-btn ch-cont-14"
+                        key={list.id}
+                        onClick={() => {
+                          handleColor(list);
+                          // lastMemory();
+                        }}
+                        style={
+                          list.id === selected2 ? answerClicked : answerNoClick
+                        }
+                      >
+                        {list.title}
+                      </button>
+                    ))}
+                    {/* <div className="set-question-btn ch-cont-14">普通</div>
+                    <div className="set-question-btn ch-cont-14">小孩</div>
+                    <div className="set-question-btn ch-cont-14">年長</div>
+                    <div className="set-question-btn ch-cont-14">精準</div> */}
                   </div>
                   <div className="ch-cont-16"></div>
-                  <div className="set-row">
-                  <button class="ch-title-22 set-button dark-red">
-                      返回
-                    </button>
-                    <button class="ch-title-22 set-button dark-red">
-                      下一步
-                    </button>
+                  <div className="step-reset-enter-btn-all">
+                    <Link to="./steptwo">
+                      <button className="ch-title-22 step-reset-btn">
+                        返回
+                      </button>
+                    </Link>
+
+                    <Link
+                      to={{
+                        pathname: '/setorder/stepfour',
+                        // state: { selected2, x },
+                        state: { ...question1, selected2 },
+                        //x展開
+                      }}
+                    >
+                      <button className="ch-title-22 step-reset-btn-red">
+                        確定
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -56,4 +103,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default StepThree;

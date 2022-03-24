@@ -1,8 +1,25 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import SetMenuList from './SetMenuList';
+import SetMenuList from './components/SetMenuList';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
 // import './SetOrderAll.scss';
 function SetOrderList() {
+  const data = useLocation();
+  console.log('data.state', data.state);
+  // console.log('第二次,第一題的答案', data.state2);
+  // console.log('第二題的答案', y);
+
+  const [date, setDate] = useState('');
+  function setdateChange(e) {
+    setDate(e.target.value);
+  }
+
+  const [week, setWeek] = useState('');
+  function weekChange(e) {
+    console.log(e.target.value);
+    setWeek(e.target.value);
+  }
   return (
     <>
       <Header />
@@ -12,20 +29,40 @@ function SetOrderList() {
           <Title title={'Just For You'} />
           <br />
           <div className="setmenulist">
-            <div className="mycontainer ">
+            <div className="mycontainer min-hi ">
               <div className="set-list-title ch-title-22">推薦結果</div>
 
               <div className="set-row set-list-all ">
-                <div className="set-list-left  ">
+                <div className="set-list-left">
                   <div className="set-input-all align-items-center">
                     <div className="set-input-from ch-cont-14">從</div>
-                    <input class="set-input-date" type="date" />
+                    <input
+                      class="set-input-date"
+                      type="date"
+                      value={date}
+                      onChange={setdateChange}
+                    />
                     <div className="set-input-from ch-cont-14">開始吃，</div>
                     <div className="set-input-from ch-cont-14">吃</div>
-                    <select name="" id="" className="set-week">
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
+                    <select
+                      name=""
+                      id=""
+                      className="set-week"
+                      value={week}
+                      onChange={weekChange}
+                    >
+                      <option value="1" selected={+week === 1 ? true : false}>
+                        1
+                      </option>
+                      <option value="2" selected={+week === 2 ? true : false}>
+                        2
+                      </option>
+                      <option value="3" selected={+week === 3 ? true : false}>
+                        3
+                      </option>
+                      {/* <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option> */}
                     </select>
                     <div className="set-input-from ch-cont-14">週。</div>
                   </div>
@@ -43,7 +80,6 @@ function SetOrderList() {
                 </div>
                 <div className="set-list-right col-8">
                   <div className="set-view-all p-5">
-                  
                     <div className="bento-img-element mx-auto">
                       <img
                         src={require('./../../imgs/setorder/tokyo-salmon-set.png')}
@@ -52,8 +88,10 @@ function SetOrderList() {
                     </div>
                     <div className="bento-view-buttom align-items-center">
                       <div className="set-nutrient-btn">
-                      <div className="set-nutrient-bento-name ch-title-18">鮭魚便當</div>
-                        <div className="btn-sm btn-primary primeal-btn-outline-sm mx-5 set-nutrient float-end">
+                        <div className="set-nutrient-bento-name ch-title-18">
+                          鮭魚便當
+                        </div>
+                        <div className="btn btn-sm btn-outline-primary primeal-btn-outline-sm set-nutrient float-end">
                           營養成份
                         </div>
                       </div>
@@ -161,6 +199,13 @@ function SetOrderList() {
                     </div>
                   </div>
                 </div>
+              </div>
+              <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
+                <Link to="./setorderfinal">
+                  <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
+                    下一步
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

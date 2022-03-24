@@ -14,27 +14,27 @@
     display: flex;
   }
   .set-day-title {
-    
     margin-left: 2%;
   }
   .set-bento-title {
     margin-left: 10%;
   }
-.set-input-all{
-  display: flex;
-  padding-bottom: 10%;
+
+  .set-input-all {
+    display: flex;
+    padding-bottom: 10%;
   }
-  .set-input-from{
-    padding-right:2% ;
+  .set-input-from {
+    padding-right: 2%;
   }
-.set-input-date{
-  border-radius: 50px;
-  padding:2%;
-}
-.set-week{
-  border-radius: 50px;
-  padding:2%;
-}
+  .set-input-date {
+    border-radius: 50px;
+    padding: 2%;
+  }
+  .set-week {
+    border-radius: 50px;
+    padding: 2%;
+  }
   .set-menu {
     padding: 5px 10px;
     border: #212121 2px solid;
@@ -78,6 +78,7 @@
 
   .select {
     border: 0;
+
     background: rgba(0, 0, 0, 0);
     // -webkit-appearance: none;
     // appearance: none;
@@ -85,7 +86,7 @@
     width: 100%;
   }
   option {
-    background-color: #ffffff;
+    background-color: #f7f6f3;
   }
   .set-num {
     padding-right: 2rem;
@@ -100,7 +101,9 @@
     padding: 10 0;
     // overflow: hidden;
   }
-
+  .set-order-list-buttom {
+    justify-content: end;
+  }
   .custom-arrow {
     right: 0;
     position: absolute;
@@ -120,7 +123,7 @@
     display: none;
   }
   .set-nutrient {
-    color: #212121;
+    // color: #212121;
     text-align: center;
     // position: absolute;
     // right: 0%;
@@ -128,9 +131,10 @@
   .set-nutrient-btn {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    justify-content: space-evenly;
   }
-  .set-nutrient-bento-name{
-    
+  .set-nutrient-bento-name {
   }
   @media screen and (max-width: 1516) {
     @include mytitle;
@@ -140,6 +144,9 @@
   }
 
   @media screen and (max-width: 991px) {
+    .set-list-down {
+      margin-top: 6rem;
+    }
     .set-list-right {
       display: none;
     }

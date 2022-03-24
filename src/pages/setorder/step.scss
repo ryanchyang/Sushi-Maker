@@ -1,12 +1,48 @@
 @import './../../styles/global.scss';
 .step {
+  .start-padding {
+    padding-top: 0%;
+  }
+  .set-question-btn {
+    border: #b03342 1px solid;
+    border-radius: 50px;
+    padding: 6px 20px;
+    margin: 2px;
+    color: #b03342;
+  }
+  .set-question-btn:hover {
+    transition: 0.2;
+    background-color: #b03342;
+    color: #f7f6f3;
+  }
+
+  .step-reset-enter-btn-all {
+    display: flex;
+    justify-content: center;
+  }
+  .step-reset-btn {
+    border: #b03342 1px solid;
+    border-radius: 50px;
+    padding: 6px 20px;
+    margin: 2px;
+    color: #b03342;
+  }
+  .step-reset-btn-red {
+    border: #b03342 1px solid;
+    background-color: #b03342;
+    border-radius: 50px;
+    padding: 6px 20px;
+    margin: 2px;
+    color: #f7f6f3;
+  }
   .set-row {
     display: flex;
   }
   .set-all-content {
-    margin: 5% 0 5% 0;
+    margin: 0% 0 2% 0;
     position: relative;
   }
+
   .set-title {
     margin: auto;
     padding: 10px;
@@ -15,50 +51,61 @@
     background-color: #f7f6f3;
     position: absolute;
     z-index: 1;
-    top: -3%;
+
     left: 25%;
   }
-  
+  .set-title-0 {
+    top: -3%;
+  }
+  .set-title-1 {
+    top: -3%;
+  }
+  .set-title-2 {
+    top: -3%;
+  }
+  .set-title-3 {
+    top: -3%;
+  }
+  .set-title-4 {
+    top: -3%;
+  }
+
   .step-mob-title {
     @extend .ch-title-22;
     transition: 0.5s;
     @include pad {
-        @include mytitle;
-        font-size: 1.6rem;
-        line-height: 2.3rem;
-        letter-spacing: 0.16rem;
-
-      }
-    @include mobile {
-        @include mytitle;
-        font-size: 1.4rem;
-        line-height: 2rem;
-        letter-spacing: 0.14rem;
+      @include mytitle;
+      font-size: 1.6rem;
+      line-height: 2.3rem;
+      letter-spacing: 0.16rem;
     }
-
+    @include mobile {
+      @include mytitle;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      letter-spacing: 0.14rem;
+    }
   }
 
   .set-question-box {
-    z-index: 0;
+    align-items: center;
     margin: auto;
     padding: 8% 4%;
     width: 85%;
-    height: 60%;
     border: 1px solid #212121;
     border-radius: 13px;
-    justify-content: center;
     display: flex;
     flex-direction: column;
     position: relative;
   }
 
   .bento-img-center {
-    // margin:0 auto;
+    display: flex;
     align-items: center;
     padding-bottom: 5%;
   }
   .set-bento-img {
-    width: 10%;
+    width: 20%;
     margin: 0 auto;
     opacity: 40%;
   }
@@ -77,12 +124,41 @@
     margin: auto;
   }
   .set-content {
+    padding-bottom: 2%;
+  }
+  .setorder-btn-all {
+    display: flex;
+    margin-bottom: 10%;
+  }
+  .step-one-question-box {
+    padding: 15% 0%;
+  }
+  .stepfour-paddiing {
     padding-bottom: 5%;
+    width: 50%;
   }
 
+  @media screen and (max-width: 991px) {
+    .stepfour-paddiing {
+      width: 80%;
+    }
+    .start-padding {
+      padding-top: 10%;
+    }
+    .set-question-btn {
+      border: #b03342 1px solid;
+      border-radius: 50px;
+      padding: 6px 10px;
+      margin: 2px;
+      color: #b03342;
+    }
+  }
   @media screen and (max-width: 600px) {
-    .set-content{
-      padding-bottom:10%;
+    .stepfour-paddiing {
+      width: 100%;
+    }
+    .set-content {
+      padding-bottom: 10%;
     }
     .set-title {
       margin: auto;
@@ -95,37 +171,15 @@
       top: -3%;
       left: 25%;
     }
-    .set-question-box {
-      z-index: 0;
-      margin: auto;
-      padding: 8% 4%;
-      width: 85%;
-      height: 60%;
-      border: 1px solid #212121;
-      border-radius: 13px;
-      justify-content: center;
-      display: flex;
-      flex-direction: column;
-      position: relative;
+
+    .setorder-btn {
+      border: 1px solid #b03342;
+      color: #b03342;
+      border-radius: 25px;
+      text-align: center;
+      cursor: pointer;
     }
   }
-  .setoreder-btn-all{
-    margin-top: 10%;
-    margin-bottom: 10%;
+  @media screen and (max-width: 400px) {
   }
-  .setorder-btn{
-    border: 1px solid #b03342;
-    color: #b03342;
-    border-radius: 25px;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-.set-menu-final{
-
 }
-
-  
-}
-
-
