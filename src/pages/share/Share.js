@@ -68,6 +68,7 @@ function Share() {
     filterStateReducer,
     initFilterState
   );
+  const [noFound, setNoFound] = useState('');
 
   //window handler
   const currentWidth = useCurrentWidth();
@@ -85,8 +86,8 @@ function Share() {
     const response = await fetch(config.GET_SHARE_PRODS, {
       method: 'GET',
     });
-    const itemsArr = await response.json();
-    return itemsArr;
+    const itemsObj = await response.json();
+    return itemsObj;
   };
 
   const updateDimensions = () => {
@@ -151,6 +152,7 @@ function Share() {
                 masonryContainer ? '' : styles['share-display-none']
               }`}
             >
+              <div>{noFound}</div>
               <Masonry
                 columns={columns}
                 gap={gap}
@@ -166,6 +168,9 @@ function Share() {
             setMasonryContainer={setMasonryContainer}
             filterState={filterState}
             dispatch={dispatchFilter}
+            setShareItemsData={setShareItemsData}
+            getShareItems={getShareItems}
+            setNoFound={setNoFound}
           />
           {/* <Footer /> */}
         </div>

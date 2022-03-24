@@ -16,6 +16,9 @@ function ShareFilter(props) {
     setMasonryContainer,
     filterState,
     dispatch,
+    setShareItemsData,
+    getShareItems,
+    setNoFound,
   } = props;
 
   const [tagsInput, setTagsInput] = useState([]);
@@ -36,8 +39,8 @@ function ShareFilter(props) {
     const response = await fetch(config.GET_TAGS, {
       method: 'GET',
     });
-    const itemsArr = await response.json();
-    return itemsArr;
+    const itemsObj = await response.json();
+    return itemsObj;
   };
 
   const getFoundTags = async () => {
@@ -47,22 +50,31 @@ function ShareFilter(props) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(tagsInput[0]),
       });
-      if (!response.ok) throw new Error('no tags found!');
-      const itemsArr = await response.json();
-      return itemsArr;
+      if (!response.ok) throw new Error('No tags found!');
+      const itemsObj = await response.json();
+      return itemsObj;
     } catch (err) {
-      console.log(err.message);
+      console.error(err.message);
     }
   };
 
-  const filterGetData = async () => {
-    const response = await fetch(config.GET_FILTER_ITEMS, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(filterState),
-    });
-    const itemsArr = await response.json();
-    return itemsArr;
+  const getFilterData = async () => {
+    try {
+      const response = await fetch(config.GET_FILTER_ITEMS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(filterState),
+      });
+      if (!response.ok) throw new Error('No items match your search!');
+
+      const itemsObj = await response.json();
+      setNoFound('');
+      setShareItemsData(itemsObj.data);
+    } catch (err) {
+      setNoFound('沒有符合的查詢結果🤔');
+      setShareItemsData([]);
+      console.error(err.message);
+    }
   };
 
   const tagsInputHandler = e => {
@@ -194,7 +206,14 @@ function ShareFilter(props) {
               >
                 <div
                   className={`clean-filter ch-cont-16 ${styles['mr-100']} d-flex align-items-center`}
-                  onClick={() => dispatch({ type: 'RESET' })}
+                  onClick={() => {
+                    dispatch({ type: 'RESET' });
+                    (async () => {
+                      const result = await getShareItems();
+
+                      setShareItemsData(result.data);
+                    })();
+                  }}
                 >
                   <img
                     src={require('./../../../imgs/tags/trash.png')}
@@ -206,6 +225,7 @@ function ShareFilter(props) {
                   <DeleteSm
                     className={`${styles['button-default-lg']}`}
                     onClick={() => {
+                      setNoFound('');
                       setFilter(!filter);
                       setMasonryContainer(!masonryContainer);
                     }}
@@ -316,7 +336,11 @@ function ShareFilter(props) {
                   <div className="send-filter-btn-box d-flex justify-content-end">
                     <button
                       className="btn-sm btn-primary primeal-btn-sm"
-                      onClick={filterGetData}
+                      onClick={() => {
+                        getFilterData();
+                        setFilter(!filter);
+                        setMasonryContainer(!masonryContainer);
+                      }}
                     >
                       送出條件
                     </button>
