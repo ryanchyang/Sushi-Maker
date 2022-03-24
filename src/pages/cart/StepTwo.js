@@ -22,9 +22,12 @@ function StepTwo() {
   // 用於光箱傳資料的方式
   const inputStoreId = useRef(null);
   const [getStoreId, setGetStoreId] = useState('');
-  console.log(inputStoreId.current);
+  // console.log(inputStoreId.current);
   console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
+  const inputEl = useRef(null);
+  console.log('12332112324', inputEl.current?.innerText);
 
+  console.log(inputEl);
   // const [storeID, setStoreID] = useState('');
 
   // 畫面右側小計
@@ -40,7 +43,7 @@ function StepTwo() {
   useEffect(() => {
     const getInfo = async () => {
       const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
-      console.log(res);
+      console.log('res', res);
       const obj = await res.json();
       console.log('obj:', obj);
       setInfo(obj.result);
@@ -49,8 +52,11 @@ function StepTwo() {
   }, []);
   console.log('info', info);
   useEffect(() => {
-    // console.log(info);
+    console.log(info);
+    console.log('info.mem_name', info[0] ? info[0].mem_id : '');
   }, [info]);
+  // console.log('info.mem_name', info[0]?.mem_name);
+
   // const { id } = useParams();
   // console.log('id:', id);
   useEffect(() => {
@@ -87,12 +93,14 @@ function StepTwo() {
 
   // 處理欄位改變
   const handleFieldChange = e => {
+    console.log(e.target.name);
     const newData = {
       ...fields,
       [e.target.name]: e.target.value,
     };
     setFields(newData);
-    //setInfo(info);
+    setInfo(info);
+    console.log('iiiiiiiiiiiii', info);
   };
 
   // 驗證並處理欄位錯誤訊息
@@ -205,158 +213,153 @@ function StepTwo() {
             >
               <div className="row mt-5">
                 <div className="col-md-12 col-24">
-                  {info?.map((v, i) => {
-                    return (
-                      <div className="shipping-info ch-cont-14 " key={v.mem_id}>
-                        {/* TODO: Form className='needs-validation ' 表單驗證*/}
-                        <div className="my-4">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label ">訂購人姓名</label>
-                            <label className="form-label text-primary ch-cont-12">
-                              必填
-                            </label>
-                          </div>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="buyer"
-                            name="buyer"
-                            placeholder="訂購人"
-                            required
-                            // value={fields.buyer}
-                            // defaultValue={v.mem_name}
-                            // TODO: v ˇ改 info
-
-                            value={v.mem_name}
-                            onChange={handleFieldChange}
-                          />
-                          {/* TODO: check name??buyer */}
-                          {fieldsError.buyer !== '' && (
-                            <div className="error">{fieldsError.buyer}</div>
-                          )}
-                        </div>
-                        <div className="my-4">
-                          <div className="d-flex justify-content-between">
-                            <label className="form-label ">連絡電話</label>
-                            <label className="form-label text-primary ch-cont-12">
-                              必填
-                            </label>
-                          </div>
-
-                          <input
-                            type="text"
-                            className="form-control "
-                            id="buyer_mobile"
-                            name="buyer_mobile"
-                            // placeholder="09XX-XXX-XXX"
-                            data-pattern="09\d{2}-?\d{3}-?\d{3}"
-                            onChange={handleFieldChange}
-                            required
-                            defaultValue={v.mem_mobile}
-                          />
-                          {fieldsError.buyer_mobile !== '' && (
-                            <div className="error">
-                              {fieldsError.buyer_mobile}
-                            </div>
-                          )}
-                        </div>
-                        <div className="my-4">
-                          <label className="form-label ">取貨人姓名</label>
-                          <input
-                            type="text"
-                            className="form-control "
-                            name="picker"
-                            id="picker"
-                            placeholder="取貨人"
-                            // defaultValue={}
-                            onChange={handleFieldChange}
-                          />
-                          <div className="form-check d-flex">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                            />
-                            <label className="form-check-label ">
-                              同訂購人
-                            </label>
-                          </div>
-                        </div>
-                        <div className="my-4">
-                          <label
-                            htmlFor="exampleFormControlTextarea1 "
-                            className="form-label ch-cont-14"
-                          >
-                            訂單特殊備註
-                          </label>
-                          <textarea
-                            className="form-control textarea"
-                            // maxRows="5"
-                            id="order_notes"
-                            name="order_notes"
-                            onChange={handleFieldChange}
-                          ></textarea>
-                        </div>
-                        <div className="my-4 mx-5">
-                          {/* TODO: map 光箱 */}
-                          <input
-                            type="text"
-                            className="form-control "
-                            name="cart_store_id"
-                            id="cart_store_id"
-                            value={getStoreId}
-                            // hidden
-                          />
-
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
-                            onClick={handleShow}
-                          >
-                            選擇取貨門市
-                          </button>
-                          {
-                            <Modal
-                              show={map}
-                              onHide={handleClose}
-                              setGetStoreId={setGetStoreId}
-                            >
-                              <Modal.Header closeButton>
-                                <Modal.Title className="en-cont-30 m-3">
-                                  選擇取貨門市
-                                </Modal.Title>
-                              </Modal.Header>
-                              <Modal.Body style={{ margin: '0 3%' }}>
-                                <>
-                                  <StepMap ref={inputStoreId} />
-                                </>
-                              </Modal.Body>
-                              <Modal.Footer>
-                                <Button
-                                  variant="secondary"
-                                  className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
-                                  onClick={handleClose}
-                                >
-                                  取消
-                                </Button>
-                                {/*TODO: 確認門市要送出表單並存到DB mem */}
-                                <Button
-                                  variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
-                                  onClick={() => {
-                                    // setGetStoreId(inputStoreId.current?.value);
-                                    handleClose();
-                                  }}
-                                  // type="submit"
-                                >
-                                  確認門市
-                                </Button>
-                              </Modal.Footer>
-                            </Modal>
-                          }
-                        </div>
+                  <div className="shipping-info ch-cont-14 " ref={inputEl}>
+                    {/* TODO: Form className='needs-validation ' 表單驗證*/}
+                    <div className="my-4">
+                      <div className="d-flex justify-content-between">
+                        <label className="form-label ">訂購人姓名</label>
+                        <label className="form-label text-primary ch-cont-12">
+                          必填
+                        </label>
                       </div>
-                    );
-                  })}
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="buyer"
+                        name="buyer"
+                        placeholder="訂購人"
+                        required
+                        // value={fields.buyer}
+                        // defaultValue={v.mem_name}
+                        // TODO: v ˇ改 info
+                        ref={inputEl}
+                        defaultValue={info[0] ? info[0].mem_name : ''}
+                        // value={this.current.value}
+                        onChange={handleFieldChange}
+                      />
+                      {/* TODO: check name??buyer */}
+                      {fieldsError.buyer !== '' && (
+                        <div className="error">{fieldsError.buyer}</div>
+                      )}
+                    </div>
+                    <div className="my-4">
+                      <div className="d-flex justify-content-between">
+                        <label className="form-label ">連絡電話</label>
+                        <label className="form-label text-primary ch-cont-12">
+                          必填
+                        </label>
+                      </div>
+
+                      <input
+                        type="text"
+                        className="form-control "
+                        id="buyer_mobile"
+                        name="buyer_mobile"
+                        // placeholder="09XX-XXX-XXX"
+                        data-pattern="09\d{2}-?\d{3}-?\d{3}"
+                        onChange={handleFieldChange}
+                        required
+                        ref={inputEl}
+                        defaultValue={info[0] ? info[0].mem_mobile : ''}
+                      />
+                      {fieldsError.buyer_mobile !== '' && (
+                        <div className="error">{fieldsError.buyer_mobile}</div>
+                      )}
+                    </div>
+                    <div className="my-4">
+                      <label className="form-label ">取貨人姓名</label>
+                      <input
+                        type="text"
+                        className="form-control "
+                        name="picker"
+                        id="picker"
+                        placeholder="取貨人"
+                        defaultValue={info[0] ? info[0].mem_name : ''}
+                       
+                        onChange={handleFieldChange}
+                      />
+                      <div className="form-check d-flex">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                        />
+                        <label className="form-check-label ">同訂購人</label>
+                      </div>
+                    </div>
+                    <div className="my-4">
+                      <label
+                        htmlFor="exampleFormControlTextarea1 "
+                        className="form-label ch-cont-14"
+                      >
+                        訂單特殊備註
+                      </label>
+                      <textarea
+                        className="form-control textarea"
+                        // maxRows="5"
+                        id="order_notes"
+                        name="order_notes"
+                        onChange={handleFieldChange}
+                      ></textarea>
+                    </div>
+                    <div className="my-4 mx-5">
+                      {/* TODO: map 光箱 */}
+                      <input
+                        type="text"
+                        className="form-control "
+                        name="cart_store_id"
+                        id="cart_store_id"
+                        value={getStoreId}
+                        // hidden
+                      />
+
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
+                        onClick={handleShow}
+                      >
+                        選擇取貨門市
+                      </button>
+                      {
+                        <Modal
+                          show={map}
+                          onHide={handleClose}
+                          setGetStoreId={setGetStoreId}
+                        >
+                          <Modal.Header closeButton>
+                            <Modal.Title className="en-cont-30 m-3">
+                              選擇取貨門市
+                            </Modal.Title>
+                          </Modal.Header>
+                          <Modal.Body style={{ margin: '0 3%' }}>
+                            <>
+                              <StepMap ref={inputStoreId} />
+                            </>
+                          </Modal.Body>
+                          <Modal.Footer>
+                            <Button
+                              variant="secondary"
+                              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                              onClick={handleClose}
+                            >
+                              取消
+                            </Button>
+                            {/*TODO: 確認門市要送出表單並存到DB mem */}
+                            <Button
+                              variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                              onClick={() => {
+                                // setGetStoreId(inputStoreId.current?.value);
+                                handleClose();
+                              }}
+                              // type="submit"
+                            >
+                              確認門市
+                            </Button>
+                          </Modal.Footer>
+                        </Modal>
+                      }
+                    </div>
+                  </div>
                 </div>
                 {/* 右側 統計 summary */}
                 <CartSum
