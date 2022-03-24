@@ -56,7 +56,6 @@ const localizer = dateFnsLocalizer({
 // ]
 
 function IndexActive() {
-  const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
   const [allEvent, setAllEvent] = useState([]);
   const mem_id = getMemId();
   console.log('mem_id:', mem_id);
@@ -65,17 +64,16 @@ function IndexActive() {
     const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
     const obj = await res.json();
     console.log('obj:', obj);
-    setAllEvent(obj.data);
+    const events = obj.data.map(d => {
+      return { ...d, start: new Date(d.start), end: new Date(d.end) };
+    });
+    //setAllEvent(obj.data);
+    setAllEvent(events);
   };
 
   useEffect(() => {
     getActive();
   }, []);
-
-  // 處理活動更新
-  // const handleAddEvent = () => {
-  //   setAllEvent([...allEvent], newEvent);
-  // };
 
   return (
     <>
@@ -90,9 +88,9 @@ function IndexActive() {
               <Calendar
                 localizer={localizer}
                 events={allEvent}
-                dateAccessor="evnts_date"
-                startTimeAccessor="evnts_start_time"
-                endTimeAccessor="evnts_end_time"
+                step={60}
+                startAccessor="start"
+                endAccessor="end"
                 style={{ height: 500, margin: '50px' }}
               />
             </div>
