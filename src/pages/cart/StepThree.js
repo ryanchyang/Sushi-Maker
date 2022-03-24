@@ -24,6 +24,8 @@ function StepThree() {
 
   // const { id } = useParams();
   // console.log('id:', id);
+
+  // 右邊sum 用
   useEffect(() => {
     const getSum = async () => {
       const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
@@ -76,6 +78,8 @@ function StepThree() {
                   <button
                     type="button"
                     className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    //onClick={document.querySelector('.creditFor').submit()}
+                    //onClick={document.querySelector('.creditBtn').click()}
                   >
                     確認付款
                   </button>

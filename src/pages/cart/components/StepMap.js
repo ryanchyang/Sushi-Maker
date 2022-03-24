@@ -172,14 +172,14 @@ const StepMap = forwardRef((props, ref) => {
           setStoreName(e.target.value + '門市');
           // console.log(e.target.value);
           setStoreId(e.target.dataset.id);
-          console.log('fjlkj IDDDDD', e.target.dataset.id);
+          console.log('fjlkj IDDDDD', e.target.value);
         }}
       >
         <option selected>Choose...</option>
         {store.map((v, i) => {
           return (
             <option key={v.store_id} 
-            value={v.store_name + v.store_id} data-id={v.store_id}>
+            value={v.store_name} data-id={v.store_id}>
               {v.store_name}門市 ({v.store_address})
             </option>
           );
@@ -234,14 +234,14 @@ const StepMap = forwardRef((props, ref) => {
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
           <span className="store" ref={ref} >
-            {/* <input
+            <input
               // ref={ref}
               dataId="123"
               type="text"
               // hidden
               value={storeId}
               setGetStoreId={setGetStoreId}
-            /> */}
+            />
             {storeName}
           </span>
         </div>

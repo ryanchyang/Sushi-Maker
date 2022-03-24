@@ -16,7 +16,7 @@ function StepOne(props) {
   // const { productsInOrder, setProductsInOrder } = props;
   // 回上一頁 按鈕
   let history = useHistory();
-  const [list, setList] = useState({});
+  const [list, setList] = useState({});  
   const mem_id = 4;
   //const {cs = [], cm = [], set = []} = list;
 
@@ -154,7 +154,7 @@ function StepOne(props) {
               </div>
             </div>
 
-            <ProdItem cs={list.cs} cm={list.cm} set={list.set} />
+            <ProdItem cs={list.cs} cm={list.cm} set={list.set} setList={setList} list={list} />
 
             {/* TODO: SET info 光箱 */}
             <div className="list-check ch-cont-14" style={{ padding: '30px' }}>

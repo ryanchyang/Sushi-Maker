@@ -16,6 +16,7 @@ function ProdItem(props) {
   //        orders_print_time:90
   //        orders_category:'cls',
   //    }
+  const setList = props.setList;
 
   // 計算單品數量
   const [countcs, setCountcs] = useState([]);
@@ -30,6 +31,14 @@ function ProdItem(props) {
     setCountcm(props.cm);
     setCountset(props.set);
   }, [props]);
+
+  // TODO: ASK 新德救命!!!!
+  useEffect(() => {
+    const newData = props.list;
+    newData.cs = countcs;
+    console.log(newData);
+    props.setList(newData);
+  }, [countcs]);
 
   useEffect(() => {}, [countcs, countcm, countset]);
 

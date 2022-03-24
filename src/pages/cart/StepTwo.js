@@ -22,11 +22,11 @@ function StepTwo() {
   // 用於光箱傳資料的方式
   const inputStoreId = useRef(null);
   const [getStoreId, setGetStoreId] = useState('');
-  console.log(inputStoreId.current)
+  console.log(inputStoreId.current);
   console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
-  
-// const [storeID, setStoreID] = useState('');
-  
+
+  // const [storeID, setStoreID] = useState('');
+
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   const [info, setInfo] = useState([]);
@@ -40,7 +40,7 @@ function StepTwo() {
   useEffect(() => {
     const getInfo = async () => {
       const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
-      console.log(res)
+      console.log(res);
       const obj = await res.json();
       console.log('obj:', obj);
       setInfo(obj.result);
@@ -92,6 +92,7 @@ function StepTwo() {
       [e.target.name]: e.target.value,
     };
     setFields(newData);
+    //setInfo(info);
   };
 
   // 驗證並處理欄位錯誤訊息
@@ -222,8 +223,11 @@ function StepTwo() {
                             name="buyer"
                             placeholder="訂購人"
                             required
-                            value={fields.buyer}
-                            defaultValue={v.mem_name}
+                            // value={fields.buyer}
+                            // defaultValue={v.mem_name}
+                            // TODO: v ˇ改 info
+
+                            value={v.mem_name}
                             onChange={handleFieldChange}
                           />
                           {/* TODO: check name??buyer */}
@@ -339,7 +343,7 @@ function StepTwo() {
                                 <Button
                                   variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                                   onClick={() => {
-                                    setGetStoreId(inputStoreId.current?.value);
+                                    // setGetStoreId(inputStoreId.current?.value);
                                     handleClose();
                                   }}
                                   // type="submit"

@@ -77,7 +77,7 @@ class CreditCard extends React.Component {
         <form
           ref={c => (this.form = c)}
           onSubmit={this.handleSubmit}
-          className="my-5"
+          className="my-5 creditForm"
         >
           <div className="form-group">
             <label htmlFor="credit-card" className="credit-card">
@@ -221,9 +221,9 @@ class CreditCard extends React.Component {
             </div>
 
             {/* <input type="hidden" name="issuer" value={issuer} /> */}
-            {/* <div className="form-actions">
-              <button className="btn btn-primary btn-block">PAY</button>
-            </div> */}
+            <div className="form-actions">
+              <button className="btn btn-primary btn-block creditBtn">PAY</button>
+            </div>
           </div>
         </form>
         {/* {formData && (
