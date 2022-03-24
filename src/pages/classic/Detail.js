@@ -64,7 +64,7 @@ function Detail() {
   };
 
   //點擊收藏
-  const handleLike = async() => {
+  const handleLike = async () => {
     //判斷有無登入
     const isLogin = localStorage.getItem('mem_id') !== null;
     if (isLogin) {
@@ -82,7 +82,9 @@ function Detail() {
 
       setIsLike(!isLike);
     } else {
-      handleShow();
+
+      console.log(lightBox.current?.innerText);
+      handleShow();      
     }
   };
 
@@ -115,7 +117,7 @@ function Detail() {
 
     fetchData();
     window.scrollTo(0, 0); //re-render後強制回到top
-    console.log(lightBox); 
+    console.log(lightBox);
   }, []);
 
   const hiddenStyle = { display: 'none' };
@@ -126,27 +128,26 @@ function Detail() {
 
   return (
     <>
-      {
-        <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
-          </Modal.Header>
-          <Modal.Body style={{ margin: '0 3%' }}>
-            <div className="en-cont-14 pb-2" ref={lightBox}>
-              您的商品已加入購物車
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="secondary"
-              className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-              onClick={handleClose}
-            >
-              Close
-            </Button>
-          </Modal.Footer>
-        </Modal>
-      }
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ margin: '0 3%' }}>
+          <div className="en-cont-14 pb-2" ref={lightBox}>
+            您的商品已加入購物車
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
