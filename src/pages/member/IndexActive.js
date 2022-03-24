@@ -8,7 +8,7 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import config from '../../Config';
-// import { getMemId } from '../../utils';
+import { getMemId } from '../../utils';
 import { useState, useEffect } from 'react';
 // import DatePicker from 'react-datepicker';
 
@@ -24,33 +24,42 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-// 假設活動data
-const events = [
-  {
-    title: 'Meeting',
-    allDay: true,
-    start: new Date(2022, 3, 15),
-    end: new Date(2022, 3, 15),
-  },
-  {
-    title: 'Camping',
-    allDay: true,
-    start: new Date(2022, 3, 15),
-    end: new Date(2022, 3, 15),
-  },
-  {
-    title: 'Hiking',
-    allDay: true,
-    start: new Date(2022, 2, 15),
-    end: new Date(2022, 2, 15),
-  },
-];
+// SQL
+// [
+//   {
+//     evnts_id: 2,
+//     evnts_title: '營養小知識講座',
+//     evnts_date: '2022-05-07',
+//     evnts_start_time: 2022-05-07T06:00:00.000Z,
+//     evnts_end_time: 2022-05-07T09:00:00.000Z,
+//     evnts_location: '台北市大安區復興南路一段390號2樓',
+//     allDay:false
+//   },
+//   {
+//     evnts_id: 4,
+//     evnts_title: '3D列印是什麼?',
+//     evnts_date: '2022-04-13',
+//     evnts_start_time: 2022-04-13T02:00:00.000Z,
+//     evnts_end_time: 2022-04-13T04:00:00.000Z,
+//     evnts_location: '台北市大安區復興南路一段390號2樓',
+//     allDay:false
+//   },
+//   {
+//     evnts_id: 6,
+//     evnts_title: '母親節快樂',
+//     evnts_date: '2022-05-14',
+//     evnts_start_time: 2022-05-14T05:00:00.000Z,
+//     evnts_end_time: 2022-05-14T08:00:00.000Z,
+//     evnts_location: '台北市大安區復興南路一段390號2樓',
+//     allDay:false
+//   }
+// ]
 
 function IndexActive() {
   const [newEvent, setNewEvent] = useState({ title: '', start: '', end: '' });
-  const [allEvent, setAllEvent] = useState(events);
-  // todo: membe_id先寫死
-  const mem_id = 1;
+  const [allEvent, setAllEvent] = useState([]);
+  const mem_id = getMemId();
+  console.log('mem_id:', mem_id);
 
   const getActive = async () => {
     const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
@@ -61,7 +70,7 @@ function IndexActive() {
 
   useEffect(() => {
     getActive();
-  });
+  }, []);
 
   // 處理活動更新
   // const handleAddEvent = () => {
@@ -80,9 +89,10 @@ function IndexActive() {
             <div className="mycontainer">
               <Calendar
                 localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
+                events={allEvent}
+                dateAccessor="evnts_date"
+                startTimeAccessor="evnts_start_time"
+                endTimeAccessor="evnts_end_time"
                 style={{ height: 500, margin: '50px' }}
               />
             </div>

@@ -14,15 +14,14 @@ function EvntsSignUp(props) {
   const [signUpResult, setSignUpResult] = useState(null);
   const history = useHistory();
   // todo: membe_id先寫死
-  const mem_id = 1;
-  // const mem_id = getMemId();
-  // console.log('mem_id:', mem_id);
+  // const mem_id = 1;
+  const mem_id = getMemId();
+  console.log('mem_id:', mem_id);
 
   const { id } = useParams();
-  console.log('id:', id);
+  console.log('evnts_id:', id);
 
   const getEvntsInfo = async () => {
-    // console.log('hihi');
     const res = await fetch(config.EVNTSD_PATH + `${id}`);
     const obj = await res.json();
     console.log('obj:', obj);

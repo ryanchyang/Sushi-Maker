@@ -9,7 +9,7 @@ function NewsDetails(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const [newsDetail, setNewsDetail] = useState([]);
   const { id } = useParams();
-  // console.log('id:', id);
+  // console.log('news_id:', id);
 
   const getNewsDetail = async () => {
     console.log('hi');
