@@ -4,6 +4,7 @@ import { findMem } from '../../WebApi';
 import { useEffect, useState } from 'react';
 import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
+import Events from './component/Events';
 
 function MemIndex() {
   const [memData, setMemData] = useState(null);
@@ -29,7 +30,7 @@ function MemIndex() {
             <div className="mycontainer">
               <div className="memInfoArea">
                 <div className="memInfo col-md-12 col-24 mx-3 px-5">
-                  <table class="table table-borderless col-16">
+                  <table class="table table-borderless col-16 mt-4">
                     <thead>
                       <tr>
                         <td className="ch-title-22">會員資訊</td>
@@ -70,19 +71,10 @@ function MemIndex() {
                 </div>
               </div>
               <div className="memActive col-md-24 mb-5">
-                <p className="ch-title-22">近期活動</p>
+                <p className="ch-title-22 mt-4">近期活動</p>
                 <div className="memActiveArea">
-                  <div className="ActiveDetail col-md-8">
-                    <div className="activeImg">
-                      <img src="/img/member/activeImg.png" alt="cube" />
-                    </div>
-                    <div className="mt-4">
-                      <p className="ch-cont-18">2/18</p>
-                      <div className="mx-5 ActTitle">
-                        <p className="ch-cont-18 ">印食工作坊</p>
-                        <p>(...詳情)</p>
-                      </div>
-                    </div>
+                  <div className="ActiveDetail col-md-24">
+                    <Events />
                   </div>
                 </div>
               </div>
