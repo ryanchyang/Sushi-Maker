@@ -20,6 +20,8 @@ function StepTwo() {
   // 回上一頁 按鈕
   let history = useHistory();
 
+  const [getStoreId, setGetStoreId] = useState('');
+
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   // TODO:  member id =1 鮮血死 測試用
@@ -264,8 +266,9 @@ function StepTwo() {
                         className="form-control "
                         name="store_id"
                         id="store_id"
-                        // value={storeId}
-                        hidden
+                        value={getStoreId}
+                        // hidden
+                        setGetStoreId={setGetStoreId}
                       />
                       {
                         <Modal show={map} onHide={handleClose}>
@@ -291,6 +294,7 @@ function StepTwo() {
                             <Button
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={handleClose}
+                              type="submit"
                             >
                               確認門市
                             </Button>

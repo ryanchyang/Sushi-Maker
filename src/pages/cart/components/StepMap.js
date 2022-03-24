@@ -1,5 +1,5 @@
 // StepMap.js 選店地址
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import {
   MapContainer,
@@ -33,13 +33,6 @@ function LocationMarker() {
   );
 }
 
-// 資料位置
-var arrCoordinates = [
-  [25.032, 121.539],
-  [25.022, 121.543],
-  [25.034, 121.537],
-];
-
 // 所在位置的icon 圖樣
 const iconNow = L.icon({
   iconSize: [25, 41],
@@ -55,7 +48,7 @@ const iconNow = L.icon({
 //   });
 // }
 
-function StepMap() {
+function StepMap(props) {
   // const position = [51.505, -0.09];
   const [init, setInit] = useState(AreaData);
   const [city, setCity] = useState(AreaData.city);
@@ -65,6 +58,8 @@ function StepMap() {
   const [store, setStore] = useState(AreaData.store);
   const [storeId, setStoreId] = useState(0);
   const [storeName, setStoreName] = useState('');
+  const inputStoreId = useRef(null);
+
   // 縣市+行政區
   useEffect(() => {
     console.log('area:', area);
@@ -105,7 +100,7 @@ function StepMap() {
       // console.log('area id ===', +v.store_area_id == +areaId);
       return v.store_area_id == +areaId;
     });
-    console.log('BBB332112313213', b);
+    // console.log('BBB332112313213', b);
     setStore(b);
 
     // 抓XY
@@ -120,7 +115,6 @@ function StepMap() {
     //   return [+v.store_latitude, +v.store_longtitude];
     // });
   }, [areaId]);
-
 
   //  縣市 input
   const inputCity = (
@@ -177,13 +171,14 @@ function StepMap() {
         onChange={e => {
           setStoreName(e.target.value + '門市');
           // console.log(e.target.value);
-          // setStore(e.target.value);
+          setStoreId(e.target.dataId);
+          console.log(e.target.dataId);
         }}
       >
         <option selected>Choose...</option>
         {store.map((v, i) => {
           return (
-            <option key={i} value={v.store_name}>
+            <option key={i} value={v.store_name} dataId={v.store_id}>
               {v.store_name}門市 ({v.store_address})
             </option>
           );
@@ -203,8 +198,10 @@ function StepMap() {
   //   return [+v.store_latitude, +v.store_longtitude];
   // });
 
+  const Sid = inputStoreId.current?.value;
+  console.log('Sid@@@', Sid); //找出SID 往上傳
 
-
+  const { setGetStoreId } = props;
 
   return (
     <>
@@ -214,17 +211,7 @@ function StepMap() {
           {inputArea}
         </div>
         {inputStore}
-        <div
-          className="store-map"
-          id="map"
-          style={
-            {
-              // width: ' 100 %',
-              // height: '600px',
-              // backgroundColor: '#c4c4c4',
-            }
-          }
-        >
+        <div className="store-map" id="map">
           <MapContainer
             center={{ lat: 25.03, lng: 121.54 }}
             zoom={13}
@@ -235,22 +222,29 @@ function StepMap() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <LocationMarker />
-            {/* <Marker
-              position={[25.032, 121.539]}
-              eventHandlers={{
-                click: () => {
-                  console.log('marker01');
-                  <Popup>Hello world</Popup>;
-                },
-              }}
-            /> */}
-            <MultipleMarkers store={store} setStoreName={setStoreName} />
+
+            <MultipleMarkers
+              store={store}
+              setStoreName={setStoreName}
+              setStoreId={setStoreId}
+            />
           </MapContainer>
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span className="store">{storeName}</span>
+          <span className="store">
+            <input
+              ref={inputStoreId}
+              dataId="123"
+              type="text"
+              // hidden
+              value={storeId}
+              setGetStoreId={setGetStoreId}
+            />
+            {storeName}
+          </span>
         </div>
+        <button type="submit">132</button>
       </form>
     </>
   );
