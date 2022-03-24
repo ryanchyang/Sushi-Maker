@@ -12,7 +12,7 @@ function MemIndex() {
   useEffect(() => {
     findMem(mem_id).then(obj => {
       setMemData(obj[0]);
-    }); 
+    });
   }, []);
 
   return (
@@ -54,7 +54,6 @@ function MemIndex() {
                       </tr>
                       <tr>
                         <td>會員積分規則:</td>
-                        
                       </tr>
                     </tbody>
                   </table>

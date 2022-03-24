@@ -1,10 +1,4 @@
-import {
-  Header,
-  Title,
-  AsideLeft,
-  AsideRight,
-  Footer,
-} from './memLayout/LayoutLight';
+import { Header, AsideLeft, AsideRight, Footer } from './memLayout/LayoutLight';
 import './index.scss';
 import MemHead from './component/MemHead';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
@@ -14,9 +8,9 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import config from '../../Config';
-import { getMemId } from '../../utils';
+// import { getMemId } from '../../utils';
 import { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 
 const locales = {
   'zh-TW': require('date-fns/locale/zh-TW'),

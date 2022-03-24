@@ -1,18 +1,22 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import NavPage from '../layout/components/NavPage';
+import { useState, useEffect } from 'react';
+import { useParams, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { getAuthToken } from '../../utils';
+import config from '../../Config';
 import './evnts-details.scss';
 import './../../styles/global.scss';
-import config from '../../Config';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import NavPage from '../layout/components/NavPage';
+import LogInModal from './components/LogInModal';
 
 function EvntsDetails(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const [evntsDetail, setEvntsDetail] = useState([]);
   const [active, setActive] = useState('');
-  const [btnStatus, setBtnStatus] = useState('');
+  const [modalShow, setModalShow] = useState(false);
   const { id } = useParams();
+  const history = useHistory();
+  const user = getAuthToken();
 
   // get Data
   const getEvntsDetail = async () => {
@@ -45,6 +49,16 @@ function EvntsDetails(props) {
     }
   }, [evntsDetail]);
 
+  // 點擊報名要判斷是否有登入
+  const checkLogin = () => {
+    if (!user) {
+      setModalShow(true);
+    } else {
+      history.push(
+        '/latest-news/eventsdetail/signup/' + evntsDetail[0]?.evnts_id ?? ''
+      );
+    }
+  };
   // [{
   //   evnts_id: 1,
   //   evnts_title: '試吃餐會',
@@ -167,16 +181,7 @@ function EvntsDetails(props) {
                       目前已報名人數{' '}
                       <span>{evntsDetail[0]?.evnts_pres_num ?? ''}</span>人
                     </div>
-                    <Link
-                      to={
-                        active
-                          ? '/latest-news/eventsdetail/signup/' +
-                              evntsDetail[0]?.evnts_id ?? ''
-                          : '#'
-                      }
-                      style={{
-                        textDecoration: 'none',
-                      }}
+                    <div
                       className={active ? 'signupbtn' : 'signupbtn nopointer'}
                     >
                       <div
@@ -185,10 +190,11 @@ function EvntsDetails(props) {
                             ? 'btn-sm btn-primary primeal-btn d-flex justify-content-center align-items-center'
                             : 'btn-sm disabled ch-title-18 d-flex justify-content-center align-items-center'
                         }
+                        onClick={checkLogin}
                       >
                         {active ? '點我去報名' : '未開放報名'}
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -271,16 +277,7 @@ function EvntsDetails(props) {
                         目前已報名人數{' '}
                         <span>{evntsDetail[0]?.evnts_pres_num ?? ''}</span>人
                       </div>
-                      <Link
-                        to={
-                          active
-                            ? '/latest-news/eventsdetail/signup/' +
-                                evntsDetail[0]?.evnts_id ?? ''
-                            : '#'
-                        }
-                        style={{
-                          textDecoration: 'none',
-                        }}
+                      <div
                         className={
                           active ? 'pc-signupbtn' : 'pc-signupbtn nopointer'
                         }
@@ -291,10 +288,11 @@ function EvntsDetails(props) {
                               ? 'btn-sm btn-primary primeal-btn d-flex justify-content-center align-items-center'
                               : 'btn-sm disabled d-flex justify-content-center align-items-center'
                           }
+                          onClick={checkLogin}
                         >
                           {active ? '點我去報名' : '未開放報名'}
                         </div>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -305,6 +303,13 @@ function EvntsDetails(props) {
           <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
+      <LogInModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+          history.push('/member/login');
+        }}
+      />
     </>
   );
 }
