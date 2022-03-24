@@ -82,9 +82,7 @@ function Detail() {
 
       setIsLike(!isLike);
     } else {
-
-      console.log(lightBox.current?.innerText);
-      handleShow();      
+      handleLikeShow();
     }
   };
 
@@ -117,37 +115,63 @@ function Detail() {
 
     fetchData();
     window.scrollTo(0, 0); //re-render後強制回到top
-    console.log(lightBox);
   }, []);
 
   const hiddenStyle = { display: 'none' };
   const showStyle = { display: 'block' };
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+
+  //請先登入的光箱
+  const [likeShow, setLikeShow] = useState(false);
+  const handleLikeClose = () => setLikeShow(false);
+  const handleLikeShow = () => setLikeShow(true);
+  const likeModel = (
+    <Modal show={likeShow} onHide={handleLikeClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">請先登入後才能加入收藏</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleLikeClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  //加入購物車的光箱
+  const [cartShow, setCartShow] = useState(false);
+  const handleCartClose = () => setCartShow(false);
+  const handleCartShow = () => setCartShow(true);
+  const cartModel = (
+    <Modal show={cartShow} onHide={handleCartClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">請先登入後才能加入收藏</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleCartClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 
   return (
     <>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
-        </Modal.Header>
-        <Modal.Body style={{ margin: '0 3%' }}>
-          <div className="en-cont-14 pb-2" ref={lightBox}>
-            您的商品已加入購物車
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-            onClick={handleClose}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
+      {likeModel}
+      {cartModel}
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
