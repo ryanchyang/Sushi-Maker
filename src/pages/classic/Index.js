@@ -6,14 +6,13 @@ import { ReactComponent as OrangeTag } from '../../imgs/tags/Rectangle_orange.sv
 import { ReactComponent as SearchBtn } from '../../imgs/search.svg';
 import { ReactComponent as FilterBtn } from '../../imgs/filter-icon.svg';
 import { IoIosArrowDown as DownArrow } from 'react-icons/io';
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../Config';
 
 import { Button, Modal } from 'react-bootstrap';
 
 function Index() {
- 
   const [allData, setAllData] = useState([]);
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
   const [isOpenMainContent, setIsOpenMainContent] = useState(true); //是否開啟主要商品列表
@@ -31,6 +30,7 @@ function Index() {
   ]); //依特殊標籤搜尋
   const [filterData, setFilterData] = useState([]); //套用篩選條件後的商品列表
   const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{pid, pname, count}]
+  const [search, setSearch] = useState(false); //是否開啟搜尋框
   const pageProdCount = 6; //一頁呈現的商品個數
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
@@ -310,7 +310,7 @@ function Index() {
   const addToCart = id => {
     const isLogin = localStorage.getItem('mem_id') !== null;
     let addProd = buyProdCount.find(p => p.pid === +id);
-    console.log({...addProd, islogin: isLogin});
+    console.log({ ...addProd, islogin: isLogin });
 
     fetch(config.ADD_CART, {
       method: 'POST',
@@ -318,8 +318,8 @@ function Index() {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        "pid": addProd.pid,
-        "count": addProd.count
+        pid: addProd.pid,
+        count: addProd.count,
       }),
     }).then(res => res.json());
 
@@ -332,9 +332,7 @@ function Index() {
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2" >
-          您的商品已加入購物車
-        </div>
+        <div className="en-cont-14 pb-2">您的商品已加入購物車</div>
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -454,6 +452,11 @@ function Index() {
   const pageNoSelected = { border: '1px solid #575757', color: '#575757' };
   const pageSelected = { border: '1px solid #B03342', color: '#B03342' };
 
+  const searchBarHandler = () =>
+    search
+      ? { transform: 'translateX(0px) translateY(-7px)' }
+      : { transform: 'translateX(280px) translateY(-7px)' };
+
   return (
     <>
       {modal}
@@ -466,8 +469,16 @@ function Index() {
 
           <div className="classic min-hi">
             <div className="search-filter">
-              <div className="search-btn">
-                <SearchBtn />
+              <div className="search-btn d-flex">
+                <div className="search-input d-flex justify-content-end align-items-center">
+                  <input
+                    type="text"
+                    style={searchBarHandler()}
+                    className="search-input-bar ch-cont-14"
+                    placeholder="Search"
+                  ></input>
+                </div>
+                <div><SearchBtn onClick={() => setSearch(!search)} /></div>
               </div>
               <div
                 className="filter-btn"

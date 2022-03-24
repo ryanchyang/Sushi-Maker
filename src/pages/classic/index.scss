@@ -52,6 +52,25 @@
     display: flex;
     justify-content: flex-end;
   }
+  .search-input{
+    width: 200px;
+  }
+  .search-input-bar {
+    height: 40px;
+    padding: 8px;
+    width: 80%;
+    background-color: transparent;
+    border-top: 1px solid $dark-text;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $dark-text;
+    transition: 0.3s;
+  }  
+  .search-input-bar:focus {
+    border-top: 2px solid $dark-bg;
+    outline: none;
+    border-bottom: 2px solid $dark-bg;
+  }
   .search-btn,
   .filter-btn {
     margin-right: 2%;

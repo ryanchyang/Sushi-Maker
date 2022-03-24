@@ -119,6 +119,8 @@ function Detail() {
 
   const hiddenStyle = { display: 'none' };
   const showStyle = { display: 'block' };
+  const mtlClickClass = 'material-tag-box click';
+  const mtlNoClickClass = 'material-tag-box';
 
   //請先登入的光箱
   const [likeShow, setLikeShow] = useState(false);
@@ -200,6 +202,7 @@ function Detail() {
                     {data.c_prod_en_name}
                   </div>
                 </div>
+                
                 <img
                   className={
                     isDetail ? 'prod-img-box-img-ondetail' : 'prod-img-box-img'
@@ -217,14 +220,18 @@ function Detail() {
                   {materials.map(m => {
                     return (
                       <div
-                        className="material-tag-box"
+                        className={
+                          selectedMaterial.mtl_id === m.mtl_id
+                            ? mtlClickClass
+                            : mtlNoClickClass
+                        }
                         key={m.mtl_id}
                         onClick={() => {
                           changeMtl(m.mtl_id);
                         }}
                       >
                         <img
-                          src={require('./../../imgs/temp/material1.png')}
+                          src={`http://localhost:3500${m.mtl_img_path}`}
                           alt="material"
                         />
                       </div>
@@ -329,7 +336,7 @@ function Detail() {
                     </div>
                     <div className="material-img">
                       <img
-                        src={require('./../../imgs/temp/material1.png')}
+                        src={`http://localhost:3500${selectedMaterial.mtl_img_path}`}
                         alt=""
                       />
                     </div>
