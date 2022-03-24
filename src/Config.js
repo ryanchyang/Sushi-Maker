@@ -47,6 +47,7 @@ const config = {
   GET_CART_ORDER: `${host}/api/cart/stepone/`,
   GET_CART_SUM: `${host}/api/cart/sumtotal/`,
   POST_CART_INFO: `${host}/api/cart/setinfo`,
+  GET_CART_INFO: `${host}/api/cart/getinfo/`,
 };
 
 export default config;

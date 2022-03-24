@@ -56,7 +56,7 @@ const StepMap = forwardRef((props, ref) => {
   const [area, setArea] = useState(AreaData.area);
   const [areaId, setAreaId] = useState(0);
   const [store, setStore] = useState(AreaData.store);
-  const [storeId, setStoreId] = useState(0);
+  const [storeId, setStoreId] = useState('');
   const [storeName, setStoreName] = useState('');
   // const inputStoreId = useRef(null);
 
@@ -171,14 +171,15 @@ const StepMap = forwardRef((props, ref) => {
         onChange={e => {
           setStoreName(e.target.value + '門市');
           // console.log(e.target.value);
-          setStoreId(e.target.dataId);
-          console.log(e.target.dataId);
+          setStoreId(e.target.dataset.id);
+          console.log('fjlkj IDDDDD', e.target.dataset.id);
         }}
       >
         <option selected>Choose...</option>
         {store.map((v, i) => {
           return (
-            <option key={i} value={v.store_name} dataId={v.store_id}>
+            <option key={v.store_id} 
+            value={v.store_name + v.store_id} data-id={v.store_id}>
               {v.store_name}門市 ({v.store_address})
             </option>
           );
@@ -232,19 +233,18 @@ const StepMap = forwardRef((props, ref) => {
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span className="store">
-            <input
-              ref={ref}
+          <span className="store" ref={ref} >
+            {/* <input
+              // ref={ref}
               dataId="123"
               type="text"
               // hidden
               value={storeId}
               setGetStoreId={setGetStoreId}
-            />
+            /> */}
             {storeName}
           </span>
         </div>
-        <button type="submit">132</button>
       </form>
     </>
   );
