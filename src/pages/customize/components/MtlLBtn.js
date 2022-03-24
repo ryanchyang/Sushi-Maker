@@ -1,8 +1,15 @@
-import config from "../../../Config";
+import config from '../../../Config';
 
 function MtlLBtn(props) {
-  const { mtl_id, mtl_name, mtl_cate, mtl_img_path, mtlActive, setMtlActive } =
-    props;
+  const {
+    mtl_id,
+    mtl_name,
+    mtl_cate,
+    mtl_img_path,
+    mtlActive,
+    setMtlActive,
+    test,
+  } = props;
 
   return (
     <div
@@ -12,7 +19,11 @@ function MtlLBtn(props) {
       }}
     >
       <div className="mtlimg">
-        <img src={`${config.HOST}${mtl_img_path}`} alt={mtl_name} />
+        <img
+          src={`${config.HOST}${mtl_img_path}`}
+          alt={mtl_name}
+          className={test ? 'imgActive' : 'imgActiveNone'}
+        />
       </div>
       <div className="mtlname">{mtl_name}</div>
     </div>

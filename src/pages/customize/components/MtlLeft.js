@@ -7,7 +7,12 @@ import { useState } from 'react';
 function MtlLeft(props) {
   // console.log(props.mtlData);
   const [openLArea, setOpenLArea] = useState(false);
-  // const [chooseMtl, setChooseMtl] = useState(false);
+
+  // 切換食材分類
+  const cateItems = ['食材', '裝飾'];
+  const [changeCate, setchangeCate] = useState('食材');
+
+  // 食材選擇
   const [mtlActive, setMtlActive] = useState([1]);
   const { setAddMtlData } = props;
 
@@ -28,33 +33,31 @@ function MtlLeft(props) {
           </div>
           <div className="mtlBtn-l col p-0">
             <div className="d-flex choose ch-title-16">
-              <div
-                className="dec col-12"
-                // onClick={() => {
-                //   setChooseMtl(!chooseMtl);
-                // }}
-              >
-                <Rectangle
-                  className="rectangle"
-                  // style={chooseMtl ? { display: 'none' } : { display: 'inline' }}
-                />
-                <div
-                // style={
-                //   chooseMtl ? { color: '#c4c4c4' } : { color: '#575757' }
-                // }
-                >
-                  食材
-                </div>
-              </div>
-              <div className="ing col-12">
-                <Rectangle className="rectangle" />
-                <div>裝飾</div>
-              </div>
+              {cateItems.map((v, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="mtlCate col-12"
+                    onClick={() => {
+                      setchangeCate(v);
+                    }}
+                  >
+                    <Rectangle
+                      className={
+                        changeCate === v ? 'rectangle' : 'rectangle-displaynone'
+                      }
+                    />
+                    <div className={changeCate === v ? '' : 'mtl-cate-blur'}>
+                      {v}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="mtlBtnIn-L d-flex flex-wrap pt-3 px-2">
               {Object.keys(props.mtlData).length === 0
                 ? ''
-                : props.mtlData.map((e) => {
+                : props.mtlData.map(e => {
                     const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e;
 
                     return (
@@ -66,6 +69,7 @@ function MtlLeft(props) {
                         mtl_img_path={mtl_img_path}
                         setMtlActive={setMtlActive}
                         mtlActive={mtlActive}
+                        test={mtlActive.includes(mtl_id) ? true : false}
                         setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
                       />
                     );

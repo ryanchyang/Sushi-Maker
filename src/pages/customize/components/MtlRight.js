@@ -8,7 +8,9 @@ import { useState } from 'react';
 
 function MtlRight(props) {
   const [openRArea, setOpenRArea] = useState(false);
-  // const [removeMtl, setRemoveMtl] = useState([]);
+
+  const chooseItems = ['選擇食材', '營養分析'];
+  const [changeChoose, setChangeChoose] = useState('選擇食材');
   const { addMtlData, setAddMtlData } = props;
   // console.log(props.addMtlData);
 
@@ -45,31 +47,37 @@ function MtlRight(props) {
           </div>
           <div className="mtlBtn-r col p-0">
             <div className="d-flex choose ch-title-16">
-              <div className="dec col-12">
-                <Rectangle className="rectangle" />
-                <div>選擇食材</div>
-              </div>
-              <div className="ing col-12">
-                <Rectangle className="rectangle" />
-                <div>營養分析</div>
-              </div>
+              {chooseItems.map((v, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="mtlCate col-12"
+                    onClick={() => {
+                      setChangeChoose(v);
+                    }}
+                  >
+                    <Rectangle
+                      className={
+                        changeChoose === v
+                          ? 'rectangle'
+                          : 'rectangle-displaynone'
+                      }
+                    />
+                    <div className={changeChoose === v ? '' : 'mtl-cate-blur'}>
+                      {v}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="mtlBtnIn-R pt-3 px-2">
+              <div className="fix"></div>
               {Object.keys(props.addMtlData).length === 0
                 ? ''
                 : props.addMtlData.map((e, i) => {
-                    {
-                      /* const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e; */
-                    }
                     const takeMtlId = props.mtlData.find(
-                      (p) => p.mtl_id === props.addMtlData[i]
+                      p => p.mtl_id === props.addMtlData[i]
                     );
-                    {
-                      /* 每次找到陣列內的第幾項的id都去撈mtl_id數據比對 */
-                    }
-                    {
-                      /* console.log(takeMtlId.mtl_id); */
-                    }
 
                     return (
                       <MtlRBtn
@@ -97,14 +105,14 @@ function MtlRight(props) {
                     );
                   })} */}
             </div>
-            <div className="btn">
-              <button className="btn-sm btn-outline-primary primeal-btn-outline m-2">
-                儲存編輯
-              </button>
-              <button className="btn-sm btn-primary primeal-btn m-2">
-                下一步
-              </button>
-            </div>
+          </div>
+          <div className="btn">
+            <button className="btn-sm btn-outline-primary primeal-btn-outline m-2">
+              儲存編輯
+            </button>
+            <button className="btn-sm btn-primary primeal-btn m-2">
+              下一步
+            </button>
           </div>
         </div>
       </div>

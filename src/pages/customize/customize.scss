@@ -163,17 +163,19 @@ $areaHeight: calc( 100vh - 80px );
     width: 100%;
     height: auto;
   }
-  .dec,
-  .ing {
+  .mtlCate {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    &:hover .mtl-cate-blur{
+      color: $light-red;
+    }
   }
   .mtlimg {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
     transition: 0.5s;
 
     @include pad {
@@ -265,12 +267,16 @@ $areaHeight: calc( 100vh - 80px );
     }
   }
 
-  .mtlBtnIn .mtlLBtn:hover {
-    transform: scale(1.03);
+  .mtlBtnIn-L .mtlLBtn:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+  .mtlimg .imgActive {
+    border: 5px solid $mtl-border;
     transition: 0.5s;
   }
-  .imgActive {
-    border: 5px solid #eed19a;
+  .mtlimg .imgActiveNone {
+    border: 5px solid transparent;
     transition: 0.5s;
   }
   .mtlimg-r {
@@ -357,6 +363,13 @@ $areaHeight: calc( 100vh - 80px );
   .rectangle {
     margin: 0 0.5rem;
   }
+  .rectangle-displaynone{
+    display: none;
+  }
+  .mtl-cate-blur{
+    color: $gray;
+    transition: 0.3s;
+  }
 
   .layout-title {
     padding: 20px 0 0 30px;
@@ -398,4 +411,16 @@ $areaHeight: calc( 100vh - 80px );
       letter-spacing: 0.08rem;
     }
   }
+
+  .mtlDelIcon{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &:hover{
+      background-color: $gray;
+    }
+  }
+
 }
