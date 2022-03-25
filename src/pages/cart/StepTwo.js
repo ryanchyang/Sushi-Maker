@@ -22,48 +22,33 @@ function StepTwo() {
   let history = useHistory();
   // 用於光箱傳資料的方式
   const inputStoreId = useRef(null);
+  // 去取得光箱內地圖的store_id 要往下傳4 層
   const [getStoreId, setGetStoreId] = useState('');
+
   // console.log(inputStoreId.current);
   console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
   const inputEl = useRef(null);
   console.log('12332112324', inputEl.current?.innerText);
 
-  // const [] = useState('');
-
   // console.log(inputEl);
   // const [storeID, setStoreID] = useState('');
 
-  // 畫面右側小計
-  const [sum, setSum] = useState([]);
-  const [info, setInfo] = useState([]);
-  const [itemInfo, setItemInfo] = useState({});
+  const [sum, setSum] = useState([]); // 畫面右側小計 狀態
+  const [info, setInfo] = useState([]); // input 欄位預設值 mem_name mem_mobile
+  const [itemInfo, setItemInfo] = useState({}); //交易明細 狀態
 
   // TODO:  member id =1 鮮血死 測試用
   const mem_id = 1;
   const cart_id = 1;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
-  // 先取得 表單資料name mobile
-  useEffect(() => {
-    const getInfo = async () => {
-      const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
-      console.log('res', res);
-      const obj = await res.json();
-      console.log('obj:', obj);
-      setInfo(obj.result);
-    };
-    getInfo();
-  }, []);
-  console.log('info', info);
-  useEffect(() => {
-    console.log(info);
-    // console.log('info.mem_name', info[0] ? info[0].mem_id : '');
-  }, [info]);
+
   // console.log('info.mem_name', info[0]?.mem_name);
 
   // const { id } = useParams();
   // console.log('id:', id);
-  // 先取得 畫面右側小計
+
+  // -----先取得 畫面右側小計
   useEffect(() => {
     const getSum = async () => {
       const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
@@ -97,13 +82,18 @@ function StepTwo() {
 
   // Input State 要填寫的資料欄位
   const [fields, setFields] = useState({
-    buyer: '' ,
+    buyer: '',
     buyer_mobile: '',
-    picker: '' ,
+    picker: '',
     order_notes: '' || null,
     cart_store_id: '',
   });
 
+  // 拿直塞
+  // const [buy, setBuy] = useState(info?.mem_name);
+  // const [mob, setMob] = useState('');
+  // setFields(buy);
+  // console.log('9666666666', buy);
   // Error Message State
   const [fieldsError, setFieldsError] = useState({
     buyer: '',
@@ -112,17 +102,16 @@ function StepTwo() {
   });
 
   // 處理欄位改變
-  // const handleFieldChange = e => {
-  //   console.log(e.target.name);
-  //   const newData = {
-  //     ...fields,
-  //     // [e.target.name]: e.target.value,
-  //     [e.target.name]: e.target.value,
-  //   };
-  //   setFields(newData);
+  const handleFieldChange = e => {
+    console.log(e.target.name);
+    const newData = {
+      ...fields,
+      [e.target.name]: e.target.value,
+    };
+    setFields(newData);
 
-  //   // setInfo(info);
-  // };
+    // setInfo(info);
+  };
 
   // 驗證並處理欄位錯誤訊息
   const handleValidation = () => {
@@ -204,7 +193,33 @@ function StepTwo() {
       console.log('form has errors.');
     }
   };
+  // ----先取得 表單資料name mobile
+  useEffect(() => {
+    const getInfo = async () => {
+      const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
+      console.log('res', res);
+      const obj = await res.json();
+      console.log('obj:', obj);
+      setInfo(obj.result);
+    };
+    getInfo();
+  }, []);
+  console.log('info', info);
 
+  useEffect(() => {
+    console.log(info);
+    // setBuy(info.mem_name);
+    // console.log(buy);
+    // previousName.current = name
+
+    console.log(fields);
+
+    // setFields(info);
+    // console.log('info.mem_name', info[0] ? info[0].mem_id : '');
+  }, [info]);
+
+  console.log(fields);
+  console.log('!!!!!!!');
   return (
     <>
       <Header />
@@ -221,8 +236,6 @@ function StepTwo() {
               onSubmit={handleSubmit}
               // onInvalid={handleValid}
               // onChange={handleChange}
-              // className="needs-validation"
-              // noValidate
             >
               <div className="row mt-5">
                 <div className="col-md-12 col-24">
@@ -243,11 +256,11 @@ function StepTwo() {
                         placeholder="訂購人"
                         required
                         // value={fields.buyer}
-                        // defaultValue={v.mem_name}
+
                         // TODO: v 改 info
                         // ref={inputEl}
-                        defaultValue={info[0] ? info[0].mem_name : ''}
-                        // value={this.current.value}
+                        // defaultValue={info[0] ? info[0].mem_name : ''}
+                        value={info[0] ? info[0].mem_name : ''}
                         // onChange={handleFieldChange}
                       />
                       {/* TODO: check name??buyer */}
@@ -347,7 +360,7 @@ function StepTwo() {
                             <>
                               <StepMap
                                 ref={inputStoreId}
-                                getStoreId={getStoreId}
+                                getStoreId={getStoreId} //設定storeid
                                 setGetStoreId={setGetStoreId}
                               />
                             </>
@@ -365,6 +378,7 @@ function StepTwo() {
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={() => {
                                 // setGetStoreId(inputStoreId.current?.value);
+                                setGetStoreId = { setGetStoreId };
 
                                 handleClose();
                               }}
