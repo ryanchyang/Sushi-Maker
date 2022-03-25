@@ -62,7 +62,7 @@ function LatestNews(props) {
     setSearchText(e.target.value);
   };
 
-  // CSS樣式
+  // 動態調整CSS inline style
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
@@ -179,7 +179,13 @@ function LatestNews(props) {
                 className="prod-filter"
                 style={isOpenFilter ? showBlock : hiddenBlock}
               >
-                {isOpenFilter && cate === 'news' && <NewsFilter />}
+                {isOpenFilter && cate === 'news' && (
+                  <NewsFilter
+                    newsData={newsData}
+                    setNewsData={setNewsData}
+                    setIsOpenFilter={setIsOpenFilter}
+                  />
+                )}
                 {isOpenFilter && cate === 'events' && <EvntsFilter />}
               </div>
             </div>

@@ -14,21 +14,31 @@ import NavPage from '../layout/components/NavPage';
 import config from '../../Config';
 
 function Index(props) {
+  // Navbar開關狀態、進場蓋版開關(從App.js來)
   const { navIsOpen, setNavIsOpen, entryOpen, setEntryOpen } = props;
-  const [latestNewsCate, setLatestNewsCate] = useState('news');
-  const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
-  const [newsIndex, setNewsIndex] = useState(0);
+  // promotion hover狀態 (未完成)
   const [isHover, setIsHover] = useState(false);
-  const [changeBG, setChangeBG] = useState(null);
+  // promotion AJAX data狀態
   const [promoData, setPromoData] = useState([]);
+  // just for you分類狀態
+  const [jftFocus, setJftFocus] = useState('CUSTOMIZATION');
+  // 最新消息分類狀態
+  const [latestNewsCate, setLatestNewsCate] = useState('news');
+  // 最新消息輪播index狀態
+  const [newsIndex, setNewsIndex] = useState(0);
+  // scroll down 改變背景
+  const [changeBG, setChangeBG] = useState(null);
 
+  // hook 偵聽 y軸
   const { y: pageYOffset } = useWindowScroll();
 
+  // 真實DOM ref
   const scrollTo = useRef();
   const processRef = useRef();
   const cubeImgRef = useRef();
   const textImgRef = useRef();
 
+  // didMount AJAX 促銷產品
   const getPromoData = async () => {
     const res = await fetch(config.PROMO_PATH);
     const promoObj = await res.json();
@@ -36,19 +46,19 @@ function Index(props) {
     setPromoData(promoObj.data);
   };
 
-  // ToDo:初始化要資料
+  // didMount初始化: 1.設定Intro的setInterval 2.促銷商品發送AJAX
   useEffect(() => {
-    // setEntryOpen(true);
     setTime();
     getPromoData();
   }, []);
 
+  // 當Latest News分類有更新時，輪播牆的index回歸到0
   useEffect(() => {
     setNewsIndex(0);
   }, [latestNewsCate]);
 
   // 處理背景變色
-  console.log('pageYOffset:', pageYOffset);
+  // console.log('pageYOffset:', pageYOffset);
   useEffect(() => {
     if (pageYOffset <= 3500 || pageYOffset >= 6800) {
       setChangeBG(true);
@@ -144,7 +154,7 @@ function Index(props) {
     }
   };
 
-  // 處理latest news的carousel
+  // 處理latest news的carousel移動距離
   const changeContent = e => {
     const index = e.target.dataset.id;
     setNewsIndex(+index);
