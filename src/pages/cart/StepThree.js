@@ -15,13 +15,13 @@ function StepThree() {
   // 回上一頁 按鈕
   let history = useHistory();
 
+  const [pay, setPay] = useState([]);
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   // TODO:  member id =1 鮮血死 測試用
   const mem_id = 1;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
-
   // const { id } = useParams();
   // console.log('id:', id);
 
@@ -40,6 +40,8 @@ function StepThree() {
     console.log(sum);
   }, [sum]);
 
+  // 信用卡資料輸入
+ 
   return (
     <>
       <Header />

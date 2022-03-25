@@ -38,6 +38,8 @@ const config = {
   GET_FILTER_ITEMS: `${host}/api/share/filter`,
   GET_TAGS: `${host}/api/share/filter/tags`,
   TOGGLE_SAVE: `${host}/api/share/toggle/save`,
+  UPLOAD_POST: `${host}/api/share/upload/post`,
+
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
@@ -48,6 +50,9 @@ const config = {
   GET_CART_SUM: `${host}/api/cart/sumtotal/`,
   POST_CART_INFO: `${host}/api/cart/setinfo`,
   GET_CART_INFO: `${host}/api/cart/getinfo/`,
+  POST_PAY_INFO: `${host}/api/cart/setpayinfo`,
+  GET_ITEM_INFO: `${host}/api/cart/iteminfo/`,
+  DELETE_CART_PROD: `${host}/api/cart/delete/`,
 };
 
 export default config;

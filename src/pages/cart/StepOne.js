@@ -16,12 +16,11 @@ function StepOne(props) {
   // const { productsInOrder, setProductsInOrder } = props;
   // 回上一頁 按鈕
   let history = useHistory();
-  const [list, setList] = useState({});   //總資料
-  const [prodCount, setProdCount] = useState(0);  //商品總數
-  const [printTime, setPrintTime] = useState(0);  //商品總印製時間(秒)
-  const [amount, setAmount] = useState(0);  //商品總價
-  const [deleteProd, setDeleteProd] = useState([]);  //被刪除的商品
-  const mem_id = 1;
+  const [list, setList] = useState({}); //總資料
+  const [prodCount, setProdCount] = useState(0); //商品總數
+  const [printTime, setPrintTime] = useState(0); //商品總印製時間(秒)
+  const [amount, setAmount] = useState(0); //商品總價
+  const [deleteProd, setDeleteProd] = useState([]); //被刪除的商品
   //const {cs = [], cm = [], set = []} = list;
 
   // const getList = async () => {
@@ -42,13 +41,24 @@ function StepOne(props) {
 
   useEffect(() => {
     const getList = async () => {
-      const res = await fetch(config.GET_CART_ORDER + `${mem_id}`);
-      const obj = await res.json();
-      // console.log('obj:', obj);
-      // console.log('cm:', obj.data.cm);
-      // console.log('cs:', obj.data.cs);
-      // console.log('set:', obj.data.set);
-      setList(obj.data);
+      //TODO:先寫死記得改掉
+      // const memid = 1;
+      const memid = localStorage.getItem('mem_id');
+      if (memid !== null) {
+        //判斷會員有無登入
+        const res = await fetch(config.GET_CART_ORDER + `${memid}`);
+        const obj = await res.json();
+        if (obj.success) {
+          //購物車有商品才繼續做
+          setList(obj.data);
+        } else {
+          //購物車無商品則導頁
+          history.push('/cart/cartlist');
+        }
+      } else {
+        //會員未登入則導頁
+        history.push('/cart/cartlist');
+      }
     };
     getList();
   }, []);
@@ -60,22 +70,22 @@ function StepOne(props) {
     list.cs?.forEach(d => {
       console.log(d.orders_print_time);
       count += d.orders_amount;
-      time += (d.orders_print_time * d.orders_amount);
-      total += (d.orders_value * d.orders_amount);
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
     });
     list.cm?.forEach(d => {
       console.log(d.orders_print_time);
       count += d.orders_amount;
-      time += (d.orders_print_time * d.orders_amount);
-      total += (d.orders_value * d.orders_amount);
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
     });
     list.set?.forEach(d => {
       console.log(d.orders_print_time);
       count += d.orders_amount;
-      time += (d.orders_print_time * d.orders_amount);
-      total += (d.orders_value * d.orders_amount);
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
     });
-    
+
     setProdCount(count);
     setPrintTime(time);
     setAmount(total);
@@ -96,7 +106,7 @@ function StepOne(props) {
   // console.log('length cm', list.cm?.length);
   // console.log('length set', list.set?.length);
   // console.log('plus');
-  
+
   // 處理項目刪除用
   // const handleDelete = id => {
   //   //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
@@ -186,7 +196,15 @@ function StepOne(props) {
               </div>
             </div>
 
-            <ProdItem cs={list.cs} cm={list.cm} set={list.set} setList={setList} list={list} setDeleteProd={setDeleteProd} deleteProd={deleteProd}/>
+            <ProdItem
+              cs={list.cs}
+              cm={list.cm}
+              set={list.set}
+              setList={setList}
+              list={list}
+              setDeleteProd={setDeleteProd}
+              deleteProd={deleteProd}
+            />
 
             {/* TODO: SET info 光箱 */}
             <div className="list-check ch-cont-14" style={{ padding: '30px' }}>
@@ -197,11 +215,15 @@ function StepOne(props) {
                   <div className="summary ">
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12 ">商品數量</div>
-                      <div className="col-12 col-md-8 text-right">總計{prodCount}項</div>
+                      <div className="col-12 col-md-8 text-right">
+                        總計{prodCount}項
+                      </div>
                     </div>
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12">印製時間</div>
-                      <div className="col-12 col-md-8 text-right">{printTime}秒</div>
+                      <div className="col-12 col-md-8 text-right">
+                        {printTime}秒
+                      </div>
                     </div>
                     <div className="row discount my-4">
                       <div className="col-12 col-md-12">折抵金額</div>
