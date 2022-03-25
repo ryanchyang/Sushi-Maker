@@ -42,58 +42,40 @@ export function formatCreditCardNumber(value) {
 }
 
 class CreditCard extends React.Component {
-  state = {
-    // cvc: '',
-    // expiry: '',
-    focus: '',
-    creditcard_holder: '',
-    order_num: '',
-  };
+  constructor(props) {
+    super(props);
+    this.props = props;
+
+    this.state = {
+      ...this.props.card,
+    };
+
+    // this.setState({
+    //   ...this.props.card,
+    // });
+    console.log(this.props.card);
+  }
 
   handleInputFocus = e => {
     this.setState({ focus: e.target.name });
+    this.props.setCard({
+      ...this.props.card,
+      focus: e.target.name,
+    });
   };
 
   handleInputChange = e => {
     const { name, value } = e.target;
-
     this.setState({ [name]: value });
+    this.props.setCard({
+      ...this.props.card,
+      [name]: value,
+    });
   };
 
   // 表單送出
   handleSubmit = e => {
     e.preventDefault();
-    // TODO:  member id =1 鮮血死 測試用
-    const mem_id = 1;
-    // const mem_id = getMemId();
-    // console.log('mem_id:', mem_id);
-    // const { id } = useParams();
-
-    // get form data
-    const formData = new FormData(e.target);
-    const dataObj = {};
-    for (let i of formData) {
-      dataObj[i[0]] = i[1];
-    }
-    dataObj.mem_id = mem_id;
-    console.log('dataObj', { dataObj });
-
-    // fetch
-    const r = fetch(config.POST_PAY_INFO, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(dataObj),
-    })
-      .then(r => r.json())
-      .then(obj => {
-        this.setState({ r: dataObj });
-        console.log('obj', obj);
-        if (obj.success) {
-          console.log(obj.success);
-        }
-      });
   };
 
   render() {
@@ -171,6 +153,7 @@ class CreditCard extends React.Component {
               <input
                 type="num"
                 name="cvc"
+                value={this.state.cvc}
                 className="form-control"
                 placeholder="CVC"
                 pattern="\d{3,4}"
@@ -186,6 +169,7 @@ class CreditCard extends React.Component {
             <button
               className="btn btn-primary btn-block creditBtn"
               type="submit"
+              hidden
             >
               PAY
             </button>

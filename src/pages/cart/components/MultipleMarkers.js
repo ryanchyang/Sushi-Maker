@@ -31,7 +31,7 @@ function MultipleMarkers(props) {
           click: e => {
             console.log('MMMMdata', e.target.options.data);
             props.setStoreName(e.target.options.value + '門市');
-            props.setStoreId(e.target.options.data);
+            props.setGetStoreId(e.target.options.data);
           },
         }}
       >

@@ -56,9 +56,12 @@ const StepMap = forwardRef((props, ref) => {
   const [area, setArea] = useState(AreaData.area);
   const [areaId, setAreaId] = useState(0);
   const [store, setStore] = useState(AreaData.store);
-  const [storeId, setStoreId] = useState('');
+  // const [storeId, setStoreId] = useState('');
   const [storeName, setStoreName] = useState('');
   // const inputStoreId = useRef(null);
+  // const { setGetStoreId, getStoreId}=props
+  // getStoreId={getStoreId}
+  // setGetStoreId = { setGetStoreId }
 
   // 縣市+行政區
   useEffect(() => {
@@ -170,16 +173,19 @@ const StepMap = forwardRef((props, ref) => {
         className="form-control"
         onChange={e => {
           setStoreName(e.target.value + '門市');
-          // console.log(e.target.value);
-          setStoreId(e.target.dataset.id);
+          console.log(e.target);
+          const option = e.target.querySelector(
+            `option[value=${e.target.value}]`
+          );
+          console.log('StoreIDDDD', option.getAttribute('data-id'));
+          props.setGetStoreId(option.getAttribute('data-id'));
           console.log('fjlkj IDDDDD', e.target.value);
         }}
       >
         <option selected>Choose...</option>
         {store.map((v, i) => {
           return (
-            <option key={v.store_id} 
-            value={v.store_name} data-id={v.store_id}>
+            <option key={v.store_id} value={v.store_name} data-id={v.store_id}>
               {v.store_name}門市 ({v.store_address})
             </option>
           );
@@ -202,7 +208,7 @@ const StepMap = forwardRef((props, ref) => {
   // const Sid = inputStoreId.current?.value;
   // console.log('Sid@@@', Sid); //找出SID 往上傳
 
-  const { setGetStoreId } = props;
+  // const { setGetStoreId } = props;
 
   return (
     <>
@@ -227,20 +233,20 @@ const StepMap = forwardRef((props, ref) => {
             <MultipleMarkers
               store={store}
               setStoreName={setStoreName}
-              setStoreId={setStoreId}
+              setGetStoreId={props.setGetStoreId}
             />
           </MapContainer>
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span className="store" ref={ref} >
+          <span className="store"
+          // ref={ref}
+          >
             <input
               // ref={ref}
-              dataId="123"
               type="text"
               // hidden
-              value={storeId}
-              setGetStoreId={setGetStoreId}
+              value={props.getStoreId}
             />
             {storeName}
           </span>

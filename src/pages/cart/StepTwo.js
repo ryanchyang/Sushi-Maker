@@ -11,6 +11,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 // TODO: 資料庫拿資料
 import config from '../../Config';
+import { set } from 'date-fns';
 
 function StepTwo() {
   // 套餐光箱
@@ -26,6 +27,8 @@ function StepTwo() {
   console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
   const inputEl = useRef(null);
   console.log('12332112324', inputEl.current?.innerText);
+
+  // const [] = useState('');
 
   // console.log(inputEl);
   // const [storeID, setStoreID] = useState('');
@@ -94,9 +97,9 @@ function StepTwo() {
 
   // Input State 要填寫的資料欄位
   const [fields, setFields] = useState({
-    buyer: '',
+    buyer: '' ,
     buyer_mobile: '',
-    picker: '',
+    picker: '' ,
     order_notes: '' || null,
     cart_store_id: '',
   });
@@ -109,16 +112,17 @@ function StepTwo() {
   });
 
   // 處理欄位改變
-  const handleFieldChange = e => {
-    console.log(e.target.name);
-    const newData = {
-      ...fields,
-      // [e.target.name]: e.target.value,
-      [e.target.name]: info.target.value,
-    };
-    setFields(newData);
-    // setInfo(info);
-  };
+  // const handleFieldChange = e => {
+  //   console.log(e.target.name);
+  //   const newData = {
+  //     ...fields,
+  //     // [e.target.name]: e.target.value,
+  //     [e.target.name]: e.target.value,
+  //   };
+  //   setFields(newData);
+
+  //   // setInfo(info);
+  // };
 
   // 驗證並處理欄位錯誤訊息
   const handleValidation = () => {
@@ -166,8 +170,9 @@ function StepTwo() {
   const handleSubmit = e => {
     e.preventDefault();
     // setInfo(info);
-    // setFields(info);
+    setFields(info);
     console.log('info', info);
+    console.log('fields', fields);
     if (handleValidation()) {
       //   console.log('form submitted.');
 
@@ -215,7 +220,7 @@ function StepTwo() {
             <form
               onSubmit={handleSubmit}
               // onInvalid={handleValid}
-              onChange={handleChange}
+              // onChange={handleChange}
               // className="needs-validation"
               // noValidate
             >
@@ -243,7 +248,7 @@ function StepTwo() {
                         // ref={inputEl}
                         defaultValue={info[0] ? info[0].mem_name : ''}
                         // value={this.current.value}
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                       />
                       {/* TODO: check name??buyer */}
                       {fieldsError.buyer !== '' && (
@@ -265,7 +270,7 @@ function StepTwo() {
                         name="buyer_mobile"
                         // placeholder="09XX-XXX-XXX"
                         data-pattern="09\d{2}-?\d{3}-?\d{3}"
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                         required
                         // ref={inputEl}
                         defaultValue={info[0] ? info[0].mem_mobile : ''}
@@ -283,7 +288,7 @@ function StepTwo() {
                         id="picker"
                         placeholder="取貨人"
                         defaultValue={info[0] ? info[0].mem_name : ''}
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                       />
                       <div className="form-check d-flex">
                         <input
@@ -306,7 +311,7 @@ function StepTwo() {
                         // maxRows="5"
                         id="order_notes"
                         name="order_notes"
-                        onChange={handleFieldChange}
+                        // onChange={handleFieldChange}
                       ></textarea>
                     </div>
                     <div className="my-4 mx-5">
@@ -331,7 +336,7 @@ function StepTwo() {
                         <Modal
                           show={map}
                           onHide={handleClose}
-                          setGetStoreId={setGetStoreId}
+                          // setGetStoreId={setGetStoreId}
                         >
                           <Modal.Header closeButton>
                             <Modal.Title className="en-cont-30 m-3">
@@ -340,7 +345,11 @@ function StepTwo() {
                           </Modal.Header>
                           <Modal.Body style={{ margin: '0 3%' }}>
                             <>
-                              <StepMap ref={inputStoreId} />
+                              <StepMap
+                                ref={inputStoreId}
+                                getStoreId={getStoreId}
+                                setGetStoreId={setGetStoreId}
+                              />
                             </>
                           </Modal.Body>
                           <Modal.Footer>
@@ -355,7 +364,8 @@ function StepTwo() {
                             <Button
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={() => {
-                                setGetStoreId(inputStoreId.current?.value);
+                                // setGetStoreId(inputStoreId.current?.value);
+
                                 handleClose();
                               }}
                               // type="submit"

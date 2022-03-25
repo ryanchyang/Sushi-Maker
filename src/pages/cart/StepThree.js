@@ -15,7 +15,13 @@ function StepThree() {
   // 回上一頁 按鈕
   let history = useHistory();
 
-  const [pay, setPay] = useState([]);
+  const [card, setCard] = useState({
+    cvc: '',
+    expiry: '',
+    focus: '',
+    creditcard_holder: '',
+    order_num: '',
+  });
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   // TODO:  member id =1 鮮血死 測試用
@@ -41,7 +47,27 @@ function StepThree() {
   }, [sum]);
 
   // 信用卡資料輸入
- 
+  // 提交
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    // fetch
+    const r = fetch(config.POST_PAY_INFO, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(card),
+    })
+      .then(r => r.json())
+      .then(obj => {
+        console.log(obj);
+        if (obj.success) {
+          console.log(obj.success);
+        }
+      });
+  };
+
   return (
     <>
       <Header />
@@ -52,12 +78,13 @@ function StepThree() {
           <div className="mycontainer cart  ch-cont-14 min-hi">
             <div className="bread">HOME/CART</div>
             <CartDetail />
+
             <div className="row mt-5">
               <div className="col-md-12">
                 {/* TODO: 信用卡 refs */}
                 <div className="payment-info">
                   <div className="ch-title-22 my-4">信用卡資訊</div>
-                  <CreditCard />
+                  <CreditCard card={card} setCard={setCard} />
                 </div>
               </div>
               <CartSum sum={sum} className="d-none d-md-block" />
@@ -82,6 +109,7 @@ function StepThree() {
                     className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
                     //onClick={document.querySelector('.creditFor').submit()}
                     //onClick={document.querySelector('.creditBtn').click()}
+                    onClick={handleSubmit}
                   >
                     確認付款
                   </button>

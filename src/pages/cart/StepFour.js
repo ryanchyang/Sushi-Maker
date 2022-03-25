@@ -2,10 +2,38 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartDetail from './components/CartDetial';
 import { Link, useHistory } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+// TODO: 資料庫拿資料
+import config from '../../Config';
+
 // TODO: A  改 LINK
 function StepFour() {
   // 回上一頁 按鈕
   let history = useHistory();
+
+  const [fincart, setFincart] = useState([]);
+  // TODO:  member id =1 鮮血死 測試用
+  const mem_id = 1;
+
+  useEffect(() => {
+    const getfincart = async () => {
+      const res = await fetch(config.GET_FIN_CART + `${mem_id}`);
+      const obj = await res.json();
+      console.log('obj:', obj);
+      setFincart(obj.data);
+    };
+    getfincart();
+  }, []);
+  console.log('fincart', fincart);
+  useEffect(() => {
+    console.log(fincart);
+    console.log(fincart[0]?.mem_name);
+  }, [fincart]);
+  // console.log(fincart?.mem_name);
+
+// GET_FIN_ITEM_INFO
+
   return (
     <>
       <Header />
