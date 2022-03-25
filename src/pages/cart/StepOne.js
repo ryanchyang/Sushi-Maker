@@ -16,8 +16,12 @@ function StepOne(props) {
   // const { productsInOrder, setProductsInOrder } = props;
   // 回上一頁 按鈕
   let history = useHistory();
-  const [list, setList] = useState({});  
-  const mem_id = 4;
+  const [list, setList] = useState({});   //總資料
+  const [prodCount, setProdCount] = useState(0);  //商品總數
+  const [printTime, setPrintTime] = useState(0);  //商品總印製時間(秒)
+  const [amount, setAmount] = useState(0);  //商品總價
+  const [deleteProd, setDeleteProd] = useState([]);  //被刪除的商品
+  const mem_id = 1;
   //const {cs = [], cm = [], set = []} = list;
 
   // const getList = async () => {
@@ -50,16 +54,44 @@ function StepOne(props) {
   }, []);
 
   useEffect(() => {
-    console.log(list);
-    // console.log('cs', list.cs?.length);
-    // console.log(' cs', list.cs?.length);
-    // console.log(' cm', list.cm?.length);
-    // console.log(' set', list.set?.length);
-    console.log(
-      ' plus!!!',
-      list.cs?.length + list.cm?.length + list.set?.length
-    );
+    let count = 0;
+    let time = 0;
+    let total = 0;
+    list.cs?.forEach(d => {
+      console.log(d.orders_print_time);
+      count += d.orders_amount;
+      time += (d.orders_print_time * d.orders_amount);
+      total += (d.orders_value * d.orders_amount);
+    });
+    list.cm?.forEach(d => {
+      console.log(d.orders_print_time);
+      count += d.orders_amount;
+      time += (d.orders_print_time * d.orders_amount);
+      total += (d.orders_value * d.orders_amount);
+    });
+    list.set?.forEach(d => {
+      console.log(d.orders_print_time);
+      count += d.orders_amount;
+      time += (d.orders_print_time * d.orders_amount);
+      total += (d.orders_value * d.orders_amount);
+    });
+    
+    setProdCount(count);
+    setPrintTime(time);
+    setAmount(total);
   }, [list]);
+
+  // useEffect(() => {
+  //   //console.log(list);
+  //   // console.log('cs', list.cs?.length);
+  //   // console.log(' cs', list.cs?.length);
+  //   // console.log(' cm', list.cm?.length);
+  //   // console.log(' set', list.set?.length);
+  //   // console.log(
+  //   //   ' plus!!!',
+  //   //   list.cs?.length + list.cm?.length + list.set?.length
+  //   // );
+  // }, [list]);
   // console.log('length cs', list.cs?.length);
   // console.log('length cm', list.cm?.length);
   // console.log('length set', list.set?.length);
@@ -154,7 +186,7 @@ function StepOne(props) {
               </div>
             </div>
 
-            <ProdItem cs={list.cs} cm={list.cm} set={list.set} setList={setList} list={list} />
+            <ProdItem cs={list.cs} cm={list.cm} set={list.set} setList={setList} list={list} setDeleteProd={setDeleteProd} deleteProd={deleteProd}/>
 
             {/* TODO: SET info 光箱 */}
             <div className="list-check ch-cont-14" style={{ padding: '30px' }}>
@@ -165,11 +197,11 @@ function StepOne(props) {
                   <div className="summary ">
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12 ">商品數量</div>
-                      <div className="col-12 col-md-8 text-right">總計5項</div>
+                      <div className="col-12 col-md-8 text-right">總計{prodCount}項</div>
                     </div>
                     <div className="row print-time my-4">
                       <div className="col-12 col-md-12">印製時間</div>
-                      <div className="col-12 col-md-8 text-right">35分鐘</div>
+                      <div className="col-12 col-md-8 text-right">{printTime}秒</div>
                     </div>
                     <div className="row discount my-4">
                       <div className="col-12 col-md-12">折抵金額</div>
@@ -194,7 +226,7 @@ function StepOne(props) {
                     <div className="row price my-4">
                       <div className="col-12 col-md-12">訂單金額</div>
                       <div className="col-12 col-md-8 text-right ch-cont-24">
-                        NT 3000
+                        NT {amount}
                       </div>
                     </div>
                   </div>

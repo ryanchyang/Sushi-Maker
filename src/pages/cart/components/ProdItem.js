@@ -17,6 +17,7 @@ function ProdItem(props) {
   //        orders_category:'cls',
   //    }
   const setList = props.setList;
+  const initController = useRef(1);
 
   // 計算單品數量
   const [countcs, setCountcs] = useState([]);
@@ -27,20 +28,41 @@ function ProdItem(props) {
   // console.log(countcm);
 
   useEffect(() => {
-    setCountcs(props.cs);
-    setCountcm(props.cm);
-    setCountset(props.set);
+    if(initController.current <= 3){
+      console.log(props);
+      setCountcs(props.cs);
+      setCountcm(props.cm);
+      setCountset(props.set);
+      initController.current += 1;
+    }    
   }, [props]);
 
   // TODO: ASK 新德救命!!!!
   useEffect(() => {
-    const newData = props.list;
-    newData.cs = countcs;
-    console.log(newData);
-    props.setList(newData);
+    if(initController.current > 3){
+      const newData = {...props.list};
+      newData.cs = countcs;
+      props.setList(newData);
+    }    
   }, [countcs]);
 
-  useEffect(() => {}, [countcs, countcm, countset]);
+  useEffect(() => {
+    if(initController.current > 3){
+      const newData = {...props.list};
+      newData.cm = countcm;
+      props.setList(newData);
+    }    
+  }, [countcm]);
+
+  useEffect(() => {
+    if(initController.current > 3){
+      const newData = {...props.list};
+      newData.set = countset;
+      props.setList(newData);
+    }    
+  }, [countset]);
+
+  // useEffect(() => {}, [countcs, countcm, countset]);
 
   // 計算小計金額
 
@@ -192,6 +214,44 @@ function ProdItem(props) {
     setCountset(newData);
   };
 
+  //刪除商品
+  const deleteProd = (pid, category) => {
+    switch(category) {
+      case 'set':
+        let newSetData = [...countset];
+        newSetData = newSetData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        setCountset(newSetData);
+
+        let newSetArr = [...props.deleteProd];
+        newSetArr.push({pid: pid, category: category});
+        props.setDeleteProd(newSetArr);
+        break;
+
+      case 'cs':
+        let newCsData = [...countcs];
+        newCsData = newCsData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        setCountcs(newCsData);
+
+        let newCsArr = [...props.deleteProd];
+        newCsArr.push({pid: pid, category: category});
+        props.setDeleteProd(newCsArr);
+        break;
+
+      case 'cm':
+        let newCmData = [...countcm];
+        newCmData = newCmData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        setCountcm(newCmData);
+
+        let newCmArr = [...props.deleteProd];
+        newCmArr.push({pid: pid, category: category});
+        props.setDeleteProd(newCmArr);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   // 套餐光箱
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -273,7 +333,7 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon ">
+                  <div className="prod-item-icon" onClick={() => {deleteProd(v.product_id, 'set')}}>
                     <img src="/img/cart/icon-trash.svg" alt="" />
                   </div>
 
@@ -407,7 +467,7 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon ">
+                  <div className="prod-item-icon" onClick={() => {deleteProd(v.product_id, 'cs')}}>
                     <img src="/img/cart/icon-trash.svg" alt="刪除" />
                   </div>
 
@@ -501,7 +561,7 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon ">
+                  <div className="prod-item-icon"  onClick={() => {deleteProd(v.product_id, 'cm')}}>
                     <img src="/img/cart/icon-trash.svg" alt="刪除" />
                   </div>
 
