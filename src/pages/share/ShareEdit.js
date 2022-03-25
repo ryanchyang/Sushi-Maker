@@ -35,7 +35,8 @@ function ShareEdit() {
     }
   };
 
-  const submitUpload = async () => {
+  const submitUpload = async e => {
+    e.preventDefault();
     try {
       const submitForm = { ...formState };
       const fd = new FormData();
@@ -44,11 +45,8 @@ function ShareEdit() {
         return fd.append(arr[0], arr[1]);
       });
 
-      files.map((file, i) => {
-        return fd.append(files, file);
-      });
-      const aaa = fd.get(files);
-      console.log(aaa);
+      files.map(file => fd.append('files', file));
+
       const response = await fetch(config.UPLOAD_POST, {
         method: 'POST',
         'Content-Type': 'multipart/form-data',
@@ -153,7 +151,7 @@ function ShareEdit() {
                           </button>
                           <button
                             className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
-                            onClick={submitUpload}
+                            onClick={e => submitUpload(e)}
                           >
                             分享
                           </button>
