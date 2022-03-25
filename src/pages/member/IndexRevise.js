@@ -32,6 +32,8 @@ function IndexRevise() {
     reviseMem(memInfo, mem_id).then(obj => {
       if (obj.success) {
         alert('修改成功');
+        localStorage.setItem('mem_name', obj.info.mem_name);
+        localStorage.setItem('mem_nickname', obj.info.mem_nickname);
       }
     });
   };

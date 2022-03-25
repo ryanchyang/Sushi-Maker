@@ -95,10 +95,14 @@ function Login() {
       } else {
         setAuthToken(data.token);
         setMemId(data.info.mem_id);
+        localStorage.setItem('mem_name', data.info.mem_name);
+        localStorage.setItem('mem_nickname', data.info.mem_nickname);
+        localStorage.setItem('mem_photo', data.info.mem_photo_img_path);
       }
       history.push('/member'); //登入成功後導入會員頁
     });
   };
+
 
   return (
     <>

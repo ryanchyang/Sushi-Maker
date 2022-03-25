@@ -26,6 +26,7 @@ function MemHead() {
     const fd = new FormData(document.form1);
     memDoUpload(fd).then(img => {
       setImgSrc('http://localhost:3500/img/member' + '/' + img.filename);
+      localStorage.setItem('mem_photo', img.filename);
     });
   };
 
@@ -72,7 +73,7 @@ function MemHead() {
       </div>
 
       <div className="memShare col-md-12 ml-5">
-        <Carousel/>
+        <Carousel />
       </div>
     </div>
   );
