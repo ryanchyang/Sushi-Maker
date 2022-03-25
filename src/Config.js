@@ -50,6 +50,7 @@ const config = {
   GET_CART_INFO: `${host}/api/cart/getinfo/`,
   POST_PAY_INFO: `${host}/api/cart/setpayinfo`,
   GET_ITEM_INFO: `${host}/api/cart/iteminfo/`,
+  DELETE_CART_PROD: `${host}/api/cart/delete/`,
 };
 
 export default config;
