@@ -8,30 +8,41 @@ const HistoryOrder = () => {
   const [clickToggle, setClickToggle] = useState(false);
   const mem_id = localStorage.getItem('mem_id');
   const [index, setIndex] = useState('');
-  const [cartId, setCartId] = useState([]);
+  const [cartId, setCartId] = useState();
 
   const handleClickToggle = e => {
     const id = e.target.attributes.getNamedItem('data-id').value; //react div元素的拿法
-    setIndex(e.target.value);
-    if (clickToggle === true) {
-      setClickToggle(false);
-    } else {
-      setClickToggle(true);
-    }
-    setIndex(id);
+
+    const newCartData = cartId.map(d => {
+      if (parseInt(d.cId) === parseInt(id)) {
+        if (d.open === true) {
+          return { ...d, open: false };
+        } else {
+          return { ...d, open: true };
+        }
+      } else {
+        return { ...d };
+      }
+    });
+    // if (clickToggle === true) {
+    //   setClickToggle(false);
+    // } else {
+    //   setClickToggle(true);
+    // }
+    // setIndex(id);
+    setCartId(newCartData);
   };
-  console.log(index);
+  console.log(cartId);
 
   useEffect(() => {
     orderInfo(mem_id).then(obj => {
       const cartData = obj.newData2.map(v => {
-        return { cId: v.cart_id, open: false };
+        return { ...v, cId: v.cart_id, open: false };
       });
       setHistoryOrderInfo(obj);
       setCartId(cartData);
     });
   }, []);
-
 
   return (
     <div className="row orderDetailRow">
@@ -57,8 +68,8 @@ const HistoryOrder = () => {
           </tr>
         </thead>
       </table>
-      {historyOrderInfo &&
-        historyOrderInfo.newData2.map((data, i) => {
+      {cartId &&
+        cartId.map((data, i) => {
           return (
             <>
               <table className="table col-md-20 ch-cont-16">
@@ -76,7 +87,7 @@ const HistoryOrder = () => {
                       data-id={data.cart_id}
                     >
                       交易明細
-                      {clickToggle ? <SelectClose /> : <SelectOpen />}
+                      {data.open ? <SelectClose /> : <SelectOpen />}
                     </td>
                   </tr>
                 </tbody>
@@ -85,7 +96,7 @@ const HistoryOrder = () => {
               <div
                 className="col-md-20"
                 style={
-                  clickToggle && index == cartId.cId
+                  data.open
                     ? { display: 'block', transition: '1s' }
                     : { display: 'none', transition: '1s' }
                 }
