@@ -1,9 +1,4 @@
 import { useState, useEffect } from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { orderInfo } from '../../../WebApi';
 import { ReactComponent as SelectOpen } from '../../../imgs/selectopen.svg';
 import { ReactComponent as SelectClose } from '../../../imgs/selectclose.svg';
@@ -13,23 +8,30 @@ const HistoryOrder = () => {
   const [clickToggle, setClickToggle] = useState(false);
   const mem_id = localStorage.getItem('mem_id');
   const [index, setIndex] = useState('');
+  const [cartId, setCartId] = useState([]);
 
   const handleClickToggle = e => {
+    const id = e.target.attributes.getNamedItem('data-id').value; //react div元素的拿法
+    setIndex(e.target.value);
     if (clickToggle === true) {
       setClickToggle(false);
     } else {
       setClickToggle(true);
     }
-    setIndex(e.target.dataset.value);
-
-    console.log(index);
+    setIndex(id);
   };
+  console.log(index);
 
   useEffect(() => {
     orderInfo(mem_id).then(obj => {
+      const cartData = obj.newData2.map(v => {
+        return { cId: v.cart_id, open: false };
+      });
       setHistoryOrderInfo(obj);
+      setCartId(cartData);
     });
   }, []);
+
 
   return (
     <div className="row orderDetailRow">
@@ -71,14 +73,10 @@ const HistoryOrder = () => {
                       className="col-4"
                       onClick={handleClickToggle}
                       style={{ cursor: 'pointer' }}
-                      data-value={i}
+                      data-id={data.cart_id}
                     >
                       交易明細
-                      {clickToggle && index == i ? (
-                        <SelectClose />
-                      ) : (
-                        <SelectOpen />
-                      )}
+                      {clickToggle ? <SelectClose /> : <SelectOpen />}
                     </td>
                   </tr>
                 </tbody>
@@ -87,7 +85,7 @@ const HistoryOrder = () => {
               <div
                 className="col-md-20"
                 style={
-                  clickToggle && index == i
+                  clickToggle && index == cartId.cId
                     ? { display: 'block', transition: '1s' }
                     : { display: 'none', transition: '1s' }
                 }
@@ -138,10 +136,6 @@ const HistoryOrder = () => {
                         );
                       })}
                 </div>
-
-                <AccordionDetails className="w-100">
-                  <Typography>{/* 商品詳細資訊 */}</Typography>
-                </AccordionDetails>
               </div>
             </>
           );
