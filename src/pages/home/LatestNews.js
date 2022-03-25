@@ -13,14 +13,23 @@ import { Link } from 'react-router-dom';
 import NavPage from '../layout/components/NavPage';
 
 function LatestNews(props) {
+  // Navbar開關狀態(從App.js來)
   const { navIsOpen, setNavIsOpen } = props;
+  // 從首頁進入Latest News的消息類型(網址參數)
   const { cate } = useParams();
-  console.log(cate);
-  const [isOpenFilter, setIsOpenFilter] = useState(false);
-  // const [focus, setFocus] = useState(cate);
-  const [newsData, setNewsData] = useState([]);
-  const [evntsData, setEvntsData] = useState([]);
 
+  // 篩選蓋版開關狀態
+  const [isOpenFilter, setIsOpenFilter] = useState(false);
+  // 新聞消息資料
+  const [newsData, setNewsData] = useState([]);
+  // 活動消息資料
+  const [evntsData, setEvntsData] = useState([]);
+  // 搜尋框開關
+  const [search, setSearch] = useState(false);
+  // 搜尋文字
+  const [searchText, setSearchText] = useState('');
+
+  // didMount AJAX 新聞
   const getNewsData = async () => {
     const res = await fetch(config.NEWS_PATH);
     const obj = await res.json();
@@ -28,6 +37,7 @@ function LatestNews(props) {
     setNewsData(obj.data);
   };
 
+  // didMount AJAX 活動
   const getEvntsData = async () => {
     const res = await fetch(config.EVNTS_PATH);
     const obj = await res.json();
@@ -35,26 +45,24 @@ function LatestNews(props) {
     setEvntsData(obj.data);
   };
 
-  // 初始化要資料
+  // didMount 初始化要資料
   useEffect(() => {
     getNewsData();
     getEvntsData();
   }, []);
 
-  //處理點擊分類商品
-  // const handleClickCategory = e => {
-  //   switch (e.target.innerText.toLowercase()) {
-  //     case 'news':
-  //       setFocus('news');
-  //       break;
-  //     case 'events':
-  //       setFocus('events');
-  //       break;
-  //     default:
-  //       setFocus('news');
-  //   }
-  // };
+  // 搜尋框動態移動
+  const searchBarHandler = () =>
+    search
+      ? { transform: 'translateX(0px) translateY(-7px)' }
+      : { transform: 'translateX(280px) translateY(-7px)' };
 
+  // TODO:處理搜尋框輸入
+  const handleChangeSearch = e => {
+    setSearchText(e.target.value);
+  };
+
+  // CSS樣式
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
@@ -77,7 +85,20 @@ function LatestNews(props) {
                     <p className="en-title-14-10">HOME / LATEST NEWS</p>
                   </div>
                   <div className="lastest-news-nav-right d-flex align-items-center">
-                    <div className="search mx-2" style={{ cursor: 'pointer' }}>
+                    <div className="search-input d-flex justify-content-end align-items-center">
+                      <input
+                        type="text"
+                        style={searchBarHandler()}
+                        className="search-input-bar ch-cont-14"
+                        value={searchText}
+                        onChange={handleChangeSearch}
+                        placeholder="Search"
+                      ></input>
+                    </div>
+                    <div
+                      className="search mx-2"
+                      onClick={() => setSearch(!search)}
+                    >
                       <img
                         src={`http://localhost:3500/img/home/search-icon.svg`}
                         alt="search"

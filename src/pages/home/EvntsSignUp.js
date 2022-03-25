@@ -29,7 +29,6 @@ function EvntsSignUp(props) {
   };
 
   useEffect(() => {
-    console.log('hi');
     getEvntsInfo();
   }, []);
 

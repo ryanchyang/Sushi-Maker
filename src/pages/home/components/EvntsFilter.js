@@ -5,6 +5,62 @@ function EvntsFilter() {
   const [dateOpen, setDateOpen] = useState(false);
   const [cateOpen, setCateOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
+
+  // 依活動日期搜尋([日期一, 日期二])
+  const [evntsDateFilter, setEvntsDateFilter] = useState(['', '']);
+  // 依活動標籤搜尋
+  const [evntsTagFilter, setEvntsTagFilter] = useState([
+    { tag: '講座活動', value: false },
+    { tag: '親子活動', value: false },
+    { tag: '品牌推廣', value: false },
+  ]);
+  // 依活動狀態搜尋
+  const [evntsStatusFilter, setEvntsStatusFilter] = useState([
+    { tag: '熱烈報名中', value: false },
+    { tag: '即將額滿', value: false },
+    { tag: '報名額滿', value: false },
+    { tag: '報名截止', value: false },
+  ]);
+
+  // 將日期輸入結果設定進狀態
+  const dateFilterHandler = e => {
+    if (e.target.dataset.filter === 'min') {
+      const minDate = e.target.value;
+      const newDate = [...evntsDateFilter];
+      newDate[0] = minDate;
+      setEvntsDateFilter(newDate);
+    } else if (e.target.dataset.filter === 'max') {
+      const maxDate = e.target.value;
+      const newDate = [...evntsDateFilter];
+      newDate[1] = maxDate;
+      setEvntsDateFilter(newDate);
+    }
+  };
+
+  // 將活動分類的勾選結果設定進狀態
+  const tagFilterHandler = e => {
+    const newTagData = evntsTagFilter.map(v => {
+      if (e.target.dataset.tag === v.tag) {
+        return { ...v, value: !v.value };
+      } else {
+        return v;
+      }
+    });
+    setEvntsTagFilter(newTagData);
+  };
+
+  // 將活動狀態的勾選結果設定進狀態
+  const statusFilterHandler = e => {
+    const newStatusData = evntsStatusFilter.map(v => {
+      if (e.target.dataset.tag === v.tag) {
+        return { ...v, value: !v.value };
+      } else {
+        return v;
+      }
+    });
+    setEvntsStatusFilter(newStatusData);
+  };
+
   return (
     <>
       {/* clean or cancel filter */}
@@ -22,7 +78,7 @@ function EvntsFilter() {
           </div>
         </div>
 
-        <form name="newsFilter">
+        <form name="evntsFilter">
           {/* by date */}
           <div className="by-date">
             <div className="by-date-title">
@@ -52,9 +108,21 @@ function EvntsFilter() {
             <Collapse in={dateOpen}>
               <div className="d-sm-block">
                 <div className="by-date-input">
-                  <input type="date" onfocus="(this.type='date')"></input>
+                  <input
+                    type="date"
+                    value={evntsDateFilter[0]}
+                    data-filter="min"
+                    required
+                    onChange={dateFilterHandler}
+                  />
                   <div className="by-date-dash-line"></div>
-                  <input type="date" onfocus="(this.type='date')"></input>
+                  <input
+                    type="date"
+                    value={evntsDateFilter[1]}
+                    data-filter="max"
+                    required
+                    onChange={dateFilterHandler}
+                  />
                 </div>
               </div>
             </Collapse>
@@ -91,10 +159,43 @@ function EvntsFilter() {
             <Collapse in={cateOpen}>
               <div className="d-sm-block">
                 <div className="category-tag-box">
-                  <div className="d-flex flex-wrap">
-                    <div className="category-tag ch-title-14">講座活動</div>
-                    <div className="category-tag ch-title-14">親子活動</div>
-                    <div className="category-tag ch-title-14">品牌推廣</div>
+                  <div className="d-flex category-check-box">
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="speech"
+                      name="speech"
+                      data-tag="講座活動"
+                      checked={evntsTagFilter[0].value}
+                      onChange={tagFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">講座活動</label>
+                    </div>
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="family"
+                      name="family"
+                      data-tag="親子活動"
+                      checked={evntsTagFilter[1].value}
+                      onChange={tagFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">親子活動</label>
+                    </div>
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="brand"
+                      name="brand"
+                      data-tag="品牌推廣"
+                      checked={evntsTagFilter[2].value}
+                      onChange={tagFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">品牌推廣</label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -130,11 +231,55 @@ function EvntsFilter() {
             <Collapse in={statusOpen}>
               <div className="d-sm-block">
                 <div className="category-tag-box">
-                  <div className="d-flex flex-wrap">
-                    <div className="category-tag ch-title-14">熱烈報名中</div>
-                    <div className="category-tag ch-title-14">即將額滿</div>
-                    <div className="category-tag ch-title-14">報名額滿</div>
-                    <div className="category-tag ch-title-14">報名截止</div>
+                  <div className="d-flex category-check-box">
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="half"
+                      name="half"
+                      data-tag="熱烈報名中"
+                      checked={evntsStatusFilter[0].value}
+                      onChange={statusFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">熱烈報名中</label>
+                    </div>
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="threefourth"
+                      name="threefourth"
+                      data-tag="即將額滿"
+                      checked={evntsStatusFilter[1].value}
+                      onChange={statusFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">即將額滿</label>
+                    </div>
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="full"
+                      name="full"
+                      data-tag="報名額滿"
+                      checked={evntsStatusFilter[2].value}
+                      onChange={statusFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">報名額滿</label>
+                    </div>
+                    <input
+                      className="category-check"
+                      type="checkbox"
+                      id="close"
+                      name="close"
+                      data-tag="報名截止"
+                      checked={evntsStatusFilter[3].value}
+                      onChange={statusFilterHandler}
+                    />
+                    <div className="label-box">
+                      <label className="ch-title-16">報名截止</label>
+                    </div>
                   </div>
                 </div>
               </div>
