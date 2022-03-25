@@ -38,6 +38,8 @@ const config = {
   GET_FILTER_ITEMS: `${host}/api/share/filter`,
   GET_TAGS: `${host}/api/share/filter/tags`,
   TOGGLE_SAVE: `${host}/api/share/toggle/save`,
+  UPLOAD_POST: `${host}/api/share/upload/post`,
+
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
