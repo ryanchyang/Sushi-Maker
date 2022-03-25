@@ -1,9 +1,10 @@
 import React from 'react';
-
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import { FaBitcoin, FaCcJcb, FaCcMastercard, FaCcVisa } from 'react-icons/fa';
 import Payment from 'payment';
+import config from '../../../Config';
+
 function clearNumber(value = '') {
   return value.replace(/\D+/g, '');
 }
@@ -42,13 +43,11 @@ export function formatCreditCardNumber(value) {
 
 class CreditCard extends React.Component {
   state = {
-    cvc: '',
-    expiry: '',
-    // expiry_year: '',
-    // expiry_mon: '',
+    // cvc: '',
+    // expiry: '',
     focus: '',
-    name: '',
-    number: '',
+    creditcard_holder: '',
+    order_num: '',
   };
 
   handleInputFocus = e => {
@@ -61,6 +60,42 @@ class CreditCard extends React.Component {
     this.setState({ [name]: value });
   };
 
+  // 表單送出
+  handleSubmit = e => {
+    e.preventDefault();
+    // TODO:  member id =1 鮮血死 測試用
+    const mem_id = 1;
+    // const mem_id = getMemId();
+    // console.log('mem_id:', mem_id);
+    // const { id } = useParams();
+
+    // get form data
+    const formData = new FormData(e.target);
+    const dataObj = {};
+    for (let i of formData) {
+      dataObj[i[0]] = i[1];
+    }
+    dataObj.mem_id = mem_id;
+    console.log('dataObj', { dataObj });
+
+    // fetch
+    const r = fetch(config.POST_PAY_INFO, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(dataObj),
+    })
+      .then(r => r.json())
+      .then(obj => {
+        this.setState({ r: dataObj });
+        console.log('obj', obj);
+        if (obj.success) {
+          console.log(obj.success);
+        }
+      });
+  };
+
   render() {
     return (
       <div id="PaymentForm">
@@ -68,11 +103,9 @@ class CreditCard extends React.Component {
           className="my-3"
           cvc={this.state.cvc}
           expiry={this.state.expiry}
-          // expiry_mon={this.state.expiry_mon}
-          // expiry_year={this.state.expiry_year}
           focused={this.state.focus}
-          name={this.state.name}
-          number={this.state.number}
+          name={this.state.creditcard_holder}
+          number={this.state.order_num}
         />
         <form
           ref={c => (this.form = c)}
@@ -90,7 +123,7 @@ class CreditCard extends React.Component {
             <FaBitcoin className="mx-1" style={{ fontSize: '1.5rem' }} />
             <input
               type="tel"
-              name="number"
+              name="order_num"
               className="form-control"
               placeholder="Card Number"
               pattern="[\d| ]{16,22}"
@@ -105,88 +138,16 @@ class CreditCard extends React.Component {
             <label className="form-label ch-cont-14">持卡人姓名</label>
             <input
               type="text"
-              name="name"
+              name="creditcard_holder"
               className="form-control ch-cont-14 "
               placeholder="Name"
               required
               onChange={this.handleInputChange}
               onFocus={this.handleInputFocus}
             />
-            <div class="invalid-feedback">
-              Example invalid input group feedback
-            </div>
+            <div class="invalid-feedback">不可輸入特殊字元符號</div>
           </div>
-          {/*  */}
-          {/* <div className="form-group mt-3">
-            <div className=" d-flex justify-content-between">
-              <div className="form-group col-md-8 px-0">
-                <label htmlFor="expire-date" className="expire-date">
-                  有效月
-                </label>
-                <select
-                  className="custom-select form-control mt-3 "
-                  aria-label="Default select example"
-                  name="month"
-                  // className="month"
-                  id="month"
-                >
-                  <option value="01">01</option>
-                  <option value="01">02</option>
-                  <option value="01">03</option>
-                  <option value="01">04</option>
-                  <option value="01">05</option>
-                  <option value="01">06</option>
-                  <option value="01">07</option>
-                  <option value="01">08</option>
-                  <option value="01">09</option>
-                  <option value="01">10</option>
-                  <option value="01">11</option>
-                  <option value="01">12</option>
-                </select>
-                <div class="invalid-feedback">請填寫信用卡有效月份</div>
-              </div>
-              <div className="mx-1"></div>
-              <div class="form-group col-md-8 px-1">
-                <label htmlFor="expire-date" className="expire-date">
-                  有效年
-                </label>
-                <select
-                  className="custom-select mt-3 "
-                  aria-label="Default select example"
-                  name="year"
-                  // className="year"
-                  id="year"
-                >
-                  <option value="2022">2022</option>
-                  <option value="2023">2023</option>
-                  <option value="2024">2024</option>
-                  <option value="2025">2025</option>
-                  <option value="2026">2026</option>
-                  <option value="2027">2027</option>
-                  <option value="2028">2028</option>
-                  <option value="2029">2029</option>
-                  <option value="2030">2030</option>
-                </select>
-                <div class="invalid-feedback">請填寫信用卡有效年份</div>
-              </div>
-              
-           
-              
-              <div className="mx-1"></div>
-              <div className="div col-md-8 px-0">
-                <label htmlFor="cvc" className="cvc">
-                  驗證碼
-                </label>
-                <input
-                  type="text"
-                  className="form-control mt-3"
-                  maxLength="3"
-                  size="15"
-                />
-                <div class="invalid-feedback">請填寫正確驗證碼</div>
-              </div>
-            </div>
-          </div> */}
+
           <div className="row">
             <div className="col-md-12 col-12">
               <label htmlFor="expire-date" className="expire-date">
@@ -221,9 +182,14 @@ class CreditCard extends React.Component {
             </div>
 
             {/* <input type="hidden" name="issuer" value={issuer} /> */}
-            <div className="form-actions">
-              <button className="btn btn-primary btn-block creditBtn">PAY</button>
-            </div>
+            {/* <div className="form-actions"> */}
+            <button
+              className="btn btn-primary btn-block creditBtn"
+              type="submit"
+            >
+              PAY
+            </button>
+            {/* </div> */}
           </div>
         </form>
         {/* {formData && (

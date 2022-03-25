@@ -27,19 +27,20 @@ function StepTwo() {
   const inputEl = useRef(null);
   console.log('12332112324', inputEl.current?.innerText);
 
-  console.log(inputEl);
+  // console.log(inputEl);
   // const [storeID, setStoreID] = useState('');
 
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   const [info, setInfo] = useState([]);
+  const [itemInfo, setItemInfo] = useState({});
 
   // TODO:  member id =1 鮮血死 測試用
   const mem_id = 1;
   const cart_id = 1;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
-  // 先取得 name mobile
+  // 先取得 表單資料name mobile
   useEffect(() => {
     const getInfo = async () => {
       const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
@@ -53,12 +54,13 @@ function StepTwo() {
   console.log('info', info);
   useEffect(() => {
     console.log(info);
-    console.log('info.mem_name', info[0] ? info[0].mem_id : '');
+    // console.log('info.mem_name', info[0] ? info[0].mem_id : '');
   }, [info]);
   // console.log('info.mem_name', info[0]?.mem_name);
 
   // const { id } = useParams();
   // console.log('id:', id);
+  // 先取得 畫面右側小計
   useEffect(() => {
     const getSum = async () => {
       const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
@@ -73,6 +75,21 @@ function StepTwo() {
     console.log(sum);
   }, [sum]);
 
+  //-----  交易明細
+  useEffect(() => {
+    const getItemInfo = async () => {
+      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}`);
+      const obj = await res.json();
+      // console.log('obj:', obj);
+      setItemInfo(obj.data);
+    };
+    getItemInfo();
+  }, []);
+  console.log('itemInfo', itemInfo);
+  useEffect(() => {
+    console.log(itemInfo);
+  }, [itemInfo]);
+
   // ------
 
   // Input State 要填寫的資料欄位
@@ -80,7 +97,7 @@ function StepTwo() {
     buyer: '',
     buyer_mobile: '',
     picker: '',
-    order_notes: '',
+    order_notes: '' || null,
     cart_store_id: '',
   });
 
@@ -96,11 +113,11 @@ function StepTwo() {
     console.log(e.target.name);
     const newData = {
       ...fields,
-      [e.target.name]: e.target.value,
+      // [e.target.name]: e.target.value,
+      [e.target.name]: info.target.value,
     };
     setFields(newData);
-    setInfo(info);
-    console.log('iiiiiiiiiiiii', info);
+    // setInfo(info);
   };
 
   // 驗證並處理欄位錯誤訊息
@@ -145,21 +162,12 @@ function StepTwo() {
     setFieldsError(updatedFieldError);
   };
 
-  // 清除重新填寫
-  // const clearFormHandler = () => {
-  //   setFields({
-  //     name: '',
-  //     mobile: '',
-  //     email: '',
-  //     number: '',
-  //     comment: '',
-  //   });
-  // };
-
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
-
+    // setInfo(info);
+    // setFields(info);
+    console.log('info', info);
     if (handleValidation()) {
       //   console.log('form submitted.');
 
@@ -213,7 +221,7 @@ function StepTwo() {
             >
               <div className="row mt-5">
                 <div className="col-md-12 col-24">
-                  <div className="shipping-info ch-cont-14 " ref={inputEl}>
+                  <div className="shipping-info ch-cont-14 ">
                     {/* TODO: Form className='needs-validation ' 表單驗證*/}
                     <div className="my-4">
                       <div className="d-flex justify-content-between">
@@ -231,8 +239,8 @@ function StepTwo() {
                         required
                         // value={fields.buyer}
                         // defaultValue={v.mem_name}
-                        // TODO: v ˇ改 info
-                        ref={inputEl}
+                        // TODO: v 改 info
+                        // ref={inputEl}
                         defaultValue={info[0] ? info[0].mem_name : ''}
                         // value={this.current.value}
                         onChange={handleFieldChange}
@@ -259,7 +267,7 @@ function StepTwo() {
                         data-pattern="09\d{2}-?\d{3}-?\d{3}"
                         onChange={handleFieldChange}
                         required
-                        ref={inputEl}
+                        // ref={inputEl}
                         defaultValue={info[0] ? info[0].mem_mobile : ''}
                       />
                       {fieldsError.buyer_mobile !== '' && (
@@ -275,7 +283,6 @@ function StepTwo() {
                         id="picker"
                         placeholder="取貨人"
                         defaultValue={info[0] ? info[0].mem_name : ''}
-                       
                         onChange={handleFieldChange}
                       />
                       <div className="form-check d-flex">
@@ -348,7 +355,7 @@ function StepTwo() {
                             <Button
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={() => {
-                                // setGetStoreId(inputStoreId.current?.value);
+                                setGetStoreId(inputStoreId.current?.value);
                                 handleClose();
                               }}
                               // type="submit"
