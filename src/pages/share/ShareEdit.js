@@ -1,31 +1,180 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import styles from './Share.module.scss';
+import config from '../../Config';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
 import { ReactComponent as Plus } from '../../imgs/plus.svg';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+
+const initFormState = {
+  title: '',
+  content: '',
+  tags: [],
+};
 
 function ShareEdit() {
   const fileInputRef = useRef(null);
-  const [files, setFiles] = useState({});
-  const [filesPreview, setFilesPreview] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [formState, setFormState] = useState(initFormState);
+  const [tagsInput, setTagsInput] = useState([]);
+  const [foundTags, setFoundTags] = useState([]);
 
-  const fileInputHandler = () => {
-    if (!fileInputRef.current) return '新增、拖曳照片';
-    let filesLength = fileInputRef.current.files.length;
-    if (filesLength !== 0) return `選擇${filesLength}個檔案`;
+  const fileDeleteHandler = delFile => {
+    const fileArr = files.filter(file => file.name !== delFile.name);
+    setFiles(fileArr);
   };
 
-  const filePreviewHandler = e => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      setFilesPreview(e.target.result);
-    };
-
-    reader.readAsDataURL(file);
+  const createPreviewTemplate = files => {
+    return files.map(file => {
+      return (
+        <div className="col-12" key={file.size}>
+          <div className={`${styles['edit-preview-box']} d-flex flex-column `}>
+            <div
+              className={`${styles['edit-preview-title']} d-flex justify-content-between mb-3`}
+            >
+              <div className="ch-cont-14 font-weight-bold pt-2">1</div>
+              <DeleteSm
+                className={`${styles['edit-del-button']}`}
+                onClick={() => fileDeleteHandler(file)}
+              />
+            </div>
+            <div className="d-flex justify-content-center">
+              <div className={`${styles['share-edit-preview']}`}>
+                <img src={URL.createObjectURL(file)} alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    });
   };
+
+  const tagsInputHandler = e => {
+    const value = e.target.value;
+    if (value) {
+      setTagsInput([{ tagInput: e.target.value }]);
+    } else {
+      setTagsInput([]);
+    }
+  };
+
+  const getFoundTags = async () => {
+    try {
+      const response = await fetch(config.GET_TAGS, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(tagsInput[0]),
+      });
+      if (!response.ok) throw new Error('No tags found!');
+      const itemsObj = await response.json();
+      return itemsObj;
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const checkSelectedTags = e => {
+    const isSelected = formState.tags.some(tag => tag === e.target.innerText);
+    if (!isSelected) {
+      console.log(e.target.innerText);
+      return [...formState.tags, e.target.innerText];
+    } else {
+      return formState.tags;
+    }
+  };
+
+  const createSelectedTags = e => {
+    return [...formState.tags, e.target.previousSibling.value];
+  };
+
+  const checkRemovedTags = e =>
+    formState.tags.filter(tag => tag !== e.target.previousSibling.innerText);
+
+  const tagsAreaHandler = () => {
+    if (tagsInput.length && foundTags.length) {
+      return foundTags.map((tag, i) => {
+        return (
+          <div
+            key={i}
+            className={`${styles['hash-tag-red']}`}
+            onClick={e =>
+              setFormState({ ...formState, tags: checkSelectedTags(e) })
+            }
+          >
+            <div className={`d-flex align-items-center`}>
+              <div className={`${styles['hashtag-tag-text']} ch-cont-14`}>
+                {tag.item_hash}
+              </div>
+            </div>
+          </div>
+        );
+      });
+    }
+  };
+
+  const selectedTagsHandler = () => {
+    if (formState.tags.length === 0) {
+      return '';
+    } else {
+      return (
+        <div className="d-flex mt-4">
+          {formState.tags.map((tag, i) => {
+            return (
+              <div
+                key={i}
+                className={`${styles['filter-hashtag-tag']} d-flex align-items-center`}
+              >
+                <div
+                  className={`${styles['hashtag-tag-text']} ch-cont-14 mr-2`}
+                >
+                  {tag}
+                </div>
+                <DeleteSm
+                  style={{ cursor: 'pointer' }}
+                  onClick={e =>
+                    setFormState({ ...formState, tags: checkRemovedTags(e) })
+                  }
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+  };
+
+  // Finding tags when tag input changed
+  useEffect(() => {
+    if (Object.keys(tagsInput).length === 0) return;
+    (async () => {
+      const result = await getFoundTags();
+      if (!result) {
+        setFoundTags([]);
+      } else {
+        setFoundTags(result.data);
+      }
+    })();
+  }, [tagsInput]);
+
+  // const fileInputHandler = () => {
+  //   if (!fileInputRef.current) return '新增、拖曳照片';
+  //   let filesLength = fileInputRef.current.files.length;
+  //   if (filesLength !== 0) return `選擇${filesLength}個檔案`;
+  // };
+
+  // const filePreviewHandler = files => {
+  //   files.map(file => {
+  //     const reader = new FileReader();
+  //     reader.onload = function (e) {
+  //       console.log(e.target.result);
+  //       setFilesPreview([...filesPreview, e.target.result]);
+  //     };
+
+  //     reader.readAsDataURL(file);
+  //     return 1;
+  //   });
+  // };
 
   return (
     <>
@@ -59,23 +208,10 @@ function ShareEdit() {
                     </h2>
                   </div>
                   <div className="d-flex">
-                    <div className="col-md-12">
+                    {/* Image preview area */}
+                    <div className="col-12 d-none d-md-block">
                       <form>
-                        <div className={`mb-4 form-group`}>
-                          <label htmlFor="title" className="ch-cont-14">
-                            標題
-                          </label>
-                          <input
-                            type="text"
-                            className={`${styles['share-input']} form-control`}
-                            id="title"
-                          />
-                          <div className="text-primary">必填</div>
-                        </div>
                         <div className="form-group">
-                          <label htmlFor="images" className="ch-cont-14">
-                            照片
-                          </label>
                           <input
                             ref={fileInputRef}
                             type="file"
@@ -84,10 +220,16 @@ function ShareEdit() {
                             multiple
                             style={{ display: 'none' }}
                             onChange={e => {
-                              setFiles(e.target.files);
-                              filePreviewHandler(e);
+                              setFiles([...files, ...e.target.files]);
                             }}
                           />
+                        </div>
+                      </form>
+                      <div className=" d-flex flex-wrap">
+                        {/* preview box */}
+                        {createPreviewTemplate(files)}
+                        {/* upload plus box */}
+                        <div className="col-12">
                           <div
                             className={`${styles['share-edit-attach']} d-flex flex-column align-items-center justify-content-center`}
                             onClick={() => {
@@ -95,61 +237,92 @@ function ShareEdit() {
                             }}
                           >
                             <Plus />
-                            <div className="ch-cont-14">
-                              {fileInputHandler()}
-                            </div>
+                            <div className="ch-cont-14"></div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+
+                    {/* form area */}
+                    <div className={`col-md-12 ${styles['form-min-height']}`}>
+                      <form>
+                        <div className={`mb-4 form-group`}>
+                          <label htmlFor="title" className="ch-cont-14">
+                            標題
+                          </label>
+                          <input
+                            type="text"
+                            className={`${styles['share-input']} form-control`}
+                            name="title"
+                            id="title"
+                            onChange={e =>
+                              setFormState({
+                                ...formState,
+                                [e.target.name]: e.target.value,
+                              })
+                            }
+                          />
+                          <div className="text-primary">必填</div>
+                        </div>
+
                         <div className="form-group">
                           <label htmlFor="content" className="ch-cont-14">
                             內文
                           </label>
                           <textarea
                             className="form-control"
+                            name="content"
                             id="content"
                             rows={5}
+                            onChange={e =>
+                              setFormState({
+                                ...formState,
+                                [e.target.name]: e.target.value,
+                              })
+                            }
                           />
+                          <div className="text-primary">必填</div>
                         </div>
-                        <div className="form-group mb-5">
+                        <div
+                          className={`${styles['tag-form']} form-group mb-5`}
+                        >
                           <label htmlFor="tag" className="ch-cont-14">
                             標籤
                           </label>
-                          <input
-                            type="text"
-                            className={`${styles['share-input']} form-control`}
-                            id="tag"
-                          />
+                          <div className={`${styles['tag-input']}`}>
+                            <input
+                              type="text"
+                              className={`${styles['share-input']} form-control`}
+                              name="tag"
+                              id="tag"
+                              onChange={e => tagsInputHandler(e)}
+                            />
+                            <Plus
+                              className={`${styles['tag-input-plus']}`}
+                              onClick={e =>
+                                setFormState({
+                                  ...formState,
+                                  tags: createSelectedTags(e),
+                                })
+                              }
+                            />
+                          </div>
+                          {/* tags area */}
+                          {selectedTagsHandler()}
                           <div
                             className={`${styles['hashtag-box']} d-flex mt-4 flex-wrap`}
                           >
-                            <div
-                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
-                            >
-                              <div
-                                className={`${styles['hashtag-tag-text']} ch-cont-14 mr-2`}
-                              >
-                                真好吃真好吃真好吃真好吃真好吃真好吃真好吃真好吃
-                              </div>
-                              <DeleteSm />
-                            </div>
-                            <div
-                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
-                            >
-                              <div className="ch-cont-14 mr-2">真好吃</div>
-                              <DeleteSm />
-                            </div>
-                            <div
-                              className={`${styles['hashtag-tag']} d-flex align-items-center`}
-                            >
-                              <div className="ch-cont-14 mr-2">真好吃</div>
-                              <DeleteSm />
-                            </div>
+                            {tagsAreaHandler()}
                           </div>
                         </div>
                         <div className="d-flex justify-content-end">
                           <button
                             type="reset"
                             className={`${styles['primeal-btn-outline-sm']} btn-sm btn-outline-primary mr-3`}
+                            onClick={() => {
+                              setFormState(initFormState);
+                              setFiles([]);
+                            }}
                           >
                             清除
                           </button>
@@ -161,62 +334,6 @@ function ShareEdit() {
                           </button>
                         </div>
                       </form>
-                    </div>
-                    <div className="col-12 d-none d-md-block">
-                      <label htmlFor="tag" className="ch-cont-14">
-                        預覽
-                      </label>
-                      <div className=" d-flex flex-wrap">
-                        <div className="d-flex flex-column">
-                          <div className="col">
-                            <div
-                              className={`${styles['edit-preview-box']}d-flex justify-content-between mb-3`}
-                            >
-                              <div className="ch-cont-14 font-weight-bold pt-2">
-                                1
-                              </div>
-                              <DeleteSm
-                                className={`${styles['edit-del-button']}`}
-                              />
-                            </div>
-                            <div className="d-flex justify-content-center">
-                              <div
-                                className={`${styles['share-edit-preview']}`}
-                              >
-                                {filesPreview ? (
-                                  <img src={filesPreview} alt="" />
-                                ) : (
-                                  ''
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>{' '}
-                        <div className="d-flex flex-column">
-                          <div className="col">
-                            <div
-                              className={`${styles['edit-preview-box']}d-flex justify-content-between mb-3`}
-                            >
-                              <div className="ch-cont-14 font-weight-bold pt-2">
-                                1
-                              </div>
-                              <DeleteSm
-                                className={`${styles['edit-del-button']}`}
-                              />
-                            </div>
-                            <div className="d-flex justify-content-center">
-                              <div
-                                className={`${styles['share-edit-preview']}`}
-                              >
-                                <img
-                                  src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4"
-                                  alt=""
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -232,57 +349,5 @@ function ShareEdit() {
     </>
   );
 }
-
-const itemData = [
-  {
-    img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-    title: 'Bed',
-    desc: 'The Mastering the Mechanics webinar series also describes required sentence elements and varying sentence types. Please see these archived webinars for more information.',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    title: 'Books',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-    title: 'Sink',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-    title: 'Kitchen',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-    title: 'Blinds',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-    title: 'Chairs',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-    title: 'Laptop',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-    title: 'Doors',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-    title: 'Storage',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-    title: 'Candle',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-    title: 'Coffee table',
-  },
-];
 
 export default ShareEdit;
