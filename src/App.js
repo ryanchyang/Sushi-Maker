@@ -60,15 +60,15 @@ function App() {
   const [entryOpen, setEntryOpen] = useState('');
 
   //renden時再做一次getMe , 避免換頁登出
-  useEffect(() => {
-    getMe().then(response => {
-      console.log(response);
-      if (response.ok) {
-        setUser(response.data);
-      }
-    });
-    setEntryOpen(true);
-  }, []);
+  // useEffect(() => {
+  //   getMe().then(response => {
+  //     console.log(response);
+  //     if (response.ok) {
+  //       setUser(response.data);
+  //     }
+  //   });
+  //   setEntryOpen(true);
+  // }, []);
 
   return (
     //如有toke, 將token傳下去
