@@ -7,6 +7,7 @@ import { ReactComponent as Trash } from '../../imgs/tags/trash-line.svg';
 import config from '../../Config';
 import styles from './Share.module.scss';
 import { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const dateConvertHandler = date => {
   return new Date(date).toLocaleDateString('zh-tw');
@@ -50,8 +51,8 @@ const creditHandler = cate => {
 
 function ShareUpload() {
   const [uploadItem, setUploadItem] = useState(-1);
-
   const [uploadItemsData, setUploadItemsData] = useState([]);
+  let history = useHistory(null);
 
   const getUserShareUpload = async () => {
     const response = await fetch(config.GET_USER_SHARE_UPLOAD, {
@@ -147,6 +148,12 @@ function ShareUpload() {
                             <td style={{ width: '22%' }}>
                               <button
                                 className={`${styles['share-item-button']} btn-sm btn-primary mr-md-4`}
+                                onClick={() => {
+                                  history.push({
+                                    pathname: '/share/edit',
+                                    state: { orderId: id, orderName: name },
+                                  });
+                                }}
                               >
                                 分享
                               </button>

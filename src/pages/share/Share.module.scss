@@ -57,6 +57,10 @@ $min-height: calc(64.5vh);
   height: 667px;
 }
 
+.share-input::placeholder {
+  opacity: 0.5 !important;
+}
+
 .tag-form {
   min-height: 250px;
 }
