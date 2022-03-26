@@ -10,24 +10,21 @@ function SetOrderList() {
 
   //資料傳到後端後做完判斷,ref送出結果
   useEffect(() => {
+    console.log('data.state', data.state);
     console.log('資料傳送過去');
     const getData = async () => {
       const res = await fetch(config.GET_SET_COMPARE, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(data.state),
-      });
-      const resJson = await res.json();
+      })
+        .then(res => res.json())
+        .then(obj => {
+          console.log('-----obj-----', obj);
+        });
     };
     getData();
   }, []);
-
-
-
-  
-  // console.log('data.state', data.state);
-  // console.log('JSON.stringify', JSON.stringify(data.state));
-  // console.log('JSON.parse', JSON.parse(JSON.stringify(data.state)));
 
   const [date, setDate] = useState('');
   function setdateChange(e) {
@@ -36,7 +33,7 @@ function SetOrderList() {
 
   const [week, setWeek] = useState('');
   function weekChange(e) {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setWeek(e.target.value);
   }
 
