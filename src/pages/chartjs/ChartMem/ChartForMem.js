@@ -27,9 +27,9 @@ const ChartForMem = () => {
       };
     });
 
-  const fiveData = nuData
+  const doughnutData = nuData
     .filter(i => {
-      return [8].includes(i.mtl_id) ;
+      return [8].includes(i.mtl_id);
     })
     .map(d => {
       const colorA = Math.random() * 255;
@@ -38,7 +38,9 @@ const ChartForMem = () => {
 
       return {
         label: d.mtl_name,
-        data: MtlData.map(data => data[d.mtl_name]),
+        data: MtlData.filter(info => {
+          return info.nutrients !== 'FAT';
+        }).map(data => data[d.mtl_name]),
         fill: true,
         backgroundColor: [
           'rgba(255,10,255, 0.4)',
@@ -64,7 +66,7 @@ const ChartForMem = () => {
     maintainAspectRatio: false,
     responsive: false,
     labels: ['SUGAR', 'PROTEIN', 'CARBO', 'SODIUM', 'CALORIES'],
-    datasets: fiveData,
+    datasets: doughnutData,
   });
   const [options, setOptions] = useState({
     legend: {

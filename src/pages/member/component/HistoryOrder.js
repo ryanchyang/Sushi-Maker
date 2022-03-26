@@ -5,9 +5,7 @@ import { ReactComponent as SelectClose } from '../../../imgs/selectclose.svg';
 
 const HistoryOrder = () => {
   const [historyOrderInfo, setHistoryOrderInfo] = useState('');
-  const [clickToggle, setClickToggle] = useState(false);
   const mem_id = localStorage.getItem('mem_id');
-  const [index, setIndex] = useState('');
   const [cartId, setCartId] = useState();
 
   const handleClickToggle = e => {
