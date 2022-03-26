@@ -7,6 +7,7 @@ import EditImgPreview from './components/EditImgPreview';
 import EditForm from './components/EditForm';
 
 import { useState, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const initFormState = {
   title: '',
@@ -19,6 +20,9 @@ function ShareEdit() {
   const [formState, setFormState] = useState(initFormState);
   const [tagsInput, setTagsInput] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
+  const location = useLocation(null);
+  const history = useHistory(null);
+  const { orderId, orderName } = location.state;
 
   const getFoundTags = async () => {
     try {
@@ -38,6 +42,8 @@ function ShareEdit() {
   const submitUpload = async e => {
     e.preventDefault();
     try {
+      if (!orderId) throw new Error('Unsuccessful upload !');
+
       const submitForm = { ...formState };
       const fd = new FormData();
       const formArr = Object.entries(submitForm);
@@ -45,6 +51,8 @@ function ShareEdit() {
         return fd.append(arr[0], arr[1]);
       });
 
+      // insert order id and images into formdata
+      fd.append('orderId', orderId);
       files.map(file => fd.append('files', file));
 
       const response = await fetch(config.UPLOAD_POST, {
@@ -77,19 +85,6 @@ function ShareEdit() {
   //   if (!fileInputRef.current) return '新增、拖曳照片';
   //   let filesLength = fileInputRef.current.files.length;
   //   if (filesLength !== 0) return `選擇${filesLength}個檔案`;
-  // };
-
-  // const filePreviewHandler = files => {
-  //   files.map(file => {
-  //     const reader = new FileReader();
-  //     reader.onload = function (e) {
-  //       console.log(e.target.result);
-  //       setFilesPreview([...filesPreview, e.target.result]);
-  //     };
-
-  //     reader.readAsDataURL(file);
-  //     return 1;
-  //   });
   // };
 
   return (
@@ -137,6 +132,7 @@ function ShareEdit() {
                           tagsInput={tagsInput}
                           foundTags={foundTags}
                           setTagsInput={setTagsInput}
+                          orderName={orderName}
                         />
                         <div className="d-flex justify-content-end">
                           <button
@@ -151,7 +147,10 @@ function ShareEdit() {
                           </button>
                           <button
                             className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
-                            onClick={e => submitUpload(e)}
+                            onClick={e => {
+                              submitUpload(e);
+                              history.push('/share/upload');
+                            }}
                           >
                             分享
                           </button>

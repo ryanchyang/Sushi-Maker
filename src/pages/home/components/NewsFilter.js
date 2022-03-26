@@ -18,6 +18,7 @@ function NewsFilter(props) {
 
   // 將日期輸入結果設定進狀態
   const dateFilterHandler = e => {
+    setNewsData(fetchNewsData);
     if (e.target.dataset.filter === 'min') {
       const minDate = e.target.value;
       const newDate = [...newsDateFilter];
@@ -33,6 +34,7 @@ function NewsFilter(props) {
 
   // 將新聞分類的勾選結果設定進狀態
   const tagFilterHandler = e => {
+    setNewsData(fetchNewsData);
     // console.log(e.target.dataset.tag);
     const newTagData = newsTagFilter.map(v => {
       if (e.target.dataset.tag === v.tag) {

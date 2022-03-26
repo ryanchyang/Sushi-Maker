@@ -49,6 +49,7 @@ function ShareItems() {
     share_imgs: itemImgs = [],
     share_comments: shareComments = [],
     share_tags: shareTags = [],
+    share_item_id: shareId,
   } = itemDetails;
 
   const { id } = useParams();

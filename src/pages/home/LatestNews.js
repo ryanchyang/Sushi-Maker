@@ -89,30 +89,6 @@ function LatestNews(props) {
       ? { transform: 'translateX(0px) translateY(-7px)' }
       : { transform: 'translateX(280px) translateY(-7px)' };
 
-  // TODO:處理搜尋框輸入
-  const handleChangeSearch = e => {
-    console.log(e.target.value);
-    setSearchText(e.target.value);
-    let searchData = [...newsData];
-    // console.log('searchData:', searchData);
-    searchData = searchData.filter(value => {
-      console.log(value.news_title.includes(searchText));
-      console.log(value.news_cate.includes(searchText));
-      if (searchText === '') {
-        // console.log('hi');
-        return value;
-      } else if (
-        value.news_title.includes(searchText) ||
-        value.news_cate.includes(searchText)
-      ) {
-        console.log('hi');
-        return value;
-      }
-    });
-    console.log(searchData);
-    // setNewsData(searchData);
-  };
-
   // 動態調整CSS inline style
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
@@ -142,7 +118,11 @@ function LatestNews(props) {
                         style={searchBarHandler()}
                         className="search-input-bar ch-cont-14"
                         value={searchText}
-                        onChange={handleChangeSearch}
+                        onChange={e => {
+                          setSearchText(e.target.value);
+                          setNewsData(fetchNewsData);
+                          setEvntsData(fetchEvntsData);
+                        }}
                         placeholder="Search"
                       ></input>
                     </div>
@@ -216,10 +196,14 @@ function LatestNews(props) {
                 </div>
 
                 {/* news-content */}
-                {cate === 'news' && <News newsData={newsData} />}
+                {cate === 'news' && (
+                  <News newsData={newsData} searchText={searchText} />
+                )}
 
                 {/* events-content */}
-                {cate === 'events' && <Events evntsData={evntsData} />}
+                {cate === 'events' && (
+                  <Events evntsData={evntsData} searchText={searchText} />
+                )}
 
                 {/* pagination */}
                 {/* <Pagination /> */}

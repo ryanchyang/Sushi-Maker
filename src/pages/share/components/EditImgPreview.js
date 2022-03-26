@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from '../Share.module.scss';
 
 import { ReactComponent as Plus } from '../../../imgs/plus.svg';
@@ -6,6 +6,7 @@ import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
 
 const EditImgPreview = props => {
   const { files, setFiles } = props;
+  const [dragId, setDragId] = useState('');
   const fileInputRef = useRef(null);
 
   const fileDeleteHandler = delFile => {
@@ -13,11 +14,32 @@ const EditImgPreview = props => {
     setFiles(fileArr);
   };
 
+  const dragHandler = currentFile => {
+    setDragId(currentFile.size);
+  };
+
+  const dropHandler = currentFile => {
+    const dragFile = files.find(file => file.size === dragId);
+    const dropFile = files.find(file => file.size === currentFile.size);
+    const dragFileIndex = files.indexOf(dragFile);
+    const dropFileIndex = files.indexOf(dropFile);
+    const reorderFiles = [...files];
+    reorderFiles.splice(dragFileIndex, 1, dropFile);
+    reorderFiles.splice(dropFileIndex, 1, dragFile);
+    setFiles(reorderFiles);
+  };
+
   const createPreviewTemplate = files => {
-    return files.map(file => {
+    return files.map((file, i) => {
       return (
         <div className="col-12" key={file.size}>
-          <div className={`${styles['edit-preview-box']} d-flex flex-column `}>
+          <div
+            className={`${styles['edit-preview-box']} d-flex flex-column `}
+            draggable={true}
+            onDragOver={e => e.preventDefault()}
+            onDragStart={() => dragHandler(file)}
+            onDrop={() => dropHandler(file)}
+          >
             <div
               className={`${styles['edit-preview-title']} d-flex justify-content-between mb-3`}
             >

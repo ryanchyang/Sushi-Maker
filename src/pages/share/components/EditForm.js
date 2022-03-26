@@ -4,7 +4,14 @@ import { ReactComponent as Plus } from '../../../imgs/plus.svg';
 import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
 
 const EditForm = props => {
-  const { formState, setFormState, tagsInput, foundTags, setTagsInput } = props;
+  const {
+    formState,
+    setFormState,
+    tagsInput,
+    foundTags,
+    setTagsInput,
+    orderName,
+  } = props;
 
   const tagsAreaHandler = () => {
     if (tagsInput.length && foundTags.length) {
@@ -96,6 +103,7 @@ const EditForm = props => {
           className={`${styles['share-input']} form-control`}
           name="title"
           id="title"
+          placeholder={orderName}
           onChange={e =>
             setFormState({
               ...formState,

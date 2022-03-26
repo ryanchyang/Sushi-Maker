@@ -21,6 +21,7 @@ function EvntsFilter(props) {
 
   // 將日期輸入結果設定進狀態
   const dateFilterHandler = e => {
+    setEvntsData(fetchEvntsData);
     if (e.target.dataset.filter === 'min') {
       const minDate = e.target.value;
       const newDate = [...evntsDateFilter];
@@ -36,6 +37,7 @@ function EvntsFilter(props) {
 
   // 將活動分類的勾選結果設定進狀態
   const tagFilterHandler = e => {
+    setEvntsData(fetchEvntsData);
     const newTagData = evntsTagFilter.map(v => {
       if (e.target.dataset.tag === v.tag) {
         return { ...v, value: !v.value };
@@ -48,6 +50,7 @@ function EvntsFilter(props) {
 
   // 將活動狀態的勾選結果設定進狀態
   const statusFilterHandler = e => {
+    setEvntsData(fetchEvntsData);
     const newStatusData = evntsStatusFilter.map(v => {
       if (e.target.dataset.tag === v.tag) {
         return { ...v, value: !v.value };
