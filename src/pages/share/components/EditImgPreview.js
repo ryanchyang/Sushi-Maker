@@ -89,7 +89,7 @@ const EditImgPreview = props => {
             }}
           >
             <Plus />
-            <div className="ch-cont-14"></div>
+            <div className="text-primary">必填</div>
           </div>
         </div>
       </div>

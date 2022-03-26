@@ -4,7 +4,8 @@ import styles from './Share.module.scss';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
 
-import { ReactComponent as Heart } from '../../imgs/heart.svg';
+import { ReactComponent as HeartOutline } from '../../imgs/heart-outline.svg';
+import { ReactComponent as HeartFillWhite } from '../../imgs/heart-fill-white.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
 
@@ -49,7 +50,7 @@ function ShareItems() {
     share_imgs: itemImgs = [],
     share_comments: shareComments = [],
     share_tags: shareTags = [],
-    share_item_id: shareId,
+    isSaved,
   } = itemDetails;
 
   const { id } = useParams();
@@ -60,6 +61,62 @@ function ShareItems() {
     });
     const itemsArr = await response.json();
     return itemsArr;
+  };
+
+  const toggleHeartHandler = () => {
+    if (isSaved) {
+      return (
+        <div
+          className={`${styles['heart-beat-on']}`}
+          onClick={() => {
+            toggleSaveItem(id, 'REMOVE');
+            setItemDetails({
+              ...itemDetails,
+              isSaved: false,
+              saves_count: savesCount - 1,
+            });
+          }}
+        >
+          <HeartFillWhite style={{ padding: '0 12px' }} />
+        </div>
+      );
+    } else {
+      return (
+        <div
+          onClick={() => {
+            toggleSaveItem(id, 'ADD');
+            setItemDetails({
+              ...itemDetails,
+              isSaved: true,
+              saves_count: savesCount + 1,
+            });
+          }}
+        >
+          <HeartOutline style={{ padding: '0 12px' }} />
+        </div>
+      );
+    }
+  };
+
+  const toggleSaveItem = async (itemId, action) => {
+    try {
+      let method;
+      if (action === 'ADD') {
+        method = 'POST';
+      }
+      if (action === 'REMOVE') {
+        method = 'DELETE';
+      }
+
+      const response = await fetch(config.TOGGLE_SAVE, {
+        method: method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemId: itemId, memberId: '1' }),
+      });
+      if (!response.ok) throw new Error('Something went wrong!');
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   const getFilterData = async () => {
@@ -186,7 +243,8 @@ function ShareItems() {
                   <button
                     className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
                   >
-                    <Heart style={{ padding: '10px' }} />
+                    {toggleHeartHandler()}
+                    {/* <Heart style={{ padding: '10px' }} /> */}
                     <div className="en-cont-16 text-white d-none d-lg-block">
                       {savesCount}
                     </div>

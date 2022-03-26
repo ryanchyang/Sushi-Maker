@@ -9,6 +9,8 @@ import EditForm from './components/EditForm';
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 
+import { Button, Modal } from 'react-bootstrap';
+
 const initFormState = {
   title: '',
   content: '',
@@ -20,9 +22,16 @@ function ShareEdit() {
   const [formState, setFormState] = useState(initFormState);
   const [tagsInput, setTagsInput] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
+
+  // 加入購物車光箱
+  const [show, setShow] = useState(false);
+
   const location = useLocation(null);
   const history = useHistory(null);
   const { orderId, orderName } = location.state;
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const getFoundTags = async () => {
     try {
@@ -68,6 +77,26 @@ function ShareEdit() {
     }
   };
 
+  const modal = (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">您的貼文上傳成功!</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={() => history.push('/share')}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   // Finding tags when tag input changed
   useEffect(() => {
     if (Object.keys(tagsInput).length === 0) return;
@@ -89,6 +118,7 @@ function ShareEdit() {
 
   return (
     <>
+      {modal}
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
@@ -149,7 +179,7 @@ function ShareEdit() {
                             className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
                             onClick={e => {
                               submitUpload(e);
-                              history.push('/share/upload');
+                              handleShow();
                             }}
                           >
                             分享

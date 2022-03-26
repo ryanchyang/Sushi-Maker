@@ -674,6 +674,28 @@ $min-height: calc(64.5vh);
   right: 9%;
 }
 
+.heart-beat-on {
+  animation: heartbeat 0.5s;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.25);
+  }
+  50% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 1400px) {
   .items-box {
     flex-direction: column;

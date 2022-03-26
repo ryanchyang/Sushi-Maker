@@ -99,7 +99,7 @@ function ItemDetailsComments(props) {
             </div>
             <TextareaAutosize
               maxRows={1}
-              className={`${styles['comment-textarea']} ch-cont-14 w-100`}
+              className={`${styles['comment-textarea']} ch-cont-14 flex-grow-1`}
               placeholder=" 我的想法..."
             />
           </div>
