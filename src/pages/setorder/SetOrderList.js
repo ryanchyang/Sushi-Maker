@@ -1,14 +1,33 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuList from './components/SetMenuList';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
-// import './SetOrderAll.scss';
+// import './SetMeal.json';
+import config from '../../Config';
 function SetOrderList() {
   const data = useLocation();
-  console.log('data.state', data.state);
-  // console.log('第二次,第一題的答案', data.state2);
-  // console.log('第二題的答案', y);
+
+  //資料傳到後端後做完判斷,ref送出結果
+  useEffect(() => {
+    console.log('資料傳送過去');
+    const getData = async () => {
+      const res = await fetch(config.GET_SET_COMPARE, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(data.state),
+      });
+      const resJson = await res.json();
+    };
+    getData();
+  }, []);
+
+
+
+  
+  // console.log('data.state', data.state);
+  // console.log('JSON.stringify', JSON.stringify(data.state));
+  // console.log('JSON.parse', JSON.parse(JSON.stringify(data.state)));
 
   const [date, setDate] = useState('');
   function setdateChange(e) {
@@ -20,6 +39,7 @@ function SetOrderList() {
     console.log(e.target.value);
     setWeek(e.target.value);
   }
+
   return (
     <>
       <Header />
@@ -27,7 +47,10 @@ function SetOrderList() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Just For You'} />
-          <br />
+          <h1>
+            {/* 測試文字：第一題選擇了{data.state.selected}，第二題選擇了
+            {data.state.selected2} */}
+          </h1>
           <div className="setmenulist">
             <div className="mycontainer min-hi ">
               <div className="set-list-title ch-title-22">推薦結果</div>
@@ -37,7 +60,7 @@ function SetOrderList() {
                   <div className="set-input-all align-items-center">
                     <div className="set-input-from ch-cont-14">從</div>
                     <input
-                      class="set-input-date"
+                      className="set-input-date"
                       type="date"
                       value={date}
                       onChange={setdateChange}

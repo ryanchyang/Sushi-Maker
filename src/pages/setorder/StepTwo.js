@@ -1,5 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import { Link, useHistory, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function StepTwo(props) {

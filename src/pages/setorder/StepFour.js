@@ -1,5 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 function StepFour() {
@@ -79,6 +79,11 @@ function StepFour() {
                 <div className="set-question-box">
                   <div className="ch-title-22 set-text-center set-content my-5 ">
                     喜歡吃什麼食物?
+                  </div>
+                  <div className="step4-annotation ch-cont-12 pb-5">
+                    如果沒有選擇任何食材,
+                    <br />
+                    則推薦這些食材以外的套餐。
                   </div>
 
                   <div className="set-text-center stepfour-paddiing">

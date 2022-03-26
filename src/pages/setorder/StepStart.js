@@ -1,12 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './step.scss';
 import './../../styles/global.scss';
-
-//style component
-// const LoginBody = styled.body`
-//   background: #212121;
-// `;
 
 function StepOne() {
   return (
@@ -46,6 +41,11 @@ function StepOne() {
                     </button>
                   </Link>
                   <div className="set-text-center">或</div>
+                  {/* <Link
+                    to={{
+                      pathname: '/setorderlist',
+                      state: { question2, selected3 },
+                    }}> */}
                   <Link to="./setorderlist">
                     <a
                       className="set-text-center"
