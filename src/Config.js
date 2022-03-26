@@ -46,6 +46,7 @@ const config = {
   ACTIVE_PATH: `${host}/member/api/active/`,
   // 購物車
   // 得到購物車清單 stepone
+  GET_CUR_CART: `${host}/api/cart/getcurcart/`,
   GET_CART_ORDER: `${host}/api/cart/stepone/`,
   GET_CART_SUM: `${host}/api/cart/sumtotal/`,
   POST_CART_INFO: `${host}/api/cart/setinfo`,
