@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import config from '../../Config';
 import './detail.scss';
+import ChartForCs from '../chartjs/ChartCs/ChartForCs';
 import { Button, Modal } from 'react-bootstrap';
 
 function Detail() {
@@ -15,6 +16,7 @@ function Detail() {
   const [selectedMaterial, setSelectedMaterial] = useState({}); //目前選定的食材資料
   const [isLike, setIsLike] = useState(false); //該商品是否被收藏
   const [buyCount, setBuyCount] = useState(1);
+  const [mtlsForChart, setMtlsForChart] = useState([]);
   const { id } = useParams(); //取得url上的product id
   const lightBox = useRef();
 
@@ -22,6 +24,10 @@ function Detail() {
   const changeMtl = mid => {
     const material = materials.find(m => m.mtl_id === mid);
     setSelectedMaterial(material);
+
+    const newList = [];
+    newList.push(material.mtl_id);
+    setMtlsForChart(newList);
   };
 
   //輸入商品數量
@@ -89,12 +95,15 @@ function Detail() {
   useEffect(() => {
     const fetchData = async () => {
       //取得商品詳細資料
+      const newList = [];
       const prodRes = await fetch(config.GET_PROD + `/${id}`);
       const prodObj = await prodRes.json();
       setData(prodObj.rows[0]);
       setMaterials(prodObj.rows[1]);
       setSelectedMaterial(prodObj.rows[1][0]);
       setRecommendeds(prodObj.rows[2]);
+      newList.push(prodObj.rows[1][0].mtl_id);
+      setMtlsForChart(newList);
       // console.log(prodObj.rows[0]);
 
       //取得商品是否被收藏
@@ -327,7 +336,8 @@ function Detail() {
             >
               <div className="detail-content-top">
                 <div className="nutrition-img">
-                  <img src={require('./../../imgs/temp/analyze.png')} alt="" />
+                  {/* <img src={require('./../../imgs/temp/analyze.png')} alt="" /> */}
+                  {ChartForCs(mtlsForChart)}
                 </div>
                 <div className="material-list">
                   <div className="material-name">
