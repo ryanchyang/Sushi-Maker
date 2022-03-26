@@ -151,3 +151,15 @@ export const orderInfo = async (mem_id) => {
     }),
   }).then(res => res.json());
 };
+//傳回歷史訂單明細for memberChart
+export const chartInfo = async (mem_id) => {
+  return await fetch(`${BASE_URL}/member/api/OrderForChart`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id
+    }),
+  }).then(res => res.json());
+};
