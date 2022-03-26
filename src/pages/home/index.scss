@@ -138,6 +138,12 @@
     align-items: center;
     animation: infiniteSlide 15s linear 0s infinite;
   }
+  .promotion-list:hover {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+  }
   @keyframes infiniteSlide {
     0% {
       transform: translate3d(0, 0, 0);

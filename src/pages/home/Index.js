@@ -37,6 +37,8 @@ function Index(props) {
   const processRef = useRef();
   const cubeImgRef = useRef();
   const textImgRef = useRef();
+  const promotion = useRef();
+  const footer = useRef();
 
   // didMount AJAX 促銷產品
   const getPromoData = async () => {
@@ -59,6 +61,9 @@ function Index(props) {
 
   // 處理背景變色
   console.log('pageYOffset:', pageYOffset);
+  // 取得window height
+  // 取得promotion的ref offsetTop
+  // scroll - window.height >= ref的offsetTop
   useEffect(() => {
     if (pageYOffset <= 3500 || pageYOffset >= 6500) {
       setChangeBG(true);
@@ -110,17 +115,22 @@ function Index(props) {
 
   // 處理carousel hover
   // ToDo: hover會停止 + 無限輪播牆改用js改寫
-  const handleMouseEnter = e => {
-    console.log('enter');
-    console.log(e.target.dataset.id);
-    setIsHover(true);
-    if (isHover) {
-    }
+  // const handleMouseEnter = e => {
+  //   console.log('enter');
+  //   console.log(e.target.dataset.id);
+  //   setIsHover(true);
+  //   if (isHover) {
+  //   }
+  // };
+  // const handleMouseLeave = e => {
+  //   console.log('leave');
+  // };
+  const clickHandler = e => {
+    console.log('hi');
+    console.log('e.target', e.target);
+    console.log('e.currentTarget', e.currentTarget);
+    console.log(e.currentTarget.dataset.id);
   };
-  const handleMouseLeave = e => {
-    console.log('leave');
-  };
-
   // 處理just for you類別切換
   const handleJustForYou = e => {
     const text = e.target.innerText;
@@ -362,7 +372,7 @@ function Index(props) {
 
               {/* promotion */}
               {/* todo scroll down to change bg color */}
-              <div className="home-page">
+              <div className="home-page" ref={promotion}>
                 {/* <Title title={'Promotion'} /> */}
                 <div className="page-title en-title-24">Promotion</div>
                 <div className="promotion-wrap">
@@ -370,36 +380,41 @@ function Index(props) {
                     {promoData &&
                       promoData.map((v, i) => {
                         return (
-                          <li
-                            key={'promo' + v.pid}
-                            data-id={v.pid}
-                            onMouseEnter={handleMouseEnter}
-                            onMouseLeave={handleMouseLeave}
+                          <Link
+                            to={`/classic/detail/${v.pid}`}
+                            style={{ textDecoration: 'none' }}
                           >
-                            <div
-                              className={`bg${
-                                Math.ceil(i % 4) * 1
-                              } promotioncard`}
+                            <li
+                              key={'promo' + v.pid}
+                              data-id={v.pid}
+                              onClick={clickHandler}
                             >
-                              <div className="en-cont-28 promotion-tag">
-                                {v.c_prod_special_tag}
+                              <div
+                                className={`bg${
+                                  Math.ceil(i % 4) * 1
+                                } promotioncard`}
+                              >
+                                <div className="en-cont-28 promotion-tag">
+                                  {v.c_prod_special_tag}
+                                </div>
+                                <div className="promotion-img">
+                                  <img
+                                    src={
+                                      `http://localhost:3500` +
+                                      v.c_prod_img_path
+                                    }
+                                    alt="tuna-sushi"
+                                  />
+                                </div>
+                                <div className="ch-title-22 promotion-prod-ch-name">
+                                  {v.c_prod_ch_name}
+                                </div>
+                                <div className="en-cont-14 promotion-prod-en-name">
+                                  {v.c_prod_en_name}
+                                </div>
                               </div>
-                              <div className="promotion-img">
-                                <img
-                                  src={
-                                    `http://localhost:3500` + v.c_prod_img_path
-                                  }
-                                  alt="tuna-sushi"
-                                />
-                              </div>
-                              <div className="ch-title-22 promotion-prod-ch-name">
-                                {v.c_prod_ch_name}
-                              </div>
-                              <div className="en-cont-14 promotion-prod-en-name">
-                                {v.c_prod_en_name}
-                              </div>
-                            </div>
-                          </li>
+                            </li>
+                          </Link>
                         );
                       })}
                   </ul>
