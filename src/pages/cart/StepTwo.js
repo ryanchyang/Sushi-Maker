@@ -9,9 +9,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import StepMap from '././components/StepMap';
 import { Button, Modal } from 'react-bootstrap';
 
+import { getMemId, getCart } from '../../utils';
 // TODO: 資料庫拿資料
 import config from '../../Config';
 import { set } from 'date-fns';
+import { fi } from 'date-fns/locale';
 
 function StepTwo() {
   // 套餐光箱
@@ -26,20 +28,21 @@ function StepTwo() {
   const [getStoreId, setGetStoreId] = useState('');
 
   // console.log(inputStoreId.current);
-  console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
-  const inputEl = useRef(null);
-  console.log('12332112324', inputEl.current?.innerText);
+  // console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
+  // const inputEl = useRef(null);
+  // console.log('12332112324', inputEl.current?.innerText);
 
   // console.log(inputEl);
-  // const [storeID, setStoreID] = useState('');
 
   const [sum, setSum] = useState([]); // 畫面右側小計 狀態
   const [info, setInfo] = useState([]); // input 欄位預設值 mem_name mem_mobile
   const [itemInfo, setItemInfo] = useState({}); //交易明細 狀態
+  const [mid, setMid] = useState(0);
+  const [cid, setCid] = useState(0);
 
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 1;
-  const cart_id = 1;
+  const mem_id = 4;
+  const cart_id = 4;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -51,9 +54,14 @@ function StepTwo() {
   // -----先取得 畫面右側小計
   useEffect(() => {
     const getSum = async () => {
-      const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
+      const mem_id = getMemId();
+      const cartid = await getCart();
+      const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
+      // console.log(cartid);
+      // setCid(cartid);
+      // setMid(mem_id);
       setSum(obj.data);
     };
     getSum();
@@ -66,7 +74,7 @@ function StepTwo() {
   //-----  交易明細
   useEffect(() => {
     const getItemInfo = async () => {
-      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}`);
+      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
       setItemInfo(obj.data);
@@ -155,32 +163,33 @@ function StepTwo() {
     setFieldsError(updatedFieldError);
   };
 
+  // console.log(fields);
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
     // setInfo(info);
-    setFields(info);
-    console.log('info', info);
-    console.log('fields', fields);
+    // setFields(info);
+    // console.log('info', info);
+    // console.log('fields', fields);
     if (handleValidation()) {
       //   console.log('form submitted.');
 
       // get form data
-      const formData = new FormData(e.target);
-      const dataObj = {};
-      for (let i of formData) {
-        dataObj[i[0]] = i[1];
-      }
-      dataObj.mem_id = mem_id;
-      console.log('dataObj', { dataObj });
+      // const formData = new FormData(e.target);
+      // const dataObj = {};
+      // for (let i of formData) {
+      //   dataObj[i[0]] = i[1];
+      // }
+      // dataObj.mem_id = mem_id;
+      // console.log('dataObj', { dataObj });
 
       // fetch
-      const r = fetch(config.POST_CART_INFO, {
+      const r = fetch(config.POST_CART_INFO + `${mem_id}/${cart_id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(dataObj),
+        body: JSON.stringify(fields),
       })
         .then(r => r.json())
         .then(obj => {
@@ -196,7 +205,7 @@ function StepTwo() {
   // ----先取得 表單資料name mobile
   useEffect(() => {
     const getInfo = async () => {
-      const res = await fetch(config.GET_CART_INFO + `${mem_id}`);
+      const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
       console.log('res', res);
       const obj = await res.json();
       console.log('obj:', obj);
@@ -205,21 +214,25 @@ function StepTwo() {
     getInfo();
   }, []);
   console.log('info', info);
-
   useEffect(() => {
     console.log(info);
-    // setBuy(info.mem_name);
-    // console.log(buy);
-    // previousName.current = name
-
-    console.log(fields);
-
-    // setFields(info);
-    // console.log('info.mem_name', info[0] ? info[0].mem_id : '');
+    setFields({
+      buyer: info[0]?.mem_name,
+      buyer_mobile: info[0]?.mem_mobile,
+      picker: info[0]?.mem_name,
+      // order_notes: '',
+      // cart_store_id: '',
+    });
+    setFields({ ...fields, cart_store_id: getStoreId });
+    console.log('229', fields);
+    console.log('222', fields);
   }, [info]);
 
+  //-------------------
+
+  // console.log('!!!!!!!');
+
   console.log(fields);
-  console.log('!!!!!!!');
   return (
     <>
       <Header />
@@ -233,9 +246,9 @@ function StepTwo() {
             {/* 訂單資訊 可以摺疊*/}
             <CartDetail />
             <form
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               // onInvalid={handleValid}
-              // onChange={handleChange}
+              onChange={handleChange}
             >
               <div className="row mt-5">
                 <div className="col-md-12 col-24">
@@ -260,8 +273,8 @@ function StepTwo() {
                         // TODO: v 改 info
                         // ref={inputEl}
                         // defaultValue={info[0] ? info[0].mem_name : ''}
-                        value={info[0] ? info[0].mem_name : ''}
-                        // onChange={handleFieldChange}
+                        defaultValue={info[0]?.mem_name}
+                        onChange={handleFieldChange}
                       />
                       {/* TODO: check name??buyer */}
                       {fieldsError.buyer !== '' && (
@@ -283,10 +296,9 @@ function StepTwo() {
                         name="buyer_mobile"
                         // placeholder="09XX-XXX-XXX"
                         data-pattern="09\d{2}-?\d{3}-?\d{3}"
-                        // onChange={handleFieldChange}
+                        onChange={handleFieldChange}
                         required
-                        // ref={inputEl}
-                        defaultValue={info[0] ? info[0].mem_mobile : ''}
+                        defaultValue={info[0]?.mem_mobile}
                       />
                       {fieldsError.buyer_mobile !== '' && (
                         <div className="error">{fieldsError.buyer_mobile}</div>
@@ -301,7 +313,7 @@ function StepTwo() {
                         id="picker"
                         placeholder="取貨人"
                         defaultValue={info[0] ? info[0].mem_name : ''}
-                        // onChange={handleFieldChange}
+                        onChange={handleFieldChange}
                       />
                       <div className="form-check d-flex">
                         <input
@@ -324,7 +336,7 @@ function StepTwo() {
                         // maxRows="5"
                         id="order_notes"
                         name="order_notes"
-                        // onChange={handleFieldChange}
+                        onChange={handleFieldChange}
                       ></textarea>
                     </div>
                     <div className="my-4 mx-5">
@@ -336,6 +348,12 @@ function StepTwo() {
                         id="cart_store_id"
                         value={getStoreId}
                         // hidden
+                        onChange={e => {
+                          setFields({
+                            ...fields,
+                            cart_store_id: e.target.value,
+                          });
+                        }}
                       />
 
                       <button
@@ -378,8 +396,7 @@ function StepTwo() {
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={() => {
                                 // setGetStoreId(inputStoreId.current?.value);
-                                setGetStoreId = { setGetStoreId };
-
+                                setGetStoreId(setGetStoreId);
                                 handleClose();
                               }}
                               // type="submit"
@@ -417,6 +434,7 @@ function StepTwo() {
                   <button
                     type="submit"
                     className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    onClick={handleSubmit}
                   >
                     下一步
                   </button>

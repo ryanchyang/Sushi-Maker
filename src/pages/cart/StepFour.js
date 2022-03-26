@@ -2,7 +2,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartDetail from './components/CartDetial';
 import { Link, useHistory } from 'react-router-dom';
-
+import QRCode from 'qrcode.react';
 import React, { useState, useEffect } from 'react';
 // TODO: 資料庫拿資料
 import config from '../../Config';
@@ -10,29 +10,41 @@ import config from '../../Config';
 // TODO: A  改 LINK
 function StepFour() {
   // 回上一頁 按鈕
-  let history = useHistory();
+  // let history = useHistory();
 
   const [fincart, setFincart] = useState([]);
+
+  //QRCODE
+  const [qrC, setQrC] = useState('');
+  //
+  console.log('qrC01', qrC);
+
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 1;
+  const mem_id = 4;
+  const cart_id = 4;
 
   useEffect(() => {
     const getfincart = async () => {
-      const res = await fetch(config.GET_FIN_CART + `${mem_id}`);
+      const res = await fetch(config.GET_FIN_CART + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       console.log('obj:', obj);
       setFincart(obj.data);
+      setQrC(obj.data[0]?.order_num);
     };
     getfincart();
   }, []);
   console.log('fincart', fincart);
   useEffect(() => {
     console.log(fincart);
-    console.log(fincart[0]?.mem_name);
+    // console.log(fincart[0]?.mem_name);
+    console.log('36****', fincart[0]?.order_num);
+    // setQrC(fincart[0]?.order_num);
   }, [fincart]);
-  // console.log(fincart?.mem_name);
+  console.log(fincart[0]?.mem_name);
+  // setQrC(fincart[0]?.order_num ? fincart[0]?.order_num : '');
 
-// GET_FIN_ITEM_INFO
+  // GET_FIN_ITEM_INFO
+  console.log('qrC02', qrC);
 
   return (
     <>
@@ -58,13 +70,19 @@ function StepFour() {
                 <div className="my-5 col-24 col-md-11 d-flex justify-content-between">
                   <div>
                     <p>送達資訊</p>
-                    <p>Miles Teng </p>
-                    <p>新北市</p>
-                    <p>汐止區</p>
-                    <p>讚讚門市</p>
+                    <p>{fincart[0]?.mem_name} </p>
+                    <p>{fincart[0]?.store_city}</p>
+                    <p>{fincart[0]?.store_area}</p>
+                    <p>{fincart[0]?.store_name}門市</p>
                   </div>
                   <div className="qrcode">
-                    <img src="/img/cart/qrcode.svg" alt=""></img>
+                    <QRCode
+                      id="qrc"
+                      value={qrC} //value引數為生成二維碼的連結 我這裡是由後端返回
+                      size={150} //二維碼的寬高尺寸
+                      fgColor="#000000" //二維碼的顏色
+                    />
+                    {/* <img src="/img/cart/qrcode.svg" alt=""></img> */}
                   </div>
                 </div>
 
@@ -112,7 +130,7 @@ function StepFour() {
               </div>
             </div>
             {/* TODO: 商品詳細清單 */}
-            <CartDetail />
+            {/* <CartDetail /> */}
           </div>
           <Footer />
         </div>

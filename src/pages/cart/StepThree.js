@@ -25,7 +25,9 @@ function StepThree() {
   // 畫面右側小計
   const [sum, setSum] = useState([]);
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 1;
+  const mem_id = 4;
+  const cart_id = 4;
+
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
   // const { id } = useParams();
@@ -34,7 +36,7 @@ function StepThree() {
   // 右邊sum 用
   useEffect(() => {
     const getSum = async () => {
-      const res = await fetch(config.GET_CART_SUM + `${mem_id}`);
+      const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       console.log('obj:', obj);
       setSum(obj.data);
@@ -52,7 +54,7 @@ function StepThree() {
     e.preventDefault();
 
     // fetch
-    const r = fetch(config.POST_PAY_INFO, {
+    const r = fetch(config.POST_PAY_INFO + `${mem_id}/${cart_id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

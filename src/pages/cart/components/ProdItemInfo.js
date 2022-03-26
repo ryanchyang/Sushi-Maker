@@ -30,7 +30,7 @@ function ProdItemInfo(props) {
   // console.log('mem_id:', mem_id);
   useEffect(() => {
     const getItemInfo = async () => {
-      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}`);
+      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
       setItemInfo(obj.data);
