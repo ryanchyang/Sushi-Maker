@@ -16,8 +16,7 @@
     .detail-content-ondetail{
       margin: 0 20% 0 0;
       display: flex;
-      width: 90%;
-      margin-bottom: 1%; 
+      width: 90%;       
       transition: 1.5s;          
   }
 
@@ -38,7 +37,7 @@
         padding: 10%;
     }
     .prod-img-box-img-ondetail{      
-      width: 45%;    
+      width: 35%;    
       height: auto;
       object-fit: cover;
       padding: 8%;
@@ -67,7 +66,7 @@
     .material-tag-group-ondetail{
       display: block;  
       position:absolute;
-      top: 25%;
+      top: 17%;
       right: 10%;
       width: 15%;
     }
@@ -211,7 +210,7 @@
       .prod-detail-content-ondetail{        
         display: block;  
         width: 90%;
-        margin: 0 auto;
+        margin: -2% auto;
       }
       .select-add-cart{        
         display: flex;
@@ -287,6 +286,7 @@
       }
       .material-list{
         width: 45%;
+        padding-top: 5%;
       }
       .material-name{
         display: flex;
