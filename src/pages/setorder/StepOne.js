@@ -3,11 +3,6 @@ import { Link, useHistory } from 'react-router-dom';
 import './step.scss';
 import './../../styles/global.scss';
 
-//style component
-// const LoginBody = styled.body`
-//   background: #212121;
-// `;
-
 function StepOne() {
   return (
     <>

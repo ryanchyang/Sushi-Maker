@@ -98,20 +98,6 @@ function StepFour() {
                           {list.title}
                         </button>
                       ))}
-
-                      {/* {lists.map(list => (
-                      <button
-                        className="set-question-btn ch-cont-14"
-                        key={list.id}
-                        // onClick={() => handleColor(list)}
-                        onClick={handleColorMultiple}
-                        style={
-                          list.id === selected3 ? answerClicked : answerNoClick
-                        }
-                      >
-                        {list.title}
-                      </button>
-                    ))} */}
                     </div>
                     <div className="ch-cont-16"></div>
                     <div className="step-reset-enter-btn-all">
@@ -127,10 +113,7 @@ function StepFour() {
                           state: { ...question2, selected3 },
                         }}
                       >
-                        <button
-                          className="ch-title-22 step-reset-btn-red"
-                          // onClick={setCheck}
-                        >
+                        <button className="ch-title-22 step-reset-btn-red">
                           確定
                         </button>
                       </Link>

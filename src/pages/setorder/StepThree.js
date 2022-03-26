@@ -52,7 +52,6 @@ function StepThree() {
                           key={list.id}
                           onClick={() => {
                             handleColor(list);
-                            // lastMemory();
                           }}
                           style={
                             list.id === selected2
@@ -63,10 +62,6 @@ function StepThree() {
                           {list.title}
                         </button>
                       ))}
-                      {/* <div className="set-question-btn ch-cont-14">普通</div>
-                    <div className="set-question-btn ch-cont-14">小孩</div>
-                    <div className="set-question-btn ch-cont-14">年長</div>
-                    <div className="set-question-btn ch-cont-14">精準</div> */}
                     </div>
                     <div className="ch-cont-16"></div>
                     <div className="step-reset-enter-btn-all">
@@ -79,9 +74,8 @@ function StepThree() {
                       <Link
                         to={{
                           pathname: '/setorder/stepfour',
-                          // state: { selected2, x },
+                          //question1展開
                           state: { ...question1, selected2 },
-                          //x展開
                         }}
                       >
                         <button className="ch-title-22 step-reset-btn-red">

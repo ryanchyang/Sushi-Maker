@@ -51,32 +51,10 @@ function StepTwo(props) {
                         {list.title}
                       </button>
                     ))}
-
-                    {/* <button
-                      className="set-question-btn ch-cont-14"
-                      onClick={toggle}
-                      style={choose ? answerClicked : answerNoClick}
-                    >
-                      肉多多
-                    </button>
-                    <button
-                      className="set-question-btn ch-cont-14"
-                      onClick={toggle}
-                      style={choose ? answerClicked : answerNoClick}
-                    >
-                      菜多多
-                    </button> */}
                   </div>
                   <div className="ch-cont-16"></div>
                   <div className="step-reset-enter-btn-all">
-                    {/* <Link to="./stepone"> */}
-                    <button
-                      className="ch-title-22 step-reset-btn"
-                      // onClick={setNumber()}
-                    >
-                      返回
-                    </button>
-                    {/* </Link> */}
+                    <button className="ch-title-22 step-reset-btn">返回</button>
 
                     <Link
                       to={{
