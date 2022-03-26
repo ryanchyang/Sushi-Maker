@@ -28,11 +28,12 @@ function StepTwo() {
   const [getStoreId, setGetStoreId] = useState('');
 
   // console.log(inputStoreId.current);
-  // console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
-  // const inputEl = useRef(null);
-  // console.log('12332112324', inputEl.current?.innerText);
+  console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
+  const inputEl = useRef(null);
+  console.log('12332112324', inputEl.current?.innerText);
 
   // console.log(inputEl);
+  // const [storeID, setStoreID] = useState('');
 
   const [sum, setSum] = useState([]); // 畫面右側小計 狀態
   const [info, setInfo] = useState([]); // input 欄位預設值 mem_name mem_mobile
@@ -41,8 +42,8 @@ function StepTwo() {
   const [cid, setCid] = useState(0);
 
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 4;
-  const cart_id = 4;
+  const mem_id = 7;
+  const cart_id = 7;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -54,21 +55,19 @@ function StepTwo() {
   // -----先取得 畫面右側小計
   useEffect(() => {
     const getSum = async () => {
-      const mem_id = getMemId();
-      const cartid = await getCart();
+      // TODO: 共同曲mem_id cart_id 的地方
+      // const mem_id = getMemId();
+      // const cartid = await getCart();
       const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
-      // console.log(cartid);
-      // setCid(cartid);
-      // setMid(mem_id);
       setSum(obj.data);
     };
     getSum();
   }, []);
   // console.log('sum', sum);
   useEffect(() => {
-    console.log(sum);
+    // console.log(sum);
   }, [sum]);
 
   //-----  交易明細
@@ -81,9 +80,9 @@ function StepTwo() {
     };
     getItemInfo();
   }, []);
-  console.log('itemInfo', itemInfo);
+  // console.log('itemInfo', itemInfo);
   useEffect(() => {
-    console.log(itemInfo);
+    // console.log(itemInfo);
   }, [itemInfo]);
 
   // ------
@@ -97,11 +96,6 @@ function StepTwo() {
     cart_store_id: '',
   });
 
-  // 拿直塞
-  // const [buy, setBuy] = useState(info?.mem_name);
-  // const [mob, setMob] = useState('');
-  // setFields(buy);
-  // console.log('9666666666', buy);
   // Error Message State
   const [fieldsError, setFieldsError] = useState({
     buyer: '',
@@ -117,8 +111,6 @@ function StepTwo() {
       [e.target.name]: e.target.value,
     };
     setFields(newData);
-
-    // setInfo(info);
   };
 
   // 驗證並處理欄位錯誤訊息
@@ -163,14 +155,13 @@ function StepTwo() {
     setFieldsError(updatedFieldError);
   };
 
-  // console.log(fields);
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
     // setInfo(info);
-    // setFields(info);
-    // console.log('info', info);
-    // console.log('fields', fields);
+    setFields(info);
+    console.log('info', info);
+    console.log('fields', fields);
     if (handleValidation()) {
       //   console.log('form submitted.');
 
@@ -206,7 +197,7 @@ function StepTwo() {
   useEffect(() => {
     const getInfo = async () => {
       const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
-      console.log('res', res);
+      // console.log('res', res);
       const obj = await res.json();
       console.log('obj:', obj);
       setInfo(obj.result);
@@ -214,25 +205,23 @@ function StepTwo() {
     getInfo();
   }, []);
   console.log('info', info);
+
   useEffect(() => {
     console.log(info);
     setFields({
+      ...fields,
       buyer: info[0]?.mem_name,
       buyer_mobile: info[0]?.mem_mobile,
       picker: info[0]?.mem_name,
       // order_notes: '',
-      // cart_store_id: '',
+      cart_store_id: getStoreId,
     });
-    setFields({ ...fields, cart_store_id: getStoreId });
-    console.log('229', fields);
+    // setFields({ ...fields, cart_store_id: getStoreId });
     console.log('222', fields);
   }, [info]);
 
-  //-------------------
-
-  // console.log('!!!!!!!');
-
   console.log(fields);
+
   return (
     <>
       <Header />
@@ -273,10 +262,10 @@ function StepTwo() {
                         // TODO: v 改 info
                         // ref={inputEl}
                         // defaultValue={info[0] ? info[0].mem_name : ''}
-                        defaultValue={info[0]?.mem_name}
+                        defaultValue={info[0] ? info[0].mem_name : ''}
                         onChange={handleFieldChange}
                       />
-                      {/* TODO: check name??buyer */}
+
                       {fieldsError.buyer !== '' && (
                         <div className="error">{fieldsError.buyer}</div>
                       )}
@@ -298,7 +287,8 @@ function StepTwo() {
                         data-pattern="09\d{2}-?\d{3}-?\d{3}"
                         onChange={handleFieldChange}
                         required
-                        defaultValue={info[0]?.mem_mobile}
+                        // ref={inputEl}
+                        defaultValue={info[0] ? info[0].mem_mobile : ''}
                       />
                       {fieldsError.buyer_mobile !== '' && (
                         <div className="error">{fieldsError.buyer_mobile}</div>
@@ -348,12 +338,12 @@ function StepTwo() {
                         id="cart_store_id"
                         value={getStoreId}
                         // hidden
-                        onChange={e => {
-                          setFields({
-                            ...fields,
-                            cart_store_id: e.target.value,
-                          });
-                        }}
+                        // onChange={e => {
+                        //   setFields({
+                        //     ...fields,
+                        //     cart_store_id: e.target.value,
+                        //   });
+                        // }}
                       />
 
                       <button
@@ -367,7 +357,7 @@ function StepTwo() {
                         <Modal
                           show={map}
                           onHide={handleClose}
-                          // setGetStoreId={setGetStoreId}
+                          setGetStoreId={setGetStoreId}
                         >
                           <Modal.Header closeButton>
                             <Modal.Title className="en-cont-30 m-3">
@@ -396,7 +386,9 @@ function StepTwo() {
                               variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
                               onClick={() => {
                                 // setGetStoreId(inputStoreId.current?.value);
-                                setGetStoreId(setGetStoreId);
+                                // { TODO: 門市換了不會回寫}
+                                // setGetStoreId = { setGetStoreId };
+
                                 handleClose();
                               }}
                               // type="submit"
