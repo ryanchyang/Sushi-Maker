@@ -27,7 +27,7 @@ const config = {
   GET_MTLS: `${host}/customize/api/getmtls`,
 
   // 套餐
-
+  GET_SET_COMPARE: `${host}/api/setorder/answer`,
   // 分享牆
   GET_SHARE_PRODS: `${host}/api/share/`,
   GET_PROD_DETAILS: `${host}/api/share/items/`,
