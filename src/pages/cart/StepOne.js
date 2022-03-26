@@ -41,8 +41,6 @@ function StepOne(props) {
 
   useEffect(() => {
     const getList = async () => {
-      //TODO:先寫死記得改掉
-      // const memid = 1;
       const memid = localStorage.getItem('mem_id');
       if (memid !== null) {
         //判斷會員有無登入
@@ -90,6 +88,28 @@ function StepOne(props) {
     setPrintTime(time);
     setAmount(total);
   }, [list]);
+
+  //每當有商品被刪除時，就來判斷購物車是否還有商品，都沒有了就導頁
+  useEffect(() => {
+    const getList = async () => {
+      const memid = localStorage.getItem('mem_id');
+      if (memid !== null) {
+        //判斷會員有無登入
+        const res = await fetch(config.GET_CART_ORDER + `${memid}`);
+        const obj = await res.json();
+        if (obj.success) {
+          //刪除商品成功後購物車仍有商品，則不做任何事
+        } else {
+          //購物車無商品則導頁
+          history.push('/cart/cartlist');
+        }
+      } else {
+        //會員未登入則導頁
+        history.push('/cart/cartlist');
+      }
+    };
+    getList();
+  }, [deleteProd]);
 
   // useEffect(() => {
   //   //console.log(list);

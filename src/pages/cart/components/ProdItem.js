@@ -1,6 +1,7 @@
 // cart/ProdItem.js stepone 可編輯的item
 import React, { useState, useRef, useEffect } from 'react';
-
+import config from '../../../Config';
+import { getCart } from '../../../utils';
 import { Button, Modal } from 'react-bootstrap';
 
 function ProdItem(props) {
@@ -28,38 +29,38 @@ function ProdItem(props) {
   // console.log(countcm);
 
   useEffect(() => {
-    if(initController.current <= 3){
+    if (initController.current <= 3) {
       console.log(props);
       setCountcs(props.cs);
       setCountcm(props.cm);
       setCountset(props.set);
       initController.current += 1;
-    }    
+    }
   }, [props]);
 
   // TODO: ASK 新德救命!!!!
   useEffect(() => {
-    if(initController.current > 3){
-      const newData = {...props.list};
+    if (initController.current > 3) {
+      const newData = { ...props.list };
       newData.cs = countcs;
       props.setList(newData);
-    }    
+    }
   }, [countcs]);
 
   useEffect(() => {
-    if(initController.current > 3){
-      const newData = {...props.list};
+    if (initController.current > 3) {
+      const newData = { ...props.list };
       newData.cm = countcm;
       props.setList(newData);
-    }    
+    }
   }, [countcm]);
 
   useEffect(() => {
-    if(initController.current > 3){
-      const newData = {...props.list};
+    if (initController.current > 3) {
+      const newData = { ...props.list };
       newData.set = countset;
       props.setList(newData);
-    }    
+    }
   }, [countset]);
 
   // useEffect(() => {}, [countcs, countcm, countset]);
@@ -215,42 +216,85 @@ function ProdItem(props) {
   };
 
   //刪除商品
-  const deleteProd = (pid, category) => {
-    switch(category) {
+  const deleteProd = async (pid, category) => {
+    const mid = localStorage.getItem('mem_id');
+    const cartInfo = await getCart();
+    const cartid = cartInfo.cartid;
+
+    switch (category) {
       case 'set':
         let newSetData = [...countset];
-        newSetData = newSetData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        newSetData = newSetData.filter(d => d.product_id !== pid); //pid相等的是要刪掉的，所以要回傳不相等的
         setCountset(newSetData);
 
         let newSetArr = [...props.deleteProd];
-        newSetArr.push({pid: pid, category: category});
+        newSetArr.push({ pid: pid, category: category });
         props.setDeleteProd(newSetArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
         break;
 
       case 'cs':
         let newCsData = [...countcs];
-        newCsData = newCsData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        newCsData = newCsData.filter(d => d.product_id !== pid); //pid相等的是要刪掉的，所以要回傳不相等的
         setCountcs(newCsData);
 
         let newCsArr = [...props.deleteProd];
-        newCsArr.push({pid: pid, category: category});
+        newCsArr.push({ pid: pid, category: category });
         props.setDeleteProd(newCsArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
         break;
 
       case 'cm':
         let newCmData = [...countcm];
-        newCmData = newCmData.filter(d => d.product_id !== pid);  //pid相等的是要刪掉的，所以要回傳不相等的
+        newCmData = newCmData.filter(d => d.product_id !== pid); //pid相等的是要刪掉的，所以要回傳不相等的
         setCountcm(newCmData);
 
         let newCmArr = [...props.deleteProd];
-        newCmArr.push({pid: pid, category: category});
+        newCmArr.push({ pid: pid, category: category });
         props.setDeleteProd(newCmArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
         break;
 
       default:
         break;
     }
-  }
+  };
 
   // 套餐光箱
   const [show, setShow] = useState(false);
@@ -333,7 +377,12 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon" onClick={() => {deleteProd(v.product_id, 'set')}}>
+                  <div
+                    className="prod-item-icon"
+                    onClick={() => {
+                      deleteProd(v.product_id, 'set');
+                    }}
+                  >
                     <img src="/img/cart/icon-trash.svg" alt="" />
                   </div>
 
@@ -467,7 +516,12 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon" onClick={() => {deleteProd(v.product_id, 'cs')}}>
+                  <div
+                    className="prod-item-icon"
+                    onClick={() => {
+                      deleteProd(v.product_id, 'cs');
+                    }}
+                  >
                     <img src="/img/cart/icon-trash.svg" alt="刪除" />
                   </div>
 
@@ -561,7 +615,12 @@ function ProdItem(props) {
                   ${v.orders_value * v.orders_amount}
                 </div>
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                  <div className="prod-item-icon"  onClick={() => {deleteProd(v.product_id, 'cm')}}>
+                  <div
+                    className="prod-item-icon"
+                    onClick={() => {
+                      deleteProd(v.product_id, 'cm');
+                    }}
+                  >
                     <img src="/img/cart/icon-trash.svg" alt="刪除" />
                   </div>
 
