@@ -2,6 +2,7 @@ import styles from '../Share.module.scss';
 
 import { ReactComponent as Plus } from '../../../imgs/plus.svg';
 import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
+import { useEffect } from 'react';
 
 const EditForm = props => {
   const {
@@ -11,6 +12,10 @@ const EditForm = props => {
     foundTags,
     setTagsInput,
     orderName,
+    errorState,
+    setErrorState,
+    files,
+    formIsValid,
   } = props;
 
   const tagsAreaHandler = () => {
@@ -92,6 +97,35 @@ const EditForm = props => {
     }
   };
 
+  const formChangeHandler = e => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    if (!formIsValid) {
+      const errorOutput = {
+        title: '',
+        content: '',
+        files: '',
+      };
+
+      if (!formState.title) {
+        errorOutput.title = '請為貼文填寫標題';
+      }
+      if (!formState.content) {
+        errorOutput.content = '請填寫分享內容';
+      }
+      if (files.length === 0) {
+        errorOutput.files = '請至少分享一張照片';
+      }
+
+      setErrorState(errorOutput);
+    }
+  }, [formState, files, formIsValid]);
+
   return (
     <>
       <div className={`mb-4 form-group`}>
@@ -104,14 +138,9 @@ const EditForm = props => {
           name="title"
           id="title"
           placeholder={orderName}
-          onChange={e =>
-            setFormState({
-              ...formState,
-              [e.target.name]: e.target.value,
-            })
-          }
+          onChange={e => formChangeHandler(e)}
         />
-        <div className="text-primary">必填</div>
+        <div className="text-primary my-2">{errorState.title}</div>
       </div>
 
       <div className="form-group">
@@ -123,14 +152,9 @@ const EditForm = props => {
           name="content"
           id="content"
           rows={5}
-          onChange={e =>
-            setFormState({
-              ...formState,
-              [e.target.name]: e.target.value,
-            })
-          }
+          onChange={e => formChangeHandler(e)}
         />
-        <div className="text-primary">必填</div>
+        <div className="text-primary my-2">{errorState.content}</div>
       </div>
       <div className={`${styles['tag-form']} form-group mb-5`}>
         <label htmlFor="tag" className="ch-cont-14">

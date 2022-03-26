@@ -5,7 +5,7 @@ import { ReactComponent as Plus } from '../../../imgs/plus.svg';
 import { ReactComponent as DeleteSm } from '../../../imgs/del.svg';
 
 const EditImgPreview = props => {
-  const { files, setFiles } = props;
+  const { files, setFiles, errorState } = props;
   const [dragId, setDragId] = useState('');
   const fileInputRef = useRef(null);
 
@@ -89,7 +89,7 @@ const EditImgPreview = props => {
             }}
           >
             <Plus />
-            <div className="text-primary">必填</div>
+            <div className="text-primary">{errorState.files}</div>
           </div>
         </div>
       </div>

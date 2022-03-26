@@ -17,9 +17,17 @@ const initFormState = {
   tags: [],
 };
 
+const initErrorState = {
+  title: '',
+  content: '',
+  files: '',
+};
+
 function ShareEdit() {
   const [files, setFiles] = useState([]);
   const [formState, setFormState] = useState(initFormState);
+  const [errorState, setErrorState] = useState(initErrorState);
+  const [formIsValid, setFormIsValid] = useState(true);
   const [tagsInput, setTagsInput] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
 
@@ -48,8 +56,18 @@ function ShareEdit() {
     }
   };
 
-  const submitUpload = async e => {
+  const checkFormValidity = e => {
     e.preventDefault();
+
+    if (!formState.title || !formState.content || files.length === 0) {
+      setFormIsValid(false);
+      return;
+    }
+
+    submitUpload();
+  };
+
+  const submitUpload = async () => {
     try {
       if (!orderId) throw new Error('Unsuccessful upload !');
 
@@ -70,8 +88,7 @@ function ShareEdit() {
         body: fd,
       });
       if (!response.ok) throw new Error('Unsuccessful upload !');
-      const itemsObj = await response.json();
-      return itemsObj;
+      handleShow();
     } catch (err) {
       console.error(err.message);
     }
@@ -150,7 +167,11 @@ function ShareEdit() {
                   </div>
                   <div className="d-flex">
                     {/* Image preview area */}
-                    <EditImgPreview files={files} setFiles={setFiles} />
+                    <EditImgPreview
+                      files={files}
+                      setFiles={setFiles}
+                      errorState={errorState}
+                    />
                     {/* form area */}
                     <div className={`col-md-12 ${styles['form-min-height']}`}>
                       <form>
@@ -163,6 +184,10 @@ function ShareEdit() {
                           foundTags={foundTags}
                           setTagsInput={setTagsInput}
                           orderName={orderName}
+                          errorState={errorState}
+                          setErrorState={setErrorState}
+                          files={files}
+                          formIsValid={formIsValid}
                         />
                         <div className="d-flex justify-content-end">
                           <button
@@ -178,8 +203,7 @@ function ShareEdit() {
                           <button
                             className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
                             onClick={e => {
-                              submitUpload(e);
-                              handleShow();
+                              checkFormValidity(e);
                             }}
                           >
                             分享
