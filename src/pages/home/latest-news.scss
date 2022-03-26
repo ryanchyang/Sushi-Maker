@@ -69,6 +69,18 @@
     background-color: $light-red;
     margin-right: 1rem;
   }
+  // 查無資料時的畫面
+  .search-btn img {
+    transform: translateY(-3px);
+  }
+  .no-result {
+    text-align: center;
+    padding-top: 17%;
+  }
+  .no-result span {
+    padding-left: 1%;
+    line-height: 3rem;
+  }
   // 最新消息
   .lastest-news-nav {
     margin-bottom: 3rem;
