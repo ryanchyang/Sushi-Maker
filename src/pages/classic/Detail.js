@@ -104,7 +104,6 @@ function Detail() {
       setRecommendeds(prodObj.rows[2]);
       newList.push(prodObj.rows[1][0].mtl_id);
       setMtlsForChart(newList);
-      // console.log(prodObj.rows[0]);
 
       //取得商品是否被收藏
       const likeRes = await fetch(config.GET_LIKE, {
@@ -337,7 +336,7 @@ function Detail() {
               <div className="detail-content-top">
                 <div className="nutrition-img">
                   {/* <img src={require('./../../imgs/temp/analyze.png')} alt="" /> */}
-                  {ChartForCs(mtlsForChart)}
+                  <ChartForCs mtls={mtlsForChart} />
                 </div>
                 <div className="material-list">
                   <div className="material-name">
