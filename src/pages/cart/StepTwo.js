@@ -42,8 +42,8 @@ function StepTwo() {
   const [cid, setCid] = useState(0);
 
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 7;
-  const cart_id = 7;
+  const mem_id = 8;
+  const cart_id = 8;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -187,6 +187,10 @@ function StepTwo() {
           console.log(obj);
           if (obj.success) {
             console.log(obj.success);
+            // 有成功更新頁面才轉向
+            history.push('/cart/stepthree');
+          } else {
+            alert('資料錯誤請重新輸入！');
           }
         });
     } else {
@@ -338,12 +342,12 @@ function StepTwo() {
                         id="cart_store_id"
                         value={getStoreId}
                         // hidden
-                        // onChange={e => {
-                        //   setFields({
-                        //     ...fields,
-                        //     cart_store_id: e.target.value,
-                        //   });
-                        // }}
+                        onChange={e => {
+                          setFields({
+                            ...fields,
+                            cart_store_id: e.target.value,
+                          });
+                        }}
                       />
 
                       <button

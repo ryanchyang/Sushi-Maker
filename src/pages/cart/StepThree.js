@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 
 // TODO: 資料庫拿資料
 import config from '../../Config';
-// TODO: A  改 LINK
+
 function StepThree() {
   // 回上一頁 按鈕
   let history = useHistory();
@@ -66,6 +66,10 @@ function StepThree() {
         console.log(obj);
         if (obj.success) {
           console.log(obj.success);
+          // 有成功更新頁面才轉向
+          history.push('/cart/stepfour');
+        } else {
+          alert('資料錯誤請重新輸入！');
         }
       });
   };
@@ -105,17 +109,17 @@ function StepThree() {
                 >
                   上一步
                 </button>
-                <Link to="./StepFour">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    //onClick={document.querySelector('.creditFor').submit()}
-                    //onClick={document.querySelector('.creditBtn').click()}
-                    onClick={handleSubmit}
-                  >
-                    確認付款
-                  </button>
-                </Link>
+                {/* <Link to="./StepFour"> */}
+                <button
+                  type="button"
+                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                  //onClick={document.querySelector('.creditFor').submit()}
+                  //onClick={document.querySelector('.creditBtn').click()}
+                  onClick={handleSubmit}
+                >
+                  確認付款
+                </button>
+                {/* </Link> */}
               </div>
             </div>
           </div>
