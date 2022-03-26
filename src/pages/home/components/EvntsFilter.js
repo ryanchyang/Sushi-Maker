@@ -1,26 +1,23 @@
 import { Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import './fitler.scss';
-function EvntsFilter() {
+
+function EvntsFilter(props) {
+  const {
+    evntsData,
+    setEvntsData,
+    setIsOpenFilter,
+    evntsDateFilter,
+    setEvntsDateFilter,
+    evntsTagFilter,
+    setEvntsTagFilter,
+    evntsStatusFilter,
+    setEvntsStatusFilter,
+    fetchEvntsData,
+  } = props;
   const [dateOpen, setDateOpen] = useState(false);
   const [cateOpen, setCateOpen] = useState(false);
   const [statusOpen, setStatusOpen] = useState(false);
-
-  // 依活動日期搜尋([日期一, 日期二])
-  const [evntsDateFilter, setEvntsDateFilter] = useState(['', '']);
-  // 依活動標籤搜尋
-  const [evntsTagFilter, setEvntsTagFilter] = useState([
-    { tag: '講座活動', value: false },
-    { tag: '親子活動', value: false },
-    { tag: '品牌推廣', value: false },
-  ]);
-  // 依活動狀態搜尋
-  const [evntsStatusFilter, setEvntsStatusFilter] = useState([
-    { tag: '熱烈報名中', value: false },
-    { tag: '即將額滿', value: false },
-    { tag: '報名額滿', value: false },
-    { tag: '報名截止', value: false },
-  ]);
 
   // 將日期輸入結果設定進狀態
   const dateFilterHandler = e => {
@@ -61,12 +58,84 @@ function EvntsFilter() {
     setEvntsStatusFilter(newStatusData);
   };
 
+  // 提交篩選條件
+  const applyFilter = e => {
+    e.preventDefault();
+    // 日期篩選
+    let evntsFilterResult = [...evntsData];
+    console.log('evntsFilterResult', evntsFilterResult);
+
+    // 判斷起始日有沒有填寫，沒有的話起始日為操作日當天
+    const startDate =
+      evntsDateFilter[0] === '' ? new Date() : new Date(evntsDateFilter[0]);
+    // 判斷結束日有沒有填寫，沒有的話結束日為2022.12.31
+    const endDate =
+      evntsDateFilter[1] === ''
+        ? new Date(2022, 11, 31)
+        : new Date(evntsDateFilter[1]);
+
+    evntsFilterResult = evntsFilterResult.filter(element => {
+      // console.log('element.evnts_date:', element.evnts_date);
+      // console.log(
+      //   new Date(element.evnts_date) >= startDate &&
+      //     new Date(element.evnts_date) <= endDate
+      // );
+      return (
+        new Date(element.evnts_date) >= startDate &&
+        new Date(element.evnts_date) <= endDate
+      );
+    });
+    console.log('evntsFilterResult', evntsFilterResult);
+
+    // 類別標籤篩選
+    let tagList = [...evntsTagFilter];
+    const evntsTag = tagList.filter(tag => tag.value).map(tag => tag.tag);
+    console.log('evntsTag', evntsTag);
+
+    if (evntsTag.length > 0) {
+      evntsFilterResult = evntsFilterResult.filter(element => {
+        return evntsTag.includes(element.evnts_cate);
+      });
+    }
+    console.log('evntsFilterResult', evntsFilterResult);
+
+    // 狀態標籤篩選
+    let statusList = [...evntsStatusFilter];
+    const evntsStatus = statusList
+      .filter(status => status.value)
+      .map(status => status.tag);
+    console.log('evntsStatus', evntsStatus);
+
+    if (evntsStatus.length > 0) {
+      evntsFilterResult = evntsFilterResult.filter(element => {
+        return evntsStatus.includes(element.status);
+      });
+    }
+    console.log('evntsFilterResult', evntsFilterResult);
+    setEvntsData(evntsFilterResult);
+    setIsOpenFilter(false);
+  };
+
+  //重設篩選條件
+  const cleanFilter = e => {
+    const resetTag = evntsTagFilter.map(tag => {
+      return { ...tag, value: false };
+    });
+    const resetStatus = evntsStatusFilter.map(status => {
+      return { ...status, value: false };
+    });
+    setEvntsDateFilter(['', '']);
+    setEvntsTagFilter(resetTag);
+    setEvntsStatusFilter(resetStatus);
+    setEvntsData(fetchEvntsData);
+  };
+
   return (
     <>
       {/* clean or cancel filter */}
       <div className="filter-area">
         <div className="filter-top">
-          <div className="clean-filter ch-cont-16">
+          <div className="clean-filter ch-cont-16" onClick={cleanFilter}>
             <img
               src={`http://localhost:3500/img/home/trashcan.svg`}
               alt="trash"
@@ -287,7 +356,10 @@ function EvntsFilter() {
           </div>
 
           <div className="send-filter-btn-box">
-            <button className="btn-sm btn-primary primeal-btn-sm">
+            <button
+              className="btn-sm btn-primary primeal-btn-sm"
+              onClick={applyFilter}
+            >
               送出條件
             </button>
           </div>

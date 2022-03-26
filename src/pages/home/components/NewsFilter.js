@@ -1,22 +1,20 @@
 import { Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import './fitler.scss';
-import { Select } from '@mui/material';
-import { element } from 'prop-types';
+
 function NewsFilter(props) {
-  const { newsData, setNewsData, setIsOpenFilter } = props;
+  const {
+    newsData,
+    setNewsData,
+    setIsOpenFilter,
+    newsDateFilter,
+    setNewsDateFilter,
+    newsTagFilter,
+    setNewsTagFilter,
+    fetchNewsData,
+  } = props;
   const [dateOpen, setDateOpen] = useState(false);
   const [cateOpen, setCateOpen] = useState(false);
-
-  // 依新聞日期搜尋([起始日, 結束日])
-  const [newsDateFilter, setNewsDateFilter] = useState(['', '']);
-  // 依新聞標籤搜尋
-  const [newsTagFilter, setNewsTagFilter] = useState([
-    { tag: '新品上市', value: false },
-    { tag: '快閃特價', value: false },
-    { tag: '季節特賣', value: false },
-    { tag: '會員公告', value: false },
-  ]);
 
   // 將日期輸入結果設定進狀態
   const dateFilterHandler = e => {
@@ -46,39 +44,37 @@ function NewsFilter(props) {
     setNewsTagFilter(newTagData);
   };
 
-  // [
-  //   {
-  //     news_id: 1,
-  //     c_prod_id: 23,
-  //     news_title: '春天來了! 羊羹櫻花凍壽司新上市',
-  //     news_cate: '新品上市',
-  //     news_start_date: '2022-03-01',
-  //     news_end_date: '2022-04-30',
-  //     news_detail: '充滿粉紅氣息的春天終於來了! PRIMEAL推出粉色的羊羹櫻花凍口味壽司，清爽口感搭配淡淡的櫻花香，給您不一樣的2022春天! ',
-  //     news_img_path: '/img/home/news/new-cherry-blossom.png',
-  //     news_prod_url: 'null'
-  //   }
-  // ]
-
+  // 提交篩選條件
   const applyFilter = e => {
     e.preventDefault();
     // 日期篩選
     let newsFilterResult = [...newsData];
+    console.log('newsFilterResult', newsFilterResult);
+
     // 判斷起始日有沒有填寫，沒有的話起始日為操作日當天
-    const startDate = newsDateFilter[0] === '' ? new Date() : newsDateFilter[0];
+    const startDate =
+      newsDateFilter[0] === '' ? new Date() : new Date(newsDateFilter[0]);
     // 判斷結束日有沒有填寫，沒有的話結束日為2022.12.31
     const endDate =
-      newsDateFilter[1] === '' ? new Date(2022, 11, 31) : newsDateFilter[1];
+      newsDateFilter[1] === ''
+        ? new Date(2022, 11, 31)
+        : new Date(newsDateFilter[1]);
     console.log('startDate:', startDate);
     console.log('endDate:', endDate);
     newsFilterResult = newsFilterResult.filter(element => {
-      console.log(element.news_start_date);
-      console.log(element.news_end_date);
+      console.log('element.news_start_date:', element.news_start_date);
+      console.log('element.news_end_date:', element.news_end_date);
       console.log(
-        element.news_start_date <= startDate && element.news_end_date >= endDate
+        (new Date(element.news_start_date) <= startDate &&
+          new Date(element.news_end_date) >= startDate) ||
+          (new Date(element.news_start_date) >= startDate &&
+            new Date(element.news_start_date) <= endDate)
       );
       return (
-        element.news_start_date <= startDate && element.news_end_date >= endDate
+        (new Date(element.news_start_date) <= startDate &&
+          new Date(element.news_end_date) >= startDate) ||
+        (new Date(element.news_start_date) >= startDate &&
+          new Date(element.news_start_date) <= endDate)
       );
     });
     console.log('newsFilterResult', newsFilterResult);
@@ -91,17 +87,24 @@ function NewsFilter(props) {
 
     if (newsTag.length > 0) {
       newsFilterResult = newsFilterResult.filter(element => {
-        // console.log(newsTag.includes(element.news_cate));
         return newsTag.includes(element.news_cate);
       });
     }
     console.log('newsFilterResult:', newsFilterResult);
     setNewsData(newsFilterResult);
-    // setIsOpenFilter(false);
+
+    setIsOpenFilter(false);
   };
 
   //重設篩選條件
-  const cleanFilter = e => {};
+  const cleanFilter = e => {
+    const resetTag = newsTagFilter.map(tag => {
+      return { ...tag, value: false };
+    });
+    setNewsDateFilter(['', '']);
+    setNewsTagFilter(resetTag);
+    setNewsData(fetchNewsData);
+  };
 
   return (
     <>

@@ -22,18 +22,49 @@ function LatestNews(props) {
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   // 新聞消息資料
   const [newsData, setNewsData] = useState([]);
+  const [fetchNewsData, setFetchNewsData] = useState([]);
   // 活動消息資料
   const [evntsData, setEvntsData] = useState([]);
+  const [fetchEvntsData, setFetchEvntsData] = useState([]);
   // 搜尋框開關
   const [search, setSearch] = useState(false);
   // 搜尋文字
   const [searchText, setSearchText] = useState('');
+
+  // NewsFilter的條件狀態
+  // 依新聞日期搜尋([起始日, 結束日])
+  const [newsDateFilter, setNewsDateFilter] = useState(['', '']);
+  // 依新聞標籤搜尋
+  const [newsTagFilter, setNewsTagFilter] = useState([
+    { tag: '新品上市', value: false },
+    { tag: '快閃特價', value: false },
+    { tag: '季節特賣', value: false },
+    { tag: '會員公告', value: false },
+  ]);
+
+  // EvntsFilter的條件狀態
+  // 依活動日期搜尋([起始日, 結束日])
+  const [evntsDateFilter, setEvntsDateFilter] = useState(['', '']);
+  // 依活動標籤搜尋
+  const [evntsTagFilter, setEvntsTagFilter] = useState([
+    { tag: '講座活動', value: false },
+    { tag: '親子活動', value: false },
+    { tag: '品牌推廣', value: false },
+  ]);
+  // 依活動狀態搜尋
+  const [evntsStatusFilter, setEvntsStatusFilter] = useState([
+    { tag: '熱烈報名中', value: false },
+    { tag: '即將額滿', value: false },
+    { tag: '報名額滿', value: false },
+    { tag: '報名截止', value: false },
+  ]);
 
   // didMount AJAX 新聞
   const getNewsData = async () => {
     const res = await fetch(config.NEWS_PATH);
     const obj = await res.json();
     console.log('obj:', obj);
+    setFetchNewsData(obj.data);
     setNewsData(obj.data);
   };
 
@@ -42,6 +73,7 @@ function LatestNews(props) {
     const res = await fetch(config.EVNTS_PATH);
     const obj = await res.json();
     console.log('obj:', obj);
+    setFetchEvntsData(obj.data);
     setEvntsData(obj.data);
   };
 
@@ -49,7 +81,7 @@ function LatestNews(props) {
   useEffect(() => {
     getNewsData();
     getEvntsData();
-  }, []);
+  }, [cate]);
 
   // 搜尋框動態移動
   const searchBarHandler = () =>
@@ -59,7 +91,26 @@ function LatestNews(props) {
 
   // TODO:處理搜尋框輸入
   const handleChangeSearch = e => {
+    console.log(e.target.value);
     setSearchText(e.target.value);
+    let searchData = [...newsData];
+    // console.log('searchData:', searchData);
+    searchData = searchData.filter(value => {
+      console.log(value.news_title.includes(searchText));
+      console.log(value.news_cate.includes(searchText));
+      if (searchText === '') {
+        // console.log('hi');
+        return value;
+      } else if (
+        value.news_title.includes(searchText) ||
+        value.news_cate.includes(searchText)
+      ) {
+        console.log('hi');
+        return value;
+      }
+    });
+    console.log(searchData);
+    // setNewsData(searchData);
   };
 
   // 動態調整CSS inline style
@@ -75,9 +126,9 @@ function LatestNews(props) {
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         <div style={{ display: 'flex' }}>
           <AsideLeft />
-          <div style={{ width: '100%' }}>
+          <div style={{ width: '100%', overflow: 'hidden' }}>
             <Title title={'Latest News'} />
-            <div className="latest-news">
+            <div className="latest-news min-hi">
               <div className="mycontainer">
                 {/* lastest-news top */}
                 <div className="lastest-news-nav d-flex justify-content-between align-items-center">
@@ -184,9 +235,27 @@ function LatestNews(props) {
                     newsData={newsData}
                     setNewsData={setNewsData}
                     setIsOpenFilter={setIsOpenFilter}
+                    newsDateFilter={newsDateFilter}
+                    setNewsDateFilter={setNewsDateFilter}
+                    newsTagFilter={newsTagFilter}
+                    setNewsTagFilter={setNewsTagFilter}
+                    fetchNewsData={fetchNewsData}
                   />
                 )}
-                {isOpenFilter && cate === 'events' && <EvntsFilter />}
+                {isOpenFilter && cate === 'events' && (
+                  <EvntsFilter
+                    evntsData={evntsData}
+                    setEvntsData={setEvntsData}
+                    setIsOpenFilter={setIsOpenFilter}
+                    evntsDateFilter={evntsDateFilter}
+                    setEvntsDateFilter={setEvntsDateFilter}
+                    evntsTagFilter={evntsTagFilter}
+                    setEvntsTagFilter={setEvntsTagFilter}
+                    evntsStatusFilter={evntsStatusFilter}
+                    setEvntsStatusFilter={setEvntsStatusFilter}
+                    fetchEvntsData={fetchEvntsData}
+                  />
+                )}
               </div>
             </div>
             <Footer />

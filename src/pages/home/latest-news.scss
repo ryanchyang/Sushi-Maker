@@ -28,12 +28,14 @@
   }
   .search {
     cursor: pointer;
+    transform: translateX(2px) translateY(-7px);
   }
   .filter {
     margin-left: 5%;
     margin-right: 2%;
     margin-bottom: 3%;
     cursor: pointer;
+    transform: translateY(-5px);
   }
   .page-item {
     width: 30px;
