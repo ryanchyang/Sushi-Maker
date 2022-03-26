@@ -58,9 +58,9 @@ function Index(props) {
   }, [latestNewsCate]);
 
   // 處理背景變色
-  // console.log('pageYOffset:', pageYOffset);
+  console.log('pageYOffset:', pageYOffset);
   useEffect(() => {
-    if (pageYOffset <= 3500 || pageYOffset >= 6800) {
+    if (pageYOffset <= 3500 || pageYOffset >= 6500) {
       setChangeBG(true);
     } else if (pageYOffset > 3500) {
       setChangeBG(false);
@@ -160,10 +160,20 @@ function Index(props) {
     setNewsIndex(+index);
   };
   const checkTransform = newsIndex => {
-    return {
-      transform: `translateX(${newsIndex * -75}vw)`,
-      transition: '1.5s',
-    };
+    const winWidth = window.innerWidth;
+    if (winWidth < 576) {
+      // 手機版滿版移動
+      return {
+        transform: `translateX(${newsIndex * -100}vw)`,
+        transition: '1.5s',
+      };
+    } else {
+      // 電腦版75%移動
+      return {
+        transform: `translateX(${newsIndex * -75}vw)`,
+        transition: '1.5s',
+      };
+    }
   };
 
   // 動態調整CSS inline style
@@ -177,6 +187,8 @@ function Index(props) {
     transition: '1.5s',
   };
   const lightBG = { backgroundColor: '#f7f6f3', transition: '1.5s' };
+  const focus = { backgroundColor: '#ff5656' };
+  const normal = { backgroundColor: '#c4c4c4' };
 
   return (
     <>
@@ -653,7 +665,7 @@ function Index(props) {
                   style={latestNewsCate === 'news' ? showBlock : hiddenBlock}
                 >
                   <div className="latest-news-pagination">
-                    <div className="latest-news-left-arrow d-none d-sm-block">
+                    <div className="latest-news-left-arrow">
                       <img
                         src={`http://localhost:3500/img/home/left.svg`}
                         alt="left-arrow"
@@ -673,13 +685,14 @@ function Index(props) {
                               className="pagination-dots"
                               key={i}
                               data-id={i}
+                              style={newsIndex === i ? focus : normal}
                               onClick={changeContent}
                             ></li>
                           );
                         })}
                       </ul>
                     </div>
-                    <div className="latest-news-right-arrow d-none d-sm-block">
+                    <div className="latest-news-right-arrow">
                       <img
                         src={`http://localhost:3500/img/home/right.svg`}
                         alt="right-arrow"
@@ -697,7 +710,7 @@ function Index(props) {
                   style={latestNewsCate === 'events' ? showBlock : hiddenBlock}
                 >
                   <div className="latest-news-pagination">
-                    <div className="latest-news-left-arrow d-none d-sm-block">
+                    <div className="latest-news-left-arrow">
                       <img
                         src={`http://localhost:3500/img/home/left.svg`}
                         alt="left-arrow"
@@ -717,13 +730,14 @@ function Index(props) {
                               className="pagination-dots"
                               key={i}
                               data-id={i}
+                              style={newsIndex === i ? focus : normal}
                               onClick={changeContent}
                             ></li>
                           );
                         })}
                       </ul>
                     </div>
-                    <div className="latest-news-right-arrow d-none d-sm-block">
+                    <div className="latest-news-right-arrow">
                       <img
                         src={`http://localhost:3500/img/home/right.svg`}
                         alt="right-arrow"
@@ -741,7 +755,7 @@ function Index(props) {
                   style={latestNewsCate === 'shares' ? showBlock : hiddenBlock}
                 >
                   <div className="latest-news-pagination">
-                    <div className="latest-news-left-arrow d-none d-sm-block">
+                    <div className="latest-news-left-arrow">
                       <img
                         src={`http://localhost:3500/img/home/left.svg`}
                         alt="left-arrow"
@@ -761,13 +775,14 @@ function Index(props) {
                               className="pagination-dots"
                               key={i}
                               data-id={i}
+                              style={newsIndex === i ? focus : normal}
                               onClick={changeContent}
                             ></li>
                           );
                         })}
                       </ul>
                     </div>
-                    <div className="latest-news-right-arrow d-none d-sm-block">
+                    <div className="latest-news-right-arrow">
                       <img
                         src={`http://localhost:3500/img/home/right.svg`}
                         alt="right-arrow"
