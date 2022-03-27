@@ -18,7 +18,6 @@ function Detail() {
   const [buyCount, setBuyCount] = useState(1);
   const [mtlsForChart, setMtlsForChart] = useState([]);
   const { id } = useParams(); //取得url上的product id
-  const lightBox = useRef();
 
   //點擊食材圖片
   const changeMtl = mid => {
@@ -60,6 +59,32 @@ function Detail() {
 
     const newCount = buyCount + 1;
     setBuyCount(newCount);
+  };
+
+  //加入購物車
+  const addToCart = () => {
+    const isLogin = localStorage.getItem('mem_id') !== null;  //判斷是否登入
+    if(isLogin){      
+      const res = fetch(config.ADD_CART, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          mid: +localStorage.getItem('mem_id'),
+          pid: data.pid,        
+          count: buyCount,
+          value: +data.c_prod_spe_value === 0 ? data.c_prod_value : data.c_prod_spe_value, 
+          print: data.c_prod_print_time,
+          category: 'cs'
+        }),
+      }).then(res => res.json()).then(d => d);
+
+      console.log(res);  //TODO: why log pending????
+      handleCartShow();
+    }else{
+      handleLikeShow();
+    }
   };
 
   //每次點擊商品詳細頁，都要將pid存到localstorage以供歷史查詢
@@ -319,7 +344,9 @@ function Detail() {
                   />
                   <button onClick={() => changeCountByAdd()}>+</button>
                 </div>
-                <button className="add-cart btn-sm btn-primary primeal-btn" >
+                <button className="add-cart btn-sm btn-primary primeal-btn" onClick={() => {
+                                addToCart();
+                              }}>
                   加入購物車
                 </button>
               </div>
