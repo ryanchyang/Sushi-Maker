@@ -320,48 +320,42 @@ function Index() {
 
   //加入購物車
   const addToCart = id => {
-    const isLogin = localStorage.getItem('mem_id') !== null;
-    let addProd = buyProdCount.find(p => p.pid === +id);
-    console.log({ ...addProd, islogin: isLogin });
+    const isLogin = localStorage.getItem('mem_id') !== null;  //判斷是否登入
+    if(isLogin){
+      const addProd = buyProdCount.find(p => p.pid === +id);
+      const res = fetch(config.ADD_CART, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          mid: +localStorage.getItem('mem_id'),
+          pid: addProd.pid,        
+          count: addProd.count,
+          value: addProd.value, 
+          print: addProd.print,
+          category: 'cs'
+        }),
+      }).then(res => res.json()).then(d => d);
 
-    fetch(config.ADD_CART, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        pid: addProd.pid,
-        count: addProd.count,
-      }),
-    }).then(res => res.json());
-
-    // alert(`你已成功將${addProd.count}個${addProd.pname}加入至購物車`);
+      console.log(res);  //TODO: why log pending????
+      handleCartShow();
+    }else{
+      handleLikeShow();
+    }
   };
 
-  const modal = (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
-      </Modal.Header>
-      <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">您的商品已加入購物車</div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button
-          variant="secondary"
-          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-          onClick={handleClose}
-        >
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
   //初始化所有商品的購買數量(皆為1)
   const initProdBuyCount = prodList => {
     const prodCount = [];
     prodList.forEach(prod => {
-      prodCount.push({ pid: prod.pid, pname: prod.c_prod_ch_name, count: 1 });
+      prodCount.push({ 
+        pid: prod.pid, 
+        pname: prod.c_prod_ch_name,
+        print: prod.c_prod_print_time,
+        value: +prod.c_prod_spe_value === 0 ? prod.c_prod_value : prod.c_prod_spe_value,
+        count: 1 
+      });
     });
     setBuyProdCount(prodCount);
   };
@@ -463,15 +457,63 @@ function Index() {
   const flavorTagClicked = { color: '#ffffff', backgroundColor: '#b03342' };
   const pageNoSelected = { border: '1px solid #575757', color: '#575757' };
   const pageSelected = { border: '1px solid #B03342', color: '#B03342' };
-
   const searchBarHandler = () =>
     search
       ? { transform: 'translateX(0px) translateY(-7px)' }
       : { transform: 'translateX(280px) translateY(-7px)' };
 
+  //請先登入的光箱
+  const [likeShow, setLikeShow] = useState(false);
+  const handleLikeClose = () => setLikeShow(false);
+  const handleLikeShow = () => setLikeShow(true);
+  const likeModel = (
+    <Modal show={likeShow} onHide={handleLikeClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">請先登入後才能操作</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleLikeClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
+  //加入購物車的光箱
+  const [cartShow, setCartShow] = useState(false);
+  const handleCartClose = () => setCartShow(false);
+  const handleCartShow = () => setCartShow(true);
+  const cartModel = (
+    <Modal show={cartShow} onHide={handleCartClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">已成功將商品加入購物車!</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleCartClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   return (
     <>
-      {modal}
+      {likeModel}
+      {cartModel}
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />

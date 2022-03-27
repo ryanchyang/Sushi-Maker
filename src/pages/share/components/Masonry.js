@@ -40,7 +40,7 @@ const hoverHandler = (id, hover) => {
 };
 
 export const MyMasonry = forwardRef((props, ref) => {
-  const { columns, gap, data, noFound } = props;
+  const { columns, gap, data, noFound = '', itemId = '' } = props;
   const history = useHistory(null);
 
   const [saves, setSaves] = useState([]);
@@ -68,51 +68,59 @@ export const MyMasonry = forwardRef((props, ref) => {
   const masonryTemplate = () => {
     return (
       <Masonry columns={columns} spacing={gap * 1.2} style={{ margin: '0' }}>
-        {data.map((item, i) => (
-          <ImageListItem
-            key={i}
-            onMouseEnter={() => setHover(i)}
-            onMouseLeave={() => setHover(-1)}
-            style={{ paddingBottom: '30px' }}
-          >
-            <img
-              src={
-                config.HOST +
-                `/${item.share_imgPath}?w=500&fit=crop&auto=format`
-              }
-              srcSet={
-                config.HOST +
-                `/${item.share_imgPath}?w=500&fit=crop&auto=format&dpr=2 2x`
-              }
-              alt={item.share_title}
-              loading="lazy"
-              data-item={item.share_item_id}
-              onClick={e => {
-                goToItem(e);
-              }}
-              className={`${styles['image-list-img']}`}
-            />
-            <ImageListItemBar
-              position="below"
-              title={
-                <ItemInfoTemplate
-                  memPhoto={item.mem_photo_img_path}
-                  memNickname={item.mem_nickname}
-                />
-              }
-              actionIcon={<ItemSavesTemplate savesCount={item.saves_count} />}
-            />
-            <ImageListItemBar
-              position="top"
-              sx={hoverHandler(i, hover)}
-              title={item.share_title}
-              subtitle={item.share_desc}
-              actionIcon={
-                <HeartTemplate saves={saves} setSaves={setSaves} item={item} />
-              }
-            />
-          </ImageListItem>
-        ))}
+        {data.map((item, i) =>
+          +itemId === item?.share_item_id ? (
+            <></>
+          ) : (
+            <ImageListItem
+              key={i}
+              onMouseEnter={() => setHover(i)}
+              onMouseLeave={() => setHover(-1)}
+              style={{ paddingBottom: '30px' }}
+            >
+              <img
+                src={
+                  config.HOST +
+                  `/${item.share_imgPath}?w=500&fit=crop&auto=format`
+                }
+                srcSet={
+                  config.HOST +
+                  `/${item.share_imgPath}?w=500&fit=crop&auto=format&dpr=2 2x`
+                }
+                alt={item.share_title}
+                loading="lazy"
+                data-item={item.share_item_id}
+                onClick={e => {
+                  goToItem(e);
+                }}
+                className={`${styles['image-list-img']}`}
+              />
+              <ImageListItemBar
+                position="below"
+                title={
+                  <ItemInfoTemplate
+                    memPhoto={item.mem_photo_img_path}
+                    memNickname={item.mem_nickname}
+                  />
+                }
+                actionIcon={<ItemSavesTemplate savesCount={item.saves_count} />}
+              />
+              <ImageListItemBar
+                position="top"
+                sx={hoverHandler(i, hover)}
+                title={item.share_title}
+                subtitle={item.share_desc}
+                actionIcon={
+                  <HeartTemplate
+                    saves={saves}
+                    setSaves={setSaves}
+                    item={item}
+                  />
+                }
+              />
+            </ImageListItem>
+          )
+        )}
       </Masonry>
     );
   };

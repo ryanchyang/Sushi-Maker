@@ -8,6 +8,7 @@ import { ReactComponent as HeartOutline } from '../../imgs/heart-outline.svg';
 import { ReactComponent as HeartFillWhite } from '../../imgs/heart-fill-white.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
+import { ReactComponent as Edit } from '../../imgs/edit.svg';
 
 import ShareItemImgs from './components/ShareItemImgs';
 import ItemDetailsInfo from './components/ItemDetailsInfo';
@@ -17,7 +18,7 @@ import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import config from '../../Config';
 
@@ -40,11 +41,13 @@ function ShareItems() {
   const [gap, setGap] = useState(4);
 
   const {
+    mem_id: memberId,
     mem_nickname: postMemName,
     mem_photo_img_path: postMemImg,
     share_title: shareTitle,
     share_desc: shareDesc,
     saves_count: savesCount,
+    share_order_id: orderId,
     orders_value: orderVal,
     orders_print_time: orderPrint,
     share_imgs: itemImgs = [],
@@ -53,7 +56,8 @@ function ShareItems() {
     isSaved,
   } = itemDetails;
 
-  const { id } = useParams();
+  const { id } = useParams(null);
+  let history = useHistory(null);
 
   const getItemDetails = async () => {
     const response = await fetch(config.GET_PROD_DETAILS + `${id}`, {
@@ -119,6 +123,32 @@ function ShareItems() {
     }
   };
 
+  const editHandler = () => {
+    return memberId === 1 ? (
+      <div
+        className={`${styles['button-default-lg']} d-flex align-items-center mr-3`}
+        onClick={() =>
+          history.push({
+            pathname: '/share/edit',
+            state: {
+              shareId: id,
+              action: 'UPDATE',
+              orderId,
+              shareTitle,
+              shareDesc,
+              itemImgs,
+              shareTags,
+            },
+          })
+        }
+      >
+        <Edit className={`mx-3`} />
+      </div>
+    ) : (
+      ''
+    );
+  };
+
   const getFilterData = async () => {
     try {
       const response = await fetch(config.GET_FILTER_ITEMS, {
@@ -162,7 +192,7 @@ function ShareItems() {
       const result = await getFilterData();
       setFilterItemsData(result.data);
     })();
-  }, [shareTags]);
+  }, [itemDetails]);
 
   // Update column with current Width
   useEffect(() => {
@@ -195,6 +225,7 @@ function ShareItems() {
                 <div className="d-flex justify-content-between">
                   <p className="mytitle en-title-14-10">HOME / SHARE / ITEMS</p>
                   <div className="d-flex align-items-center">
+                    {editHandler()}
                     <Delete className="mx-md-4 p-2" />
                   </div>
                 </div>
@@ -291,7 +322,12 @@ function ShareItems() {
               You may also like
             </div>
             <div className={`${styles['waterfall-container']}`}>
-              <Masonry columns={columns} gap={gap} data={filterItemsData} />
+              <Masonry
+                columns={columns}
+                gap={gap}
+                data={filterItemsData}
+                itemId={id}
+              />
             </div>
           </div>
           <br />

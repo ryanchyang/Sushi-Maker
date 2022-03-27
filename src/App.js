@@ -180,7 +180,7 @@ function App() {
           <Route path="/cart/stepthree" exact>
             <CartStepThree />
           </Route>
-          <Route path="/cart/stepfour" exact>
+          <Route path="/cart/stepfour/:cid" exact>
             <CartStepFour />
           </Route>
           <Route path="/cart/cartlist">

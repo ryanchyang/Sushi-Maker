@@ -21,13 +21,20 @@ function ProdItemInfo(props) {
   //        orders_category:'cls',
   //    }
   const [itemInfo, setItemInfo] = useState({});
+  const [mem_id, setMem_id] = useState(0);
+  const [cart_id, setCart_id] = useState(0);
   //解構
   //-----  交易明細
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 1;
-  const cart_id = 1;
+  // const mem_id = 3;
+  // const cart_id = 3;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
+  useEffect(() => { 
+    setMem_id(props.mem_id);
+    setCart_id(props.cart_id);
+  }, [props]);
+
   useEffect(() => {
     const getItemInfo = async () => {
       const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
@@ -36,10 +43,10 @@ function ProdItemInfo(props) {
       setItemInfo(obj.data);
     };
     getItemInfo();
-  }, []);
-  console.log('itemInfoCSSSS', itemInfo.cs);
+  }, [mem_id, cart_id]);
+  // console.log('itemInfoCSSSS', itemInfo);
   useEffect(() => {
-    console.log(itemInfo);
+    // console.log(itemInfo);
   }, [itemInfo]);
   // console.log(
   //   'amount',

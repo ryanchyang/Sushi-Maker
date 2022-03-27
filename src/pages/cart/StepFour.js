@@ -1,11 +1,12 @@
 //cart/StepFour.js
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartDetail from './components/CartDetial';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import QRCode from 'qrcode.react';
 import React, { useState, useEffect } from 'react';
 // TODO: 資料庫拿資料
 import config from '../../Config';
+import { getMemId, getCart } from '../../utils';
 
 // TODO: A  改 LINK
 function StepFour() {
@@ -13,38 +14,47 @@ function StepFour() {
   // let history = useHistory();
 
   const [fincart, setFincart] = useState([]);
-
+  const [mem_id, setMem_id] = useState(0);
   //QRCODE
   const [qrC, setQrC] = useState('');
   //
   console.log('qrC01', qrC);
+  const { cid } = useParams();
 
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 4;
-  const cart_id = 4;
+  // const mem_id = 4;
+  // const cart_id = 4;
+  useEffect(() => {
+    const getInit = async () => {
+      const Mid = getMemId();
+      setMem_id(+Mid);
+    };
+    getInit();
+  }, []);
 
   useEffect(() => {
     const getfincart = async () => {
-      const res = await fetch(config.GET_FIN_CART + `${mem_id}/${cart_id}`);
+      console.log('mid==============================' + mem_id);
+      const res = await fetch(config.GET_FIN_CART + `${mem_id}/${cid}`);
       const obj = await res.json();
       console.log('obj:', obj);
       setFincart(obj.data);
       setQrC(obj.data[0]?.order_num);
     };
-    getfincart();
-  }, []);
+    if (mem_id !== 0) {
+      //第一次為0不准fetch，會壞掉
+      getfincart();
+    }
+  }, [mem_id]);
   console.log('fincart', fincart);
   useEffect(() => {
     console.log(fincart);
-    // console.log(fincart[0]?.mem_name);
     console.log('36****', fincart[0]?.order_num);
-    // setQrC(fincart[0]?.order_num);
   }, [fincart]);
-  console.log(fincart[0]?.mem_name);
-  // setQrC(fincart[0]?.order_num ? fincart[0]?.order_num : '');
+  // console.log(fincart[0]?.mem_name);
 
   // GET_FIN_ITEM_INFO
-  console.log('qrC02', qrC);
+  // console.log('qrC02', qrC);
 
   return (
     <>
@@ -130,7 +140,7 @@ function StepFour() {
               </div>
             </div>
             {/* TODO: 商品詳細清單 */}
-            {/* <CartDetail /> */}
+            <CartDetail cart_id={cid} mem_id={mem_id} />
           </div>
           <Footer />
         </div>
