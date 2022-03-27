@@ -36,8 +36,18 @@ function ShareEdit() {
 
   const location = useLocation(null);
   const history = useHistory(null);
-  const { orderId, orderName } = location.state;
+  const {
+    action = 'ADD',
+    shareId = '',
+    orderId,
+    orderName = '',
+    shareTitle = '',
+    shareDesc = '',
+    itemImgs,
+    shareTags = [],
+  } = location.state;
 
+  console.log(shareTitle, shareDesc, itemImgs, shareTags);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -63,8 +73,12 @@ function ShareEdit() {
       setFormIsValid(false);
       return;
     }
-
-    submitUpload();
+    if (action === 'UPDATE') {
+      submitUpdate();
+    }
+    if (action === 'ADD') {
+      submitUpload();
+    }
   };
 
   const submitUpload = async () => {
@@ -94,13 +108,42 @@ function ShareEdit() {
     }
   };
 
+  const submitUpdate = async () => {
+    try {
+      if (!orderId) throw new Error('Unsuccessful upload !');
+
+      let updateFiles = [...files];
+      updateFiles = updateFiles.map((file, i) => {
+        return { ...file, share_img_order: i + 1 };
+      });
+
+      const updateForm = {
+        ...formState,
+        images: updateFiles,
+        shareId,
+      };
+
+      const response = await fetch(config.UPDATE_POST, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updateForm),
+      });
+      if (!response.ok) throw new Error('Unsuccessful update !');
+      handleShow();
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">您的貼文上傳成功!</div>
+        <div className="en-cont-14 pb-2">
+          {action === 'UPDATE' ? '您的貼文已編輯成功!' : '您的貼文上傳成功!'}
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -126,6 +169,16 @@ function ShareEdit() {
       }
     })();
   }, [tagsInput]);
+
+  useEffect(() => {
+    setFormState({
+      title: shareTitle,
+      content: shareDesc,
+      tags: shareTags.map(tag => tag.item_hash),
+    });
+
+    if (action === 'UPDATE') setFiles(itemImgs);
+  }, []);
 
   // const fileInputHandler = () => {
   //   if (!fileInputRef.current) return '新增、拖曳照片';
@@ -162,7 +215,7 @@ function ShareEdit() {
                 <div className="col d-flex flex-column">
                   <div className="col">
                     <h2 className={`${styles['share-edit-header']} mb-5`}>
-                      新增貼文
+                      {action === 'UPDATE' ? '編輯貼文' : '分享貼文'}
                     </h2>
                   </div>
                   <div className="d-flex">
@@ -171,12 +224,12 @@ function ShareEdit() {
                       files={files}
                       setFiles={setFiles}
                       errorState={errorState}
+                      action={action}
                     />
                     {/* form area */}
                     <div className={`col-md-12 ${styles['form-min-height']}`}>
                       <form>
                         <EditForm
-                          initFormState={initFormState}
                           formState={formState}
                           setFormState={setFormState}
                           setFiles={setFiles}
@@ -195,7 +248,7 @@ function ShareEdit() {
                             className={`${styles['primeal-btn-outline-sm']} btn-sm btn-outline-primary mr-3`}
                             onClick={() => {
                               setFormState(initFormState);
-                              setFiles([]);
+                              if (action !== 'UPDATE') setFiles([]);
                             }}
                           >
                             清除
@@ -206,7 +259,7 @@ function ShareEdit() {
                               checkFormValidity(e);
                             }}
                           >
-                            分享
+                            {action === 'UPDATE' ? '編輯' : '分享'}
                           </button>
                         </div>
                       </form>

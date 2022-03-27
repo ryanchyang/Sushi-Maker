@@ -45,7 +45,7 @@ const EditForm = props => {
       return '';
     } else {
       return (
-        <div className="d-flex mt-4">
+        <div className="d-flex mt-4 flex-wrap">
           {formState.tags.map((tag, i) => {
             return (
               <div
@@ -139,6 +139,7 @@ const EditForm = props => {
           id="title"
           placeholder={orderName}
           onChange={e => formChangeHandler(e)}
+          value={formState.title}
         />
         <div className="text-primary my-2">{errorState.title}</div>
       </div>
@@ -153,6 +154,7 @@ const EditForm = props => {
           id="content"
           rows={5}
           onChange={e => formChangeHandler(e)}
+          value={formState.content}
         />
         <div className="text-primary my-2">{errorState.content}</div>
       </div>
