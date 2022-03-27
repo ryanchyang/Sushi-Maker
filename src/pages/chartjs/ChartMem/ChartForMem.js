@@ -1,22 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BarChart from './BarChart';
 import DoughnutChart from './DoughnutChart';
 import MtlData from '../MtlData';
 import nuData from '../nuData';
+import fakeData from '../fakeData';
+import { chartInfo } from '../../../WebApi';
+import fakeDataForWeek from '../fakeDataForWeek'
 
 const ChartForMem = () => {
-  const data = nuData
-    .filter(i => {
-      return [8, 30, 15].includes(i.mtl_id);
-    })
+  const [memOrderData, setMemOrderData] = useState();
+  const mem_id = localStorage.getItem('mem_id');
+
+  useEffect(() => {
+    chartInfo(mem_id).then(obj => {
+      setMemOrderData(obj);
+    });
+  }, []);
+
+  const data = fakeDataForWeek
+    // .filter(i => {
+    //   return [12, 13].includes(i.mtl_id);
+    // })
     .map(d => {
       const colorA = Math.random() * 255;
       const colorB = Math.random() * 255;
       const colorC = Math.random() * 255;
 
       return {
-        label: d.mtl_name,
-        data: MtlData.map(data => data[d.mtl_name]),
+        label: d.label,
+        // data: MtlData.map(data => data[d.mtl_name]),
+        data: fakeData.map(data => data[d.label]),
         fill: true,
         backgroundColor: `rgba(${colorA}, ${colorB}, ${colorC}, 0.4)`,
         borderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
@@ -58,7 +71,7 @@ const ChartForMem = () => {
     });
 
   const [fatData, setFatData] = useState({
-    labels: MtlData.map(data => data.nutrients),
+    labels: fakeData.map(data => data.label),
     datasets: data,
   });
 

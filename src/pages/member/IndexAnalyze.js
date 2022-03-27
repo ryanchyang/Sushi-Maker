@@ -11,14 +11,6 @@ import ChartForMem from '../../../src/pages/chartjs/ChartMem/ChartForMem'
 import { useEffect } from 'react';
 
 function IndexAnalyze() {
-
-  const mem_id = localStorage.getItem('mem_id');
-
-  useEffect(() => {
-    
-  },[])
-
-
   return (
     <>
       <Header />
