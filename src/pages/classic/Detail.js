@@ -140,7 +140,7 @@ function Detail() {
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">請先登入後才能加入收藏</div>
+        <div className="en-cont-14 pb-2">請先登入後才能操作</div>
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -164,7 +164,7 @@ function Detail() {
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">請先登入後才能加入收藏</div>
+        <div className="en-cont-14 pb-2">已成功將商品加入購物車!</div>
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -319,7 +319,7 @@ function Detail() {
                   />
                   <button onClick={() => changeCountByAdd()}>+</button>
                 </div>
-                <button className="add-cart btn-sm btn-primary primeal-btn">
+                <button className="add-cart btn-sm btn-primary primeal-btn" >
                   加入購物車
                 </button>
               </div>
