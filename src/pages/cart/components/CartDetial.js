@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 import ProdItemInfo from './ProdItemInfo';
 import { Collapse } from 'react-bootstrap';
 // import Collapse from 'react-bootstrap/Collapse';
-function CartDetail() {
+function CartDetail(props) {
   const [dateOpen, setDateOpen] = useState(false);
   return (
     // <Accordion>
@@ -51,7 +51,7 @@ function CartDetail() {
       <Collapse in={dateOpen}>
         <div>
           {/* 商品詳細資訊 */}
-          <ProdItemInfo />
+          <ProdItemInfo mem_id={props.mem_id} cart_id={props.cart_id }/>
         </div>
       </Collapse>
     </div>

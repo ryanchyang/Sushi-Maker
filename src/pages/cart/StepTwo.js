@@ -38,12 +38,19 @@ function StepTwo() {
   const [sum, setSum] = useState([]); // 畫面右側小計 狀態
   const [info, setInfo] = useState([]); // input 欄位預設值 mem_name mem_mobile
   const [itemInfo, setItemInfo] = useState({}); //交易明細 狀態
-  const [mid, setMid] = useState(0);
-  const [cid, setCid] = useState(0);
+  const [mem_id, setMem_id] = useState(0);
+  const [cart_id, setCart_id] = useState(0);
+  const [fields, setFields] = useState({
+    buyer: '',
+    buyer_mobile: '',
+    picker: '',
+    order_notes: '' || null,
+    cart_store_id: '',
+  });
 
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 8;
-  const cart_id = 8;
+  // const mem_id = 8;
+  // const cart_id = 8;
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -54,47 +61,94 @@ function StepTwo() {
 
   // -----先取得 畫面右側小計
   useEffect(() => {
+    const getInit = async () => { 
+      const Mid = getMemId();
+      const Cid = await getCart();
+      setMem_id(+Mid);
+      setCart_id(+Cid.cartid);
+    }
+    getInit();
+
+    // const getSum = async () => {
+    //   // TODO: 共同曲mem_id cart_id 的地方      
+    //   const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
+    //   const obj = await res.json();
+    //   // console.log('obj:', obj);
+    //   setSum(obj.data);      
+    // };
+    
+
+    // ----先取得 表單資料name mobile
+    // const getInfo = async () => {
+    //   const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
+    //   // console.log('res', res);
+    //   const obj = await res.json();
+    //   console.log('obj:', obj);
+    //   setInfo(obj.result);
+    // };
+
+    // if (mem_id !== 0 && cart_id !== 0) { 
+    //   getSum();
+    //   getInfo();
+    // }
+    
+    console.log('info', info);
+  }, []);
+
+  useEffect(() => {
+    setFields({
+      ...fields,
+      cart_store_id: getStoreId,
+    });
+  }, [getStoreId]);
+
+  useEffect(() => {
     const getSum = async () => {
-      // TODO: 共同曲mem_id cart_id 的地方
-      // const mem_id = getMemId();
-      // const cartid = await getCart();
+      // TODO: 共同曲mem_id cart_id 的地方      
       const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
       setSum(obj.data);
     };
+
+    // ----先取得 表單資料name mobile
+    const getInfo = async () => {
+      const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
+      // console.log('res', res);
+      const obj = await res.json();
+      console.log('obj:', obj);
+      setInfo(obj.result);
+    };
+
     getSum();
-  }, []);
+    getInfo();
+  }, [mem_id, cart_id]);
+
+
   // console.log('sum', sum);
   useEffect(() => {
     // console.log(sum);
   }, [sum]);
 
   //-----  交易明細
-  useEffect(() => {
-    const getItemInfo = async () => {
-      const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
-      const obj = await res.json();
-      // console.log('obj:', obj);
-      setItemInfo(obj.data);
-    };
-    getItemInfo();
-  }, []);
-  // console.log('itemInfo', itemInfo);
-  useEffect(() => {
-    // console.log(itemInfo);
-  }, [itemInfo]);
+  // useEffect(() => {
+  //   const getItemInfo = async () => {
+  //     const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
+  //     const obj = await res.json();
+  //     // console.log('obj:', obj);
+  //     setItemInfo(obj.data);
+  //   };
+  //   getItemInfo();
+  // }, []);
+  // // console.log('itemInfo', itemInfo);
+  // useEffect(() => {
+  //   // console.log(itemInfo);
+  // }, [itemInfo]);
 
   // ------
 
   // Input State 要填寫的資料欄位
-  const [fields, setFields] = useState({
-    buyer: '',
-    buyer_mobile: '',
-    picker: '',
-    order_notes: '' || null,
-    cart_store_id: '',
-  });
+  
 
   // Error Message State
   const [fieldsError, setFieldsError] = useState({
@@ -197,18 +251,6 @@ function StepTwo() {
       console.log('form has errors.');
     }
   };
-  // ----先取得 表單資料name mobile
-  useEffect(() => {
-    const getInfo = async () => {
-      const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
-      // console.log('res', res);
-      const obj = await res.json();
-      console.log('obj:', obj);
-      setInfo(obj.result);
-    };
-    getInfo();
-  }, []);
-  console.log('info', info);
 
   useEffect(() => {
     console.log(info);
@@ -237,7 +279,7 @@ function StepTwo() {
           <div className="mycontainer cart min-hi">
             <div className="bread">HOME/CART</div>
             {/* 訂單資訊 可以摺疊*/}
-            <CartDetail />
+            <CartDetail cart_id={cart_id} mem_id={mem_id}/>
             <form
               // onSubmit={handleSubmit}
               // onInvalid={handleValid}
@@ -341,7 +383,7 @@ function StepTwo() {
                         name="cart_store_id"
                         id="cart_store_id"
                         value={getStoreId}
-                        // hidden
+                        hidden
                         onChange={e => {
                           setFields({
                             ...fields,
