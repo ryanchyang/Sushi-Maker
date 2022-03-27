@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
 
 // TODO: 資料庫拿資料
 import config from '../../Config';
+import { getMemId, getCart } from '../../utils';
 
 function StepThree() {
   // 回上一頁 按鈕
@@ -24,14 +25,27 @@ function StepThree() {
   });
   // 畫面右側小計
   const [sum, setSum] = useState([]);
+  const [mem_id, setMem_id] = useState(0);
+  const [cart_id, setCart_id] = useState(0);
   // TODO:  member id =1 鮮血死 測試用
-  const mem_id = 4;
-  const cart_id = 4;
+
+  // const mem_id = 4;
+  // const cart_id = 4;
 
   // const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
   // const { id } = useParams();
   // console.log('id:', id);
+
+  useEffect(() => {
+    const getInit = async () => {
+      const Mid = getMemId();
+      const Cid = await getCart();
+      setMem_id(+Mid);
+      setCart_id(+Cid.cartid);
+    };
+    getInit();
+  }, []);
 
   // 右邊sum 用
   useEffect(() => {
@@ -42,8 +56,9 @@ function StepThree() {
       setSum(obj.data);
     };
     getSum();
-  }, []);
+  }, [mem_id, cart_id]);
   console.log('sum', sum);
+
   useEffect(() => {
     console.log(sum);
   }, [sum]);
@@ -52,7 +67,7 @@ function StepThree() {
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
-
+    console.log(JSON.stringify(card));
     // fetch
     const r = fetch(config.POST_PAY_INFO + `${mem_id}/${cart_id}`, {
       method: 'POST',
@@ -67,7 +82,8 @@ function StepThree() {
         if (obj.success) {
           console.log(obj.success);
           // 有成功更新頁面才轉向
-          history.push('/cart/stepfour');
+          history.push(`/cart/stepfour/${cart_id
+}`);
         } else {
           alert('資料錯誤請重新輸入！');
         }
@@ -83,7 +99,7 @@ function StepThree() {
           <Title title={'Payment Info'} />
           <div className="mycontainer cart  ch-cont-14 min-hi">
             <div className="bread">HOME/CART</div>
-            <CartDetail />
+            <CartDetail cart_id={cart_id} mem_id={mem_id} />
 
             <div className="row mt-5">
               <div className="col-md-12">
