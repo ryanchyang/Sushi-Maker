@@ -293,9 +293,9 @@
     background-color: $light-bg;
     overflow: hidden;
     position: fixed;
-    top: 14rem;
+    top: 17rem;
     width: 75%;
-    min-height: calc($min-height-lg - 4rem);
+    min-height: calc($min-height-lg - 8rem);
     transition: 0.3s;
   }
   .prod-filter {
@@ -458,6 +458,9 @@
       width: 99%;
       margin-top: 5%;
     }
+    prod-filter-sh{
+      left: 0;
+    }
     .prod-card {
       width: 50%;
       margin: 5% 0;
@@ -559,8 +562,8 @@
     }
     $prod-filter-mb: calc($min-height-lg - 4rem - 80px);
     .prod-filter-sh {
-      width: 100%;
-      top: 30%;
+      // width: 100%;
+      top: 18%;
       min-height: $prod-filter-mb;
     }
     .mobile-filter-title {

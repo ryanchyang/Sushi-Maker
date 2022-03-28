@@ -21,9 +21,7 @@ function StepFour() {
   console.log('qrC01', qrC);
   const { cid } = useParams();
 
-  // TODO:  member id =1 鮮血死 測試用
-  // const mem_id = 4;
-  // const cart_id = 4;
+
   useEffect(() => {
     const getInit = async () => {
       const Mid = getMemId();

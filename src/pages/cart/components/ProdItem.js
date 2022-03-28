@@ -309,7 +309,7 @@ function ProdItem(props) {
             <div className="row my-2  d-flex align-items-center ">
               <div className="col-md-24 d-flex">
                 <div className="col-md-2 col-3 align-items-center">
-                  <div className="form-check">
+                  {/* <div className="form-check">
                     <input
                       className="form-check-input"
                       type="checkbox"
@@ -320,7 +320,7 @@ function ProdItem(props) {
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     ></label>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-md-4 col-6 align-items-center">
                   <div className="cart-item-img">
@@ -445,7 +445,7 @@ function ProdItem(props) {
             <div className="row my-2  d-flex align-items-center ">
               <div className="col-md-24 d-flex">
                 <div className="col-md-2 col-3 align-items-center">
-                  <div className="form-check">
+                  {/* <div className="form-check">
                     <input
                       className="form-check-input"
                       type="checkbox"
@@ -456,7 +456,7 @@ function ProdItem(props) {
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     ></label>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-md-4 col-6 align-items-center">
                   <div className="cart-item-img">
@@ -540,7 +540,7 @@ function ProdItem(props) {
             <div className="row my-2  d-flex align-items-center ">
               <div className="col-md-24 d-flex">
                 <div className="col-md-2 col-3 align-items-center">
-                  <div className="form-check">
+                  {/* <div className="form-check">
                     <input
                       className="form-check-input"
                       type="checkbox"
@@ -551,7 +551,7 @@ function ProdItem(props) {
                       className="form-check-label"
                       htmlFor="flexCheckDefault"
                     ></label>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="col-md-4 col-6 align-items-center">
                   <div className="cart-item-img">

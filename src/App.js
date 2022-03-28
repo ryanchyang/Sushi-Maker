@@ -57,7 +57,7 @@ function App() {
   const [navIsOpen, setNavIsOpen] = useState(false);
 
   // Entry蓋版只跑一次
-  const [entryOpen, setEntryOpen] = useState('');
+  const [entryOpen, setEntryOpen] = useState(true);
 
   //renden時再做一次getMe , 避免換頁登出
   // useEffect(() => {

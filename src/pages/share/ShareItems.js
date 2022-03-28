@@ -149,6 +149,14 @@ function ShareItems() {
     );
   };
 
+  const getShareItems = async () => {
+    const response = await fetch(config.GET_SHARE_PRODS, {
+      method: 'GET',
+    });
+    const itemsObj = await response.json();
+    return itemsObj;
+  };
+
   const getFilterData = async () => {
     try {
       const response = await fetch(config.GET_FILTER_ITEMS, {
@@ -162,9 +170,17 @@ function ShareItems() {
           maxTime: '',
         }),
       });
-      if (!response.ok) throw new Error('No items match your search!');
+
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
+      }
 
       const itemsObj = await response.json();
+
+      if (itemsObj.data.length === 1) {
+        const result = await getShareItems();
+        return result;
+      }
 
       return itemsObj;
     } catch (err) {
@@ -313,7 +329,7 @@ function ShareItems() {
                   <ItemDetailsComments
                     setMsgdiv={setMsgdiv}
                     shareComments={shareComments}
-                    postMemImg={postMemImg}
+                    itemId={id}
                   />
                 </div>
               </div>

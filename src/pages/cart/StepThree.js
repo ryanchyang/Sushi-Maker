@@ -27,15 +27,7 @@ function StepThree() {
   const [sum, setSum] = useState([]);
   const [mem_id, setMem_id] = useState(0);
   const [cart_id, setCart_id] = useState(0);
-  // TODO:  member id =1 鮮血死 測試用
 
-  // const mem_id = 4;
-  // const cart_id = 4;
-
-  // const mem_id = getMemId();
-  // console.log('mem_id:', mem_id);
-  // const { id } = useParams();
-  // console.log('id:', id);
 
   useEffect(() => {
     const getInit = async () => {
