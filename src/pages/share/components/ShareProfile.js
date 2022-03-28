@@ -1,11 +1,15 @@
 import { ReactComponent as Delete } from '../../../imgs/delete-lg.svg';
 import { ReactComponent as Rect } from '../../../imgs/tags/Rectangle_orange.svg';
 import styles from '../Share.module.scss';
+import config from '../../../Config';
 
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 function ShareProfile() {
   const [activeTopic, setActiveTopic] = useState('saves');
+
+  const memPhoto = localStorage.getItem('mem_photo');
+  const memName = localStorage.getItem('mem_name');
 
   const topicTemplate = topic => {
     return (
@@ -56,7 +60,7 @@ function ShareProfile() {
                 <div className={`${styles['profile-img-lg']} mb-4`}>
                   <img
                     className="myself-img"
-                    src="\img\member\ruka.png"
+                    src={config.MEM_PHOTO + `/${memPhoto}`}
                     alt="profile"
                   />
                 </div>
@@ -65,7 +69,7 @@ function ShareProfile() {
                 className={` ${styles['profile-name-box']}  d-flex align-items-center justify-content-center`}
               >
                 <h2 className={`${styles['profile-name']} mytitle`}>
-                  Xisharp Teng
+                  {memName}
                 </h2>
               </div>
             </div>

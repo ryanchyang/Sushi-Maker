@@ -18,7 +18,8 @@ import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { Button, Modal } from 'react-bootstrap';
 
 import config from '../../Config';
 
@@ -40,6 +41,10 @@ function ShareItems() {
   const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
   const [gap, setGap] = useState(4);
 
+  // 加入購物車光箱
+  const [show, setShow] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(false);
+
   const {
     mem_id: memberId,
     mem_nickname: postMemName,
@@ -58,6 +63,9 @@ function ShareItems() {
 
   const { id } = useParams(null);
   let history = useHistory(null);
+  const location = useLocation(null);
+
+  const { action = 'VIEW', commentSid = '' } = location.state || {};
 
   const getItemDetails = async () => {
     const response = await fetch(config.GET_PROD_DETAILS + `${id}`, {
@@ -66,6 +74,9 @@ function ShareItems() {
     const itemsArr = await response.json();
     return itemsArr;
   };
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const toggleHeartHandler = () => {
     if (isSaved) {
@@ -200,6 +211,8 @@ function ShareItems() {
 
       setItemDetails(result.data[0]);
     })();
+
+    if (action === 'COMMENT') setMsgbtn(true);
   }, []);
 
   // Fetching filterItem data
@@ -229,8 +242,35 @@ function ShareItems() {
         };
   };
 
+  const modal = (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">
+          {isSubmit ? '流言已更改成功' : '您確定要放棄修改?'}
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={() =>
+            history.push({
+              pathname: '/share/post',
+              action: 'COMMENT',
+            })
+          }
+        >
+          {isSubmit ? 'Close' : '確定'}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
   return (
     <>
+      {modal}
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ width: '100%' }}>
@@ -330,6 +370,10 @@ function ShareItems() {
                     setMsgdiv={setMsgdiv}
                     shareComments={shareComments}
                     itemId={id}
+                    action={action}
+                    commentSid={commentSid}
+                    handleShow={handleShow}
+                    setIsSubmit={setIsSubmit}
                   />
                 </div>
               </div>

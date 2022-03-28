@@ -45,9 +45,8 @@ function ShareEdit() {
     shareDesc = '',
     itemImgs,
     shareTags = [],
-  } = location.state;
+  } = location.state || {};
 
-  console.log(shareTitle, shareDesc, itemImgs, shareTags);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 

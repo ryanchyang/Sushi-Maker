@@ -41,7 +41,8 @@ const config = {
   TOGGLE_SAVE: `${host}/api/share/toggle/save`,
   UPLOAD_POST: `${host}/api/share/upload/post`,
   UPDATE_POST: `${host}/api/share/update/post`,
-  UPDATE_COMMENT: `${host}/api/share/upload/comment`,
+  UPLOAD_COMMENT: `${host}/api/share/upload/comment`,
+  UPDATE_COMMENT: `${host}/api/share/update/comment`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
