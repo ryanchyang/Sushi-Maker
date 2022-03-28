@@ -1,58 +1,58 @@
 @import './../../styles/global.scss';
 
-.classic-history-title{
+.classic-history-title {
   color: #212121;
   cursor: pointer;
   position: fixed;
   bottom: 4%;
   right: 4%;
 }
-.classic-history-img-list{
+.classic-history-img-list {
   position: fixed;
   bottom: 10%;
   right: 3.7%;
-  transition: transform .5s;
+  transition: transform 0.5s;
 }
-.classic-history-img-box{
+.classic-history-img-box {
   border-radius: 50%;
   background-image: url('./iconbg.png');
   background-size: 90px 90px;
   width: 80px;
-  height: 80px; 
+  height: 80px;
   display: flex;
-  align-items: center; 
+  align-items: center;
   margin: 5% auto;
   cursor: pointer;
 }
-.openHistoryStyle{
+.openHistoryStyle {
   transform: translateX(0px);
 }
-.closeHistoryStyle{
+.closeHistoryStyle {
   transform: translateX(200px);
 }
-.classic-history-img-box img{
+.classic-history-img-box img {
   width: 80%;
   height: auto;
   object-fit: cover;
   margin: auto;
 }
-.classic-history-name{
+.classic-history-name {
   text-align: center;
 }
 
 .classic {
   .main-content {
     /* display: none; */
-  }  
+  }
   //去掉input focus時的框線
-  input:focus{
+  input:focus {
     outline: none;
   }
   .search-filter {
     display: flex;
     justify-content: flex-end;
   }
-  .search-input{
+  .search-input {
     width: 200px;
   }
   .search-input-bar {
@@ -65,7 +65,7 @@
     border-right: none;
     border-bottom: 1px solid $dark-text;
     transition: 0.3s;
-  }  
+  }
   .search-input-bar:focus {
     border-top: 2px solid $dark-bg;
     outline: none;
@@ -111,11 +111,11 @@
   .filter-tag span {
     cursor: pointer;
   }
-  .no-result{
+  .no-result {
     text-align: center;
     padding-top: 17%;
   }
-  .no-result span{
+  .no-result span {
     padding-left: 2%;
     line-height: 3rem;
   }
@@ -193,7 +193,7 @@
   }
   .no-discount {
     float: right;
-    padding-top: 2%;
+    padding: 5% 0;
     color: #212121;
   }
   .select-add-cart {
@@ -455,11 +455,12 @@
   // RWD變數
   @media screen and (max-width: 576px) {
     .category-box {
-      width: 90%;
+      width: 99%;
+      margin-top: 5%;
     }
     .prod-card {
       width: 50%;
-      margin: 3% 0;
+      margin: 5% 0;
     }
     .cate-orange-tag-img {
       width: 15px;
@@ -506,9 +507,9 @@
       margin-bottom: 3%;
       cursor: pointer;
     }
-    .filter-tag-box {
-      margin: 5% 0 5% 9%;
-    }
+    // .filter-tag-box {
+    //   margin: 5% 0 5% 9%;
+    // }
     .filter-top {
       margin-bottom: 15%;
     }
@@ -564,6 +565,9 @@
     }
     .mobile-filter-title {
       margin: 0 0 5% 10%;
+    }
+    .prod-img-box img {
+      height: 140px;
     }
   }
 
