@@ -49,7 +49,7 @@ const config = {
   // 得到購物車清單 stepone
   GET_CUR_CART: `${host}/api/cart/getcurcart/`,
   GET_CART_ORDER: `${host}/api/cart/stepone/`,
-  POST_CART_SUMMARY: `${host}/api/cart/summaryOne/`,
+  POST_CART_SUMMARY: `${host}/api/cart/setsum/`,
   GET_CART_SUM: `${host}/api/cart/sumtotal/`,
   POST_CART_INFO: `${host}/api/cart/setinfo/`,
   GET_CART_INFO: `${host}/api/cart/getinfo/`,
