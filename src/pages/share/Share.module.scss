@@ -686,6 +686,10 @@ $upload-min-height: calc(42.9vh);
   animation: heartbeat 0.5s;
 }
 
+.fade-out-bg {
+  animation: fadeOutBg 0.5s;
+}
+
 @keyframes heartbeat {
   0% {
     transform: scale(1);
@@ -701,6 +705,23 @@ $upload-min-height: calc(42.9vh);
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes fadeOutBg {
+  0% {
+    background-color: #eed19a;
+    transform: translateY(-50%);
+    opacity: 0.7;
+  }
+  30% {
+    background-color: #eed19a;
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(0);
+    background-color: transparent;
   }
 }
 

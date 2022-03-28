@@ -48,6 +48,7 @@ function ItemDetailsComments(props) {
 
   const [itemComments, setItemComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
+  const [blink, setBlink] = useState(0);
 
   const memId = localStorage.getItem('mem_id');
   const memPhoto = localStorage.getItem('mem_photo');
@@ -73,7 +74,7 @@ function ItemDetailsComments(props) {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        sid :
+        sid: commentSid,
         itemId,
         commentId: memId,
         comment: commentInput,
@@ -118,15 +119,24 @@ function ItemDetailsComments(props) {
           ''
         )}
         {itemComments.map(
-          ({
-            sid,
-            comment,
-            item_comment_time: commentTime,
-            mem_nickname: commentName,
-            mem_photo_img_path: commentImg,
-          }) => {
+          (
+            {
+              blinkId = '',
+              sid,
+              comment,
+              item_comment_time: commentTime,
+              mem_nickname: commentName,
+              mem_photo_img_path: commentImg,
+            },
+            i
+          ) => {
             return (
-              <div key={sid} className="d-flex mt-5 mb-3">
+              <div
+                key={commentTime + i}
+                className={`${
+                  blink === blinkId ? styles['fade-out-bg'] : ''
+                } d-flex mt-5 mb-3`}
+              >
                 <div className={`${styles['profile-img-sm']} mb-2 mr-3 `}>
                   <img src={config.MEM_PHOTO + `/${commentImg}`} alt="" />
                 </div>
@@ -177,8 +187,10 @@ function ItemDetailsComments(props) {
                   updateComment();
                   return;
                 }
+                setBlink(blink + 1);
                 setItemComments([
                   {
+                    blinkId: blink + 1,
                     comment: commentInput,
                     item_comment_time: Date(Date.now()),
                     mem_nickname: memNickname,
