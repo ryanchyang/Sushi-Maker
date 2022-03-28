@@ -24,6 +24,7 @@ function StepOne(props) {
   // const [setOrder, setSetOrder] = useState(list.set);
   const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
+  const [discountTotal, setDiscountTotal] = useState(0); // 會員可以折抵積分提示欄位
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
@@ -68,7 +69,52 @@ function StepOne(props) {
       }
     };
     getList();
+
+    // // 取得折扣金額
+    // const getDiscount = async () => {
+    //   const memid = localStorage.getItem('mem_id');
+    //   if (memid !== null) {
+    //     //判斷會員有無登入
+    //     const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
+    //     const obj = await res.json();
+    //     if (obj.success) {
+    //       //購物車有商品才繼續做
+    //       setDiscountTotal(obj.result);
+    //       console.log(discountTotal);
+    //     } else {
+    //       //購物車無商品則導頁
+    //       history.push('/cart/cartlist');
+    //     }
+    //   } else {
+    //     //會員未登入則導頁
+    //     history.push('/cart/cartlist');
+    //   }
+    // };
+    // getDiscount();
   }, []);
+
+  // 取得折扣金額
+  // useEffect(() => {
+  //   const getDiscount = async () => {
+  //     const memid = localStorage.getItem('mem_id');
+  //     if (memid !== null) {
+  //       //判斷會員有無登入
+  //       const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
+  //       const obj = await res.json();
+  //       if (obj.success) {
+  //         //購物車有商品才繼續做
+  //         setDiscountTotal(obj.result);
+  //       } else {
+  //         //購物車無商品則導頁
+  //         history.push('/cart/cartlist');
+  //       }
+  //     } else {
+  //       //會員未登入則導頁
+  //       history.push('/cart/cartlist');
+  //     }
+  //   };
+  //   getDiscount();
+  // }, []);
 
   // 有購物車品項後去計算 商品總價 總印製時間 商品數量
   useEffect(() => {
@@ -146,7 +192,7 @@ function StepOne(props) {
   //     ...inputSum,
   //     cart_credit: inputCredit,
   //   });
-    
+
   // }, [inputCredit]);
 
   // 提交
@@ -176,8 +222,7 @@ function StepOne(props) {
           console.log(obj.success);
           // 有成功更新頁面才轉向
           history.push('/cart/steptwo');
-        }
-        else {
+        } else {
           alert('資料錯誤請重新輸入！');
         }
       });
@@ -278,7 +323,8 @@ function StepOne(props) {
                       </div>
 
                       <small className="col-24 col-md-20 text-right ">
-                        會員點數15,000點 可折抵NT$15元
+                        {/* 會員點數15,000點 可折抵NT$15元 */}
+                        會員點數{discountTotal}點 可折抵NT$15元
                       </small>
                     </div>
                     <div className="row price my-4">
