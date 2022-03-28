@@ -6,18 +6,23 @@ import evntsData from './evnts.json';
 // import promoData from './promo.json';
 import sharesData from './shares.json';
 import BackToTop from './components/BackToTop';
-import { useWindowScroll } from 'react-use';
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Entry from './components/Entry';
 import NavPage from '../layout/components/NavPage';
 import config from '../../Config';
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height,
+  };
+}
+
 function Index(props) {
   // Navbar開關狀態、進場蓋版開關(從App.js來)
   const { navIsOpen, setNavIsOpen, entryOpen, setEntryOpen } = props;
-  // promotion hover狀態 (未完成)
-  const [isHover, setIsHover] = useState(false);
   // promotion AJAX data狀態
   const [promoData, setPromoData] = useState([]);
   // just for you分類狀態
@@ -28,9 +33,9 @@ function Index(props) {
   const [newsIndex, setNewsIndex] = useState(0);
   // scroll down 改變背景
   const [changeBG, setChangeBG] = useState(null);
-
-  // hook 偵聽 y軸
-  const { y: pageYOffset } = useWindowScroll();
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
 
   // 真實DOM ref
   const scrollTo = useRef();
@@ -48,10 +53,39 @@ function Index(props) {
     setPromoData(promoObj.data);
   };
 
-  // didMount初始化: 1.設定Intro的setInterval 2.促銷商品發送AJAX
+  // 處理背景變色
+  const changeBackground = () => {
+    // console.log('changeBG:', changeBG);
+    // console.log('window.scrollY:', window.scrollY);
+    // console.log('window.height:', windowDimensions.height);
+    // console.log('promotion:', promotion.current.offsetTop);
+    // console.log('footer:', footer.current.offsetTop);
+    if (
+      changeBG !== true &&
+      (window.scrollY <=
+        promotion.current.offsetTop - windowDimensions.height / 2 ||
+        window.scrollY >=
+          footer.current.offsetTop - windowDimensions.height / 3)
+    ) {
+      setChangeBG(true);
+    } else if (
+      changeBG !== false &&
+      window.scrollY >=
+        promotion.current.offsetTop - windowDimensions.height / 2
+    ) {
+      setChangeBG(false);
+    }
+  };
+
+  // didMount初始化
+  // 1.設定Intro的setInterval
+  // 2.促銷商品發送AJAX
+  // 3.綁定window scroll event
   useEffect(() => {
-    setTime();
+    setInterval(changeCubeImg, 2000);
     getPromoData();
+    window.addEventListener('scroll', changeBackground);
+    setChangeBG(true);
   }, []);
 
   // 當Latest News分類有更新時，輪播牆的index回歸到0
@@ -59,24 +93,8 @@ function Index(props) {
     setNewsIndex(0);
   }, [latestNewsCate]);
 
-  // 處理背景變色
-  console.log('pageYOffset:', pageYOffset);
-  // 取得window height
-  // 取得promotion的ref offsetTop
-  // scroll - window.height >= ref的offsetTop
-  useEffect(() => {
-    if (pageYOffset <= 3500 || pageYOffset >= 6500) {
-      setChangeBG(true);
-    } else if (pageYOffset > 3500) {
-      setChangeBG(false);
-    }
-  }, [pageYOffset]);
-
   // 處理Intro製成變化圖片
   let start = 0;
-  const setTime = () => {
-    setInterval(changeCubeImg, 2000);
-  };
   const changeCubeImg = () => {
     if (start > 2) {
       start = 0;
@@ -114,23 +132,13 @@ function Index(props) {
     });
 
   // 處理carousel hover
-  // ToDo: hover會停止 + 無限輪播牆改用js改寫
-  // const handleMouseEnter = e => {
-  //   console.log('enter');
-  //   console.log(e.target.dataset.id);
-  //   setIsHover(true);
-  //   if (isHover) {
-  //   }
-  // };
-  // const handleMouseLeave = e => {
-  //   console.log('leave');
-  // };
   const clickHandler = e => {
     console.log('hi');
     console.log('e.target', e.target);
     console.log('e.currentTarget', e.currentTarget);
     console.log(e.currentTarget.dataset.id);
   };
+
   // 處理just for you類別切換
   const handleJustForYou = e => {
     const text = e.target.innerText;
@@ -194,11 +202,13 @@ function Index(props) {
   const darkBG = {
     backgroundColor: '#212121',
     color: '#ffffff',
-    transition: '1.5s',
+    transition: '1s',
   };
-  const lightBG = { backgroundColor: '#f7f6f3', transition: '1.5s' };
+  const lightBG = { backgroundColor: '#f7f6f3', transition: '1s' };
   const focus = { backgroundColor: '#ff5656' };
   const normal = { backgroundColor: '#c4c4c4' };
+
+  //
 
   return (
     <>
@@ -213,7 +223,9 @@ function Index(props) {
             <AsideLeft
               changeBG={changeBG}
               setChangeBG={setChangeBG}
-              pageYOffset={pageYOffset}
+              windowDimensions={windowDimensions}
+              promotion={promotion}
+              footer={footer}
             />
             <div style={{ width: '100%' }}>
               <div className="home-page">
@@ -843,7 +855,7 @@ function Index(props) {
               </div>
 
               {/* footer */}
-              <div className="home-page">
+              <div className="home-page" ref={footer}>
                 {/* <Title title={''} />*/}
                 <Link
                   to={'./classic'}
@@ -910,7 +922,9 @@ function Index(props) {
             <AsideRight
               changeBG={changeBG}
               setChangeBG={setChangeBG}
-              pageYOffset={pageYOffset}
+              windowDimensions={windowDimensions}
+              promotion={promotion}
+              footer={footer}
               navIsOpen={navIsOpen}
               setNavIsOpen={setNavIsOpen}
             />
