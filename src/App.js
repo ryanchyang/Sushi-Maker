@@ -84,26 +84,29 @@ function App() {
             path="/classic/detail/:id?"
             render={() => <ClassicDetail key={Date.now()} />}
           />
-          <Route path="/member" exact>
-            <MemIndex />
+           <Route path="/member" exact>
+            <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/login">
-            <Login />
+            <Login navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/register">
-            <Register />
+            <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/active">
-            <IndexActive />
+            <IndexActive navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/analyze">
-            <IndexAnalyze />
+            <IndexAnalyze navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/historyorder">
-            <IndexHistoryOrder />
+            <IndexHistoryOrder
+              navIsOpen={navIsOpen}
+              setNavIsOpen={setNavIsOpen}
+            />
           </Route>
           <Route path="/member/revise">
-            <IndexRevise />
+            <IndexRevise navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/share" exact>
             <Share />
