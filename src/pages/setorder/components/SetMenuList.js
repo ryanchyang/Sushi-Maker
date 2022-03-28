@@ -6,11 +6,12 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import SetMenuFinal from './SetMenuFinal';
 // import Meal from './../SetMeal.json';
 function SetMenuList(props) {
+  console.log('props-compo', props);
   // 套餐光箱
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [answer, setAnswer] = useState({});
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -153,14 +154,16 @@ function SetMenuList(props) {
         <div className="select-date"></div>
         <div className="select-box col-24 align-items-center">
           <div className="en-cont-36 set-day">1</div>
+
           <select name="" id="" className="select ch-cont-18">
-            <option value="">測試便當1 English name</option>
-            <option value="">測試便當2 English name</option>
-            <option value="">測試便當3 English name</option>
-            <option value="">測試便當4 English name</option>
-            <option value="">測試便當5 English name</option>
-            <option value="">測試便當6 English name</option>
-            <option value="">測試便當7 English name</option>
+            {answer.rows?.map(b => {
+              return (
+                <option value={b.bento_id} key={b.sid}>
+                  {b.bento_ch_name}
+                  {b.bento_en_name}
+                </option>
+              );
+            })}
           </select>
 
           {modal}

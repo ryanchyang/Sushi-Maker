@@ -8,9 +8,8 @@ import config from '../../Config';
 function SetOrderList() {
   const data = useLocation();
 
-  //資料傳到後端後做完判斷,ref送出結果
+  //資料傳到後端後做完判斷,傳出結果
   useEffect(() => {
-    console.log('data.state', data.state);
     console.log('資料傳送過去');
     const getData = async () => {
       const res = await fetch(config.GET_SET_COMPARE, {
@@ -20,23 +19,35 @@ function SetOrderList() {
       })
         .then(res => res.json())
         .then(obj => {
-          console.log('-----obj-----', obj);
+          //傳出結果
+          console.log('-----結果-----', obj);
+          //return 將obj資料丟到useEffect外面
+          return obj;
         });
+      console.log('res', res);
+      setAnswer(res);
     };
     getData();
+    console.log('answer', answer);
+    console.log('getData()', getData());
   }, []);
 
+  //菜單選擇
+  const [answer, setAnswer] = useState({});
+
+  //月曆的useState
   const [date, setDate] = useState('');
   function setdateChange(e) {
     setDate(e.target.value);
   }
-
+  //吃幾週的useState
   const [week, setWeek] = useState('');
   function weekChange(e) {
     // console.log(e.target.value);
     setWeek(e.target.value);
   }
-
+  // console.log('answer.rows?.set_id',answer.rows?.set_id);
+  // console.log('choose-answer',answer);
   return (
     <>
       <Header />
@@ -44,10 +55,7 @@ function SetOrderList() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Just For You'} />
-          <h1>
-            {/* 測試文字：第一題選擇了{data.state.selected}，第二題選擇了
-            {data.state.selected2} */}
-          </h1>
+
           <div className="setmenulist">
             <div className="mycontainer min-hi ">
               <div className="set-list-title ch-title-22">推薦結果</div>
@@ -90,13 +98,31 @@ function SetOrderList() {
                     <div className="set-day-title en-cont-18">DAY</div>
                     <div className="set-bento-title ch-cont-16">每日套餐</div>
                   </div>
+
+                  {/* <h1>測試，現在選中{answer.rows?.set_id}</h1> */}
+                  <select
+                    name=""
+                    id=""
+                    className="select ch-cont-18"
+                    // onChange={AnswerChange()}
+                  >
+                    {answer.rows?.map(b => {
+                      return (
+                        <option value={b.bento_id} key={b.sid}>
+                          {b.bento_ch_name}
+                          {b.bento_en_name}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  {/* <SetMenuList />
                   <SetMenuList />
                   <SetMenuList />
                   <SetMenuList />
                   <SetMenuList />
                   <SetMenuList />
-                  <SetMenuList />
-                  <SetMenuList />
+                  <SetMenuList /> */}
                 </div>
                 <div className="set-list-right col-8">
                   <div className="set-view-all p-5">
