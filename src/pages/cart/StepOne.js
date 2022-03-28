@@ -8,12 +8,9 @@ import ProdItem from '././components/ProdItem';
 // member id =1 鮮血死 測試用
 import config from '../../Config';
 import { useState, useEffect } from 'react';
-
-// import CartOne from './../data/cartone.json';
+import { getCart } from '../../utils';
 
 function StepOne(props) {
-  // counts -> 陣列
-  // const { productsInOrder, setProductsInOrder } = props;
   // 回上一頁 按鈕
   let history = useHistory();
   const [list, setList] = useState({}); //總資料
@@ -22,23 +19,30 @@ function StepOne(props) {
   const [amount, setAmount] = useState(0); //商品總價
   const [deleteProd, setDeleteProd] = useState([]); //被刪除的商品
   //const {cs = [], cm = [], set = []} = list;
+  // const [csOrder, setCsOrder] = useState(list.cs);
+  // const [cmOrder, setCmOrder] = useState(list.cm);
+  // const [setOrder, setSetOrder] = useState(list.set);
+  const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
+  const [cart_id, setCart_id] = useState(0); // 取得cart id
+  const [discountTotal, setDiscountTotal] = useState(0); // 會員可以折抵積分提示欄位
 
-  // const getList = async () => {
-  //   console.log('hi');
-  //   const res = await fetch(config.GET_CART + `${mem_id}`);
-  //   const obj = await res.json();
-  //   console.log('obj:', obj);
-  //   // console.log('cm:', obj.data.cm);
-  //   // console.log('cs:', obj.data.cs);
-  //   // console.log('set:', obj.data.set);
-  //   setList(obj.data);
-  // };
-  // console.log(list.cm);
-  // useEffect(() => {
-  //   getList();
-  //   // console.log(getList());
-  // }, []);
+  // 接資料要post 到DB的
+  const [inputSum, setInputSum] = useState({
+    cart_value: amount,
+    cart_credit: '' || null,
+    cart_total_print_time: printTime,
+  });
+  console.log('34 inputSum', inputSum);
+  // 取得cart_id
+  useEffect(() => {
+    const getInit = async () => {
+      const Cid = await getCart();
+      setCart_id(+Cid.cartid);
+    };
+    getInit();
+  }, []);
 
+  // 判斷有沒有購物車內容
   useEffect(() => {
     const getList = async () => {
       const memid = localStorage.getItem('mem_id');
@@ -49,6 +53,12 @@ function StepOne(props) {
         if (obj.success) {
           //購物車有商品才繼續做
           setList(obj.data);
+          setInputSum({
+            cart_value: amount,
+            cart_credit: inputCredit,
+            cart_total_print_time: printTime,
+          });
+          console.log('60', inputSum);
         } else {
           //購物車無商品則導頁
           history.push('/cart/cartlist');
@@ -59,26 +69,72 @@ function StepOne(props) {
       }
     };
     getList();
+
+    // // 取得折扣金額
+    // const getDiscount = async () => {
+    //   const memid = localStorage.getItem('mem_id');
+    //   if (memid !== null) {
+    //     //判斷會員有無登入
+    //     const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
+    //     const obj = await res.json();
+    //     if (obj.success) {
+    //       //購物車有商品才繼續做
+    //       setDiscountTotal(obj.result);
+    //       console.log(discountTotal);
+    //     } else {
+    //       //購物車無商品則導頁
+    //       history.push('/cart/cartlist');
+    //     }
+    //   } else {
+    //     //會員未登入則導頁
+    //     history.push('/cart/cartlist');
+    //   }
+    // };
+    // getDiscount();
   }, []);
 
+  // 取得折扣金額
+  // useEffect(() => {
+  //   const getDiscount = async () => {
+  //     const memid = localStorage.getItem('mem_id');
+  //     if (memid !== null) {
+  //       //判斷會員有無登入
+  //       const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
+  //       const obj = await res.json();
+  //       if (obj.success) {
+  //         //購物車有商品才繼續做
+  //         setDiscountTotal(obj.result);
+  //       } else {
+  //         //購物車無商品則導頁
+  //         history.push('/cart/cartlist');
+  //       }
+  //     } else {
+  //       //會員未登入則導頁
+  //       history.push('/cart/cartlist');
+  //     }
+  //   };
+  //   getDiscount();
+  // }, []);
+
+  // 有購物車品項後去計算 商品總價 總印製時間 商品數量
   useEffect(() => {
     let count = 0;
     let time = 0;
     let total = 0;
     list.cs?.forEach(d => {
-      console.log(d.orders_print_time);
+      console.log('71 cs _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
     });
     list.cm?.forEach(d => {
-      console.log(d.orders_print_time);
+      console.log('77 cm _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
     });
     list.set?.forEach(d => {
-      console.log(d.orders_print_time);
+      console.log('83 set _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
@@ -98,6 +154,12 @@ function StepOne(props) {
         const res = await fetch(config.GET_CART_ORDER + `${memid}`);
         const obj = await res.json();
         if (obj.success) {
+          setInputSum({
+            cart_value: amount,
+            cart_credit: inputCredit,
+            cart_total_print_time: printTime,
+          });
+          console.log('110', inputSum);
           //刪除商品成功後購物車仍有商品，則不做任何事
         } else {
           //購物車無商品則導頁
@@ -111,65 +173,63 @@ function StepOne(props) {
     getList();
   }, [deleteProd]);
 
-  // useEffect(() => {
-  //   //console.log(list);
-  //   // console.log('cs', list.cs?.length);
-  //   // console.log(' cs', list.cs?.length);
-  //   // console.log(' cm', list.cm?.length);
-  //   // console.log(' set', list.set?.length);
-  //   // console.log(
-  //   //   ' plus!!!',
-  //   //   list.cs?.length + list.cm?.length + list.set?.length
-  //   // );
-  // }, [list]);
-  // console.log('length cs', list.cs?.length);
-  // console.log('length cm', list.cm?.length);
-  // console.log('length set', list.set?.length);
-  // console.log('plus');
+  // 更改會員折扣後 才可以取得 inputSum
+  const handleChange = e => {
+    console.log('creadit', e.target.value);
 
-  // 處理項目刪除用
-  // const handleDelete = id => {
-  //   //1. 先從原本的陣列(物件)拷貝出一個新陣列(物件)
-  //   let newData = [...data];
-  //   //2. 在拷貝出的新陣列(物件)上運算或處理
-  //   newProductsInOrder = newProductsInOrder.filter((v, i) => {
-  //     return v.id !== id;
+    console.log('123', inputSum);
+    const newData = {
+      cart_value: amount,
+      cart_credit: +e.target.value,
+      cart_total_print_time: printTime,
+    };
+    setInputSum(newData);
+    // console.log('137', inputSum);
+  };
+  // // 取得inputCredit 後 拷貝陣列並把值塞進去 inputSum
+  // useEffect(() => {
+  //   setInputSum({
+  //     ...inputSum,
+  //     cart_credit: inputCredit,
   //   });
 
-  //   //3. 設定回原本的狀態
-  //   setProductsInOrder(newProductsInOrder);
-  // };
+  // }, [inputCredit]);
 
-  // const [productsInOrder, setProductsInOrder] = useState(list);
-  // console.log('list', list);
-  // console.log('productsInOrder', productsInOrder);
+  // 提交
+  const handleSubmit = e => {
+    e.preventDefault();
+    const memid = localStorage.getItem('mem_id');
 
-  const [csOrder, setCsOrder] = useState(list.cs);
-  const [cmOrder, setCmOrder] = useState(list.cm);
-  const [setOrder, setSetOrder] = useState(list.set);
+    setInputSum(inputSum);
+    console.log('summaryone');
+    console.log('162', inputSum);
 
-  // console.log('csOrder', csOrder);
-  // Summary
-  // 計算目前所有的商品數量
-  // const productCount = () => {
-  //   let totalCount = 0;
+    //  POST 要傳的直設定回去
 
-  //   for (let i = 0; i < productsInOrder.length; i++) {
-  //     totalCount += productsInOrder[i].count;
-  //   }
-  //   return totalCount;
-  // };
-
-  // // 計算目前所有的商品總價
-  // const total = () => {
-  //   let sum = 0;
-
-  //   for (let i = 0; i < productsInOrder.length; i++) {
-  //     sum += productsInOrder[i].count * productsInOrder[i].price;
-  //   }
-
-  //   return sum;
-  // };
+    // if (handleValidation()) {
+    // fetch
+    const r = fetch(config.POST_CART_SUMMARY + `${memid}/${cart_id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputSum),
+    })
+      .then(r => r.json())
+      .then(obj => {
+        console.log(obj);
+        if (obj.success) {
+          console.log(obj.success);
+          // 有成功更新頁面才轉向
+          history.push('/cart/steptwo');
+        } else {
+          alert('資料錯誤請重新輸入！');
+        }
+      });
+    // } else {
+    //   console.log('form has errors.');
+    // }
+  };
 
   return (
     <>
@@ -184,18 +244,18 @@ function StepOne(props) {
               <div className="row  my-2 d-flex align-items-center">
                 <div className="col-md-24 d-none d-md-flex">
                   <div className="col-md-2 col-3 align-items-center">
-                    <div className="form-check">
+                    {/* <div className="form-check">
                       <input
                         className="form-check-input "
                         type="checkbox"
                         value=""
                         id="flexCheckDefault"
                       />
-                      {/* <label
+                     <label
                         className="form-check-label"
                         htmlFor="flexCheckDefault"
-                      ></label> */}
-                    </div>
+                      ></label> 
+                    </div> */}
                   </div>
 
                   <div className="col-md-4 pr-3 align-items-center">
@@ -257,12 +317,14 @@ function StepOne(props) {
                             placeholder="NT$"
                             // defaultValue={0}
                             min={0}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
 
                       <small className="col-24 col-md-20 text-right ">
-                        會員點數15,000點 可折抵NT$15元
+                        {/* 會員點數15,000點 可折抵NT$15元 */}
+                        會員點數{discountTotal}點 可折抵NT$15元
                       </small>
                     </div>
                     <div className="row price my-4">
@@ -274,7 +336,7 @@ function StepOne(props) {
                   </div>
                 </div>
               </div>
-              {/* 下一步 */}
+
               <div className="row  d-flex justify-content-center justify-content-md-end">
                 <div className="  next-btn d-flex my-5 ">
                   <button
@@ -287,21 +349,15 @@ function StepOne(props) {
                   >
                     繼續購物
                   </button>
-                  <Link to="./StepTwo">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    >
-                      前往結帳
-                    </button>
-                  </Link>
-                  {/* <a
+                  {/* <Link to="./StepTwo"> */}
+                  <button
                     type="button"
                     className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    href="./StepTwo"
+                    onClick={handleSubmit}
                   >
                     前往結帳
-                  </a> */}
+                  </button>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>

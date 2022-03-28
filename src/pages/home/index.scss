@@ -360,16 +360,43 @@
       margin-top: 25rem;
       font-size: 48px;
       text-align: right;
-      padding-right: 52px;
+      padding-right: 10%;
     }
     .about-us-text-area {
       width: 40%;
     }
-    .about-us-content {
+    // .about-us-content {
+    //   display: flex;
+    //   justify-content: space-around;
+    //   margin-top: 6rem;
+    //   margin-bottom: 15rem;
+    // }
+    .about-us-content01 {
       display: flex;
       justify-content: space-around;
       margin-top: 6rem;
       margin-bottom: 15rem;
+      opacity: 0;
+      transition: 1s;
+      transform: translateX(100px);
+    }
+    .about-us-content02 {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 6rem;
+      margin-bottom: 15rem;
+      opacity: 0;
+      transition: 1s;
+      transform: translateY(100px);
+    }
+    .about-us-content03 {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 6rem;
+      margin-bottom: 15rem;
+      opacity: 0;
+      transition: 1s;
+      transform: translateX(-100px);
     }
     .about-ch-title {
       padding-right: 0px;

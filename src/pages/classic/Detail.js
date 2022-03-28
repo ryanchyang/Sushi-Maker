@@ -15,8 +15,9 @@ function Detail() {
   const [recommends, setRecommendeds] = useState([]); //推薦商品資料(3個)
   const [selectedMaterial, setSelectedMaterial] = useState({}); //目前選定的食材資料
   const [isLike, setIsLike] = useState(false); //該商品是否被收藏
-  const [buyCount, setBuyCount] = useState(1);
-  const [mtlsForChart, setMtlsForChart] = useState([]);
+  const [buyCount, setBuyCount] = useState(1);  //商品購買數量
+  const [mtlsForChart, setMtlsForChart] = useState([]);   //要進chart.js畫圖的材料
+  const [share, setShare] = useState([]);
   const { id } = useParams(); //取得url上的product id
 
   //點擊食材圖片
@@ -149,6 +150,11 @@ function Detail() {
       });
       const likeObj = await likeRes.json();
       setIsLike(likeObj.isLike);
+
+      //取得相關分享
+      const shareRes = await fetch(config.GET_REL_SHARE + `/${id}`);
+      const shareObj = await shareRes.json();
+      setShare(shareObj.res);
     };
 
     fetchData();
@@ -628,6 +634,42 @@ function Detail() {
                 </div>
               </div> */}
             </div>
+
+            {/* 相關分享 */}
+            <div className="recommend">
+              <div className="recommend-ch-title ch-title-22">相關分享</div>
+              <div className="recommend-en-title en-title-14-10">
+                Share
+              </div>
+            </div>
+            <div className="recommend-prod-box">
+              {share.map((r, i) => {
+                return (
+                  //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
+                  <div
+                    className={
+                      recommends.length === i + 1
+                        ? 'prod-card last-recommend'
+                        : 'prod-card'
+                    }
+                    key={r.share_item_id}
+                  >
+                    <Link
+                      to={`/share/items/${r.share_item_id}`}
+                      style={{ textDecoration: 'none', color: '#212121' }}
+                    >
+                      <div className="recommend-prod-img-box">
+                        <img
+                          src={`http://localhost:3500/${r.share_imgPath}`}
+                          alt="product-recommend"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
 
           <Footer />

@@ -44,12 +44,15 @@ function Index(props) {
   const textImgRef = useRef();
   const promotion = useRef();
   const footer = useRef();
+  const aboutus01 = useRef();
+  const aboutus02 = useRef();
+  const aboutus03 = useRef();
 
   // didMount AJAX 促銷產品
   const getPromoData = async () => {
     const res = await fetch(config.PROMO_PATH);
     const promoObj = await res.json();
-    console.log('promoObj:', promoObj);
+    // console.log('promoObj:', promoObj);
     setPromoData(promoObj.data);
   };
 
@@ -77,6 +80,32 @@ function Index(props) {
     }
   };
 
+  // 處理About us三頁的content進場
+  const titleEnter = () => {
+    // console.log(aboutus01.current.offsetTop);
+    if (
+      window.scrollY >=
+      aboutus01.current.offsetTop - windowDimensions.height / 2
+    ) {
+      aboutus01.current.style.opacity = 1;
+      aboutus01.current.style.transform = 'translateX(0px)';
+    }
+    if (
+      window.scrollY >=
+      aboutus02.current.offsetTop - windowDimensions.height / 2
+    ) {
+      aboutus02.current.style.opacity = 1;
+      aboutus02.current.style.transform = 'translateY(0px)';
+    }
+    if (
+      window.scrollY >=
+      aboutus03.current.offsetTop - windowDimensions.height / 2
+    ) {
+      aboutus03.current.style.opacity = 1;
+      aboutus03.current.style.transform = 'translateX(0px)';
+    }
+  };
+
   // didMount初始化
   // 1.設定Intro的setInterval
   // 2.促銷商品發送AJAX
@@ -85,7 +114,13 @@ function Index(props) {
     setInterval(changeCubeImg, 2000);
     getPromoData();
     window.addEventListener('scroll', changeBackground);
+    window.addEventListener('scroll', titleEnter);
     setChangeBG(true);
+
+    // 結束後移除事件
+    return () => {
+      window.removeEventListener('scroll', titleEnter);
+    };
   }, []);
 
   // 當Latest News分類有更新時，輪播牆的index回歸到0
@@ -308,7 +343,7 @@ function Index(props) {
                 <div className="en-title-24 about-us-title" ref={scrollTo}>
                   About us
                 </div>
-                <div className="about-us-content">
+                <div className="about-us-content01" ref={aboutus01}>
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">創造新食感</p>
@@ -333,7 +368,7 @@ function Index(props) {
               </div>
               <div className="home-page">
                 <div className="en-title-24 about-us-title">About us</div>
-                <div className="about-us-content">
+                <div className="about-us-content02" ref={aboutus02}>
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">精準客製飲食</p>
@@ -359,7 +394,7 @@ function Index(props) {
               </div>
               <div className="home-page">
                 <div className="en-title-24 about-us-title">About us</div>
-                <div className="about-us-content">
+                <div className="about-us-content03" ref={aboutus03}>
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">食物藝術</p>

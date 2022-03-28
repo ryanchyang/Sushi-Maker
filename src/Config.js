@@ -22,6 +22,7 @@ const config = {
   ADD_CART: `${host}/classic/api/addcart`,
   GET_LIKE: `${host}/classic/api/checklike`,
   HANDLE_LIKE: `${host}/classic/api/handlelike`,
+  GET_REL_SHARE: `${host}/classic/api/getrelshare`,
 
   // 客製商品
   GET_MTLS: `${host}/customize/api/getmtls`,
@@ -40,7 +41,8 @@ const config = {
   TOGGLE_SAVE: `${host}/api/share/toggle/save`,
   UPLOAD_POST: `${host}/api/share/upload/post`,
   UPDATE_POST: `${host}/api/share/update/post`,
-  UPDATE_COMMENT: `${host}/api/share/upload/comment`,
+  UPLOAD_COMMENT: `${host}/api/share/upload/comment`,
+  UPDATE_COMMENT: `${host}/api/share/update/comment`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
@@ -49,7 +51,8 @@ const config = {
   // 得到購物車清單 stepone
   GET_CUR_CART: `${host}/api/cart/getcurcart/`,
   GET_CART_ORDER: `${host}/api/cart/stepone/`,
-  POST_CART_SUMMARY: `${host}/api/cart/summaryOne/`,
+  GET_CART_DISCOUNT: `${host}/api/cart/getdiscount/`,
+  POST_CART_SUMMARY: `${host}/api/cart/setsum/`,
   GET_CART_SUM: `${host}/api/cart/sumtotal/`,
   POST_CART_INFO: `${host}/api/cart/setinfo/`,
   GET_CART_INFO: `${host}/api/cart/getinfo/`,

@@ -36,7 +36,15 @@ const timeConvertHandler = time => {
 };
 
 function ItemDetailsComments(props) {
-  const { setMsgdiv, shareComments, itemId } = props;
+  const {
+    setMsgdiv,
+    shareComments,
+    itemId,
+    action,
+    commentSid,
+    handleShow,
+    setIsSubmit,
+  } = props;
 
   const [itemComments, setItemComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
@@ -46,7 +54,7 @@ function ItemDetailsComments(props) {
   const memNickname = localStorage.getItem('mem_nickname');
 
   const uploadComment = async () => {
-    const response = await fetch(config.UPDATE_COMMENT, {
+    const response = await fetch(config.UPLOAD_COMMENT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -60,9 +68,33 @@ function ItemDetailsComments(props) {
     return itemsArr;
   };
 
+  const updateComment = async () => {
+    const response = await fetch(config.UPDATE_COMMENT, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        sid :
+        itemId,
+        commentId: memId,
+        comment: commentInput,
+        commentTime: Date(Date.now()),
+      }),
+    });
+    handleShow();
+    const itemsArr = await response.json();
+    return itemsArr;
+  };
+
   useEffect(() => {
     setItemComments(shareComments);
+    const commentObj = shareComments.find(
+      comment => comment.sid === commentSid
+    );
+
+    if (action === 'COMMENT' && commentObj) setCommentInput(commentObj.comment);
   }, [shareComments]);
+
+  useEffect(() => {}, [shareComments]);
 
   return (
     <div className={`${styles['message-section-box']}  d-flex flex-column`}>
@@ -70,7 +102,8 @@ function ItemDetailsComments(props) {
         <DeleteSm
           className={`${styles['del-button']}`}
           onClick={() => {
-            setMsgdiv(false);
+            if (action === 'COMMENT') handleShow();
+            if (action === 'VIEW') setMsgdiv(false);
           }}
         />
         <h2 className="en-title-18 mr-4 ">Comments</h2>
@@ -139,6 +172,11 @@ function ItemDetailsComments(props) {
               style={commentInput ? { opacity: '1' } : { opacity: '0.7' }}
               className={`${styles['save-button-sm']} ch-title-14 mb-3 btn-sm btn-primary`}
               onClick={() => {
+                if (action === 'COMMENT') {
+                  setIsSubmit(true);
+                  updateComment();
+                  return;
+                }
                 setItemComments([
                   {
                     comment: commentInput,
@@ -152,7 +190,7 @@ function ItemDetailsComments(props) {
                 uploadComment();
               }}
             >
-              發佈
+              {action === 'COMMENT' ? '修改' : '發佈'}
             </button>
           </div>
         </div>

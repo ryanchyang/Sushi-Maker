@@ -48,53 +48,20 @@ function StepTwo() {
     cart_store_id: '',
   });
 
-  // TODO:  member id =1 鮮血死 測試用
-  // const mem_id = 8;
-  // const cart_id = 8;
-  // const mem_id = getMemId();
-  // console.log('mem_id:', mem_id);
-
-  // console.log('info.mem_name', info[0]?.mem_name);
-
-  // const { id } = useParams();
-  // console.log('id:', id);
-
   // -----先取得 畫面右側小計
+  //  共同取 mem_id & cart_id 的地方
   useEffect(() => {
-    const getInit = async () => { 
+    const getInit = async () => {
       const Mid = getMemId();
       const Cid = await getCart();
       setMem_id(+Mid);
       setCart_id(+Cid.cartid);
-    }
+    };
     getInit();
-
-    // const getSum = async () => {
-    //   // TODO: 共同曲mem_id cart_id 的地方      
-    //   const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
-    //   const obj = await res.json();
-    //   // console.log('obj:', obj);
-    //   setSum(obj.data);      
-    // };
-    
-
-    // ----先取得 表單資料name mobile
-    // const getInfo = async () => {
-    //   const res = await fetch(config.GET_CART_INFO + `${mem_id}/${cart_id}`);
-    //   // console.log('res', res);
-    //   const obj = await res.json();
-    //   console.log('obj:', obj);
-    //   setInfo(obj.result);
-    // };
-
-    // if (mem_id !== 0 && cart_id !== 0) { 
-    //   getSum();
-    //   getInfo();
-    // }
-    
-    console.log('info', info);
+    // console.log('info', info);
   }, []);
 
+  // 取得store id 後 拷貝陣列並把值塞進去 fields
   useEffect(() => {
     setFields({
       ...fields,
@@ -104,7 +71,6 @@ function StepTwo() {
 
   useEffect(() => {
     const getSum = async () => {
-      // TODO: 共同曲mem_id cart_id 的地方      
       const res = await fetch(config.GET_CART_SUM + `${mem_id}/${cart_id}`);
       const obj = await res.json();
       // console.log('obj:', obj);
@@ -123,32 +89,13 @@ function StepTwo() {
     getSum();
     getInfo();
   }, [mem_id, cart_id]);
-
-
   // console.log('sum', sum);
   useEffect(() => {
     // console.log(sum);
   }, [sum]);
 
-  //-----  交易明細
-  // useEffect(() => {
-  //   const getItemInfo = async () => {
-  //     const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
-  //     const obj = await res.json();
-  //     // console.log('obj:', obj);
-  //     setItemInfo(obj.data);
-  //   };
-  //   getItemInfo();
-  // }, []);
-  // // console.log('itemInfo', itemInfo);
-  // useEffect(() => {
-  //   // console.log(itemInfo);
-  // }, [itemInfo]);
-
-  // ------
 
   // Input State 要填寫的資料欄位
-  
 
   // Error Message State
   const [fieldsError, setFieldsError] = useState({
@@ -212,22 +159,11 @@ function StepTwo() {
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
-    // setInfo(info);
+
     setFields(info);
     console.log('info', info);
     console.log('fields', fields);
     if (handleValidation()) {
-      //   console.log('form submitted.');
-
-      // get form data
-      // const formData = new FormData(e.target);
-      // const dataObj = {};
-      // for (let i of formData) {
-      //   dataObj[i[0]] = i[1];
-      // }
-      // dataObj.mem_id = mem_id;
-      // console.log('dataObj', { dataObj });
-
       // fetch
       const r = fetch(config.POST_CART_INFO + `${mem_id}/${cart_id}`, {
         method: 'POST',
@@ -251,7 +187,7 @@ function StepTwo() {
       console.log('form has errors.');
     }
   };
-
+//取得資料後 把欄位資料狀態設定回去
   useEffect(() => {
     console.log(info);
     setFields({
@@ -279,7 +215,7 @@ function StepTwo() {
           <div className="mycontainer cart min-hi">
             <div className="bread">HOME/CART</div>
             {/* 訂單資訊 可以摺疊*/}
-            <CartDetail cart_id={cart_id} mem_id={mem_id}/>
+            <CartDetail cart_id={cart_id} mem_id={mem_id} />
             <form
               // onSubmit={handleSubmit}
               // onInvalid={handleValid}
@@ -384,12 +320,12 @@ function StepTwo() {
                         id="cart_store_id"
                         value={getStoreId}
                         hidden
-                        onChange={e => {
-                          setFields({
-                            ...fields,
-                            cart_store_id: e.target.value,
-                          });
-                        }}
+                        // onChange={e => {
+                        //   setFields({
+                        //     ...fields,
+                        //     cart_store_id: e.target.value,
+                        //   });
+                        // }}
                       />
 
                       <button
@@ -476,14 +412,6 @@ function StepTwo() {
                   >
                     下一步
                   </button>
-                  {/* </Link> */}
-                  {/* <a
-                  type="button"
-                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                  href="./StepThree"
-                >
-                  下一步
-                </a> */}
                 </div>
               </div>
             </form>

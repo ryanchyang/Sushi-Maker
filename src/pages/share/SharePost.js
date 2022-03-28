@@ -9,11 +9,15 @@ import styles from './Share.module.scss';
 import config from '../../Config';
 
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function SharePost() {
   const [subTopic, setSubTopic] = useState('shared');
   const [postItemsData, setPostItemsData] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
+
+  const location = useLocation(null);
+  const { action = 'shared' } = location.state || {};
 
   const getUserSharePost = async () => {
     const response = await fetch(config.GET_USER_SHARE_POST, {
@@ -40,6 +44,7 @@ function SharePost() {
       setPostItemsData(resultPost.data);
       setCommentsData(resultComment.data);
     })();
+    if (action === 'COMMENT') setSubTopic('comment');
   }, []);
 
   return (
@@ -49,21 +54,9 @@ function SharePost() {
         <div style={{ width: '100%' }}>
           <Title title={'Share'} />
           <ShareProfile />
-          <div className={`mycontainer`}>
+          <div className={`mycontainer ${styles['upload-min-height']}`}>
             <div className="myshare-layout d-flex">
               <div className="col-6 flex-column d-none d-lg-flex">
-                {/* <div className="d-flex">
-                  <div className="d-none d-sm-block">
-                    <div className="d-flex align-items-center mr-3 ">
-                      <Rect />
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center">
-                    <div className="ch-cont-16 font-weight-bold mb-5">
-                      留言紀錄
-                    </div>
-                  </div>
-                </div> */}
                 <div className={`${styles['topic-box']} mb-5`}>
                   <div
                     className={`${styles['topic-rect']} d-none d-sm-block`}
@@ -125,7 +118,6 @@ function SharePost() {
               </div>
             </div>
           </div>
-
           <br />
           <Footer />
         </div>

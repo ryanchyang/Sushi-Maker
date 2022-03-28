@@ -2,6 +2,7 @@ import styles from '../Share.module.scss';
 
 import { ReactComponent as Trash } from '../../../imgs/tags/trash-line.svg';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const dateConvertHandler = date => {
   return new Date(date).toLocaleDateString('zh-tw');
@@ -11,6 +12,7 @@ function ShareComment(props) {
   const { commentsData } = props;
 
   const [commentItem, setCommentItem] = useState(-1);
+  let history = useHistory(null);
 
   return (
     <>
@@ -45,7 +47,13 @@ function ShareComment(props) {
         <tbody>
           {commentsData.map(
             (
-              { sid, comment, item_comment_time: date, share_title: title },
+              {
+                sid: commentSid,
+                share_item_id: itemId,
+                comment,
+                item_comment_time: date,
+                share_title: title,
+              },
               i
             ) => {
               return (
@@ -66,6 +74,15 @@ function ShareComment(props) {
                   <td>
                     <button
                       className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
+                      onClick={() => {
+                        history.push({
+                          pathname: `/share/items/${itemId}`,
+                          state: {
+                            action: 'COMMENT',
+                            commentSid,
+                          },
+                        });
+                      }}
                     >
                       編輯
                     </button>

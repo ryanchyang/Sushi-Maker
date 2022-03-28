@@ -27,7 +27,20 @@ function Entry(props) {
             </div>
           </div>
           <div className="loading-area">
-            <p className="en-title-24 loading-txt">Loading...</p>
+            <p className="en-title-24 loading-txt">
+              <ul>
+                <li>L</li>
+                <li>O</li>
+                <li>A</li>
+                <li>D</li>
+                <li>I</li>
+                <li>N</li>
+                <li>G</li>
+                <li>.</li>
+                <li>.</li>
+                <li>.</li>
+              </ul>
+            </p>
             <div className="progress">
               <div
                 className="en-cont-18 progress-done"

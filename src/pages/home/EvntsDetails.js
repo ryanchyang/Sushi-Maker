@@ -96,8 +96,20 @@ function EvntsDetails(props) {
                 {/* lastest-news top */}
                 <div className="lastest-news-nav d-flex justify-content-between align-items-center">
                   <div className="lastest-news-nav-breadcrumbs">
-                    <p className="en-title-14-10">
-                      HOME / LATEST NEWS / EVENTS
+                    <p className="en-title-14-10" style={{ color: '#b03342' }}>
+                      <Link
+                        to={'/'}
+                        style={{ textDecoration: 'none', color: '#575757' }}
+                      >
+                        HOME / {''}
+                      </Link>
+                      <Link
+                        to={'/latest-news/news'}
+                        style={{ textDecoration: 'none', color: '#575757' }}
+                      >
+                        LATEST NEWS / {''}
+                      </Link>
+                      EVENTS
                     </p>
                   </div>
                 </div>
