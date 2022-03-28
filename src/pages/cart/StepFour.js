@@ -21,7 +21,6 @@ function StepFour() {
   console.log('qrC01', qrC);
   const { cid } = useParams();
 
-
   useEffect(() => {
     const getInit = async () => {
       const Mid = getMemId();
@@ -62,7 +61,23 @@ function StepFour() {
         <div style={{ width: '100%' }}>
           <Title title={'Confirmation'} />
           <div className="mycontainer cart min-hi">
-            <div className="bread">HOME/CART</div>
+            <div className="bread">
+              {' '}
+              <p className="en-title-14-10">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME/{' '}
+                </Link>
+                <Link
+                  to={'/cart/stepone'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  CART
+                </Link>
+              </p>
+            </div>
             <div className="row"></div>
             {/* 先切手機 */}
             <div className="confirmation">

@@ -90,7 +90,20 @@ function StepThree() {
         <div style={{ width: '100%' }}>
           <Title title={'Payment Info'} />
           <div className="mycontainer cart  ch-cont-14 min-hi">
-            <div className="bread">HOME/CART</div>
+            <div className="bread"> <p className="en-title-14-10">
+              <Link
+                to={'/'}
+                style={{ textDecoration: 'none', color: '#575757' }}
+              >
+                HOME/{' '}
+              </Link>
+              <Link
+                to={'/cart/stepone'}
+                style={{ textDecoration: 'none', color: '#b03342' }}
+              >
+                CART
+              </Link>
+            </p></div>
             <CartDetail cart_id={cart_id} mem_id={mem_id} />
 
             <div className="row mt-5">

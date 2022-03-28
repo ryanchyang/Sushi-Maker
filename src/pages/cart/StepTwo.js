@@ -213,7 +213,22 @@ function StepTwo() {
           <Title title={'Shipping Info'} />
           {/* <div className="row"></div> */}
           <div className="mycontainer cart min-hi">
-            <div className="bread">HOME/CART</div>
+            <div className="bread">
+              <p className="en-title-14-10">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME/{' '}
+                </Link>
+                <Link
+                  to={'/cart/stepone'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  CART
+                </Link>
+              </p>
+            </div>
             {/* 訂單資訊 可以摺疊*/}
             <CartDetail cart_id={cart_id} mem_id={mem_id} />
             <form

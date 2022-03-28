@@ -239,7 +239,22 @@ function StepOne(props) {
         <div style={{ width: '100%' }}>
           <Title title={'Shopping List'} />
           <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
-            <div className="bread">HOME/CART</div>
+            <div className="bread">
+              <p className="en-title-14-10">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME/{' '}
+                </Link>
+                <Link
+                  to={'/cart/stepone'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  CART
+                </Link>
+              </p>
+            </div>
             <div className="list-title ch-cont-14">
               <div className="row  my-2 d-flex align-items-center">
                 <div className="col-md-24 d-none d-md-flex">
