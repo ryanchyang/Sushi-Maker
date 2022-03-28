@@ -23,15 +23,15 @@ function MemIndex() {
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
-        <div style={{ widtd: '100%' }}>
+        <div style={{ width: '100%' }}>
           <Title title={''}/>
           <div className="member ">
             <MemHead />
             {/* 以上不動 */}
 
             <div className="mycontainer">
-              <div className="memInfoArea">
-                <div className="memInfo col-md-12 col-24 mx-3 px-5">
+              <div className="memInfoArea col-md-24 col-sm-24 ">
+                <div className="memInfo col-md-12 col-sm-24 mx-3 px-5">
                   <table class="table table-borderless col-16 mt-4">
                     <thead>
                       <tr>
@@ -61,7 +61,7 @@ function MemIndex() {
                     </tbody>
                   </table>
                 </div>
-                <div className="memSet col-md-12 col-24 mx-3 d-flex">
+                <div className="memSet col-md-12 col-sm-24 mx-3 d-flex">
                   <div className="setImg">
                     <img src="/img/member/orderSet.png" alt="cube" />
                   </div>
@@ -72,7 +72,8 @@ function MemIndex() {
                   </div>
                 </div>
               </div>
-              <div className="memActive col-md-24 mb-5">
+              
+              <div className="memActive col-md-24 col-sm-24 mb-5 ">
                 <p className="ch-title-22 mt-4">
                   {toggleForCprod === false ? '近期活動' : '經典收藏'}
                 </p>

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { getMemId } from '../../../utils';
 import { findMem } from '../../../WebApi';
 import { memDoUpload } from '../../../WebApi';
@@ -6,7 +7,7 @@ import Carousel from './Carousel';
 
 function MemHead() {
   const [memData, setMemData] = useState(null);
-
+  const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
 
@@ -31,53 +32,156 @@ function MemHead() {
   };
 
   return (
-    <div className="memHead ">
-      <form
-        name="fake_form"
-        onSubmit={e => e.preventDefault()}
-        className="memPhotoArea col-md-6"
-      >
-        <div className="memPhoto">
-          <img className="memImg" src={imgSrc} alt="member-photo" />
-        </div>
-
-        <div class="memUpload mt-4">
-          <div className="memName">
-            <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
+    <>
+      <div className="memHead">
+        <form
+          name="fake_form"
+          onSubmit={e => e.preventDefault()}
+          className="memPhotoArea col-md-6 col-sm-24"
+        >
+          <div className="memPhoto">
+            <img className="memImg" src={imgSrc} alt="member-photo" />
           </div>
-          <button
-            className="btn btn-primary primeal-btn-sm "
-            onClick={e => document.querySelector('#avatar').click()}
-          >
-            點我上傳照片
-          </button>
+
+          <div class="memUpload mt-4">
+            <div className="memName">
+              <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
+            </div>
+            <button
+              className="btn btn-primary primeal-btn-sm "
+              onClick={e => document.querySelector('#avatar').click()}
+            >
+              點我上傳照片
+            </button>
+          </div>
+        </form>
+
+        <form name="form1" style={{ display: 'none' }}>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/*"
+            onChange={handleSubmitUpload}
+          />
+          <input
+            type="text"
+            value={mem_id}
+            name="mem_id"
+            style={{ display: 'none' }}
+          />
+        </form>
+
+        <div className="solgan col-md-4 mr-5">
+          <p>Good Morning!</p>
         </div>
-      </form>
 
-      <form name="form1" style={{ display: 'none' }}>
-        <input
-          type="file"
-          id="avatar"
-          name="avatar"
-          accept="image/*"
-          onChange={handleSubmitUpload}
-        />
-        <input
-          type="text"
-          value={mem_id}
-          name="mem_id"
-          style={{ display: 'none' }}
-        />
-      </form>
-
-      <div className="solgan col-md-4 mr-5">
-        <p>Good Morning!</p>
+        <div className="memShare col-md-12">
+          <Carousel />
+        </div>
       </div>
+      {/* 手機版LINK */}
+      <div
+        className="mobileLink"
+        style={{
+          width: '100%',
+        }}
+      >
+        <div
+          className="ch-title-12 mobileLInkOption"
+          style={{
+            background: location.pathname === '/member' ? '#212121' : '',
+          }}
+        >
+          <Link
+            to="/member"
+            style={{
+              textDecoration: 'none',
+              color: location.pathname === '/member' ? '#f7f6f3' : '#212121',
+            }}
+          >
+            <p>會員資訊</p>
+          </Link>
+        </div>
+        <div
+          className="ch-title-12 mobileLInkOption"
+          style={{
 
-      <div className="memShare col-md-12 ml-5">
-        <Carousel />
+            background: location.pathname === '/member/revise' ? '#212121' : '',
+          }}
+        >
+          <Link
+            to="/member/revise"
+            style={{
+              textDecoration: 'none',
+              color:
+                location.pathname === '/member/revise' ? '#f7f6f3' : '#212121',
+            }}
+          >
+            <p>修改資料</p>
+          </Link>
+        </div>
+        <div
+          className="ch-title-12 mobileLInkOption"
+          style={{
+
+            background:
+              location.pathname === '/member/analyze' ? '#212121' : '',
+          }}
+        >
+          <Link
+            to="/member/analyze"
+            style={{
+              textDecoration: 'none',
+              color:
+                location.pathname === '/member/analyze' ? '#f7f6f3' : '#212121',
+            }}
+          >
+            <p>營養分析</p>
+          </Link>
+        </div>
+        <div
+          className="ch-title-12 mobileLInkOption"
+          style={{
+
+
+            background: location.pathname === '/member/active' ? '#212121' : '',
+          }}
+        >
+          <Link
+            to="/member/active"
+            style={{
+              textDecoration: 'none',
+              color:
+                location.pathname === '/member/active' ? '#f7f6f3' : '#212121',
+            }}
+          >
+            <p>活動行程</p>
+          </Link>
+        </div>
+        <div
+          className="ch-title-12 mobileLInkOption"
+          style={{
+
+            background:
+              location.pathname === '/member/historyorder' ? '#212121' : '',
+          }}
+        >
+          <Link
+            to="/member/historyorder"
+            style={{
+              textDecoration: 'none',
+              color:
+                location.pathname === '/member/historyorder'
+                  ? '#f7f6f3'
+                  : '#212121',
+            }}
+          >
+            <p>我的訂單</p>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

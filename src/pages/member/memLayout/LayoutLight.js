@@ -72,6 +72,7 @@ function AsideLeft() {
                 height: '40px',
                 textAlign: 'center',
                 lineHeight: '40px',
+                marginBottom: '10px',
                 background: location.pathname === '/member' ? '#212121' : '',
               }}
             >
@@ -85,109 +86,107 @@ function AsideLeft() {
               >
                 <p>會員資訊</p>
               </Link>
-              <div
-                className="ch-title-16"
+            </div>
+            <div
+              className="ch-title-16"
+              style={{
+                width: '100%',
+                height: '40px',
+                textAlign: 'center',
+                lineHeight: '40px',
+                marginBottom: '10px',
+                background:
+                  location.pathname === '/member/revise' ? '#212121' : '',
+              }}
+            >
+              <Link
+                to="/member/revise"
                 style={{
-                  width: '100%',
-                  height: '40px',
-                  textAlign: 'center',
-                  lineHeight: '40px',
-                  marginBottom: '10px',
-                  background:
-                    location.pathname === '/member/revise' ? '#212121' : '',
+                  textDecoration: 'none',
+                  color:
+                    location.pathname === '/member/revise'
+                      ? '#f7f6f3'
+                      : '#212121',
                 }}
               >
-                <Link
-                  to="/member/revise"
-                  style={{
-                    textDecoration: 'none',
-                    color:
-                      location.pathname === '/member/revise'
-                        ? '#f7f6f3'
-                        : '#212121',
-                  }}
-                >
-                  <p>修改資料</p>
-                </Link>
-              </div>
-              <div
-                className="ch-title-16"
+                <p>修改資料</p>
+              </Link>
+            </div>
+            <div
+              className="ch-title-16"
+              style={{
+                width: '100%',
+                height: '40px',
+                textAlign: 'center',
+                lineHeight: '40px',
+                marginBottom: '10px',
+                background:
+                  location.pathname === '/member/analyze' ? '#212121' : '',
+              }}
+            >
+              <Link
+                to="/member/analyze"
                 style={{
-                  width: '100%',
-                  height: '40px',
-                  textAlign: 'center',
-                  lineHeight: '40px',
-                  marginBottom: '10px',
-                  background:
-                    location.pathname === '/member/analyze' ? '#212121' : '',
+                  textDecoration: 'none',
+                  color:
+                    location.pathname === '/member/analyze'
+                      ? '#f7f6f3'
+                      : '#212121',
                 }}
               >
-                <Link
-                  to="/member/analyze"
-                  style={{
-                    textDecoration: 'none',
-                    color:
-                      location.pathname === '/member/analyze'
-                        ? '#f7f6f3'
-                        : '#212121',
-                  }}
-                >
-                  <p>營養分析</p>
-                </Link>
-              </div>
-              <div
-                className="ch-title-16"
-                style={{
-                  width: '100%',
-                  height: '40px',
-                  textAlign: 'center',
-                  marginBottom: '10px',
-                  lineHeight: '40px',
+                <p>營養分析</p>
+              </Link>
+            </div>
+            <div
+              className="ch-title-16"
+              style={{
+                width: '100%',
+                height: '40px',
+                textAlign: 'center',
+                marginBottom: '10px',
+                lineHeight: '40px',
 
-                  background:
-                    location.pathname === '/member/active' ? '#212121' : '',
-                }}
-              >
-                <Link
-                  to="/member/active"
-                  style={{
-                    textDecoration: 'none',
-                    color:
-                      location.pathname === '/member/active'
-                        ? '#f7f6f3'
-                        : '#212121',
-                  }}
-                >
-                  <p>活動行程</p>
-                </Link>
-              </div>
-              <div
-                className="ch-title-16"
+                background:
+                  location.pathname === '/member/active' ? '#212121' : '',
+              }}
+            >
+              <Link
+                to="/member/active"
                 style={{
-                  width: '100%',
-                  height: '40px',
-                  textAlign: 'center',
-                  marginBottom: '10px',
-                  lineHeight: '40px',
-                  background:
-                    location.pathname === '/member/historyorder'
-                      ? '#212121'
-                      : '',
+                  textDecoration: 'none',
+                  color:
+                    location.pathname === '/member/active'
+                      ? '#f7f6f3'
+                      : '#212121',
                 }}
               >
-                <Link
-                  to="/member/historyorder"
-                  style={{
-                    textDecoration: 'none',
-                    color:
-                      location.pathname === '/member/historyorder'
-                        ? '#f7f6f3'
-                        : '#212121',
-                  }}
-                >
-                  <p>我的訂單</p>
-                </Link>
-              </div>
+                <p>活動行程</p>
+              </Link>
+            </div>
+            <div
+              className="ch-title-16"
+              style={{
+                width: '100%',
+                height: '40px',
+                textAlign: 'center',
+                marginBottom: '10px',
+                lineHeight: '40px',
+                background:
+                  location.pathname === '/member/historyorder' ? '#212121' : '',
+              }}
+            >
+              <Link
+                to="/member/historyorder"
+                style={{
+                  textDecoration: 'none',
+                  color:
+                    location.pathname === '/member/historyorder'
+                      ? '#f7f6f3'
+                      : '#212121',
+                }}
+              >
+                <p>我的訂單</p>
+              </Link>
             </div>
           </div>
         </div>

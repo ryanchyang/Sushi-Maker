@@ -1,257 +1,272 @@
-.member{
-    .memHead{
-        display:flex;
-        margin-top: 4% ;
-        justify-content: space-between;
-    }
-    .memPhotoArea{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        
-    }
-    .memUpload {
-        text-align:center;
-    }
-    .memPhoto{
-        width: 250px;
-        height: 250px;
-        border-radius:50%;
-        object-fit: cover;
-        overflow: hidden;
-    }
-    .memImg {
-        width: 100%;
-        height: auto;
-    }
-    .memName {
-       margin-top: 8%;
-       color: #212121;
-    }
-    .primeal-btn {
-        margin-top: 2%;
-        width:50%;
-        border-radius:30px;
+.member {
+  .memHead {
+    display: flex;
+    margin-top: 4%;
+    justify-content: space-between;
+  }
+  .memPhotoArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .memUpload {
+    text-align: center;
+  }
+  .memPhoto {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+  }
+  .memImg {
+    width: 100%;
+    height: auto;
+  }
+  .memName {
+    margin-top: 8%;
+    color: #212121;
+  }
+  .primeal-btn {
+    margin-top: 2%;
+    width: 50%;
+    border-radius: 30px;
+  }
+  .solgan {
+    font-size: 3.6rem;
+    line-height: 5.4rem;
+    letter-spacing: 0.81rem;
+    align-items: center;
+    display: flex;
+  }
+  .memInfoArea {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+  }
+  li {
+    list-style: none;
+    margin-top: 2%;
+  }
+  .memInfo {
+    border: 1px solid #c4c4c4;
+  }
+  .memSet {
+    border: 1px solid #c4c4c4;
+  }
+  .memActive {
+    border: 1px solid #c4c4c4;
+    margin-top: 2%;
+    position: relative;
+  }
+  .ActiveDetail {
+    display: flex;
+    justify-content: space-between;
+  }
+  .ActTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .setDetail {
+    margin-left: 10%;
+    margin-top: 3%;
+  }
+  .setImg {
+    margin-top: 2%;
+    margin-left: 6%;
+  }
+  .divCarou {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+  .carouContainer {
+    transform: translate3d(0, 0, 0);
+    transition-duration: 1s;
+    transition-property: all;
+    transition-timing-function: ease;
+    position: relative;
+    display: flex;
+  }
+  .memShare {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+  }
+  .memIndexLink {
+    display: none;
+  }
+  .carouImg {
+    width: 40%;
+    border-radius: 50%;
+  }
+  .Cimg {
+    width: 180px;
+  }
+  .share-btn {
+    width: 20%;
+    margin-top: 5%;
+    margin-right: 3%;
+  }
+
+  .memReviseArea {
+    border-top: 1px solid #c4c4c4;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+  .reviseCon {
+    width: 80%;
+  }
+  .actPwd {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3%;
+  }
+  .memInp {
+    width: 40%;
+  }
+
+  .revInpBig {
+    height: 40px;
+    width: 100%;
+  }
+  .revInpSm {
+    height: 40px;
+    width: 90%;
+  }
+  .accTitle {
+    margin-top: 5%;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 1%;
+  }
+  .revPswBtn {
+    margin-left: 70%;
+    margin-top: 3%;
+    height: 32px;
+    width: 30%;
+  }
+  .memInfoBot {
+    width: 100%;
+  }
+  .memInpuSm {
+    width: 90%;
+  }
+  .memInpBt {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .memInpbtBig {
+    width: 100%;
+  }
+  .memInfoLeft {
+    width: 40%;
+  }
+  .memInfoRight {
+    width: 40%;
+  }
+  .memInpbtPsdBig {
+    width: 100%;
+  }
+  .revPswBtnPage {
+    margin-left: 70%;
+    height: 32px;
+    width: 30%;
+    position: absolute;
+    bottom: 0;
+  }
+  .memPwdBtn {
+    width: 40%;
+    position: relative;
+  }
+  //歷史訂單頁
+  .orderDetailTB {
+    margin-top: 5%;
+  }
+  .orderDetailRow {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonLeft {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+  }
+  .buttonRight {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    background: #fff;
+  }
+  .mobileLink {
+    display: none;
+  }
+  //RWD
+  @media screen and (max-width: 576px) {
+    .memHead {
+      display: block;
     }
     .solgan {
-        font-size: 3.6rem;
-        line-height: 5.4rem;
-        letter-spacing: 0.81rem;
-        align-items: center;
-        display: flex;
+      display: none;
     }
-    .memInfoArea {
-        display: flex;
-        justify-content: space-around;
-        margin-top:5%;
-    }
-    li {
-        list-style: none;
-        margin-top:2%
-    }
-    .memInfo {
-        border: 1px solid #c4c4c4;
-    }
-    .memSet {
-        border: 1px solid #c4c4c4;
-    }
-    .memActive {
-        border: 1px solid #c4c4c4;
-        margin-top:2%;
-        position: relative;
-    }
-    .ActiveDetail {
-        display:flex;
-        justify-content:space-between;
-    }
-    .ActTitle {
-        display:flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    .setDetail {
-        margin-left: 10%;
-        margin-top: 3%;
-    }
-    .setImg {
-        margin-top: 2%;
-        margin-left: 6%;
-    }
-    .divCarou {
-        display: flex;
-        overflow: hidden;
-        width: 100%;
-        position: relative;
-    }
-    .carouContainer{
-        transform: translate3d(0,0,0);
-        transition-duration: 1s;
-        transition-property: all;
-        transition-timing-function: ease;
-        position: relative;
-        display: flex;
-    }
-    .memShare {
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-    .carouImg {
-        width: 40%;
-        border-radius:50%;
-        
+    .memPhotoArea {
+      flex-direction: row;
     }
     .Cimg {
-        width:180px;
+      width: 60px;
     }
-    .share-btn {
-        width:20%;
-        margin-top:5%;
-        margin-right: 3%;
+    .memPhoto {
+      width: 150px;
+      height: 150px;
+    }
+    .divCarou {
+      margin-top: 5%;
+    }
+    .carouContainer {
+      padding-left: 0;
+    }
+    .memUpload {
+      margin-left: 10%;
+    }
+    .memName {
+      margin-bottom: 20%;
+    }
+    .shareLink {
+      display: none;
+    }
+    .memInfoArea {
+      display: block;
+    }
+    .mobileLink {
+      display: flex;
+      margin-top: 5%;
+    }
+    .memShare {
+      margin-left: 0;
+    }
+    .mobileLInkOption{
+        width: 20%;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        margin-bottom: 10px;
     }
     
-    
-    .memReviseArea{
-        border-top: 1px solid #c4c4c4;
-        display: flex;
-        justify-content:center;
-        position: relative;
-    }
-    .reviseCon {
-        width: 80%;
-    }
-    .actPwd {
-        width:100%;
-        display:flex;
-        justify-content: space-around; 
-        margin-top: 3%;
-    }
-    .memInp{
-        width:40%;
-    }
-    
-    .revInpBig {
-        height: 40px;
-        width:100%;
-    }
-    .revInpSm {
-        height: 40px;
-        width:90%;
-    }
-    .accTitle {
-        margin-top: 5%;
-        border-bottom: 1px solid #c4c4c4;
-        padding-bottom: 1%;
-    }
-    .revPswBtn {
-        margin-left: 70%;
-        margin-top: 3%;
-        height:32px;
-        width:30%;
-    }
-    .memInfoBot {
-        width: 100%;
-    }
-    .memInpuSm {
-        width: 90%;
-    }
-    .memInpBt {
-        width: 100%;
-        display:flex;
-        justify-content: space-between;
-    }
-    .memInpbtBig{
-        width: 100%;
-    }
-    .memInfoLeft {
-        width: 40%;
-    }
-    .memInfoRight {
-        width: 40%;
-    }
-    .memInpbtPsdBig{
-        width: 100%;
-        
-    }
-    .revPswBtnPage {
-        margin-left: 70%;
-        height:32px;
-        width:30%;
-        position: absolute;
-        bottom: 0;
-    }
-    .memPwdBtn {
-        width: 40%;
-        position: relative;
-    }
-    //歷史訂單頁
-    .orderDetailTB {
-        margin-top:5%;
-    }
-    .orderDetailRow {
-        flex-direction: column;
-        align-items: center
-    }
-
-    .buttonLeft {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        width: 30px;
-        height: 30px;
-        background: #fff;
-        }
-        .buttonRight {
-        position: absolute;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        width: 30px;
-        height: 30px;
-        background: #fff;
-        }
-        //RWD
-        @media screen and (max-width: 576px) {
-            .memHead {
-                display: block;
-            }
-            .solgan{
-                display: none;
-            }
-            .memPhotoArea {
-                flex-direction: row;
-                margin-left:5%
-            }
-            .Cimg {
-                width: 100px;
-            }
-            .memPhoto {
-                width:150px;
-                height: 150px;
-            }
-            .divCarou {
-                margin-top:5%;
-            }
-            .carouContainer {
-                padding-left: 0;
-            }
-            .memUpload {
-                margin-left:10%;
-            }
-            .memName {
-                margin-bottom: 20%;
-            }
-            
-
-        }
-        
-    
-    
-    
-    
- 
+  }
 }
