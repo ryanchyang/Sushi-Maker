@@ -22,6 +22,7 @@ const config = {
   ADD_CART: `${host}/classic/api/addcart`,
   GET_LIKE: `${host}/classic/api/checklike`,
   HANDLE_LIKE: `${host}/classic/api/handlelike`,
+  GET_REL_SHARE: `${host}/classic/api/getrelshare`,
 
   // 客製商品
   GET_MTLS: `${host}/customize/api/getmtls`,
