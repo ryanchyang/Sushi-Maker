@@ -7,6 +7,7 @@ import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
 import { ReactComponent as Logout } from '../../../imgs/logout.svg';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -49,7 +50,7 @@ function AsideLeft() {
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
         <div className="aside-left" style={{ border: 'none' }}>
           <div className="logo-box">
-            <Logo className="logo" />
+            <Link to="/"><Logo className="logo" /></Link>
           </div>
         </div>
       </aside>
@@ -57,10 +58,10 @@ function AsideLeft() {
   );
 }
 
-function AsideRight() {
+function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
-
+  const { setNavIsOpen } = props;
   return (
     <>
       <aside
@@ -75,7 +76,13 @@ function AsideRight() {
       >
         <div className="aside-right" style={{ border: 'none' }}>
           <div className="layout-hamberger-box">
-            <Hamburger className="layout-hamberger" />
+            <Hamburger 
+              className="layout-hamberger" 
+              style={{cursor: 'pointer' }}
+              onClick={() => {
+                setNavIsOpen(true)
+              }}
+              />
           </div>
 
           <div className="layout-cart-btn-box">

@@ -9,7 +9,7 @@ import { setAuthToken, setMemId } from '../../utils';
 import LoginForgetPwd from './component/LoginForgetPwd';
 import LoginForgetPwdVcode from './component/LoginForgetPwdVcode';
 import LoginForgetPwdVcodeNew from './component/LoginForgetPwdVcodeNew';
-// import { AuthContext } from '../../contexts.js';
+import NavPage from '../layout/components/NavPage';
 
 //styled component
 const LoginBody = styled.body`
@@ -68,7 +68,7 @@ const PswInput = styled.input`
   }
 `;
 
-function Login() {
+function Login(props) {
   // const {setUser} = useContext(AuthContext);
   const [mem_account, setMem_account] = useState('');
   const [mem_pwd, setMem_pwd] = useState('');
@@ -78,6 +78,7 @@ function Login() {
   const [accountPass, setAccountPass] = useState(false);
   const [vCodePass, setVcodePass] = useState(false);
   const history = useHistory();
+  const { navIsOpen, setNavIsOpen } = props;
 
   const handleClickPwd = e => {
     showPwd === true ? setShowPwd(false) : setShowPwd(true);
@@ -102,68 +103,44 @@ function Login() {
       history.push('/member'); //登入成功後導入會員頁
     });
   };
-
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
 
   return (
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex' }}>
-          <AsideLeft />
-          <AsideRight />
-          <div style={{ width: '100%' }}>
-            {/* <Title title={''} /> */}
-            <LoginArea>
-              <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
-                <img
-                  src={require('../../imgs/mem/LoginImg.png')}
-                  style={{ width: '100%', height: '100%' }}
-                ></img>
-              </LoginAreaImg>
-              <InputArea className="col-5">
-                <Slogan>
-                  Hello, <br />
-                  My Friend
-                </Slogan>
-                <LoginForm onSubmit={handleSubmit}>
-                  <InputTitle className="ch-cont-14">帳號</InputTitle>
-                  <input
-                    type="text"
-                    value={mem_account}
-                    className="form-control"
-                    onChange={e => {
-                      setMem_account(e.target.value);
-                    }}
-                    name="mem_account"
-                    style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
-                    }}
-                  />
-                  <ErrorMessage className="ch-cont-14">
-                    {errorMessage && '帳號錯誤!'}
-                  </ErrorMessage>
-
-                  <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <div
-                    style={{
-                      position: 'relative',
-                    }}
-                  >
-                    <PswInput
-                      type={showPwd === false ? 'password' : 'text'}
+        {navIsOpen && (
+          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+        )}
+        <div style={navIsOpen ? hiddenBlock : showBlock}>
+          <div style={{ display: 'flex' }}>
+            <AsideLeft />
+            <AsideRight setNavIsOpen={setNavIsOpen} />
+            <div style={{ width: '100%' }}>
+              {/* <Title title={''} /> */}
+              <LoginArea>
+                <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
+                  <img
+                    src={require('../../imgs/mem/LoginImg.png')}
+                    style={{ width: '100%', height: '100%' }}
+                  ></img>
+                </LoginAreaImg>
+                <InputArea className="col-5">
+                  <Slogan>
+                    Hello, <br />
+                    My Friend
+                  </Slogan>
+                  <LoginForm onSubmit={handleSubmit}>
+                    <InputTitle className="ch-cont-14">帳號</InputTitle>
+                    <input
+                      type="text"
+                      value={mem_account}
                       className="form-control"
-                      value={mem_pwd}
                       onChange={e => {
-                        setMem_pwd(e.target.value);
+                        setMem_account(e.target.value);
                       }}
-                      name="mem_pwd"
+                      name="mem_account"
                       style={{
                         borderRadius: 50,
                         height: '40px',
@@ -175,81 +152,111 @@ function Login() {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    {showPwd === false ? (
-                      <EyeOff
-                        style={{
-                          position: 'absolute',
-                          right: '10px',
-                          top: '8px',
-                          cursor: 'pointer',
-                        }}
-                        onClick={handleClickPwd}
-                      ></EyeOff>
-                    ) : (
-                      <EyeShow
-                        style={{
-                          position: 'absolute',
-                          right: '10px',
-                          top: '8px',
-                          cursor: 'pointer',
-                        }}
-                        onClick={handleClickPwd}
-                      ></EyeShow>
-                    )}
-                  </div>
-                  <ErrorMessage className="ch-cont-14">
-                    {errorMessage && '密碼錯誤!'}
-                  </ErrorMessage>
-                  <button
-                    className="ch-title-22 btn btn-sm primeal-btn"
-                    style={{
-                      marginTop: '15%',
-                      height: '40px',
-                      color: '#575757',
-                      background: '#f7f6f3',
-                      width: '100%',
-                    }}
-                  >
-                    登入
-                  </button>
-                </LoginForm>
-                <InputForPsw
-                  className="ch-cont-14"
-                  onClick={handleClickForgetPwd}
-                >
-                  忘記密碼?
-                </InputForPsw>
-                <InputRegistLink className="ch-cont-14">
-                  還沒有帳號嗎?
-                  <Link
-                    to="/member/register"
-                    style={{
-                      color: '#f7f6f3',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    點我註冊
-                  </Link>
-                </InputRegistLink>
-              </InputArea>
-              <LoginForgetPwd
-                forgetPwd={forgetPwd}
-                setForgetPwd={setForgetPwd}
-                accountPass={accountPass}
-                setAccountPass={setAccountPass}
-              />
-              <LoginForgetPwdVcode
-                accountPass={accountPass}
-                setAccountPass={setAccountPass}
-                setVcodePass={setVcodePass}
-              />
-              <LoginForgetPwdVcodeNew
-                vCodePass={vCodePass}
-                setVcodePass={setVcodePass}
-              />
-            </LoginArea>
+                    <ErrorMessage className="ch-cont-14">
+                      {errorMessage && '帳號錯誤!'}
+                    </ErrorMessage>
 
-            {/* <Footer /> */}
+                    <InputTitle className="ch-cont-14">密碼</InputTitle>
+                    <div
+                      style={{
+                        position: 'relative',
+                      }}
+                    >
+                      <PswInput
+                        type={showPwd === false ? 'password' : 'text'}
+                        className="form-control"
+                        value={mem_pwd}
+                        onChange={e => {
+                          setMem_pwd(e.target.value);
+                        }}
+                        name="mem_pwd"
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                        }}
+                      />
+                      {showPwd === false ? (
+                        <EyeOff
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '8px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={handleClickPwd}
+                        ></EyeOff>
+                      ) : (
+                        <EyeShow
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '8px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={handleClickPwd}
+                        ></EyeShow>
+                      )}
+                    </div>
+                    <ErrorMessage className="ch-cont-14">
+                      {errorMessage && '密碼錯誤!'}
+                    </ErrorMessage>
+                    <button
+                      className="ch-title-22 btn btn-sm primeal-btn"
+                      style={{
+                        marginTop: '15%',
+                        height: '40px',
+                        color: '#575757',
+                        background: '#f7f6f3',
+                        width: '100%',
+                      }}
+                    >
+                      登入
+                    </button>
+                  </LoginForm>
+                  <InputForPsw
+                    className="ch-cont-14"
+                    onClick={handleClickForgetPwd}
+                  >
+                    忘記密碼?
+                  </InputForPsw>
+                  <InputRegistLink className="ch-cont-14">
+                    還沒有帳號嗎?
+                    <Link
+                      to="/member/register"
+                      style={{
+                        color: '#f7f6f3',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      點我註冊
+                    </Link>
+                  </InputRegistLink>
+                </InputArea>
+                <LoginForgetPwd
+                  forgetPwd={forgetPwd}
+                  setForgetPwd={setForgetPwd}
+                  accountPass={accountPass}
+                  setAccountPass={setAccountPass}
+                />
+                <LoginForgetPwdVcode
+                  accountPass={accountPass}
+                  setAccountPass={setAccountPass}
+                  setVcodePass={setVcodePass}
+                />
+                <LoginForgetPwdVcodeNew
+                  vCodePass={vCodePass}
+                  setVcodePass={setVcodePass}
+                />
+              </LoginArea>
+
+              {/* <Footer /> */}
+            </div>
           </div>
         </div>
       </LoginBody>

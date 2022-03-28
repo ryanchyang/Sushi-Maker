@@ -47,20 +47,24 @@ function LoginForgetPwd(props) {
 
   const handleForgetPwdSubmit = e => {
     e.preventDefault();
-    accountCheck(men_account).then(obj => {
-      if (obj.code !== 0) {
-        return setErrorMessage(obj.error);
-      } else {
-        localStorage.setItem('verify_code', obj.verify_code);
-        setTimeout(() => {
-          localStorage.removeItem('verify_code');
-        }, 1000 * 60 * 5);
-        setAccountPass(true);
-        setForgetPwd(false);
-        setMemId(obj.info.mem_id);
-        setErrorMessage('');
-      }
-    });
+    if (!men_account) {
+      setErrorMessage('此為必填欄位!');
+    } else {
+      accountCheck(men_account).then(obj => {
+        if (obj.code !== 0) {
+          return setErrorMessage(obj.error);
+        } else {
+          localStorage.setItem('verify_code', obj.verify_code);
+          setTimeout(() => {
+            localStorage.removeItem('verify_code');
+          }, 1000 * 60 * 5);
+          setAccountPass(true);
+          setForgetPwd(false);
+          setMemId(obj.info.mem_id);
+          setErrorMessage('');
+        }
+      });
+    }
   };
 
   return (

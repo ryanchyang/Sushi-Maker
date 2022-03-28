@@ -45,19 +45,22 @@ function LoginForgetPwdVcodeNew(props) {
   const [newPassword, setNewPassword] = useState('');
   const [newCheckPassword, setNewCheckPassword] = useState('');
   const mem_id = localStorage.getItem('mem_id');
-  const history = useHistory()
+  const history = useHistory();
   const handleClickClose = () => {
     setVcodePass(false);
   };
   const handlePwdSubmit = e => {
     e.preventDefault();
-    if (newPassword === newCheckPassword) {
+    if (!newPassword || !newCheckPassword) {
+      setErrorMessage('請填寫欲修改的密碼!');
+    }
+    if (newPassword && newCheckPassword && newPassword === newCheckPassword) {
       resetPwd(newPassword, mem_id).then(obj => {
         if (obj.success === false) {
           setErrorMessage(obj.errorMessage);
         } else {
           alert('修改成功! 請重新登入');
-          history.push('/member/login')
+          setVcodePass(false);
         }
       });
     }

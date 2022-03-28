@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { registerMem, registerMail } from '../../WebApi';
 import { setAuthToken, setMemId } from '../../utils';
+import NavPage from '../layout/components/NavPage';
 
 //styled component
 const LoginBody = styled.body`
@@ -16,7 +17,7 @@ const LoginArea = styled.div`
   height: 85%;
   width: 75%;
   position: fix;
-  top: %;
+  top: 8%;
   left: 10%;
   padding: 0;
   background-color: rgba(255, 255, 255, 0.3);
@@ -25,7 +26,7 @@ const LoginArea = styled.div`
 
 const RegistForm = styled.form`
   display: flex;
-  margin-top: 10%;
+  margin-top: 20%;
   flex-direction: column;
 `;
 const InputArea = styled.div`
@@ -68,7 +69,7 @@ const PswInput = styled.input`
   }
 `;
 
-function Register() {
+function Register(props) {
   const [registerData, setRegisterData] = useState({
     mem_account: '',
     mem_pwd: '',
@@ -79,6 +80,7 @@ function Register() {
     memInpVcode: '',
   });
   const [vCode, setVcode] = useState('');
+  const { navIsOpen, setNavIsOpen } = props;
   const [errorMessageMail, setErrorMessageMail] = useState('');
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
@@ -115,215 +117,124 @@ function Register() {
     const newData = { ...registerData, [e.target.name]: e.target.value };
     setRegisterData(newData);
   };
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
 
   return (
     <>
       <LoginBody>
         {/* <Header /> */}
-        <div style={{ display: 'flex', height:'100vh'}}>
-          <AsideLeft />
-          <div style={{ width: '100%' }}>
-            {/* <Title title={''} /> */}
-            <LoginArea className="col-18">
-              <IconRegisterArea>
-                <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
-                <IconArea>
-                  <Intro className="ch-cont-16">依社群加入</Intro>
-                </IconArea>
-              </IconRegisterArea>
+        {navIsOpen && (
+          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+        )}
+        <div style={navIsOpen ? hiddenBlock : showBlock}>
+          <div style={{ display: 'flex', height: '100vh' }}>
+            <AsideLeft />
+            <div style={{ width: '100%' }}>
+              {/* <Title title={''} /> */}
+              <LoginArea className="col-18">
+                <IconRegisterArea>
+                  <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
+                  <IconArea>
+                    <Intro className="ch-cont-16">依社群加入</Intro>
+                  </IconArea>
+                </IconRegisterArea>
 
-              <InputArea className="col-6">
-                <RegistForm onSubmit={handleRegister}>
-                  <InputTitle className="ch-cont-14">帳號</InputTitle>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={registerData.mem_account}
-                    name="mem_account"
-                    onChange={handleChange}
-                    style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
-                    }}
-                  />
-                  <ErrorMessage className="ch-cont-14">
-                    {errorMessageMail}
-                  </ErrorMessage>
-
-                  <InputTitle className="ch-cont-14">密碼</InputTitle>
-                  <input
-                    type="password"
-                    className="form-control"
-                    value={registerData.mem_pwd}
-                    name="mem_pwd"
-                    onChange={handleChange}
-                    style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
-                    }}
-                  />
-                  <ErrorMessage className="ch-cont-14"></ErrorMessage>
-                  <InputTitle className="ch-cont-14">手機號碼</InputTitle>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={registerData.mem_mobile}
-                    name="mem_mobile"
-                    onChange={handleChange}
-                    style={{
-                      borderRadius: 50,
-                      height: '40px',
-                      background: '#212121',
-                      border: '1px solid #f7f6f3',
-                      color: '#f7f6f3',
-                      fontSize: '1.4rem',
-                      lineHeight: '1.8rem',
-                      letterSpacing: '0.14rem',
-                    }}
-                  />
-                  <ErrorMessage className="ch-cont-14"></ErrorMessage>
-                  <div className="d-flex mb-3">
-                    <div>
-                      <InputTitle className="ch-cont-14">姓名</InputTitle>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={registerData.mem_name}
-                        name="mem_name"
-                        onChange={handleChange}
-                        style={{
-                          borderRadius: 50,
-                          height: '40px',
-                          width: '97%',
-                          background: '#212121',
-                          border: '1px solid #f7f6f3',
-                          color: '#f7f6f3',
-                          fontSize: '1.4rem',
-                          lineHeight: '1.8rem',
-                          letterSpacing: '0.14rem',
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <InputTitle className="ch-cont-14">暱稱</InputTitle>
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={registerData.mem_nickname}
-                        name="mem_nickname"
-                        onChange={handleChange}
-                        style={{
-                          borderRadius: 50,
-                          height: '40px',
-                          width: '97%',
-                          background: '#212121',
-                          border: '1px solid #f7f6f3',
-                          color: '#f7f6f3',
-                          fontSize: '1.4rem',
-                          lineHeight: '1.8rem',
-                          letterSpacing: '0.14rem',
-                          marginLeft: '3%',
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <div className="d-flex" style={{ width: '100%' }}>
-                    <div style={{ width: '50%' }}>
-                      <InputTitle className="ch-cont-14">性別</InputTitle>
-                      <select
-                        className="form-control"
-                        value={registerData.mem_gender}
-                        name="mem_gender"
-                        onChange={handleChange}
-                        style={{
-                          borderRadius: 50,
-                          height: '40px',
-                          width: '97%',
-                          background: '#212121',
-                          border: '1px solid #f7f6f3',
-                          color: '#f7f6f3',
-                          fontSize: '1.4rem',
-                          lineHeight: '1.8rem',
-                          letterSpacing: '0.14rem',
-                        }}
-                      >
-                        <option value="select">請選擇</option>
-                        <option value="male">男性</option>
-                        <option value="female">女性</option>
-                        <option value="undefined">兩性</option>
-                      </select>
-                    </div>
-                    <div style={{ width: '50%' }}>
-                      <InputTitle className="ch-cont-14">生日</InputTitle>
-                      <input
-                        type="date"
-                        className="form-control"
-                        value={registerData.mem_birthday}
-                        name="mem_birthday"
-                        onChange={handleChange}
-                        style={{
-                          borderRadius: 50,
-                          height: '40px',
-                          width: '97%',
-                          background: '#212121',
-                          border: '1px solid #f7f6f3',
-                          color: '#f7f6f3',
-                          fontSize: '1.4rem',
-                          lineHeight: '1.8rem',
-                          letterSpacing: '0.14rem',
-                          marginLeft: '3%',
-                        }}
-                      />
-                    </div>
-                  </div>
-
-                  <div
-                    style={!vCode ? { display: 'block' } : { display: 'none' }}
-                  >
-                    <button
-                      className="ch-title-22 btn btn-sm primeal-btn btn-primary"
+                <InputArea className="col-6">
+                  <RegistForm onSubmit={handleRegister}>
+                    <InputTitle className="ch-cont-14">帳號</InputTitle>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={registerData.mem_account}
+                      name="mem_account"
+                      onChange={handleChange}
                       style={{
-                        marginTop: '15%',
+                        borderRadius: 50,
                         height: '40px',
-                        width: '100%',
+                        background: '#212121',
+                        border: '1px solid #f7f6f3',
+                        color: '#f7f6f3',
+                        fontSize: '1.4rem',
+                        lineHeight: '1.8rem',
+                        letterSpacing: '0.14rem',
                       }}
-                    >
-                      發送註冊驗證碼
-                    </button>
-                  </div>
-                  <div
-                    style={vCode ? { display: 'block' } : { display: 'none' }}
-                  >
-                    <div
+                    />
+                    <ErrorMessage className="ch-cont-14">
+                      {errorMessageMail}
+                    </ErrorMessage>
+
+                    <InputTitle className="ch-cont-14">密碼</InputTitle>
+                    <input
+                      type="password"
+                      className="form-control"
+                      value={registerData.mem_pwd}
+                      name="mem_pwd"
+                      onChange={handleChange}
                       style={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'space-between',
+                        borderRadius: 50,
+                        height: '40px',
+                        background: '#212121',
+                        border: '1px solid #f7f6f3',
+                        color: '#f7f6f3',
+                        fontSize: '1.4rem',
+                        lineHeight: '1.8rem',
+                        letterSpacing: '0.14rem',
                       }}
-                    >
-                      <div style={{ width: '49%', marginTop: '5%' }}>
-                        <InputTitle className="ch-cont-14">
-                          請輸入驗證碼
-                        </InputTitle>
+                    />
+                    <ErrorMessage className="ch-cont-14"></ErrorMessage>
+                    <InputTitle className="ch-cont-14">手機號碼</InputTitle>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={registerData.mem_mobile}
+                      name="mem_mobile"
+                      onChange={handleChange}
+                      style={{
+                        borderRadius: 50,
+                        height: '40px',
+                        background: '#212121',
+                        border: '1px solid #f7f6f3',
+                        color: '#f7f6f3',
+                        fontSize: '1.4rem',
+                        lineHeight: '1.8rem',
+                        letterSpacing: '0.14rem',
+                      }}
+                    />
+                    <ErrorMessage className="ch-cont-14"></ErrorMessage>
+                    <div className="d-flex mb-3">
+                      <div>
+                        <InputTitle className="ch-cont-14">姓名</InputTitle>
                         <input
                           type="text"
                           className="form-control"
-                          name="memInpVcode"
+                          value={registerData.mem_name}
+                          name="mem_name"
+                          onChange={handleChange}
                           style={{
                             borderRadius: 50,
-                            height: '20px',
+                            height: '40px',
+                            width: '97%',
+                            background: '#212121',
+                            border: '1px solid #f7f6f3',
+                            color: '#f7f6f3',
+                            fontSize: '1.4rem',
+                            lineHeight: '1.8rem',
+                            letterSpacing: '0.14rem',
+                          }}
+                        />
+                      </div>
+                      <div>
+                        <InputTitle className="ch-cont-14">暱稱</InputTitle>
+                        <input
+                          type="text"
+                          className="form-control"
+                          value={registerData.mem_nickname}
+                          name="mem_nickname"
+                          onChange={handleChange}
+                          style={{
+                            borderRadius: 50,
+                            height: '40px',
                             width: '97%',
                             background: '#212121',
                             border: '1px solid #f7f6f3',
@@ -333,46 +244,146 @@ function Register() {
                             letterSpacing: '0.14rem',
                             marginLeft: '3%',
                           }}
-                          value={registerData.memInpVcode}
-                          onChange={handleChange}
                         />
                       </div>
+                    </div>
+                    <div className="d-flex" style={{ width: '100%' }}>
+                      <div style={{ width: '50%' }}>
+                        <InputTitle className="ch-cont-14">性別</InputTitle>
+                        <select
+                          className="form-control"
+                          value={registerData.mem_gender}
+                          name="mem_gender"
+                          onChange={handleChange}
+                          style={{
+                            borderRadius: 50,
+                            height: '40px',
+                            width: '97%',
+                            background: '#212121',
+                            border: '1px solid #f7f6f3',
+                            color: '#f7f6f3',
+                            fontSize: '1.4rem',
+                            lineHeight: '1.8rem',
+                            letterSpacing: '0.14rem',
+                          }}
+                        >
+                          <option value="select">請選擇</option>
+                          <option value="male">男性</option>
+                          <option value="female">女性</option>
+                          <option value="undefined">兩性</option>
+                        </select>
+                      </div>
+                      <div style={{ width: '50%' }}>
+                        <InputTitle className="ch-cont-14">生日</InputTitle>
+                        <input
+                          type="date"
+                          className="form-control"
+                          value={registerData.mem_birthday}
+                          name="mem_birthday"
+                          onChange={handleChange}
+                          style={{
+                            borderRadius: 50,
+                            height: '40px',
+                            width: '97%',
+                            background: '#212121',
+                            border: '1px solid #f7f6f3',
+                            color: '#f7f6f3',
+                            fontSize: '1.4rem',
+                            lineHeight: '1.8rem',
+                            letterSpacing: '0.14rem',
+                            marginLeft: '3%',
+                          }}
+                        />
+                      </div>
+                    </div>
 
+                    <div
+                      style={
+                        !vCode ? { display: 'block' } : { display: 'none' }
+                      }
+                    >
                       <button
                         className="ch-title-22 btn btn-sm primeal-btn btn-primary"
                         style={{
                           marginTop: '15%',
                           height: '40px',
-                          width: '49%',
+                          width: '100%',
                         }}
                       >
-                        註冊
+                        發送註冊驗證碼
                       </button>
                     </div>
-                  </div>
-                </RegistForm>
-                <InputForPsw className="ch-cont-14">
-                  已經有帳號了?
-                  <Link
-                    to="/member/login"
-                    style={{
-                      color: '#f7f6f3',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    登入
-                  </Link>
-                </InputForPsw>
-              </InputArea>
-            </LoginArea>
+                    <div
+                      style={vCode ? { display: 'block' } : { display: 'none' }}
+                    >
+                      <div
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <div style={{ width: '49%', marginTop: '5%' }}>
+                          <InputTitle className="ch-cont-14">
+                            請輸入驗證碼
+                          </InputTitle>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="memInpVcode"
+                            style={{
+                              borderRadius: 50,
+                              height: '20px',
+                              width: '97%',
+                              background: '#212121',
+                              border: '1px solid #f7f6f3',
+                              color: '#f7f6f3',
+                              fontSize: '1.4rem',
+                              lineHeight: '1.8rem',
+                              letterSpacing: '0.14rem',
+                              marginLeft: '3%',
+                            }}
+                            value={registerData.memInpVcode}
+                            onChange={handleChange}
+                          />
+                        </div>
 
-            {/* <Footer /> */}
+                        <button
+                          className="ch-title-22 btn btn-sm primeal-btn btn-primary"
+                          style={{
+                            marginTop: '15%',
+                            height: '40px',
+                            width: '49%',
+                          }}
+                        >
+                          註冊
+                        </button>
+                      </div>
+                    </div>
+                  </RegistForm>
+                  <InputForPsw className="ch-cont-14">
+                    已經有帳號了?
+                    <Link
+                      to="/member/login"
+                      style={{
+                        color: '#f7f6f3',
+                        textDecoration: 'none',
+                      }}
+                    >
+                      登入
+                    </Link>
+                  </InputForPsw>
+                </InputArea>
+              </LoginArea>
+
+              {/* <Footer /> */}
+            </div>
+            <AsideRight setNavIsOpen={setNavIsOpen} />
           </div>
-          <AsideRight />
+          <BgImg>
+            <img src="/img/member/register.png" alt="" />
+          </BgImg>
         </div>
-        <BgImg>
-          <img src="/img/member/register.png" alt="" />
-        </BgImg>
       </LoginBody>
     </>
   );
