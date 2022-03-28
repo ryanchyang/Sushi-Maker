@@ -58,7 +58,7 @@ function StepTwo() {
       setCart_id(+Cid.cartid);
     };
     getInit();
-    console.log('info', info);
+    // console.log('info', info);
   }, []);
 
   // 取得store id 後 拷貝陣列並把值塞進去 fields
@@ -89,28 +89,11 @@ function StepTwo() {
     getSum();
     getInfo();
   }, [mem_id, cart_id]);
-
   // console.log('sum', sum);
   useEffect(() => {
     // console.log(sum);
   }, [sum]);
 
-  //-----  交易明細
-  // useEffect(() => {
-  //   const getItemInfo = async () => {
-  //     const res = await fetch(config.GET_ITEM_INFO + `${mem_id}/${cart_id}`);
-  //     const obj = await res.json();
-  //     // console.log('obj:', obj);
-  //     setItemInfo(obj.data);
-  //   };
-  //   getItemInfo();
-  // }, []);
-  // // console.log('itemInfo', itemInfo);
-  // useEffect(() => {
-  //   // console.log(itemInfo);
-  // }, [itemInfo]);
-
-  // ------
 
   // Input State 要填寫的資料欄位
 
@@ -204,7 +187,7 @@ function StepTwo() {
       console.log('form has errors.');
     }
   };
-
+//取得資料後 把欄位資料狀態設定回去
   useEffect(() => {
     console.log(info);
     setFields({

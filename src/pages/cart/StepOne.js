@@ -19,19 +19,19 @@ function StepOne(props) {
   const [amount, setAmount] = useState(0); //商品總價
   const [deleteProd, setDeleteProd] = useState([]); //被刪除的商品
   //const {cs = [], cm = [], set = []} = list;
-  const [csOrder, setCsOrder] = useState(list.cs);
-  const [cmOrder, setCmOrder] = useState(list.cm);
-  const [setOrder, setSetOrder] = useState(list.set);
-  const [inputCreadit, setInputCreadit] = useState(0); //自行輸入的折扣金額
+  // const [csOrder, setCsOrder] = useState(list.cs);
+  // const [cmOrder, setCmOrder] = useState(list.cm);
+  // const [setOrder, setSetOrder] = useState(list.set);
+  const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
-    cart_value: '125',
+    cart_value: amount,
     cart_credit: '' || null,
-    cart_total_print_time: '',
+    cart_total_print_time: printTime,
   });
-  // console.log('34 inputSum', inputSum);
+  console.log('34 inputSum', inputSum);
   // 取得cart_id
   useEffect(() => {
     const getInit = async () => {
@@ -52,6 +52,12 @@ function StepOne(props) {
         if (obj.success) {
           //購物車有商品才繼續做
           setList(obj.data);
+          setInputSum({
+            cart_value: amount,
+            cart_credit: inputCredit,
+            cart_total_print_time: printTime,
+          });
+          console.log('60', inputSum);
         } else {
           //購物車無商品則導頁
           history.push('/cart/cartlist');
@@ -102,6 +108,12 @@ function StepOne(props) {
         const res = await fetch(config.GET_CART_ORDER + `${memid}`);
         const obj = await res.json();
         if (obj.success) {
+          setInputSum({
+            cart_value: amount,
+            cart_credit: inputCredit,
+            cart_total_print_time: printTime,
+          });
+          console.log('110', inputSum);
           //刪除商品成功後購物車仍有商品，則不做任何事
         } else {
           //購物車無商品則導頁
@@ -115,16 +127,7 @@ function StepOne(props) {
     getList();
   }, [deleteProd]);
 
-  // useEffect(() => {
-  //   // POST 要傳的直設定回去
-  //   setInputSum({
-  //     cart_value: amount,
-  //     cart_credit: inputCreadit,
-  //     cart_total_print_time: printTime,
-  //   });
-  //   console.log('100', inputSum);
-  // }, [inputCreadit]);
-
+  // 更改會員折扣後 才可以取得 inputSum
   const handleChange = e => {
     console.log('creadit', e.target.value);
 
@@ -135,30 +138,23 @@ function StepOne(props) {
       cart_total_print_time: printTime,
     };
     setInputSum(newData);
-    console.log('137', inputSum);
+    // console.log('137', inputSum);
   };
-
+  // // 取得inputCredit 後 拷貝陣列並把值塞進去 inputSum
   // useEffect(() => {
-  //   //console.log(list);
-  //   // console.log('cs', list.cs?.length);
-  //   // console.log(' cs', list.cs?.length);
-  //   // console.log(' cm', list.cm?.length);
-  //   // console.log(' set', list.set?.length);
-  //   // console.log(
-  //   //   ' plus!!!',
-  //   //   list.cs?.length + list.cm?.length + list.set?.length
-  //   // );
-  // }, [list]);
-  // console.log('length cs', list.cs?.length);
-  // console.log('length cm', list.cm?.length);
-  // console.log('length set', list.set?.length);
-  // console.log('plus');
+  //   setInputSum({
+  //     ...inputSum,
+  //     cart_credit: inputCredit,
+  //   });
+    
+  // }, [inputCredit]);
 
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
     const memid = localStorage.getItem('mem_id');
 
+    setInputSum(inputSum);
     console.log('summaryone');
     console.log('162', inputSum);
 
@@ -179,11 +175,11 @@ function StepOne(props) {
         if (obj.success) {
           console.log(obj.success);
           // 有成功更新頁面才轉向
-          // history.push('/cart/steptwo');
+          history.push('/cart/steptwo');
         }
-        // else {
-        //   alert('資料錯誤請重新輸入！');
-        // }
+        else {
+          alert('資料錯誤請重新輸入！');
+        }
       });
     // } else {
     //   console.log('form has errors.');
