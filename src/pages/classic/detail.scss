@@ -127,6 +127,7 @@
     .recommend-prod-box{
         display: flex;
         justify-content: space-evenly;
+        margin-bottom: 2%;
     }
     .prod-card {
         width: 22%;
@@ -279,10 +280,18 @@
         height: auto;
         text-align: center;
       }
-      .nutrition-img img{
-          width: 65%;
-          height: auto;
-          object-fit: cover;
+      // .nutrition-img img{
+      //     width: 65%;
+      //     height: auto;
+      //     object-fit: cover;
+      // }
+      .nutrition-img-box{
+        display: block;
+        width: 370px;
+        margin: 0 10% 0 5%;
+      }
+      .nutrition-img-box-mobile{
+        display: none;
       }
       .material-list{
         width: 45%;
@@ -414,7 +423,18 @@
       height: auto;
       object-fit: cover;
       padding: 5%;
-  }
+    }
+    .nutrition-img-box{
+      display: none;      
+    }
+    .nutrition-img-box-mobile{
+      display: block;
+      width: 330px;
+      margin: 0 auto;
+    }
+    .recommend-prod-box{      
+      margin-bottom: 10%;
+    }
   }
 
 

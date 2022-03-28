@@ -63,8 +63,8 @@ function Detail() {
 
   //加入購物車
   const addToCart = () => {
-    const isLogin = localStorage.getItem('mem_id') !== null;  //判斷是否登入
-    if(isLogin){      
+    const isLogin = localStorage.getItem('mem_id') !== null; //判斷是否登入
+    if (isLogin) {
       const res = fetch(config.ADD_CART, {
         method: 'POST',
         headers: {
@@ -72,17 +72,22 @@ function Detail() {
         },
         body: JSON.stringify({
           mid: +localStorage.getItem('mem_id'),
-          pid: data.pid,        
+          pid: data.pid,
           count: buyCount,
-          value: +data.c_prod_spe_value === 0 ? data.c_prod_value : data.c_prod_spe_value, 
+          value:
+            +data.c_prod_spe_value === 0
+              ? data.c_prod_value
+              : data.c_prod_spe_value,
           print: data.c_prod_print_time,
-          category: 'cs'
+          category: 'cs',
         }),
-      }).then(res => res.json()).then(d => d);
+      })
+        .then(res => res.json())
+        .then(d => d);
 
-      console.log(res);  //TODO: why log pending????
+      console.log(res); //TODO: why log pending????
       handleCartShow();
-    }else{
+    } else {
       handleLikeShow();
     }
   };
@@ -236,13 +241,16 @@ function Detail() {
                   </div>
                 </div>
                 <div>
-                <img
-                  className={
-                    isDetail ? 'prod-img-box-img-ondetail' : 'prod-img-box-img'
-                  }
-                  src={`http://localhost:3500${data.c_prod_img_path}`}
-                  alt="product-detail"
-                /></div>
+                  <img
+                    className={
+                      isDetail
+                        ? 'prod-img-box-img-ondetail'
+                        : 'prod-img-box-img'
+                    }
+                    src={`http://localhost:3500${data.c_prod_img_path}`}
+                    alt="product-detail"
+                  />
+                </div>
                 <div
                   className={
                     isDetail
@@ -344,9 +352,12 @@ function Detail() {
                   />
                   <button onClick={() => changeCountByAdd()}>+</button>
                 </div>
-                <button className="add-cart btn-sm btn-primary primeal-btn" onClick={() => {
-                                addToCart();
-                              }}>
+                <button
+                  className="add-cart btn-sm btn-primary primeal-btn"
+                  onClick={() => {
+                    addToCart();
+                  }}
+                >
                   加入購物車
                 </button>
               </div>
@@ -362,8 +373,14 @@ function Detail() {
             >
               <div className="detail-content-top">
                 <div className="nutrition-img">
-                  {/* <img src={require('./../../imgs/temp/analyze.png')} alt="" /> */}
-                  <ChartForCs mtls={mtlsForChart} />
+                  <div>
+                    <div className="nutrition-img-box">
+                      <ChartForCs mtls={mtlsForChart} />
+                    </div>
+                    <div className="nutrition-img-box-mobile">
+                      <ChartForCs mtls={materials} />
+                    </div>
+                  </div>
                 </div>
                 <div className="material-list">
                   <div className="material-name">
