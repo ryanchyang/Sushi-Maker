@@ -72,7 +72,7 @@ function LatestNews(props) {
   const getEvntsData = async () => {
     const res = await fetch(config.EVNTS_PATH);
     const obj = await res.json();
-    console.log('obj:', obj);
+    // console.log('obj:', obj);
     setFetchEvntsData(obj.data);
     setEvntsData(obj.data);
   };
@@ -109,7 +109,20 @@ function LatestNews(props) {
                 {/* lastest-news top */}
                 <div className="lastest-news-nav d-flex justify-content-between align-items-center">
                   <div className="lastest-news-nav-breadcrumbs">
-                    <p className="en-title-14-10">HOME / LATEST NEWS</p>
+                    <p className="en-title-14-10">
+                      <Link
+                        to={'/'}
+                        style={{ textDecoration: 'none', color: '#575757' }}
+                      >
+                        HOME /{' '}
+                      </Link>
+                      <Link
+                        to={'/latest-news/news'}
+                        style={{ textDecoration: 'none', color: '#b03342' }}
+                      >
+                        LATEST NEWS
+                      </Link>
+                    </p>
                   </div>
                   <div className="lastest-news-nav-right d-flex align-items-center">
                     <div className="search-input d-flex justify-content-end align-items-center">
