@@ -10,6 +10,7 @@ import MemHead from './component/MemHead';
 import { useEffect, useState } from 'react';
 import { findMem, reviseMem } from '../../WebApi';
 import { getMemId } from '../../utils';
+import IndexRevisePwd from './component/IndexRevisePwd';
 
 function IndexRevise() {
   const [memInfo, setMemInfo] = useState({
@@ -20,6 +21,7 @@ function IndexRevise() {
     mem_birthday: '',
   });
   const mem_id = getMemId('mem_id');
+  const [isRevisePwd, setIsRevisePwd] = useState(false);
 
   useEffect(() => {
     findMem(mem_id).then(obj => {
@@ -42,6 +44,9 @@ function IndexRevise() {
     setMemInfo(newData);
   };
 
+  const revisePwdBlock = { display: 'block' };
+  const revisePwdNone = { display: 'none' };
+
   return (
     <>
       <Header />
@@ -55,7 +60,16 @@ function IndexRevise() {
             {/* 以上不動 */}
 
             <div className="memReviseArea col-md-24 mt-5">
-              <div className="mycontainer mx-5 reviseCon">
+              {isRevisePwd && (
+                <IndexRevisePwd
+                  isRevisePwd={isRevisePwd}
+                  setIsRevisePwd={setIsRevisePwd}
+                />
+              )}
+              <div
+                className="mycontainer mx-5 reviseCon"
+                style={isRevisePwd ? revisePwdNone : revisePwdBlock}
+              >
                 <p className="ch-title-18 accTitle">帳號密碼</p>
                 <div className="actPwd col-md-24">
                   <div className="memInp">
@@ -76,7 +90,12 @@ function IndexRevise() {
                       className="form-control revInpBig ch-cont-14"
                       disabled
                     />
-                    <button className="btn btn-primary primeal-btn revPswBtn">
+                    <button
+                      className="btn btn-primary primeal-btn revPswBtn"
+                      onClick={() => {
+                        setIsRevisePwd(true);
+                      }}
+                    >
                       修改密碼
                     </button>
                   </div>
@@ -131,10 +150,10 @@ function IndexRevise() {
                           onChange={handleChange}
                           className="form-control revInpSm ch-cont-14"
                         >
-                        <option value="select">請選擇</option>
-                        <option value="male">男性</option>
-                        <option value="female">女性</option>
-                        <option value="undefined">兩性</option>
+                          <option value="select">請選擇</option>
+                          <option value="male">男性</option>
+                          <option value="female">女性</option>
+                          <option value="undefined">兩性</option>
                         </select>
                       </div>
                       <div className="memInpuSm mb-1">
