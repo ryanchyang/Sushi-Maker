@@ -1,13 +1,15 @@
-import { Header, AsideLeft, AsideRight, Footer } from './memLayout/LayoutLight';
+import { Header, AsideLeft, AsideRight, Footer ,Title } from './memLayout/LayoutLight';
 import './index.scss';
 import { findMem } from '../../WebApi';
 import { useEffect, useState } from 'react';
 import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
 import Events from './component/Events';
+import MemProdLike from './component/MemProdLike';
 
 function MemIndex() {
   const [memData, setMemData] = useState(null);
+  const [toggleForCprod, setToggleForCprod] = useState(false);
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
 
   useEffect(() => {
@@ -22,7 +24,7 @@ function MemIndex() {
       <div style={{ display: 'flex' }}>
         <AsideLeft />
         <div style={{ widtd: '100%' }}>
-          {/* <Title title={''} /> */}
+          <Title title={''}/>
           <div className="member ">
             <MemHead />
             {/* 以上不動 */}
@@ -71,10 +73,24 @@ function MemIndex() {
                 </div>
               </div>
               <div className="memActive col-md-24 mb-5">
-                <p className="ch-title-22 mt-4">近期活動</p>
+                <p className="ch-title-22 mt-4">
+                  {toggleForCprod === false ? '近期活動' : '經典收藏'}
+                </p>
+                <button
+                  className="btn btn-primary primeal-btn-sm"
+                  style={{ position: 'absolute', top: '10%', right: '2%' }}
+                  onClick={() => {
+                    setToggleForCprod(true);
+                    if (toggleForCprod === true) {
+                      setToggleForCprod(false);
+                    }
+                  }}
+                >
+                  {toggleForCprod === false ? '經典收藏' : '近期活動'}
+                </button>
                 <div className="memActiveArea">
-                  <div className="ActiveDetail col-md-24">
-                    <Events />
+                  <div className="ActiveDetail col-md-24 mt-5">
+                    {toggleForCprod === false ? <Events /> : <MemProdLike />}
                   </div>
                 </div>
               </div>

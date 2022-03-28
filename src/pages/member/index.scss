@@ -10,6 +10,9 @@
         align-items:center;
         
     }
+    .memUpload {
+        text-align:center;
+    }
     .memPhoto{
         width: 250px;
         height: 250px;
@@ -55,6 +58,7 @@
     .memActive {
         border: 1px solid #c4c4c4;
         margin-top:2%;
+        position: relative;
     }
     .ActiveDetail {
         display:flex;
@@ -209,6 +213,40 @@
         width: 30px;
         height: 30px;
         background: #fff;
+        }
+        //RWD
+        @media screen and (max-width: 576px) {
+            .memHead {
+                display: block;
+            }
+            .solgan{
+                display: none;
+            }
+            .memPhotoArea {
+                flex-direction: row;
+                margin-left:5%
+            }
+            .Cimg {
+                width: 100px;
+            }
+            .memPhoto {
+                width:150px;
+                height: 150px;
+            }
+            .divCarou {
+                margin-top:5%;
+            }
+            .carouContainer {
+                padding-left: 0;
+            }
+            .memUpload {
+                margin-left:10%;
+            }
+            .memName {
+                margin-bottom: 20%;
+            }
+            
+
         }
         
     

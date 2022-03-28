@@ -41,15 +41,17 @@ function MemHead() {
           <img className="memImg" src={imgSrc} alt="member-photo" />
         </div>
 
-        <div className="memName">
-          <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
+        <div class="memUpload mt-4">
+          <div className="memName">
+            <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
+          </div>
+          <button
+            className="btn btn-primary primeal-btn-sm "
+            onClick={e => document.querySelector('#avatar').click()}
+          >
+            點我上傳照片
+          </button>
         </div>
-        <button
-          className="btn btn-primary primeal-btn-sm "
-          onClick={e => document.querySelector('#avatar').click()}
-        >
-          點我上傳照片
-        </button>
       </form>
 
       <form name="form1" style={{ display: 'none' }}>

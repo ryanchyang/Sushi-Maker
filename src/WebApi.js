@@ -53,6 +53,19 @@ export const resetPwd = (newPassword, mem_id) => {
     }),
   }).then(res => res.json());
 };
+//修改密碼頁API
+export const indexRevisePwd = (mem_id, revisePwd) => {
+  return fetch(`${BASE_URL}/member/api/index-revise-pwd`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      revisePwd,
+      mem_id,
+    }),
+  }).then(res => res.json());
+};
 
 //先留著 換頁render用
 export const getMe = () => {
@@ -136,6 +149,18 @@ export const eventsInfo = async () => {
       'content-type': 'application/json',
     },
     body: JSON.stringify({}),
+  }).then(res => res.json());
+};
+//傳回會員經典商品收藏
+export const memCprodLike = async mem_id => {
+  return await fetch(`${BASE_URL}/member/api/find-memlike`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id,
+    }),
   }).then(res => res.json());
 };
 
