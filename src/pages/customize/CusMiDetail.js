@@ -1,4 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
+import { Link } from 'react-router-dom';
 
 function CusMiDetail() {
   return (

@@ -2,7 +2,7 @@ import MtlLBtn from './MtlLBtn';
 import { ReactComponent as Logo } from '../../../imgs/logo.svg';
 import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
 import { ReactComponent as ArrR } from '../../../imgs/arrow-right-noccircle.svg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function MtlLeft(props) {
   // console.log(props.mtlData);
@@ -12,9 +12,32 @@ function MtlLeft(props) {
   const cateItems = ['食材', '裝飾'];
   const [changeCate, setchangeCate] = useState('食材');
 
+  // 選單切換
+  const [changeCatePage, setChangeCatePage] = useState([]);
+  const catePage = (e) => {
+    switch (e) {
+      case '裝飾':
+        let categoryTop =
+          Object.keys(props.mtlData).length === 0 ? [] : [...props.mtlData];
+        categoryTop = categoryTop.filter((i) => i.mtl_cate === 'top');
+        setChangeCatePage(categoryTop);
+        break;
+      default:
+        let categoryIng =
+          Object.keys(props.mtlData).length === 0 ? [] : [...props.mtlData];
+        categoryIng = categoryIng.filter((i) => i.mtl_cate === 'ing');
+        setChangeCatePage(categoryIng);
+    }
+  };
+
+  useEffect(() => {
+    catePage(changeCate);
+  }, [props.mtlData]);
+
   // 食材選擇
-  const [mtlActive, setMtlActive] = useState([1]);
-  const { setAddMtlData } = props;
+  // const [mtlActive, setMtlActive] = useState([1]);
+  // const [mtlActive, setMtlActive] = useState([{ mtlId: 1, mtlPct: 1 }]);
+  const { addMtlData, setAddMtlData } = props;
 
   return (
     <>
@@ -40,6 +63,7 @@ function MtlLeft(props) {
                     className="mtlCate col-12"
                     onClick={() => {
                       setchangeCate(v);
+                      catePage(v);
                     }}
                   >
                     <Rectangle
@@ -53,24 +77,51 @@ function MtlLeft(props) {
                   </div>
                 );
               })}
+              {/* 舊做法 */}
+              {/* <div
+                className="dec col-12"
+                onClick={() => {
+                  setchangeCate(!changeCate);
+                }}
+              >
+                <Rectangle
+                  className={changeCate ? 'rectangle' : 'rectangle-displaynone'}
+                />
+                <div className={changeCate ? '' : 'mtl-cate-blur'}>食材</div>
+              </div>
+              <div
+                className="ing col-12"
+                onClick={() => {
+                  setchangeCate(!changeCate);
+                }}
+              >
+                <Rectangle
+                  className={changeCate ? 'rectangle-displaynone' : 'rectangle'}
+                />
+                <div className={changeCate ? 'mtl-cate-blur' : ''}>裝飾</div>
+              </div> */}
             </div>
             <div className="mtlBtnIn-L d-flex flex-wrap pt-3 px-2">
               {Object.keys(props.mtlData).length === 0
                 ? ''
-                : props.mtlData.map(e => {
-                    const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e;
+                : changeCatePage.map((e) => {
+                    const { mtl_id, mtl_name, mtl_img_path } = e;
 
                     return (
                       <MtlLBtn
                         key={mtl_id}
                         mtl_id={mtl_id}
                         mtl_name={mtl_name}
-                        mtl_cate={mtl_cate}
                         mtl_img_path={mtl_img_path}
-                        setMtlActive={setMtlActive}
-                        mtlActive={mtlActive}
-                        test={mtlActive.includes(mtl_id) ? true : false}
-                        setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
+                        setMtlActive={setAddMtlData}
+                        mtlActive={addMtlData}
+                        // addclass={mtlActive.includes(mtl_id) ? true : false}
+                        addclass={
+                          addMtlData.some((a) => a.mtlId === mtl_id)
+                            ? true
+                            : false
+                        }
+                        // setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
                       />
                     );
                   })}

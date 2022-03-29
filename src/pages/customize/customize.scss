@@ -256,8 +256,7 @@ $areaHeight: calc( 100vh - 80px );
     max-height: $mtlBtnCalcR;
     min-height: $mtlBtnCalcR;
     display: flex;
-    flex-direction: column-reverse;
-    justify-content: flex-end;
+    flex-direction: column;
 
     @include pad{
       max-height: $mtlBtnCalc;
@@ -420,6 +419,44 @@ $areaHeight: calc( 100vh - 80px );
 
     &:hover{
       background-color: $gray;
+    }
+  }
+  .select-add-cart {
+    width: 35%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    padding-right: 5%;
+
+    @include pad{
+      display: block;
+    }
+    @include mobile{
+      display: block;
+    }
+  }
+  .select-count{
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+    & input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    & button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      font-size: 2.5rem;
+    }
+    & input {
+      width: 50%;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      text-align: center;
     }
   }
 
