@@ -33,9 +33,9 @@ function StepTwo(props) {
   const [getStoreId, setGetStoreId] = useState('');
 
   // console.log(inputStoreId.current);
-  console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
+  // console.log('jklkjlkjlkj', inputStoreId.current?.innerText);
   const inputEl = useRef(null);
-  console.log('12332112324', inputEl.current?.innerText);
+  // console.log('12332112324', inputEl.current?.innerText);
 
   // console.log(inputEl);
   // const [storeID, setStoreID] = useState('');
@@ -176,7 +176,7 @@ function StepTwo(props) {
   const handleSubmit = e => {
     e.preventDefault();
 
-    setFields(info);
+    // setFields(info);
     console.log('info', info);
     console.log('fields', fields);
     if (handleValidation()) {
@@ -218,7 +218,7 @@ function StepTwo(props) {
     console.log('222', fields);
   }, [info]);
 
-  console.log(fields);
+  // console.log(fields);
 
   return (
     <>
