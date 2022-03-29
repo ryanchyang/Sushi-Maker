@@ -52,7 +52,7 @@ const StepMap = forwardRef((props, ref) => {
   const [areaId, setAreaId] = useState(0);
   const [store, setStore] = useState(AreaData.store);
   // const [storeId, setStoreId] = useState('');
-  const [storeName, setStoreName] = useState('');
+  const { storeName, setStoreName } = props;
   // const inputStoreId = useRef(null);
   // const { setGetStoreId, getStoreId}=props
   // getStoreId={getStoreId}

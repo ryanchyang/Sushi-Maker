@@ -45,6 +45,7 @@ function StepTwo(props) {
   const [itemInfo, setItemInfo] = useState({}); //交易明細 狀態
   const [mem_id, setMem_id] = useState(0);
   const [cart_id, setCart_id] = useState(0);
+  const [storeName, setStoreName] = useState('');
   const [fields, setFields] = useState({
     buyer: '',
     buyer_mobile: '',
@@ -338,21 +339,33 @@ function StepTwo(props) {
                       </div>
                       <div className="my-4 mx-5">
                         {/* TODO: map 光箱 */}
-                        <input
+                        {/* <input
+                            type="text"
+                            className="form-control "
+                            name="cart_store_id"
+                            id="cart_store_id"
+                            value={getStoreId}
+                            required
+                            // hidden
+                            // onChange={e => {
+                            //   setFields({
+                            //     ...fields,
+                            //     cart_store_id: e.target.value,
+                            //   });
+                            // }}
+                          /> */}
+                        <label type="text" className="form-label ">
+                          確認選擇的門市：
+                        </label>
+                        <label
                           type="text"
-                          className="form-control "
+                          className="form-label "
                           name="cart_store_id"
                           id="cart_store_id"
                           value={getStoreId}
-                          hidden
-                          // onChange={e => {
-                          //   setFields({
-                          //     ...fields,
-                          //     cart_store_id: e.target.value,
-                          //   });
-                          // }}
-                        />
-
+                        >
+                          {getStoreId + ' ' + storeName}
+                        </label>
                         <button
                           type="button"
                           className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
@@ -377,6 +390,8 @@ function StepTwo(props) {
                                   ref={inputStoreId}
                                   getStoreId={getStoreId} //設定storeid
                                   setGetStoreId={setGetStoreId}
+                                  storeName={storeName}
+                                  setStoreName={setStoreName}
                                 />
                               </>
                             </Modal.Body>
