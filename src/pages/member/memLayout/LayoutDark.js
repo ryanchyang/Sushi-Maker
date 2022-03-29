@@ -20,7 +20,7 @@ function Header() {
 function Title(props) {
   return (
     <>
-      <div className="mobile-top">
+      <div className="mobile-top d-md-none">
         <div>
           <div className="logo-box">
             <Logo className="logo" />
@@ -39,7 +39,7 @@ function Title(props) {
           </div>
         </div>
       </div>
-      <mytitle className="layout-title navtitle">{props.title}</mytitle>
+      <mytitle className="layout-title navtitle d-md-none">{props.title}</mytitle>
     </>
   );
 }

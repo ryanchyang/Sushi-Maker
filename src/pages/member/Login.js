@@ -72,7 +72,7 @@ const LoginForm = styled.form`
 const InputArea = styled.div`
   margin-top: 10%;
   padding: 0;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     margin-top: 5%;
   }
 `;
@@ -164,7 +164,7 @@ function Login(props) {
             <AsideLeft />
             <AsideRight setNavIsOpen={setNavIsOpen} />
             <div style={{ width: '100%' }}>
-              <Title title={''} />
+              <Title  title={''} style={{ display: 'none' }}/>
               <LoginArea>
                 <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
                   <img
