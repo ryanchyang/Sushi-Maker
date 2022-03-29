@@ -10,6 +10,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import config from '../../Config';
 import { getMemId } from '../../utils';
 import { useState, useEffect } from 'react';
+import DeleteActiveModal from './component/DeleteActiveModal';
+
 // import DatePicker from 'react-datepicker';
 
 const locales = {
@@ -27,53 +29,57 @@ const localizer = dateFnsLocalizer({
 // SQL
 // [
 //   {
-//     evnts_id: 2,
-//     evnts_title: '營養小知識講座',
-//     evnts_date: '2022-05-07',
-//     evnts_start_time: 2022-05-07T06:00:00.000Z,
-//     evnts_end_time: 2022-05-07T09:00:00.000Z,
-//     evnts_location: '台北市大安區復興南路一段390號2樓',
-//     allDay:false
-//   },
-//   {
-//     evnts_id: 4,
-//     evnts_title: '3D列印是什麼?',
-//     evnts_date: '2022-04-13',
-//     evnts_start_time: 2022-04-13T02:00:00.000Z,
-//     evnts_end_time: 2022-04-13T04:00:00.000Z,
-//     evnts_location: '台北市大安區復興南路一段390號2樓',
-//     allDay:false
-//   },
-//   {
-//     evnts_id: 6,
-//     evnts_title: '母親節快樂',
-//     evnts_date: '2022-05-14',
-//     evnts_start_time: 2022-05-14T05:00:00.000Z,
-//     evnts_end_time: 2022-05-14T08:00:00.000Z,
-//     evnts_location: '台北市大安區復興南路一段390號2樓',
-//     allDay:false
+//     "name": "State",
+//     "value": [
+//       {
+//         "evnts_id": 2,
+//         "evnts_signup_number": 2,
+//         "id": 2,
+//         "title": "營養小知識講座",
+//         "start": "Sat May 07 2022 14:00:00 GMT+0800 (台北標準時間)",
+//         "end": "Sat May 07 2022 17:00:00 GMT+0800 (台北標準時間)",
+//         "desc": "台北市大安區復興南路一段390號2樓",
+//         "allDay": false
+//       },
+//       "{allDay: false, desc: \"台北市大安區復興南路一段390號2樓\", end: We…}",
+//       "{allDay: false, desc: \"台北市大安區復興南路一段390號2樓\", end: Sa…}"
+//     ],
+//     "subHooks": [],
+//     "hookSource": {
+//       "lineNumber": 22009,
+//       "functionName": "IndexActive",
+//       "fileName": "http://localhost:3000/static/js/bundle.js",
+//       "columnNumber": 82
+//     }
 //   }
 // ]
 
 function IndexActive() {
   const [allEvent, setAllEvent] = useState([]);
+  const [selected, setSelected] = useState({});
+  const [modalShow, setModalShow] = useState(false);
   const mem_id = getMemId();
-  console.log('mem_id:', mem_id);
+  // console.log('mem_id:', mem_id);
 
   const getActive = async () => {
     const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
     const obj = await res.json();
-    console.log('obj:', obj);
     const events = obj.data.map(d => {
       return { ...d, start: new Date(d.start), end: new Date(d.end) };
     });
-    //setAllEvent(obj.data);
+    console.log('events:', events);
     setAllEvent(events);
   };
 
   useEffect(() => {
     getActive();
-  }, []);
+  }, [modalShow]);
+
+  const handleSelected = event => {
+    setModalShow(true);
+    setSelected(event);
+    console.info('[handleSelected - event]', event);
+  };
 
   return (
     <>
@@ -88,11 +94,22 @@ function IndexActive() {
               <Calendar
                 localizer={localizer}
                 events={allEvent}
-                step={60}
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 500, margin: '50px' }}
+                selected={selected}
+                onSelectEvent={handleSelected}
               />
+              {modalShow && (
+                <DeleteActiveModal
+                  show={modalShow}
+                  setModalShow={setModalShow}
+                  selected={selected}
+                  onHide={() => {
+                    setModalShow(false);
+                  }}
+                />
+              )}
             </div>
           </div>
           <Footer />

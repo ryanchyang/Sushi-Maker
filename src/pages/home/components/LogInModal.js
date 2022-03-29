@@ -20,7 +20,10 @@ function LogInModal(props) {
           </h3>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide} style={{ padding: '5px 50px' }}>
+          <Button
+            variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+            onClick={props.onHide}
+          >
             前往登入
           </Button>
         </Modal.Footer>
