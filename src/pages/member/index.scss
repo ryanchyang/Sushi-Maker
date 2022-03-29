@@ -232,6 +232,9 @@
   .activeForMobile {
     display: flex;
 }
+.regiTitle {
+  display: none;
+}
   //RWD
   @media screen and (max-width: 576px) {
     .ActiveDetail{
@@ -312,6 +315,8 @@
     .active-wrap-info {
         text-align: right;
     }
+
+    
     
   }
 }

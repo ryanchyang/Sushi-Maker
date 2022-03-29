@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
+import { AsideLeft, AsideRight, Title } from './memLayout/LayoutDark';
 import { useState } from 'react';
 import { login } from '../../WebApi';
 import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
@@ -10,10 +10,35 @@ import LoginForgetPwd from './component/LoginForgetPwd';
 import LoginForgetPwdVcode from './component/LoginForgetPwdVcode';
 import LoginForgetPwdVcodeNew from './component/LoginForgetPwdVcodeNew';
 import NavPage from '../layout/components/NavPage';
+import img from '../../imgs/mem/LoginImg.png';
 
 //styled component
 const LoginBody = styled.body`
-  background: #212121;
+  ${'' /* border:1px solid red; */}
+  background:#212121;
+
+  ${'' /* opacity: 0.3; */}
+  ${'' /* background-image: url(${img}); */}
+
+
+  @media screen and (max-width: 576px) {
+    background: transparent !important;
+    ${'' /* border:1px solid red; */}
+    &:before {
+      content: '';
+      width: 100%;
+      height: 812px;
+      top: 0;
+      left: 0;
+      background-image: url(${img});
+      ${'' /* background-size: cover; */}
+      filter: brightness(0.4);
+      position: absolute;
+      background-attachment: fixed;
+      z-index: -1;
+      border: 1px solid red;
+    }
+  }
 `;
 const Slogan = styled.p`
   color: #f7f6f3;
@@ -27,6 +52,17 @@ const LoginArea = styled.div`
   justify-content: space-between;
   height: auto;
   margin-right: 15%;
+
+  @media screen and (max-width: 576px) {
+    ${'' /* display: flex; */}
+    ${'' /* border:1px solid red; */}
+    ${'' /* flex-direction: column; */}
+    ${'' /* align-item: center; */}
+    justify-content:center;
+    margin: 0 auto;
+    padding: 0 10%;
+    ${'' /* width: 100%; */}
+  }
 `;
 
 const LoginForm = styled.form`
@@ -36,9 +72,15 @@ const LoginForm = styled.form`
 const InputArea = styled.div`
   margin-top: 10%;
   padding: 0;
+  @media screen and (max-width: 576px){
+    margin-top: 5%;
+  }
 `;
 const LoginAreaImg = styled.div`
   padding-left: 5%;
+  @media screen and (max-width: 576px) {
+    display: none;
+  }
 `;
 const InputTitle = styled.p`
   color: #f7f6f3;
@@ -49,6 +91,10 @@ const InputForPsw = styled.p`
   margin-top: 33px;
   text-align: center;
   cursor: pointer;
+
+  @media screen and (max-width: 576px) {
+    ${'' /* width:100%; */}
+  }
 `;
 const InputRegistLink = styled.p`
   color: #c4c4c4;
@@ -118,7 +164,7 @@ function Login(props) {
             <AsideLeft />
             <AsideRight setNavIsOpen={setNavIsOpen} />
             <div style={{ width: '100%' }}>
-              {/* <Title title={''} /> */}
+              <Title title={''} />
               <LoginArea>
                 <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
                   <img
@@ -126,7 +172,7 @@ function Login(props) {
                     style={{ width: '100%', height: '100%' }}
                   ></img>
                 </LoginAreaImg>
-                <InputArea className="col-5">
+                <InputArea className="col-md-5">
                   <Slogan>
                     Hello, <br />
                     My Friend

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { AsideLeft, AsideRight } from './memLayout/LayoutDark';
+import './index.scss';
+import { AsideLeft, AsideRight, Title } from './memLayout/LayoutDark';
 import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { registerMem, registerMail } from '../../WebApi';
@@ -10,6 +11,9 @@ import NavPage from '../layout/components/NavPage';
 const LoginBody = styled.body`
   background: #212121;
   position: relative;
+  @media screen and (max-width: 576px) {
+    height: 812px;
+  }
 `;
 const LoginArea = styled.div`
   display: flex;
@@ -17,11 +21,17 @@ const LoginArea = styled.div`
   height: 85%;
   width: 75%;
   position: fix;
-  top: 8%;
-  left: 10%;
+  left: 5%;
   padding: 0;
   background-color: rgba(255, 255, 255, 0.3);
   z-index: 3;
+
+  @media screen and (max-width: 576px) {
+    background-color: rgba(255, 255, 255, 0);
+    position: relative;
+    display: block;
+    padding-left: 12%;
+  }
 `;
 
 const RegistForm = styled.form`
@@ -31,9 +41,17 @@ const RegistForm = styled.form`
 `;
 const InputArea = styled.div`
   padding: 0;
+  @media screen and (max-width: 576px) {
+    width: 100%;
+  }
+
 `;
 const InputTitle = styled.p`
   color: #212121;
+
+  @media screen and (max-width: 576px) {
+    color: #f7f6f3;
+  }
 `;
 const InputForPsw = styled.p`
   color: #c4c4c4;
@@ -46,6 +64,11 @@ const ErrorMessage = styled.p`
 `;
 const IconRegisterArea = styled.div`
   margin-top: 18%;
+  @media screen and (max-width: 576px){
+    text-align: center;
+    margin-top: 0%;
+  }
+
 `;
 const MemTitle = styled.p`
   color: #f7f6f3;
@@ -59,6 +82,8 @@ const BgImg = styled.div`
   position: absolute;
   bottom: 0;
   z-index: 1;
+  overflow: hidden;
+
 `;
 
 //顯示關閉密碼icon待開發
@@ -131,7 +156,7 @@ function Register(props) {
           <div style={{ display: 'flex', height: '100vh' }}>
             <AsideLeft />
             <div style={{ width: '100%' }}>
-              {/* <Title title={''} /> */}
+              <Title className="d-none d-sm-block" title={''} />
               <LoginArea className="col-18">
                 <IconRegisterArea>
                   <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
@@ -140,7 +165,7 @@ function Register(props) {
                   </IconArea>
                 </IconRegisterArea>
 
-                <InputArea className="col-6">
+                <InputArea className="col-md-6">
                   <RegistForm onSubmit={handleRegister}>
                     <InputTitle className="ch-cont-14">帳號</InputTitle>
                     <input
@@ -202,9 +227,9 @@ function Register(props) {
                       }}
                     />
                     <ErrorMessage className="ch-cont-14"></ErrorMessage>
-                    <div className="d-flex mb-3">
+                    <div className="d-none d-md-flex mb-3">
                       <div>
-                        <InputTitle className="ch-cont-14">姓名</InputTitle>
+                        <InputTitle className="ch-cont-14 ">姓名</InputTitle>
                         <input
                           type="text"
                           className="form-control"
@@ -247,7 +272,10 @@ function Register(props) {
                         />
                       </div>
                     </div>
-                    <div className="d-flex" style={{ width: '100%' }}>
+                    <div
+                      className="d-none d-md-flex regGender"
+                      style={{ width: '100%'}}
+                    >
                       <div style={{ width: '50%' }}>
                         <InputTitle className="ch-cont-14">性別</InputTitle>
                         <select
@@ -381,7 +409,7 @@ function Register(props) {
             <AsideRight setNavIsOpen={setNavIsOpen} />
           </div>
           <BgImg>
-            <img src="/img/member/register.png" alt="" />
+            <img width="100%" src="/img/member/register.png" alt="" />
           </BgImg>
         </div>
       </LoginBody>
