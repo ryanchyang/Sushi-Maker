@@ -221,7 +221,7 @@ function StepTwo(props) {
             <Title title={'Shipping Info'} />
             {/* <div className="row"></div> */}
             <div className="mycontainer cart min-hi">
-              <div className="bread">
+              <div className="breadcart">
                 <p className="en-title-14-10">
                   <Link
                     to={'/'}

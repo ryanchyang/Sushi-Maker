@@ -70,7 +70,7 @@ function StepFour(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Confirmation'} />
             <div className="mycontainer cart min-hi">
-              <div className="bread">
+              <div className="breadcart">
                 {' '}
                 <p className="en-title-14-10">
                   <Link

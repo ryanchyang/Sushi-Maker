@@ -96,7 +96,7 @@ function StepThree(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Payment Info'} />
             <div className="mycontainer cart  ch-cont-14 min-hi">
-              <div className="bread">
+              <div className="breadcart">
                 {' '}
                 <p className="en-title-14-10">
                   <Link
