@@ -77,14 +77,20 @@ function App() {
       <>
         <Switch>
           <Route path="/classic" exact>
-            <ClassicIndex />
+            <ClassicIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           {/* 為了在詳細頁轉到詳細頁時強制re-render  */}
           <Route
             path="/classic/detail/:id?"
-            render={() => <ClassicDetail key={Date.now()} />}
+            render={() => (
+              <ClassicDetail
+                key={Date.now()}
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+              />
+            )}
           />
-           <Route path="/member" exact>
+          <Route path="/member" exact>
             <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/member/login">
