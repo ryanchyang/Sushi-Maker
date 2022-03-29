@@ -2,16 +2,17 @@
 import './../SetOrderAll.scss';
 import React, { useState } from 'react';
 import { ReactComponent as SetContent } from './../../../imgs/setorder/icon-info.svg';
+import { Link, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import SetMenuFinal from './SetMenuFinal';
-// import Meal from './../SetMeal.json';
+
 function SetMenuList(props) {
-  console.log('props-compo', props);
+  // console.log('props-compo', props);
+
   // 套餐光箱
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [answer, setAnswer] = useState({});
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -148,24 +149,37 @@ function SetMenuList(props) {
     </Modal>
   );
 
+  //套餐光箱結束
+
+  function menuChange(e) {
+    const newdata = [...props.choose];
+    newdata[props.index] = +e.target.value;
+    props.setChoose(newdata);
+  }
+
   return (
     <>
-      <div className="setmenulist">
+      <div className="setmenulistname">
         <div className="select-date"></div>
         <div className="select-box col-24 align-items-center">
-          <div className="en-cont-36 set-day">1</div>
-
-          <select name="" id="" className="select ch-cont-18">
-            {answer.rows?.map(b => {
+          <div className="en-cont-36 set-day">{props.numbers}</div>
+          <select
+            name=""
+            id=""
+            className="select ch-cont-18"
+            onChange={menuChange}
+          >
+            {props.answer.rows?.map((b, i) => {
               return (
                 <option value={b.bento_id} key={b.sid}>
-                  {b.bento_ch_name}
+                  {b.bento_ch_name}&nbsp;&nbsp;
                   {b.bento_en_name}
                 </option>
               );
             })}
           </select>
 
+          {/* 光箱的 */}
           {modal}
           <span className="custom-info" onClick={handleShow}>
             <SetContent />

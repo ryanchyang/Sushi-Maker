@@ -1,5 +1,29 @@
 @import './../../styles/global.scss';
 .setmenulist {
+  .cash {
+    align-items: center;
+    display: flex;
+  }
+  .setorderfinal {
+    align-items: flex-end;
+    margin-bottom: 5%;
+  }
+  .set-final-list-flex {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2%;
+  }
+
+  .set-view-all {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0% 10% 10% 10%;
+  }
+  .setmenulistname {
+    padding: 5px 10px 0px;
+  }
   .set-list-all {
     position: relative;
   }
@@ -22,6 +46,8 @@
 
   .set-input-all {
     display: flex;
+  }
+  .date-error {
     padding-bottom: 10%;
   }
   .set-input-from {
@@ -46,7 +72,7 @@
     position: relative;
   }
   .set-day {
-    margin-right: 2%;
+    margin-right: 4%;
   }
 
   .set-sushi-all {
@@ -69,16 +95,21 @@
     display: block;
   }
 
+  .setorderlist-set-bento-img {
+    width: 100%;
+    padding: 0% 5% 5% 10%;
+    margin: auto;
+    // opacity: 20%;
+  }
+
   .bento-img-element img {
     width: 100%;
-  }
-  .img {
-    width: 100%;
+    opacity: 80%;
   }
 
   .select {
     border: 0;
-
+    padding: 2% 0;
     background: rgba(0, 0, 0, 0);
     // -webkit-appearance: none;
     // appearance: none;
@@ -110,8 +141,7 @@
     display: block;
     pointer-events: none;
   }
-  .bento-sushi-menu-all {
-  }
+
   .bento-sushi-menu {
     display: flex;
     justify-content: space-evenly;
@@ -135,7 +165,9 @@
     justify-content: space-evenly;
   }
   .set-nutrient-bento-name {
+    margin-bottom: 8%;
   }
+
   @media screen and (max-width: 1516) {
     @include mytitle;
     font-size: 1.4rem;

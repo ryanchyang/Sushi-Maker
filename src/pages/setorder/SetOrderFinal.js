@@ -1,9 +1,43 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuFinal from './components/SetMenuFinal';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
 // import './SetOrderAll.scss';
 function SetOrderFinal() {
+  //上一個的答案
+  const data = useLocation();
+  const lastanswer = data.state;
+  const week = lastanswer.week;
+  const firstdate = lastanswer.date;
+
+  //設定結束日期
+  let finalDate = new Date(firstdate);
+  finalDate.setDate(finalDate.getDate() + +week * 7);
+  finalDate = finalDate.toISOString().split('T')[0];
+
+  //price價錢 partly 份量
+  const partly = 1;
+  let price;
+  //setlist: week第幾週的時候 價錢是多少
+  switch (week) {
+    case '1':
+      price = 2500;
+      break;
+    case '2':
+      price = 4000;
+      break;
+    case '3':
+      price = 5600;
+      break;
+    default:
+      price = 0;
+  }
+
+  const finalprice = price * partly;
+
+  console.log('lastanswer ', lastanswer);
+  console.log('date', firstdate);
+
   return (
     <>
       <Header />
@@ -15,7 +49,7 @@ function SetOrderFinal() {
           <div className="setmenulist">
             <div className="mycontainer ">
               <div className="set-list-title ch-title-22">推薦結果</div>
-              <div className="set-row">
+              <div className="set-row setorderfinal">
                 <div className="set-list-left col-12">
                   <div className="set-menu-title">
                     <div className="set-day-title en-cont-18">DAY</div>
@@ -30,6 +64,31 @@ function SetOrderFinal() {
                   <SetMenuFinal />
                 </div>
                 <div className="set-list-right col-5">
+                  <div className="set-final-list-flex">
+                    <div className="ch-cont-14">起始日期</div>
+                    <div className="ch-cont-14">{lastanswer.date}</div>
+                  </div>
+                  <div className="set-final-list-flex">
+                    <div className="ch-cont-14">結束日期</div>
+                    <div className="ch-cont-14">{finalDate}</div>
+                  </div>
+                  <div className="set-final-list-flex">
+                    {' '}
+                    <div className="ch-cont-14">套餐方案</div>
+                    <div className="ch-cont-14">{lastanswer.week}週</div>
+                  </div>
+                  <div className="set-final-list-flex">
+                    <div className="ch-cont-14">套餐份數</div>
+                  </div>
+                  <div className="set-final-list-flex">
+                    <div className="ch-cont-14">套餐金額</div>
+                    <div className="cash">
+                      <div className="ch-cont-14">NT$</div>
+                      <div className="en-cont-28">{finalprice}</div>
+                      <div className="ch-cont-14">元</div>
+                    </div>
+                  </div>
+
                   <div className="set-view-all ">
                     <div className="bento-view-buttom"></div>
                     <div className="bento-sushi-menu"></div>
