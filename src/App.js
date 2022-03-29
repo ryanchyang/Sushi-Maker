@@ -181,19 +181,19 @@ function App() {
             <Customize />
           </Route>
           <Route path="/cart/stepone" exact>
-            <CartStepOne />
+            <CartStepOne navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen}/>
           </Route>
           <Route path="/cart/steptwo" exact>
-            <CartStepTwo />
+            <CartStepTwo navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/cart/stepthree" exact>
-            <CartStepThree />
+            <CartStepThree navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/cart/stepfour/:cid" exact>
-            <CartStepFour />
+            <CartStepFour navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
           <Route path="/cart/cartlist">
-            <CartList />
+            <CartList navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
           </Route>
         </Switch>
       </>

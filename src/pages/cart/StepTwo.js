@@ -4,7 +4,7 @@ import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from '././components/CartDetial';
-
+import NavPage from '../layout/components/NavPage';
 import React, { useState, useEffect, useRef } from 'react';
 import StepMap from '././components/StepMap';
 import { Button, Modal } from 'react-bootstrap';
@@ -15,7 +15,12 @@ import config from '../../Config';
 import { set } from 'date-fns';
 import { fi } from 'date-fns/locale';
 
-function StepTwo() {
+function StepTwo(props) {
+  // NAV BAR 使用 蓋版漢堡
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構
+
   // 套餐光箱
   const [map, setMap] = useState(false);
   const handleClose = () => setMap(false);
@@ -206,234 +211,241 @@ function StepTwo() {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Shipping Info'} />
-          {/* <div className="row"></div> */}
-          <div className="mycontainer cart min-hi">
-            <div className="bread">
-              <p className="en-title-14-10">
-                <Link
-                  to={'/'}
-                  style={{ textDecoration: 'none', color: '#575757' }}
-                >
-                  HOME/{' '}
-                </Link>
-                <Link
-                  to={'/cart/stepone'}
-                  style={{ textDecoration: 'none', color: '#b03342' }}
-                >
-                  CART
-                </Link>
-              </p>
-            </div>
-            {/* 訂單資訊 可以摺疊*/}
-            <CartDetail cart_id={cart_id} mem_id={mem_id} />
-            <form
-              // onSubmit={handleSubmit}
-              // onInvalid={handleValid}
-              onChange={handleChange}
-            >
-              <div className="row mt-5">
-                <div className="col-md-12 col-24">
-                  <div className="shipping-info ch-cont-14 ">
-                    {/* TODO: Form className='needs-validation ' 表單驗證*/}
-                    <div className="my-4">
-                      <div className="d-flex justify-content-between">
-                        <label className="form-label ">訂購人姓名</label>
-                        <label className="form-label text-primary ch-cont-12">
-                          必填
-                        </label>
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="buyer"
-                        name="buyer"
-                        placeholder="訂購人"
-                        required
-                        // value={fields.buyer}
-
-                        // TODO: v 改 info
-                        // ref={inputEl}
-                        // defaultValue={info[0] ? info[0].mem_name : ''}
-                        defaultValue={info[0] ? info[0].mem_name : ''}
-                        onChange={handleFieldChange}
-                      />
-
-                      {fieldsError.buyer !== '' && (
-                        <div className="error">{fieldsError.buyer}</div>
-                      )}
-                    </div>
-                    <div className="my-4">
-                      <div className="d-flex justify-content-between">
-                        <label className="form-label ">連絡電話</label>
-                        <label className="form-label text-primary ch-cont-12">
-                          必填
-                        </label>
-                      </div>
-
-                      <input
-                        type="text"
-                        className="form-control "
-                        id="buyer_mobile"
-                        name="buyer_mobile"
-                        // placeholder="09XX-XXX-XXX"
-                        data-pattern="09\d{2}-?\d{3}-?\d{3}"
-                        onChange={handleFieldChange}
-                        required
-                        // ref={inputEl}
-                        defaultValue={info[0] ? info[0].mem_mobile : ''}
-                      />
-                      {fieldsError.buyer_mobile !== '' && (
-                        <div className="error">{fieldsError.buyer_mobile}</div>
-                      )}
-                    </div>
-                    <div className="my-4">
-                      <label className="form-label ">取貨人姓名</label>
-                      <input
-                        type="text"
-                        className="form-control "
-                        name="picker"
-                        id="picker"
-                        placeholder="取貨人"
-                        defaultValue={info[0] ? info[0].mem_name : ''}
-                        onChange={handleFieldChange}
-                      />
-                      <div className="form-check d-flex">
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Shipping Info'} />
+            {/* <div className="row"></div> */}
+            <div className="mycontainer cart min-hi">
+              <div className="bread">
+                <p className="en-title-14-10">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME/{' '}
+                  </Link>
+                  <Link
+                    to={'/cart/stepone'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    CART
+                  </Link>
+                </p>
+              </div>
+              {/* 訂單資訊 可以摺疊*/}
+              <CartDetail cart_id={cart_id} mem_id={mem_id} />
+              <form
+                // onSubmit={handleSubmit}
+                // onInvalid={handleValid}
+                onChange={handleChange}
+              >
+                <div className="row mt-5">
+                  <div className="col-md-12 col-24">
+                    <div className="shipping-info ch-cont-14 ">
+                      {/* TODO: Form className='needs-validation ' 表單驗證*/}
+                      <div className="my-4">
+                        <div className="d-flex justify-content-between">
+                          <label className="form-label ">訂購人姓名</label>
+                          <label className="form-label text-primary ch-cont-12">
+                            必填
+                          </label>
+                        </div>
                         <input
-                          className="form-check-input"
-                          type="checkbox"
-                          value=""
+                          type="text"
+                          className="form-control"
+                          id="buyer"
+                          name="buyer"
+                          placeholder="訂購人"
+                          required
+                          // value={fields.buyer}
+
+                          // TODO: v 改 info
+                          // ref={inputEl}
+                          // defaultValue={info[0] ? info[0].mem_name : ''}
+                          defaultValue={info[0] ? info[0].mem_name : ''}
+                          onChange={handleFieldChange}
                         />
-                        <label className="form-check-label ">同訂購人</label>
+
+                        {fieldsError.buyer !== '' && (
+                          <div className="error">{fieldsError.buyer}</div>
+                        )}
                       </div>
-                    </div>
-                    <div className="my-4">
-                      <label
-                        htmlFor="exampleFormControlTextarea1 "
-                        className="form-label ch-cont-14"
-                      >
-                        訂單特殊備註
-                      </label>
-                      <textarea
-                        className="form-control textarea"
-                        // maxRows="5"
-                        id="order_notes"
-                        name="order_notes"
-                        onChange={handleFieldChange}
-                      ></textarea>
-                    </div>
-                    <div className="my-4 mx-5">
-                      {/* TODO: map 光箱 */}
-                      <input
-                        type="text"
-                        className="form-control "
-                        name="cart_store_id"
-                        id="cart_store_id"
-                        value={getStoreId}
-                        hidden
-                        // onChange={e => {
-                        //   setFields({
-                        //     ...fields,
-                        //     cart_store_id: e.target.value,
-                        //   });
-                        // }}
-                      />
+                      <div className="my-4">
+                        <div className="d-flex justify-content-between">
+                          <label className="form-label ">連絡電話</label>
+                          <label className="form-label text-primary ch-cont-12">
+                            必填
+                          </label>
+                        </div>
 
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
-                        onClick={handleShow}
-                      >
-                        選擇取貨門市
-                      </button>
-                      {
-                        <Modal
-                          show={map}
-                          onHide={handleClose}
-                          setGetStoreId={setGetStoreId}
+                        <input
+                          type="text"
+                          className="form-control "
+                          id="buyer_mobile"
+                          name="buyer_mobile"
+                          // placeholder="09XX-XXX-XXX"
+                          data-pattern="09\d{2}-?\d{3}-?\d{3}"
+                          onChange={handleFieldChange}
+                          required
+                          // ref={inputEl}
+                          defaultValue={info[0] ? info[0].mem_mobile : ''}
+                        />
+                        {fieldsError.buyer_mobile !== '' && (
+                          <div className="error">
+                            {fieldsError.buyer_mobile}
+                          </div>
+                        )}
+                      </div>
+                      <div className="my-4">
+                        <label className="form-label ">取貨人姓名</label>
+                        <input
+                          type="text"
+                          className="form-control "
+                          name="picker"
+                          id="picker"
+                          placeholder="取貨人"
+                          defaultValue={info[0] ? info[0].mem_name : ''}
+                          onChange={handleFieldChange}
+                        />
+                        <div className="form-check d-flex">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            value=""
+                          />
+                          <label className="form-check-label ">同訂購人</label>
+                        </div>
+                      </div>
+                      <div className="my-4">
+                        <label
+                          htmlFor="exampleFormControlTextarea1 "
+                          className="form-label ch-cont-14"
                         >
-                          <Modal.Header closeButton>
-                            <Modal.Title className="en-cont-30 m-3">
-                              選擇取貨門市
-                            </Modal.Title>
-                          </Modal.Header>
-                          <Modal.Body style={{ margin: '0 3%' }}>
-                            <>
-                              <StepMap
-                                ref={inputStoreId}
-                                getStoreId={getStoreId} //設定storeid
-                                setGetStoreId={setGetStoreId}
-                              />
-                            </>
-                          </Modal.Body>
-                          <Modal.Footer>
-                            <Button
-                              variant="secondary"
-                              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
-                              onClick={handleClose}
-                            >
-                              取消
-                            </Button>
-                            {/*TODO: 確認門市要送出表單並存到DB mem */}
-                            <Button
-                              variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
-                              onClick={() => {
-                                // setGetStoreId(inputStoreId.current?.value);
-                                // { TODO: 門市換了不會回寫}
-                                // setGetStoreId = { setGetStoreId };
+                          訂單特殊備註
+                        </label>
+                        <textarea
+                          className="form-control textarea"
+                          // maxRows="5"
+                          id="order_notes"
+                          name="order_notes"
+                          onChange={handleFieldChange}
+                        ></textarea>
+                      </div>
+                      <div className="my-4 mx-5">
+                        {/* TODO: map 光箱 */}
+                        <input
+                          type="text"
+                          className="form-control "
+                          name="cart_store_id"
+                          id="cart_store_id"
+                          value={getStoreId}
+                          hidden
+                          // onChange={e => {
+                          //   setFields({
+                          //     ...fields,
+                          //     cart_store_id: e.target.value,
+                          //   });
+                          // }}
+                        />
 
-                                handleClose();
-                              }}
-                              // type="submit"
-                            >
-                              確認門市
-                            </Button>
-                          </Modal.Footer>
-                        </Modal>
-                      }
+                        <button
+                          type="button"
+                          className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
+                          onClick={handleShow}
+                        >
+                          選擇取貨門市
+                        </button>
+                        {
+                          <Modal
+                            show={map}
+                            onHide={handleClose}
+                            setGetStoreId={setGetStoreId}
+                          >
+                            <Modal.Header closeButton>
+                              <Modal.Title className="en-cont-30 m-3">
+                                選擇取貨門市
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ margin: '0 3%' }}>
+                              <>
+                                <StepMap
+                                  ref={inputStoreId}
+                                  getStoreId={getStoreId} //設定storeid
+                                  setGetStoreId={setGetStoreId}
+                                />
+                              </>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                variant="secondary"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                                onClick={handleClose}
+                              >
+                                取消
+                              </Button>
+                              {/*TODO: 確認門市要送出表單並存到DB mem */}
+                              <Button
+                                variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                                onClick={() => {
+                                  // setGetStoreId(inputStoreId.current?.value);
+                                  // { TODO: 門市換了不會回寫}
+                                  // setGetStoreId = { setGetStoreId };
+
+                                  handleClose();
+                                }}
+                                // type="submit"
+                              >
+                                確認門市
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        }
+                      </div>
                     </div>
                   </div>
+                  {/* 右側 統計 summary */}
+                  <CartSum
+                    sum={sum}
+                    className="d-none d-md-block"
+                    // style={{ position: 'fixed' }}
+                  />
+                  {/* ----summary-end */}
                 </div>
-                {/* 右側 統計 summary */}
-                <CartSum
-                  sum={sum}
-                  className="d-none d-md-block"
-                  // style={{ position: 'fixed' }}
-                />
-                {/* ----summary-end */}
-              </div>
-              {/* 下一步 */}
-              <div className="row  d-flex justify-content-center justify-content-md-end">
-                <div className="  d-flex next-btn my-5">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
-                    onClick={() => {
-                      // 轉至上一頁
-                      history.goBack();
-                    }}
-                  >
-                    上一步
-                  </button>
-                  {/* <Link to="./StepThree"> */}
-                  <button
-                    type="submit"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    onClick={handleSubmit}
-                  >
-                    下一步
-                  </button>
+                {/* 下一步 */}
+                <div className="row  d-flex justify-content-center justify-content-md-end">
+                  <div className="  d-flex next-btn my-5">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                      onClick={() => {
+                        // 轉至上一頁
+                        history.goBack();
+                      }}
+                    >
+                      上一步
+                    </button>
+                    {/* <Link to="./StepThree"> */}
+                    <button
+                      type="submit"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                      onClick={handleSubmit}
+                    >
+                      下一步
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
 
-          <Footer />
+            <Footer />
+          </div>
+          <AsideRight />
         </div>
-        <AsideRight />
       </div>
     </>
   );

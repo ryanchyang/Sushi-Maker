@@ -3,7 +3,7 @@
 import { Link, useHistory } from 'react-router-dom';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import ProdItem from '././components/ProdItem';
-
+import NavPage from '../layout/components/NavPage';
 // TODO: 資料庫拿資料
 // member id =1 鮮血死 測試用
 import config from '../../Config';
@@ -11,6 +11,11 @@ import { useState, useEffect } from 'react';
 import { getCart } from '../../utils';
 
 function StepOne(props) {
+  // NAV BAR 使用 蓋版漢堡
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構
+
   // 回上一頁 按鈕
   let history = useHistory();
   const [list, setList] = useState({}); //總資料
@@ -35,12 +40,12 @@ function StepOne(props) {
   console.log('34 inputSum', inputSum);
 
   // useEffect(() => {
-    
+
   // }, []);
 
   // 判斷有沒有購物車內容
   useEffect(() => {
-  // 取得cart_id
+    // 取得cart_id
     const getInit = async () => {
       const Cid = await getCart();
       setCart_id(+Cid.cartid);
@@ -127,7 +132,6 @@ function StepOne(props) {
         const res = await fetch(config.GET_CART_ORDER + `${memid}`);
         const obj = await res.json();
         if (obj.success) {
-  
           setInputSum({
             cart_value: amount,
             cart_credit: inputCredit,
@@ -169,7 +173,6 @@ function StepOne(props) {
     }
 
     console.log('123', inputSum);
-
   };
 
   // 當有變數量或金額時
@@ -220,32 +223,36 @@ function StepOne(props) {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Shopping List'} />
-          <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
-            <div className="bread">
-              <p className="en-title-14-10">
-                <Link
-                  to={'/'}
-                  style={{ textDecoration: 'none', color: '#575757' }}
-                >
-                  HOME/{' '}
-                </Link>
-                <Link
-                  to={'/cart/stepone'}
-                  style={{ textDecoration: 'none', color: '#b03342' }}
-                >
-                  CART
-                </Link>
-              </p>
-            </div>
-            <div className="list-title ch-cont-14">
-              <div className="row  my-2 d-flex align-items-center">
-                <div className="col-md-24 d-none d-md-flex">
-                  <div className="col-md-2 col-3 align-items-center">
-                    {/* <div className="form-check">
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Shopping List'} />
+            <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
+              <div className="bread">
+                <p className="en-title-14-10">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME/{' '}
+                  </Link>
+                  <Link
+                    to={'/cart/stepone'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    CART
+                  </Link>
+                </p>
+              </div>
+              <div className="list-title ch-cont-14">
+                <div className="row  my-2 d-flex align-items-center">
+                  <div className="col-md-24 d-none d-md-flex">
+                    <div className="col-md-2 col-3 align-items-center">
+                      {/* <div className="form-check">
                       <input
                         className="form-check-input "
                         type="checkbox"
@@ -257,117 +264,123 @@ function StepOne(props) {
                         htmlFor="flexCheckDefault"
                       ></label> 
                     </div> */}
-                  </div>
+                    </div>
 
-                  <div className="col-md-4 pr-3 align-items-center">
-                    商品圖片
-                  </div>
-                  <div className="d-flex flex-md-row col-md-10 col-9 justify-content-between flex-grow-1 align-items-center">
-                    <div className="col-md-8  align-items-center">商品名稱</div>
-                    <div className="col-md-8 align-items-center">單價</div>
-                    <div className="col-md-8  align-items-center">數量</div>
-                  </div>
-                  <div className="col-md-2 align-items-center">印製時間</div>
-                  <div className="col-md-2 align-items-center">小計</div>
-                  <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
-                    <div className="col text-center">刪除</div>
-                    <div className="col text-center">其他</div>
+                    <div className="col-md-4 pr-3 align-items-center">
+                      商品圖片
+                    </div>
+                    <div className="d-flex flex-md-row col-md-10 col-9 justify-content-between flex-grow-1 align-items-center">
+                      <div className="col-md-8  align-items-center">
+                        商品名稱
+                      </div>
+                      <div className="col-md-8 align-items-center">單價</div>
+                      <div className="col-md-8  align-items-center">數量</div>
+                    </div>
+                    <div className="col-md-2 align-items-center">印製時間</div>
+                    <div className="col-md-2 align-items-center">小計</div>
+                    <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
+                      <div className="col text-center">刪除</div>
+                      <div className="col text-center">其他</div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <ProdItem
-              cs={list.cs}
-              cm={list.cm}
-              set={list.set}
-              setList={setList}
-              list={list}
-              setDeleteProd={setDeleteProd}
-              deleteProd={deleteProd}
-            />
+              <ProdItem
+                cs={list.cs}
+                cm={list.cm}
+                set={list.set}
+                setList={setList}
+                list={list}
+                setDeleteProd={setDeleteProd}
+                deleteProd={deleteProd}
+              />
 
-            {/* TODO: SET info 光箱 */}
-            <div className="list-check ch-cont-14" style={{ padding: '30px' }}>
-              <div className="row ">
-                {/* <div className="col-24 "> */}
-                <div className="col-md-5 row"></div>
-                <div className="col-md-19 px-md-5 ">
-                  <div className="summary ">
-                    <div className="row print-time my-4">
-                      <div className="col-12 col-md-12 ">商品數量</div>
-                      <div className="col-12 col-md-8 text-right">
-                        總計{prodCount}項
-                      </div>
-                    </div>
-                    <div className="row print-time my-4">
-                      <div className="col-12 col-md-12">印製時間</div>
-                      <div className="col-12 col-md-8 text-right">
-                        {printTime}秒
-                      </div>
-                    </div>
-                    <div className="row discount my-4">
-                      <div className="col-12 col-md-12">折抵金額</div>
-                      {/* <div className="col-md-4"></div> */}
-                      <div className="col-12 col-md-8">
-                        <div className=" d-flex justify-content-end">
-                          <label className="form-label"></label>
-                          <input
-                            type="number"
-                            className="form-control"
-                            placeholder="NT$"
-                            defaultValue={discountTotal / 100}
-                            min={0}
-                            max={discountTotal / 100}
-                            onChange={handleChange}
-                          />
+              {/* TODO: SET info 光箱 */}
+              <div
+                className="list-check ch-cont-14"
+                style={{ padding: '30px' }}
+              >
+                <div className="row ">
+                  {/* <div className="col-24 "> */}
+                  <div className="col-md-5 row"></div>
+                  <div className="col-md-19 px-md-5 ">
+                    <div className="summary ">
+                      <div className="row print-time my-4">
+                        <div className="col-12 col-md-12 ">商品數量</div>
+                        <div className="col-12 col-md-8 text-right">
+                          總計{prodCount}項
                         </div>
                       </div>
+                      <div className="row print-time my-4">
+                        <div className="col-12 col-md-12">印製時間</div>
+                        <div className="col-12 col-md-8 text-right">
+                          {printTime}秒
+                        </div>
+                      </div>
+                      <div className="row discount my-4">
+                        <div className="col-12 col-md-12">折抵金額</div>
+                        {/* <div className="col-md-4"></div> */}
+                        <div className="col-12 col-md-8">
+                          <div className=" d-flex justify-content-end">
+                            <label className="form-label"></label>
+                            <input
+                              type="number"
+                              className="form-control"
+                              placeholder="NT$"
+                              defaultValue={discountTotal / 100}
+                              min={0}
+                              max={discountTotal / 100}
+                              onChange={handleChange}
+                            />
+                          </div>
+                        </div>
 
-                      <small className="col-24 col-md-20 text-right ">
-                        {/* 會員點數15,000點 可折抵NT$15元 */}
-                        會員點數{discountTotal}點 最多可折抵NT$
-                        {discountTotal / 100}元
-                      </small>
-                    </div>
-                    <div className="row price my-4">
-                      <div className="col-12 col-md-12">訂單金額</div>
-                      <div className="col-12 col-md-8 text-right ch-cont-24">
-                        NT {amount}
+                        <small className="col-24 col-md-20 text-right ">
+                          {/* 會員點數15,000點 可折抵NT$15元 */}
+                          會員點數{discountTotal}點 最多可折抵NT$
+                          {discountTotal / 100}元
+                        </small>
+                      </div>
+                      <div className="row price my-4">
+                        <div className="col-12 col-md-12">訂單金額</div>
+                        <div className="col-12 col-md-8 text-right ch-cont-24">
+                          NT {amount}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="row  d-flex justify-content-center justify-content-md-end">
-                <div className="  next-btn d-flex my-5 ">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
-                    onClick={() => {
-                      // 轉至上一頁
-                      history.goBack();
-                    }}
-                  >
-                    繼續購物
-                  </button>
-                  {/* <Link to="./StepTwo"> */}
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                    onClick={handleSubmit}
-                  >
-                    前往結帳
-                  </button>
-                  {/* </Link> */}
+                <div className="row  d-flex justify-content-center justify-content-md-end">
+                  <div className="  next-btn d-flex my-5 ">
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                      onClick={() => {
+                        // 轉至上一頁
+                        history.goBack();
+                      }}
+                    >
+                      繼續購物
+                    </button>
+                    {/* <Link to="./StepTwo"> */}
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                      onClick={handleSubmit}
+                    >
+                      前往結帳
+                    </button>
+                    {/* </Link> */}
+                  </div>
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

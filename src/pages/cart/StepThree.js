@@ -5,16 +5,20 @@ import { Link, useHistory } from 'react-router-dom';
 import CartSum from './CartSum';
 import CartDetail from './components/CartDetial';
 import CreditCard from './components/CreditCard';
-
+import NavPage from '../layout/components/NavPage';
 import React, { useState, useEffect } from 'react';
 
 // TODO: 資料庫拿資料
 import config from '../../Config';
 import { getMemId, getCart } from '../../utils';
 
-function StepThree() {
+function StepThree(props) {
   // 回上一頁 按鈕
   let history = useHistory();
+  // NAV BAR 使用 蓋版漢堡
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構
 
   const [card, setCard] = useState({
     cvc: '',
@@ -27,7 +31,6 @@ function StepThree() {
   const [sum, setSum] = useState([]);
   const [mem_id, setMem_id] = useState(0);
   const [cart_id, setCart_id] = useState(0);
-
 
   useEffect(() => {
     const getInit = async () => {
@@ -74,8 +77,7 @@ function StepThree() {
         if (obj.success) {
           console.log(obj.success);
           // 有成功更新頁面才轉向
-          history.push(`/cart/stepfour/${cart_id
-}`);
+          history.push(`/cart/stepfour/${cart_id}`);
         } else {
           alert('資料錯誤請重新輸入！');
         }
@@ -85,68 +87,76 @@ function StepThree() {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Payment Info'} />
-          <div className="mycontainer cart  ch-cont-14 min-hi">
-            <div className="bread"> <p className="en-title-14-10">
-              <Link
-                to={'/'}
-                style={{ textDecoration: 'none', color: '#575757' }}
-              >
-                HOME/{' '}
-              </Link>
-              <Link
-                to={'/cart/stepone'}
-                style={{ textDecoration: 'none', color: '#b03342' }}
-              >
-                CART
-              </Link>
-            </p></div>
-            <CartDetail cart_id={cart_id} mem_id={mem_id} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Payment Info'} />
+            <div className="mycontainer cart  ch-cont-14 min-hi">
+              <div className="bread">
+                {' '}
+                <p className="en-title-14-10">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME/{' '}
+                  </Link>
+                  <Link
+                    to={'/cart/stepone'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    CART
+                  </Link>
+                </p>
+              </div>
+              <CartDetail cart_id={cart_id} mem_id={mem_id} />
 
-            <div className="row mt-5">
-              <div className="col-md-12">
-                {/* TODO: 信用卡 refs */}
-                <div className="payment-info">
-                  <div className="ch-title-22 my-4">信用卡資訊</div>
-                  <CreditCard card={card} setCard={setCard} />
+              <div className="row mt-5">
+                <div className="col-md-12">
+                  {/* TODO: 信用卡 refs */}
+                  <div className="payment-info">
+                    <div className="ch-title-22 my-4">信用卡資訊</div>
+                    <CreditCard card={card} setCard={setCard} />
+                  </div>
+                </div>
+                <CartSum sum={sum} className="d-none d-md-block" />
+                {/* 總計 */}
+              </div>
+              {/* 下一步 */}
+              <div className="row  d-flex justify-content-center justify-content-md-end">
+                <div className="  d-flex next-btn my-5">
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                    onClick={() => {
+                      // 轉至上一頁
+                      history.goBack();
+                    }}
+                  >
+                    上一步
+                  </button>
+                  {/* <Link to="./StepFour"> */}
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    //onClick={document.querySelector('.creditFor').submit()}
+                    //onClick={document.querySelector('.creditBtn').click()}
+                    onClick={handleSubmit}
+                  >
+                    確認付款
+                  </button>
+                  {/* </Link> */}
                 </div>
               </div>
-              <CartSum sum={sum} className="d-none d-md-block" />
-              {/* 總計 */}
             </div>
-            {/* 下一步 */}
-            <div className="row  d-flex justify-content-center justify-content-md-end">
-              <div className="  d-flex next-btn my-5">
-                <button
-                  type="button"
-                  className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
-                  onClick={() => {
-                    // 轉至上一頁
-                    history.goBack();
-                  }}
-                >
-                  上一步
-                </button>
-                {/* <Link to="./StepFour"> */}
-                <button
-                  type="button"
-                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
-                  //onClick={document.querySelector('.creditFor').submit()}
-                  //onClick={document.querySelector('.creditBtn').click()}
-                  onClick={handleSubmit}
-                >
-                  確認付款
-                </button>
-                {/* </Link> */}
-              </div>
-            </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight />
         </div>
-        <AsideRight />
       </div>
     </>
   );
