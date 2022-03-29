@@ -18,30 +18,32 @@ const MemProdLike = () => {
     return memLike.map(v => {
       return (
         <>
-          <Link
-            to={'/classic/detail/' + v.pid}
-            style={{
-              textDecoration: 'none',
-              color: '#212121',
-            }}
-          >
-            <div className="activeImg">
-              <img
-                src={
-                  memLike.length !== 0
-                    ? 'http://localhost:3500/' + v.c_prod_img_path
-                    : ''
-                }
-                alt="cube"
-                style={{ width: '100px' }}
-              />
-              <div className="mt-2 ActTitle">
-                <p className="ch-cont-18 ">
-                  {memLike.length !== 0 ? v.c_prod_ch_name : ''}
-                </p>
+          <div class="active-wrap">
+            <Link
+              to={'/classic/detail/' + v.pid}
+              style={{
+                textDecoration: 'none',
+                color: '#212121',
+              }}
+            >
+              <div className="activeImg mb-5">
+                <img
+                  src={
+                    memLike.length !== 0
+                      ? 'http://localhost:3500/' + v.c_prod_img_path
+                      : ''
+                  }
+                  alt="cube"
+                  style={{ width: '100px' }}
+                />
               </div>
+            </Link>
+            <div className="mt-2 pl-5">
+              <p className="ch-cont-18 ">
+                {memLike.length !== 0 ? v.c_prod_ch_name : ''}
+              </p>
             </div>
-          </Link>
+          </div>
         </>
       );
     });
