@@ -29,7 +29,7 @@ function ProdItem(props) {
   // console.log(countcm);
 
   useEffect(() => {
-    if (initController.current <= 3) {
+    if (initController.current <= 5) {
       console.log(props);
       setCountcs(props.cs);
       setCountcm(props.cm);
@@ -40,7 +40,7 @@ function ProdItem(props) {
 
   // TODO: ASK 新德救命!!!!
   useEffect(() => {
-    if (initController.current > 3) {
+    if (initController.current > 5) {
       const newData = { ...props.list };
       newData.cs = countcs;
       props.setList(newData);
@@ -48,7 +48,7 @@ function ProdItem(props) {
   }, [countcs]);
 
   useEffect(() => {
-    if (initController.current > 3) {
+    if (initController.current > 5) {
       const newData = { ...props.list };
       newData.cm = countcm;
       props.setList(newData);
@@ -56,7 +56,7 @@ function ProdItem(props) {
   }, [countcm]);
 
   useEffect(() => {
-    if (initController.current > 3) {
+    if (initController.current > 5) {
       const newData = { ...props.list };
       newData.set = countset;
       props.setList(newData);

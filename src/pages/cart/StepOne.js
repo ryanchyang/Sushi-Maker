@@ -73,8 +73,8 @@ function StepOne(props) {
     // // 取得折扣金額
     // const getDiscount = async () => {
     //   const memid = localStorage.getItem('mem_id');
-    //   if (memid !== null) {
-    //     //判斷會員有無登入
+    //   // if (memid !== null) {
+    //   //   //判斷會員有無登入
     //     const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
     //     const obj = await res.json();
     //     if (obj.success) {
@@ -85,10 +85,10 @@ function StepOne(props) {
     //       //購物車無商品則導頁
     //       history.push('/cart/cartlist');
     //     }
-    //   } else {
-    //     //會員未登入則導頁
-    //     history.push('/cart/cartlist');
-    //   }
+    //   // } else {
+    //   //   //會員未登入則導頁
+    //   //   history.push('/cart/cartlist');
+    //   // }
     // };
     // getDiscount();
   }, []);
@@ -186,6 +186,16 @@ function StepOne(props) {
     setInputSum(newData);
     // console.log('137', inputSum);
   };
+
+  // 當有變數量或金額時
+  useEffect(() => {
+    setInputSum({
+      ...inputSum,
+      cart_value: amount,
+      cart_total_print_time: printTime,
+    });
+  }, [amount, printTime]);
+
   // // 取得inputCredit 後 拷貝陣列並把值塞進去 inputSum
   // useEffect(() => {
   //   setInputSum({
