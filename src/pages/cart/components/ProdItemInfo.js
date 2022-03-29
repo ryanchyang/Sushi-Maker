@@ -6,7 +6,6 @@ import config from '../../../Config';
 import React, { useState, useEffect } from 'react';
 
 function ProdItemInfo(props) {
-  // TODO: 確認清單不會有可以更改數量與手機版印製時間 (done)
   // TODO: 要加商品數量總計算
   // 每個商品物件
   //    {
@@ -23,14 +22,10 @@ function ProdItemInfo(props) {
   const [itemInfo, setItemInfo] = useState({});
   const [mem_id, setMem_id] = useState(0);
   const [cart_id, setCart_id] = useState(0);
-  //解構
   //-----  交易明細
-  // TODO:  member id =1 鮮血死 測試用
-  // const mem_id = 3;
-  // const cart_id = 3;
-  // const mem_id = getMemId();
-  // console.log('mem_id:', mem_id);
-  useEffect(() => { 
+
+  // 從父層接 memid 跟 cartid
+  useEffect(() => {
     setMem_id(props.mem_id);
     setCart_id(props.cart_id);
   }, [props]);
@@ -124,11 +119,7 @@ function ProdItemInfo(props) {
                 </div>
               </div>
               <div className="col-4 col-md-4 align-items-center align-middle text-center ">
-                {/* <div className="row text-end">
-               <div className="select-count"> */}
                 X {v.orders_amount}
-                {/* </div> 
-            </div>*/}
               </div>
               <div className="col-md-6  align-items-center d-none d-md-flex text-center">
                 {v.orders_print_time}秒/個
@@ -166,11 +157,7 @@ function ProdItemInfo(props) {
                 </div>
               </div>
               <div className="col-4 col-md-4 align-items-center align-middle text-center ">
-                {/* <div className="row text-end">
-               <div className="select-count"> */}
                 X {v.orders_amount}
-                {/* </div> 
-            </div>*/}
               </div>
               <div className="col-md-6  align-items-center d-none d-md-flex text-center">
                 {v.orders_print_time}秒/個

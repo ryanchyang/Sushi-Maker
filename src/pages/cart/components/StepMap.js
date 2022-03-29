@@ -42,11 +42,6 @@ const iconNow = L.icon({
     'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
   shadowUrl: 'https://unpkg.com/leaflet@1.6/dist/images/marker-shadow.png',
 });
-// function MultipleMarkers() {
-//   return arrCoordinates.map((coordinata, index) => {
-//     return <Marker key={index} position={coordinata} icon={icon}></Marker>;
-//   });
-// }
 
 const StepMap = forwardRef((props, ref) => {
   // const position = [51.505, -0.09];
@@ -76,21 +71,6 @@ const StepMap = forwardRef((props, ref) => {
     setArea(a);
   }, [cityId]);
   // 行政區+門市
-  /*
-  useEffect(() => {
-    console.log('store:', store);
-    let b = init.store.filter(v => {
-      // console.log('v.store_city_id' + v.store_city_id);
-      // console.log('v.store_area_id:' + v.store_area_id);
-      // console.log('typeof  v.store_', typeof v.store_area_id);
-      // console.log('typeof ', typeof +areaId);
-      // console.log('area id ===', +v.store_area_id == +areaId);
-      return v.store_area_id == +areaId;
-    });
-    console.log('BBB332112313213', b);
-    setStore(b);
-  }, [areaId]);
-*/
 
   // 門市ID
   useEffect(() => {
@@ -105,18 +85,6 @@ const StepMap = forwardRef((props, ref) => {
     });
     // console.log('BBB332112313213', b);
     setStore(b);
-
-    // 抓XY
-    // 抓出店的XY 改成陣列
-    // const positionXY = b.map((v, i) => {
-    //   // console.log('lat', +v.store_latitude);
-    //   // console.log('lot', +v.store_longtitude);
-    //   console.log('[v.store_latitude, v.store_longtitude]', [
-    //     +v.store_latitude,
-    //     +v.store_longtitude,
-    //   ]);
-    //   return [+v.store_latitude, +v.store_longtitude];
-    // });
   }, [areaId]);
 
   //  縣市 input
@@ -239,13 +207,14 @@ const StepMap = forwardRef((props, ref) => {
         </div>
         <div className="store-box" style={{ fontSize: '1.6rem' }}>
           <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span className="store"
-          // ref={ref}
+          <span
+            className="store"
+            // ref={ref}
           >
             <input
               // ref={ref}
               type="text"
-              // hidden
+              hidden
               value={props.getStoreId}
             />
             {storeName}
@@ -254,6 +223,5 @@ const StepMap = forwardRef((props, ref) => {
       </form>
     </>
   );
-  // });
 });
 export default StepMap;
