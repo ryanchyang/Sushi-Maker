@@ -18,7 +18,7 @@
   padding: 0 30px;
 }
 .layout-cart-btn-box-top {
-  padding-top: 40px;
+  /* padding-top: 40px; */
   padding-right: 10px;
 }
 .layout-title {
@@ -30,7 +30,10 @@
   width: 70px;
   height: 70px;
   margin: 0 auto;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  position: fixed;
+  left: 4%;
+  top: 2%;
 }
 .logo {
   width: 100%;
@@ -38,7 +41,10 @@
   fill: #989177;
 }
 .layout-hamberger-box {
-  padding-top: 25px;
+  /* padding-top: 25px; */
+  position: fixed;
+  right: 4.3%;
+  top: 2%;
 }
 .layout-hamberger {
   display: block;
@@ -47,9 +53,12 @@
 }
 .layout-mem-photo-box {
   margin: 0 auto;
-  padding-top: 25px;
+  /* padding-top: 25px; */
   width: 50px;
   height: 50px;
+  position: fixed;
+  right: 4.3%;
+  top: 9%;
 }
 .layout-mem-photo-box img {
   border-radius: 50%;
@@ -57,7 +66,10 @@
   height: auto;
 }
 .layout-cart-btn-box {
-  padding-top: 50px;
+  /* padding-top: 50px; */
+  position: fixed;
+  right: 5%;
+  top: 17%;
 }
 .layout-cart-btn {
   display: block;
@@ -115,7 +127,7 @@
     font-size: 2.4rem;
     line-height: 3.6rem;
     letter-spacing: 0.54rem;
-    padding: 10px 0 0 15px;
+    padding: 60px 0 0 15px;
   }
   .logo-box {
     width: 55px;
@@ -124,12 +136,25 @@
   .mobile-top {
     display: flex;
     padding: 0 15px;
+    z-index: 3;
+  }
+  .layout-cart-btn-box-top {
+    position: fixed;
+    top: 3.5%;
+    right: 18%;
   }
 }
 @media only screen and (min-width: 577px) and (max-width: 960px) {
-  .logo-box {
+  .logo-box,
+  .layout-hamberger-box {
     width: 40px;
     height: 40px;
+  }
+  .layout-mem-photo-box {
+    right: 2.5%;
+  }
+  .layout-cart-btn-box {
+    right: 4.5%;
   }
   .layout-title {
     height: 8rem;

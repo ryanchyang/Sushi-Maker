@@ -83,6 +83,7 @@
   }
   // 最新消息
   .lastest-news-nav {
+    padding-top: 10%;
     margin-bottom: 3rem;
   }
   .latest-news-category-box {
@@ -155,6 +156,9 @@
     }
   }
   @media screen and (min-width: 576px) {
+    .lastest-news-nav {
+      padding-top: 0px;
+    }
     .latest-news-category-box {
       width: 60%;
     }

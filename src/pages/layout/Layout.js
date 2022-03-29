@@ -19,25 +19,62 @@ function Header() {
     </>
   );
 }
-
+// <Logo className="logo" />
+// <Cart className="layout-cart-btn" />
+// <Hamburger className="layout-hamberger" />
 function Title(props) {
+  const { changeBG, setNavIsOpen } = props;
   return (
     <>
       <div className="mobile-top">
         <div>
           <div className="logo-box">
-            <Logo className="logo" />
+            {changeBG ? (
+              <Link to={'/'}>
+                <img
+                  src={`http://localhost:3500/img/home/logoLight.svg`}
+                  alt="logo"
+                />
+              </Link>
+            ) : (
+              <Link to={'/'}>
+                <img
+                  src={`http://localhost:3500/img/home/logo.svg`}
+                  alt="logo"
+                />
+              </Link>
+            )}
           </div>
         </div>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-between' }}>
           <div>
             <div className="layout-cart-btn-box-top">
-              <Cart className="layout-cart-btn" />
+              {changeBG ? (
+                <CartLight className="layout-cart-btn" />
+              ) : (
+                <Cart className="layout-cart-btn" />
+              )}
             </div>
           </div>
           <div>
             <div className="layout-hamberger-box">
-              <Hamburger className="layout-hamberger" />
+              {changeBG ? (
+                <HamburgerLight
+                  className="layout-hamberger"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    setNavIsOpen(true);
+                  }}
+                />
+              ) : (
+                <Hamburger
+                  className="layout-hamberger"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => {
+                    setNavIsOpen(true);
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>

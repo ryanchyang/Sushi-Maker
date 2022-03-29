@@ -264,7 +264,11 @@ function Index(props) {
             />
             <div style={{ width: '100%' }}>
               <div className="home-page">
-                <Title title={''} />
+                <Title
+                  title={''}
+                  changeBG={changeBG}
+                  setNavIsOpen={setNavIsOpen}
+                />
                 {/* PC index top */}
                 {/* todo: scroll down opacity 0 */}
                 {/*{pageYOffset < 900 && (
