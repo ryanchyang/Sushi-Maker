@@ -31,8 +31,8 @@ function MemIndex() {
 
             <div className="mycontainer">
               <div className="memInfoArea col-md-24 col-sm-24 ">
-                <div className="memInfo col-md-12 col-sm-24 mx-3 px-5">
-                  <table class="table table-borderless col-16 mt-4">
+                <div className="memInfo col-sm-24 col-md-12 mx-md-3 px-5">
+                  <table class="table table-borderless col-md-16 mt-4 col-sm-24 tableInfo">
                     <thead>
                       <tr>
                         <td className="ch-title-22">會員資訊</td>
@@ -61,7 +61,7 @@ function MemIndex() {
                     </tbody>
                   </table>
                 </div>
-                <div className="memSet col-md-12 col-sm-24 mx-3 d-flex">
+                <div className="memSet col-sm-24 col-md-12 mx-md-3 d-flex">
                   <div className="setImg">
                     <img src="/img/member/orderSet.png" alt="cube" />
                   </div>
@@ -78,8 +78,7 @@ function MemIndex() {
                   {toggleForCprod === false ? '近期活動' : '經典收藏'}
                 </p>
                 <button
-                  className="btn btn-primary primeal-btn-sm"
-                  style={{ position: 'absolute', top: '10%', right: '2%' }}
+                  className="btn btn-primary primeal-btn-sm memActiveTBtn"
                   onClick={() => {
                     setToggleForCprod(true);
                     if (toggleForCprod === true) {
@@ -94,6 +93,7 @@ function MemIndex() {
                     {toggleForCprod === false ? <Events /> : <MemProdLike />}
                   </div>
                 </div>
+                <div className="spaceForBtn"></div>
               </div>
             </div>
           </div>

@@ -63,6 +63,10 @@
     display: flex;
     justify-content: space-between;
   }
+  .active-wrap{
+      display: flex;
+      justify-content: space-between;
+  }
   .ActTitle {
     display: flex;
     flex-direction: column;
@@ -217,8 +221,22 @@
   .mobileLink {
     display: none;
   }
+  .memActiveTBtn {
+      position: absolute;
+      top:10%;
+      right: 2%;
+  }
+  .spaceForBtn {
+      display: none;
+  }
+  .activeForMobile {
+    display: flex;
+}
   //RWD
   @media screen and (max-width: 576px) {
+    .ActiveDetail{
+        display:block
+    }
     .memHead {
       display: block;
     }
@@ -252,6 +270,7 @@
     }
     .memInfoArea {
       display: block;
+      padding: 0;
     }
     .mobileLink {
       display: flex;
@@ -266,6 +285,32 @@
         text-align: center;
         line-height: 20px;
         margin-bottom: 10px;
+    }
+    .memInfo {
+        padding: 0;
+        margin: 0;
+    }
+    .tableInfo {
+        padding: 0;
+    }
+    .memActiveArea {
+        display:block;
+    }
+    .memActiveTBtn {
+        top: 90%;
+        position: absolute;
+        z-index: 3;
+    }
+    .spaceForBtn {
+        display:block;
+        height: 70px;
+        position: relative;
+    }
+    .activeForMobile {
+        display: flex;
+    }
+    .active-wrap-info {
+        text-align: right;
     }
     
   }
