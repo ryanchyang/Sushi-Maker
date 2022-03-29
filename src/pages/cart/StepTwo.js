@@ -94,7 +94,6 @@ function StepTwo() {
     // console.log(sum);
   }, [sum]);
 
-
   // Input State 要填寫的資料欄位
 
   // Error Message State
@@ -187,7 +186,7 @@ function StepTwo() {
       console.log('form has errors.');
     }
   };
-//取得資料後 把欄位資料狀態設定回去
+  //取得資料後 把欄位資料狀態設定回去
   useEffect(() => {
     console.log(info);
     setFields({

@@ -24,7 +24,7 @@ function StepOne(props) {
   // const [setOrder, setSetOrder] = useState(list.set);
   const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
-  const [discountTotal, setDiscountTotal] = useState(0); // 會員可以折抵積分提示欄位
+  const [discountTotal, setDiscountTotal] = useState([]); // 會員可以折抵積分提示欄位
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
@@ -71,50 +71,20 @@ function StepOne(props) {
     getList();
 
     // // 取得折扣金額
-    // const getDiscount = async () => {
-    //   const memid = localStorage.getItem('mem_id');
-    //   // if (memid !== null) {
-    //   //   //判斷會員有無登入
-    //     const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
-    //     const obj = await res.json();
-    //     if (obj.success) {
-    //       //購物車有商品才繼續做
-    //       setDiscountTotal(obj.result);
-    //       console.log(discountTotal);
-    //     } else {
-    //       //購物車無商品則導頁
-    //       history.push('/cart/cartlist');
-    //     }
-    //   // } else {
-    //   //   //會員未登入則導頁
-    //   //   history.push('/cart/cartlist');
-    //   // }
-    // };
-    // getDiscount();
-  }, []);
+    const getDiscount = async () => {
+      const memid = localStorage.getItem('mem_id');
+      // if (memid !== null) {
+      //   //判斷會員有無登入
+      const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
+      const obj = await res.json();
+      console.log('getDiscount obj:', obj);
 
-  // 取得折扣金額
-  // useEffect(() => {
-  //   const getDiscount = async () => {
-  //     const memid = localStorage.getItem('mem_id');
-  //     if (memid !== null) {
-  //       //判斷會員有無登入
-  //       const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
-  //       const obj = await res.json();
-  //       if (obj.success) {
-  //         //購物車有商品才繼續做
-  //         setDiscountTotal(obj.result);
-  //       } else {
-  //         //購物車無商品則導頁
-  //         history.push('/cart/cartlist');
-  //       }
-  //     } else {
-  //       //會員未登入則導頁
-  //       history.push('/cart/cartlist');
-  //     }
-  //   };
-  //   getDiscount();
-  // }, []);
+      console.log('getDiscount obj  ARRRR:', obj.result[0].mem_credit);
+      setDiscountTotal(obj.result[0].mem_credit);
+      // console.log(discountTotal);
+    };
+    getDiscount();
+  }, []);
 
   // 有購物車品項後去計算 商品總價 總印製時間 商品數量
   useEffect(() => {
@@ -176,14 +146,26 @@ function StepOne(props) {
   // 更改會員折扣後 才可以取得 inputSum
   const handleChange = e => {
     console.log('creadit', e.target.value);
+    console.log('creadit discountTotal', discountTotal / 1000);
+    // 判斷要輸入的金額不能大於 可折抵的金額
+    if (e.target.value <= discountTotal / 100) {
+      const newData = {
+        cart_value: amount,
+        cart_credit: +e.target.value,
+        cart_total_print_time: printTime,
+      };
+      setInputSum(newData);
+    } else {
+      alert('輸入金額有誤，請重新輸入!');
+      setInputSum({
+        ...inputSum,
+        cart_credit: '',
+      });
+      e.target.value = '';
+    }
 
     console.log('123', inputSum);
-    const newData = {
-      cart_value: amount,
-      cart_credit: +e.target.value,
-      cart_total_print_time: printTime,
-    };
-    setInputSum(newData);
+
     // console.log('137', inputSum);
   };
 
@@ -195,15 +177,6 @@ function StepOne(props) {
       cart_total_print_time: printTime,
     });
   }, [amount, printTime]);
-
-  // // 取得inputCredit 後 拷貝陣列並把值塞進去 inputSum
-  // useEffect(() => {
-  //   setInputSum({
-  //     ...inputSum,
-  //     cart_credit: inputCredit,
-  //   });
-
-  // }, [inputCredit]);
 
   // 提交
   const handleSubmit = e => {
@@ -340,8 +313,9 @@ function StepOne(props) {
                             type="number"
                             className="form-control"
                             placeholder="NT$"
-                            // defaultValue={0}
+                            defaultValue={discountTotal / 100}
                             min={0}
+                            max={discountTotal / 100}
                             onChange={handleChange}
                           />
                         </div>
@@ -349,7 +323,8 @@ function StepOne(props) {
 
                       <small className="col-24 col-md-20 text-right ">
                         {/* 會員點數15,000點 可折抵NT$15元 */}
-                        會員點數{discountTotal}點 可折抵NT$15元
+                        會員點數{discountTotal}點 最多可折抵NT$
+                        {discountTotal / 100}元
                       </small>
                     </div>
                     <div className="row price my-4">
