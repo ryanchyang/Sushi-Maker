@@ -33,17 +33,20 @@ function StepOne(props) {
     cart_total_print_time: printTime,
   });
   console.log('34 inputSum', inputSum);
-  // 取得cart_id
+
+  // useEffect(() => {
+    
+  // }, []);
+
+  // 判斷有沒有購物車內容
   useEffect(() => {
+  // 取得cart_id
     const getInit = async () => {
       const Cid = await getCart();
       setCart_id(+Cid.cartid);
     };
     getInit();
-  }, []);
 
-  // 判斷有沒有購物車內容
-  useEffect(() => {
     const getList = async () => {
       const memid = localStorage.getItem('mem_id');
       if (memid !== null) {
@@ -79,7 +82,7 @@ function StepOne(props) {
       const obj = await res.json();
       console.log('getDiscount obj:', obj);
 
-      console.log('getDiscount obj  ARRRR:', obj.result[0].mem_credit);
+      // console.log('getDiscount obj  ARRRR:', obj.result[0].mem_credit);
       setDiscountTotal(obj.result[0].mem_credit);
       // console.log(discountTotal);
     };
@@ -92,19 +95,19 @@ function StepOne(props) {
     let time = 0;
     let total = 0;
     list.cs?.forEach(d => {
-      console.log('71 cs _ptime', d.orders_print_time);
+      // console.log('71 cs _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
     });
     list.cm?.forEach(d => {
-      console.log('77 cm _ptime', d.orders_print_time);
+      // console.log('77 cm _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
     });
     list.set?.forEach(d => {
-      console.log('83 set _ptime', d.orders_print_time);
+      // console.log('83 set _ptime', d.orders_print_time);
       count += d.orders_amount;
       time += d.orders_print_time * d.orders_amount;
       total += d.orders_value * d.orders_amount;
@@ -124,6 +127,7 @@ function StepOne(props) {
         const res = await fetch(config.GET_CART_ORDER + `${memid}`);
         const obj = await res.json();
         if (obj.success) {
+  
           setInputSum({
             cart_value: amount,
             cart_credit: inputCredit,
@@ -166,7 +170,6 @@ function StepOne(props) {
 
     console.log('123', inputSum);
 
-    // console.log('137', inputSum);
   };
 
   // 當有變數量或金額時

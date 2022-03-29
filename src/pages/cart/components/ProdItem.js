@@ -19,6 +19,7 @@ function ProdItem(props) {
   //    }
   const setList = props.setList;
   const initController = useRef(1);
+  const deleteProdCS = props.deleteProd;
 
   // 計算單品數量
   const [countcs, setCountcs] = useState([]);
@@ -29,7 +30,7 @@ function ProdItem(props) {
   // console.log(countcm);
 
   useEffect(() => {
-    if (initController.current <= 5) {
+    if (initController.current <= 6) {
       console.log(props);
       setCountcs(props.cs);
       setCountcm(props.cm);
@@ -40,7 +41,7 @@ function ProdItem(props) {
 
   // TODO: ASK 新德救命!!!!
   useEffect(() => {
-    if (initController.current > 5) {
+    if (initController.current > 6) {
       const newData = { ...props.list };
       newData.cs = countcs;
       props.setList(newData);
@@ -48,7 +49,7 @@ function ProdItem(props) {
   }, [countcs]);
 
   useEffect(() => {
-    if (initController.current > 5) {
+    if (initController.current > 6) {
       const newData = { ...props.list };
       newData.cm = countcm;
       props.setList(newData);
@@ -56,14 +57,16 @@ function ProdItem(props) {
   }, [countcm]);
 
   useEffect(() => {
-    if (initController.current > 5) {
+    if (initController.current > 6) {
       const newData = { ...props.list };
       newData.set = countset;
       props.setList(newData);
     }
   }, [countset]);
 
-  // useEffect(() => {}, [countcs, countcm, countset]);
+  useEffect(() => {
+
+  }, [deleteProdCS]);
 
   // 計算小計金額
 
@@ -246,6 +249,9 @@ function ProdItem(props) {
         break;
 
       case 'cs':
+        console.log('delShowCS.id:', delShowCS.id);
+        const pid = delShowCS.id;
+        
         let newCsData = [...countcs];
         newCsData = newCsData.filter(d => d.product_id !== pid); //pid相等的是要刪掉的，所以要回傳不相等的
         setCountcs(newCsData);
@@ -253,6 +259,7 @@ function ProdItem(props) {
         let newCsArr = [...props.deleteProd];
         newCsArr.push({ pid: pid, category: category });
         props.setDeleteProd(newCsArr);
+        console.log('262', newCsArr);
 
         fetch(config.DELETE_CART_PROD, {
           method: 'POST',
@@ -300,6 +307,27 @@ function ProdItem(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // 刪除光箱 CS
+  const [delShowCS, setDelShowCS] = useState({
+    open: false,
+    id: '',
+    name: '',
+  });
+  const handleDelCloseCS = () => setDelShowCS(false);
+  const handleDelShowCS = e => {
+    console.log('hi');
+    console.log('e.currentTarget:', e.currentTarget);
+    console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
+    const c_prod_id = e.currentTarget.dataset.id;
+    const c_prod_name = e.currentTarget.dataset.name;
+    setDelShowCS({
+      ...delShowCS,
+      open: true,
+      id: c_prod_id,
+      name: c_prod_name,
+    });
+  };
 
   return (
     <>
@@ -515,12 +543,53 @@ function ProdItem(props) {
                 <div className="col-md-2 d-none d-md-flex align-items-center ">
                   ${v.orders_value * v.orders_amount}
                 </div>
+                {
+                  <Modal show={delShowCS.open} onHide={handleDelCloseCS}>
+                    <Modal.Header closeButton>
+                      <Modal.Title className="en-cont-30 m-3">
+                        刪除{delShowCS.name}
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body style={{ margin: '0 3%' }}>
+                      <div className="en-cont-14 pb-2">
+                        確認要刪除此項商品嗎?
+                      </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="secondary"
+                        className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                        onClick={handleDelCloseCS}
+                      >
+                        取消
+                      </Button>
+                      <Button
+                        variant=" btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                        className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                        // onClick={handleDelClose}
+                        onClick={e => {
+                          const pid = delShowCS.id;
+                          console.log('delShowCS.id:', delShowCS.id);
+                          deleteProd(pid, 'cs');
+                          // console.log(e.currentTarget.value, 'MMMMM');
+                          handleDelCloseCS();
+                        }}
+                      >
+                        確認
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                }
                 <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                   <div
                     className="prod-item-icon"
-                    onClick={() => {
-                      deleteProd(v.product_id, 'cs');
-                    }}
+                    data-id={v.product_id}
+                    data-name={v.c_prod_ch_name}
+                    // onClick={() => {
+                    //   deleteProd(v.product_id, 'cs');
+                    // }}
+                    // console.log(v.product_id + v.c_prod_ch_name);
+                    onClick={handleDelShowCS}
                   >
                     <img src="/img/cart/icon-trash.svg" alt="刪除" />
                   </div>
@@ -577,7 +646,6 @@ function ProdItem(props) {
                     {v.orders_value}元
                   </div>
                   <div className="col-md-8 my-md-3 align-items-center">
-                    {/* <div className="row"> */}
                     <div className="select-count">
                       <button
                         onClick={() => {
@@ -605,7 +673,6 @@ function ProdItem(props) {
                         +
                       </button>
                     </div>
-                    {/* </div> */}
                   </div>
                 </div>
                 <div className="col-md-2 d-none d-md-flex align-items-center">
