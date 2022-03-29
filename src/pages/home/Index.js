@@ -892,17 +892,23 @@ function Index(props) {
               {/* footer */}
               <div className="home-page" ref={footer}>
                 {/* <Title title={''} />*/}
-                <Link
-                  to={'./classic'}
-                  className="footer-top"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <img
-                    src={`http://localhost:3500/img/home/footer-toproduct-arrow.svg`}
-                    alt="to-product"
-                    style={{ cursor: 'pointer' }}
-                  />
-                </Link>
+                <div className="footer-top">
+                  <Link to={'./classic'} style={{ textDecoration: 'none' }}>
+                    <div className="footer-to-product">
+                      <div className="footer-top-img">
+                        <img
+                          src={`http://localhost:3500/img/home/footer-toproduct-arrow02.svg`}
+                          alt="to-product"
+                          style={{ cursor: 'pointer' }}
+                        />
+                      </div>
+                      <div className="circle-wrap">
+                        <div className="box01"></div>
+                        <div className="box02"></div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
                 <div className="footer-logo d-none d-md-block">
                   <img
                     src={`http://localhost:3500/img/home/footer-pc-logo.svg`}
