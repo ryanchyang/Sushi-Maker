@@ -320,8 +320,8 @@ function Index() {
 
   //加入購物車
   const addToCart = id => {
-    const isLogin = localStorage.getItem('mem_id') !== null;  //判斷是否登入
-    if(isLogin){
+    const isLogin = localStorage.getItem('mem_id') !== null; //判斷是否登入
+    if (isLogin) {
       const addProd = buyProdCount.find(p => p.pid === +id);
       const res = fetch(config.ADD_CART, {
         method: 'POST',
@@ -330,17 +330,19 @@ function Index() {
         },
         body: JSON.stringify({
           mid: +localStorage.getItem('mem_id'),
-          pid: addProd.pid,        
+          pid: addProd.pid,
           count: addProd.count,
-          value: addProd.value, 
+          value: addProd.value,
           print: addProd.print,
-          category: 'cs'
+          category: 'cs',
         }),
-      }).then(res => res.json()).then(d => d);
+      })
+        .then(res => res.json())
+        .then(d => d);
 
-      console.log(res);  //TODO: why log pending????
+      console.log(res); //TODO: why log pending????
       handleCartShow();
-    }else{
+    } else {
       handleLikeShow();
     }
   };
@@ -349,12 +351,15 @@ function Index() {
   const initProdBuyCount = prodList => {
     const prodCount = [];
     prodList.forEach(prod => {
-      prodCount.push({ 
-        pid: prod.pid, 
+      prodCount.push({
+        pid: prod.pid,
         pname: prod.c_prod_ch_name,
         print: prod.c_prod_print_time,
-        value: +prod.c_prod_spe_value === 0 ? prod.c_prod_value : prod.c_prod_spe_value,
-        count: 1 
+        value:
+          +prod.c_prod_spe_value === 0
+            ? prod.c_prod_value
+            : prod.c_prod_spe_value,
+        count: 1,
       });
     });
     setBuyProdCount(prodCount);
@@ -519,8 +524,13 @@ function Index() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Classic'} />
-          <br />
 
+          {/* 麵包屑 */}
+          <p className="en-title-14-10 bread">
+            <Link to={'/'} style={{ textDecoration: 'none', color: '#575757' }}>
+              HOME 
+            </Link>
+          </p>
           <div className="classic min-hi">
             <div className="search-filter">
               <div className="search-btn d-flex">

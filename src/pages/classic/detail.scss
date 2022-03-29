@@ -1,11 +1,20 @@
 @import './../../styles/global.scss';
-.classic-detail{
+  .bread{
+    padding-left: 2.5%;
+  }
+  @media screen and (max-width: 576px){
+    .bread{
+      padding-left: 4.5%;
+    }
+  }
+
+  .classic-detail{
     //有-ondetail後綴字的都是按了呈現詳細資料後的CSS
 
     //去掉input focus時的框線
     input:focus{
       outline: none;
-    }
+    }    
     .detail-content{
         margin: 0 auto;  
         display: flex;
@@ -18,8 +27,7 @@
       display: flex;
       width: 90%;       
       transition: 1.5s;          
-  }
-
+  }  
     .prod-img-box{
         position: relative;        
         width: 50%; 
@@ -142,8 +150,16 @@
         transform: scale(1.1);
         transition: transform 0.6s;
     }
+    .share-card {
+      width: 22%;
+      height: auto;
+      margin-bottom: 5%;
+      padding-bottom: 2%;
+      transition: transform 0.5s;
+      cursor: pointer;
+  }
     .recommend{
-        margin-top: 22%;
+        margin-top: 20%;
     }
     .recommend-prod-img-box {
         position: relative;
@@ -155,6 +171,17 @@
         height: auto;
         object-fit: cover;
         padding: 12%;
+    }
+    .share-item-img-box{
+      position: relative;
+      width: 95%;
+      height: 300px;
+      overflow: hidden;
+    }
+    .share-item-img-box img{
+        width: 90%;
+        height: auto;
+        object-fit: cover;
     }
     .discount-tag {
         position: absolute;
@@ -197,6 +224,9 @@
         width: 88%;
         padding-right: 5%;
         margin: 0 auto;  
+      }
+      .share{
+        margin-top: 5%;
       }
       .no-discount{
           float: right;
@@ -367,6 +397,9 @@
     .prod-card{
       width: 40%;
     }
+    .share-card{
+      width: 40%;
+    }
     .prod-detail-content, .prod-detail-content-ondetail{
       display: block;
     }    
@@ -434,6 +467,9 @@
     }
     .recommend-prod-box{      
       margin-bottom: 10%;
+    }
+    .share-item-img-box{
+      height: 150px;
     }
   }
 

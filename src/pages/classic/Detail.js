@@ -15,8 +15,8 @@ function Detail() {
   const [recommends, setRecommendeds] = useState([]); //推薦商品資料(3個)
   const [selectedMaterial, setSelectedMaterial] = useState({}); //目前選定的食材資料
   const [isLike, setIsLike] = useState(false); //該商品是否被收藏
-  const [buyCount, setBuyCount] = useState(1);  //商品購買數量
-  const [mtlsForChart, setMtlsForChart] = useState([]);   //要進chart.js畫圖的材料
+  const [buyCount, setBuyCount] = useState(1); //商品購買數量
+  const [mtlsForChart, setMtlsForChart] = useState([]); //要進chart.js畫圖的材料
   const [share, setShare] = useState([]);
   const { id } = useParams(); //取得url上的product id
 
@@ -223,6 +223,22 @@ function Detail() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Classic'} />
+
+          {/* 麵包屑 */}
+          <p className="en-title-14-10 bread">
+            <Link
+              to={'/'}
+              style={{ textDecoration: 'none', color: '#575757' }}
+            >
+              HOME /
+            </Link>
+            <Link
+              to={'/classic'}
+              style={{ textDecoration: 'none', color: '#b03342' }}
+            >
+              CLASSIC
+            </Link>
+          </p>
 
           <div className="classic-detail">
             {/* 商品圖片與名稱、售價 */}
@@ -636,11 +652,9 @@ function Detail() {
             </div>
 
             {/* 相關分享 */}
-            <div className="recommend">
+            <div className="share">
               <div className="recommend-ch-title ch-title-22">相關分享</div>
-              <div className="recommend-en-title en-title-14-10">
-                Share
-              </div>
+              <div className="recommend-en-title en-title-14-10">Share</div>
             </div>
             <div className="recommend-prod-box">
               {share.map((r, i) => {
@@ -649,8 +663,8 @@ function Detail() {
                   <div
                     className={
                       recommends.length === i + 1
-                        ? 'prod-card last-recommend'
-                        : 'prod-card'
+                        ? 'share-card last-recommend'
+                        : 'share-card'
                     }
                     key={r.share_item_id}
                   >
@@ -658,7 +672,7 @@ function Detail() {
                       to={`/share/items/${r.share_item_id}`}
                       style={{ textDecoration: 'none', color: '#212121' }}
                     >
-                      <div className="recommend-prod-img-box">
+                      <div className="share-item-img-box">
                         <img
                           src={`http://localhost:3500/${r.share_imgPath}`}
                           alt="product-recommend"
@@ -669,7 +683,6 @@ function Detail() {
                 );
               })}
             </div>
-
           </div>
 
           <Footer />
