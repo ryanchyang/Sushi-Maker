@@ -69,10 +69,14 @@ function StepTwo(props) {
 
   // 取得store id 後 拷貝陣列並把值塞進去 fields
   useEffect(() => {
-    setFields({
-      ...fields,
-      cart_store_id: getStoreId,
-    });
+    // if (getStoreId > 0) {
+      setFields({
+        ...fields,
+        cart_store_id: getStoreId,
+      });
+    // } else {
+    //   alert('請選擇取貨門市');
+    // }
   }, [getStoreId]);
 
   useEffect(() => {
@@ -107,6 +111,7 @@ function StepTwo(props) {
     buyer: '',
     buyer_mobile: '',
     picker: '',
+    cart_store_id:'',
   });
 
   // 處理欄位改變
@@ -147,6 +152,12 @@ function StepTwo(props) {
       formIsValid = false;
       errorMsg.buyer_mobile = '連絡電話格式不正確';
     }
+
+    if (!fields.cart_store_id) {
+      formIsValid = false;
+      errorMsg.cart_store_id = '取貨門市不可為空';
+    } 
+    
 
     setFieldsError(errorMsg);
     return formIsValid;
@@ -228,7 +239,7 @@ function StepTwo(props) {
                     to={'/'}
                     style={{ textDecoration: 'none', color: '#575757' }}
                   >
-                    HOME/{' '}
+                    HOME/
                   </Link>
                   <Link
                     to={'/cart/stepone'}
@@ -366,6 +377,9 @@ function StepTwo(props) {
                         >
                           {getStoreId + ' ' + storeName}
                         </label>
+                        {fieldsError.cart_store_id !== '' && (
+                          <div className="error">{fieldsError.cart_store_id}</div>
+                        )}
                         <button
                           type="button"
                           className="btn btn-sm btn-outline-primary btn-block px-5 my-5 ch-title-14"
