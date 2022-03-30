@@ -118,6 +118,27 @@
   fill: #575757;
 }
 
+
+
+.cart-icon-add{
+  position: relative;
+   display: inline-block;
+}
+.cart-num{
+  position:absolute;
+  width: 20px;
+  height: 20px;
+  border-radius:50%;
+  background-color:#ff5656 ;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right:-9px;
+  top:-8px;
+}
+
+
 @media screen and (max-width: 576px) {
   .mobile-adj {
     display: none;

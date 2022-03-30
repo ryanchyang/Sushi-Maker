@@ -50,9 +50,19 @@ function Title(props) {
           <div>
             <div className="layout-cart-btn-box-top">
               {changeBG ? (
-                <CartLight className="layout-cart-btn" />
+                <Link to={'/cart/stepone'}>
+                  <div className="cart-icon-add">
+                    <CartLight className="layout-cart-btn" />
+                    <span class="cart-num ">3</span>
+                  </div>
+                </Link>
               ) : (
-                <Cart className="layout-cart-btn" />
+                <Link to={'/cart/stepone'}>
+                  <div className="cart-icon-add">
+                    <Cart className="layout-cart-btn" />
+                    <span class="cart-num">3</span>
+                  </div>
+                </Link>
               )}
             </div>
           </div>
@@ -162,9 +172,19 @@ function AsideRight(props) {
           </div>
           <div className="layout-cart-btn-box" style={{ cursor: 'pointer' }}>
             {changeBG ? (
-              <CartLight className="layout-cart-btn" />
+              <Link to={'/cart/stepone'}>
+                <div className="cart-icon-add">
+                  <CartLight className="layout-cart-btn" />
+                  <div class="cart-num ">3</div>
+                </div>
+              </Link>
             ) : (
-              <Cart className="layout-cart-btn" />
+              <Link to={'/cart/stepone'}>
+                <div className="cart-icon-add">
+                  <Cart className="layout-cart-btn" />
+                  <div class="cart-num">3</div>
+                </div>
+              </Link>
             )}
           </div>
         </div>
