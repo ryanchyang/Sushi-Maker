@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 // import required modules
-import { Navigation } from 'swiper';
+import { Pagination } from 'swiper';
 
 const mem_id = localStorage.getItem('mem_id');
 
@@ -33,14 +33,14 @@ const MemProdLike = () => {
         slidesPerGroup={3}
         loop={false}
         loopFillGroupWithBlank={true}
-        navigation={true}
-        modules={[Navigation]}
+        pagination={{ clickable: true }}
+        modules={[Pagination]}
         className="mySwiper swiper"
       >
         {memLike.map(v => {
           return (
             <>
-              <SwiperSlide class="active-wrap swiper-slide ">
+              <SwiperSlide class="active-wrap swiper-slide">
                 <Link
                   to={'/classic/detail/' + v.pid}
                   style={{
@@ -48,23 +48,26 @@ const MemProdLike = () => {
                     color: '#212121',
                   }}
                 >
-                  <div className="activeImg mb-5">
-                    <img
-                      src={
-                        memLike.length !== 0
-                          ? 'http://localhost:3500/' + v.c_prod_img_path
-                          : ''
-                      }
-                      alt="cube"
-                      style={{ width: '100px' }}
-                    />
+                  <div class="d-flex">
+                    <div className="activeImg mb-5">
+                      <img
+                        src={
+                          memLike.length !== 0
+                            ? 'http://localhost:3500/' + v.c_prod_img_path
+                            : ''
+                        }
+                        alt="cube"
+                        style={{ width: '100px' }}
+                      />
+                    </div>
+                                    
+                                    <div className="mt-2 pl-5">
+                    <p className="ch-cont-18 ">
+                      {memLike.length !== 0 ? v.c_prod_ch_name : ''}
+                    </p>
+                                    </div>
                   </div>
                 </Link>
-                <div className="mt-2 pl-5">
-                  <p className="ch-cont-18 ">
-                    {memLike.length !== 0 ? v.c_prod_ch_name : ''}
-                  </p>
-                </div>
               </SwiperSlide>
             </>
           );

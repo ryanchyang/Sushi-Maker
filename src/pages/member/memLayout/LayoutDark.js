@@ -39,7 +39,9 @@ function Title(props) {
           </div>
         </div>
       </div>
-      <mytitle className="layout-title navtitle d-md-none">{props.title}</mytitle>
+      <mytitle className="layout-title navtitle d-md-none">
+        {props.title}
+      </mytitle>
     </>
   );
 }
@@ -50,7 +52,9 @@ function AsideLeft() {
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
         <div className="aside-left" style={{ border: 'none' }}>
           <div className="logo-box">
-            <Link to="/"><Logo className="logo" /></Link>
+            <Link to="/">
+              <Logo className="logo" />
+            </Link>
           </div>
         </div>
       </aside>
@@ -76,13 +80,13 @@ function AsideRight(props) {
       >
         <div className="aside-right" style={{ border: 'none' }}>
           <div className="layout-hamberger-box">
-            <Hamburger 
-              className="layout-hamberger" 
-              style={{cursor: 'pointer' }}
+            <Hamburger
+              className="layout-hamberger"
+              style={{ cursor: 'pointer' }}
               onClick={() => {
-                setNavIsOpen(true)
+                setNavIsOpen(true);
               }}
-              />
+            />
           </div>
 
           <div className="layout-cart-btn-box">

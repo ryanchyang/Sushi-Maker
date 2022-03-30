@@ -5,11 +5,12 @@ import { findMem } from '../../../WebApi';
 import { memDoUpload } from '../../../WebApi';
 import Carousel from './Carousel';
 
-function MemHead() {
+function MemHead(props) {
   const [memData, setMemData] = useState(null);
   const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
+  const { memReviseInfo } = props;
 
   //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
   useEffect(() => {
@@ -21,7 +22,7 @@ function MemHead() {
       );
       console.log(obj[0].mem_photo_img_path);
     }); //做到這裡如果node端API沒寫錯就會拿到你所需的資料了
-  }, []);
+  }, [memReviseInfo]);
 
   const handleSubmitUpload = () => {
     const fd = new FormData(document.form1);
@@ -106,7 +107,6 @@ function MemHead() {
         <div
           className="ch-title-12 mobileLInkOption"
           style={{
-
             background: location.pathname === '/member/revise' ? '#212121' : '',
           }}
         >
@@ -124,7 +124,6 @@ function MemHead() {
         <div
           className="ch-title-12 mobileLInkOption"
           style={{
-
             background:
               location.pathname === '/member/analyze' ? '#212121' : '',
           }}
@@ -143,8 +142,6 @@ function MemHead() {
         <div
           className="ch-title-12 mobileLInkOption"
           style={{
-
-
             background: location.pathname === '/member/active' ? '#212121' : '',
           }}
         >
@@ -162,7 +159,6 @@ function MemHead() {
         <div
           className="ch-title-12 mobileLInkOption"
           style={{
-
             background:
               location.pathname === '/member/historyorder' ? '#212121' : '',
           }}

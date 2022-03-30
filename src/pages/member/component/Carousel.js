@@ -142,7 +142,7 @@ const Carousel = ({ selectedIndex = 1 }) => {
         </div> */}
       </div>
       <button className="btn btn-primary primeal-btn-sm share-btn shareLink">
-        觀看全部收藏
+        全部收藏
       </button>
     </>
   );

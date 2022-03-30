@@ -54,10 +54,15 @@ function AsideLeft() {
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj" style={{ position: 'relative' }}>
-        <div className="aside-left " >
+      <aside
+        className="col-lg-3 col-md-3 col-3 p-0 mobile-adj"
+        style={{ position: 'relative' }}
+      >
+        <div className="aside-left ">
           <div className="logo-box">
-            <Logo className="logo" />
+            <Link to="/">
+              <Logo className="logo" />
+            </Link>
           </div>
           <div
             style={{
@@ -196,16 +201,23 @@ function AsideLeft() {
   );
 }
 
-function AsideRight() {
+function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
+  const { setNavIsOpen } = props;
 
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
         <div className="aside-right">
           <div className="layout-hamberger-box">
-            <Hamburger className="layout-hamberger" />
+            <Hamburger
+              className="layout-hamberger"
+              style={{ cursor: 'pointer' }}
+              onClick={() => {
+                setNavIsOpen(true);
+              }}
+            />
           </div>
           <div className="layout-mem-photo-box">
             <img src={require('../../../imgs/ruka.png')} alt="member-photo" />

@@ -22,6 +22,7 @@ function IndexRevise() {
   });
   const mem_id = getMemId('mem_id');
   const [isRevisePwd, setIsRevisePwd] = useState(false);
+  const [memReviseInfo, setMemReviseInfo] = useState('')
 
   useEffect(() => {
     findMem(mem_id).then(obj => {
@@ -34,6 +35,7 @@ function IndexRevise() {
     reviseMem(memInfo, mem_id).then(obj => {
       if (obj.success) {
         alert('修改成功');
+        setMemReviseInfo(obj[0])
         localStorage.setItem('mem_name', obj.info.mem_name);
         localStorage.setItem('mem_nickname', obj.info.mem_nickname);
       }
@@ -56,7 +58,7 @@ function IndexRevise() {
           {/* <Title title={''} />
             <br /> */}
           <div className="member ">
-            <MemHead />
+            <MemHead memReviseInfo={memReviseInfo}/>
             {/* 以上不動 */}
 
             <div className="memReviseArea col-md-24 mt-5">
