@@ -52,7 +52,7 @@ function IndexRevise() {
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '75%' }}>
           {/* <Title title={''} />
             <br /> */}
           <div className="member ">

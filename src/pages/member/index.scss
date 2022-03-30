@@ -235,6 +235,46 @@
 .regiTitle {
   display: none;
 }
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-button-next { 
+  color: #212121; 
+  opacity: 0.7;
+}
+.swiper-button-prev {  
+  color: #212121; 
+  opacity: 0.7;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #f7f6f3;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: start;
+  align-items: start;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
   //RWD
   @media screen and (max-width: 576px) {
     .ActiveDetail{

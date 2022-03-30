@@ -87,7 +87,7 @@ function IndexActive() {
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '75%' }}>
           {/* <Title title={''} /> */}
           <div className="member ">
             <MemHead />
