@@ -54,15 +54,16 @@ function AsideLeft() {
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-left">
+      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj" style={{ position: 'relative' }}>
+        <div className="aside-left " >
           <div className="logo-box">
             <Logo className="logo" />
           </div>
           <div
             style={{
-              width: '100%',
-              marginTop: '100%',
+              width: '12.5%',
+              position: 'fixed',
+              top: '50%',
             }}
           >
             <div

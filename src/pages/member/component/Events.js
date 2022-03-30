@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { eventsInfo } from '../../../WebApi';
 import { Link } from 'react-router-dom';
+
 
 const Events = () => {
   const [events, setEvents] = useState();
