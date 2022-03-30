@@ -2,13 +2,12 @@
 
 import { Link, useHistory } from 'react-router-dom';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import ProdItem from '././components/ProdItem';
+// import ProdItem from '././components/ProdItem';
 import NavPage from '../layout/components/NavPage';
-// TODO: 資料庫拿資料
-// member id =1 鮮血死 測試用
 import config from '../../Config';
 import { useState, useEffect } from 'react';
 import { getCart } from '../../utils';
+import { Button, Modal } from 'react-bootstrap';
 
 function StepOne(props) {
   // NAV BAR 使用 蓋版漢堡
@@ -23,10 +22,6 @@ function StepOne(props) {
   const [printTime, setPrintTime] = useState(0); //商品總印製時間(秒)
   const [amount, setAmount] = useState(0); //商品總價
   const [deleteProd, setDeleteProd] = useState([]); //被刪除的商品
-  //const {cs = [], cm = [], set = []} = list;
-  // const [csOrder, setCsOrder] = useState(list.cs);
-  // const [cmOrder, setCmOrder] = useState(list.cm);
-  // const [setOrder, setSetOrder] = useState(list.set);
   const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
   const [discountTotal, setDiscountTotal] = useState([]); // 會員可以折抵積分提示欄位
@@ -38,10 +33,6 @@ function StepOne(props) {
     cart_total_print_time: printTime,
   });
   console.log('34 inputSum', inputSum);
-
-  // useEffect(() => {
-
-  // }, []);
 
   // 判斷有沒有購物車內容
   useEffect(() => {
@@ -60,6 +51,7 @@ function StepOne(props) {
         const obj = await res.json();
         if (obj.success) {
           //購物車有商品才繼續做
+          //初始化購物車訂單資料
           setList(obj.data);
           setInputSum({
             cart_value: amount,
@@ -67,6 +59,31 @@ function StepOne(props) {
             cart_total_print_time: printTime,
           });
           console.log('60', inputSum);
+
+          // 第一步 撈資料時就先計算總金額 總印製時間 總商品數量
+          let count = 0;
+          let time = 0;
+          let total = 0;
+          obj.data.cs.forEach(d => {
+            count += d.orders_amount;
+            time += d.orders_print_time * d.orders_amount;
+            total += d.orders_value * d.orders_amount;
+          });
+          obj.data.cm.forEach(d => {
+            count += d.orders_amount;
+            time += d.orders_print_time * d.orders_amount;
+            total += d.orders_value * d.orders_amount;
+          });
+          obj.data.set.forEach(d => {
+            count += d.orders_amount;
+            time += d.orders_print_time * d.orders_amount;
+            total += d.orders_value * d.orders_amount;
+          });
+
+          //初始化總計
+          setProdCount(count);
+          setPrintTime(time);
+          setAmount(total);
         } else {
           //購物車無商品則導頁
           history.push('/cart/cartlist');
@@ -78,11 +95,9 @@ function StepOne(props) {
     };
     getList();
 
-    // // 取得折扣金額
+     // 取得可以折抵的折扣金額
     const getDiscount = async () => {
       const memid = localStorage.getItem('mem_id');
-      // if (memid !== null) {
-      //   //判斷會員有無登入
       const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
       const obj = await res.json();
       console.log('getDiscount obj:', obj);
@@ -94,34 +109,6 @@ function StepOne(props) {
     getDiscount();
   }, []);
 
-  // 有購物車品項後去計算 商品總價 總印製時間 商品數量
-  useEffect(() => {
-    let count = 0;
-    let time = 0;
-    let total = 0;
-    list.cs?.forEach(d => {
-      // console.log('71 cs _ptime', d.orders_print_time);
-      count += d.orders_amount;
-      time += d.orders_print_time * d.orders_amount;
-      total += d.orders_value * d.orders_amount;
-    });
-    list.cm?.forEach(d => {
-      // console.log('77 cm _ptime', d.orders_print_time);
-      count += d.orders_amount;
-      time += d.orders_print_time * d.orders_amount;
-      total += d.orders_value * d.orders_amount;
-    });
-    list.set?.forEach(d => {
-      // console.log('83 set _ptime', d.orders_print_time);
-      count += d.orders_amount;
-      time += d.orders_print_time * d.orders_amount;
-      total += d.orders_value * d.orders_amount;
-    });
-
-    setProdCount(count);
-    setPrintTime(time);
-    setAmount(total);
-  }, [list]);
 
   //每當有商品被刪除時，就來判斷購物車是否還有商品，都沒有了就導頁
   useEffect(() => {
@@ -184,6 +171,35 @@ function StepOne(props) {
     });
   }, [amount, printTime]);
 
+  // 有購物車品項後去計算 商品總價 總印製時間 商品數量
+  useEffect(() => {
+    let count = 0;
+    let time = 0;
+    let total = 0;
+    list.cs?.forEach(d => {
+      // console.log('71 cs _ptime', d.orders_print_time);
+      count += d.orders_amount;
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
+    });
+    list.cm?.forEach(d => {
+      // console.log('77 cm _ptime', d.orders_print_time);
+      count += d.orders_amount;
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
+    });
+    list.set?.forEach(d => {
+      // console.log('83 set _ptime', d.orders_print_time);
+      count += d.orders_amount;
+      time += d.orders_print_time * d.orders_amount;
+      total += d.orders_value * d.orders_amount;
+    });
+
+    setProdCount(count);
+    setPrintTime(time);
+    setAmount(total);
+  }, [list]);
+
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
@@ -219,6 +235,262 @@ function StepOne(props) {
     //   console.log('form has errors.');
     // }
   };
+  //改變cm數量輸入欄
+  const changeCMCount = (count, pid) => {
+    // 先拷貝一層
+    const newData = [...list.cm];
+    // 找出要的/點到的pid 跟 map 出來的484 同一個
+    const data = newData.find(cm => cm.product_id == pid);
+    // 找出 點到的product_id 是在 陣列中的第幾個 (在 cm 的陣列中 可能會有多個商品)
+    const index = newData.findIndex(cm => cm.product_id == pid);
+    // newData 用splice 去分割 抓到是第幾個index 淺層拷貝並覆寫
+    newData.splice(index, 1, { ...data, orders_amount: +count });
+    setList({ ...list, cm: newData });
+  };
+
+  //減少cm數量(-1)
+  const minusCMCount = pid => {
+    /*
+    const newData = [...countcm];
+    const data = newData.find(cm => cm.product_id == pid);
+    const index = newData.findIndex(cm => cm.product_id == pid);
+    newData.splice(index, 1, {
+      ...data,
+      orders_amount: +data.orders_amount - 1,
+    });
+    */
+    // 新德的寫法
+    //
+    const newData = [...list.cm];
+    //
+    const newData2 = newData.map(v => {
+      //
+      if (pid === v.product_id) {
+        //
+        if (v.orders_amount > 1) {
+          //
+          return { ...v, orders_amount: +v.orders_amount - 1 };
+        }
+      }
+      //
+      return { ...v };
+    });
+
+    setList({ ...list, cm: newData2 });
+  };
+
+  //增加cm數量(+1)
+  const addCMCount = pid => {
+    const newData = [...list.cm];
+    const data = newData.find(cm => cm.product_id == pid);
+    const index = newData.findIndex(cm => cm.product_id == pid);
+    newData.splice(index, 1, {
+      ...data,
+      orders_amount: +data.orders_amount + 1,
+    });
+    setList({ ...list, cm: newData });
+  };
+
+  //改變cs數量輸入欄
+  const changeCSCount = (count, pid) => {
+    const newData = [...list.cs];
+    const data = newData.find(cs => cs.product_id == pid);
+    const index = newData.findIndex(cs => cs.product_id == pid);
+    newData.splice(index, 1, { ...data, orders_amount: +count });
+    setList({ ...list, cs: newData });
+  };
+
+  //減少cs數量(-1)
+  const minusCSCount = pid => {
+    // const newData = [...countcs];
+    // const data = newData.find(cs => cs.product_id == pid);
+    // const index = newData.findIndex(cs => cs.product_id == pid);
+    // newData.splice(index, 1, {
+    //   ...data,
+    //   orders_amount: +data.orders_amount - 1,
+    // });
+
+    const newData = [...list.cs];
+    const newData2 = newData.map(v => {
+      if (pid === v.product_id) {
+        if (v.orders_amount > 1) {
+          return { ...v, orders_amount: +v.orders_amount - 1 };
+        }
+      }
+      return { ...v };
+    });
+
+    setList({ ...list, cs: newData2 });
+  };
+
+  //增加cs數量(+1)
+  const addCSCount = pid => {
+    const newData = [...list.cs];
+    const data = newData.find(cs => cs.product_id == pid);
+    const index = newData.findIndex(cs => cs.product_id == pid);
+    newData.splice(index, 1, {
+      ...data,
+      orders_amount: +data.orders_amount + 1,
+    });
+    console.log(newData);
+    setList({ ...list, cs: newData });
+  };
+
+  //改變set數量輸入欄
+  const changeSETCount = (count, pid) => {
+    const newData = [...list.set];
+    const data = newData.find(set => set.product_id == pid);
+    const index = newData.findIndex(set => set.product_id == pid);
+    newData.splice(index, 1, { ...data, orders_amount: +count });
+    setList({ ...list, set: newData });
+  };
+
+  //減少set數量(-1)
+  const minusSETCount = pid => {
+    // const newData = [...countset];
+    // const data = newData.find(set => set.product_id == pid);
+    // const index = newData.findIndex(set => set.product_id == pid);
+    // newData.splice(index, 1, {
+    //   ...data,
+    //   orders_amount: +data.orders_amount - 1,
+    // });
+
+    const newData = [...list.set];
+    const newData2 = newData.map(v => {
+      if (pid === v.product_id) {
+        if (v.orders_amount > 1) {
+          return { ...v, orders_amount: +v.orders_amount - 1 };
+        }
+      }
+      return { ...v };
+    });
+
+    setList({ ...list, set: newData2 });
+  };
+
+  //增加set數量(+1)
+  const addSETCount = pid => {
+    const newData = [...list.set];
+    const data = newData.find(set => set.product_id == pid);
+    const index = newData.findIndex(set => set.product_id == pid);
+    newData.splice(index, 1, {
+      ...data,
+      orders_amount: +data.orders_amount + 1,
+    });
+    setList({ ...list, set: newData });
+  };
+
+  //刪除商品
+  const deleteProdFun = async (pid, category) => {
+    const mid = localStorage.getItem('mem_id');
+    const cartInfo = await getCart();
+    const cartid = cartInfo.cartid;
+
+    switch (category) {
+      case 'set':
+        let newSetData = [...list.set];
+        newSetData = newSetData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        setList({ ...list, set: newSetData });
+
+        let newSetArr = [...deleteProd];
+        newSetArr.push({ pid: pid, category: category });
+        setDeleteProd(newSetArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
+        break;
+
+      case 'cs':
+        console.log('delShowCS.id:', delShowCS.id);
+        const pid = delShowCS.id;
+
+        let newCsData = [...list.cs];
+        newCsData = newCsData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        setList({ ...list, cs: newCsData });
+
+        let newCsArr = [...deleteProd];
+        newCsArr.push({ pid: pid, category: category });
+        setDeleteProd(newCsArr);
+        console.log('262', newCsArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
+        break;
+
+      case 'cm':
+        let newCmData = [...list.cm];
+        newCmData = newCmData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        setList({ ...list, cm: newCmData });
+
+        let newCmArr = [...deleteProd];
+        newCmArr.push({ pid: pid, category: category });
+        setDeleteProd(newCmArr);
+
+        fetch(config.DELETE_CART_PROD, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            memId: mid,
+            cartid: cartid,
+            pid: pid,
+            category: category,
+          }),
+        });
+        break;
+
+      default:
+        break;
+    }
+  };
+
+  // 套餐光箱
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // 刪除光箱 CS
+  const [delShowCS, setDelShowCS] = useState({
+    open: false,
+    id: '',
+    name: '',
+  });
+  const handleDelCloseCS = () => setDelShowCS(false);
+  const handleDelShowCS = e => {
+    // console.log('hi');
+    // console.log('e.currentTarget:', e.currentTarget);
+    // console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
+    const c_prod_id = e.currentTarget.dataset.id;
+    const c_prod_name = e.currentTarget.dataset.name;
+    setDelShowCS({
+      ...delShowCS,
+      open: true,
+      id: c_prod_id,
+      name: c_prod_name,
+    });
+  };
+
 
   return (
     <>
@@ -286,7 +558,7 @@ function StepOne(props) {
                 </div>
               </div>
 
-              <ProdItem
+              {/* <ProdItem
                 cs={list.cs}
                 cm={list.cm}
                 set={list.set}
@@ -294,7 +566,352 @@ function StepOne(props) {
                 list={list}
                 setDeleteProd={setDeleteProd}
                 deleteProd={deleteProd}
-              />
+              /> */}
+              {list.set?.map((v, i) => {
+                return (
+                  <div className="prod-item ch-cont-14 " key={'set' + i}>
+                    <div className="row my-2  d-flex align-items-center ">
+                      <div className="col-md-24 d-flex">
+                        <div className="col-md-2 col-3 align-items-center"></div>
+                        <div className="col-md-4 col-6 align-items-center">
+                          <div className="cart-item-img">
+                            <img alt="" className="img-fluid" src="" />
+                          </div>
+                        </div>
+                        <div
+                          className={
+                            `d-flex ` +
+                            `flex-md-row flex-column ` +
+                            `col-9 col-md-10 justify-content-between ` +
+                            `flex-grow-1 align-items-center`
+                          }
+                        >
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.set_name}
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.orders_value}元/個
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            <div className="select-count">
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  minusSETCount(v.product_id);
+                                }}
+                              >
+                                -
+                              </button>
+                              <input
+                                type="number"
+                                value={v.orders_amount}
+                                onChange={e => {
+                                  changeSETCount(+e.target.value, v.product_id);
+                                }}
+                              />
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  addSETCount(v.product_id);
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                            {/* </div> */}
+                          </div>
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center">
+                          {v.orders_print_time}秒
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center ">
+                          ${v.orders_value * v.orders_amount}
+                        </div>
+                        <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
+                          <div
+                            className="prod-item-icon"
+                            onClick={() => {
+                              deleteProdFun(v.product_id, 'set');
+                            }}
+                          >
+                            <img src="/img/cart/icon-trash.svg" alt="" />
+                          </div>
+
+                          {/* //光箱 */}
+                          {
+                            <Modal show={show} onHide={handleClose}>
+                              <Modal.Header closeButton>
+                                <Modal.Title className="en-cont-30 m-3">
+                                  套餐說明
+                                </Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body style={{ margin: '0 3%' }}>
+                                <div className="en-cont-14 pb-2">
+                                  加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
+                                </div>
+                                <table className="table table-hover">
+                                  <tbody className="">
+                                    {v.set_info_array.map((v, i) => {
+                                      return (
+                                        <tr key={i + 1}>
+                                          <th scope="row" className="en-cont-36">
+                                            {i + 1}
+                                          </th>
+                                          <td className="en-cont-14">
+                                            <div>
+                                              {v.bento_ch_name}
+                                              <br />
+                                              {v.bento_en_name}
+                                            </div>
+                                          </td>
+                                        </tr>
+                                      );
+                                    })}
+                                  </tbody>
+                                </table>
+                              </Modal.Body>
+                              <Modal.Footer>
+                                <Button
+                                  variant="secondary"
+                                  className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                                  onClick={handleClose}
+                                >
+                                  Close
+                                </Button>
+                              </Modal.Footer>
+                            </Modal>
+                          }
+                          <div className="prod-item-icon" onClick={handleShow}>
+                            <img src="/img/cart/icon-info.svg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              {list.cs?.map((v, i) => {
+                return (
+                  <div className="prod-item ch-cont-14 " key={'cs' + i}>
+                    <div className="row my-2  d-flex align-items-center ">
+                      <div className="col-md-24 d-flex">
+                        <div className="col-md-2 col-3 align-items-center">
+
+                        </div>
+                        <div className="col-md-4 col-6 align-items-center">
+                          <div className="cart-item-img">
+                            <img
+                              alt={v.cs_prod_img_path}
+                              className="img-fluid"
+                              src={`http://localhost:3500${v.c_prod_img_path}`}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={
+                            `d-flex ` +
+                            `flex-md-row flex-column ` +
+                            `col-9 col-md-10 justify-content-between ` +
+                            `flex-grow-1 align-items-center`
+                          }
+                        >
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.c_prod_ch_name}
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.orders_value}元
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            <div className="select-count">
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  minusCSCount(v.product_id);
+                                }}
+                              >
+                                -
+                              </button>
+                              <input
+                                type="number"
+                                value={v.orders_amount}
+                                onChange={e => {
+                                  changeCSCount(+e.target.value, v.product_id);
+                                }}
+                              />
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  addCSCount(v.product_id);
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center">
+                          {v.orders_print_time}秒/個
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center ">
+                          ${v.orders_value * v.orders_amount}
+                        </div>
+                        {
+                          <Modal show={delShowCS.open} onHide={handleDelCloseCS}>
+                            <Modal.Header closeButton>
+                              <Modal.Title className="en-cont-30 m-3">
+                                刪除{delShowCS.name}
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ margin: '0 3%' }}>
+                              <div className="en-cont-14 pb-2">
+                                確認要刪除此項商品嗎?
+                              </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                variant="secondary"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                                onClick={handleDelCloseCS}
+                              >
+                                取消
+                              </Button>
+                              <Button
+                                variant=" btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                                // onClick={handleDelClose}
+                                onClick={e => {
+                                  const pid = delShowCS.id;
+                                  console.log('delShowCS.id:', delShowCS.id);
+                                  deleteProdFun(pid, 'cs');
+                                  // console.log(e.currentTarget.value, 'MMMMM');
+                                  handleDelCloseCS();
+                                }}
+                              >
+                                確認
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        }
+                        <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
+                          <div
+                            className="prod-item-icon"
+                            data-id={v.product_id}
+                            data-name={v.c_prod_ch_name}
+                            // onClick={() => {
+                            //   deleteProd(v.product_id, 'cs');
+                            // }}
+                            // console.log(v.product_id + v.c_prod_ch_name);
+                            onClick={handleDelShowCS}
+                          >
+                            <img src="/img/cart/icon-trash.svg" alt="刪除" />
+                          </div>
+
+                          <div className="prod-item-icon">
+                            <img src="/img/cart/icon-info-none.svg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+              {list.cm?.map((v, i) => {
+                return (
+                  <div className="prod-item ch-cont-14 " key={'cm' + i}>
+                    <div className="row my-2  d-flex align-items-center ">
+                      <div className="col-md-24 d-flex">
+                        <div className="col-md-2 col-3 align-items-center">
+                          {/* <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id="flexCheckDefault"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="flexCheckDefault"
+                    ></label>
+                  </div> */}
+                        </div>
+                        <div className="col-md-4 col-6 align-items-center">
+                          <div className="cart-item-img">
+                            <img
+                              alt={v.cm_prod_img_path}
+                              className="img-fluid"
+                              src={`http://localhost:3500${v.cm_prod_img_path}`}
+                            />
+                          </div>
+                        </div>
+                        <div
+                          className={
+                            `d-flex ` +
+                            `flex-md-row flex-column ` +
+                            `col-9 col-md-10 justify-content-between ` +
+                            `flex-grow-1 align-items-center`
+                          }
+                        >
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.cm_prod_name}
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            {v.orders_value}元
+                          </div>
+                          <div className="col-md-8 my-md-3 align-items-center">
+                            <div className="select-count">
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  // if (countcm - 1 >= 1) setCountcm(countcm - 1);
+                                  minusCMCount(v.product_id);
+                                }}
+                              >
+                                -
+                              </button>
+                              <input
+                                type="number"
+                                value={v.orders_amount}
+                                onChange={e => {
+                                  changeCMCount(+e.target.value, v.product_id);
+                                }}
+                              />
+                              <button
+                                onClick={() => {
+                                  // 加入判斷條件 不能小於1
+                                  // setCountcm(countcm + 1);
+                                  addCMCount(v.product_id);
+                                }}
+                              >
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center">
+                          {v.orders_print_time}秒/個
+                        </div>
+                        <div className="col-md-2 d-none d-md-flex align-items-center ">
+                          ${v.orders_value * v.orders_amount}
+                        </div>
+                        <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
+                          <div
+                            className="prod-item-icon"
+                            onClick={() => {
+                              deleteProdFun(v.product_id, 'cm');
+                            }}
+                          >
+                            <img src="/img/cart/icon-trash.svg" alt="刪除" />
+                          </div>
+
+                          <div className="prod-item-icon">
+                            <img src="/img/cart/icon-info-none.svg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
 
               {/* TODO: SET info 光箱 */}
               <div
