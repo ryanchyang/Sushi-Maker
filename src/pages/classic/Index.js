@@ -671,6 +671,11 @@ function Index() {
                                 alt="product"
                               />
                             </div>
+
+                            <div className="content">
+                              <div className="intr-text">含魚、牛肉、雞蛋<br/>適合健身者</div>
+                          </div>
+                            
                             <div className="prod-name-ch ch-title-22">
                               {prod.c_prod_ch_name}
                             </div>
