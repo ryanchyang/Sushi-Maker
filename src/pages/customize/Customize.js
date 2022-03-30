@@ -21,9 +21,11 @@ function Customize() {
       setMtlDataSQL(mtlDatas);
     };
     catchData();
+    setAddMtlData([{ mtlId: 1, mtlPct: 1 }]);
   }, []);
   
   // console.log('father\'s mtlDataSQL:', mtlDataSQL);
+  // console.log('father\'s addMtlData:', addMtlData);
 
   return (
     <>

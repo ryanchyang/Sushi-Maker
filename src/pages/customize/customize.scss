@@ -207,12 +207,14 @@ $areaHeight: calc( 100vh - 80px );
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
+    cursor: pointer;
   }
   .mtlRBtn {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
+    cursor: pointer;
   }
   $mtlBtnCalc: calc(100vh - 3rem - 15rem);
   $mtlBtnCalcR: calc(100vh - 3rem - 30rem);
@@ -452,11 +454,15 @@ $areaHeight: calc( 100vh - 80px );
       font-size: 2.5rem;
     }
     & input {
-      width: 50%;
-      font-size: 1.8rem;
+      width: 100%;
+      font-size: 1.5rem;
       background: none;
       border: none;
       text-align: center;
+    }
+    & SVG{
+      width: 2rem;
+      height: 2rem;
     }
   }
 

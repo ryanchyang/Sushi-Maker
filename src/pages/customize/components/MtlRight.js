@@ -17,10 +17,6 @@ function MtlRight(props) {
   // console.log(props.addMtlData);
   // console.log(props.mtlData);
 
-  // useEffect(() => {
-  //   console.log('12114sdff');
-  //   setAddMtlData([{ mtlId: 1, mtlPct: 1 }]);
-  // }, []);
 
   const postCusData = async () => {
     const res = await fetch(config.POST_CUS_DATA, {
@@ -95,9 +91,15 @@ function MtlRight(props) {
                     {
                       /* const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e; */
                     }
-                    const takeMtlId = props.mtlData.find(
-                      (p) => p.mtl_id === props.addMtlData[i].mtlId
-                    );
+                    const takeMtlId =
+                      Object.keys(props.mtlData).length === 0
+                        ? ''
+                        : props.mtlData.find(
+                            (p) => p.mtl_id === props.addMtlData[i].mtlId
+                          );
+                    {
+                      /* console.log(takeMtlId) */
+                    }
                     {
                       /* 每次找到陣列內的第幾項的id都去撈mtl_id數據比對 */
                     }

@@ -16,11 +16,15 @@ function MtlRBtn(props) {
     setRemoveMtl(originalMtlArr);
   };
 
+  // 判斷總層數不可大於10
+  const countTotal = (arr) => {
+    const totalPct = arr.map((pct) => pct.mtlPct);
+    return totalPct.reduce((x, y) => x + y);
+  };
+
   // 輸入數量
   const countIt = (count) => {
-    // console.log(removeMtl);
-    // console.log({ count, mtl_id });
-    if (count <= 0) {
+    if (count <= 0 || count >= 6 || countTotal(removeMtl) > 10) {
       return false;
     }
     const newList = JSON.parse(JSON.stringify(removeMtl));
@@ -34,59 +38,48 @@ function MtlRBtn(props) {
         return { ...v };
       }
     });
+
     setRemoveMtl(newCount);
-    // console.log({ newCount });
-    // console.log('newCount', newCount);
   };
 
-  // 減去數量
-  const contMinus = (count) => {
-    // console.log(removeMtl);
-    // console.log({ count, mtl_id });
-    if (count <= 0) {
-      return false;
-    }
+  // 數量-1
+  const contMinus = () => {
     const newList = JSON.parse(JSON.stringify(removeMtl));
-
-    // count:數量 / e:第幾個
 
     const newCount = newList.map((v, index) => {
       if (index === i) {
-        return { mtlId: mtl_id, mtlPct: count };
+        if (el.mtlPct <= 1 || countTotal(removeMtl) > 10) {
+          return { ...v };
+        }
+        return { mtlId: mtl_id, mtlPct: el.mtlPct - 1 };
       } else {
         return { ...v };
       }
     });
+
     setRemoveMtl(newCount);
-    // console.log({ newCount });
-    // console.log('newCount', newCount);
   };
 
-  // 增加數量
-  const countAdd = (count) => {
-    // console.log(removeMtl);
-    // console.log({ count, mtl_id });
-    if (count <= 0) {
-      return false;
-    }
+  // 數量+1
+  const countAdd = () => {
     const newList = JSON.parse(JSON.stringify(removeMtl));
-
-    // count:數量 / e:第幾個
 
     const newCount = newList.map((v, index) => {
       if (index === i) {
-        return { mtlId: mtl_id, mtlPct: count };
+        if (el.mtlPct >= 5 || countTotal(removeMtl) > 9) {
+          return { ...v };
+        }
+        return { mtlId: mtl_id, mtlPct: el.mtlPct + 1 };
       } else {
         return { ...v };
       }
     });
+
     setRemoveMtl(newCount);
-    // console.log({ newCount });
-    // console.log('newCount', newCount);
   };
 
   return (
-    <div className="mtlRBtn my-3 mx-4" key={mtl_id}>
+    <div className="mtlRBtn my-3 mx-2" key={mtl_id}>
       <div className="mtlimg-r">
         <img src={`${config.HOST}${mtl_img_path}`} alt={mtl_name} />
       </div>
