@@ -150,6 +150,8 @@ function StepOne(props) {
       };
       setInputSum(newData);
     } else {
+      // TODO: alert 要改
+
       alert('輸入金額有誤，請重新輸入!');
       setInputSum({
         ...inputSum,
@@ -532,6 +534,29 @@ function StepOne(props) {
     });
   };
 
+  //錯誤 折扣金額光箱
+  const [discountShow, setDiscountShow] = useState(false);
+  const handleDiscountClose = () => setDiscountShow(false);
+  const handleDiscountShow = () => setDiscountShow(true);
+  const discountShowModel = (
+    <Modal show={discountShow} onHide={handleDiscountClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">輸入金額有誤，請重新輸入</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleDiscountClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
   return (
     <>
       <Header />
