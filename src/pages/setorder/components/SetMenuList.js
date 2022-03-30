@@ -1,4 +1,4 @@
-//SetorderFinal 的七天菜單的一行菜單列,包含下拉式選單
+//選擇菜單的頁面的components(有下拉式選單選擇便當)
 import './../SetOrderAll.scss';
 import React, { useState } from 'react';
 import { ReactComponent as SetContent } from './../../../imgs/setorder/icon-info.svg';
@@ -148,12 +148,17 @@ function SetMenuList(props) {
       </Modal.Footer>
     </Modal>
   );
-
   //套餐光箱結束
 
+  //菜單選擇
   function menuChange(e) {
     const newdata = [...props.choose];
-    newdata[props.index] = +e.target.value;
+
+    const selectedBento = props.list.find(
+      bento => +bento.bento_id === +e.target.value
+    );
+    //一坨便當的物件(七天的)
+    newdata[props.index] = selectedBento;
     props.setChoose(newdata);
   }
 

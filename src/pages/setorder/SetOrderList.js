@@ -1,11 +1,10 @@
+//選擇菜單的頁面
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuList from './components/SetMenuList';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
-// import './SetMeal.json';
 import config from '../../Config';
-import { number } from 'prop-types';
 
 function SetOrderList() {
   //今日日期
@@ -22,20 +21,14 @@ function SetOrderList() {
     return today;
   }
 
-  //數字
-  // function NumberList() {
-  //   // const numbers = props.numbers;
-
-  //   const listItems = numbers.map(number => console.log(number));
-  //   console.log('listItems', listItems);
-  // }
-  // const numbers = [1, 2, 3, 4, 5, 6, 7];
-
   const data = useLocation();
   //answer:從後端傳出來的obj(json資料)
   const [answer, setAnswer] = useState({});
   //清單列選出來的component菜單陣列
   const [choose, setChoose] = useState([]);
+
+  //總參考清單
+  const [list, setList] = useState([]);
 
   //資料傳到後端後做完判斷,傳出結果
   useEffect(() => {
@@ -53,12 +46,22 @@ function SetOrderList() {
           return obj;
         });
       setAnswer(res);
-      const init = Array(7).fill(res.rows[0].bento_id);
+      console.log('res', res);
+      // console.log('res.rows', res.rows);
+
+      //init 結果弄成陣列
+      // const init = Array(7).fill(res.rows[0].bento_id);
+
+      //init 結果弄成陣列
+      const init = Array(7).fill(res.rows[0]);
       setChoose(init);
+      //list 比對清單
+      setList(res.rows);
     };
     getData();
   }, []);
-
+  console.log('list', list);
+  console.log('choose', choose);
   //月曆的useState
   const [date, setDate] = useState(getTodayDate);
   const today = getTodayDate();
@@ -113,7 +116,7 @@ function SetOrderList() {
                       value={week}
                       onChange={weekChange}
                     >
-                      <option value="1" selected={+week === 1 ? true : false}>
+                      <option value="1" sele cted={+week === 1 ? true : false}>
                         1
                       </option>
                       <option value="2" selected={+week === 2 ? true : false}>
@@ -156,42 +159,49 @@ function SetOrderList() {
                     choose={choose}
                     setChoose={setChoose}
                     index={0}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={1}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={2}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={3}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={4}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={5}
+                    list={list}
                   />
                   <SetMenuList
                     answer={answer}
                     choose={choose}
                     setChoose={setChoose}
                     index={6}
+                    list={list}
                   />
                 </div>
                 <div className="set-list-right col-8">
@@ -322,7 +332,7 @@ function SetOrderList() {
                 <Link
                   to={{
                     pathname: './setorderfinal',
-                    state: { date, week, choose },
+                    state: { date, week, choose, list },
                   }}
                 >
                   <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">

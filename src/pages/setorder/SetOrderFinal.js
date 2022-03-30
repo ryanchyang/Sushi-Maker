@@ -1,7 +1,9 @@
+//最後預覽
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuFinal from './components/SetMenuFinal';
 import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
+import { useEffect, useState } from 'react';
 // import './SetOrderAll.scss';
 function SetOrderFinal() {
   //上一個的答案
@@ -9,7 +11,14 @@ function SetOrderFinal() {
   const lastanswer = data.state;
   const week = lastanswer.week;
   const firstdate = lastanswer.date;
+  const finalchoose = lastanswer.choose;
 
+  //finallist 比對清單
+  const finallist = lastanswer.list;
+  console.log('list', finallist);
+
+  //finalchoose 最後結果的陣列
+  console.log('finalchoose', finalchoose);
   //設定結束日期
   let finalDate = new Date(firstdate);
   finalDate.setDate(finalDate.getDate() + +week * 7);
@@ -32,10 +41,7 @@ function SetOrderFinal() {
     default:
       price = 0;
   }
-
   const finalprice = price * partly;
-
-  console.log('lastanswer ', lastanswer);
   console.log('date', firstdate);
 
   return (
@@ -45,9 +51,8 @@ function SetOrderFinal() {
         <AsideLeft />
         <div style={{ width: '100%' }}>
           <Title title={'Just For You'} />
-          <br />
           <div className="setmenulist">
-            <div className="mycontainer ">
+            <div className="mycontainer min-hi">
               <div className="set-list-title ch-title-22">推薦結果</div>
               <div className="set-row setorderfinal">
                 <div className="set-list-left col-12">
@@ -55,13 +60,28 @@ function SetOrderFinal() {
                     <div className="set-day-title en-cont-18">DAY</div>
                     <div className="set-bento-title ch-cont-18">每日套餐</div>
                   </div>
-                  <SetMenuFinal />
-                  <SetMenuFinal />
-                  <SetMenuFinal />
-                  <SetMenuFinal />
-                  <SetMenuFinal />
-                  <SetMenuFinal />
-                  <SetMenuFinal />
+                  {/* 便當列表 */}
+                  {finalchoose.map(chooses => {
+                    return (
+                      <div className="setmenulist">
+                        <div className="align-items-center">
+                          <div className="set-menu">
+                            <div className="en-cont-36 set-day">$</div>
+                            <div className="set-sushi-all">
+                              <div className="ch-cont-18 set-sushi-ch">
+                                {chooses.bento_ch_name}
+                              </div>
+                              &nbsp;&nbsp;
+                              <div className="en-cont-18 set-sushi-en">
+                                {chooses.bento_en_name}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {/* 便當列表結束 */}
                 </div>
                 <div className="set-list-right col-5">
                   <div className="set-final-list-flex">
