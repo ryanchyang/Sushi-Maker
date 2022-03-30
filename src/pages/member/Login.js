@@ -142,6 +142,7 @@ function Login(props) {
       } else {
         setAuthToken(data.token);
         setMemId(data.info.mem_id);
+        localStorage.setItem('cart_count', data.cart_count);
         localStorage.setItem('mem_name', data.info.mem_name);
         localStorage.setItem('mem_nickname', data.info.mem_nickname);
         localStorage.setItem('mem_photo', data.info.mem_photo_img_path);
