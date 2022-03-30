@@ -7,8 +7,9 @@ import config from '../../Config';
 import './detail.scss';
 import ChartForCs from '../chartjs/ChartCs/ChartForCs';
 import { Button, Modal } from 'react-bootstrap';
+import NavPage from '../layout/components/NavPage'; //加入漢堡選單
 
-function Detail() {
+function Detail(props) {
   const [isDetail, setIsDetail] = useState(false); //是否開啟詳細資料
   const [data, setData] = useState({}); //商品詳細資料
   const [materials, setMaterials] = useState([]); //食材資料(3個)
@@ -19,6 +20,10 @@ function Detail() {
   const [mtlsForChart, setMtlsForChart] = useState([]); //要進chart.js畫圖的材料
   const [share, setShare] = useState([]);
   const { id } = useParams(); //取得url上的product id
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   //點擊食材圖片
   const changeMtl = mid => {
@@ -219,89 +224,95 @@ function Detail() {
       {likeModel}
       {cartModel}
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Classic'} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Classic'} />
 
-          {/* 麵包屑 */}
-          <p className="en-title-14-10 bread">
-            <Link
-              to={'/'}
-              style={{ textDecoration: 'none', color: '#575757' }}
-            >
-              HOME /
-            </Link>
-            <Link
-              to={'/classic'}
-              style={{ textDecoration: 'none', color: '#b03342' }}
-            >
-              CLASSIC
-            </Link>
-          </p>
+            {/* 麵包屑 */}
+            <p className="en-title-14-10 bread">
+              <Link
+                to={'/'}
+                style={{ textDecoration: 'none', color: '#575757' }}
+              >
+                HOME /
+              </Link>
+              <Link
+                to={'/classic'}
+                style={{ textDecoration: 'none', color: '#b03342' }}
+              >
+                CLASSIC
+              </Link>
+            </p>
 
-          <div className="classic-detail">
-            {/* 商品圖片與名稱、售價 */}
-            <div
-              className={
-                isDetail ? 'detail-content-ondetail' : 'detail-content'
-              }
-            >
+            <div className="classic-detail">
+              {/* 商品圖片與名稱、售價 */}
               <div
-                className={isDetail ? 'prod-img-box-ondetail' : 'prod-img-box'}
+                className={
+                  isDetail ? 'detail-content-ondetail' : 'detail-content'
+                }
               >
                 <div
                   className={
-                    isDetail ? 'all-size-title-ondetail' : 'all-size-title'
+                    isDetail ? 'prod-img-box-ondetail' : 'prod-img-box'
                   }
                 >
-                  <div className="prod-ch-name ch-title-big">
-                    {data.c_prod_ch_name}
+                  <div
+                    className={
+                      isDetail ? 'all-size-title-ondetail' : 'all-size-title'
+                    }
+                  >
+                    <div className="prod-ch-name ch-title-big">
+                      {data.c_prod_ch_name}
+                    </div>
+                    <div className="prod-en-name eh-title-big">
+                      {data.c_prod_en_name}
+                    </div>
                   </div>
-                  <div className="prod-en-name eh-title-big">
-                    {data.c_prod_en_name}
+                  <div>
+                    <img
+                      className={
+                        isDetail
+                          ? 'prod-img-box-img-ondetail'
+                          : 'prod-img-box-img'
+                      }
+                      src={`http://localhost:3500${data.c_prod_img_path}`}
+                      alt="product-detail"
+                    />
                   </div>
-                </div>
-                <div>
-                  <img
+                  <div
                     className={
                       isDetail
-                        ? 'prod-img-box-img-ondetail'
-                        : 'prod-img-box-img'
+                        ? 'material-tag-group-ondetail'
+                        : 'material-tag-group'
                     }
-                    src={`http://localhost:3500${data.c_prod_img_path}`}
-                    alt="product-detail"
-                  />
-                </div>
-                <div
-                  className={
-                    isDetail
-                      ? 'material-tag-group-ondetail'
-                      : 'material-tag-group'
-                  }
-                >
-                  {materials.map(m => {
-                    return (
-                      <div
-                        className={
-                          selectedMaterial.mtl_id === m.mtl_id
-                            ? mtlClickClass
-                            : mtlNoClickClass
-                        }
-                        key={m.mtl_id}
-                        onClick={() => {
-                          changeMtl(m.mtl_id);
-                        }}
-                      >
-                        <img
-                          src={`http://localhost:3500${m.mtl_img_path}`}
-                          alt="material"
-                        />
-                      </div>
-                    );
-                  })}
+                  >
+                    {materials.map(m => {
+                      return (
+                        <div
+                          className={
+                            selectedMaterial.mtl_id === m.mtl_id
+                              ? mtlClickClass
+                              : mtlNoClickClass
+                          }
+                          key={m.mtl_id}
+                          onClick={() => {
+                            changeMtl(m.mtl_id);
+                          }}
+                        >
+                          <img
+                            src={`http://localhost:3500${m.mtl_img_path}`}
+                            alt="material"
+                          />
+                        </div>
+                      );
+                    })}
 
-                  {/* <div className="material-tag-box">
+                    {/* <div className="material-tag-box">
                     <img
                       src={require('./../../imgs/temp/material1.png')}
                       alt=""
@@ -319,269 +330,273 @@ function Detail() {
                       alt=""
                     />
                   </div> */}
+                  </div>
+                </div>
+
+                <div
+                  className={
+                    isDetail
+                      ? 'prod-detail-right-ondetail'
+                      : 'prod-detail-right'
+                  }
+                >
+                  <div className="prod-ch-name ch-title-big">
+                    {data.c_prod_ch_name}
+                  </div>
+                  <div className="prod-en-name eh-title-big">
+                    {data.c_prod_en_name}
+                  </div>
+                  <div className="like-heart" onClick={handleLike}>
+                    <Heart style={isLike ? hiddenStyle : showStyle} />
+                    <HeartFill style={isLike ? showStyle : hiddenStyle} />
+                  </div>
+                  <div className="prod-price">
+                    {/* 如果沒有特價就用原價顯示 */}
+                    <div className="ch-title-large">
+                      NT_$
+                      {+data.c_prod_spe_value === 0
+                        ? data.c_prod_value
+                        : data.c_prod_spe_value}
+                    </div>
+                    <div className="prod-stock en-title-mid">PRICE</div>
+                  </div>
+                  <div className="prod-printtime">
+                    <div className="ch-title-large">
+                      {data.c_prod_print_time}_SEC
+                    </div>
+                    <div className="prod-print en-title-mid">PRINT TIME</div>
+                  </div>
+                  <div className="prod-desc">
+                    <div className="prod-desc-content ch-content-sm">
+                      {data.c_prod_desc}
+                    </div>
+                    <div className="prod-desc-title en-title-16">
+                      DESCRIPTION
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              {/* 加入購物車 */}
+              <div>
+                <div className="select-add-cart">
+                  <div className="select-count">
+                    <button onClick={() => changeCountByMinus()}>-</button>
+                    <input
+                      type="number"
+                      value={buyCount}
+                      onChange={e => changeCountByType(+e.target.value)}
+                    />
+                    <button onClick={() => changeCountByAdd()}>+</button>
+                  </div>
+                  <button
+                    className="add-cart btn-sm btn-primary primeal-btn"
+                    onClick={() => {
+                      addToCart();
+                    }}
+                  >
+                    加入購物車
+                  </button>
+                </div>
+              </div>
+
+              {/* 商品營養表、材料說明、配送 */}
               <div
                 className={
-                  isDetail ? 'prod-detail-right-ondetail' : 'prod-detail-right'
+                  isDetail
+                    ? 'prod-detail-content-ondetail'
+                    : 'prod-detail-content'
                 }
               >
-                <div className="prod-ch-name ch-title-big">
-                  {data.c_prod_ch_name}
-                </div>
-                <div className="prod-en-name eh-title-big">
-                  {data.c_prod_en_name}
-                </div>
-                <div className="like-heart" onClick={handleLike}>
-                  <Heart style={isLike ? hiddenStyle : showStyle} />
-                  <HeartFill style={isLike ? showStyle : hiddenStyle} />
-                </div>
-                <div className="prod-price">
-                  {/* 如果沒有特價就用原價顯示 */}
-                  <div className="ch-title-large">
-                    NT_$
-                    {+data.c_prod_spe_value === 0
-                      ? data.c_prod_value
-                      : data.c_prod_spe_value}
+                <div className="detail-content-top">
+                  <div className="nutrition-img">
+                    <div>
+                      <div className="nutrition-img-box">
+                        <ChartForCs mtls={mtlsForChart} />
+                      </div>
+                      <div className="nutrition-img-box-mobile">
+                        <ChartForCs mtls={materials} />
+                      </div>
+                    </div>
                   </div>
-                  <div className="prod-stock en-title-mid">PRICE</div>
-                </div>
-                <div className="prod-printtime">
-                  <div className="ch-title-large">
-                    {data.c_prod_print_time}_SEC
+                  <div className="material-list">
+                    <div className="material-name">
+                      <div className="material-name-content ch-title-22">
+                        {selectedMaterial.mtl_name}
+                      </div>
+                      <div className="material-img">
+                        <img
+                          src={`http://localhost:3500${selectedMaterial.mtl_img_path}`}
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                    <div className="material-item">
+                      <div className="material-content ch-cont-18">
+                        {selectedMaterial.mtl_origin}
+                      </div>
+                      <div className="material-title en-cont-16">ORIGIN</div>
+                    </div>
+                    <div className="material-item">
+                      <div className="material-content ch-cont-18">
+                        {selectedMaterial.mtl_produce_date}
+                      </div>
+                      <div className="material-title en-cont-16">MFD</div>
+                    </div>
+                    <div className="material-item">
+                      <div className="material-content ch-cont-18">
+                        {selectedMaterial.mtl_raw_matrials}
+                      </div>
+                      <div className="material-title en-cont-16">RM</div>
+                    </div>
                   </div>
-                  <div className="prod-print en-title-mid">PRINT TIME</div>
                 </div>
-                <div className="prod-desc">
-                  <div className="prod-desc-content ch-content-sm">
-                    {data.c_prod_desc}
+                <div className="detail-content-bottom">
+                  <div className="carrier-type ch-cont-14">
+                    ≪配送類型≫
+                    <br />
+                    宅急便(冷藏)
+                    <br />
+                    ※若需要冷凍宅配 ,請幫忙註明。 若冷藏與冷凍商品需一起下單
+                    ,將會延長運送時間 ,請先預約。 另外 ,若商品需要變更
+                    ,請提前與我們聯繫。
                   </div>
-                  <div className="prod-desc-title en-title-16">DESCRIPTION</div>
+                  <div className="expire ch-cont-14">
+                    ≪賞味期限≫
+                    <br />
+                    冷蔵：出貨後4天
+                    <br />
+                    冷凍：出貨後一個月
+                    <br />
+                    <br />
+                    ≪保存方法≫
+                    <br />
+                    冷藏：請保存於4℃
+                    <br />
+                    冷凍：請保存於-15℃
+                  </div>
+                  <div className="package ch-cont-14">
+                    ≪包裝≫
+                    <br />
+                    單入 : 印食紙盒裝
+                    <br />
+                    六入 : 印食便當盒裝
+                    <br />
+                    <br />
+                    ※若需送禮, 請參考印食禮盒
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* 加入購物車 */}
-            <div>
-              <div className="select-add-cart">
-                <div className="select-count">
-                  <button onClick={() => changeCountByMinus()}>-</button>
-                  <input
-                    type="number"
-                    value={buyCount}
-                    onChange={e => changeCountByType(+e.target.value)}
-                  />
-                  <button onClick={() => changeCountByAdd()}>+</button>
-                </div>
-                <button
-                  className="add-cart btn-sm btn-primary primeal-btn"
+              {/* 商品詳細資料切換 */}
+              <div className="detail-toggle-btn">
+                <div
+                  className={isDetail ? 'back-btn-ondetail' : 'back-btn'}
                   onClick={() => {
-                    addToCart();
+                    setIsDetail(!isDetail);
                   }}
                 >
-                  加入購物車
-                </button>
+                  <div className="back-btn-arrow">
+                    <img
+                      src={require('./../../imgs/temp/arrow-left.png')}
+                      alt=""
+                    />
+                  </div>
+                  <div className="back-btn-text en-title-18">BACK</div>
+                </div>
+                <div
+                  className={isDetail ? 'detail-btn-ondetail' : 'detail-btn'}
+                  onClick={() => {
+                    setIsDetail(!isDetail);
+                  }}
+                >
+                  <div className="detail-btn-text en-title-18">DETAIL</div>
+                  <div className="detail-btn-arrow">
+                    <img
+                      src={require('./../../imgs/temp/arrow-right.png')}
+                      alt=""
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* 商品營養表、材料說明、配送 */}
-            <div
-              className={
-                isDetail
-                  ? 'prod-detail-content-ondetail'
-                  : 'prod-detail-content'
-              }
-            >
-              <div className="detail-content-top">
-                <div className="nutrition-img">
-                  <div>
-                    <div className="nutrition-img-box">
-                      <ChartForCs mtls={mtlsForChart} />
-                    </div>
-                    <div className="nutrition-img-box-mobile">
-                      <ChartForCs mtls={materials} />
-                    </div>
-                  </div>
-                </div>
-                <div className="material-list">
-                  <div className="material-name">
-                    <div className="material-name-content ch-title-22">
-                      {selectedMaterial.mtl_name}
-                    </div>
-                    <div className="material-img">
-                      <img
-                        src={`http://localhost:3500${selectedMaterial.mtl_img_path}`}
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                  <div className="material-item">
-                    <div className="material-content ch-cont-18">
-                      {selectedMaterial.mtl_origin}
-                    </div>
-                    <div className="material-title en-cont-16">ORIGIN</div>
-                  </div>
-                  <div className="material-item">
-                    <div className="material-content ch-cont-18">
-                      {selectedMaterial.mtl_produce_date}
-                    </div>
-                    <div className="material-title en-cont-16">MFD</div>
-                  </div>
-                  <div className="material-item">
-                    <div className="material-content ch-cont-18">
-                      {selectedMaterial.mtl_raw_matrials}
-                    </div>
-                    <div className="material-title en-cont-16">RM</div>
-                  </div>
+              {/* 推薦商品 */}
+              <div className="recommend">
+                <div className="recommend-ch-title ch-title-22">推薦商品</div>
+                <div className="recommend-en-title en-title-14-10">
+                  Recommandation
                 </div>
               </div>
-              <div className="detail-content-bottom">
-                <div className="carrier-type ch-cont-14">
-                  ≪配送類型≫
-                  <br />
-                  宅急便(冷藏)
-                  <br />
-                  ※若需要冷凍宅配 ,請幫忙註明。 若冷藏與冷凍商品需一起下單
-                  ,將會延長運送時間 ,請先預約。 另外 ,若商品需要變更
-                  ,請提前與我們聯繫。
-                </div>
-                <div className="expire ch-cont-14">
-                  ≪賞味期限≫
-                  <br />
-                  冷蔵：出貨後4天
-                  <br />
-                  冷凍：出貨後一個月
-                  <br />
-                  <br />
-                  ≪保存方法≫
-                  <br />
-                  冷藏：請保存於4℃
-                  <br />
-                  冷凍：請保存於-15℃
-                </div>
-                <div className="package ch-cont-14">
-                  ≪包裝≫
-                  <br />
-                  單入 : 印食紙盒裝
-                  <br />
-                  六入 : 印食便當盒裝
-                  <br />
-                  <br />
-                  ※若需送禮, 請參考印食禮盒
-                </div>
-              </div>
-            </div>
-
-            {/* 商品詳細資料切換 */}
-            <div className="detail-toggle-btn">
-              <div
-                className={isDetail ? 'back-btn-ondetail' : 'back-btn'}
-                onClick={() => {
-                  setIsDetail(!isDetail);
-                }}
-              >
-                <div className="back-btn-arrow">
-                  <img
-                    src={require('./../../imgs/temp/arrow-left.png')}
-                    alt=""
-                  />
-                </div>
-                <div className="back-btn-text en-title-18">BACK</div>
-              </div>
-              <div
-                className={isDetail ? 'detail-btn-ondetail' : 'detail-btn'}
-                onClick={() => {
-                  setIsDetail(!isDetail);
-                }}
-              >
-                <div className="detail-btn-text en-title-18">DETAIL</div>
-                <div className="detail-btn-arrow">
-                  <img
-                    src={require('./../../imgs/temp/arrow-right.png')}
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* 推薦商品 */}
-            <div className="recommend">
-              <div className="recommend-ch-title ch-title-22">推薦商品</div>
-              <div className="recommend-en-title en-title-14-10">
-                Recommandation
-              </div>
-            </div>
-            <div className="recommend-prod-box">
-              {recommends.map((r, i) => {
-                return (
-                  //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
-                  <div
-                    className={
-                      recommends.length === i + 1
-                        ? 'prod-card last-recommend'
-                        : 'prod-card'
-                    }
-                    key={r.pid}
-                  >
-                    <Link
-                      to={`/classic/detail/${r.pid}`}
-                      style={{ textDecoration: 'none', color: '#212121' }}
-                      onClick={() => {
-                        saveHistory(r.pid);
-                      }}
+              <div className="recommend-prod-box">
+                {recommends.map((r, i) => {
+                  return (
+                    //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
+                    <div
+                      className={
+                        recommends.length === i + 1
+                          ? 'prod-card last-recommend'
+                          : 'prod-card'
+                      }
+                      key={r.pid}
                     >
-                      <div className="recommend-prod-img-box">
-                        {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                        {r.c_prod_special_tag === '' ? (
-                          ''
+                      <Link
+                        to={`/classic/detail/${r.pid}`}
+                        style={{ textDecoration: 'none', color: '#212121' }}
+                        onClick={() => {
+                          saveHistory(r.pid);
+                        }}
+                      >
+                        <div className="recommend-prod-img-box">
+                          {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                          {r.c_prod_special_tag === '' ? (
+                            ''
+                          ) : (
+                            <div className="discount-tag">
+                              <div className="discount-tag-content">
+                                {r.c_prod_special_tag}
+                              </div>
+                            </div>
+                          )}
+                          <img
+                            src={`http://localhost:3500${r.c_prod_img_path}`}
+                            alt="product-recommend"
+                          />
+                        </div>
+                        <div className="prod-name-ch ch-title-22">
+                          {r.c_prod_ch_name}
+                        </div>
+                        <div className="prod-name-en en-title-14-5">
+                          {r.c_prod_en_name}
+                        </div>
+                        {r.c_prod_spe_value === 0 ? (
+                          <div className="prod-price-no-discount">
+                            <div className="no-discount ch-cont-16">
+                              NT_{r.c_prod_value}
+                            </div>
+                          </div>
                         ) : (
-                          <div className="discount-tag">
-                            <div className="discount-tag-content">
-                              {r.c_prod_special_tag}
+                          <div className="prod-price-special">
+                            <div className="original-price ch-cont-14">
+                              NT_{r.c_prod_value}
+                            </div>
+                            <div className="special-price ch-cont-16">
+                              NT_{r.c_prod_spe_value}
                             </div>
                           </div>
                         )}
-                        <img
-                          src={`http://localhost:3500${r.c_prod_img_path}`}
-                          alt="product-recommend"
-                        />
-                      </div>
-                      <div className="prod-name-ch ch-title-22">
-                        {r.c_prod_ch_name}
-                      </div>
-                      <div className="prod-name-en en-title-14-5">
-                        {r.c_prod_en_name}
-                      </div>
-                      {r.c_prod_spe_value === 0 ? (
-                        <div className="prod-price-no-discount">
-                          <div className="no-discount ch-cont-16">
-                            NT_{r.c_prod_value}
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="prod-price-special">
-                          <div className="original-price ch-cont-14">
-                            NT_{r.c_prod_value}
-                          </div>
-                          <div className="special-price ch-cont-16">
-                            NT_{r.c_prod_spe_value}
-                          </div>
-                        </div>
-                      )}
-                      {/* <div className="prod-price-special">
+                        {/* <div className="prod-price-special">
                       <div className="original-price ch-cont-14">NT_55</div>
                       <div className="special-price ch-cont-16">NT_45</div>
                     </div>
                     <div className="prod-price-no-discount">
                       <div className="no-discount ch-cont-16">NT_60</div>
                     </div> */}
-                    </Link>
-                  </div>
-                );
-              })}
+                      </Link>
+                    </div>
+                  );
+                })}
 
-              {/* <div className="prod-card">
+                {/* <div className="prod-card">
                 <div className="recommend-prod-img-box">
                   <div className="discount-tag">
                     <Discount />
@@ -649,45 +664,46 @@ function Detail() {
                   <div className="no-discount ch-cont-16">NT_60</div>
                 </div>
               </div> */}
-            </div>
+              </div>
 
-            {/* 相關分享 */}
-            <div className="share">
-              <div className="recommend-ch-title ch-title-22">相關分享</div>
-              <div className="recommend-en-title en-title-14-10">Share</div>
-            </div>
-            <div className="recommend-prod-box">
-              {share.map((r, i) => {
-                return (
-                  //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
-                  <div
-                    className={
-                      recommends.length === i + 1
-                        ? 'share-card last-recommend'
-                        : 'share-card'
-                    }
-                    key={r.share_item_id}
-                  >
-                    <Link
-                      to={`/share/items/${r.share_item_id}`}
-                      style={{ textDecoration: 'none', color: '#212121' }}
+              {/* 相關分享 */}
+              <div className="share">
+                <div className="recommend-ch-title ch-title-22">相關分享</div>
+                <div className="recommend-en-title en-title-14-10">Share</div>
+              </div>
+              <div className="recommend-prod-box">
+                {share.map((r, i) => {
+                  return (
+                    //手機版因版型大小會隱藏最後一個推薦商品，因此最後一個需有個特殊class標籤
+                    <div
+                      className={
+                        recommends.length === i + 1
+                          ? 'share-card last-recommend'
+                          : 'share-card'
+                      }
+                      key={r.share_item_id}
                     >
-                      <div className="share-item-img-box">
-                        <img
-                          src={`http://localhost:3500/${r.share_imgPath}`}
-                          alt="product-recommend"
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
+                      <Link
+                        to={`/share/items/${r.share_item_id}`}
+                        style={{ textDecoration: 'none', color: '#212121' }}
+                      >
+                        <div className="share-item-img-box">
+                          <img
+                            src={`http://localhost:3500/${r.share_imgPath}`}
+                            alt="product-recommend"
+                          />
+                        </div>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
 
-          <Footer />
+            <Footer />
+          </div>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

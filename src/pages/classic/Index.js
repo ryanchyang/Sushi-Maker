@@ -9,10 +9,11 @@ import { IoIosArrowDown as DownArrow } from 'react-icons/io';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../Config';
+import NavPage from '../layout/components/NavPage'; //加入漢堡選單
 
 import { Button, Modal } from 'react-bootstrap';
 
-function Index() {
+function Index(props) {
   const [allData, setAllData] = useState([]);
   const [isOpenFilter, setIsOpenFilter] = useState(false); //是否開啟篩選器選單
   const [isOpenMainContent, setIsOpenMainContent] = useState(true); //是否開啟主要商品列表
@@ -33,6 +34,10 @@ function Index() {
   const [search, setSearch] = useState(false); //是否開啟搜尋框
   const [searchText, setSearchText] = useState('');
   const pageProdCount = 6; //一頁呈現的商品個數
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   //處理點擊分類商品(SUSHI、DESSERT、PACKAGE)
   const handleClickCategory = e => {
@@ -520,273 +525,285 @@ function Index() {
       {likeModel}
       {cartModel}
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Classic'} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Classic'} />
 
-          {/* 麵包屑 */}
-          <p className="en-title-14-10 bread">
-            <Link to={'/'} style={{ textDecoration: 'none', color: '#575757' }}>
-              HOME 
-            </Link>
-          </p>
-          <div className="classic min-hi">
-            <div className="search-filter">
-              <div className="search-btn d-flex">
-                <div className="search-input d-flex justify-content-end align-items-center">
-                  <input
-                    type="text"
-                    style={searchBarHandler()}
-                    className="search-input-bar ch-cont-14"
-                    value={searchText}
-                    onChange={handleChangeSearch}
-                    placeholder="Search"
-                  ></input>
-                </div>
-                <div>
-                  <SearchBtn onClick={() => setSearch(!search)} />
-                </div>
-              </div>
-              <div
-                className="filter-btn"
-                onClick={() => {
-                  setIsOpenFilter(!isOpenFilter);
-                }}
+            {/* 麵包屑 */}
+            <p className="en-title-14-10 bread">
+              <Link
+                to={'/'}
+                style={{ textDecoration: 'none', color: '#575757' }}
               >
-                <FilterBtn />
-              </div>
-            </div>
-
-            {/* 商品呈現區 */}
-            <div
-              className="main-content"
-              style={isOpenMainContent ? showStyle : hiddenStyle}
-            >
-              {/* category tag */}
-              <div className="category-box">
-                <div className="en-category" onClick={handleClickCategory}>
-                  <OrangeTag
-                    className="cate-orange-tag-img"
-                    style={category === 'sushi' ? showStyleInlne : hiddenStyle}
-                  />
-                  <div className="en-category">SUSHI</div>
+                HOME
+              </Link>
+            </p>
+            <div className="classic min-hi">
+              <div className="search-filter">
+                <div className="search-btn d-flex">
+                  <div className="search-input d-flex justify-content-end align-items-center">
+                    <input
+                      type="text"
+                      style={searchBarHandler()}
+                      className="search-input-bar ch-cont-14"
+                      value={searchText}
+                      onChange={handleChangeSearch}
+                      placeholder="Search"
+                    ></input>
+                  </div>
+                  <div>
+                    <SearchBtn onClick={() => setSearch(!search)} />
+                  </div>
                 </div>
-                <div className="en-category" onClick={handleClickCategory}>
-                  <OrangeTag
-                    className="cate-orange-tag-img"
-                    style={
-                      category === 'dessert' ? showStyleInlne : hiddenStyle
-                    }
-                  />
-                  <div className="en-category">DESSERT</div>
-                </div>
-                <div className="en-category" onClick={handleClickCategory}>
-                  <OrangeTag
-                    className="cate-orange-tag-img"
-                    style={
-                      category === 'package' ? showStyleInlne : hiddenStyle
-                    }
-                  />
-                  <div className="en-category">PACKAGE</div>
+                <div
+                  className="filter-btn"
+                  onClick={() => {
+                    setIsOpenFilter(!isOpenFilter);
+                  }}
+                >
+                  <FilterBtn />
                 </div>
               </div>
 
-              {/* filter tag */}
-              <div className="filter-tag-box">
-                {tagShow.map((tag, i) => {
-                  return (
-                    <>
-                      <div className="filter-tag ch-cont-16" key={i}>
-                        {tag.tagName}{' '}
-                        <span
-                          data-tagType={tag.type}
-                          data-tagName={tag.tagName}
-                          onClick={removeTag}
-                        >
-                          &nbsp;X
-                        </span>
-                      </div>
-                    </>
-                  );
-                })}
+              {/* 商品呈現區 */}
+              <div
+                className="main-content"
+                style={isOpenMainContent ? showStyle : hiddenStyle}
+              >
+                {/* category tag */}
+                <div className="category-box">
+                  <div className="en-category" onClick={handleClickCategory}>
+                    <OrangeTag
+                      className="cate-orange-tag-img"
+                      style={
+                        category === 'sushi' ? showStyleInlne : hiddenStyle
+                      }
+                    />
+                    <div className="en-category">SUSHI</div>
+                  </div>
+                  <div className="en-category" onClick={handleClickCategory}>
+                    <OrangeTag
+                      className="cate-orange-tag-img"
+                      style={
+                        category === 'dessert' ? showStyleInlne : hiddenStyle
+                      }
+                    />
+                    <div className="en-category">DESSERT</div>
+                  </div>
+                  <div className="en-category" onClick={handleClickCategory}>
+                    <OrangeTag
+                      className="cate-orange-tag-img"
+                      style={
+                        category === 'package' ? showStyleInlne : hiddenStyle
+                      }
+                    />
+                    <div className="en-category">PACKAGE</div>
+                  </div>
+                </div>
 
-                {/* <div className="filter-tag ch-cont-16">
+                {/* filter tag */}
+                <div className="filter-tag-box">
+                  {tagShow.map((tag, i) => {
+                    return (
+                      <>
+                        <div className="filter-tag ch-cont-16" key={i}>
+                          {tag.tagName}{' '}
+                          <span
+                            data-tagType={tag.type}
+                            data-tagName={tag.tagName}
+                            onClick={removeTag}
+                          >
+                            &nbsp;X
+                          </span>
+                        </div>
+                      </>
+                    );
+                  })}
+
+                  {/* <div className="filter-tag ch-cont-16">
                   鮭魚 <span>&nbsp;X</span>
                 </div>
                 <div className="filter-tag ch-cont-16">
                   200~500 <span>&nbsp;X</span>
                 </div> */}
-              </div>
+                </div>
 
-              {prodList.length === 0 ? (
-                <div className="no-result">
-                  {' '}
-                  {/* no product data */}
-                  <div className="search-btn ch-title-22">
-                    <SearchBtn />
-                    <span>查無符合條件的商品，請重新篩選或清空篩選條件</span>
+                {prodList.length === 0 ? (
+                  <div className="no-result">
+                    {' '}
+                    {/* no product data */}
+                    <div className="search-btn ch-title-22">
+                      <SearchBtn />
+                      <span>查無符合條件的商品，請重新篩選或清空篩選條件</span>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="prod-list">
-                  {' '}
-                  {/* product list */}
-                  {/* product card */}
-                  {prodList.map(prod => {
-                    const pid = prod.pid;
-                    {
-                      /* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */
-                    }
-                    let buyCount = buyProdCount.filter(p => p.pid === pid);
-                    buyCount = +buyCount[0]?.count ?? 0;
+                ) : (
+                  <div className="prod-list">
+                    {' '}
+                    {/* product list */}
+                    {/* product card */}
+                    {prodList.map(prod => {
+                      const pid = prod.pid;
+                      {
+                        /* let buyCount = +buyProdCount.filter(p => p.pid === pid)[0].count; */
+                      }
+                      let buyCount = buyProdCount.filter(p => p.pid === pid);
+                      buyCount = +buyCount[0]?.count ?? 0;
 
-                    return (
-                      <>
-                        <div className="prod-card" key={pid}>
-                          <Link
-                            to={`/classic/detail/${prod.pid}`}
-                            style={{ textDecoration: 'none', color: '#212121' }}
-                            onClick={() => {
-                              saveHistory(pid);
-                            }}
-                          >
-                            {' '}
-                            {/* 點擊圖片可連到商品詳細頁 */}
-                            <div className="prod-img-box">
-                              {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
-                              {prod.c_prod_special_tag === '' ? (
-                                ''
-                              ) : (
-                                <div className="discount-tag">
-                                  <div className="discount-tag-content">
-                                    {prod.c_prod_special_tag}
-                                  </div>
-                                </div>
-                              )}
-
-                              <img
-                                // src={require('./../../imgs/temp/classic-pro1.png')}
-                                src={`http://localhost:3500${prod.c_prod_img_path}`}
-                                alt="product"
-                              />
-                            </div>
-
-                            <div className="content">
-                              <div className="intr-text">{prod.c_prod_group_tag}</div>
-                          </div>
-                            
-                            <div className="prod-name-ch ch-title-22">
-                              {prod.c_prod_ch_name}
-                            </div>
-                            <div className="prod-name-en en-title-14-5">
-                              {prod.c_prod_en_name}
-                            </div>
-                          </Link>
-
-                          {/* 判斷是否有特價 */}
-                          {prod.c_prod_spe_value === 0 ? (
-                            <div className="prod-price-no-discount">
-                              <div className="no-discount ch-cont-16">
-                                NT_{prod.c_prod_value}
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="prod-price-special">
-                              <div className="original-price ch-cont-16">
-                                NT_{prod.c_prod_value}
-                              </div>
-                              <div className="special-price ch-cont-18">
-                                NT_{prod.c_prod_spe_value}
-                              </div>
-                            </div>
-                          )}
-
-                          <div className="select-add-cart">
-                            <div className="select-count">
-                              <button onClick={e => changeCountByMinus(pid)}>
-                                -
-                              </button>
-                              <input
-                                type="number"
-                                value={buyCount}
-                                onChange={e =>
-                                  changeCountByType(+e.target.value, pid)
-                                }
-                              />
-                              <button onClick={e => changeCountByAdd(pid)}>
-                                +
-                              </button>
-                            </div>
-
-                            <div
-                              className="cart-btn"
+                      return (
+                        <>
+                          <div className="prod-card" key={pid}>
+                            <Link
+                              to={`/classic/detail/${prod.pid}`}
+                              style={{
+                                textDecoration: 'none',
+                                color: '#212121',
+                              }}
                               onClick={() => {
-                                addToCart(pid);
+                                saveHistory(pid);
                               }}
                             >
-                              <Cart onClick={handleShow} />
-                            </div>
-
-                            <button
-                              className="add-cart btn-sm btn-primary primeal-btn"
-                              onClick={() => {
-                                addToCart(pid);
-                              }}
-                            >
-                              加入購物車
-                            </button>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* pagination */}
-              {/* 當總商品數量大於一頁的商品數量時才會有分頁按鈕可按 */}
-              {filterData.length > pageProdCount ? (
-                <div className="pagination-box">
-                  <ul className="pagination ch-cont-16">
-                    <li>
-                      {' '}
-                      {/* 上一頁按鈕 */}
-                      <div
-                        className="page-prev"
-                        data-page={currentPage - 1}
-                        onClick={changePageArrow}
-                        data-canChange={currentPage - 1 >= 1 ? true : false}
-                      >
-                        &lt;
-                      </div>
-                    </li>
-                    {Array(totalPage)
-                      .fill(1)
-                      .map((v, i) => {
-                        return (
-                          <>
-                            <li key={i}>
                               {' '}
-                              {/* 各分頁按鈕 */}
-                              <div
-                                className="page-number"
-                                data-page={i + 1}
-                                onClick={changePage}
-                                style={
-                                  currentPage === i + 1
-                                    ? pageSelected
-                                    : pageNoSelected
-                                }
-                              >
-                                {i + 1}
-                              </div>
-                            </li>
-                          </>
-                        );
-                      })}
+                              {/* 點擊圖片可連到商品詳細頁 */}
+                              <div className="prod-img-box">
+                                {/* 判斷有無特殊tag(xx%off、HOT、NEW) */}
+                                {prod.c_prod_special_tag === '' ? (
+                                  ''
+                                ) : (
+                                  <div className="discount-tag">
+                                    <div className="discount-tag-content">
+                                      {prod.c_prod_special_tag}
+                                    </div>
+                                  </div>
+                                )}
 
-                    {/* <li>
+                                <img
+                                  // src={require('./../../imgs/temp/classic-pro1.png')}
+                                  src={`http://localhost:3500${prod.c_prod_img_path}`}
+                                  alt="product"
+                                />
+                              </div>
+                              <div className="content">
+                                <div className="intr-text">
+                                  {prod.c_prod_group_tag}
+                                </div>
+                              </div>
+                              <div className="prod-name-ch ch-title-22">
+                                {prod.c_prod_ch_name}
+                              </div>
+                              <div className="prod-name-en en-title-14-5">
+                                {prod.c_prod_en_name}
+                              </div>
+                            </Link>
+
+                            {/* 判斷是否有特價 */}
+                            {prod.c_prod_spe_value === 0 ? (
+                              <div className="prod-price-no-discount">
+                                <div className="no-discount ch-cont-16">
+                                  NT_{prod.c_prod_value}
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="prod-price-special">
+                                <div className="original-price ch-cont-16">
+                                  NT_{prod.c_prod_value}
+                                </div>
+                                <div className="special-price ch-cont-18">
+                                  NT_{prod.c_prod_spe_value}
+                                </div>
+                              </div>
+                            )}
+
+                            <div className="select-add-cart">
+                              <div className="select-count">
+                                <button onClick={e => changeCountByMinus(pid)}>
+                                  -
+                                </button>
+                                <input
+                                  type="number"
+                                  value={buyCount}
+                                  onChange={e =>
+                                    changeCountByType(+e.target.value, pid)
+                                  }
+                                />
+                                <button onClick={e => changeCountByAdd(pid)}>
+                                  +
+                                </button>
+                              </div>
+
+                              <div
+                                className="cart-btn"
+                                onClick={() => {
+                                  addToCart(pid);
+                                }}
+                              >
+                                <Cart onClick={handleShow} />
+                              </div>
+
+                              <button
+                                className="add-cart btn-sm btn-primary primeal-btn"
+                                onClick={() => {
+                                  addToCart(pid);
+                                }}
+                              >
+                                加入購物車
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* pagination */}
+                {/* 當總商品數量大於一頁的商品數量時才會有分頁按鈕可按 */}
+                {filterData.length > pageProdCount ? (
+                  <div className="pagination-box">
+                    <ul className="pagination ch-cont-16">
+                      <li>
+                        {' '}
+                        {/* 上一頁按鈕 */}
+                        <div
+                          className="page-prev"
+                          data-page={currentPage - 1}
+                          onClick={changePageArrow}
+                          data-canChange={currentPage - 1 >= 1 ? true : false}
+                        >
+                          &lt;
+                        </div>
+                      </li>
+                      {Array(totalPage)
+                        .fill(1)
+                        .map((v, i) => {
+                          return (
+                            <>
+                              <li key={i}>
+                                {' '}
+                                {/* 各分頁按鈕 */}
+                                <div
+                                  className="page-number"
+                                  data-page={i + 1}
+                                  onClick={changePage}
+                                  style={
+                                    currentPage === i + 1
+                                      ? pageSelected
+                                      : pageNoSelected
+                                  }
+                                >
+                                  {i + 1}
+                                </div>
+                              </li>
+                            </>
+                          );
+                        })}
+
+                      {/* <li>
                     <div className="page-number">1</div>
                   </li>
                   <li>
@@ -797,120 +814,122 @@ function Index() {
                   </li>
                   <li> */}
 
-                    <li>
-                      {' '}
-                      {/* 下一頁按鈕 */}
-                      <div
-                        className="page-next"
-                        data-page={currentPage + 1}
-                        data-canChange={
-                          currentPage + 1 <= totalPage ? true : false
-                        }
-                        onClick={changePageArrow}
-                      >
-                        &gt;
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              ) : (
-                ''
-              )}
-            </div>
-
-            {/* 主要篩選條件區 */}
-            <div
-              className="prod-filter-sh"
-              style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
-              onTransitionEnd={() => {
-                setIsOpenMainContent(isOpenFilter ? false : true);
-              }}
-            >
-              {/* clean or cancel filter */}
-              <div className="d-flex flex-column">
-                <div className="filter-top justify-content-end">
-                  <div
-                    className="clean-filter ch-cont-16"
-                    onClick={cleanFilter}
-                  >
-                    <img
-                      src={require('./../../imgs/tags/trash.png')}
-                      alt="trash"
-                    />
-                    <span>清空條件</span>
+                      <li>
+                        {' '}
+                        {/* 下一頁按鈕 */}
+                        <div
+                          className="page-next"
+                          data-page={currentPage + 1}
+                          data-canChange={
+                            currentPage + 1 <= totalPage ? true : false
+                          }
+                          onClick={changePageArrow}
+                        >
+                          &gt;
+                        </div>
+                      </li>
+                    </ul>
                   </div>
-                  {/* <div className="cancel-filter ch-cont-16">
+                ) : (
+                  ''
+                )}
+              </div>
+
+              {/* 主要篩選條件區 */}
+              <div
+                className="prod-filter-sh"
+                style={isOpenFilter ? { right: '12.5%' } : { right: '-100%' }}
+                onTransitionEnd={() => {
+                  setIsOpenMainContent(isOpenFilter ? false : true);
+                }}
+              >
+                {/* clean or cancel filter */}
+                <div className="d-flex flex-column">
+                  <div className="filter-top justify-content-end">
+                    <div
+                      className="clean-filter ch-cont-16"
+                      onClick={cleanFilter}
+                    >
+                      <img
+                        src={require('./../../imgs/tags/trash.png')}
+                        alt="trash"
+                      />
+                      <span>清空條件</span>
+                    </div>
+                    {/* <div className="cancel-filter ch-cont-16">
                     <span>X</span>
                   </div> */}
-                </div>
+                  </div>
 
-                {/* by price */}
-                <div className="d-flex justify-content-center mobile-filter-title">
-                  <div className="by-price col-18 d-flex flex-column">
-                    <div className="by-price-title">
-                      <div className="orange-tag">
-                        <OrangeTag className="tag-img" />
+                  {/* by price */}
+                  <div className="d-flex justify-content-center mobile-filter-title">
+                    <div className="by-price col-18 d-flex flex-column">
+                      <div className="by-price-title">
+                        <div className="orange-tag">
+                          <OrangeTag className="tag-img" />
+                        </div>
+                        <div className="by-price-text en-title-big">
+                          By PRICE
+                        </div>
+                        <div className="down-arrow">
+                          <DownArrow size={22} color="gray" />
+                        </div>
                       </div>
-                      <div className="by-price-text en-title-big">By PRICE</div>
-                      <div className="down-arrow">
-                        <DownArrow size={22} color="gray" />
+                      <div className="by-price-input justify-content-between">
+                        <input
+                          type="number"
+                          placeholder="最小金額"
+                          data-pFilter="min"
+                          value={priceFilter[0]}
+                          onChange={handleChangePriceFilter}
+                        />
+                        <div className="by-price-dash-line"></div>
+                        <input
+                          type="number"
+                          placeholder="最大金額"
+                          data-pFilter="max"
+                          value={priceFilter[1]}
+                          onChange={handleChangePriceFilter}
+                        />
                       </div>
-                    </div>
-                    <div className="by-price-input justify-content-between">
-                      <input
-                        type="number"
-                        placeholder="最小金額"
-                        data-pFilter="min"
-                        value={priceFilter[0]}
-                        onChange={handleChangePriceFilter}
-                      />
-                      <div className="by-price-dash-line"></div>
-                      <input
-                        type="number"
-                        placeholder="最大金額"
-                        data-pFilter="max"
-                        value={priceFilter[1]}
-                        onChange={handleChangePriceFilter}
-                      />
                     </div>
                   </div>
-                </div>
 
-                {/* by flavor */}
-                <div className="d-flex justify-content-center mobile-filter-title">
-                  <div className="by-flavor col-18 d-flex flex-column">
-                    <div className="by-flavor-title">
-                      <div className="orange-tag">
-                        <OrangeTag className="tag-img" />
+                  {/* by flavor */}
+                  <div className="d-flex justify-content-center mobile-filter-title">
+                    <div className="by-flavor col-18 d-flex flex-column">
+                      <div className="by-flavor-title">
+                        <div className="orange-tag">
+                          <OrangeTag className="tag-img" />
+                        </div>
+                        <div className="by-price-text en-title-big">
+                          By FLAVOR
+                        </div>
+                        <div className="down-arrow">
+                          <DownArrow size={22} color="gray" />
+                        </div>
                       </div>
-                      <div className="by-price-text en-title-big">
-                        By FLAVOR
-                      </div>
-                      <div className="down-arrow">
-                        <DownArrow size={22} color="gray" />
-                      </div>
-                    </div>
-                    <div className="flavor-tag-box">
-                      {materials.map(mtl => {
-                        return (
-                          <>
-                            <div
-                              key={mtl.mtl_id}
-                              className="flavor-tag ch-title-16"
-                              data-mtlid={mtl.mtl_id}
-                              style={
-                                mtl.selected
-                                  ? flavorTagClicked
-                                  : flavorTagNoClick
-                              }
-                              onClick={handelClickFlavor}
-                            >
-                              {mtl.mtl_name}
-                            </div>
-                          </>
-                        );
-                      })}
-                      {/* <div className="flavor-tag ch-title-16">牛肉</div>
+                      <div className="flavor-tag-box">
+                        {materials.map(mtl => {
+                          return (
+                            <>
+                              <div
+                                key={mtl.mtl_id}
+                                className="flavor-tag ch-title-16"
+                                data-mtlid={mtl.mtl_id}
+                                style={
+                                  mtl.selected
+                                    ? flavorTagClicked
+                                    : flavorTagNoClick
+                                }
+                                onClick={handelClickFlavor}
+                              >
+                                {mtl.mtl_name}
+                              </div>
+                            </>
+                          );
+                        })}
+                        {/* <div className="flavor-tag ch-title-16">牛肉</div>
                   <div className="flavor-tag ch-title-16">豬肉</div>
                   <div className="flavor-tag ch-title-16">火腿</div>
                   <div className="flavor-tag ch-title-16">起司</div>
@@ -922,87 +941,88 @@ function Index() {
                   <div className="flavor-tag ch-title-16">麻糬</div>
                   <div className="flavor-tag ch-title-16">抹茶</div>
                   <div className="flavor-tag ch-title-16">羊羹/果凍</div> */}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* by category */}
-                <div className="d-flex justify-content-center mobile-filter-title">
-                  <div className="col-18 d-flex flex-column">
-                    <div className="by-category">
-                      <div className="orange-tag">
-                        <OrangeTag className="tag-img" />
+                  {/* by category */}
+                  <div className="d-flex justify-content-center mobile-filter-title">
+                    <div className="col-18 d-flex flex-column">
+                      <div className="by-category">
+                        <div className="orange-tag">
+                          <OrangeTag className="tag-img" />
+                        </div>
+                        <div className="by-price-text en-title-big">
+                          By CATEGORY
+                        </div>
+                        <div className="down-arrow">
+                          <DownArrow size={22} color="gray" />
+                        </div>
                       </div>
-                      <div className="by-price-text en-title-big">
-                        By CATEGORY
-                      </div>
-                      <div className="down-arrow">
-                        <DownArrow size={22} color="gray" />
-                      </div>
-                    </div>
-                    <div className="category-checkbox-box">
-                      <input
-                        className="caterory-check"
-                        type="checkbox"
-                        id="new-item"
-                        data-tag="new"
-                        checked={specialCategoryFilter[0].value}
-                        onChange={handelChangeSpecCategory}
-                      />
-                      <div className="label-box">
-                        <label className="ch-title-16" for="new-item">
-                          新品上市
-                        </label>
-                      </div>
-                      <input
-                        className="caterory-check"
-                        type="checkbox"
-                        id="hot-item"
-                        data-tag="hot"
-                        checked={specialCategoryFilter[1].value}
-                        onChange={handelChangeSpecCategory}
-                      />
-                      <div className="label-box">
-                        <label className="ch-title-16" for="hot-item">
-                          熱門商品
-                        </label>
-                      </div>
-                      <input
-                        className="caterory-check"
-                        type="checkbox"
-                        id="for-sale"
-                        data-tag="sale"
-                        checked={specialCategoryFilter[2].value}
-                        onChange={handelChangeSpecCategory}
-                      />
-                      <div className="label-box">
-                        <label className="ch-title-16" for="for-sale">
-                          促銷特價
-                        </label>
+                      <div className="category-checkbox-box">
+                        <input
+                          className="caterory-check"
+                          type="checkbox"
+                          id="new-item"
+                          data-tag="new"
+                          checked={specialCategoryFilter[0].value}
+                          onChange={handelChangeSpecCategory}
+                        />
+                        <div className="label-box">
+                          <label className="ch-title-16" for="new-item">
+                            新品上市
+                          </label>
+                        </div>
+                        <input
+                          className="caterory-check"
+                          type="checkbox"
+                          id="hot-item"
+                          data-tag="hot"
+                          checked={specialCategoryFilter[1].value}
+                          onChange={handelChangeSpecCategory}
+                        />
+                        <div className="label-box">
+                          <label className="ch-title-16" for="hot-item">
+                            熱門商品
+                          </label>
+                        </div>
+                        <input
+                          className="caterory-check"
+                          type="checkbox"
+                          id="for-sale"
+                          data-tag="sale"
+                          checked={specialCategoryFilter[2].value}
+                          onChange={handelChangeSpecCategory}
+                        />
+                        <div className="label-box">
+                          <label className="ch-title-16" for="for-sale">
+                            促銷特價
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <div className="col-18">
-                    <div className="send-filter-btn-box d-flex justify-content-end">
-                      <button
-                        className="btn-sm btn-primary primeal-btn-sm"
-                        onClick={() => {
-                          applyFilter(true);
-                        }}
-                      >
-                        送出條件
-                      </button>
+                  <div className="d-flex justify-content-center">
+                    <div className="col-18">
+                      <div className="send-filter-btn-box d-flex justify-content-end">
+                        <button
+                          className="btn-sm btn-primary primeal-btn-sm"
+                          onClick={() => {
+                            applyFilter(true);
+                          }}
+                        >
+                          送出條件
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );
