@@ -689,7 +689,7 @@ function Index(props) {
                                 />
                               </div>
                               <div className="content">
-                                <div className="intr-text">
+                                <div className="intr-text ch-cont-14">
                                   {prod.c_prod_group_tag}
                                 </div>
                               </div>

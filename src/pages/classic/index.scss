@@ -165,11 +165,11 @@
     object-fit: cover;
   }
   .prod-card:hover .prod-img-box {
-    transform: translate(-5rem, -4.2rem);
+    transform: translate(-5rem, -4rem);
   }  
   .prod-card:hover .content {
     opacity: 1;
-    transform: translate(10rem, 4.2rem);
+    transform: translate(4rem, 4rem);
   }  
   .content {
     position: relative;
