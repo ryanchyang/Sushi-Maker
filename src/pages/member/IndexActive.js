@@ -13,7 +13,6 @@ import { useState, useEffect } from 'react';
 import DeleteActiveModal from './component/DeleteActiveModal';
 
 // import DatePicker from 'react-datepicker';
-
 const locales = {
   'zh-TW': require('date-fns/locale/zh-TW'),
 };
@@ -25,6 +24,8 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 });
+
+const mem_name = localStorage.getItem('mem_name');
 
 // SQL
 // [
@@ -105,6 +106,7 @@ function IndexActive() {
                   show={modalShow}
                   setModalShow={setModalShow}
                   selected={selected}
+                  mem_name={mem_name}
                   onHide={() => {
                     setModalShow(false);
                   }}

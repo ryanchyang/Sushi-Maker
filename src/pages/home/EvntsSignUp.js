@@ -13,10 +13,10 @@ function EvntsSignUp(props) {
   const [modalShow, setModalShow] = useState(false);
   const [signUpResult, setSignUpResult] = useState('');
   const history = useHistory();
-  // todo: membe_id先寫死
-  // const mem_id = 1;
+
   const mem_id = getMemId();
-  console.log('mem_id:', mem_id);
+  const mem_name = localStorage.getItem('mem_name');
+  // console.log('mem_id:', mem_id);
 
   const { id } = useParams();
   console.log('evnts_id:', id);
@@ -139,6 +139,7 @@ function EvntsSignUp(props) {
         dataObj[i[0]] = i[1];
       }
       dataObj.mem_id = mem_id;
+      dataObj.mem_name = mem_name;
       console.log({ dataObj });
 
       // fetch
