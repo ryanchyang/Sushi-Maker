@@ -166,7 +166,7 @@ function StepFour(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
     </>

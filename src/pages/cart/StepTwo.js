@@ -473,7 +473,7 @@ function StepTwo(props) {
 
             <Footer />
           </div>
-          <AsideRight />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
     </>

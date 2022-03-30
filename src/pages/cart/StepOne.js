@@ -95,7 +95,7 @@ function StepOne(props) {
     };
     getList();
 
-     // 取得可以折抵的折扣金額
+    // 取得可以折抵的折扣金額
     const getDiscount = async () => {
       const memid = localStorage.getItem('mem_id');
       const res = await fetch(config.GET_CART_DISCOUNT + `${memid}`);
@@ -108,7 +108,6 @@ function StepOne(props) {
     };
     getDiscount();
   }, []);
-
 
   //每當有商品被刪除時，就來判斷購物車是否還有商品，都沒有了就導頁
   useEffect(() => {
@@ -206,8 +205,8 @@ function StepOne(props) {
     const memid = localStorage.getItem('mem_id');
 
     setInputSum(inputSum);
-    console.log('summaryone');
-    console.log('162', inputSum);
+    // console.log('summaryone');
+    console.log('210', inputSum);
 
     //  POST 要傳的直設定回去
 
@@ -491,6 +490,47 @@ function StepOne(props) {
     });
   };
 
+  // 刪除光箱 CM
+  const [delShowCM, setDelShowCM] = useState({
+    open: false,
+    id: '',
+    name: '',
+  });
+  const handleDelCloseCM = () => setDelShowCM(false);
+  const handleDelShowCM = e => {
+    // console.log('hi');
+    // console.log('e.currentTarget:', e.currentTarget);
+    // console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
+    const c_prod_id = e.currentTarget.dataset.id;
+    const c_prod_name = e.currentTarget.dataset.name;
+    setDelShowCM({
+      ...delShowCM,
+      open: true,
+      id: c_prod_id,
+      name: c_prod_name,
+    });
+  };
+
+  // 刪除光箱 SET
+  const [delShowSET, setDelShowSET] = useState({
+    open: false,
+    id: '',
+    name: '',
+  });
+  const handleDelCloseSET = () => setDelShowSET(false);
+  const handleDelShowSET = e => {
+    // console.log('hi');
+    // console.log('e.currentTarget:', e.currentTarget);
+    // console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
+    const c_prod_id = e.currentTarget.dataset.id;
+    const c_prod_name = e.currentTarget.dataset.name;
+    setDelShowSET({
+      ...delShowSET,
+      open: true,
+      id: c_prod_id,
+      name: c_prod_name,
+    });
+  };
 
   return (
     <>
@@ -575,7 +615,11 @@ function StepOne(props) {
                         <div className="col-md-2 col-3 align-items-center"></div>
                         <div className="col-md-4 col-6 align-items-center">
                           <div className="cart-item-img">
-                            <img alt="" className="img-fluid" src="" />
+                            <img
+                              alt="/img/cart/mealplan-bento.png"
+                              className="img-fluid"
+                              src="/img/cart/mealplan-bento.png"
+                            />
                           </div>
                         </div>
                         <div
@@ -627,12 +671,58 @@ function StepOne(props) {
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
                         </div>
+                        {
+                          <Modal
+                            show={delShowSET.open}
+                            onHide={handleDelCloseSET}
+                          >
+                            <Modal.Header closeButton>
+                              <Modal.Title className="en-cont-30 m-3">
+                                刪除套餐
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ margin: '0 3%' }}>
+                              <div className="en-cont-14 pb-2">
+                                套餐計畫一經刪除 需重新選擇欲加入購物車的選項
+                                <br /> 確認要刪除套餐【 {delShowSET.name}
+                                】嗎?
+                              </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                variant="secondary"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                                onClick={handleDelCloseSET}
+                              >
+                                取消
+                              </Button>
+                              <Button
+                                variant=" btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                                // onClick={handleDelClose}
+                                onClick={e => {
+                                  const pid = delShowSET.id;
+                                  console.log('delShowSET.id:', delShowSET.id);
+                                  deleteProdFun(pid, 'set');
+                                  // console.log(e.currentTarget.value, 'MMMMM');
+                                  handleDelCloseSET();
+                                }}
+                              >
+                                確認
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        }
                         <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                           <div
                             className="prod-item-icon"
-                            onClick={() => {
-                              deleteProdFun(v.product_id, 'set');
-                            }}
+                            data-id={v.product_id}
+                            data-name={v.set_name}
+                            // onClick={() => {
+                            //   deleteProdFun(v.product_id, 'set');
+                            onClick={handleDelShowSET}
+
+                            // }}
                           >
                             <img src="/img/cart/icon-trash.svg" alt="" />
                           </div>
@@ -654,7 +744,10 @@ function StepOne(props) {
                                     {v.set_info_array.map((v, i) => {
                                       return (
                                         <tr key={i + 1}>
-                                          <th scope="row" className="en-cont-36">
+                                          <th
+                                            scope="row"
+                                            className="en-cont-36"
+                                          >
                                             {i + 1}
                                           </th>
                                           <td className="en-cont-14">
@@ -695,9 +788,7 @@ function StepOne(props) {
                   <div className="prod-item ch-cont-14 " key={'cs' + i}>
                     <div className="row my-2  d-flex align-items-center ">
                       <div className="col-md-24 d-flex">
-                        <div className="col-md-2 col-3 align-items-center">
-
-                        </div>
+                        <div className="col-md-2 col-3 align-items-center"></div>
                         <div className="col-md-4 col-6 align-items-center">
                           <div className="cart-item-img">
                             <img
@@ -756,15 +847,18 @@ function StepOne(props) {
                           ${v.orders_value * v.orders_amount}
                         </div>
                         {
-                          <Modal show={delShowCS.open} onHide={handleDelCloseCS}>
+                          <Modal
+                            show={delShowCS.open}
+                            onHide={handleDelCloseCS}
+                          >
                             <Modal.Header closeButton>
                               <Modal.Title className="en-cont-30 m-3">
-                                刪除{delShowCS.name}
+                                刪除經典商品
                               </Modal.Title>
                             </Modal.Header>
                             <Modal.Body style={{ margin: '0 3%' }}>
                               <div className="en-cont-14 pb-2">
-                                確認要刪除此項商品嗎?
+                                確認要刪除【{delShowCS.name}】商品嗎?
                               </div>
                             </Modal.Body>
                             <Modal.Footer>
@@ -893,12 +987,57 @@ function StepOne(props) {
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
                         </div>
+                        {
+                          <Modal
+                            show={delShowCM.open}
+                            onHide={handleDelCloseCM}
+                          >
+                            <Modal.Header closeButton>
+                              <Modal.Title className="en-cont-30 m-3">
+                                刪除客製化商品
+                              </Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body style={{ margin: '0 3%' }}>
+                              <div className="en-cont-14 pb-2">
+                                提醒您客製化商品移出購物車後將會清空製作的紀錄，
+                                <br />
+                                確認要刪除 【{delShowCM.name} 】嗎?
+                              </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                              <Button
+                                variant="secondary"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                                onClick={handleDelCloseCM}
+                              >
+                                取消
+                              </Button>
+                              <Button
+                                variant=" btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+                                className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+                                // onClick={handleDelClose}
+                                onClick={e => {
+                                  const pid = delShowCM.id;
+                                  console.log('delShowCM.id:', delShowCM.id);
+                                  deleteProdFun(pid, 'cm');
+                                  // console.log(e.currentTarget.value, 'MMMMM');
+                                  handleDelCloseCM();
+                                }}
+                              >
+                                確認
+                              </Button>
+                            </Modal.Footer>
+                          </Modal>
+                        }
                         <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                           <div
                             className="prod-item-icon"
-                            onClick={() => {
-                              deleteProdFun(v.product_id, 'cm');
-                            }}
+                            data-id={v.product_id}
+                            data-name={v.cm_prod_name}
+                            onClick={handleDelShowCM}
+                            // onClick={() => {
+                            //   deleteProdFun(v.product_id, 'cm');
+                            // }}
                           >
                             <img src="/img/cart/icon-trash.svg" alt="刪除" />
                           </div>
@@ -913,7 +1052,6 @@ function StepOne(props) {
                 );
               })}
 
-              {/* TODO: SET info 光箱 */}
               <div
                 className="list-check ch-cont-14"
                 style={{ padding: '30px' }}
