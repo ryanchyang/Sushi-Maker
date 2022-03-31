@@ -50,19 +50,21 @@
   cursor: pointer;
 }
 .prod-item:hover{
-  background-color: $card-hover;
+  // background-color:$card-hover;
+  background-color:#c4c4c452;
   // width: 100%;
 }
 // 交易明細項目商品背景色
 .prod-item-info{
-  background-color: #ffffff;
+  // background-color: #ffffff;
   width: 100%;
   // margin: 2% 0;
   padding: 0 5%;
 }
 // 交易明細項目商品背景色
 .prod-item-info:hover{
-  background-color: $light-bg;
+  background-color: #c4c4c452;
+  // background-color: $light-bg;
   width: 100%;
 
 }
