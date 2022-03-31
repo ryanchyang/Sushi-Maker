@@ -138,30 +138,29 @@ function StepOne(props) {
   }, [deleteProd]);
 
   // 更改會員折扣後 才可以取得 inputSum
-  const handleChange = e => {
-    console.log('creadit', e.target.value);
-    console.log('creadit discountTotal', discountTotal / 1000);
-    // 判斷要輸入的金額不能大於 可折抵的金額
-    if (e.target.value <= discountTotal / 100) {
-      const newData = {
-        cart_value: amount,
-        cart_credit: +e.target.value,
-        cart_total_print_time: printTime,
-      };
-      setInputSum(newData);
-    } else {
-      // TODO: alert 要改
+  // const handleChange = e => {
+  //   console.log('creadit', e.target.value);
+  //   console.log('creadit discountTotal', discountTotal / 1000);
+  //   // 判斷要輸入的金額不能大於 可折抵的金額
+  //   if (e.target.value <= discountTotal / 100) {
+  //     const newData = {
+  //       cart_value: amount,
+  //       cart_credit: +e.target.value,
+  //       cart_total_print_time: printTime,
+  //     };
+  //     setInputSum(newData);
+  //   } else { 
+  //     setDiscountShow(true);
+  //     // alert('輸入金額有誤，請重新輸入!');
+  //     setInputSum({
+  //       ...inputSum,
+  //       cart_credit: '',
+  //     });
+  //     e.target.value = '';
+  //   }
 
-      alert('輸入金額有誤，請重新輸入!');
-      setInputSum({
-        ...inputSum,
-        cart_credit: '',
-      });
-      e.target.value = '';
-    }
-
-    console.log('123', inputSum);
-  };
+  //   console.log('123', inputSum);
+  // };
 
   // 當有變數量或金額時
   useEffect(() => {
@@ -559,6 +558,7 @@ function StepOne(props) {
   );
   return (
     <>
+      {discountShowModel}
       <Header />
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
@@ -569,7 +569,7 @@ function StepOne(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Shopping List'} />
             <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
-              <div className="bread">
+              <div className=" mycontainer breadcart ">
                 <p className="en-title-14-10">
                   <Link
                     to={'/'}
@@ -1111,7 +1111,27 @@ function StepOne(props) {
                               defaultValue={discountTotal / 100}
                               min={0}
                               max={discountTotal / 100}
-                              onChange={handleChange}
+                              onChange={e => {
+                                // handleChange();
+                                // discountShow(true);
+                                if (e.target.value <= discountTotal / 100) {
+                                  const newData = {
+                                    cart_value: amount,
+                                    cart_credit: +e.target.value,
+                                    cart_total_print_time: printTime,
+                                  };
+                                  setInputSum(newData);
+                                } else {
+                                  // TODO: alert 要改
+                                  setDiscountShow(true);
+                                  // alert('輸入金額有誤，請重新輸入!');
+                                  setInputSum({
+                                    ...inputSum,
+                                    cart_credit: '',
+                                  });
+                                  e.target.value = '';
+                                }
+                              }}
                             />
                           </div>
                         </div>
