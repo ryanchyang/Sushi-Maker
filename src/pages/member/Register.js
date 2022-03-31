@@ -44,7 +44,6 @@ const InputArea = styled.div`
   @media screen and (max-width: 576px) {
     width: 100%;
   }
-
 `;
 const InputTitle = styled.p`
   color: #212121;
@@ -64,11 +63,10 @@ const ErrorMessage = styled.p`
 `;
 const IconRegisterArea = styled.div`
   margin-top: 18%;
-  @media screen and (max-width: 576px){
+  @media screen and (max-width: 576px) {
     text-align: center;
     margin-top: 0%;
   }
-
 `;
 const MemTitle = styled.p`
   color: #f7f6f3;
@@ -83,7 +81,6 @@ const BgImg = styled.div`
   bottom: 0;
   z-index: 1;
   overflow: hidden;
-
 `;
 
 //顯示關閉密碼icon待開發
@@ -157,6 +154,7 @@ function Register(props) {
             <AsideLeft />
             <div style={{ width: '100%' }}>
               <Title className="d-none d-sm-block" title={''} />
+              <div style={{ height: '8%' }}></div>
               <LoginArea className="col-18">
                 <IconRegisterArea>
                   <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
@@ -165,7 +163,7 @@ function Register(props) {
                   </IconArea>
                 </IconRegisterArea>
 
-                <InputArea className="col-md-6">
+                <InputArea className="col-md-6 mt-5">
                   <RegistForm onSubmit={handleRegister}>
                     <InputTitle className="ch-cont-14">帳號</InputTitle>
                     <input
@@ -274,7 +272,7 @@ function Register(props) {
                     </div>
                     <div
                       className="d-none d-md-flex regGender"
-                      style={{ width: '100%'}}
+                      style={{ width: '100%' }}
                     >
                       <div style={{ width: '50%' }}>
                         <InputTitle className="ch-cont-14">性別</InputTitle>
