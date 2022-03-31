@@ -12,6 +12,8 @@ import { height } from '@mui/system';
 import { useWindowScroll } from 'react-use';
 import { Link } from 'react-router-dom';
 
+const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
+
 function Header() {
   return (
     <>
@@ -53,14 +55,14 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <CartLight className="layout-cart-btn" />
-                    <span class="cart-num ">3</span>
+                    <span class="cart-num ">{cart_count}</span>
                   </div>
                 </Link>
               ) : (
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <Cart className="layout-cart-btn" />
-                    <span class="cart-num">3</span>
+                    <span class="cart-num">{cart_count}</span>
                   </div>
                 </Link>
               )}
@@ -175,14 +177,14 @@ function AsideRight(props) {
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <CartLight className="layout-cart-btn" />
-                  <div class="cart-num ">3</div>
+                  <div class="cart-num ">{cart_count}</div>
                 </div>
               </Link>
             ) : (
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <Cart className="layout-cart-btn" />
-                  <div class="cart-num">3</div>
+                  <div class="cart-num">{cart_count}</div>
                 </div>
               </Link>
             )}
