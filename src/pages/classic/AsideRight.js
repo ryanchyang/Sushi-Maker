@@ -51,7 +51,11 @@ function AsideRight(props) {
             <Link to={'/cart/stepone'}>
               <div className="cart-icon-add">
                 <Cart className="layout-cart-btn" />
-                <div class="cart-num">{cart_count}</div>
+                {cart_count > 1 ? (
+                  <span class="cart-num ">{cart_count}</span>
+                ) : (
+                  ''
+                )}
               </div>
             </Link>
           </div>

@@ -13,6 +13,7 @@ import { useWindowScroll } from 'react-use';
 import { Link } from 'react-router-dom';
 
 const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
+console.log('nav cart_count', cart_count);
 
 function Header() {
   return (
@@ -26,6 +27,7 @@ function Header() {
 // <Hamburger className="layout-hamberger" />
 function Title(props) {
   const { changeBG, setNavIsOpen } = props;
+  const cart_num = cart_count;
   return (
     <>
       <div className="mobile-top">
@@ -55,14 +57,22 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <CartLight className="layout-cart-btn" />
-                    <span class="cart-num ">{cart_count}</span>
+                    {cart_count > 1 ? (
+                      <span class="cart-num ">{cart_count}</span>
+                    ) : (
+                      ''
+                    )}
                   </div>
                 </Link>
               ) : (
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <Cart className="layout-cart-btn" />
-                    <span class="cart-num">{cart_count}</span>
+                    {cart_count > 1 ? (
+                      <span class="cart-num ">{cart_count}</span>
+                    ) : (
+                          ''
+                    )}
                   </div>
                 </Link>
               )}
@@ -177,14 +187,22 @@ function AsideRight(props) {
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <CartLight className="layout-cart-btn" />
-                  <div class="cart-num ">{cart_count}</div>
+                  {cart_count > 1 ? (
+                    <span class="cart-num ">{cart_count}</span>
+                  ) : (
+                   ''
+                  )}
                 </div>
               </Link>
             ) : (
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <Cart className="layout-cart-btn" />
-                  <div class="cart-num">{cart_count}</div>
+                  {cart_count > 1 ? (
+                    <span class="cart-num ">{cart_count}</span>
+                  ) : (
+                   ''
+                  )}
                 </div>
               </Link>
             )}
