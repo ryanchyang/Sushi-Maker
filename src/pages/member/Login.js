@@ -147,7 +147,7 @@ function Login(props) {
         localStorage.setItem('mem_nickname', data.info.mem_nickname);
         localStorage.setItem('mem_photo', data.info.mem_photo_img_path);
       }
-      history.push('/member'); //登入成功後導入會員頁
+      history.goBack(-2); //登入成功後導入會員頁
     });
   };
   const showBlock = { display: 'block' };

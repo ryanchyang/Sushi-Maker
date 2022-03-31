@@ -6,7 +6,7 @@ import {
   Title,
 } from './memLayout/LayoutLight';
 import './index.scss';
-import { findMem } from '../../WebApi';
+import { findMem, memLike } from '../../WebApi';
 import { useEffect, useState } from 'react';
 import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
@@ -17,6 +17,7 @@ import NavPage from '../layout/components/NavPage';
 function MemIndex(props) {
   const [memData, setMemData] = useState(null);
   const [toggleForCprod, setToggleForCprod] = useState(false);
+  const [memShare, setMemShare] = useState('');
   const { navIsOpen, setNavIsOpen } = props;
 
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
@@ -25,7 +26,11 @@ function MemIndex(props) {
     findMem(mem_id).then(obj => {
       setMemData(obj[0]);
     });
+    memLike(mem_id).then(d => {
+      setMemShare(d);
+    });
   }, []);
+
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
@@ -41,7 +46,7 @@ function MemIndex(props) {
           <div style={{ width: '75%' }}>
             <Title title={''} />
             <div className="member ">
-              <MemHead />
+              <MemHead memShare={memShare} setMemShare={setMemShare} />
               {/* 以上不動 */}
 
               <div className="mycontainer">
@@ -114,7 +119,7 @@ function MemIndex(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen}/>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
     </>

@@ -4,6 +4,7 @@ import {
   Route,
   Link,
   useLocation,
+  useHistory,
 } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../../imgs/logo.svg';
 import { ReactComponent as Hamburger } from '../../../imgs/hamburger.svg';
@@ -205,11 +206,14 @@ function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
   const { setNavIsOpen } = props;
+  const mem_id = localStorage.getItem('mem_id');
+  const mem_photo = localStorage.getItem('mem_photo');
+  const history = useHistory();
 
   return (
     <>
       <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
-        <div className="aside-right">
+        <div className="aside-right" style={{ position: 'relative' }}>
           <div className="layout-hamberger-box">
             <Hamburger
               className="layout-hamberger"
@@ -220,10 +224,42 @@ function AsideRight(props) {
             />
           </div>
           <div className="layout-mem-photo-box">
-            <img src={require('../../../imgs/ruka.png')} alt="member-photo" />
+          {mem_id ? (
+              <img
+                src={'http://localhost:3500/img/member/' + '/' + mem_photo}
+                alt="member-photo"
+              />
+            ) : (
+              <img
+                src={'http://localhost:3500/img/member/member.png'}
+                alt="member-photo"
+              />
+            )}
           </div>
           <div className="layout-cart-btn-box">
             <Cart className="layout-cart-btn" />
+          </div>
+          <div
+            style={{
+              position: 'fixed',
+              top: '92%',
+              right: '4%',
+              display: 'flex',
+              textAlign: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              localStorage.clear();
+              history.push('/');
+            }}
+          >
+            <img src={'http://localhost:3500/img/home/logout.svg'} />
+            <p
+              className="ml-2 en-title-14-5"
+              style={{ lineHeight: '24px', marginBottom: 0 }}
+            >
+              Logout
+            </p>
           </div>
         </div>
       </aside>

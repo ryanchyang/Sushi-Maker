@@ -10,7 +10,7 @@ function MemHead(props) {
   const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
-  const { memReviseInfo } = props;
+  const { memReviseInfo ,memShare, setMemShare } = props;
 
   //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
   useEffect(() => {
@@ -78,7 +78,7 @@ function MemHead(props) {
         </div>
 
         <div className="memShare col-md-12">
-          <Carousel />
+          <Carousel memShare={memShare} setMemShare={setMemShare} />
         </div>
       </div>
       {/* 手機版LINK */}

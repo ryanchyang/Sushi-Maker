@@ -188,3 +188,16 @@ export const chartInfo = async mem_id => {
     }),
   }).then(res => res.json());
 };
+
+//傳回memshare info
+export const memLike = async mem_id => {
+  return await fetch(`${BASE_URL}/member/api/member-share`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id,
+    }),
+  }).then(res => res.json());
+};

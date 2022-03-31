@@ -71,7 +71,7 @@ function Title(props) {
                     {cart_count > 1 ? (
                       <span class="cart-num ">{cart_count}</span>
                     ) : (
-                          ''
+                      ''
                     )}
                   </div>
                 </Link>
@@ -148,6 +148,8 @@ function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
   const { changeBG, setNavIsOpen } = props;
+  const mem_id = localStorage.getItem('mem_id');
+  const mem_photo = localStorage.getItem('mem_photo');
 
   const darkBG = {
     backgroundColor: '#212121',
@@ -179,9 +181,41 @@ function AsideRight(props) {
               />
             )}
           </div>
-          <div className="layout-mem-photo-box" style={{ cursor: 'pointer' }}>
-            <img src={require('./../../imgs/ruka.png')} alt="member-photo" />
-          </div>
+
+          {mem_id ? (
+            <Link to={'/member'}>
+              <div
+                className="layout-mem-photo-box"
+                style={{ cursor: 'pointer' }}
+              >
+                <img
+                  src={'http://localhost:3500/img/member/' + '/' + mem_photo}
+                  alt="member-photo"
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link to={'/member/login'}>
+              <div
+                className="layout-mem-photo-box"
+                style={{
+                  cursor: 'pointer',
+                  width: '28px',
+                  height: '28px',
+                  right: '5%',
+                  top: '10%',
+                }}
+              >
+                <img
+                  width="100%"
+                  height="100%"
+                  src={'http://localhost:3500/img/home/login.svg'}
+                  alt="member-photo"
+                />
+              </div>
+            </Link>
+          )}
+
           <div className="layout-cart-btn-box" style={{ cursor: 'pointer' }}>
             {changeBG ? (
               <Link to={'/cart/stepone'}>
@@ -190,7 +224,7 @@ function AsideRight(props) {
                   {cart_count > 1 ? (
                     <span class="cart-num ">{cart_count}</span>
                   ) : (
-                   ''
+                    ''
                   )}
                 </div>
               </Link>
@@ -201,7 +235,7 @@ function AsideRight(props) {
                   {cart_count > 1 ? (
                     <span class="cart-num ">{cart_count}</span>
                   ) : (
-                   ''
+                    ''
                   )}
                 </div>
               </Link>
