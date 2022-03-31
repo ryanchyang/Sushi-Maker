@@ -44,40 +44,33 @@ function DeleteActiveModal(props) {
   return (
     <>
       {' '}
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
+      <Modal {...props}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            <h1 style={{ padding: '20px' }}>活動詳情</h1>
-          </Modal.Title>
+          <Modal.Title className="en-cont-30 m-3">活動詳情</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <div style={{ padding: '15px 20px' }}>
-            <h2 style={{ lineHeight: '30px' }}>活動名稱：{evnts_title}</h2>
-            <h2 style={{ lineHeight: '30px' }}>活動日期：{date}</h2>
-            <h2 style={{ lineHeight: '30px' }}>
-              活動時間：{start}-{end}
-            </h2>
-            <h2 style={{ lineHeight: '30px' }}>活動地點：{evnts_location}</h2>
-            <h2 style={{ lineHeight: '30px' }}>
-              報名人數：{evnts_signup_number}人
-            </h2>
+        <Modal.Body style={{ margin: '0 3%' }}>
+          <div className="en-cont-14 pb-2">活動名稱：{evnts_title}</div>
+          <div className="en-cont-14 pb-2">活動名稱：活動日期：{date}</div>
+          <div className="en-cont-14 pb-2">
+            活動名稱：活動時間：{start}-{end}
+          </div>
+          <div className="en-cont-14 pb-2">
+            活動名稱：活動地點：{evnts_location}
+          </div>
+          <div className="en-cont-14 pb-2">
+            活動名稱：報名人數：{evnts_signup_number}人
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
-            className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+            className="btn btn-sm btn-primary primeal-btn-sm"
             onClick={onHide}
           >
             關閉視窗
           </Button>
           <Button
-            variant="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
+            variant="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
             onClick={cancelHandler}
           >
             取消報名

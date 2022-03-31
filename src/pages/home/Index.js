@@ -120,6 +120,7 @@ function Index(props) {
     // 結束後移除事件
     return () => {
       window.removeEventListener('scroll', titleEnter);
+      clearInterval(changeCubeImg);
     };
   }, []);
 

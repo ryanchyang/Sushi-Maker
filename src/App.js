@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMe } from './WebApi';
+import ScrollToTop from './ScrollToTop';
 // import { AuthContext } from './contexts';
 
 // Classic
@@ -73,131 +74,139 @@ function App() {
   return (
     //如有toke, 將token傳下去
     // <AuthContext.Provider value={{ user, setUser }}>
+
     <Router>
       <>
-        <Switch>
-          <Route path="/classic" exact>
-            <ClassicIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          {/* 為了在詳細頁轉到詳細頁時強制re-render  */}
-          <Route
-            path="/classic/detail/:id?"
-            render={() => (
-              <ClassicDetail
-                key={Date.now()}
+        {/* ScrollToTop是為了讓連到另一頁內容時，頁面回到最上方 */}
+        <ScrollToTop>
+          <Switch>
+            <Route path="/classic" exact>
+              <ClassicIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            {/* 為了在詳細頁轉到詳細頁時強制re-render  */}
+            <Route
+              path="/classic/detail/:id?"
+              render={() => (
+                <ClassicDetail
+                  key={Date.now()}
+                  navIsOpen={navIsOpen}
+                  setNavIsOpen={setNavIsOpen}
+                />
+              )}
+            />
+            <Route path="/member" exact>
+              <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/member/login">
+              <Login navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/member/register">
+              <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/member/active">
+              <IndexActive navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/member/analyze">
+              <IndexAnalyze navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/member/historyorder">
+              <IndexHistoryOrder
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
               />
-            )}
-          />
-          <Route path="/member" exact>
-            <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/member/login">
-            <Login navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/member/register">
-            <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/member/active">
-            <IndexActive navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/member/analyze">
-            <IndexAnalyze navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/member/historyorder">
-            <IndexHistoryOrder
-              navIsOpen={navIsOpen}
-              setNavIsOpen={setNavIsOpen}
-            />
-          </Route>
-          <Route path="/member/revise">
-            <IndexRevise navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/share" exact>
-            <Share />
-          </Route>
-          <Route
-            path="/share/items/:id?"
-            render={() => <ShareItems key={Date.now()} />}
-          ></Route>
-          <Route path="/share/saves">
-            <ShareSaves />
-          </Route>
-          <Route path="/share/upload">
-            <ShareUpload />
-          </Route>
-          <Route path="/share/edit">
-            <ShareEdit />
-          </Route>
-          <Route path="/share/post">
-            <SharePost />
-          </Route>
-          <Route path="/" exact>
-            <Home
-              navIsOpen={navIsOpen}
-              setNavIsOpen={setNavIsOpen}
-              entryOpen={entryOpen}
-              setEntryOpen={setEntryOpen}
-            />
-          </Route>
-          <Route path="/latest-news/eventsdetail/signup/:id" exact>
-            <EvntsSignUp navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/latest-news/eventsdetail/:id" exact>
-            <EvntsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/latest-news/newsdetail/:id" exact>
-            <NewsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/latest-news/:cate?" exact>
-            <LatestNews navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/setorder/stepstart" exact>
-            <StepStart />
-          </Route>
-          <Route path="/setorder/stepone" exact>
-            <StepOne />
-          </Route>
-          <Route path="/setorder/steptwo" exact>
-            <StepTwo />
-          </Route>
-          <Route path="/setorder/stepthree" exact>
-            <StepThree />
-          </Route>
-          <Route path="/setorder/stepfour" exact>
-            <StepFour />
-          </Route>
-          <Route path="/setorder/setorderfinal">
-            <SetOrderFinal />
-          </Route>
-          <Route path="/setorder/setorderlist">
-            <SetOrderList />
-          </Route>
-          <Route path="/customize/:id" exact>
-            <CusMiDetail />
-          </Route>
-          <Route path="/customize">
-            <Customize />
-          </Route>
-          <Route path="/cart/stepone" exact>
-            <CartStepOne navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen}/>
-          </Route>
-          <Route path="/cart/steptwo" exact>
-            <CartStepTwo navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/cart/stepthree" exact>
-            <CartStepThree navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/cart/stepfour/:cid" exact>
-            <CartStepFour navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-          <Route path="/cart/cartlist">
-            <CartList navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-          </Route>
-        </Switch>
+            </Route>
+            <Route path="/member/revise">
+              <IndexRevise navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/share" exact>
+              <Share />
+            </Route>
+            <Route
+              path="/share/items/:id?"
+              render={() => <ShareItems key={Date.now()} />}
+            ></Route>
+            <Route path="/share/saves">
+              <ShareSaves />
+            </Route>
+            <Route path="/share/upload">
+              <ShareUpload />
+            </Route>
+            <Route path="/share/edit">
+              <ShareEdit />
+            </Route>
+            <Route path="/share/post">
+              <SharePost />
+            </Route>
+            <Route path="/" exact>
+              <Home
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                entryOpen={entryOpen}
+                setEntryOpen={setEntryOpen}
+              />
+            </Route>
+            <Route path="/latest-news/eventsdetail/signup/:id" exact>
+              <EvntsSignUp navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/latest-news/eventsdetail/:id" exact>
+              <EvntsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/latest-news/newsdetail/:id" exact>
+              <NewsDetails navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/latest-news/:cate?" exact>
+              <LatestNews navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/setorder/stepstart" exact>
+              <StepStart />
+            </Route>
+            <Route path="/setorder/stepone" exact>
+              <StepOne />
+            </Route>
+            <Route path="/setorder/steptwo" exact>
+              <StepTwo />
+            </Route>
+            <Route path="/setorder/stepthree" exact>
+              <StepThree />
+            </Route>
+            <Route path="/setorder/stepfour" exact>
+              <StepFour />
+            </Route>
+            <Route path="/setorder/setorderfinal">
+              <SetOrderFinal />
+            </Route>
+            <Route path="/setorder/setorderlist">
+              <SetOrderList />
+            </Route>
+            <Route path="/customize/:id" exact>
+              <CusMiDetail />
+            </Route>
+            <Route path="/customize">
+              <Customize />
+            </Route>
+            <Route path="/cart/stepone" exact>
+              <CartStepOne navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/cart/steptwo" exact>
+              <CartStepTwo navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/cart/stepthree" exact>
+              <CartStepThree
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+              />
+            </Route>
+            <Route path="/cart/stepfour/:cid" exact>
+              <CartStepFour navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+            <Route path="/cart/cartlist">
+              <CartList navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+            </Route>
+          </Switch>
+        </ScrollToTop>
       </>
     </Router>
+
     // </AuthContext.Provider>
   );
 }
