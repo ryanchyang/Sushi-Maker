@@ -94,7 +94,7 @@ function StepThree(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Payment Info'} />
+            <Title title={'Payment Info'} setNavIsOpen={setNavIsOpen}/>
             <div className="mycontainer cart  ch-cont-14 min-hi">
               <div className="breadcart">
                 {' '}

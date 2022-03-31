@@ -9,6 +9,10 @@ import React, { useState } from 'react';
 import ProdItemInfo from './ProdItemInfo';
 import { Collapse } from 'react-bootstrap';
 // import Collapse from 'react-bootstrap/Collapse';
+
+const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
+console.log('nav cart_count', cart_count);
+
 function CartDetail(props) {
   const [dateOpen, setDateOpen] = useState(false);
   return (
@@ -33,7 +37,7 @@ function CartDetail(props) {
       <div className="cart-detail-title" onClick={() => setDateOpen(!dateOpen)}>
         <div className=" en-title-18">交易明細</div>
         <div className="cart-detail-title-right d-flex ">
-          <div className=" en-title-14">數量</div>
+          <div className=" en-title-14">商品數量({cart_count})</div>
           <div
             className="down-arrow"
             aria-controls="example-collapse-text"

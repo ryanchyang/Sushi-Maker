@@ -567,7 +567,7 @@ function StepOne(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Shopping List'} />
+            <Title title={'Shopping List'} setNavIsOpen={setNavIsOpen}/>
             <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
               <div className=" mycontainer breadcart ">
                 <p className="en-title-14-10">

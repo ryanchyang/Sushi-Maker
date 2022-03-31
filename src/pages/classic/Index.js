@@ -532,7 +532,7 @@ function Index(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Classic'} />
+            <Title title={'Classic'} setNavIsOpen={setNavIsOpen}/>
 
             {/* 麵包屑 */}
             <p className="en-title-14-10 bread">

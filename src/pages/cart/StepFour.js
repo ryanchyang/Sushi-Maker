@@ -54,7 +54,6 @@ function StepFour(props) {
     console.log('36****', fincart[0]?.cart_order_date);
   }, [fincart]);
 
-
   return (
     <>
       <Header />
@@ -65,7 +64,7 @@ function StepFour(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Confirmation'} />
+            <Title title={'Confirmation'} setNavIsOpen={setNavIsOpen} />
             <div className="mycontainer cart min-hi">
               <div className="breadcart">
                 {' '}

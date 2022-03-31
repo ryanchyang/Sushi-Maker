@@ -230,7 +230,7 @@ function StepTwo(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Shipping Info'} />
+            <Title title={'Shipping Info'} setNavIsOpen={setNavIsOpen}/>
             {/* <div className="row"></div> */}
             <div className="mycontainer cart min-hi">
               <div className="breadcart">
