@@ -51,7 +51,7 @@ function MemIndex(props) {
 
               <div className="mycontainer">
                 <div className="memInfoArea col-md-24 col-sm-24 ">
-                  <div className="memInfo col-sm-24 col-md-12 mx-md-3 px-5">
+                  <div className="memInfo col-sm-24 col-md-12 mx-md-4 px-5">
                     <table class="table table-borderless col-md-16 mt-4 col-sm-24 tableInfo">
                       <thead>
                         <tr>
@@ -81,7 +81,7 @@ function MemIndex(props) {
                       </tbody>
                     </table>
                   </div>
-                  <div className="memSet col-sm-24 col-md-12 mx-md-3 d-flex">
+                  <div className="memSet col-sm-24 col-md-12 mx-md-4 d-flex">
                     <div className="setImg">
                       <img src="/img/member/orderSet.png" alt="cube" />
                     </div>

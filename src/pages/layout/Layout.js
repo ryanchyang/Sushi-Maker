@@ -206,12 +206,21 @@ function AsideRight(props) {
                   top: '10%',
                 }}
               >
-                <img
-                  width="100%"
-                  height="100%"
-                  src={'http://localhost:3500/img/home/login.svg'}
-                  alt="member-photo"
-                />
+                {changeBG ? (
+                  <img
+                    width="100%"
+                    height="100%"
+                    src={'http://localhost:3500/img/home/login.svg'}
+                    alt="member-photo"
+                  />
+                ) : (
+                  <img
+                    width="100%"
+                    height="100%"
+                    src={'http://localhost:3500/img/home/loginDark.svg'}
+                    alt="member-photo"
+                  />
+                )}
               </div>
             </Link>
           )}

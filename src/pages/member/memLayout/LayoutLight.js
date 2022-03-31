@@ -51,7 +51,6 @@ function Title(props) {
 
 function AsideLeft() {
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <>
