@@ -11,7 +11,7 @@ function AsideRight(props) {
   const [isOpenHstory, setIsOpenHstory] = useState(false);
 
   const { changeBG, setNavIsOpen } = props;
-
+  const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
 
   const openHistory = () => {
     setIsOpenHstory(!isOpenHstory);
@@ -51,7 +51,7 @@ function AsideRight(props) {
             <Link to={'/cart/stepone'}>
               <div className="cart-icon-add">
                 <Cart className="layout-cart-btn" />
-                <div class="cart-num">3</div>
+                <div class="cart-num">{cart_count}</div>
               </div>
             </Link>
           </div>
