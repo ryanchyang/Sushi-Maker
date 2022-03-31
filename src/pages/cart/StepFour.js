@@ -120,7 +120,7 @@ function StepFour(props) {
                     </div>
                     {/* ＢＴＮ 返回按鈕 */}
                     <div className="col-24 col-md-8 my-3 d-flex justify-content-md-end justify-content-center ">
-                      <Link to="./CartList">
+                      <Link to="./classic">
                         <button
                           type="button"
                           className="btn btn-primary primeal-btn "

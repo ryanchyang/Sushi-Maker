@@ -55,16 +55,14 @@ function CartList(props) {
               </div>
               <div className="row my-5 d-flex justify-content-center justify-content-md-end ">
                 <div className="col-24 col-md-8 my-3 d-flex justify-content-center">
-                  <button
-                    type="button"
-                    className="btn btn-primary  primeal-btn"
-                    onClick={() => {
-                      // 轉至上一頁
-                      history.goBack();
-                    }}
-                  >
-                    繼續購物
-                  </button>
+                  <Link to="/classic">
+                    <button
+                      type="button"
+                      className="btn btn-primary  primeal-btn"
+                    >
+                      繼續購物
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
