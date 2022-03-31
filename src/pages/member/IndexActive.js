@@ -11,6 +11,7 @@ import config from '../../Config';
 import { getMemId } from '../../utils';
 import { useState, useEffect } from 'react';
 import DeleteActiveModal from './component/DeleteActiveModal';
+import NavPage from '../layout/components/NavPage';
 
 // import DatePicker from 'react-datepicker';
 const locales = {
@@ -55,10 +56,11 @@ const mem_name = localStorage.getItem('mem_name');
 //   }
 // ]
 
-function IndexActive() {
+function IndexActive(props) {
   const [allEvent, setAllEvent] = useState([]);
   const [selected, setSelected] = useState({});
   const [modalShow, setModalShow] = useState(false);
+  const { navIsOpen, setNavIsOpen } = props;
   const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -81,42 +83,48 @@ function IndexActive() {
     setSelected(event);
     console.info('[handleSelected - event]', event);
   };
-
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '75%' }}>
-          {/* <Title title={''} /> */}
-          <div className="member ">
-            <MemHead />
-            <div className="mycontainer">
-              <Calendar
-                localizer={localizer}
-                events={allEvent}
-                startAccessor="start"
-                endAccessor="end"
-                style={{ height: 500, margin: '50px' }}
-                selected={selected}
-                onSelectEvent={handleSelected}
-              />
-              {modalShow && (
-                <DeleteActiveModal
-                  show={modalShow}
-                  setModalShow={setModalShow}
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '75%' }}>
+            {/* <Title title={''} /> */}
+            <div className="member ">
+              <MemHead />
+              <div className="mycontainer">
+                <Calendar
+                  localizer={localizer}
+                  events={allEvent}
+                  startAccessor="start"
+                  endAccessor="end"
+                  style={{ height: 500, margin: '50px' }}
                   selected={selected}
-                  mem_name={mem_name}
-                  onHide={() => {
-                    setModalShow(false);
-                  }}
+                  onSelectEvent={handleSelected}
                 />
-              )}
+                {modalShow && (
+                  <DeleteActiveModal
+                    show={modalShow}
+                    setModalShow={setModalShow}
+                    selected={selected}
+                    mem_name={mem_name}
+                    onHide={() => {
+                      setModalShow(false);
+                    }}
+                  />
+                )}
+              </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

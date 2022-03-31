@@ -12,28 +12,38 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MemHead from './component/MemHead';
-import HistoryOrder from './component/HistoryOrder'
+import HistoryOrder from './component/HistoryOrder';
+import NavPage from '../layout/components/NavPage';
 
-function IndexHistoryOrder() {
+function IndexHistoryOrder(props) {
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '75%' }}>
-          {/* <Title title={''} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '75%' }}>
+            {/* <Title title={''} />
             <br /> */}
-          <div className="member ">
-            <MemHead />
-            {/* 以上不動 */}
+            <div className="member ">
+              <MemHead />
+              {/* 以上不動 */}
 
-            <div className="mycontainer orderDetailTB">
-              <HistoryOrder/>
+              <div className="mycontainer orderDetailTB">
+                <HistoryOrder />
+              </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

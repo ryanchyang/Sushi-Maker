@@ -7,26 +7,35 @@ import {
 } from './memLayout/LayoutLight';
 import './index.scss';
 import MemHead from './component/MemHead';
-import ChartForMem from '../../../src/pages/chartjs/ChartMem/ChartForMem'
+import ChartForMem from '../../../src/pages/chartjs/ChartMem/ChartForMem';
 import { useEffect } from 'react';
+import NavPage from '../layout/components/NavPage';
 
-function IndexAnalyze() {
+function IndexAnalyze(props) {
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '75%' }}>
-          {/* <Title title={''} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '75%' }}>
+            {/* <Title title={''} />
               <br /> */}
-          <div className="member ">
-            <MemHead />
-            {/* 以上不動 */}
-            <ChartForMem/>
+            <div className="member ">
+              <MemHead />
+              {/* 以上不動 */}
+              <ChartForMem />
+            </div>
+            <Footer />
           </div>
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );
