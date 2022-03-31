@@ -119,27 +119,7 @@ const Carousel = ({ selectedIndex = 1 }) => {
               </li>
             );
           })}
-          {/* <li className="carouImg mx-3">
-            <img className="Cimg" src="/img/member/shareImg.png" alt="" />
-          </li>
-          <li className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </li>
-          <li className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </li>
-          <li className="carouImg mx-3">
-            <img src="/img/member/shareImg.png" className="Cimg" alt="" />
-          </li> */}
         </ul>
-        {/* <div>
-          <button className="buttonLeft " onClick={handleNext}>
-            left
-          </button>
-          <button className="buttonRight " onClick={handlePrev}>
-            right
-          </button>
-        </div> */}
       </div>
       <button className="btn btn-primary primeal-btn-sm share-btn shareLink">
         全部收藏

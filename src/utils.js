@@ -1,6 +1,7 @@
 import config from './Config';
 const TOKEN_NAME = 'token';
 const MEM_ID = 'mem_id';
+const CART_COUNT = 'cart_count';
 
 export const setAuthToken = token => {
   localStorage.setItem(TOKEN_NAME, token);
@@ -36,3 +37,8 @@ export const getCart = async () => {
     };
   }
 };
+
+//取購物車未結帳數量
+export const getOrderQty = () => {
+  return localStorage.getItem(CART_COUNT)
+}
