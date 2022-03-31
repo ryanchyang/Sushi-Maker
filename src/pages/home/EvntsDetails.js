@@ -115,7 +115,7 @@ function EvntsDetails(props) {
                 </div>
 
                 {/* mobile events */}
-                <div className="mobile-evnts-detail d-sm-none">
+                <div className="mobile-evnts-detail d-sm-none min-hi">
                   <div className="ch-title-18 evnts-title">
                     {evntsDetail[0]?.evnts_title ?? ''}
                   </div>

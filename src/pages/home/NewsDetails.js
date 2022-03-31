@@ -8,11 +8,12 @@ import NavPage from '../layout/components/NavPage';
 function NewsDetails(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const [newsDetail, setNewsDetail] = useState([]);
+  const [notice, setNotice] = useState('');
   const { id } = useParams();
   // console.log('news_id:', id);
 
   const getNewsDetail = async () => {
-    console.log('hi');
+    // console.log('hi');
     const res = await fetch(config.NEWSD_PATH + `${id}`);
     const obj = await res.json();
     setNewsDetail(obj.data);
@@ -20,7 +21,14 @@ function NewsDetails(props) {
 
   useEffect(() => {
     getNewsDetail();
-  }, []);
+
+    const cate = newsDetail[0]?.news_cate ?? '';
+    if (cate === '會員公告') {
+      setNotice('');
+    } else {
+      setNotice('※ 商品均以實體成品為主，圖片僅供參考');
+    }
+  }, [newsDetail]);
 
   // [
   //   {
@@ -74,13 +82,14 @@ function NewsDetails(props) {
                 </div>
 
                 {/* mobile latest-news-content */}
-                <div className="mobile-news-detail d-sm-none">
+                <div className="mobile-news-detail d-sm-none min-hi">
                   <div className="ch-title-18 news-title">
                     {newsDetail[0]?.news_title ?? ''}
                   </div>
                   <div className="news-date-tag">
                     <div className="en-cont-14 news-date">
-                      {newsDetail[0]?.news_start_date ?? ''}
+                      {newsDetail[0]?.news_start_date ?? ''} -{' '}
+                      {newsDetail[0]?.news_end_date ?? ''}
                     </div>
                     <div className="ch-cont-14 news-tag">
                       {newsDetail[0]?.news_cate ?? ''}
@@ -98,9 +107,7 @@ function NewsDetails(props) {
                   <div className="ch-cont-16 news-content">
                     {newsDetail[0]?.news_detail ?? ''}
                   </div>
-                  <div className="ch-cont-14 news-warning">
-                    ※ 商品均以實體成品為主，圖片僅供參考
-                  </div>
+                  <div className="ch-cont-14 news-warning">{notice}</div>
                 </div>
               </div>
 
@@ -123,7 +130,8 @@ function NewsDetails(props) {
                       </div>
                       <div className="pc-news-date-tag">
                         <div className="en-cont-14 pc-news-date">
-                          {newsDetail[0]?.news_start_date ?? ''}
+                          {newsDetail[0]?.news_start_date ?? ''} -{' '}
+                          {newsDetail[0]?.news_end_date ?? ''}
                         </div>
                         <div className="ch-cont-14 pc-news-tag">
                           {newsDetail[0]?.news_cate ?? ''}
@@ -132,9 +140,7 @@ function NewsDetails(props) {
                       <div className="ch-cont-16 pc-new-text">
                         {newsDetail[0]?.news_detail ?? ''}
                       </div>
-                      <div className="ch-cont-14 pc-news-warning">
-                        ※ 商品均以實體成品為主，圖片僅供參考
-                      </div>
+                      <div className="ch-cont-14 pc-news-warning">{notice}</div>
                     </div>
                   </div>
                 </div>

@@ -4,6 +4,9 @@
     text-decoration: none;
   }
   // mobile version
+  .lastest-news-nav {
+    padding-top: 12%;
+  }
   .mobile-news-detail {
     margin-top: 5%;
   }
@@ -62,7 +65,8 @@
       line-height: 2rem;
       letter-spacing: 0.14rem;
     }
-  }
-  @media only screen and (min-width: 960px) {
+    .lastest-news-nav {
+      padding-top: 0;
+    }
   }
 }

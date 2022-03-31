@@ -59,7 +59,7 @@ function News(props) {
                     <div className="ch-title-16 news-title">{v.news_title}</div>
                     <div className="news-content">
                       <div className="en-cont-14 news-date">
-                        {v.news_start_date}
+                        {v.news_start_date} - {v.news_end_date}
                       </div>
                       <div className="en-cont-14 news-tag">{v.news_cate}</div>
                       <div className="view-arrow">

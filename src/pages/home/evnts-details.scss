@@ -1,6 +1,9 @@
 @import './../../styles/global.scss';
 .evnts {
   // mobile version
+  .lastest-news-nav {
+    padding-top: 12%;
+  }
   .mobile-evnts-detail {
     margin-top: 5%;
   }
@@ -113,6 +116,9 @@
     cursor: pointer;
   }
   @media screen and (min-width: 577px) {
+    .lastest-news-nav {
+      padding-top: 0;
+    }
     .evnts-info {
       padding: 0;
     }
