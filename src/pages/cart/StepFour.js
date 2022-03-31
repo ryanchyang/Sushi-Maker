@@ -51,12 +51,9 @@ function StepFour(props) {
   console.log('fincart', fincart);
   useEffect(() => {
     console.log(fincart);
-    console.log('36****', fincart[0]?.order_num);
+    console.log('36****', fincart[0]?.cart_order_date);
   }, [fincart]);
-  // console.log(fincart[0]?.mem_name);
 
-  // GET_FIN_ITEM_INFO
-  // console.log('qrC02', qrC);
 
   return (
     <>
