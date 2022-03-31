@@ -4,28 +4,25 @@ import SetMenuFinal from './components/SetMenuFinal';
 import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
 import { useEffect, useState } from 'react';
+import config from '../../Config';
 // import './SetOrderAll.scss';
-function SetOrderFinal() {
+function SetOrderFinal(props) {
   //上一個的答案
   const data = useLocation();
   const lastanswer = data.state;
   const week = lastanswer.week;
   const firstdate = lastanswer.date;
-  const finalchoose = lastanswer.choose;
-
-  //finallist 比對清單
-  const finallist = lastanswer.list;
-  console.log('list', finallist);
+  const finalchoose = lastanswer.answer;
+  const number_id = lastanswer.numberid;
 
   //finalchoose 最後結果的陣列
-  console.log('finalchoose', finalchoose);
   //設定結束日期
   let finalDate = new Date(firstdate);
   finalDate.setDate(finalDate.getDate() + +week * 7);
   finalDate = finalDate.toISOString().split('T')[0];
 
   //price價錢 partly 份量
-  const partly = 1;
+
   let price;
   //setlist: week第幾週的時候 價錢是多少
   switch (week) {
@@ -41,9 +38,43 @@ function SetOrderFinal() {
     default:
       price = 0;
   }
-  const finalprice = price * partly;
-  console.log('date', firstdate);
+  useEffect(() => {
+    const finalprice = price;
+    setCombosum(finalprice);
+  }, []);
+  //套餐份數
+  const [combo, setCombo] = useState('1');
 
+  //套餐金額
+  const [combosum, setCombosum] = useState(0);
+
+  function comboChange(e) {
+    setCombo(e.target.value);
+    const finalprice = price * +e.target.value;
+    setCombosum(finalprice);
+  }
+  // bento_id week  combo price
+
+  function sendList() {
+    const memid =localStorage.getItem('mem_id');
+    const sendData = async () => {
+      const res = await fetch(config.GET_SET_SENDLIST, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          mid: +localStorage.getItem('mem_id'),
+          firstdate: firstdate,
+          week: week,
+          combo: combo,
+          combosum: combosum,
+          finalchoose,
+          numberid: number_id,
+          memid: memid,
+        }),
+      });
+    };
+    sendData();
+  }
   return (
     <>
       <Header />
@@ -61,12 +92,12 @@ function SetOrderFinal() {
                     <div className="set-bento-title ch-cont-18">每日套餐</div>
                   </div>
                   {/* 便當列表 */}
-                  {finalchoose.map(chooses => {
+                  {finalchoose.map((chooses, i) => {
                     return (
                       <div className="setmenulist">
                         <div className="align-items-center">
                           <div className="set-menu">
-                            <div className="en-cont-36 set-day">$</div>
+                            <div className="en-cont-36 set-day">{i + 1}</div>
                             <div className="set-sushi-all">
                               <div className="ch-cont-18 set-sushi-ch">
                                 {chooses.bento_ch_name}
@@ -99,12 +130,37 @@ function SetOrderFinal() {
                   </div>
                   <div className="set-final-list-flex">
                     <div className="ch-cont-14">套餐份數</div>
+                    <div className="set-combo">
+                      <div className="ch-cont-14">吃</div>
+                      <select
+                        name=""
+                        id=""
+                        className="set-combo-select"
+                        value={combo}
+                        onChange={comboChange}
+                      >
+                        <option
+                          value="1"
+                          sele
+                          cted={+week === 1 ? true : false}
+                        >
+                          1
+                        </option>
+                        <option value="2" selected={+week === 2 ? true : false}>
+                          2
+                        </option>
+                        <option value="3" selected={+week === 3 ? true : false}>
+                          3
+                        </option>
+                      </select>
+                      <div className="ch-cont-14">份</div>
+                    </div>
                   </div>
                   <div className="set-final-list-flex">
                     <div className="ch-cont-14">套餐金額</div>
                     <div className="cash">
                       <div className="ch-cont-14">NT$</div>
-                      <div className="en-cont-28">{finalprice}</div>
+                      <div className="en-cont-28">{combosum}</div>
                       <div className="ch-cont-14">元</div>
                     </div>
                   </div>
@@ -114,11 +170,12 @@ function SetOrderFinal() {
                     <div className="bento-sushi-menu"></div>
                   </div>
                   <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
-                    <Link to="./setorderList">
-                      <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
-                        下一步
-                      </div>
-                    </Link>
+                    <div
+                      className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm"
+                      onClick={sendList}
+                    >
+                      送出
+                    </div>
                   </div>
                 </div>
               </div>

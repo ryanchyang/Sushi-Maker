@@ -30,6 +30,7 @@ const config = {
 
   // 套餐
   GET_SET_COMPARE: `${host}/api/setorder/answer`,
+  GET_SET_SENDLIST: `${host}/api/setorder/sendlist`,
   // 分享牆
   GET_SHARE_PRODS: `${host}/api/share/`,
   GET_PROD_DETAILS: `${host}/api/share/items/`,

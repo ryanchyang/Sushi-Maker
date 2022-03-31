@@ -22,8 +22,8 @@ function StepOne() {
                 <div className="set-question-box">
                   <div className="bento-img-center start-padding">
                     <img
-                      className="set-bento-img "
-                      src={require('./img/SetorderBento.png')}
+                      className="setorderlist-set-bento-img"
+                      src={`http://localhost:3500/img/home/mealplan-bento.png`}
                       alt="product-image"
                     />
                   </div>
