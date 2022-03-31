@@ -208,6 +208,7 @@ function AsideRight(props) {
   const mem_id = localStorage.getItem('mem_id');
   const mem_photo = localStorage.getItem('mem_photo');
   const history = useHistory();
+  const cart_count = localStorage.getItem('cart_count');
 
   return (
     <>
@@ -236,7 +237,16 @@ function AsideRight(props) {
             )}
           </div>
           <div className="layout-cart-btn-box">
-            <Cart className="layout-cart-btn" />
+          <Link to={'/cart/stepone'}>
+                <div className="cart-icon-add">
+                  <Cart className="layout-cart-btn" />
+                  {cart_count > 1 ? (
+                    <span class="cart-num ">{cart_count}</span>
+                  ) : (
+                    ''
+                  )}
+                </div>
+              </Link>
           </div>
           <div
             style={{
