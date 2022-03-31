@@ -179,7 +179,7 @@ function EvntsSignUp(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Events'} />
+            <Title title={'Events'} setNavIsOpen={setNavIsOpen} />
             <div className="evnts-signup">
               <div className="mycontainer min-hi">
                 {/* lastest-news top */}

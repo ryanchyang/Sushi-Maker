@@ -103,7 +103,7 @@ function LatestNews(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%', overflow: 'hidden' }}>
-            <Title title={'Latest News'} />
+            <Title title={'Latest News'} setNavIsOpen={setNavIsOpen} />
             <div className="latest-news min-hi">
               <div className="mycontainer">
                 {/* lastest-news top */}

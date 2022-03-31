@@ -57,7 +57,7 @@ function NewsDetails(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'News'} />
+            <Title title={'News'} setNavIsOpen={setNavIsOpen} />
             <div className="news">
               <div className="mycontainer">
                 {/* lastest-news top */}

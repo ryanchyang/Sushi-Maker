@@ -90,7 +90,7 @@ function EvntsDetails(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Events'} />
+            <Title title={'Events'} setNavIsOpen={setNavIsOpen} />
             <div className="evnts">
               <div className="mycontainer">
                 {/* lastest-news top */}
