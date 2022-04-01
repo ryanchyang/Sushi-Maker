@@ -189,7 +189,7 @@ function Detail(props) {
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={handleLikeClose}
         >
-          Close
+          關閉
         </Button>
       </Modal.Footer>
     </Modal>
@@ -213,7 +213,7 @@ function Detail(props) {
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={handleCartClose}
         >
-          Close
+          關閉
         </Button>
       </Modal.Footer>
     </Modal>

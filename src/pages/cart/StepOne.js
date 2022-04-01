@@ -551,7 +551,7 @@ function StepOne(props) {
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={handleDiscountClose}
         >
-          Close
+         關閉
         </Button>
       </Modal.Footer>
     </Modal>
