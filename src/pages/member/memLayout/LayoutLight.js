@@ -31,7 +31,7 @@ function Title(props) {
             <Logo className="logo" />
           </div>
         </div>
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-between'}}>
           <div>
             <div className="layout-cart-btn-box-top">
               <Cart className="layout-cart-btn" />
@@ -212,7 +212,7 @@ function AsideRight(props) {
 
   return (
     <>
-      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj">
+      <aside className="col-lg-3 col-md-3 col-3 p-0 mobile-adj aside-fixed">
         <div className="aside-right" style={{ position: 'relative' }}>
           <div className="layout-hamberger-box">
             <Hamburger

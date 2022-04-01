@@ -20,7 +20,6 @@ const MemProdLike = () => {
 
   useEffect(() => {
     memCprodLike(mem_id).then(obj => {
-      console.log(obj);
       setMemLike(obj);
     });
   }, []);
@@ -28,13 +27,22 @@ const MemProdLike = () => {
   if (memLike) {
     return (
       <Swiper
-        slidesPerView={5}
-        spaceBetween={30}
-        slidesPerGroup={3}
         loop={false}
         loopFillGroupWithBlank={true}
         pagination={{ clickable: true }}
         modules={[Pagination]}
+        breakpoints={{
+          1: {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            slidesPerGroup: 1,
+          },
+          577: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+          },
+        }}
         className="mySwiper swiper"
       >
         {memLike.map(v => {
@@ -48,7 +56,7 @@ const MemProdLike = () => {
                     color: '#212121',
                   }}
                 >
-                  <div class="d-flex">
+                  <div class="memClassic">
                     <div className="activeImg mb-5">
                       <img
                         src={
@@ -57,15 +65,15 @@ const MemProdLike = () => {
                             : ''
                         }
                         alt="cube"
-                        style={{ width: '100px' }}
+                        style={{ width: '100%', height: '100%' }}
                       />
                     </div>
-                                    
-                                    <div className="mt-2 pl-5">
-                    <p className="ch-cont-18 ">
-                      {memLike.length !== 0 ? v.c_prod_ch_name : ''}
-                    </p>
-                                    </div>
+
+                    <div className=" pl-5">
+                      <p className="ch-cont-18 ">
+                        {memLike.length !== 0 ? v.c_prod_ch_name : ''}
+                      </p>
+                    </div>
                   </div>
                 </Link>
               </SwiperSlide>

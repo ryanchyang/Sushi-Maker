@@ -43,8 +43,9 @@ function MemIndex(props) {
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         <div style={{ display: 'flex' }}>
           <AsideLeft />
-          <div style={{ width: '75%' }}>
+          <div className="member-container">
             <Title title={''} />
+            <div className="d-md-none" style={{ marginTop:"30%" }}></div>
             <div className="member ">
               <MemHead memShare={memShare} setMemShare={setMemShare} />
               {/* 以上不動 */}
