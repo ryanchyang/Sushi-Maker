@@ -32,7 +32,7 @@ function StepOne(props) {
     cart_credit: '' || null,
     cart_total_print_time: printTime,
   });
-  console.log('34 inputSum', inputSum);
+  // console.log('34 inputSum', inputSum);
 
   // 判斷有沒有購物車內容
   useEffect(() => {
@@ -149,7 +149,7 @@ function StepOne(props) {
   //       cart_total_print_time: printTime,
   //     };
   //     setInputSum(newData);
-  //   } else { 
+  //   } else {
   //     setDiscountShow(true);
   //     // alert('輸入金額有誤，請重新輸入!');
   //     setInputSum({
@@ -466,9 +466,29 @@ function StepOne(props) {
   };
 
   // 套餐光箱
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState({
+    open: false,
+    id: '',
+    name: '',
+    set: '',
+  });
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (e, arr) => {
+    const prod_id = e.currentTarget.dataset.id;
+    console.log(prod_id);
+    const prod_name = e.currentTarget.dataset.name;
+    console.log(prod_name);
+    const setArr = arr;
+    console.log('setArr:', setArr);
+
+    setShow({
+      ...show,
+      open: true,
+      id: prod_id,
+      name: prod_name,
+      set: setArr,
+    });
+  };
 
   // 刪除光箱 CS
   const [delShowCS, setDelShowCS] = useState({
@@ -502,13 +522,13 @@ function StepOne(props) {
     // console.log('hi');
     // console.log('e.currentTarget:', e.currentTarget);
     // console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
-    const c_prod_id = e.currentTarget.dataset.id;
-    const c_prod_name = e.currentTarget.dataset.name;
+    const cm_prod_id = e.currentTarget.dataset.id;
+    const cm_prod_name = e.currentTarget.dataset.name;
     setDelShowCM({
       ...delShowCM,
       open: true,
-      id: c_prod_id,
-      name: c_prod_name,
+      id: cm_prod_id,
+      name: cm_prod_name,
     });
   };
 
@@ -521,15 +541,15 @@ function StepOne(props) {
   const handleDelCloseSET = () => setDelShowSET(false);
   const handleDelShowSET = e => {
     // console.log('hi');
-    // console.log('e.currentTarget:', e.currentTarget);
-    // console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
-    const c_prod_id = e.currentTarget.dataset.id;
-    const c_prod_name = e.currentTarget.dataset.name;
+    console.log('e.currentTarget:', e.currentTarget);
+    console.log('e.currentTarget.dataset.id:', e.currentTarget.dataset.id);
+    const set_prod_id = e.currentTarget.dataset.id;
+    const set_prod_name = e.currentTarget.dataset.name;
     setDelShowSET({
       ...delShowSET,
       open: true,
-      id: c_prod_id,
-      name: c_prod_name,
+      id: set_prod_id,
+      name: set_prod_name,
     });
   };
 
@@ -551,7 +571,7 @@ function StepOne(props) {
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={handleDiscountClose}
         >
-         關閉
+          關閉
         </Button>
       </Modal.Footer>
     </Modal>
@@ -567,7 +587,7 @@ function StepOne(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Shopping List'} setNavIsOpen={setNavIsOpen}/>
+            <Title title={'Shopping List'} setNavIsOpen={setNavIsOpen} />
             <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
               <div className=" mycontainer breadcart ">
                 <p className="en-title-14-10">
@@ -726,9 +746,9 @@ function StepOne(props) {
                                 className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
                                 // onClick={handleDelClose}
                                 onClick={e => {
-                                  const pid = delShowSET.id;
+                                  const setpid = delShowSET.id;
                                   console.log('delShowSET.id:', delShowSET.id);
-                                  deleteProdFun(pid, 'set');
+                                  deleteProdFun(setpid, 'set');
                                   // console.log(e.currentTarget.value, 'MMMMM');
                                   handleDelCloseSET();
                                 }}
@@ -743,18 +763,14 @@ function StepOne(props) {
                             className="prod-item-icon"
                             data-id={v.product_id}
                             data-name={v.set_name}
-                            // onClick={() => {
-                            //   deleteProdFun(v.product_id, 'set');
                             onClick={handleDelShowSET}
-
-                            // }}
                           >
                             <img src="/img/cart/icon-trash.svg" alt="" />
                           </div>
 
-                          {/* //光箱 */}
+                          {/* 光箱 */}
                           {
-                            <Modal show={show} onHide={handleClose}>
+                            <Modal show={show.open} onHide={handleClose}>
                               <Modal.Header closeButton>
                                 <Modal.Title className="en-cont-30 m-3">
                                   套餐說明
@@ -765,15 +781,18 @@ function StepOne(props) {
                                   加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
                                 </div>
                                 <table className="table table-hover">
-                                  <tbody className="">
+                                  <tbody show={show.set}>
                                     {v.set_info_array.map((v, i) => {
+                                      {
+                                        console.log('787', show.set);
+                                      }
                                       return (
                                         <tr key={i + 1}>
                                           <th
                                             scope="row"
                                             className="en-cont-36"
                                           >
-                                            {i + 1}
+                                            {/* {i + 1} */}
                                           </th>
                                           <td className="en-cont-14">
                                             <div>
@@ -794,12 +813,22 @@ function StepOne(props) {
                                   className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
                                   onClick={handleClose}
                                 >
-                                  Close
+                                  關閉
                                 </Button>
                               </Modal.Footer>
                             </Modal>
                           }
-                          <div className="prod-item-icon" onClick={handleShow}>
+                          <div
+                            className="prod-item-icon"
+                            data-id={v.product_id}
+                            data-name={v.set_name}
+                            data-set={v.set_info_array}
+                            onClick={e => {
+                              handleShow(e, v.set_info_array);
+                              console.log('828', v.set_info_array);
+                            }}
+                            // onClick={handleShow}
+                          >
                             <img src="/img/cart/icon-info.svg" alt="" />
                           </div>
                         </div>
@@ -900,7 +929,7 @@ function StepOne(props) {
                                 // onClick={handleDelClose}
                                 onClick={e => {
                                   const pid = delShowCS.id;
-                                  console.log('delShowCS.id:', delShowCS.id);
+                                  // console.log('delShowCS.id:', delShowCS.id);
                                   deleteProdFun(pid, 'cs');
                                   // console.log(e.currentTarget.value, 'MMMMM');
                                   handleDelCloseCS();
