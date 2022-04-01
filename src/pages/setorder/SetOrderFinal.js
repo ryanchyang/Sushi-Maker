@@ -1,12 +1,40 @@
 //最後預覽
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuFinal from './components/SetMenuFinal';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useHistory } from 'react-router-dom';
 import './SetOrderAll.scss';
 import { useEffect, useState } from 'react';
 import config from '../../Config';
+import { Button, Modal } from 'react-bootstrap';
+
 // import './SetOrderAll.scss';
 function SetOrderFinal(props) {
+  const history = useHistory();
+
+  //加入購物車的光箱
+  const [cartShow, setCartShow] = useState(false);
+  const handleCartClose = () => {setCartShow(false);history.push("/setorder/stepstart")};
+  const handleCartShow = () => setCartShow(true);
+  const cartModel = (
+    <Modal show={cartShow} onHide={handleCartClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">已成功將商品加入購物車!</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleCartClose}
+        >
+          關閉
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   //上一個的答案
   const data = useLocation();
   const lastanswer = data.state;
@@ -56,6 +84,7 @@ function SetOrderFinal(props) {
   // bento_id week  combo price
 
   function sendList() {
+    handleCartShow();
     const memid = localStorage.getItem('mem_id');
     const sendData = async () => {
       const res = await fetch(config.GET_SET_SENDLIST, {
@@ -77,6 +106,7 @@ function SetOrderFinal(props) {
   }
   return (
     <>
+      {cartModel}
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
@@ -185,14 +215,14 @@ function SetOrderFinal(props) {
                     <div className="bento-sushi-menu"></div>
                   </div>
                   <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
-                    <Link to="/setorder/stepstart">
+                    
                       <div
                         className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm"
                         onClick={sendList}
                       >
                         送出
                       </div>
-                    </Link>
+                    
                   </div>
                 </div>
               </div>
