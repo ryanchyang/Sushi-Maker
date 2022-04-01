@@ -13,12 +13,18 @@ import MemHead from './component/MemHead';
 import Events from './component/Events';
 import MemProdLike from './component/MemProdLike';
 import NavPage from '../layout/components/NavPage';
+import { Button, Modal } from 'react-bootstrap';
+import { ReactComponent as Info } from '../../imgs/info.svg';
 
 function MemIndex(props) {
   const [memData, setMemData] = useState(null);
   const [toggleForCprod, setToggleForCprod] = useState(false);
   const [memShare, setMemShare] = useState('');
   const { navIsOpen, setNavIsOpen } = props;
+
+  const [rule, setRule] = useState(false);
+  const handleClose = () => setRule(false);
+  const handleShow = () => setRule(true);
 
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
 
@@ -45,7 +51,7 @@ function MemIndex(props) {
           <AsideLeft />
           <div className="member-container">
             <Title title={''} />
-            <div className="d-md-none" style={{ marginTop:"30%" }}></div>
+            <div className="d-md-none" style={{ marginTop: '30%' }}></div>
             <div className="member ">
               <MemHead memShare={memShare} setMemShare={setMemShare} />
               {/* 以上不動 */}
@@ -76,11 +82,90 @@ function MemIndex(props) {
                           <td>會員現有積分:</td>
                           <td>{memData ? memData.mem_credit : ''}</td>
                         </tr>
-                        <tr>
-                          <td>會員積分規則:</td>
+                        <tr onClick={handleShow} style={{ cursor: 'pointer' }}>
+                          <td>
+                            <Info />
+                            會員積分規則
+                          </td>
                         </tr>
                       </tbody>
                     </table>
+
+                    {
+                      <Modal show={rule} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title className="ch-title-20 m-3">
+                            會員積分說明
+                          </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body style={{ margin: '0 3%' }}>
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <td className="ch-title-18">執行動作</td>
+                                <td className="ch-title-18">週期範圍</td>
+                                <td className="ch-title-18">單週獎勵次數</td>
+                                <td className="ch-title-18">積分</td>
+                              </tr>
+                            </thead>
+                            <tbody className="ch-cont-16 ">
+                              <tr>
+                                <td>分享牆貼文</td>
+                                <td>無限制</td>
+                                <td>無限制</td>
+                                <td>+50</td>
+                              </tr>
+                              <tr>
+                                <td>分享牆留言</td>
+                                <td>無限制</td>
+                                <td>無限制</td>
+                                <td>+10</td>
+                              </tr>
+                              <tr>
+                                <td>經典壽司列印</td>
+                                <td>無限制</td>
+                                <td>無限制</td>
+                                <td>+50</td>
+                              </tr>
+                              <tr>
+                                <td>客製壽司列印</td>
+                                <td>無限制</td>
+                                <td>無限制</td>
+                                <td>+50</td>
+                              </tr>
+                              <tr>
+                                <td>套餐訂閱</td>
+                                <td>無限制</td>
+                                <td>無限制</td>
+                                <td>+50</td>
+                              </tr>
+                              <tr>
+                                <td>頭像設置</td>
+                                <td>一次性</td>
+                                <td>1</td>
+                                <td>+5</td>
+                              </tr>
+                              <tr>
+                                <td>每日登入</td>
+                                <td>每天</td>
+                                <td>1</td>
+                                <td>+1</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button
+                            variant="secondary"
+                            className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+                            onClick={handleClose}
+                          >
+                            離開
+                          </Button>
+                          {/*TODO: 確認門市要送出表單並存到DB mem */}
+                        </Modal.Footer>
+                      </Modal>
+                    }
                   </div>
                   <div className="memSet col-sm-24 col-md-12 mx-md-4 d-flex">
                     <div className="setImg">
