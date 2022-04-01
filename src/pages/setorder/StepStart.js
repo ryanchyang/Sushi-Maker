@@ -13,6 +13,21 @@ function StepOne() {
           <Title title={'JUST FOR YOU'} />
           <div className="step">
             <div className="mycontainer min-hi">
+              <p className="en-title-14-10">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME /
+                </Link>
+
+                <Link
+                  to={'./stepstart'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  SET
+                </Link>
+              </p>
               <div className="set-all-content">
                 <div className="set-title col-12 set-title-0">
                   <div className="step-mob-title set-text-center set-title-1">
@@ -28,7 +43,7 @@ function StepOne() {
                     />
                   </div>
 
-                  <div className="ch-cont-16 set-text-center set-content">
+                  <div className="ch-cont-16 set-text-center set-content-start">
                     <p>用問卷的方式來幫您量身規劃</p>
                     <p>7天、14天，甚至是21天的套餐！</p>
                     <p>可以選擇瘦身健身，</p>

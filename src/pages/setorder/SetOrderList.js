@@ -22,13 +22,15 @@ function SetOrderList() {
   }
   //data 選擇出來的答案
   const data = useLocation();
-  //answer:從後端傳出來的obj(json資料)
+  //answer:從後 端傳出來的obj(json資料)
   const [answer, setAnswer] = useState({});
   //清單列選出來的component菜單陣列
   const [choose, setChoose] = useState([]);
 
-  //被選到的便當 右邊清單的便當標題
+  //被選到的便當 右邊清單的便當的中文標題
   const [selectTitle, setSelectTitle] = useState('');
+  //被選到的便當 右邊清單的便當的英文標題
+  const [selectTitleEng, setSelectTitleEng] = useState('');
   //被選到的便當 右邊清單
   const [select, setSelect] = useState([]);
   //推薦的套餐id
@@ -57,6 +59,7 @@ function SetOrderList() {
       setChoose(res);
       setSelect(res[0].sushiList);
       setSelectTitle(res[0].bento_ch_name);
+      setSelectTitleEng(res[0].bento_en_name);
       //list 比對清單
       // setList(res.rows);
     };
@@ -95,13 +98,31 @@ function SetOrderList() {
 
           <div className="setmenulist">
             <div className="mycontainer min-hi ">
-              <div className="set-list-title ch-title-22">推薦結果</div>
+              <p className="en-title-14-10 link-bread-set">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME /
+                </Link>
 
-              <div className="set-row set-list-all ">
+                <Link
+                  to={'./stepstart'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  SET
+                </Link>
+              </p>
+              <div className="set-list-title ch-title-22 link-bread-set">
+                推薦結果
+              </div>
+
+              <div className="set-list-all ">
                 <div className="set-list-left">
                   <div className="set-input-all align-items-center">
                     <div className="set-input-from ch-cont-14">從</div>
                     <input
+                      min="2022-04-13"
                       className="set-input-date"
                       type="date"
                       value={date}
@@ -137,7 +158,7 @@ function SetOrderList() {
                     style={{ display: 'none' }}
                     id="date-error"
                   >
-                    選擇日期不能比今日時間早
+                    *選擇日期不能比今日時間早
                   </div>
                   <div
                     className="ch-cont-12 text-light-bg date-error"
@@ -160,7 +181,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={0}
 
                     // list={list}
@@ -171,7 +194,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={1}
                     // list={list}
                   />
@@ -181,7 +206,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={2}
                     // list={list}
                   />
@@ -191,7 +218,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={3}
                     // list={list}
                   />
@@ -201,7 +230,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={4}
                     // list={list}
                   />
@@ -211,7 +242,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={5}
                     // list={list}
                   />
@@ -221,7 +254,9 @@ function SetOrderList() {
                     setAnswer={setAnswer}
                     select={select}
                     setSelect={setSelect}
+                    selectTitle={selectTitle}
                     setSelectTitle={setSelectTitle}
+                    selectTitleEng={selectTitleEng}
                     index={6}
                     // list={list}
                   />

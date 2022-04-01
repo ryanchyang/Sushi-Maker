@@ -56,7 +56,7 @@ function SetOrderFinal(props) {
   // bento_id week  combo price
 
   function sendList() {
-    const memid =localStorage.getItem('mem_id');
+    const memid = localStorage.getItem('mem_id');
     const sendData = async () => {
       const res = await fetch(config.GET_SET_SENDLIST, {
         method: 'POST',
@@ -84,9 +84,24 @@ function SetOrderFinal(props) {
           <Title title={'Just For You'} />
           <div className="setmenulist">
             <div className="mycontainer min-hi">
-              <div className="set-list-title ch-title-22">推薦結果</div>
-              <div className="set-row setorderfinal">
-                <div className="set-list-left col-12">
+              <p className="en-title-14-10 link-bread-set">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME /
+                </Link>
+
+                <Link
+                  to={'./stepstart'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  SET
+                </Link>
+              </p>
+              <div className="set-list-title-final ch-title-22">推薦結果</div>
+              <div className="setorderfinal">
+                <div className="set-list-left col-lg-12 col-md-24">
                   <div className="set-menu-title">
                     <div className="set-day-title en-cont-18">DAY</div>
                     <div className="set-bento-title ch-cont-18">每日套餐</div>
@@ -114,7 +129,7 @@ function SetOrderFinal(props) {
                   })}
                   {/* 便當列表結束 */}
                 </div>
-                <div className="set-list-right col-5">
+                <div className="set-list-right-final">
                   <div className="set-final-list-flex">
                     <div className="ch-cont-14">起始日期</div>
                     <div className="ch-cont-14">{lastanswer.date}</div>
@@ -170,12 +185,14 @@ function SetOrderFinal(props) {
                     <div className="bento-sushi-menu"></div>
                   </div>
                   <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
-                    <div
-                      className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm"
-                      onClick={sendList}
-                    >
-                      送出
-                    </div>
+                    <Link to="/setorder/stepstart">
+                      <div
+                        className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm"
+                        onClick={sendList}
+                      >
+                        送出
+                      </div>
+                    </Link>
                   </div>
                 </div>
               </div>

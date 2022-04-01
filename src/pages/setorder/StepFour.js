@@ -70,6 +70,21 @@ function StepFour() {
 
             <div className="step">
               <div className="mycontainer min-hi">
+                <p className="en-title-14-10">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME /
+                  </Link>
+
+                  <Link
+                    to={'./stepstart'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    SET
+                  </Link>
+                </p>
                 <div className="set-all-content">
                   <div className="set-title col-12 set-title-0">
                     <div className="step-mob-title set-text-center set-title-4">
@@ -77,7 +92,7 @@ function StepFour() {
                     </div>
                   </div>
                   <div className="set-question-box">
-                    <div className="ch-title-22 set-text-center set-content my-5 ">
+                    <div className="ch-title-22 set-text-center set-content-four">
                       喜歡吃什麼食物?
                     </div>
                     <div className="step4-annotation ch-cont-12 pb-5 ">
@@ -101,7 +116,7 @@ function StepFour() {
                     </div>
                     <div className="ch-cont-16"></div>
                     <div className="step-reset-enter-btn-all">
-                      <Link to="./stepthree">
+                      <Link to="/setorder/stepthree">
                         <button className="ch-title-22 step-reset-btn">
                           返回
                         </button>

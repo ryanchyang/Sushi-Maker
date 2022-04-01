@@ -1,5 +1,8 @@
 @import './../../styles/global.scss';
 .step {
+  img{
+    width: 50%;
+  }
   .step4-annotation{
     text-align: center;
   }
@@ -92,8 +95,8 @@
 
   .set-question-box {
     align-items: center;
-    margin: auto;
-    padding: 8% 4%;
+    margin:1% auto 0 auto;
+    padding: 6% 4%;
     width: 85%;
     border: 1px solid #212121;
     border-radius: 13px;
@@ -104,8 +107,8 @@
   
   .bento-img-center {
     display: flex;
-    align-items: center;
-    padding-bottom: 5%;
+    justify-content: center;
+    padding-bottom: 2%;
     
   }
   .set-bento-img {
@@ -129,6 +132,19 @@
   }
   .set-content {
     padding-bottom: 2%;
+    margin:10% 0 10% 0;
+  }
+  .set-content-start {
+    padding-bottom: 2%;
+    // margin:10% 0 10% 0;
+  }
+  .set-content-one {
+    padding-bottom: 2%;
+    // margin:10% 0 10% 0;
+  }
+  .set-content-four {
+    padding-bottom: 2%;
+    margin:10% 0 2% 0;
   }
   .setorder-btn-all {
     display: flex;
@@ -158,6 +174,10 @@
     }
   }
   @media screen and (max-width: 600px) {
+    .set-question-box{
+      margin:5% auto 0 auto;
+
+    }
     .stepfour-paddiing {
       width: 100%;
     }
@@ -184,6 +204,23 @@
       cursor: pointer;
     }
   }
+  @media screen and (max-width: 576px) {
+    .link-bread-set{
+      margin-top:10%;
+    }
+
+    .set-question-box{
+      margin:15% auto 0 auto;
+
+    }
+  }
+
+
   @media screen and (max-width: 400px) {
+
+    .set-question-box{
+      margin-top:20% auto 0 auto;
+
+    }
   }
 }

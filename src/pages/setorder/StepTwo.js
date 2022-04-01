@@ -28,6 +28,21 @@ function StepTwo(props) {
           <Title title={'JUST FOR YOU'} />
           <div className="step">
             <div className="mycontainer min-hi">
+            <p className="en-title-14-10">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#575757' }}
+                >
+                  HOME /
+                </Link>
+
+                <Link
+                  to={'./stepstart'}
+                  style={{ textDecoration: 'none', color: '#b03342' }}
+                >
+                  SET
+                </Link>
+              </p>
               <div className="set-all-content">
                 <div className="set-title col-12 set-title-2">
                   <div className="step-mob-title set-text-center set-title-1">
@@ -35,7 +50,7 @@ function StepTwo(props) {
                   </div>
                 </div>
                 <div className="set-question-box">
-                  <div className="ch-title-22 set-text-center set-content my-5  pb-5">
+                  <div className="ch-title-22 set-text-center set-content step-title">
                     你想要?
                   </div>
                   <div className="setorder-btn-all set-text-center ">
@@ -54,8 +69,11 @@ function StepTwo(props) {
                   </div>
                   <div className="ch-cont-16"></div>
                   <div className="step-reset-enter-btn-all">
-                    <button className="ch-title-22 step-reset-btn">返回</button>
-
+                    <Link to="/setorder/stepone">
+                      <button className="ch-title-22 step-reset-btn">
+                        返回
+                      </button>
+                    </Link>
                     <Link
                       to={{
                         pathname: '/setorder/stepthree',

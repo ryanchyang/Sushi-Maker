@@ -7,7 +7,6 @@ import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import SetMenuFinal from './SetMenuFinal';
 
 function SetMenuList(props) {
-  // console.log('props-compo', props);
 
   // 套餐光箱
   const [show, setShow] = useState(false);
@@ -16,7 +15,7 @@ function SetMenuList(props) {
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title className="en-cont-30">套餐說明</Modal.Title>
+        <Modal.Title className="en-cont-30">便當內容</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="setmenulist">
@@ -29,20 +28,29 @@ function SetMenuList(props) {
               />
             </div>
             <div className="bento-view-buttom align-items-center">
-              <div className="set-nutrient-btn">
-                <div className="set-nutrient-bento-name ch-title-18">
-                  {props.selectTitle}
-                </div>
-                {/* <div className="btn btn-sm btn-outline-primary primeal-btn-outline-sm set-nutrient float-end">
-                  營養成份
-                </div> */}
-              </div>
+              <div className="set-nutrient-btn"></div>
             </div>
             <div className="bento-sushi-menu-all">
-              <div className="bento-sushi-menu">
-                
+              <div className="set-nutrient-bento-name en-cont-28">
+                {props.selectTitle}
               </div>
-
+              <div className="set-nutrient-bento-name en-cont-28">
+                {props.selectTitleEng}
+              </div>
+              <div className="bento-sushi-menu">
+                {props.select.map((selects, i) => {
+                  return (
+                    <div className="set-menu-sushi col-12 col-12" key={i}>
+                      <div className="set-menu-sushi col-12-ch ch-cont-16 mb-5">
+                        {selects.c_prod_ch_name}
+                      </div>
+                      {/* <div className="set-menu-sushi col-12-en en-cont-12">
+                                {selects.c_prod_en_name}
+                              </div> */}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
@@ -59,7 +67,6 @@ function SetMenuList(props) {
     </Modal>
   );
   //套餐光箱結束
-  console.log('props.choose', props.choose);
   //菜單選擇
   function menuChange(e) {
     const newdata = [...props.answer];
@@ -74,9 +81,6 @@ function SetMenuList(props) {
     props.setSelectTitle(selectedBento.bento_ch_name);
   }
 
-  // function listChange(e) {
-  //   console.log('hello');
-  // }
   return (
     <>
       <div className="setmenulistname">

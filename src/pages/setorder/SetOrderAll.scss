@@ -1,5 +1,9 @@
 @import './../../styles/global.scss';
 .setmenulist {
+ 
+  .link-bread-set{
+    margin-bottom:3%;
+  }
   .lightbox-bento-img-element {
     display: flex;
     // flex-wrap: wrap;
@@ -26,6 +30,8 @@
   .setorderfinal {
     align-items: flex-end;
     margin-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
   }
   .set-final-list-flex {
     align-items: center;
@@ -44,13 +50,16 @@
     padding: 5px 10px 0px;
   }
   .set-list-all {
+    display: flex;
+    justify-content: space-around;
     position: relative;
   }
   .set-row {
     display: flex;
   }
-  .set-list-title {
-    padding-bottom: 4%;
+ 
+  .set-list-title-final{
+    padding-bottom: 6%;
   }
   .set-menu-title {
     align-content: space-around;
@@ -67,7 +76,7 @@
     display: flex;
   }
   .date-error {
-    padding-bottom: 10%;
+    padding:3% 0 5% 3%;
   }
   .set-input-from {
     padding-right: 2%;
@@ -113,6 +122,13 @@
     margin-left: auto;
     display: block;
   }
+  .set-list-final {
+    background-color: #b5b1b000;
+    height: 100%;
+    margin-left: auto;
+    display: block;
+  }
+
 
   .setorderlist-set-bento-img {
     width: 100%;
@@ -188,7 +204,9 @@
   .set-nutrient-bento-name {
     margin-bottom: 8%;
   }
-
+  .set-nutrient-bento-name-lightbox{
+    padding-left: 5%;
+}
   @media screen and (max-width: 1516) {
     @include mytitle;
     font-size: 1.4rem;
@@ -197,12 +215,31 @@
   }
 
   @media screen and (max-width: 991px) {
-    .set-list-down {
+    .date-error{
+      padding:2% 0 2% 2%;
+    }
+    .set-order-list-buttom{
+      margin-top: 10%;
+    }
+    .set-view-all {
+      padding: 0;
+    }
+    .set-list-right-final{
+      margin-right:2%;
+      margin-top: 2%;
+    }
+    .set-list-down-correct {
       margin-top: 6rem;
+      display: block;
+    }
+    .set-list-down-error {
+      margin-top: 6rem;
+      display: none;
     }
     .set-list-right {
       display: none;
     }
+    
     .set-list-left {
       width: 100%;
     }
@@ -212,5 +249,17 @@
     .custom-info {
       display: block;
     }
+    .setorderfinal{
+      flex-direction: column;
+    }
+    .set-list-down{
+      margin-top: 0;
+    }
+  }
+}
+@media screen and(max-width:576px){
+  .link-bread-set{
+    margin-top:10%;
+    margin-bottom:2%;
   }
 }
