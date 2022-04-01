@@ -22,6 +22,7 @@ import ShareSaves from './pages/share/ShareSaves';
 import ShareEdit from './pages/share/ShareEdit';
 import ShareUpload from './pages/share/ShareUpload';
 import SharePost from './pages/share/SharePost';
+import ShareThree from './pages/share/ShareThree';
 
 // Home
 import Home from './pages/home/Index';
@@ -136,6 +137,9 @@ function App() {
             </Route>
             <Route path="/share/post">
               <SharePost />
+            </Route>
+            <Route path="/share/three">
+              <ShareThree />
             </Route>
             <Route path="/" exact>
               <Home
