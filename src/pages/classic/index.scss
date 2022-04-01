@@ -191,6 +191,19 @@
     left: 20%;
     opacity: 0;
     transition: 0.5s ease-in-out;
+    // background: green;
+    // background: center/cover no-repeat url(./brush.png);
+  }
+  .content:before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.35;
+    background: center/cover no-repeat url(./brush.png);
   }
 
 
