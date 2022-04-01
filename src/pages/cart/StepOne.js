@@ -45,8 +45,8 @@ function StepOne(props) {
 
     const getList = async () => {
       const memid = localStorage.getItem('mem_id');
+      //判斷會員有無登入 有登入才去找 get_CART_ORDER
       if (memid !== null) {
-        //判斷會員有無登入
         const res = await fetch(config.GET_CART_ORDER + `${memid}`);
         const obj = await res.json();
         if (obj.success) {
@@ -203,9 +203,9 @@ function StepOne(props) {
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
-    const memid = localStorage.getItem('mem_id');
+    const memid = localStorage.getItem('mem_id'); //取得 mem id 從localstorage
 
-    setInputSum(inputSum);
+    setInputSum(inputSum); // 把下面的總計數量設定回去
     // console.log('summaryone');
     console.log('210', inputSum);
 
@@ -231,9 +231,6 @@ function StepOne(props) {
           alert('資料錯誤請重新輸入！');
         }
       });
-    // } else {
-    //   console.log('form has errors.');
-    // }
   };
   //改變cm數量輸入欄
   const changeCMCount = (count, pid) => {
@@ -385,11 +382,12 @@ function StepOne(props) {
     const mid = localStorage.getItem('mem_id');
     const cartInfo = await getCart();
     const cartid = cartInfo.cartid;
+    const prodid = pid;
 
     switch (category) {
       case 'set':
         let newSetData = [...list.set];
-        newSetData = newSetData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        newSetData = newSetData.filter(d => d.product_id !== +prodid); //pid相等的是要刪掉的，所以要回傳不相等的
         setList({ ...list, set: newSetData });
 
         let newSetArr = [...deleteProd];
@@ -404,18 +402,18 @@ function StepOne(props) {
           body: JSON.stringify({
             memId: mid,
             cartid: cartid,
-            pid: pid,
+            pid: prodid,
             category: category,
           }),
         });
         break;
 
       case 'cs':
-        console.log('delShowCS.id:', delShowCS.id);
-        const pid = delShowCS.id;
+        // console.log('delShowCS.id:', delShowCS.id);
+        // const pid = delShowCS.id;
 
         let newCsData = [...list.cs];
-        newCsData = newCsData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        newCsData = newCsData.filter(d => d.product_id !== +prodid); //pid相等的是要刪掉的，所以要回傳不相等的
         setList({ ...list, cs: newCsData });
 
         let newCsArr = [...deleteProd];
@@ -431,7 +429,7 @@ function StepOne(props) {
           body: JSON.stringify({
             memId: mid,
             cartid: cartid,
-            pid: pid,
+            pid: prodid,
             category: category,
           }),
         });
@@ -439,7 +437,7 @@ function StepOne(props) {
 
       case 'cm':
         let newCmData = [...list.cm];
-        newCmData = newCmData.filter(d => d.product_id !== +pid); //pid相等的是要刪掉的，所以要回傳不相等的
+        newCmData = newCmData.filter(d => d.product_id !== +prodid); //pid相等的是要刪掉的，所以要回傳不相等的
         setList({ ...list, cm: newCmData });
 
         let newCmArr = [...deleteProd];
@@ -454,7 +452,7 @@ function StepOne(props) {
           body: JSON.stringify({
             memId: mid,
             cartid: cartid,
-            pid: pid,
+            pid: prodid,
             category: category,
           }),
         });
@@ -466,28 +464,12 @@ function StepOne(props) {
   };
 
   // 套餐光箱
-  const [show, setShow] = useState({
-    open: false,
-    id: '',
-    name: '',
-    set: '',
-  });
+  const [show, setShow] = useState(false);
+  const [setSelect, setSetSelect] = useState(0); //找cart_orders中套餐點了第幾個(i)套餐
   const handleClose = () => setShow(false);
-  const handleShow = (e, arr) => {
-    const prod_id = e.currentTarget.dataset.id;
-    console.log(prod_id);
-    const prod_name = e.currentTarget.dataset.name;
-    console.log(prod_name);
-    const setArr = arr;
-    console.log('setArr:', setArr);
-
-    setShow({
-      ...show,
-      open: true,
-      id: prod_id,
-      name: prod_name,
-      set: setArr,
-    });
+  const handleShow = i => {
+    setShow(true);
+    setSetSelect(i); // 光箱要開的是第i 個
   };
 
   // 刪除光箱 CS
@@ -770,7 +752,11 @@ function StepOne(props) {
 
                           {/* 光箱 */}
                           {
-                            <Modal show={show.open} onHide={handleClose}>
+                            <Modal
+                              show={show && setSelect === i}
+                              onHide={handleClose}
+                            >
+                              {/* { show={ show && setSelect === i }} */}
                               <Modal.Header closeButton>
                                 <Modal.Title className="en-cont-30 m-3">
                                   套餐說明
@@ -783,16 +769,13 @@ function StepOne(props) {
                                 <table className="table table-hover">
                                   <tbody show={show.set}>
                                     {v.set_info_array.map((v, i) => {
-                                      {
-                                        console.log('787', show.set);
-                                      }
                                       return (
                                         <tr key={i + 1}>
                                           <th
                                             scope="row"
                                             className="en-cont-36"
                                           >
-                                            {/* {i + 1} */}
+                                            {i + 1}
                                           </th>
                                           <td className="en-cont-14">
                                             <div>
@@ -823,11 +806,8 @@ function StepOne(props) {
                             data-id={v.product_id}
                             data-name={v.set_name}
                             data-set={v.set_info_array}
-                            onClick={e => {
-                              handleShow(e, v.set_info_array);
-                              console.log('828', v.set_info_array);
-                            }}
-                            // onClick={handleShow}
+                            onClick={() => handleShow(i)}
+                            // 顯示的是所選的那一個套餐的光箱
                           >
                             <img src="/img/cart/icon-info.svg" alt="" />
                           </div>
@@ -895,7 +875,7 @@ function StepOne(props) {
                           </div>
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center">
-                          {v.orders_print_time}秒/個
+                          {/* 套餐不用印製時間 */}
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
@@ -1183,17 +1163,14 @@ function StepOne(props) {
 
                 <div className="row  d-flex justify-content-center justify-content-md-end">
                   <div className="  next-btn d-flex my-5 ">
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
-                      onClick={() => {
-                        // 轉至上一頁
-                        history.goBack();
-                      }}
-                    >
-                      繼續購物
-                    </button>
-                    {/* <Link to="./StepTwo"> */}
+                    <Link to="/classic">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                      >
+                        繼續購物
+                      </button>
+                    </Link>
                     <button
                       type="button"
                       className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
@@ -1201,7 +1178,6 @@ function StepOne(props) {
                     >
                       前往結帳
                     </button>
-                    {/* </Link> */}
                   </div>
                 </div>
               </div>

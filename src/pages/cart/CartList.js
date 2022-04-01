@@ -58,7 +58,7 @@ function CartList(props) {
                   <Link to="/classic">
                     <button
                       type="button"
-                      className="btn btn-primary  primeal-btn"
+                      className="btn btn-primary primeal-btn"
                     >
                       繼續購物
                     </button>
