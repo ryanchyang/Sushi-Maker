@@ -162,25 +162,28 @@ function App() {
               <LatestNews navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/stepstart" exact>
-              <StepStart />
+              <StepStart navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/stepone" exact>
-              <StepOne />
+              <StepOne navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/steptwo" exact>
-              <StepTwo />
+              <StepTwo navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/stepthree" exact>
-              <StepThree />
+              <StepThree navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/stepfour" exact>
-              <StepFour />
+              <StepFour navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/setorder/setorderfinal">
-              <SetOrderFinal />
+              <SetOrderFinal
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+              />
             </Route>
             <Route path="/setorder/setorderlist">
-              <SetOrderList />
+              <SetOrderList navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/customize/:id" exact>
               <CusMiDetail />

@@ -5,8 +5,12 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './SetOrderAll.scss';
 import config from '../../Config';
+import NavPage from '../layout/components/NavPage';
 
-function SetOrderList() {
+function SetOrderList(props) {
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
   //今日日期
   function getTodayDate() {
     const fullDate = new Date();
@@ -26,7 +30,6 @@ function SetOrderList() {
   const [answer, setAnswer] = useState({});
   //清單列選出來的component菜單陣列
   const [choose, setChoose] = useState([]);
-
   //被選到的便當 右邊清單的便當的中文標題
   const [selectTitle, setSelectTitle] = useState('');
   //被選到的便當 右邊清單的便當的英文標題
@@ -91,236 +94,245 @@ function SetOrderList() {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Just For You'} />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Just For You'} />
 
-          <div className="setmenulist">
-            <div className="mycontainer min-hi ">
-              <p className="en-title-14-10 link-bread-set">
-                <Link
-                  to={'/'}
-                  style={{ textDecoration: 'none', color: '#575757' }}
-                >
-                  HOME /
-                </Link>
+            <div className="setmenulist">
+              <div className="mycontainer min-hi ">
+                <p className="en-title-14-10 link-bread-set">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME /
+                  </Link>
 
-                <Link
-                  to={'./stepstart'}
-                  style={{ textDecoration: 'none', color: '#b03342' }}
-                >
-                  SET
-                </Link>
-              </p>
-              <div className="set-list-title ch-title-22 link-bread-set">
-                推薦結果
-              </div>
+                  <Link
+                    to={'./stepstart'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    SET
+                  </Link>
+                </p>
+                <div className="set-list-title ch-title-22 link-bread-set">
+                  推薦結果
+                </div>
 
-              <div className="set-list-all ">
-                <div className="set-list-left">
-                  <div className="set-input-all align-items-center">
-                    <div className="set-input-from ch-cont-14">從</div>
-                    <input
-                      min="2022-04-13"
-                      className="set-input-date"
-                      type="date"
-                      value={date}
-                      onChange={setdateChange}
-                    />
-                    <div className="set-input-from ch-cont-14">開始吃，</div>
-                    <div className="set-input-from ch-cont-14">吃</div>
-                    <select
-                      name=""
-                      id=""
-                      className="set-week"
-                      value={week}
-                      onChange={weekChange}
-                    >
-                      <option value="1" sele cted={+week === 1 ? true : false}>
-                        1
-                      </option>
-                      <option value="2" selected={+week === 2 ? true : false}>
-                        2
-                      </option>
-                      <option value="3" selected={+week === 3 ? true : false}>
-                        3
-                      </option>
-                      {/* <option value="1">1</option>
+                <div className="set-list-all ">
+                  <div className="set-list-left">
+                    <div className="set-input-all align-items-center">
+                      <div className="set-input-from ch-cont-14">從</div>
+                      <input
+                        min="2022-04-13"
+                        className="set-input-date"
+                        type="date"
+                        value={date}
+                        onChange={setdateChange}
+                      />
+                      <div className="set-input-from ch-cont-14">開始吃，</div>
+                      <div className="set-input-from ch-cont-14">吃</div>
+                      <select
+                        name=""
+                        id=""
+                        className="set-week"
+                        value={week}
+                        onChange={weekChange}
+                      >
+                        <option
+                          value="1"
+                          sele
+                          cted={+week === 1 ? true : false}
+                        >
+                          1
+                        </option>
+                        <option value="2" selected={+week === 2 ? true : false}>
+                          2
+                        </option>
+                        <option value="3" selected={+week === 3 ? true : false}>
+                          3
+                        </option>
+                        {/* <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option> */}
-                    </select>
-                    <div className="set-input-from ch-cont-14">週。</div>
-                  </div>
-
-                  <div
-                    className="ch-cont-12 text-primary date-error"
-                    style={{ display: 'none' }}
-                    id="date-error"
-                  >
-                    *選擇日期不能比今日時間早
-                  </div>
-                  <div
-                    className="ch-cont-12 text-light-bg date-error"
-                    style={{
-                      display: 'block',
-                      color: '#f7f6f3',
-                      userSelect: 'none',
-                    }}
-                    id="date-true"
-                  >
-                    xxxxxx
-                  </div>
-                  <div className="set-menu-title">
-                    <div className="set-day-title en-cont-18">DAY</div>
-                    <div className="set-bento-title ch-cont-16">每日套餐</div>
-                  </div>
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={0}
-
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={1}
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={2}
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={3}
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={4}
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={5}
-                    // list={list}
-                  />
-                  <SetMenuList
-                    answer={answer}
-                    choose={choose}
-                    setAnswer={setAnswer}
-                    select={select}
-                    setSelect={setSelect}
-                    selectTitle={selectTitle}
-                    setSelectTitle={setSelectTitle}
-                    selectTitleEng={selectTitleEng}
-                    index={6}
-                    // list={list}
-                  />
-                </div>
-                <div className="set-list-right col-8">
-                  <div className="set-view-all">
-                    <div className="bento-img-element mx-auto">
-                      <img
-                        className="setorderlist-set-bento-img"
-                        src={`http://localhost:3500/img/home/mealplan-bento.png`}
-                        alt="product-image"
-                      />
+                      </select>
+                      <div className="set-input-from ch-cont-14">週。</div>
                     </div>
-                    <div className="bento-view-buttom align-items-center">
-                      <div className="set-nutrient-btn">
-                        <div className="set-nutrient-bento-name en-cont-28">
-                          {selectTitle}
-                        </div>
-                        {/* <div className="btn btn-sm btn-outline-primary primeal-btn-outline-sm set-nutrient float-end">
+
+                    <div
+                      className="ch-cont-12 text-primary date-error"
+                      style={{ display: 'none' }}
+                      id="date-error"
+                    >
+                      *選擇日期不能比今日時間早
+                    </div>
+                    <div
+                      className="ch-cont-12 text-light-bg date-error"
+                      style={{
+                        display: 'block',
+                        color: '#f7f6f3',
+                        userSelect: 'none',
+                      }}
+                      id="date-true"
+                    >
+                      xxxxxx
+                    </div>
+                    <div className="set-menu-title">
+                      <div className="set-day-title en-cont-18">DAY</div>
+                      <div className="set-bento-title ch-cont-16">每日套餐</div>
+                    </div>
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={0}
+
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={1}
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={2}
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={3}
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={4}
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={5}
+                      // list={list}
+                    />
+                    <SetMenuList
+                      answer={answer}
+                      choose={choose}
+                      setAnswer={setAnswer}
+                      select={select}
+                      setSelect={setSelect}
+                      selectTitle={selectTitle}
+                      setSelectTitle={setSelectTitle}
+                      selectTitleEng={selectTitleEng}
+                      index={6}
+                      // list={list}
+                    />
+                  </div>
+                  <div className="set-list-right col-8">
+                    <div className="set-view-all">
+                      <div className="bento-img-element mx-auto">
+                        <img
+                          className="setorderlist-set-bento-img"
+                          src={`http://localhost:3500/img/home/mealplan-bento.png`}
+                          alt="product-image"
+                        />
+                      </div>
+                      <div className="bento-view-buttom align-items-center">
+                        <div className="set-nutrient-btn">
+                          <div className="set-nutrient-bento-name en-cont-28">
+                            {selectTitle}
+                          </div>
+                          {/* <div className="btn btn-sm btn-outline-primary primeal-btn-outline-sm set-nutrient float-end">
                           營養成份
                         </div> */}
+                        </div>
                       </div>
-                    </div>
-                    {/* 右邊的菜單 */}
-                    <div className="bento-sushi-menu-all">
-                      <div className="bento-sushi-menu">
-                        {select.map((selects, i) => {
-                          return (
-                            <div
-                              className="set-menu-sushi col-12 col-12"
-                              key={i}
-                            >
-                              <div className="set-menu-sushi col-12-ch ch-cont-16 mb-5">
-                                {selects.c_prod_ch_name}
-                              </div>
-                              {/* <div className="set-menu-sushi col-12-en en-cont-12">
+                      {/* 右邊的菜單 */}
+                      <div className="bento-sushi-menu-all">
+                        <div className="bento-sushi-menu">
+                          {select.map((selects, i) => {
+                            return (
+                              <div
+                                className="set-menu-sushi col-12 col-12"
+                                key={i}
+                              >
+                                <div className="set-menu-sushi col-12-ch ch-cont-16 mb-5">
+                                  {selects.c_prod_ch_name}
+                                </div>
+                                {/* <div className="set-menu-sushi col-12-en en-cont-12">
                                 {selects.c_prod_en_name}
                               </div> */}
-                            </div>
-                          );
-                        })}
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
-                <Link
-                  to={{
-                    pathname: './setorderfinal',
-                    state: { date, week, choose, answer, numberid },
-                  }}
-                >
-                  <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
-                    下一步
-                  </div>
-                </Link>
+                <div className="set-list-down row  d-flex justify-content-center justify-content-md-end mx-5 px-5">
+                  <Link
+                    to={{
+                      pathname: './setorderfinal',
+                      state: { date, week, choose, answer, numberid },
+                    }}
+                  >
+                    <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
+                      下一步
+                    </div>
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
 
-          <Footer />
+            <Footer />
+          </div>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

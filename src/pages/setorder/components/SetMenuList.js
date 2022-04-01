@@ -5,6 +5,7 @@ import { ReactComponent as SetContent } from './../../../imgs/setorder/icon-info
 import { Link, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import SetMenuFinal from './SetMenuFinal';
+import { PropaneRounded } from '@mui/icons-material';
 
 function SetMenuList(props) {
 
@@ -32,13 +33,14 @@ function SetMenuList(props) {
             </div>
             <div className="bento-sushi-menu-all">
               <div className="set-nutrient-bento-name en-cont-28">
-                {props.selectTitle}
+                {props.answer[props.index]?.bento_ch_name}
               </div>
               <div className="set-nutrient-bento-name en-cont-28">
-                {props.selectTitleEng}
+                {props.answer[props.index]?.bento_en_name}
               </div>
               <div className="bento-sushi-menu">
-                {props.select.map((selects, i) => {
+              {/* nswer[props.index].sushiList */}
+                {props.answer[props.index]?.sushiList.map((selects, i) => {
                   return (
                     <div className="set-menu-sushi col-12 col-12" key={i}>
                       <div className="set-menu-sushi col-12-ch ch-cont-16 mb-5">

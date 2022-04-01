@@ -1,8 +1,13 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import NavPage from '../layout/components/NavPage';
 
-function StepThree() {
+function StepThree(props) {
+  //nav 滿版
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
   //上一個的答案
   const data = useLocation();
   // console.log('data.state', data.state);
@@ -29,82 +34,87 @@ function StepThree() {
     return (
       <>
         <Header />
-        <div style={{ display: 'flex' }}>
-          <AsideLeft />
-          <div style={{ width: '100%' }}>
-            <Title title={'JUST FOR YOU'} />
-            <div className="step">
-              <div className="mycontainer min-hi">
-              <p className="en-title-14-10">
-                <Link
-                  to={'/'}
-                  style={{ textDecoration: 'none', color: '#575757' }}
-                >
-                  HOME /
-                </Link>
+        {navIsOpen && (
+          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+        )}
+        <div style={navIsOpen ? hiddenBlock : showBlock}>
+          <div style={{ display: 'flex' }}>
+            <AsideLeft />
+            <div style={{ width: '100%' }}>
+              <Title title={'JUST FOR YOU'} />
+              <div className="step">
+                <div className="mycontainer min-hi">
+                  <p className="en-title-14-10">
+                    <Link
+                      to={'/'}
+                      style={{ textDecoration: 'none', color: '#575757' }}
+                    >
+                      HOME /
+                    </Link>
 
-                <Link
-                  to={'./stepstart'}
-                  style={{ textDecoration: 'none', color: '#b03342' }}
-                >
-                  SET
-                </Link>
-              </p>
-                <div className="set-all-content">
-                  <div className="set-title col-12 set-title-0">
-                    <div className="step-mob-title set-text-center set-title-3">
-                      規劃您的專屬菜單
+                    <Link
+                      to={'./stepstart'}
+                      style={{ textDecoration: 'none', color: '#b03342' }}
+                    >
+                      SET
+                    </Link>
+                  </p>
+                  <div className="set-all-content">
+                    <div className="set-title col-12 set-title-0">
+                      <div className="step-mob-title set-text-center set-title-3">
+                        規劃您的專屬菜單
+                      </div>
                     </div>
-                  </div>
-                  <div className="set-question-box">
-                    <div className="ch-title-22 set-text-center set-content step-title ">
-                      喜歡什麼主題?
-                    </div>
-                    <div className="setorder-btn-all set-text-center ">
-                      {lists.map(list => (
-                        <button
-                          className="set-question-btn ch-cont-14"
-                          key={list.id}
-                          onClick={() => {
-                            handleColor(list);
+                    <div className="set-question-box">
+                      <div className="ch-title-22 set-text-center set-content step-title ">
+                        喜歡什麼主題?
+                      </div>
+                      <div className="setorder-btn-all set-text-center ">
+                        {lists.map(list => (
+                          <button
+                            className="set-question-btn ch-cont-14"
+                            key={list.id}
+                            onClick={() => {
+                              handleColor(list);
+                            }}
+                            style={
+                              list.id === selected2
+                                ? answerClicked
+                                : answerNoClick
+                            }
+                          >
+                            {list.title}
+                          </button>
+                        ))}
+                      </div>
+                      <div className="ch-cont-16"></div>
+                      <div className="step-reset-enter-btn-all">
+                        <Link to="/setorder/steptwo">
+                          <button className="ch-title-22 step-reset-btn">
+                            返回
+                          </button>
+                        </Link>
+
+                        <Link
+                          to={{
+                            pathname: '/setorder/stepfour',
+                            //question1展開
+                            state: { ...question1, selected2 },
                           }}
-                          style={
-                            list.id === selected2
-                              ? answerClicked
-                              : answerNoClick
-                          }
                         >
-                          {list.title}
-                        </button>
-                      ))}
-                    </div>
-                    <div className="ch-cont-16"></div>
-                    <div className="step-reset-enter-btn-all">
-                      <Link to="/setorder/steptwo">
-                        <button className="ch-title-22 step-reset-btn">
-                          返回
-                        </button>
-                      </Link>
-
-                      <Link
-                        to={{
-                          pathname: '/setorder/stepfour',
-                          //question1展開
-                          state: { ...question1, selected2 },
-                        }}
-                      >
-                        <button className="ch-title-22 step-reset-btn-red">
-                          確定
-                        </button>
-                      </Link>
+                          <button className="ch-title-22 step-reset-btn-red">
+                            確定
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+              <Footer />
             </div>
-            <Footer />
+            <AsideRight setNavIsOpen={setNavIsOpen}/>
           </div>
-          <AsideRight />
         </div>
       </>
     );
