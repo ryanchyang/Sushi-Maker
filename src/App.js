@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMe } from './WebApi';
 import ScrollToTop from './ScrollToTop';
 // import { AuthContext } from './contexts';
 

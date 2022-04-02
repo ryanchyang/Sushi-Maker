@@ -68,14 +68,14 @@ export const indexRevisePwd = (mem_id, revisePwd) => {
 };
 
 //先留著 換頁render用
-export const getMe = () => {
-  const token = getAuthToken();
-  return fetch(`${BASE_URL}/member/api/auth-list/me`, {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  }).then(res => res.json());
-};
+// export const getMe = () => {
+//   const token = getAuthToken();
+//   return fetch(`${BASE_URL}/member/api/auth-list/me`, {
+//     headers: {
+//       authorization: `Bearer ${token}`,
+//     },
+//   }).then(res => res.json());
+// };
 
 //token拿資料步驟2 : 傳輸回後端找資料的API
 export const findMem = mem_id => {

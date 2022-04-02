@@ -1,7 +1,7 @@
 import config from './Config';
 const TOKEN_NAME = 'token';
 const MEM_ID = 'mem_id';
-const CART_COUNT = 'cart_count';
+const BASE_URL = 'http://localhost:3500';
 
 export const setAuthToken = token => {
   localStorage.setItem(TOKEN_NAME, token);
@@ -39,6 +39,19 @@ export const getCart = async () => {
 };
 
 //取購物車未結帳數量
-export const getOrderQty = () => {
-  return localStorage.getItem(CART_COUNT)
-}
+
+export const getCartCount = async mem_id => {
+  await fetch(`${BASE_URL}/member/api/get-cart-count`, {
+    method: 'GET',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id,
+    }),
+  })
+    .then(res => res.json())
+    .then(obj => {
+      localStorage.setItem('cart_count', obj.cart_count);
+    });
+};
