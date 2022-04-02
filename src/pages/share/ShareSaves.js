@@ -1,6 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import { useState, useEffect } from 'react';
 
+import NavPage from '../layout/components/NavPage';
 import Masonry from './components/Masonry';
 import ShareProfile from './components/ShareProfile';
 import styles from './Share.module.scss';
@@ -9,11 +10,16 @@ import config from '../../Config';
 import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
-function ShareSaves() {
+function ShareSaves(props) {
   const currentWidth = useCurrentWidth();
   const [columns, setColumns] = useState(getCurrentColumns(currentWidth));
 
   const [userShareItemsData, setUserShareItemsData] = useState([]);
+
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   const updateDimensions = () => {
     setColumns(getCurrentColumns(currentWidth));
@@ -42,23 +48,27 @@ function ShareSaves() {
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Share'} />
-          <ShareProfile />
-          <div className={`${styles['waterfall-container']}`}>
-            <Masonry
-              columns={columns}
-              gap={columns}
-              data={userShareItemsData}
-            />
+      <Header />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
+            <ShareProfile />
+            <div className={`${styles['waterfall-container']}`}>
+              <Masonry
+                columns={columns}
+                gap={columns}
+                data={userShareItemsData}
+              />
+            </div>
+            <Footer />
           </div>
-
-          <br />
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

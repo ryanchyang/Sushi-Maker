@@ -53,7 +53,7 @@ import CartList from './pages/cart/CartList';
 function App() {
   localStorage.setItem('LoginStatus', false);
   const loginStatus = localStorage.getItem('loginStatus');
-//判斷使用者是否登入
+  //判斷使用者是否登入
   const [isLogin, setIsLogin] = useState(loginStatus);
 
   // 判斷使用者是否點擊漢堡
@@ -136,23 +136,29 @@ function App() {
               />
             </Route>
             <Route path="/share" exact>
-              <Share />
+              <Share navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route
               path="/share/items/:id?"
-              render={() => <ShareItems key={Date.now()} />}
+              render={() => (
+                <ShareItems
+                  key={Date.now()}
+                  navIsOpen={navIsOpen}
+                  setNavIsOpen={setNavIsOpen}
+                />
+              )}
             ></Route>
             <Route path="/share/saves">
-              <ShareSaves />
+              <ShareSaves navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/share/upload">
-              <ShareUpload />
+              <ShareUpload navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/share/edit">
-              <ShareEdit />
+              <ShareEdit navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/share/post">
-              <SharePost />
+              <SharePost navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/share/three">
               <ShareThree />

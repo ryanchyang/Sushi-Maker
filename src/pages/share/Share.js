@@ -3,6 +3,7 @@ import ShareNavBar from './components/ShareNavBar';
 import Masonry from './components/Masonry';
 import ShareFilter from './components/ShareFilter';
 import ShareColController from './components/ShareColController';
+import NavPage from '../layout/components/NavPage';
 
 import useCurrentScroll from './hooks/useCurrentScroll';
 import useCurrentWidth from './hooks/useCurrentWidth';
@@ -57,7 +58,7 @@ const filterStateReducer = (state, action) => {
   }
 };
 
-function Share() {
+function Share(props) {
   //controll
   const [filter, setFilter] = useState(false);
   const [masonryContainer, setMasonryContainer] = useState(true);
@@ -81,6 +82,11 @@ function Share() {
 
   //data
   const [shareItemsData, setShareItemsData] = useState([]);
+
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   const getShareItems = async () => {
     const response = await fetch(config.GET_SHARE_PRODS, {
@@ -151,56 +157,62 @@ function Share() {
 
   return (
     <>
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Share'} />
-          <ShareNavBar
-            filter={filter}
-            setFilter={setFilter}
-            search={search}
-            setSearch={setSearch}
-            colControl={colControl}
-            setColControl={setColControl}
-            filterNum={getFilterUpdate().num}
-          />
-          <ShareColController
-            colControl={colControl}
-            setColControl={setColControl}
-            columns={columns}
-            setColumns={setColumns}
-            gap={gap}
-            setGap={setGap}
-          />
-          <div className={` ${styles['share-min-height']}`}>
-            <div
-              className={`${styles['waterfall-container']} ${
-                masonryContainer ? '' : styles['share-display-none']
-              }`}
-            >
-              <Masonry
-                columns={columns}
-                gap={gap}
-                data={shareItemsData}
-                ref={scrollRef}
-                noFound={noFound}
-              />
+      <Header />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
+            <ShareNavBar
+              filter={filter}
+              setFilter={setFilter}
+              search={search}
+              setSearch={setSearch}
+              colControl={colControl}
+              setColControl={setColControl}
+              filterNum={getFilterUpdate().num}
+            />
+            <ShareColController
+              colControl={colControl}
+              setColControl={setColControl}
+              columns={columns}
+              setColumns={setColumns}
+              gap={gap}
+              setGap={setGap}
+            />
+            <div className={` ${styles['share-min-height']}`}>
+              <div
+                className={`${styles['waterfall-container']} ${
+                  masonryContainer ? '' : styles['share-display-none']
+                }`}
+              >
+                <Masonry
+                  columns={columns}
+                  gap={gap}
+                  data={shareItemsData}
+                  ref={scrollRef}
+                  noFound={noFound}
+                />
+              </div>
             </div>
+            <ShareFilter
+              filter={filter}
+              setFilter={setFilter}
+              masonryContainer={masonryContainer}
+              setMasonryContainer={setMasonryContainer}
+              filterState={filterState}
+              dispatch={dispatchFilter}
+              setShareItemsData={setShareItemsData}
+              getShareItems={getShareItems}
+              setNoFound={setNoFound}
+            />
+            {/* <Footer /> */}
           </div>
-          <ShareFilter
-            filter={filter}
-            setFilter={setFilter}
-            masonryContainer={masonryContainer}
-            setMasonryContainer={setMasonryContainer}
-            filterState={filterState}
-            dispatch={dispatchFilter}
-            setShareItemsData={setShareItemsData}
-            getShareItems={getShareItems}
-            setNoFound={setNoFound}
-          />
-          {/* <Footer /> */}
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

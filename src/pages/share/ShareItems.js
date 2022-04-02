@@ -2,14 +2,13 @@ import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import styles from './Share.module.scss';
 
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
-import { ReactComponent as DeleteSm } from '../../imgs/del.svg';
-
 import { ReactComponent as HeartOutline } from '../../imgs/heart-outline.svg';
 import { ReactComponent as HeartFillWhite } from '../../imgs/heart-fill-white.svg';
 import { ReactComponent as Info } from '../../imgs/information.svg';
 import { ReactComponent as Message } from '../../imgs/message.svg';
 import { ReactComponent as Edit } from '../../imgs/edit.svg';
 
+import NavPage from '../layout/components/NavPage';
 import ShareItemImgs from './components/ShareItemImgs';
 import ItemDetailsInfo from './components/ItemDetailsInfo';
 import ItemDetailsComments from './components/ItemDetailsComments';
@@ -23,7 +22,7 @@ import { Button, Modal } from 'react-bootstrap';
 
 import config from '../../Config';
 
-function ShareItems() {
+function ShareItems(props) {
   const [msgbtn, setMsgbtn] = useState(false);
   const [infobtn, setInfobtn] = useState(false);
   const [msgdiv, setMsgdiv] = useState(false);
@@ -44,6 +43,11 @@ function ShareItems() {
   // 加入購物車光箱
   const [show, setShow] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   const {
     mem_id: memberId,
@@ -249,7 +253,7 @@ function ShareItems() {
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
         <div className="en-cont-14 pb-2">
-          {isSubmit ? '流言已更改成功' : '您確定要放棄修改?'}
+          {isSubmit ? '留言已更改成功' : '您確定要放棄修改?'}
         </div>
       </Modal.Body>
       <Modal.Footer>
@@ -271,129 +275,140 @@ function ShareItems() {
   return (
     <>
       {modal}
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Share'} />
-          <div className={`mycontainer`}>
-            <div className="row">
-              <div className="col">
-                <div className="d-flex justify-content-between">
-                  <p className="mytitle en-title-14-10">HOME / SHARE / ITEMS</p>
-                  <div className="d-flex align-items-center">
-                    {editHandler()}
-                    <Delete className="mx-md-4 p-2" />
+      <Header />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
+            <div className={`mycontainer`}>
+              <div className="row">
+                <div className="col">
+                  <div className="d-flex justify-content-between">
+                    <p className="mytitle en-title-14-10">
+                      HOME / SHARE / ITEMS
+                    </p>
+                    <div className="d-flex align-items-center">
+                      {editHandler()}
+                      <Delete className="mx-md-4 p-2" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="d-flex flex-column">
-            <div
-              className={`mycontainer ${styles['mb-30']} ${styles['items-box']} d-flex mb-5`}
-            >
+            <div className="d-flex flex-column">
               <div
-                className={`${styles['img-section']} col d-flex align-items-center flex-column`}
+                className={`mycontainer ${styles['mb-30']} ${styles['items-box']} d-flex mb-5`}
               >
-                <Message
-                  className={`${styles['message-button']} `}
-                  style={btnMoveTemplate()}
-                  onClick={() => {
-                    setMsgbtn(true);
-                  }}
-                  onTransitionEnd={() => {
-                    msgbtn && setMsgdiv(true);
-                  }}
-                />
-                <Info
-                  className={`${styles['info-button']}`}
-                  style={btnMoveTemplate()}
-                  onClick={() => {
-                    setInfobtn(true);
-                  }}
-                  onTransitionEnd={() => {
-                    infobtn && setInfodiv(true);
-                  }}
-                />
-                <div className={`d-flex ${styles['img-info']}`}>
-                  <div className={`${styles['profile-img']} mb-3 mr-md-3 mr-2`}>
-                    <img src={config.MEM_PHOTO + `/${postMemImg}`} alt="" />
+                <div
+                  className={`${styles['img-section']} col d-flex align-items-center flex-column`}
+                >
+                  <Message
+                    className={`${styles['message-button']} `}
+                    style={btnMoveTemplate()}
+                    onClick={() => {
+                      setMsgbtn(true);
+                    }}
+                    onTransitionEnd={() => {
+                      msgbtn && setMsgdiv(true);
+                    }}
+                  />
+                  <Info
+                    className={`${styles['info-button']}`}
+                    style={btnMoveTemplate()}
+                    onClick={() => {
+                      setInfobtn(true);
+                    }}
+                    onTransitionEnd={() => {
+                      infobtn && setInfodiv(true);
+                    }}
+                  />
+                  <div className={`d-flex ${styles['img-info']}`}>
+                    <div
+                      className={`${styles['profile-img']} mb-3 mr-md-3 mr-2`}
+                    >
+                      <img src={config.MEM_PHOTO + `/${postMemImg}`} alt="" />
+                    </div>
+                    <div
+                      className={`${styles['img-title-box']} d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3`}
+                    >
+                      <h2 className={`${styles['img-title']} pt-2`}>
+                        {shareTitle}
+                      </h2>
+                      <h3 className="en-cont-14">{postMemName}</h3>
+                    </div>
+                    <button
+                      className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
+                    >
+                      {toggleHeartHandler()}
+                      {/* <Heart style={{ padding: '10px' }} /> */}
+                      <div className="en-cont-16 text-white d-none d-lg-block">
+                        {savesCount}
+                      </div>
+                    </button>
+                  </div>
+                  <ShareItemImgs itemImgs={itemImgs} />
+                  <div
+                    className={`${styles['img-desc']} d-flex ch-cont-16 justify-content-center`}
+                  >
+                    {shareDesc}
+                  </div>
+                </div>
+                <div className={`${styles['popup-section']} d-flex`}>
+                  <div
+                    className={`${styles['detail-section']}  d-flex flex-column`}
+                    style={
+                      !infodiv ? {} : { width: '560px', padding: '0 15px' }
+                    }
+                    onTransitionEnd={() => {
+                      !infodiv && setInfobtn(false);
+                    }}
+                  >
+                    <ItemDetailsInfo
+                      orderVal={orderVal}
+                      orderPrint={orderPrint}
+                      shareTags={shareTags}
+                      setInfodiv={setInfodiv}
+                    />
                   </div>
                   <div
-                    className={`${styles['img-title-box']} d-flex flex-column flex-grow-1 justify-content-around mb-3  mr-3`}
+                    className={`${styles['message-section']}  d-flex flex-column`}
+                    style={!msgdiv ? {} : { width: '560px', padding: '0 15px' }}
+                    onTransitionEnd={() => {
+                      !msgdiv && setMsgbtn(false);
+                    }}
                   >
-                    <h2 className={`${styles['img-title']} pt-2`}>
-                      {shareTitle}
-                    </h2>
-                    <h3 className="en-cont-14">{postMemName}</h3>
+                    <ItemDetailsComments
+                      setMsgdiv={setMsgdiv}
+                      shareComments={shareComments}
+                      itemId={id}
+                      action={action}
+                      commentSid={commentSid}
+                      handleShow={handleShow}
+                      setIsSubmit={setIsSubmit}
+                    />
                   </div>
-                  <button
-                    className={`${styles['save-button']} mb-3 d-flex align-items-center justify-content-center btn btn-primary`}
-                  >
-                    {toggleHeartHandler()}
-                    {/* <Heart style={{ padding: '10px' }} /> */}
-                    <div className="en-cont-16 text-white d-none d-lg-block">
-                      {savesCount}
-                    </div>
-                  </button>
-                </div>
-                <ShareItemImgs itemImgs={itemImgs} />
-                <div
-                  className={`${styles['img-desc']} d-flex ch-cont-16 justify-content-center`}
-                >
-                  {shareDesc}
                 </div>
               </div>
-              <div className={`${styles['popup-section']} d-flex`}>
-                <div
-                  className={`${styles['detail-section']}  d-flex flex-column`}
-                  style={!infodiv ? {} : { width: '560px', padding: '0 15px' }}
-                  onTransitionEnd={() => {
-                    !infodiv && setInfobtn(false);
-                  }}
-                >
-                  <ItemDetailsInfo
-                    orderVal={orderVal}
-                    orderPrint={orderPrint}
-                    shareTags={shareTags}
-                    setInfodiv={setInfodiv}
-                  />
-                </div>
-                <div
-                  className={`${styles['message-section']}  d-flex flex-column`}
-                  style={!msgdiv ? {} : { width: '560px', padding: '0 15px' }}
-                  onTransitionEnd={() => {
-                    !msgdiv && setMsgbtn(false);
-                  }}
-                >
-                  <ItemDetailsComments
-                    setMsgdiv={setMsgdiv}
-                    shareComments={shareComments}
-                    itemId={id}
-                    action={action}
-                    commentSid={commentSid}
-                    handleShow={handleShow}
-                    setIsSubmit={setIsSubmit}
-                  />
-                </div>
+              <div className="d-flex justify-content-center en-title-24 my-5">
+                You may also like
+              </div>
+              <div className={`${styles['waterfall-container']}`}>
+                <Masonry
+                  columns={columns}
+                  gap={gap}
+                  data={filterItemsData}
+                  itemId={id}
+                />
               </div>
             </div>
-            <div className="d-flex justify-content-center en-title-24 my-5">
-              You may also like
-            </div>
-            <div className={`${styles['waterfall-container']}`}>
-              <Masonry
-                columns={columns}
-                gap={gap}
-                data={filterItemsData}
-                itemId={id}
-              />
-            </div>
+            <Footer />
           </div>
-          <br />
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );

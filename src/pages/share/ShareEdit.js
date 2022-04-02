@@ -5,6 +5,7 @@ import config from '../../Config';
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import EditImgPreview from './components/EditImgPreview';
 import EditForm from './components/EditForm';
+import NavPage from '../layout/components/NavPage';
 
 import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -23,7 +24,7 @@ const initErrorState = {
   files: '',
 };
 
-function ShareEdit() {
+function ShareEdit(props) {
   const [files, setFiles] = useState([]);
   const [formState, setFormState] = useState(initFormState);
   const [errorState, setErrorState] = useState(initErrorState);
@@ -33,6 +34,11 @@ function ShareEdit() {
 
   // 加入購物車光箱
   const [show, setShow] = useState(false);
+
+  //加入NAVBar漢堡選單開關
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+  const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
   const location = useLocation(null);
   const history = useHistory(null);
@@ -188,90 +194,95 @@ function ShareEdit() {
   return (
     <>
       {modal}
-      <div style={{ display: 'flex' }}>
-        <AsideLeft />
-        <div style={{ width: '100%' }}>
-          <Title title={'Share'} />
+      <Header />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
 
-          <div className={`mycontainer`}>
-            <div className="row">
-              <div className="col">
-                <div className="d-flex justify-content-between">
-                  <p className="mytitle en-title-14-10">
-                    HOME / SHARE / UPLOAD
-                  </p>
-                  <div className="d-flex align-items-center">
-                    <Delete className="mx-md-4 p-2" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className={`${styles['waterfall-container']}`}>
-            <div className="container">
+            <div className={`mycontainer`}>
               <div className="row">
-                <div className="col d-flex flex-column">
-                  <div className="col">
-                    <h2 className={`${styles['share-edit-header']} mb-5`}>
-                      {action === 'UPDATE' ? '編輯貼文' : '分享貼文'}
-                    </h2>
-                  </div>
-                  <div className="d-flex">
-                    {/* Image preview area */}
-                    <EditImgPreview
-                      files={files}
-                      setFiles={setFiles}
-                      errorState={errorState}
-                      action={action}
-                    />
-                    {/* form area */}
-                    <div className={`col-md-12 ${styles['form-min-height']}`}>
-                      <form>
-                        <EditForm
-                          formState={formState}
-                          setFormState={setFormState}
-                          setFiles={setFiles}
-                          tagsInput={tagsInput}
-                          foundTags={foundTags}
-                          setTagsInput={setTagsInput}
-                          orderName={orderName}
-                          errorState={errorState}
-                          setErrorState={setErrorState}
-                          files={files}
-                          formIsValid={formIsValid}
-                        />
-                        <div className="d-flex justify-content-end">
-                          <button
-                            type="reset"
-                            className={`${styles['primeal-btn-outline-sm']} btn-sm btn-outline-primary mr-3`}
-                            onClick={() => {
-                              setFormState(initFormState);
-                              if (action !== 'UPDATE') setFiles([]);
-                            }}
-                          >
-                            清除
-                          </button>
-                          <button
-                            className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
-                            onClick={e => {
-                              checkFormValidity(e);
-                            }}
-                          >
-                            {action === 'UPDATE' ? '編輯' : '分享'}
-                          </button>
-                        </div>
-                      </form>
+                <div className="col">
+                  <div className="d-flex justify-content-between">
+                    <p className="mytitle en-title-14-10">
+                      HOME / SHARE / UPLOAD
+                    </p>
+                    <div className="d-flex align-items-center">
+                      <Delete className="mx-md-4 p-2" />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className={`${styles['waterfall-container']}`}>
+              <div className="container">
+                <div className="row">
+                  <div className="col d-flex flex-column">
+                    <div className="col">
+                      <h2 className={`${styles['share-edit-header']} mb-5`}>
+                        {action === 'UPDATE' ? '編輯貼文' : '分享貼文'}
+                      </h2>
+                    </div>
+                    <div className="d-flex">
+                      {/* Image preview area */}
+                      <EditImgPreview
+                        files={files}
+                        setFiles={setFiles}
+                        errorState={errorState}
+                        action={action}
+                      />
+                      {/* form area */}
+                      <div className={`col-md-12 ${styles['form-min-height']}`}>
+                        <form>
+                          <EditForm
+                            formState={formState}
+                            setFormState={setFormState}
+                            setFiles={setFiles}
+                            tagsInput={tagsInput}
+                            foundTags={foundTags}
+                            setTagsInput={setTagsInput}
+                            orderName={orderName}
+                            errorState={errorState}
+                            setErrorState={setErrorState}
+                            files={files}
+                            formIsValid={formIsValid}
+                          />
+                          <div className="d-flex justify-content-end">
+                            <button
+                              type="reset"
+                              className={`${styles['primeal-btn-outline-sm']} btn-sm btn-outline-primary mr-3`}
+                              onClick={() => {
+                                setFormState(initFormState);
+                                if (action !== 'UPDATE') setFiles([]);
+                              }}
+                            >
+                              清除
+                            </button>
+                            <button
+                              className={`${styles['primeal-btn-sm']} btn-sm btn-primary`}
+                              onClick={e => {
+                                checkFormValidity(e);
+                              }}
+                            >
+                              {action === 'UPDATE' ? '編輯' : '分享'}
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <Footer />
           </div>
-          <br />
-          <Footer />
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-        <AsideRight />
       </div>
     </>
   );
