@@ -53,24 +53,13 @@ import CartList from './pages/cart/CartList';
 
 function App() {
   //判斷使用者是否登入
-  const [user, setUser] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
 
   // 判斷使用者是否點擊漢堡
   const [navIsOpen, setNavIsOpen] = useState(false);
 
   // Entry蓋版只跑一次
   const [entryOpen, setEntryOpen] = useState(true);
-
-  //renden時再做一次getMe , 避免換頁登出
-  // useEffect(() => {
-  //   getMe().then(response => {
-  //     console.log(response);
-  //     if (response.ok) {
-  //       setUser(response.data);
-  //     }
-  //   });
-  //   setEntryOpen(true);
-  // }, []);
 
   return (
     //如有toke, 將token傳下去
@@ -99,7 +88,12 @@ function App() {
               <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/login">
-              <Login navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+              <Login
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+              />
             </Route>
             <Route path="/member/register">
               <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />

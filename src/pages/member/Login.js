@@ -124,7 +124,8 @@ function Login(props) {
   const [accountPass, setAccountPass] = useState(false);
   const [vCodePass, setVcodePass] = useState(false);
   const history = useHistory();
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, isLogin, setIsLogin } = props;
+  
 
   const handleClickPwd = e => {
     showPwd === true ? setShowPwd(false) : setShowPwd(true);
@@ -142,6 +143,7 @@ function Login(props) {
       } else {
         setAuthToken(data.token);
         setMemId(data.info.mem_id);
+        setIsLogin(true);
         localStorage.setItem('cart_count', data.cart_count);
         localStorage.setItem('mem_name', data.info.mem_name);
         localStorage.setItem('mem_nickname', data.info.mem_nickname);
