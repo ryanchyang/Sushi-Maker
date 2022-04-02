@@ -85,7 +85,11 @@ function App() {
               )}
             />
             <Route path="/member" exact>
-              <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+              <MemIndex
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+              />
             </Route>
             <Route path="/member/login">
               <Login
