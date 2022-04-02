@@ -143,13 +143,15 @@ function Login(props) {
       } else {
         setAuthToken(data.token);
         setMemId(data.info.mem_id);
-        setIsLogin(true);
+        localStorage.setItem('loginStatus', true);
+        // setIsLogin(true);
         localStorage.setItem('cart_count', data.cart_count);
         localStorage.setItem('mem_name', data.info.mem_name);
         localStorage.setItem('mem_nickname', data.info.mem_nickname);
         localStorage.setItem('mem_photo', data.info.mem_photo_img_path);
+        history.goBack(-2); //登入成功後導入會員頁
       }
-      history.goBack(-2); //登入成功後導入會員頁
+      
     });
   };
   const showBlock = { display: 'block' };

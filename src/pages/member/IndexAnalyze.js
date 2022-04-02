@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import NavPage from '../layout/components/NavPage';
 
 function IndexAnalyze(props) {
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, isLogin } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
   return (
@@ -28,13 +28,13 @@ function IndexAnalyze(props) {
             {/* <Title title={''} />
               <br /> */}
             <div className="member ">
-              <MemHead />
+              <MemHead isLogin={isLogin}/>
               {/* 以上不動 */}
               <ChartForMem />
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} isLogin={isLogin} />
         </div>
       </div>
     </>

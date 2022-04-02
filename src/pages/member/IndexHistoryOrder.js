@@ -16,7 +16,7 @@ import HistoryOrder from './component/HistoryOrder';
 import NavPage from '../layout/components/NavPage';
 
 function IndexHistoryOrder(props) {
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, isLogin } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
@@ -33,7 +33,7 @@ function IndexHistoryOrder(props) {
             {/* <Title title={''} />
             <br /> */}
             <div className="member ">
-              <MemHead />
+              <MemHead isLogin={isLogin}/>
               {/* 以上不動 */}
 
               <div className="mycontainer orderDetailTB">
@@ -42,7 +42,7 @@ function IndexHistoryOrder(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} isLogin={isLogin} />
         </div>
       </div>
     </>

@@ -204,7 +204,7 @@ function AsideLeft() {
 function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
-  const { setNavIsOpen } = props;
+  const { setNavIsOpen ,setIsLogin } = props;
   const mem_id = localStorage.getItem('mem_id');
   const mem_photo = localStorage.getItem('mem_photo');
   const history = useHistory();

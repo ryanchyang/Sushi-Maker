@@ -60,7 +60,7 @@ function IndexActive(props) {
   const [allEvent, setAllEvent] = useState([]);
   const [selected, setSelected] = useState({});
   const [modalShow, setModalShow] = useState(false);
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, isLogin } = props;
   const mem_id = getMemId();
   // console.log('mem_id:', mem_id);
 
@@ -97,7 +97,7 @@ function IndexActive(props) {
           <div style={{ width: '75%' }}>
             {/* <Title title={''} /> */}
             <div className="member ">
-              <MemHead />
+              <MemHead isLogin={isLogin}/>
               <div className="mycontainer">
                 <Calendar
                   localizer={localizer}
@@ -123,7 +123,7 @@ function IndexActive(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} isLogin={isLogin} />
         </div>
       </div>
     </>

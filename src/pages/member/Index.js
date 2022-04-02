@@ -6,7 +6,7 @@ import {
   Title,
 } from './memLayout/LayoutLight';
 import './index.scss';
-import { findMem, memLike } from '../../WebApi';
+import { findMem } from '../../WebApi';
 import { useEffect, useState } from 'react';
 import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
@@ -21,7 +21,7 @@ function MemIndex(props) {
   const [memData, setMemData] = useState(null);
   const [toggleForCprod, setToggleForCprod] = useState(false);
   const [memShare, setMemShare] = useState('');
-  const { navIsOpen, setNavIsOpen, isLogin } = props;
+  const { navIsOpen, setNavIsOpen, isLogin, setIsLogin } = props;
 
   const [rule, setRule] = useState(false);
   const handleClose = () => setRule(false);
@@ -31,15 +31,12 @@ function MemIndex(props) {
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
 
   useEffect(() => {
-    if (isLogin === false) {
-      return history.push('/member/login');
-    } else {
+    if (isLogin) {
       findMem(mem_id).then(obj => {
         setMemData(obj[0]);
       });
-      memLike(mem_id).then(d => {
-        setMemShare(d);
-      });
+    } else {
+      history.push('/member/login');
     }
   }, []);
 
@@ -59,7 +56,7 @@ function MemIndex(props) {
             <Title title={''} />
             <div className="d-md-none" style={{ marginTop: '30%' }}></div>
             <div className="member ">
-              <MemHead memShare={memShare} setMemShare={setMemShare} isLogin={isLogin}  />
+              <MemHead isLogin={isLogin} />
               {/* 以上不動 */}
 
               <div className="mycontainer">
@@ -211,7 +208,7 @@ function MemIndex(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} setIsLogin={setIsLogin} />
         </div>
       </div>
     </>

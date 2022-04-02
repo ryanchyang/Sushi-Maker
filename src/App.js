@@ -52,7 +52,9 @@ import CartList from './pages/cart/CartList';
 
 function App() {
   //判斷使用者是否登入
-  const [isLogin, setIsLogin] = useState(false);
+  localStorage.setItem('LoginStatus', false);
+  const loginStatus = localStorage.getItem('loginStatus');
+  const [isLogin, setIsLogin] = useState(loginStatus);
 
   // 判斷使用者是否點擊漢堡
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -102,19 +104,36 @@ function App() {
               <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/active">
-              <IndexActive navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+              <IndexActive
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+              />
             </Route>
             <Route path="/member/analyze">
-              <IndexAnalyze navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+              <IndexAnalyze
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+              />
             </Route>
             <Route path="/member/historyorder">
               <IndexHistoryOrder
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
               />
             </Route>
             <Route path="/member/revise">
-              <IndexRevise navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+              <IndexRevise
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+                isLogin={isLogin}
+                setIsLogin={setIsLogin}
+              />
             </Route>
             <Route path="/share" exact>
               <Share />

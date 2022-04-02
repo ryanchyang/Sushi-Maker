@@ -1,16 +1,17 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { getMemId } from '../../../utils';
-import { findMem } from '../../../WebApi';
+import { findMem, memLike } from '../../../WebApi';
 import { memDoUpload } from '../../../WebApi';
 import Carousel from './Carousel';
 
 function MemHead(props) {
   const [memData, setMemData] = useState(null);
+  const [memShare, setMemShare] = useState(null);
   const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
-  const { memReviseInfo, memShare, setMemShare, isLogin } = props;
+  const { memReviseInfo, isLogin } = props;
 
   //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
   useEffect(() => {
@@ -21,6 +22,9 @@ function MemHead(props) {
         setImgSrc(
           'http://localhost:3500/img/member' + '/' + obj[0].mem_photo_img_path
         );
+        memLike(mem_id).then(d => {
+          setMemShare(d);
+        });
       }); //做到這裡如果node端API沒寫錯就會拿到你所需的資料了
     }
   }, [memReviseInfo]);

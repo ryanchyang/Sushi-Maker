@@ -24,7 +24,7 @@ function IndexRevise(props) {
   const mem_id = getMemId('mem_id');
   const [isRevisePwd, setIsRevisePwd] = useState(false);
   const [memReviseInfo, setMemReviseInfo] = useState('');
-  const { navIsOpen, setNavIsOpen } = props;
+  const { navIsOpen, setNavIsOpen, isLogin } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
@@ -66,7 +66,7 @@ function IndexRevise(props) {
             {/* <Title title={''} />
             <br /> */}
             <div className="member ">
-              <MemHead memReviseInfo={memReviseInfo} />
+              <MemHead memReviseInfo={memReviseInfo} isLogin={isLogin} />
               {/* 以上不動 */}
 
               <div className="memReviseArea col-md-24 mt-5">
@@ -215,7 +215,7 @@ function IndexRevise(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} isLogin={isLogin} />
         </div>
       </div>
     </>
