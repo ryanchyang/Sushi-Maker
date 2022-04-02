@@ -89,12 +89,13 @@ function AsideRight(props) {
             />
           </div>
 
-          <div className="layout-cart-btn-box">
+          <div
+            className="layout-mem-photo-box mt-3 mr-3"
+            style={{ width: '28px', height: '28px' }}
+          >
             <Logout
               style={{
                 display: 'block',
-                margin: '0 auto',
-                fontSize: '25px',
               }}
             ></Logout>
           </div>
