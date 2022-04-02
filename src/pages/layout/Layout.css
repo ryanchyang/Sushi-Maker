@@ -63,7 +63,7 @@
 .layout-mem-photo-box img {
   border-radius: 50%;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 .layout-cart-btn-box {
   /* padding-top: 50px; */
