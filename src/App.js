@@ -51,9 +51,10 @@ import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
 
 function App() {
-  //判斷使用者是否登入
+  
   localStorage.setItem('LoginStatus', false);
   const loginStatus = localStorage.getItem('loginStatus');
+//判斷使用者是否登入
   const [isLogin, setIsLogin] = useState(loginStatus);
 
   // 判斷使用者是否點擊漢堡
