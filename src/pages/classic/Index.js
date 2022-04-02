@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../Config';
 import NavPage from '../layout/components/NavPage'; //加入漢堡選單
-
+import { getCartCount } from '../../utils';
 import { Button, Modal } from 'react-bootstrap';
 
 function Index(props) {
@@ -33,6 +33,7 @@ function Index(props) {
   const [buyProdCount, setBuyProdCount] = useState([]); //紀錄每個商品購買的數量[{pid, pname, count}]
   const [search, setSearch] = useState(false); //是否開啟搜尋框
   const [searchText, setSearchText] = useState('');
+  const [cartCount, setCartCount] = useState(0);
   const pageProdCount = 6; //一頁呈現的商品個數
   //加入NAVBar漢堡選單開關
   const showBlock = { display: 'block' };
@@ -343,9 +344,10 @@ function Index(props) {
         }),
       })
         .then(res => res.json())
-        .then(d => d);
-
-      console.log(res); //TODO: why log pending????
+        .then(d => {
+          //加入購物車後重新設定購物車的商品數量
+          getCartCount(+localStorage.getItem('mem_id'));
+        });
       handleCartShow();
     } else {
       handleLikeShow();
