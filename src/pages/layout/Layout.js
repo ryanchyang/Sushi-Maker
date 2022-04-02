@@ -12,8 +12,8 @@ import { height } from '@mui/system';
 import { useWindowScroll } from 'react-use';
 import { Link } from 'react-router-dom';
 
-const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
-console.log('nav cart_count', cart_count);
+
+
 
 function Header() {
   return (
@@ -27,7 +27,10 @@ function Header() {
 // <Hamburger className="layout-hamberger" />
 function Title(props) {
   const { changeBG, setNavIsOpen } = props;
-  const cart_num = cart_count;
+  const [cart_count, setCart_count] = useState(0);
+  useEffect(() => {
+    setCart_count(localStorage.getItem('cart_count'));
+  }, [props.changeCartCount]);
   return (
     <>
       <div className="mobile-top">
@@ -57,7 +60,7 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <CartLight className="layout-cart-btn" />
-                    {cart_count > 1 ? (
+                    {cart_count > 0 ? (
                       <span class="cart-num ">{cart_count}</span>
                     ) : (
                       ''
@@ -68,7 +71,7 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <Cart className="layout-cart-btn" />
-                    {cart_count > 1 ? (
+                    {cart_count > 0 ? (
                       <span class="cart-num ">{cart_count}</span>
                     ) : (
                       ''
@@ -145,8 +148,10 @@ function AsideLeft(props) {
 }
 
 function AsideRight(props) {
-  const [memberImg, setMemberImg] = useState('');
-  const [cartCount, setCartCount] = useState(0);
+  const [cart_count, setCart_count] = useState(0);
+  useEffect(() => {
+    setCart_count(localStorage.getItem('cart_count'));
+  }, [props.changeCartCount]);
   const { changeBG, setNavIsOpen } = props;
   const mem_id = localStorage.getItem('mem_id');
   const mem_photo = localStorage.getItem('mem_photo');
@@ -230,7 +235,7 @@ function AsideRight(props) {
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <CartLight className="layout-cart-btn" />
-                  {cart_count > 1 ? (
+                  {cart_count > 0 ? (
                     <span class="cart-num ">{cart_count}</span>
                   ) : (
                     ''
@@ -241,7 +246,7 @@ function AsideRight(props) {
               <Link to={'/cart/stepone'}>
                 <div className="cart-icon-add">
                   <Cart className="layout-cart-btn" />
-                  {cart_count > 1 ? (
+                  {cart_count > 0 ? (
                     <span class="cart-num ">{cart_count}</span>
                   ) : (
                     ''

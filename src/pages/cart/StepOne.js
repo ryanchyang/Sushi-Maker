@@ -1,5 +1,5 @@
 //cart/StepOne.js
-
+import { getCartCount } from '../../utils';
 import { Link, useHistory } from 'react-router-dom';
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 // import ProdItem from '././components/ProdItem';
@@ -25,6 +25,7 @@ function StepOne(props) {
   const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
   const [discountTotal, setDiscountTotal] = useState([]); // 會員可以折抵積分提示欄位
+  const [changeCartCount, setChangeCartCount] = useState(0); //
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
@@ -405,6 +406,10 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
+        }).then(res => res.json())
+        .then(async d => {
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
         });
         break;
 
@@ -432,6 +437,10 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
+        }).then(res => res.json())
+        .then(async d => {
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
         });
         break;
 
@@ -455,6 +464,10 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
+        }).then(res => res.json())
+        .then(async d => {
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
         });
         break;
 
@@ -1184,7 +1197,7 @@ function StepOne(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} changeCartCount={changeCartCount} />
         </div>
       </div>
     </>

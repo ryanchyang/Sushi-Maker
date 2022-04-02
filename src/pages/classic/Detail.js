@@ -7,6 +7,7 @@ import config from '../../Config';
 import './detail.scss';
 import ChartForCs from '../chartjs/ChartCs/ChartForCs';
 import { Button, Modal } from 'react-bootstrap';
+import { getCartCount } from '../../utils';
 import NavPage from '../layout/components/NavPage'; //加入漢堡選單
 
 function Detail(props) {
@@ -18,7 +19,8 @@ function Detail(props) {
   const [isLike, setIsLike] = useState(false); //該商品是否被收藏
   const [buyCount, setBuyCount] = useState(1); //商品購買數量
   const [mtlsForChart, setMtlsForChart] = useState([]); //要進chart.js畫圖的材料
-  const [share, setShare] = useState([]);
+  const [share, setShare] = useState([]); //取得該商品相關的分享牆資料
+  const [changeCartCount, setChangeCartCount] = useState(0); //
   const { id } = useParams(); //取得url上的product id
   //加入NAVBar漢堡選單開關
   const showBlock = { display: 'block' };
@@ -70,8 +72,8 @@ function Detail(props) {
   //加入購物車
   const addToCart = () => {
     const isLogin = localStorage.getItem('mem_id') !== null; //判斷是否登入
-    if (isLogin) {
-      const res = fetch(config.ADD_CART, {
+    if (isLogin) {      
+      fetch(config.ADD_CART, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -89,9 +91,10 @@ function Detail(props) {
         }),
       })
         .then(res => res.json())
-        .then(d => d);
-
-      console.log(res); //TODO: why log pending????
+        .then(async d => {
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
+        });
       handleCartShow();
     } else {
       handleLikeShow();
@@ -702,7 +705,7 @@ function Detail(props) {
 
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight setNavIsOpen={setNavIsOpen} changeCartCount={changeCartCount}/>
         </div>
       </div>
     </>
