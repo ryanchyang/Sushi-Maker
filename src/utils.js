@@ -42,7 +42,7 @@ export const getCart = async () => {
 
 export const getCartCount = async mem_id => {
   await fetch(`${BASE_URL}/member/api/get-cart-count`, {
-    method: 'GET',
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
