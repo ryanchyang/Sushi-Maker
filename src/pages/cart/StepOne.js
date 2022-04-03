@@ -25,7 +25,7 @@ function StepOne(props) {
   const [inputCredit, setInputCredit] = useState(0); //自行輸入的折扣金額
   const [cart_id, setCart_id] = useState(0); // 取得cart id
   const [discountTotal, setDiscountTotal] = useState([]); // 會員可以折抵積分提示欄位
-  const [changeCartCount, setChangeCartCount] = useState(0); //
+  const [changeCartCount, setChangeCartCount] = useState(0); // 要知道什麼時候更改購物車的數量
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
@@ -124,7 +124,7 @@ function StepOne(props) {
             cart_credit: inputCredit,
             cart_total_print_time: printTime,
           });
-          console.log('110', inputSum);
+          // console.log('110', inputSum);
           //刪除商品成功後購物車仍有商品，則不做任何事
         } else {
           //購物車無商品則導頁
@@ -138,32 +138,7 @@ function StepOne(props) {
     getList();
   }, [deleteProd]);
 
-  // 更改會員折扣後 才可以取得 inputSum
-  // const handleChange = e => {
-  //   console.log('creadit', e.target.value);
-  //   console.log('creadit discountTotal', discountTotal / 1000);
-  //   // 判斷要輸入的金額不能大於 可折抵的金額
-  //   if (e.target.value <= discountTotal / 100) {
-  //     const newData = {
-  //       cart_value: amount,
-  //       cart_credit: +e.target.value,
-  //       cart_total_print_time: printTime,
-  //     };
-  //     setInputSum(newData);
-  //   } else {
-  //     setDiscountShow(true);
-  //     // alert('輸入金額有誤，請重新輸入!');
-  //     setInputSum({
-  //       ...inputSum,
-  //       cart_credit: '',
-  //     });
-  //     e.target.value = '';
-  //   }
-
-  //   console.log('123', inputSum);
-  // };
-
-  // 當有變數量或金額時
+  // 當有變數量或金額時 設定回去
   useEffect(() => {
     setInputSum({
       ...inputSum,
@@ -212,7 +187,6 @@ function StepOne(props) {
 
     //  POST 要傳的直設定回去
 
-    // if (handleValidation()) {
     // fetch
     const r = fetch(config.POST_CART_SUMMARY + `${memid}/${cart_id}`, {
       method: 'POST',
@@ -258,15 +232,15 @@ function StepOne(props) {
     });
     */
     // 新德的寫法
-    //
+    //先拷貝一個陣列
     const newData = [...list.cm];
-    //
+    // 用陣列做map
     const newData2 = newData.map(v => {
-      //
+      // 當pid == map 出來的 product id 時
       if (pid === v.product_id) {
-        //
+        //當 商品數量選購數量大於1時
         if (v.orders_amount > 1) {
-          //
+          //回傳 -1
           return { ...v, orders_amount: +v.orders_amount - 1 };
         }
       }
@@ -406,11 +380,12 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
-        }).then(res => res.json())
-        .then(async d => {
-          await getCartCount(+localStorage.getItem('mem_id'));
-          setChangeCartCount(changeCartCount + 1);
-        });
+        })
+          .then(res => res.json())
+          .then(async d => {
+            await getCartCount(+localStorage.getItem('mem_id')); // cartcount 數字改變
+            setChangeCartCount(changeCartCount + 1); // 狀態要改變
+          });
         break;
 
       case 'cs':
@@ -437,11 +412,12 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
-        }).then(res => res.json())
-        .then(async d => {
-          await getCartCount(+localStorage.getItem('mem_id'));
-          setChangeCartCount(changeCartCount + 1);
-        });
+        })
+          .then(res => res.json())
+          .then(async d => {
+            await getCartCount(+localStorage.getItem('mem_id'));
+            setChangeCartCount(changeCartCount + 1);
+          });
         break;
 
       case 'cm':
@@ -464,11 +440,12 @@ function StepOne(props) {
             pid: prodid,
             category: category,
           }),
-        }).then(res => res.json())
-        .then(async d => {
-          await getCartCount(+localStorage.getItem('mem_id'));
-          setChangeCartCount(changeCartCount + 1);
-        });
+        })
+          .then(res => res.json())
+          .then(async d => {
+            await getCartCount(+localStorage.getItem('mem_id'));
+            setChangeCartCount(changeCartCount + 1);
+          });
         break;
 
       default:
@@ -706,7 +683,7 @@ function StepOne(props) {
                           </div>
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center">
-                          {v.orders_print_time}秒
+                          {/* 套餐不用印製時間 */}
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
@@ -888,7 +865,7 @@ function StepOne(props) {
                           </div>
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center">
-                          {/* 套餐不用印製時間 */}
+                          {v.orders_print_time}秒/個
                         </div>
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
@@ -1117,7 +1094,7 @@ function StepOne(props) {
                       <div className="row print-time my-4">
                         <div className="col-12 col-md-12">印製時間</div>
                         <div className="col-12 col-md-8 text-right">
-                          {printTime}秒
+                          {printTime / 60}分鐘
                         </div>
                       </div>
                       <div className="row discount my-4">
@@ -1197,7 +1174,10 @@ function StepOne(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} changeCartCount={changeCartCount} />
+          <AsideRight
+            setNavIsOpen={setNavIsOpen}
+            changeCartCount={changeCartCount} // 購物車數量狀態改變
+          />
         </div>
       </div>
     </>

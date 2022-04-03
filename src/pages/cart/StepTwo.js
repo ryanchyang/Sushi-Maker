@@ -70,10 +70,10 @@ function StepTwo(props) {
   // 取得store id 後 拷貝陣列並把值塞進去 fields
   useEffect(() => {
     // if (getStoreId > 0) {
-      setFields({
-        ...fields,
-        cart_store_id: getStoreId,
-      });
+    setFields({
+      ...fields,
+      cart_store_id: getStoreId,
+    });
     // } else {
     //   alert('請選擇取貨門市');
     // }
@@ -111,7 +111,7 @@ function StepTwo(props) {
     buyer: '',
     buyer_mobile: '',
     picker: '',
-    cart_store_id:'',
+    cart_store_id: '',
   });
 
   // 處理欄位改變
@@ -156,8 +156,7 @@ function StepTwo(props) {
     if (!fields.cart_store_id) {
       formIsValid = false;
       errorMsg.cart_store_id = '取貨門市不可為空';
-    } 
-    
+    }
 
     setFieldsError(errorMsg);
     return formIsValid;
@@ -230,7 +229,7 @@ function StepTwo(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Shipping Info'} setNavIsOpen={setNavIsOpen}/>
+            <Title title={'Shipping Info'} setNavIsOpen={setNavIsOpen} />
             {/* <div className="row"></div> */}
             <div className="mycontainer cart min-hi">
               <div className="breadcart">
@@ -378,7 +377,9 @@ function StepTwo(props) {
                           {getStoreId + ' ' + storeName}
                         </label>
                         {fieldsError.cart_store_id !== '' && (
-                          <div className="error">{fieldsError.cart_store_id}</div>
+                          <div className="error">
+                            {fieldsError.cart_store_id}
+                          </div>
                         )}
                         <button
                           type="button"
@@ -392,6 +393,7 @@ function StepTwo(props) {
                             show={map}
                             onHide={handleClose}
                             setGetStoreId={setGetStoreId}
+                            size="lg"
                           >
                             <Modal.Header closeButton>
                               <Modal.Title className="en-cont-30 m-3">

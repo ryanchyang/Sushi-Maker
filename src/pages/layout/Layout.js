@@ -12,9 +12,6 @@ import { height } from '@mui/system';
 import { useWindowScroll } from 'react-use';
 import { Link } from 'react-router-dom';
 
-
-
-
 function Header() {
   return (
     <>
@@ -27,7 +24,7 @@ function Header() {
 // <Hamburger className="layout-hamberger" />
 function Title(props) {
   const { changeBG, setNavIsOpen } = props;
-  const [cart_count, setCart_count] = useState(0);
+  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
   useEffect(() => {
     setCart_count(localStorage.getItem('cart_count'));
   }, [props.changeCartCount]);
@@ -148,9 +145,9 @@ function AsideLeft(props) {
 }
 
 function AsideRight(props) {
-  const [cart_count, setCart_count] = useState(0);
+  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
   useEffect(() => {
-    setCart_count(localStorage.getItem('cart_count'));
+    setCart_count(localStorage.getItem('cart_count')); // 當商品數量有變更的時候會改變localStorage
   }, [props.changeCartCount]);
   const { changeBG, setNavIsOpen } = props;
   const mem_id = localStorage.getItem('mem_id');

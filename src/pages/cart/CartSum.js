@@ -12,7 +12,7 @@ function CartSum(props) {
             <div className="row print-time my-4">
               <div className="col-12 col-md-12 ch-cont-14">印製時間</div>
               <div className="col-12 col-md-8 text-right ch-cont-14">
-                {v.cart_total_print_time}
+                {v.cart_total_print_time / 60}分鐘
               </div>
             </div>
             <div className="row price my-4">
