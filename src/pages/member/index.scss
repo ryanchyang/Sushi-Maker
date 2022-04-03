@@ -118,6 +118,10 @@ $width: calc(100vw - 25vw);
     overflow: hidden;
     border-radius: 50%;
     object-fit: cover;
+    transition: 0.3s;
+  }
+  .carouImg:hover {
+    border: 5px solid #fff;
   }
 
   // .swiper-slide img {
@@ -306,8 +310,8 @@ $width: calc(100vw - 25vw);
     
   }
   .activeImg {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: auto;
   }
   .memClassic {
     display: flex;

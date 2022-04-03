@@ -13,6 +13,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { BiCopyright } from 'react-icons/bi';
 import { FaFacebook } from 'react-icons/fa';
 import { RiInstagramFill } from 'react-icons/ri';
+import { height } from '@mui/system';
 
 function Header() {
   return (
@@ -25,13 +26,24 @@ function Header() {
 function Title(props) {
   return (
     <>
-      <div className="mobile-top">
+      <div
+        className="mobile-top"
+        style={{
+          background: '#f7f6f3',
+          zIndex: '10',
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: '88%',
+        }}
+      >
         <div>
           <div className="logo-box">
             <Logo className="logo" />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'flex-between' }}>
           <div>
             <div className="layout-cart-btn-box-top">
               <Cart className="layout-cart-btn" />
@@ -204,7 +216,7 @@ function AsideLeft() {
 function AsideRight(props) {
   const [memberImg, setMemberImg] = useState('');
   const [cartCount, setCartCount] = useState(0);
-  const { setNavIsOpen ,setIsLogin } = props;
+  const { setNavIsOpen, setIsLogin } = props;
   const mem_id = localStorage.getItem('mem_id');
   const mem_photo = localStorage.getItem('mem_photo');
   const history = useHistory();
@@ -224,7 +236,7 @@ function AsideRight(props) {
             />
           </div>
           <div className="layout-mem-photo-box">
-          {mem_id ? (
+            {mem_id ? (
               <img
                 src={'http://localhost:3500/img/member/' + '/' + mem_photo}
                 alt="member-photo"
@@ -237,16 +249,16 @@ function AsideRight(props) {
             )}
           </div>
           <div className="layout-cart-btn-box">
-          <Link to={'/cart/stepone'}>
-                <div className="cart-icon-add">
-                  <Cart className="layout-cart-btn" />
-                  {cart_count > 1 ? (
-                    <span class="cart-num ">{cart_count}</span>
-                  ) : (
-                    ''
-                  )}
-                </div>
-              </Link>
+            <Link to={'/cart/stepone'}>
+              <div className="cart-icon-add">
+                <Cart className="layout-cart-btn" />
+                {cart_count > 1 ? (
+                  <span class="cart-num ">{cart_count}</span>
+                ) : (
+                  ''
+                )}
+              </div>
+            </Link>
           </div>
           <div
             style={{

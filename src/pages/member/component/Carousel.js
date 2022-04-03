@@ -16,7 +16,7 @@ function Carousel(props) {
     <>
       <div className="divCarou">
         <Swiper
-          slidesPerView={4}
+          slidesPerView={3}
           spaceBetween={30}
           freeMode={true}
           modules={[FreeMode]}

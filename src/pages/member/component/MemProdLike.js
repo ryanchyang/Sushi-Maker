@@ -38,7 +38,7 @@ const MemProdLike = () => {
             slidesPerGroup: 1,
           },
           577: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 30,
             slidesPerGroup: 3,
           },
@@ -65,7 +65,7 @@ const MemProdLike = () => {
                             : ''
                         }
                         alt="cube"
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: '100%', height: '100%%' }}
                       />
                     </div>
 
