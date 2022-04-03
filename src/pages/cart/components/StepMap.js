@@ -83,7 +83,6 @@ const StepMap = forwardRef((props, ref) => {
       // console.log('area id ===', +v.store_area_id == +areaId);
       return v.store_area_id == +areaId;
     });
-    // console.log('BBB332112313213', b);
     setStore(b);
   }, [areaId]);
 
@@ -181,44 +180,50 @@ const StepMap = forwardRef((props, ref) => {
   return (
     <>
       <form className="m-4">
-        <div className="form-row d-flex justify-content-between px-0 ch-cont-14">
-          {inputCity}
-          {inputArea}
-        </div>
-        {inputStore}
-        <div className="store-map" id="map">
-          <MapContainer
-            center={{ lat: 25.03, lng: 121.54 }}
-            zoom={13}
-            style={{ height: '400px' }}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <LocationMarker />
+        <div className="row">
+          <div className="col-md-12 col-24">
+            <div className="store-map" id="map">
+              <MapContainer
+                center={{ lat: 25.03, lng: 121.54 }}
+                zoom={13}
+                style={{ height: '400px' }}
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationMarker />
 
-            <MultipleMarkers
-              store={store}
-              setStoreName={setStoreName}
-              setGetStoreId={props.setGetStoreId}
-            />
-          </MapContainer>
-        </div>
-        <div className="store-box" style={{ fontSize: '1.6rem' }}>
-          <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市 :
-          <span
-            className="store"
-            // ref={ref}
-          >
-            <input
-              // ref={ref}
-              type="text"
-              hidden
-              value={props.getStoreId}
-            />
-            {storeName}
-          </span>
+                <MultipleMarkers
+                  store={store}
+                  setStoreName={setStoreName}
+                  setGetStoreId={props.setGetStoreId}
+                />
+              </MapContainer>
+            </div>
+          </div>
+          <div className="col-md-12 col-24">
+            <div className="form-row d-flex justify-content-between px-0 ch-cont-14">
+              {inputCity}
+              {inputArea}
+            </div>
+            {inputStore}
+          </div>
+
+          <div className="store-box" style={{ fontSize: '1.6rem' }}>
+            <i className="fas fa-shipping-fast"></i>&nbsp;請選擇您的印製取貨門市
+            :
+            <span
+              className="store"
+            >
+              <input
+                type="text"
+                hidden
+                value={props.getStoreId}
+              />
+              {storeName }
+            </span>
+          </div>
         </div>
       </form>
     </>
