@@ -5,11 +5,12 @@ import MtlData from '../MtlData';
 import nuData from '../nuData';
 import fakeData from '../fakeData';
 import { chartInfo } from '../../../WebApi';
-import fakeDataForWeek from '../fakeDataForWeek'
+import dataLabel from '../dataLabel';
 
 const ChartForMem = () => {
   const [memOrderData, setMemOrderData] = useState();
   const mem_id = localStorage.getItem('mem_id');
+  console.log(memOrderData);
 
   useEffect(() => {
     chartInfo(mem_id).then(obj => {
@@ -17,7 +18,7 @@ const ChartForMem = () => {
     });
   }, []);
 
-  const data = fakeDataForWeek
+  const data = dataLabel
     // .filter(i => {
     //   return [12, 13].includes(i.mtl_id);
     // })
@@ -29,7 +30,7 @@ const ChartForMem = () => {
       return {
         label: d.label,
         // data: MtlData.map(data => data[d.mtl_name]),
-        data: fakeData.map(data => data[d.label]),
+        data: memOrderData && memOrderData.map(data => data[d.label]),
         fill: true,
         backgroundColor: `rgba(${colorA}, ${colorB}, ${colorC}, 0.4)`,
         borderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,

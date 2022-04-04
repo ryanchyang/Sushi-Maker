@@ -1,4 +1,4 @@
- const fakeDataforWeek = [
+ const dataLabel = [
   { label: 'SUGARS' },
   { label: 'FAT' },
   { label: 'PROTEIN' },
@@ -7,4 +7,4 @@
   { label: 'CALORIES' },
 ];
 
-export default fakeDataforWeek;
+export default dataLabel;
