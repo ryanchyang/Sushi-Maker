@@ -11,12 +11,11 @@ import { Link } from 'react-router-dom';
 
 function Carousel(props) {
   const { memShare, setMemShare } = props;
-  console.log(memShare);
   return (
     <>
       <div className="divCarou">
         <Swiper
-          slidesPerView={3}
+          slidesPerView={4}
           spaceBetween={30}
           freeMode={true}
           modules={[FreeMode]}
