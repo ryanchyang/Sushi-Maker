@@ -2,14 +2,15 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import CartDetail from './components/CartDetial';
 import { Link, useHistory, useParams } from 'react-router-dom';
-import QRCode from 'qrcode.react';
+// import QRCode from 'qrcode.react';
+import { QRCode } from 'react-qrcode-logo';
 import React, { useState, useEffect } from 'react';
 import NavPage from '../layout/components/NavPage';
-// TODO: 資料庫拿資料
+// 資料庫拿資料
 import config from '../../Config';
 import { getMemId, getCart } from '../../utils';
 
-// TODO: A  改 LINK
+// TODO: 第4部要清空 cartcount localstorage
 function StepFour(props) {
   // NAV BAR 使用 蓋版漢堡
   const showBlock = { display: 'block' };
@@ -109,6 +110,9 @@ function StepFour(props) {
                         value={qrC} //value引數為生成二維碼的連結 我這裡是由後端返回
                         size={150} //二維碼的寬高尺寸
                         fgColor="#000000" //二維碼的顏色
+                        logoImage="/img/cart/logo.svg" // 加入logo
+                        logoOpacity="1" 
+                        removeQrCodeBehindLogo
                       />
                       {/* <img src="/img/cart/qrcode.svg" alt=""></img> */}
                     </div>
@@ -116,7 +120,7 @@ function StepFour(props) {
 
                   <div className="my-5 col-24 d-block d-md-flex justify-content-md-between">
                     <div className="col-24 col-md-16 my-3">
-                      如欲查詢訂單詳情與進度，請至 會員中心{'>'} 歷史訂單 查詢
+                      如欲查詢訂單詳情與進度，請至 會員中心 / 歷史訂單 查詢
                     </div>
                     {/* ＢＴＮ 返回按鈕 */}
                     <div className="col-24 col-md-8 my-3 d-flex justify-content-md-end justify-content-center ">
@@ -133,11 +137,6 @@ function StepFour(props) {
                 </div>
               </div>
               {/* TODO:進度條 */}
-              {/* <div className="process-bar">
-              <div class="animated-progress progress-red">
-                <span data-progress="45"></span>
-              </div>
-            </div> */}
               <div className="processBar">
                 <div class="progress">
                   <div
@@ -157,7 +156,6 @@ function StepFour(props) {
                   <span>請至門市取貨</span>
                 </div>
               </div>
-              {/* TODO: 商品詳細清單 */}
               <CartDetail cart_id={cid} mem_id={mem_id} />
             </div>
             <Footer />

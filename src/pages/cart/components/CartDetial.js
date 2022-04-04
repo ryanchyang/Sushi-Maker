@@ -12,7 +12,7 @@ import { Collapse } from 'react-bootstrap';
 
 const cart_count = localStorage.getItem('cart_count'); // 登入後會抓取目前購物車內的商品數量
 console.log('nav cart_count', cart_count);
-
+// TODO: localstorage cartcount 數量不一致
 function CartDetail(props) {
   const [dateOpen, setDateOpen] = useState(false);
   return (
@@ -55,7 +55,7 @@ function CartDetail(props) {
       <Collapse in={dateOpen}>
         <div>
           {/* 商品詳細資訊 */}
-          <ProdItemInfo mem_id={props.mem_id} cart_id={props.cart_id }/>
+          <ProdItemInfo mem_id={props.mem_id} cart_id={props.cart_id} />
         </div>
       </Collapse>
     </div>

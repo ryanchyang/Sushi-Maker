@@ -157,6 +157,7 @@ function StepTwo(props) {
       formIsValid = false;
       errorMsg.cart_store_id = '取貨門市不可為空';
     }
+    //TODO: 重新點要把提示訊息刪除
 
     setFieldsError(errorMsg);
     return formIsValid;
