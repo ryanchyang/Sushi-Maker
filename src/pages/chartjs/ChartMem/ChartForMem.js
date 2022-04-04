@@ -3,33 +3,32 @@ import BarChart from './BarChart';
 import DoughnutChart from './DoughnutChart';
 import MtlData from '../MtlData';
 import nuData from '../nuData';
-import fakeData from '../fakeData';
 import { chartInfo } from '../../../WebApi';
 import dataLabel from '../dataLabel';
 
 const ChartForMem = () => {
   const [memOrderData, setMemOrderData] = useState();
+  const [showChart, setShowChart] = useState(false);
+  const [barData, setBarData] = useState([]);
   const mem_id = localStorage.getItem('mem_id');
-  console.log(memOrderData);
+  console.log(showChart);
+
+  setTimeout(() => {
+    setShowChart(true);
+  }, 200);
 
   useEffect(() => {
     chartInfo(mem_id).then(obj => {
       setMemOrderData(obj);
     });
-  }, []);
 
-  const data = dataLabel
-    // .filter(i => {
-    //   return [12, 13].includes(i.mtl_id);
-    // })
-    .map(d => {
+    const data = dataLabel.map(d => {
       const colorA = Math.random() * 255;
       const colorB = Math.random() * 255;
       const colorC = Math.random() * 255;
 
       return {
         label: d.label,
-        // data: MtlData.map(data => data[d.mtl_name]),
         data: memOrderData && memOrderData.map(data => data[d.label]),
         fill: true,
         backgroundColor: `rgba(${colorA}, ${colorB}, ${colorC}, 0.4)`,
@@ -40,6 +39,8 @@ const ChartForMem = () => {
         pointHoverBorderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
       };
     });
+    setBarData(data);
+  }, [showChart]);
 
   const doughnutData = nuData
     .filter(i => {
@@ -71,10 +72,17 @@ const ChartForMem = () => {
       };
     });
 
-  const [fatData, setFatData] = useState({
-    labels: fakeData.map(data => data.label),
-    datasets: data,
+  const [weekData, setWeekData] = useState({
+    labels: memOrderData && memOrderData.map(data => data.label),
+    datasets: barData,
   });
+
+  useEffect(() => {
+    setWeekData({
+      labels: memOrderData && memOrderData.map(data => data.label),
+      datasets: barData,
+    });
+  }, [memOrderData]);
 
   const [otherData, setOtherData] = useState({
     maintainAspectRatio: false,
@@ -133,7 +141,7 @@ const ChartForMem = () => {
   return (
     <div className="d-flex mx-5">
       <div className="mr-5" style={{ width: '600px' }}>
-        <BarChart chartData={fatData} options={options} />
+        <BarChart chartData={weekData} options={options} />
       </div>
       <div className="ml-5" style={{ width: '500px' }}>
         <DoughnutChart chartData={otherData} />
