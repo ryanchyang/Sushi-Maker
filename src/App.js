@@ -49,7 +49,7 @@ import CartStepFour from './pages/cart/StepFour';
 import CartList from './pages/cart/CartList';
 
 function App() {
-  localStorage.setItem('LoginStatus', false);
+  // localStorage.setItem('LoginStatus', false);
   const loginStatus = localStorage.getItem('loginStatus');
   //判斷使用者是否登入
   const [isLogin, setIsLogin] = useState(loginStatus);
