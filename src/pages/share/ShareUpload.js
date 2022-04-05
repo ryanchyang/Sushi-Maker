@@ -90,7 +90,7 @@ function ShareUpload(props) {
             <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
             <ShareProfile />
             <div className={`mycontainer`}>
-              <div className="myshare-layout d-flex">
+              <div className={`${styles['myshare-layout']} d-flex`}>
                 <div className="col-6 flex-column d-none d-lg-flex">
                   <div className="ch-cont-14 font-weight-bold mb-5">
                     商品預覽
@@ -98,11 +98,12 @@ function ShareUpload(props) {
                   <div className="d-flex justify-content-center mb-5">
                     <div className={`${styles['preview-img']} col-18 `}>
                       <img
+                        key={uploadItem}
                         src={
                           config.HOST +
                           `${
                             uploadItemsData[uploadItem]?.c_prod_img_path ??
-                            '/img/classic/steak.png'
+                            uploadItemsData[0]?.c_prod_img_path // default image
                           }`
                         }
                         alt=""
@@ -166,7 +167,7 @@ function ShareUpload(props) {
                               </td>
                               <td style={{ width: '22%' }}>
                                 <button
-                                  className={`${styles['share-item-button']} btn-sm btn-primary mr-md-4`}
+                                  className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
                                   onClick={() => {
                                     history.push({
                                       pathname: '/share/edit',
@@ -178,7 +179,7 @@ function ShareUpload(props) {
                                 </button>
                                 {i === uploadItem ? (
                                   <Trash
-                                    className={`${styles['upload-del-button']} mb-2`}
+                                    className={`${styles['upload-del-button']} mb-2 ml-4`}
                                   />
                                 ) : (
                                   ''

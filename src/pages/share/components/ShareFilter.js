@@ -269,7 +269,7 @@ function ShareFilter(props) {
                 </div>
               </div>
 
-              {/* by flavor */}
+              {/* by tags */}
               <div className="d-flex justify-content-center">
                 <div className="by-flavor col-18 d-flex flex-column">
                   <div className="by-flavor-title">

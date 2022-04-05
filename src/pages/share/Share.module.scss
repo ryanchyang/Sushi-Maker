@@ -10,12 +10,31 @@ $upload-min-height: calc(42.9vh);
   border: 1px solid #505050;
   height: 4rem;
   line-height: 1;
+  transition: 0.1s;
 }
 .mysharebutton:hover {
+  background-color: $tint-red;
+  border: 1px solid $tint-red;
+}
+
+.mysharebutton a {
+  color: $dark-bg;
+}
+.mysharebutton:hover a {
+  color: white;
   text-decoration: none;
 }
+
 .share-display-none {
   display: none;
+}
+.large-del {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.1s;
+}
+.large-del:hover {
+  opacity: 1;
 }
 
 .share-filter-top {
@@ -481,6 +500,10 @@ $upload-min-height: calc(42.9vh);
   @extend .en-title-24;
   text-decoration: none;
   color: $gray;
+  transition: 0.1s;
+}
+.topic-link:hover {
+  color: $dark-bg;
 }
 
 .subtopic-link {
@@ -498,12 +521,17 @@ $upload-min-height: calc(42.9vh);
 
 .topic-link:hover,
 .subtopic-link:hover {
-  color: $dark-bg;
+  transition: 0.2s;
+  color: $dark-bg !important;
 }
 
 .topic-link:active,
 .subtopic-link:active {
   color: $dark-bg;
+}
+
+.myshare-layout {
+  min-height: $upload-min-height;
 }
 
 .preview-img {
@@ -512,6 +540,10 @@ $upload-min-height: calc(42.9vh);
 
 .preview-img img {
   width: 100%;
+  animation: opacity 0.5s;
+}
+.saves-table {
+  table-layout: fixed;
 }
 
 .saves-table tr,
@@ -642,6 +674,12 @@ $upload-min-height: calc(42.9vh);
   cursor: pointer;
 }
 
+.comment-history-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 // .filter-panel-mask {
 //   background-color: $light-bg;
 //   z-index: -1;
@@ -688,6 +726,15 @@ $upload-min-height: calc(42.9vh);
 
 .fade-out-bg {
   animation: fadeOutBg 0.5s;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes heartbeat {

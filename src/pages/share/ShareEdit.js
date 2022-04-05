@@ -212,7 +212,10 @@ function ShareEdit(props) {
                       HOME / SHARE / UPLOAD
                     </p>
                     <div className="d-flex align-items-center">
-                      <Delete className="mx-md-4 p-2" />
+                      <Delete
+                        className={`${styles['large-del']} mx-md-4 p-2`}
+                        onClick={() => history.goBack(-1)}
+                      />
                     </div>
                   </div>
                 </div>

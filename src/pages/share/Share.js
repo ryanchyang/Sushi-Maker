@@ -20,6 +20,7 @@ const initFilterState = {
   tags: [],
   minTime: '',
   maxTime: '',
+  search: '',
 };
 
 const filterStateReducer = (state, action) => {
@@ -51,6 +52,12 @@ const filterStateReducer = (state, action) => {
     return {
       ...state,
       maxTime: action.maxTime,
+    };
+  }
+  if (action.type === 'SEARCH') {
+    return {
+      ...state,
+      search: action.search,
     };
   }
   if (action.type === 'RESET') {
@@ -127,7 +134,7 @@ function Share(props) {
     if (!masonryHeight) return;
 
     const isFilter = getFilterUpdate().isFilter;
-    if (isFilter) return;
+    if (isFilter) return; // if has filter then no infinite scroll
 
     if (masonryHeight < currentScroll + window.innerHeight) {
       (async () => {
@@ -174,6 +181,11 @@ function Share(props) {
               colControl={colControl}
               setColControl={setColControl}
               filterNum={getFilterUpdate().num}
+              filterState={filterState}
+              dispatch={dispatchFilter}
+              setNoFound={setNoFound}
+              setShareItemsData={setShareItemsData}
+              getShareItems={getShareItems}
             />
             <ShareColController
               colControl={colControl}

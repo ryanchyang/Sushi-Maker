@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Search } from '../../../imgs/search.svg';
 import { ReactComponent as ViewAdjust } from '../../../imgs/viewAdjust.svg';
 import { ReactComponent as Filter } from '../../../imgs/filter-icon.svg';
 import styles from '../Share.module.scss';
+import config from '../../../Config';
 
 function ShareNavBar(props) {
   const {
@@ -14,12 +15,63 @@ function ShareNavBar(props) {
     colControl,
     setColControl,
     filterNum,
+    filterState,
+    dispatch,
+    setNoFound,
+    setShareItemsData,
+    getShareItems,
   } = props;
 
   const searchBarHandler = () =>
     search
       ? { transform: 'translateX(0px)' }
       : { transform: 'translateX(250px)' };
+
+  const filterDispatchHandler = e => {
+    const type = e.target.dataset.type;
+    if (type) {
+      return dispatch({
+        type: `${type.toUpperCase()}`,
+        [type]: e.target.value,
+      });
+    }
+  };
+
+  const getFilterData = async () => {
+    try {
+      const response = await fetch(config.GET_FILTER_ITEMS, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(filterState),
+      });
+      if (!response.ok) throw new Error('No items match your search!');
+
+      const itemsObj = await response.json();
+      return itemsObj;
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  // Finding results when search changed
+  useEffect(() => {
+    if (!filterState.search) {
+      (async () => {
+        const result = await getShareItems();
+        setShareItemsData(result.data);
+      })();
+    }
+    (async () => {
+      const result = await getFilterData();
+      if (!result) {
+        setNoFound('查無符合條件的貼文，請重新篩選或清空篩選條件');
+        setShareItemsData([]);
+      } else {
+        setNoFound('');
+        setShareItemsData(result.data);
+      }
+    })();
+  }, [filterState.search]);
 
   return (
     <div className={`mycontainer mb-5`}>
@@ -36,8 +88,13 @@ function ShareNavBar(props) {
                     type="text"
                     style={searchBarHandler()}
                     className={`${styles['search-input-bar']} ch-cont-14`}
+                    value={filterState.search}
                     placeholder="Search"
-                  ></input>
+                    data-type="search"
+                    onChange={e => {
+                      filterDispatchHandler(e);
+                    }}
+                  />
                 </div>
                 <Search
                   className={`${styles['button-default']} mr-4`}

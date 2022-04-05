@@ -64,6 +64,7 @@ function ShareComment(props) {
                 >
                   <td
                     className={`${styles['comment-history-name']} font-weight-normal`}
+                    style={{ width: '20vw !important' }}
                   >
                     {title}
                   </td>
@@ -89,6 +90,7 @@ function ShareComment(props) {
                     {i === commentItem ? (
                       <Trash
                         className={`${styles['upload-del-button']} mb-2`}
+                        onClick={() => {}}
                       />
                     ) : (
                       ''

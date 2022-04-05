@@ -26,7 +26,7 @@ function ItemDetailsInfo(props) {
           </div>
           <div className="d-flex  flex-grow-1">
             <TimeClock className="mr-3" />
-            <h3 className="en-cont-18">{`${orderPrint}_MIN`}</h3>
+            <h3 className="en-cont-18">{`${orderPrint}_SEC`}</h3>
           </div>
         </div>
         <div className={`${styles['tag-box']}`}>

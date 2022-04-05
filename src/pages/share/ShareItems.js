@@ -183,6 +183,7 @@ function ShareItems(props) {
           tags: shareTags.map(tag => tag.item_hash) ?? [],
           minTime: '',
           maxTime: '',
+          search: '',
         }),
       });
 
@@ -293,7 +294,10 @@ function ShareItems(props) {
                     </p>
                     <div className="d-flex align-items-center">
                       {editHandler()}
-                      <Delete className="mx-md-4 p-2" />
+                      <Delete
+                        className={`${styles['large-del']} mx-md-4 p-2`}
+                        onClick={() => history.push('/share')}
+                      />
                     </div>
                   </div>
                 </div>

@@ -3,13 +3,15 @@ import { ReactComponent as Rect } from '../../../imgs/tags/Rectangle_orange.svg'
 import styles from '../Share.module.scss';
 import config from '../../../Config';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 function ShareProfile() {
   const [activeTopic, setActiveTopic] = useState('saves');
 
   const memPhoto = localStorage.getItem('mem_photo');
   const memName = localStorage.getItem('mem_name');
+
+  let history = useHistory(null);
 
   const topicTemplate = topic => {
     return (
@@ -24,7 +26,6 @@ function ShareProfile() {
           <NavLink
             to={`/share/${topic}`}
             className={`${styles['topic-link']}`}
-            style={{ color: '#c4c4c4' }}
             activeStyle={{ color: '#212121' }}
             isActive={match => {
               if (!match) return false;
@@ -48,11 +49,14 @@ function ShareProfile() {
             <div className="d-flex justify-content-between">
               <p className="mytitle en-title-14-10">HOME / SHARE / MY-SHARE</p>
               <div className="d-flex align-items-center">
-                <Delete className="mx-md-4 p-2" />
+                <Delete
+                  className={`${styles['large-del']} mx-md-4 p-2`}
+                  onClick={() => history.push('/share')}
+                />
               </div>
             </div>
             <div
-              className={`${styles['profile-section']} d-flex justify-content-center flex-sm-column ${styles['mb-50']} `}
+              className={`${styles['profile-section']} d-flex justify-content-center flex-sm-column mb-5`}
             >
               <div
                 className={`${styles['profile-img-box']} d-flex justify-content-center mr-4 mr-sm-0`}
