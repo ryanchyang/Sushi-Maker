@@ -147,11 +147,11 @@ const ChartForMem = () => {
   });
 
   return (
-    <div className="d-flex mx-5">
+    <div className="d-flex px-3 my-5 py-5">
       <div className="mr-5" style={{ width: '600px' }}>
         <BarChart chartData={weekData} options={options} />
       </div>
-      <div className="ml-5" style={{ width: '500px' }}>
+      <div className="ml-5" style={{ width: '400px' }}>
         <DoughnutChart chartData={allData} />
       </div>
     </div>

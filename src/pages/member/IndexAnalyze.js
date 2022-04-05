@@ -30,7 +30,7 @@ function IndexAnalyze(props) {
             <div className="member ">
               <MemHead isLogin={isLogin}/>
               {/* 以上不動 */}
-              <ChartForMem />
+              <ChartForMem className="mt-5"/>
             </div>
             <Footer />
           </div>
