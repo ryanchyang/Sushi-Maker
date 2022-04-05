@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react';
 import config from '../../Config';
 import { Button, Modal } from 'react-bootstrap';
 import NavPage from '../layout/components/NavPage';
+//會員 加入購物車
+import { getCartCount } from '../../utils';
 
 // import './SetOrderAll.scss';
 function SetOrderFinal(props) {
@@ -14,7 +16,7 @@ function SetOrderFinal(props) {
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
   const history = useHistory();
-
+  const [changeCartCount, setChangeCartCount] = useState(0); //改變購物車數量
   //加入購物車的光箱
   const [cartShow, setCartShow] = useState(false);
   const handleCartClose = () => {
@@ -107,7 +109,14 @@ function SetOrderFinal(props) {
           numberid: number_id,
           memid: memid,
         }),
-      });
+      })
+        .then(res => res.json())
+        .then(async d => {
+          console.log('123');
+          //加入購物車後重新設定購物車的商品數量
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
+        });
     };
     sendData();
   }
@@ -246,7 +255,10 @@ function SetOrderFinal(props) {
 
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight
+            setNavIsOpen={setNavIsOpen}
+            changeCartCount={changeCartCount} // 購物車數量狀態改變
+          />
         </div>
       </div>
     </>

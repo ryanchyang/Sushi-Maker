@@ -35,9 +35,9 @@ function StepFour(props) {
   }, []);
   const [selected3, setSelected3] = useState([]);
   //判斷上一題有沒有回答,沒有回答的話就跳回套餐首頁
-  if (question2 === undefined) {
-    window.location.href = `./stepStart`;
-  } else {
+  // if (question2 === undefined) {
+  //   window.location.href = `./stepStart`;
+  // } else {
     //設定按鈕
     const handleColorMultiple = e => {
       const newData = selected3.map(v => {
@@ -155,6 +155,6 @@ function StepFour(props) {
       </>
     );
   }
-}
+// }
 
 export default StepFour;
