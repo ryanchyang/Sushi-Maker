@@ -32,6 +32,7 @@ function MemIndex(props) {
 
   useEffect(() => {
     if (isLogin) {
+      
       findMem(mem_id).then(obj => {
         setMemData(obj[0]);
       });
