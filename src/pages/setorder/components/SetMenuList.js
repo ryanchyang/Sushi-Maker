@@ -24,7 +24,7 @@ function SetMenuList(props) {
             <div className="lightbox-bento-img-element mx-auto">
               <img
                 className="setorderlist-set-bento-img"
-                src={`http://localhost:3500/img/home/mealplan-bento.png`}
+                src={`http://localhost:3500/${props.answer[props.index]?.bento_img}`}
                 alt="product-image"
               />
             </div>
@@ -81,6 +81,8 @@ function SetMenuList(props) {
     props.setAnswer(newdata);
     props.setSelect(selectedBento.sushiList);
     props.setSelectTitle(selectedBento.bento_ch_name);
+    props.setSelectImg(selectedBento.bento_img);
+    console.log(selectedBento.bento_id);
   }
 
   return (

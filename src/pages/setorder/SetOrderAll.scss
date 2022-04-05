@@ -1,8 +1,8 @@
-@import './../../styles/global.scss';
+@import "./../../styles/global.scss";
 .setmenulist {
- 
-  .link-bread-set{
-    margin-bottom:3%;
+  animation: select-box-appear 1s ease-in-out;
+  .link-bread-set {
+    margin-bottom: 3%;
   }
   .lightbox-bento-img-element {
     display: flex;
@@ -57,8 +57,8 @@
   .set-row {
     display: flex;
   }
- 
-  .set-list-title-final{
+
+  .set-list-title-final {
     padding-bottom: 6%;
   }
   .set-menu-title {
@@ -76,7 +76,7 @@
     display: flex;
   }
   .date-error {
-    padding:3% 0 5% 3%;
+    padding: 3% 0 5% 3%;
   }
   .set-input-from {
     padding-right: 2%;
@@ -129,12 +129,12 @@
     display: block;
   }
 
-
   .setorderlist-set-bento-img {
     width: 100%;
-    padding: 0% 5% 5% 10%;
+    // padding: 0% 5% 5% 10%;
     margin: auto;
     // opacity: 20%;
+    
   }
 
   .bento-img-element img {
@@ -166,6 +166,16 @@
     position: relative;
     padding: 10 0;
     // overflow: hidden;
+  
+  }
+  @keyframes select-box-appear {
+    from {
+      
+      opacity: 0%;
+    }
+    to {
+      opacity: 100%;
+    }
   }
   .set-order-list-buttom {
     justify-content: end;
@@ -204,9 +214,9 @@
   .set-nutrient-bento-name {
     margin-bottom: 8%;
   }
-  .set-nutrient-bento-name-lightbox{
+  .set-nutrient-bento-name-lightbox {
     padding-left: 5%;
-}
+  }
   @media screen and (max-width: 1516) {
     @include mytitle;
     font-size: 1.4rem;
@@ -215,17 +225,17 @@
   }
 
   @media screen and (max-width: 991px) {
-    .date-error{
-      padding:2% 0 2% 2%;
+    .date-error {
+      padding: 2% 0 2% 2%;
     }
-    .set-order-list-buttom{
+    .set-order-list-buttom {
       margin-top: 10%;
     }
     .set-view-all {
       padding: 0;
     }
-    .set-list-right-final{
-      margin-right:2%;
+    .set-list-right-final {
+      margin-right: 2%;
       margin-top: 2%;
     }
     .set-list-down-correct {
@@ -239,7 +249,7 @@
     .set-list-right {
       display: none;
     }
-    
+
     .set-list-left {
       width: 100%;
     }
@@ -249,17 +259,17 @@
     .custom-info {
       display: block;
     }
-    .setorderfinal{
+    .setorderfinal {
       flex-direction: column;
     }
-    .set-list-down{
+    .set-list-down {
       margin-top: 0;
     }
   }
 }
-@media screen and(max-width:576px){
-  .link-bread-set{
-    margin-top:10%;
-    margin-bottom:2%;
+@media screen and(max-width:576px) {
+  .link-bread-set {
+    margin-top: 10%;
+    margin-bottom: 2%;
   }
 }

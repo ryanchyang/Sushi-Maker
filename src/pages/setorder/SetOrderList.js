@@ -8,6 +8,7 @@ import config from '../../Config';
 import NavPage from '../layout/components/NavPage';
 
 function SetOrderList(props) {
+
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
@@ -36,9 +37,10 @@ function SetOrderList(props) {
   const [selectTitleEng, setSelectTitleEng] = useState('');
   //被選到的便當 右邊清單
   const [select, setSelect] = useState([]);
+  //被選到的便當 右邊清單的便當照片
+  const [selectImg, setSelectImg] = useState('');
   //推薦的套餐id
   const [numberid, setNumberid] = useState(0);
-
   //資料傳到後端後做完判斷,傳出結果
   useEffect(() => {
     const getData = async () => {
@@ -53,7 +55,7 @@ function SetOrderList(props) {
           //return 將obj資料丟到useEffect外面
           return obj;
         });
-
+      // console.log('res', res);
       //init 結果弄成陣列
 
       const init = Array(7).fill(res[0]);
@@ -63,6 +65,7 @@ function SetOrderList(props) {
       setSelect(res[0].sushiList);
       setSelectTitle(res[0].bento_ch_name);
       setSelectTitleEng(res[0].bento_en_name);
+      setSelectImg(res[0].bento_img);
       //list 比對清單
       // setList(res.rows);
     };
@@ -196,8 +199,9 @@ function SetOrderList(props) {
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
                       index={0}
+                      setSelectImg={setSelectImg}
 
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -208,8 +212,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={1}
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -220,8 +225,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={2}
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -232,8 +238,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={3}
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -244,8 +251,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={4}
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -256,8 +264,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={5}
-                      // list={list}
+                    // list={list}
                     />
                     <SetMenuList
                       answer={answer}
@@ -268,8 +277,9 @@ function SetOrderList(props) {
                       selectTitle={selectTitle}
                       setSelectTitle={setSelectTitle}
                       selectTitleEng={selectTitleEng}
+                      setSelectImg={setSelectImg}
                       index={6}
-                      // list={list}
+                    // list={list}
                     />
                   </div>
                   <div className="set-list-right col-8">
@@ -277,7 +287,7 @@ function SetOrderList(props) {
                       <div className="bento-img-element mx-auto">
                         <img
                           className="setorderlist-set-bento-img"
-                          src={`http://localhost:3500/img/home/mealplan-bento.png`}
+                          src={`http://localhost:3500/${selectImg}`}
                           alt="product-image"
                         />
                       </div>

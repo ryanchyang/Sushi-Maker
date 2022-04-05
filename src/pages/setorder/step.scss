@@ -1,5 +1,6 @@
 @import './../../styles/global.scss';
 .step {
+  animation: select-box-appear 0.5s ease-in-out;
   img{
     width: 50%;
   }
