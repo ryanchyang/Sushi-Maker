@@ -8,18 +8,21 @@ import dataLabel from '../dataLabel';
 
 const ChartForMem = () => {
   const [memOrderData, setMemOrderData] = useState();
+  const [memOrderDataAll, setMemOrderDataAll] = useState();
   const [showChart, setShowChart] = useState(false);
   const [barData, setBarData] = useState([]);
+  const [doData, setDodata] = useState([]);
   const mem_id = localStorage.getItem('mem_id');
-  console.log(showChart);
+  console.log(doData);
 
   setTimeout(() => {
     setShowChart(true);
-  }, 200);
+  }, 300);
 
   useEffect(() => {
     chartInfo(mem_id).then(obj => {
-      setMemOrderData(obj);
+      setMemOrderData(obj.dataForWeek);
+      setMemOrderDataAll(obj.dataForAll);
     });
 
     const data = dataLabel.map(d => {
@@ -39,57 +42,62 @@ const ChartForMem = () => {
         pointHoverBorderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
       };
     });
+    // const colorA = Math.random() * 255;
+    // const colorB = Math.random() * 255;
+    // const colorC = Math.random() * 255;
+
+    const doughnutData = [
+      {
+        label: 'label',
+        data: memOrderDataAll && memOrderDataAll.map(d => d.data),
+        fill: true,
+        backgroundColor: [
+          'rgba(220, 231, 117, 0.4)',
+          'rgba(139, 195, 74,0.4)',
+          'rgba(77, 208, 225,0.4)',
+          'rgb(244, 143, 177,0.4)',
+          'rgba(255, 112, 67,0.4)',
+          'rgb(141, 110, 99,0.4)',
+        ],
+        borderColor: `rgb(120, 144, 156)`,
+        pointBackgroundColor: `rgb(0, 255, 0)`,
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: `rgb(0, 0, 255)`,
+      },
+    ];
+
+    setDodata(doughnutData);
     setBarData(data);
   }, [showChart]);
 
-  const doughnutData = nuData
-    .filter(i => {
-      return [8].includes(i.mtl_id);
-    })
-    .map(d => {
-      const colorA = Math.random() * 255;
-      const colorB = Math.random() * 255;
-      const colorC = Math.random() * 255;
-
-      return {
-        label: d.mtl_name,
-        data: MtlData.filter(info => {
-          return info.nutrients !== 'FAT';
-        }).map(data => data[d.mtl_name]),
-        fill: true,
-        backgroundColor: [
-          'rgba(255,10,255, 0.4)',
-          'rgba(10,10,255, 0.4)',
-          'rgba(10,10,10, 0.4)',
-          'rgba(10,50,25, 0.4)',
-          'rgba(10,20,100, 0.4)',
-        ],
-        borderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
-        pointBackgroundColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
-        pointBorderColor: '#fff',
-        pointHoverBackgroundColor: '#fff',
-        pointHoverBorderColor: `rgb(${colorA}, ${colorB}, ${colorC})`,
-      };
-    });
-
   const [weekData, setWeekData] = useState({
-    labels: memOrderData && memOrderData.map(data => data.label),
+    labels: memOrderData && memOrderData.map(v => v.data),
     datasets: barData,
   });
+
+  const [allData, setAllData] = useState({
+    maintainAspectRatio: false,
+    responsive: false,
+    labels: memOrderDataAll && memOrderDataAll.map(v => v.label),
+    datasets: doData,
+  });
+  console.log(allData);
 
   useEffect(() => {
     setWeekData({
       labels: memOrderData && memOrderData.map(data => data.label),
       datasets: barData,
     });
+
+    setAllData({
+      maintainAspectRatio: false,
+      responsive: false,
+      labels: memOrderDataAll && memOrderDataAll.map(v => v.label),
+      datasets: doData,
+    });
   }, [memOrderData]);
 
-  const [otherData, setOtherData] = useState({
-    maintainAspectRatio: false,
-    responsive: false,
-    labels: ['SUGAR', 'PROTEIN', 'CARBO', 'SODIUM', 'CALORIES'],
-    datasets: doughnutData,
-  });
   const [options, setOptions] = useState({
     legend: {
       position: 'bottom',
@@ -144,7 +152,7 @@ const ChartForMem = () => {
         <BarChart chartData={weekData} options={options} />
       </div>
       <div className="ml-5" style={{ width: '500px' }}>
-        <DoughnutChart chartData={otherData} />
+        <DoughnutChart chartData={allData} />
       </div>
     </div>
   );

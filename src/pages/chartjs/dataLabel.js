@@ -1,5 +1,5 @@
  const dataLabel = [
-  { label: 'SUGARS' },
+  { label: 'SUGAR' },
   { label: 'FAT' },
   { label: 'PROTEIN' },
   { label: 'CARBO' },
