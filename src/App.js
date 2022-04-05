@@ -29,8 +29,6 @@ import LatestNews from './pages/home/LatestNews';
 import NewsDetails from './pages/home/NewsDetails';
 import EvntsDetails from './pages/home/EvntsDetails';
 import EvntsSignUp from './pages/home/EvntsSignUp';
-import Entry from './pages/home/components/Entry';
-// import NavPage from './pages/home/components/NavPage';
 //setorder
 import StepStart from './pages/setorder/StepStart';
 import StepOne from './pages/setorder/StepOne';

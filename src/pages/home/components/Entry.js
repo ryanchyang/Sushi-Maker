@@ -45,7 +45,7 @@ function Entry(props) {
               <div
                 className="en-cont-18 progress-done"
                 onAnimationEnd={() => {
-                  console.log('transitionend');
+                  // console.log('transitionend');
                   setEntryOpen(false);
                 }}
               ></div>
