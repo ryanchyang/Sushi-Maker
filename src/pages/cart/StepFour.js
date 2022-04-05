@@ -8,7 +8,7 @@ import React, { useState, useEffect } from 'react';
 import NavPage from '../layout/components/NavPage';
 // 資料庫拿資料
 import config from '../../Config';
-import { getMemId, getCart } from '../../utils';
+import { getMemId, getCart, getCartCount } from '../../utils';
 
 // TODO: 第4部要清空 cartcount localstorage
 function StepFour(props) {
@@ -21,6 +21,8 @@ function StepFour(props) {
 
   const [fincart, setFincart] = useState([]);
   const [mem_id, setMem_id] = useState(0);
+  const [changeCartCount, setChangeCartCount] = useState(0); // 要知道什麼時候更改購物車的數量
+
   //QRCODE
   const [qrC, setQrC] = useState('');
   //
@@ -31,6 +33,8 @@ function StepFour(props) {
     const getInit = async () => {
       const Mid = getMemId();
       setMem_id(+Mid);
+      await getCartCount(+localStorage.getItem('mem_id')); // cartcount 數字改變
+      setChangeCartCount(changeCartCount + 1); // 狀態要改變
     };
     getInit();
   }, []);
@@ -111,7 +115,7 @@ function StepFour(props) {
                         size={150} //二維碼的寬高尺寸
                         fgColor="#000000" //二維碼的顏色
                         logoImage="/img/cart/logo.svg" // 加入logo
-                        logoOpacity="1" 
+                        logoOpacity="1"
                         removeQrCodeBehindLogo
                       />
                       {/* <img src="/img/cart/qrcode.svg" alt=""></img> */}
@@ -160,7 +164,10 @@ function StepFour(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} />
+          <AsideRight
+            setNavIsOpen={setNavIsOpen}
+            changeCartCount={changeCartCount} // 購物車數量狀態改變
+          />
         </div>
       </div>
     </>
