@@ -22,7 +22,7 @@ function EvntsDetails(props) {
   const getEvntsDetail = async () => {
     const res = await fetch(config.EVNTSD_PATH + `${id}`);
     const obj = await res.json();
-    console.log('obj:', obj);
+    // console.log('obj:', obj);
     setEvntsDetail(obj.data);
   };
 

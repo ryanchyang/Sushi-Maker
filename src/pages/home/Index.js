@@ -63,20 +63,22 @@ function Index(props) {
     // console.log('window.height:', windowDimensions.height);
     // console.log('promotion:', promotion.current.offsetTop);
     // console.log('footer:', footer.current.offsetTop);
-    if (
-      changeBG !== true &&
-      (window.scrollY <=
-        promotion.current.offsetTop - windowDimensions.height / 2 ||
+    if (promotion.current.offsetTop) {
+      if (
+        changeBG !== true &&
+        (window.scrollY <=
+          promotion.current.offsetTop - windowDimensions.height / 2 ||
+          window.scrollY >=
+            footer.current.offsetTop - windowDimensions.height / 3)
+      ) {
+        setChangeBG(true);
+      } else if (
+        changeBG !== false &&
         window.scrollY >=
-          footer.current.offsetTop - windowDimensions.height / 3)
-    ) {
-      setChangeBG(true);
-    } else if (
-      changeBG !== false &&
-      window.scrollY >=
-        promotion.current.offsetTop - windowDimensions.height / 2
-    ) {
-      setChangeBG(false);
+          promotion.current.offsetTop - windowDimensions.height / 2
+      ) {
+        setChangeBG(false);
+      }
     }
   };
 
