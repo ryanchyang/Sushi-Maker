@@ -8,7 +8,6 @@ import SetMenuFinal from './SetMenuFinal';
 import { PropaneRounded } from '@mui/icons-material';
 
 function SetMenuList(props) {
-
   // 套餐光箱
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -24,7 +23,9 @@ function SetMenuList(props) {
             <div className="lightbox-bento-img-element mx-auto">
               <img
                 className="setorderlist-set-bento-img"
-                src={`http://localhost:3500/${props.answer[props.index]?.bento_img}`}
+                src={`http://localhost:3500/img/setorder/bento_img/${
+                  props.answer[props.index]?.bento_id
+                }.png`}
                 alt="product-image"
               />
             </div>
@@ -39,7 +40,7 @@ function SetMenuList(props) {
                 {props.answer[props.index]?.bento_en_name}
               </div>
               <div className="bento-sushi-menu">
-              {/* nswer[props.index].sushiList */}
+                {/* nswer[props.index].sushiList */}
                 {props.answer[props.index]?.sushiList.map((selects, i) => {
                   return (
                     <div className="set-menu-sushi col-12 col-12" key={i}>
@@ -82,6 +83,7 @@ function SetMenuList(props) {
     props.setSelect(selectedBento.sushiList);
     props.setSelectTitle(selectedBento.bento_ch_name);
     props.setSelectImg(selectedBento.bento_img);
+    props.setSelectId(selectedBento.bento_id);
     console.log(selectedBento.bento_id);
   }
 
