@@ -133,7 +133,7 @@ function ShareItems(props) {
       const response = await fetch(config.TOGGLE_SAVE, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ itemId: itemId, memberId: '1' }),
+        body: JSON.stringify({ itemId: itemId, memberId: memId }),
       });
       if (!response.ok) throw new Error('Something went wrong!');
     } catch (err) {
@@ -142,7 +142,7 @@ function ShareItems(props) {
   };
 
   const editHandler = () => {
-    return memberId === 1 ? (
+    return +memberId === +memId ? (
       <div
         className={`${styles['button-default-lg']} d-flex align-items-center mr-3`}
         onClick={() =>
