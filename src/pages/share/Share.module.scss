@@ -650,9 +650,10 @@ $upload-min-height: calc(42.9vh);
   color: #b03342;
   border-radius: 25px;
   cursor: pointer;
+  // background-color: #b03342;
 }
 
-.hash-tag-red :hover {
+.hash-tag-red:hover {
   color: #ffffff;
   background-color: #b03342;
 }

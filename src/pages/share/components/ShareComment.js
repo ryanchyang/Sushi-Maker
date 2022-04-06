@@ -74,7 +74,7 @@ function ShareComment(props) {
                   <td className={`${styles['comment-history']} `}>{comment}</td>
                   <td>
                     <button
-                      className={`${styles['share-item-button']} btn-sm btn-primary mr-md-5`}
+                      className={`${styles['share-item-button']} btn-sm btn-primary mr-md-4`}
                       onClick={() => {
                         history.push({
                           pathname: `/share/items/${itemId}`,
