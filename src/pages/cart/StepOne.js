@@ -367,7 +367,6 @@ function StepOne(props) {
 
         let newSetArr = [...deleteProd];
         newSetArr.push({ pid: pid, category: category });
-        setDeleteProd(newSetArr);
 
         fetch(config.DELETE_CART_PROD, {
           method: 'POST',
@@ -385,6 +384,7 @@ function StepOne(props) {
           .then(async d => {
             await getCartCount(+localStorage.getItem('mem_id')); // cartcount 數字改變
             setChangeCartCount(changeCartCount + 1); // 狀態要改變
+            setDeleteProd(newSetArr);
           });
         break;
 
@@ -398,8 +398,6 @@ function StepOne(props) {
 
         let newCsArr = [...deleteProd];
         newCsArr.push({ pid: pid, category: category });
-        setDeleteProd(newCsArr);
-        console.log('262', newCsArr);
 
         fetch(config.DELETE_CART_PROD, {
           method: 'POST',
@@ -417,6 +415,7 @@ function StepOne(props) {
           .then(async d => {
             await getCartCount(+localStorage.getItem('mem_id'));
             setChangeCartCount(changeCartCount + 1);
+            setDeleteProd(newCsArr);
           });
         break;
 
@@ -427,7 +426,6 @@ function StepOne(props) {
 
         let newCmArr = [...deleteProd];
         newCmArr.push({ pid: pid, category: category });
-        setDeleteProd(newCmArr);
 
         fetch(config.DELETE_CART_PROD, {
           method: 'POST',
@@ -445,6 +443,7 @@ function StepOne(props) {
           .then(async d => {
             await getCartCount(+localStorage.getItem('mem_id'));
             setChangeCartCount(changeCartCount + 1);
+            setDeleteProd(newCmArr);
           });
         break;
 
