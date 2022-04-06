@@ -62,7 +62,7 @@ function IndexActive(props) {
   const [modalShow, setModalShow] = useState(false);
   const { navIsOpen, setNavIsOpen, isLogin } = props;
   const mem_id = getMemId();
-  // console.log('mem_id:', mem_id);
+
 
   const getActive = async () => {
     const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
@@ -70,7 +70,6 @@ function IndexActive(props) {
     const events = obj.data.map(d => {
       return { ...d, start: new Date(d.start), end: new Date(d.end) };
     });
-    console.log('events:', events);
     setAllEvent(events);
   };
 

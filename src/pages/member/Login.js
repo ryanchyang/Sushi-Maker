@@ -137,7 +137,6 @@ function Login(props) {
   const handleSubmit = e => {
     e.preventDefault();
     login(mem_account, mem_pwd).then(data => {
-      console.log(data);
       if (data.code !== 0) {
         return setErrorMessage(data.error);
       } else {

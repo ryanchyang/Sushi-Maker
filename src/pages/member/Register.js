@@ -111,7 +111,6 @@ function Register(props) {
     e.preventDefault();
     if (verify_code) {
       registerMem(registerData, verify_code).then(obj => {
-        console.log(obj);
         if (obj.success) {
           alert('註冊成功');
           setAuthToken(obj.token);
@@ -122,7 +121,6 @@ function Register(props) {
       });
     } else {
       registerMail(registerData).then(obj => {
-        console.log(obj);
         if (obj.success) {
           alert('發送成功');
           localStorage.setItem('verify_code', obj.verify_code);
