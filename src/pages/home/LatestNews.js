@@ -63,7 +63,7 @@ function LatestNews(props) {
   const getNewsData = async () => {
     const res = await fetch(config.NEWS_PATH);
     const obj = await res.json();
-    console.log('obj:', obj);
+    // console.log('obj:', obj);
     setFetchNewsData(obj.data);
     setNewsData(obj.data);
   };

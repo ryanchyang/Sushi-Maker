@@ -349,10 +349,10 @@
     right: 4%;
     z-index: 4;
     transition: 1s ease-in-out;
-    transition-delay: 0.1s;
   }
   .fadeout {
     transform: translateY(-600px) scale(50%);
+    behavior: smooth;
     opacity: 0;
     z-index: 2;
   }
