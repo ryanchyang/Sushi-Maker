@@ -556,7 +556,7 @@ function StepOne(props) {
       )}
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         <div style={{ display: 'flex' }}>
-          <div className="cart-asideLeft-nav d-md-block d-none ch-title-16 ">
+          <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
             <div className="cart-asL-nav-item">
               <div
                 className="mb-3 cart-asL-nav-text"

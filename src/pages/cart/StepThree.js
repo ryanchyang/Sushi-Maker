@@ -92,6 +92,49 @@ function StepThree(props) {
       )}
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         <div style={{ display: 'flex' }}>
+          
+          <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
+            <div className="cart-asL-nav-item">
+              <div
+                className="mb-3 cart-asL-nav-text"
+                style={{ color: '#212121' }}
+              >
+                我的購物清單
+              </div>
+              <div className="cart-asL-nav-square"></div>
+            </div>
+
+            <div className="cart-asL-nav-item">
+              <div
+                className="mb-3 cart-asL-nav-text"
+                style={{ color: '#212121' }}
+              >
+                填寫訂購資訊
+              </div>
+              <div className="cart-asL-nav-square"></div>
+            </div>
+
+            <div className="cart-asL-nav-item">
+              <div
+                className="mb-3 cart-asL-nav-text"
+                style={{ color: '#212121' }}
+              >
+                輸入信用卡資料
+              </div>
+              <div className="cart-asL-nav-square"></div>
+            </div>
+
+            <div className="cart-asL-nav-item">
+              <div
+                className="mb-3 cart-asL-nav-text"
+                style={{ color: '#C4C4C4' }}
+              >
+                完成訂單
+              </div>
+              <div className="cart-asL-nav-square-white"></div>
+            </div>
+          </div>
+
           <AsideLeft />
           <div style={{ width: '100%' }}>
             <Title title={'Payment Info'} setNavIsOpen={setNavIsOpen}/>
