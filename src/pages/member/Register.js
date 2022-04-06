@@ -116,6 +116,7 @@ function Register(props) {
           alert('註冊成功');
           setAuthToken(obj.token);
           setMemId(obj.info.mem_id);
+          localStorage.setItem('loginStatus', true);
           history.push('/member');
         }
       });
