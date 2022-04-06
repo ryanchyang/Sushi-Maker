@@ -21,7 +21,7 @@ function MemIndex(props) {
   const [memData, setMemData] = useState(null);
   const [toggleForCprod, setToggleForCprod] = useState(false);
   const [memShare, setMemShare] = useState('');
-  const { navIsOpen, setNavIsOpen, isLogin, setIsLogin } = props;
+  const { navIsOpen, setNavIsOpen } = props;
 
   const [rule, setRule] = useState(false);
   const handleClose = () => setRule(false);
@@ -29,10 +29,10 @@ function MemIndex(props) {
   const history = useHistory();
 
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
+  const isLogin = localStorage.getItem('loginStatus');
 
   useEffect(() => {
     if (isLogin) {
-      
       findMem(mem_id).then(obj => {
         setMemData(obj[0]);
       });
@@ -209,7 +209,7 @@ function MemIndex(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} setIsLogin={setIsLogin} />
+          <AsideRight setNavIsOpen={setNavIsOpen}/>
         </div>
       </div>
     </>

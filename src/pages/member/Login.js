@@ -124,7 +124,7 @@ function Login(props) {
   const [accountPass, setAccountPass] = useState(false);
   const [vCodePass, setVcodePass] = useState(false);
   const history = useHistory();
-  const { navIsOpen, setNavIsOpen, isLogin, setIsLogin } = props;
+  const { navIsOpen, setNavIsOpen } = props;
   
 
   const handleClickPwd = e => {

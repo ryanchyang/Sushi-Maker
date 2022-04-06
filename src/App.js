@@ -50,9 +50,9 @@ import CartList from './pages/cart/CartList';
 
 function App() {
   // localStorage.setItem('LoginStatus', false);
-  const loginStatus = localStorage.getItem('loginStatus');
+  // const loginStatus = localStorage.getItem('loginStatus');
   //判斷使用者是否登入
-  const [isLogin, setIsLogin] = useState(loginStatus);
+  // const [isLogin, setIsLogin] = useState(loginStatus);
 
   // 判斷使用者是否點擊漢堡
   const [navIsOpen, setNavIsOpen] = useState(false);
@@ -87,15 +87,14 @@ function App() {
               <MemIndex
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
+                
               />
             </Route>
             <Route path="/member/login">
               <Login
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
+                
               />
             </Route>
             <Route path="/member/register">
@@ -105,32 +104,28 @@ function App() {
               <IndexActive
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
+                
               />
             </Route>
             <Route path="/member/analyze">
               <IndexAnalyze
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
+                
               />
             </Route>
             <Route path="/member/historyorder">
               <IndexHistoryOrder
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
+                
               />
             </Route>
             <Route path="/member/revise">
               <IndexRevise
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                isLogin={isLogin}
-                setIsLogin={setIsLogin}
+                
               />
             </Route>
             <Route path="/share" exact>

@@ -11,7 +11,8 @@ function MemHead(props) {
   const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
-  const { memReviseInfo, isLogin } = props;
+  const { memReviseInfo} = props;
+  const isLogin = localStorage.getItem('loginStatus');
 
   //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
   useEffect(() => {
