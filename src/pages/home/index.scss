@@ -343,6 +343,22 @@
     margin: 0 0.5rem;
     cursor: pointer;
   }
+  .asideRight-nav {
+    position: fixed;
+    top: 45%;
+    right: 4%;
+    z-index: 4;
+    transition: 1s ease-in-out;
+    transition-delay: 0.1s;
+  }
+  .fadeout {
+    transform: translateY(-600px) scale(50%);
+    opacity: 0;
+    z-index: 2;
+  }
+  .asideRight-nav-text {
+    padding: 30% 0;
+  }
   @media screen and (min-width: 576px) {
     .en-title-14-5 {
       font-size: 2rem;
@@ -606,14 +622,14 @@
       .shares-img {
         max-height: 300px;
       }
-      .back-to-top{
+      .back-to-top {
         width: 80px;
         height: 80px;
         right: 1.5%;
         bottom: 2%;
       }
       .back-to-top-text {
-        margin-bottom: .8rem;
+        margin-bottom: 0.8rem;
       }
     }
     @media screen and (min-width: 961px) {

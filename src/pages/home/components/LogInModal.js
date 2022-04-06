@@ -5,11 +5,11 @@ function LogInModal(props) {
     <>
       <Modal {...props}>
         <Modal.Header closeButton>
-          <Modal.Title className="en-cont-30 m-3">未登入通知</Modal.Title>
+          <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ margin: '0 3%' }}>
           <div className="en-cont-14 pb-2">
-            您尚未登入會員，請先登入會員後，再行活動報名，謝謝您！
+            您尚未登入會員，請先登入會員後，再報名活動，謝謝您！
           </div>
         </Modal.Body>
         <Modal.Footer>

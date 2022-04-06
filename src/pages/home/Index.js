@@ -47,22 +47,17 @@ function Index(props) {
   const aboutus01 = useRef();
   const aboutus02 = useRef();
   const aboutus03 = useRef();
+  // const temNav = useRef();
 
   // didMount AJAX 促銷產品
   const getPromoData = async () => {
     const res = await fetch(config.PROMO_PATH);
     const promoObj = await res.json();
-    // console.log('promoObj:', promoObj);
     setPromoData(promoObj.data);
   };
 
   // 處理背景變色
   const changeBackground = () => {
-    // console.log('changeBG:', changeBG);
-    // console.log('window.scrollY:', window.scrollY);
-    // console.log('window.height:', windowDimensions.height);
-    // console.log('promotion:', promotion.current.offsetTop);
-    // console.log('footer:', footer.current.offsetTop);
     if (promotion.current.offsetTop) {
       if (
         changeBG !== true &&
@@ -108,29 +103,6 @@ function Index(props) {
     }
   };
 
-  // didMount初始化
-  // 1.設定Intro的setInterval
-  // 2.促銷商品發送AJAX
-  // 3.綁定window scroll event
-  useEffect(() => {
-    setInterval(changeCubeImg, 2000);
-    getPromoData();
-    window.addEventListener('scroll', changeBackground);
-    window.addEventListener('scroll', titleEnter);
-    setChangeBG(true);
-
-    // 結束後移除事件
-    return () => {
-      window.removeEventListener('scroll', titleEnter);
-      clearInterval(changeCubeImg);
-    };
-  }, []);
-
-  // 當Latest News分類有更新時，輪播牆的index回歸到0
-  useEffect(() => {
-    setNewsIndex(0);
-  }, [latestNewsCate]);
-
   // 處理Intro製成變化圖片
   let start = 0;
   const changeCubeImg = () => {
@@ -162,19 +134,19 @@ function Index(props) {
     start++;
   };
 
+  // 處理Scroll To時，右側Nav上移並消失
+  const navFly = () => {
+    const asideRightNav = document.querySelector('.asideRight-nav');
+    asideRightNav.classList.add('fadeout');
+  };
+
   // 處理第一頁Scroll To
-  const goToAboutUs = () =>
+  const goToAboutUs = () => {
     window.scrollTo({
       top: scrollTo.current.offsetTop - 150,
       behavior: 'smooth',
     });
-
-  // 處理carousel hover
-  const clickHandler = e => {
-    console.log('hi');
-    console.log('e.target', e.target);
-    console.log('e.currentTarget', e.currentTarget);
-    console.log(e.currentTarget.dataset.id);
+    navFly();
   };
 
   // 處理just for you類別切換
@@ -231,6 +203,30 @@ function Index(props) {
       };
     }
   };
+
+  // didMount初始化
+  // 1.設定Intro的setInterval
+  // 2.促銷商品發送AJAX
+  // 3.綁定window scroll event
+  useEffect(() => {
+    const intervalId = setInterval(changeCubeImg, 2000);
+    getPromoData();
+    window.addEventListener('scroll', changeBackground);
+    window.addEventListener('scroll', titleEnter);
+    setChangeBG(true);
+
+    // 結束後移除事件
+    return () => {
+      window.addEventListener('scroll', changeBackground);
+      window.removeEventListener('scroll', titleEnter);
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  // 當Latest News分類有更新時，輪播牆的index回歸到0
+  useEffect(() => {
+    setNewsIndex(0);
+  }, [latestNewsCate]);
 
   // 動態調整CSS inline style
   const showBlock = { display: 'block' };
@@ -438,11 +434,7 @@ function Index(props) {
                             to={`/classic/detail/${v.pid}`}
                             style={{ textDecoration: 'none' }}
                           >
-                            <li
-                              key={'promo' + v.pid}
-                              data-id={v.pid}
-                              onClick={clickHandler}
-                            >
+                            <li key={'promo' + v.pid} data-id={v.pid}>
                               <div
                                 className={`bg${
                                   Math.ceil(i % 4) * 1
@@ -967,6 +959,7 @@ function Index(props) {
               {/* back to top */}
               <BackToTop />
             </div>
+
             <AsideRight
               changeBG={changeBG}
               setChangeBG={setChangeBG}
@@ -976,6 +969,64 @@ function Index(props) {
               navIsOpen={navIsOpen}
               setNavIsOpen={setNavIsOpen}
             />
+            <div className="asideRight-nav ch-title-16 d-none d-lg-block">
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  關於我們
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/classic'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  經典產品
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/setorder/stepstart'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  客製產品
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/customize'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  套餐規劃
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/share'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  分享牆
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/latest-news/news'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  最新消息
+                </Link>
+              </div>
+              <div className="asideRight-nav-text">
+                <Link
+                  to={'/member'}
+                  style={{ textDecoration: 'none', color: '#ffffff' }}
+                >
+                  會員中心
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
