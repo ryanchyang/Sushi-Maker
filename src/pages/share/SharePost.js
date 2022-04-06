@@ -25,8 +25,11 @@ function SharePost(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
+  //Get member id
+  const memId = localStorage.getItem('mem_id');
+
   const getUserSharePost = async () => {
-    const response = await fetch(config.GET_USER_SHARE_POST, {
+    const response = await fetch(config.GET_USER_SHARE_POST + `${memId}`, {
       method: 'GET',
     });
     const itemsArr = await response.json();
@@ -34,7 +37,7 @@ function SharePost(props) {
   };
 
   const getUserShareComment = async () => {
-    const response = await fetch(config.GET_USER_SHARE_COMMENT, {
+    const response = await fetch(config.GET_USER_SHARE_COMMENT + `${memId}`, {
       method: 'GET',
     });
     const itemsArr = await response.json();
@@ -115,7 +118,7 @@ function SharePost(props) {
                     </div>
                   </div>
                 </div>
-                <div className="col-lg-18">
+                <div className="col-lg-17">
                   {subTopic === 'shared' ? (
                     <Masonry columns={4} gap={3} data={postItemsData} />
                   ) : (

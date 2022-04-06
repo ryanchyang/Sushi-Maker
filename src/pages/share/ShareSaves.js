@@ -21,12 +21,15 @@ function ShareSaves(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
+  // Get member id
+  const memId = localStorage.getItem('mem_id');
+
   const updateDimensions = () => {
     setColumns(getCurrentColumns(currentWidth));
   };
 
   const getUserShareItems = async () => {
-    const response = await fetch(config.GET_USER_SHARE_PRODS, {
+    const response = await fetch(config.GET_USER_SHARE_PRODS + `${memId}`, {
       method: 'GET',
     });
     const itemsArr = await response.json();

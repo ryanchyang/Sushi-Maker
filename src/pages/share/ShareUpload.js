@@ -60,8 +60,11 @@ function ShareUpload(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
+  //Get member id
+  const memId = localStorage.getItem('mem_id');
+
   const getUserShareUpload = async () => {
-    const response = await fetch(config.GET_USER_SHARE_UPLOAD, {
+    const response = await fetch(config.GET_USER_SHARE_UPLOAD + `${memId}`, {
       method: 'GET',
     });
     const itemsArr = await response.json();

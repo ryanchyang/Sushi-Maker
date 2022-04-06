@@ -95,8 +95,11 @@ function Share(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
+  // Get member id
+  const memId = localStorage.getItem('mem_id');
+  console.log(memId);
   const getShareItems = async () => {
-    const response = await fetch(config.GET_SHARE_PRODS, {
+    const response = await fetch(config.GET_SHARE_PRODS + `${memId}`, {
       method: 'GET',
     });
     const itemsObj = await response.json();

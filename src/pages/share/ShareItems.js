@@ -49,6 +49,9 @@ function ShareItems(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構NAVBAR
 
+  //Get member id
+  const memId = localStorage.getItem('mem_id');
+
   const {
     mem_id: memberId,
     mem_nickname: postMemName,
@@ -72,7 +75,7 @@ function ShareItems(props) {
   const { action = 'VIEW', commentSid = '' } = location.state || {};
 
   const getItemDetails = async () => {
-    const response = await fetch(config.GET_PROD_DETAILS + `${id}`, {
+    const response = await fetch(config.GET_PROD_DETAILS + `${id}/${memId}`, {
       method: 'GET',
     });
     const itemsArr = await response.json();
