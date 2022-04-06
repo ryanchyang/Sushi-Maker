@@ -92,7 +92,7 @@ function ShareUpload(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
             <ShareProfile />
-            <div className={`mycontainer`}>
+            <div className={`mycontainer ${styles['upload-min-height']}`}>
               <div className={`${styles['myshare-layout']} d-flex`}>
                 <div className="col-6 flex-column d-none d-lg-flex">
                   <div className="ch-cont-14 font-weight-bold mb-5">

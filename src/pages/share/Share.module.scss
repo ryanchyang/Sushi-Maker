@@ -1,7 +1,11 @@
 @import '../../styles/global.scss';
 $share-min-height: calc(64.5vh);
 
-$upload-min-height: calc(42.9vh);
+$upload-min-height: calc(47vh);
+
+$post-min-height: calc(46vh);
+
+$saves-min-height: calc(47vh);
 
 .mysharebutton {
   border-radius: 30rem;
@@ -53,6 +57,15 @@ $upload-min-height: calc(42.9vh);
 .upload-min-height {
   margin: 0;
   min-height: $upload-min-height;
+}
+
+.post-min-height {
+  margin: 0;
+  min-height: $post-min-height;
+}
+.saves-min-height {
+  margin: 0;
+  min-height: $saves-min-height;
 }
 
 .ml-100 {

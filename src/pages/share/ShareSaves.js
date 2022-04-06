@@ -61,7 +61,9 @@ function ShareSaves(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
             <ShareProfile />
-            <div className={`${styles['waterfall-container']}`}>
+            <div
+              className={`${styles['waterfall-container']} ${styles['saves-min-height']}`}
+            >
               <Masonry
                 columns={columns}
                 gap={columns}
