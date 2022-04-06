@@ -130,7 +130,7 @@ function SetOrderList(props) {
                   推薦結果
                 </div>
 
-                <div className="set-list-all ">
+                <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">
                       <div className="set-input-from ch-cont-14">從</div>
@@ -341,7 +341,7 @@ function SetOrderList(props) {
                       state: { date, week, choose, answer, numberid },
                     }}
                   >
-                    <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm">
+                    <div className="set-order-list-buttom float-end btn btn-sm btn-outline-primary primeal-btn-outline-sm set-order-final">
                       下一步
                     </div>
                   </Link>

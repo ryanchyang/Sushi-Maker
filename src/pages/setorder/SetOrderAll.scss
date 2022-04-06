@@ -1,6 +1,8 @@
 @import "./../../styles/global.scss";
 .setmenulist {
-  animation: select-box-appear 1s ease-in-out;
+  .animation-opcaity{
+    animation: select-box-appear 0.5s ease-in-out;
+  }
   .link-bread-set {
     margin-bottom: 3%;
   }
@@ -31,13 +33,13 @@
     align-items: flex-end;
     margin-bottom: 5%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .set-final-list-flex {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 2%;
+    padding-bottom: 10%;
   }
 
   .set-view-all {
@@ -176,6 +178,18 @@
     to {
       opacity: 100%;
     }
+  }
+  .set-orderfinal-svg{
+    animation: set-order-final-svg 6s ease-in-out;
+  }
+  .set-order-final{
+    // animation: set-order-final 6s ease-in-out;
+  }
+  @keyframes set-order-final {
+    0%   { opacity: 0%;}
+    25%  { opacity: 0%;}
+    80%  { opacity: 0%;}
+    100% { opacity: 100%;}
   }
   .set-order-list-buttom {
     justify-content: end;

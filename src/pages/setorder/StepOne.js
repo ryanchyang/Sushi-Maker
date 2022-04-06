@@ -4,6 +4,10 @@ import './step.scss';
 import './../../styles/global.scss';
 import NavPage from '../layout/components/NavPage';
 function StepOne(props) {
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  console.log('isLogin', isLogin);
+
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
@@ -62,7 +66,7 @@ function StepOne(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen}/>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
     </>

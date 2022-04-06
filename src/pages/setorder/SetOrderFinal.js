@@ -10,7 +10,6 @@ import NavPage from '../layout/components/NavPage';
 //會員 加入購物車
 import { getCartCount } from '../../utils';
 
-// import './SetOrderAll.scss';
 function SetOrderFinal(props) {
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
@@ -150,7 +149,7 @@ function SetOrderFinal(props) {
                   </Link>
                 </p>
                 <div className="set-list-title-final ch-title-22">推薦結果</div>
-                <div className="setorderfinal">
+                <div className="setorderfinal animation-opcaity">
                   <div className="set-list-left col-lg-12 col-md-24">
                     <div className="set-menu-title">
                       <div className="set-day-title en-cont-18">DAY</div>
@@ -222,6 +221,48 @@ function SetOrderFinal(props) {
                             selected={+week === 3 ? true : false}
                           >
                             3
+                          </option>
+                          <option
+                            value="4"
+                            selected={+week === 4 ? true : false}
+                          >
+                            4
+                          </option>
+                          <option
+                            value="5"
+                            selected={+week === 5 ? true : false}
+                          >
+                            5
+                          </option>
+                          <option
+                            value="6"
+                            selected={+week === 6 ? true : false}
+                          >
+                            6
+                          </option>
+                          <option
+                            value="7"
+                            selected={+week === 7 ? true : false}
+                          >
+                            7
+                          </option>
+                          <option
+                            value="8"
+                            selected={+week === 8 ? true : false}
+                          >
+                            8
+                          </option>
+                          <option
+                            value="9"
+                            selected={+week === 9 ? true : false}
+                          >
+                            9
+                          </option>
+                          <option
+                            value="10"
+                            selected={+week === 10 ? true : false}
+                          >
+                            10
                           </option>
                         </select>
                         <div className="ch-cont-14">份</div>
