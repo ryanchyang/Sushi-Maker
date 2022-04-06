@@ -201,3 +201,16 @@ export const memLike = async mem_id => {
     }),
   }).then(res => res.json());
 };
+
+// 傳回memSet
+export const memSet = async mem_id => {
+  return await fetch(`${BASE_URL}/member/api/memset`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      mem_id,
+    }),
+  }).then(res => res.json());
+};

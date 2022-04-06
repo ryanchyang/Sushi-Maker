@@ -6,7 +6,7 @@ import {
   Title,
 } from './memLayout/LayoutLight';
 import './index.scss';
-import { findMem } from '../../WebApi';
+import { findMem, memSet } from '../../WebApi';
 import { useEffect, useState } from 'react';
 import { getMemId } from '../../utils';
 import MemHead from './component/MemHead';
@@ -19,10 +19,9 @@ import { useHistory } from 'react-router-dom';
 
 function MemIndex(props) {
   const [memData, setMemData] = useState(null);
+  const [memSetOrder, setMemSetOrder] = useState(null);
   const [toggleForCprod, setToggleForCprod] = useState(false);
-  const [memShare, setMemShare] = useState('');
   const { navIsOpen, setNavIsOpen } = props;
-
   const [rule, setRule] = useState(false);
   const handleClose = () => setRule(false);
   const handleShow = () => setRule(true);
@@ -30,11 +29,15 @@ function MemIndex(props) {
 
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const isLogin = localStorage.getItem('loginStatus');
+  console.log(memSetOrder);
 
   useEffect(() => {
     if (isLogin) {
       findMem(mem_id).then(obj => {
         setMemData(obj[0]);
+      });
+      memSet(mem_id).then(i => {
+        setMemSetOrder(i[0]);
       });
     } else {
       history.push('/member/login');
@@ -175,10 +178,25 @@ function MemIndex(props) {
                     <div className="setImg">
                       <img src="/img/member/orderSet.png" alt="cube" />
                     </div>
-                    <div className="setDetail ch-cont-18">
+                    <div className="setDetail ch-cont-16">
                       <p className="ch-title-22">訂閱套餐</p>
-                      <p>訂閱方案</p>
-                      <p>訂閱時間</p>
+                      {memSetOrder ? (
+                        <>
+                          <p>{memSetOrder && memSetOrder.set_name}</p>
+                          <p>{memSetOrder && memSetOrder.set_start_date}</p>
+                          <p style={{ width: '100%', textAlign: 'center' }}>
+                            |
+                          </p>
+                          <p>{memSetOrder && memSetOrder.set_end_date}</p>
+                          <p>
+                            {memSetOrder && memSetOrder.set_effect == true
+                              ? ''
+                              : '<已過期>'}
+                          </p>
+                        </>
+                      ) : (
+                        '您尚未訂閱套餐'
+                      )}
                     </div>
                   </div>
                 </div>
@@ -209,7 +227,7 @@ function MemIndex(props) {
             </div>
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen}/>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
       </div>
     </>
