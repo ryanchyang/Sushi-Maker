@@ -12,13 +12,19 @@ import config from '../../Config';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { Button, Modal } from 'react-bootstrap';
+
 function SharePost(props) {
   const [subTopic, setSubTopic] = useState('shared');
   const [postItemsData, setPostItemsData] = useState([]);
   const [commentsData, setCommentsData] = useState([]);
+  const [deleteComment, setDeleteComment] = useState('');
 
   const location = useLocation(null);
   const { action = 'shared' } = location.state || {};
+
+  // 加入購物車光箱
+  const [show, setShow] = useState(false);
 
   //加入NAVBar漢堡選單開關
   const showBlock = { display: 'block' };
@@ -44,6 +50,59 @@ function SharePost(props) {
     return itemsArr;
   };
 
+  // fetch(config.DELETE_CART_PROD, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //     memId: mid,
+  //     cartid: cartid,
+  //     pid: prodid,
+  //     category: category,
+  //   }),
+  // })
+
+  const deleteShareComment = async () => {
+    await fetch(config.DELETE_COMMENT, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ sid: deleteComment }),
+    });
+  };
+
+  const handleClose = () => setShow(false);
+  const handleShow = commentSid => setShow(true);
+
+  const modal = (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">您確定要刪除該則留言?</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={async () => {
+            handleClose();
+            await deleteShareComment();
+            setCommentsData(
+              commentsData.filter(comment => comment.sid !== deleteComment)
+            );
+            setDeleteComment('');
+          }}
+        >
+          確定
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   // Fetching data
   useEffect(() => {
     (async () => {
@@ -58,6 +117,7 @@ function SharePost(props) {
 
   return (
     <>
+      {modal}
       <Header />
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
@@ -125,7 +185,11 @@ function SharePost(props) {
                     ''
                   )}
                   {subTopic === 'comment' ? (
-                    <ShareComment commentsData={commentsData} />
+                    <ShareComment
+                      commentsData={commentsData}
+                      handleShow={handleShow}
+                      setDeleteComment={setDeleteComment}
+                    />
                   ) : (
                     ''
                   )}

@@ -413,8 +413,9 @@ $saves-min-height: calc(47vh);
   overflow: hidden;
 }
 .profile-img-sm img {
+  object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .save-button {

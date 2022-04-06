@@ -45,6 +45,7 @@ const config = {
   UPDATE_POST: `${host}/api/share/update/post`,
   UPLOAD_COMMENT: `${host}/api/share/upload/comment`,
   UPDATE_COMMENT: `${host}/api/share/update/comment`,
+  DELETE_COMMENT: `${host}/api/share/delete/comment`,
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,

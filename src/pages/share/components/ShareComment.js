@@ -9,7 +9,7 @@ const dateConvertHandler = date => {
 };
 
 function ShareComment(props) {
-  const { commentsData } = props;
+  const { commentsData, handleShow, setDeleteComment } = props;
 
   const [commentItem, setCommentItem] = useState(-1);
   let history = useHistory(null);
@@ -90,7 +90,10 @@ function ShareComment(props) {
                     {i === commentItem ? (
                       <Trash
                         className={`${styles['upload-del-button']} mb-2`}
-                        onClick={() => {}}
+                        onClick={() => {
+                          setDeleteComment(commentSid);
+                          handleShow();
+                        }}
                       />
                     ) : (
                       ''
