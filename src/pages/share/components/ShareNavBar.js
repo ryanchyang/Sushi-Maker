@@ -74,12 +74,27 @@ function ShareNavBar(props) {
   }, [filterState.search]);
 
   return (
-    <div className={`mycontainer mb-5`}>
+    <div className={`mycontainer mb-5 ${styles['share-bread']}`}>
       <div className="row">
         <div className="col">
           <div className="d-flex flex-md-column justify-content-between">
             <div className="d-flex justify-content-between mb-5 flex-grow-1">
-              <p className="en-title-14-10">HOME / SHARE</p>
+              <div className="pt-3 pt-md-0">
+                <p className="en-title-14-10 d-flex">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME/&nbsp;
+                  </Link>
+                  <Link
+                    to={'/share'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    SHARE
+                  </Link>
+                </p>
+              </div>
               <div className="d-flex align-items-center">
                 <div
                   className={`${styles['search-input']} d-flex justify-content-end align-items-center`}
@@ -97,7 +112,7 @@ function ShareNavBar(props) {
                   />
                 </div>
                 <Search
-                  className={`${styles['button-default']} mr-4`}
+                  className={`${styles['button-default']} mr-md-4`}
                   onClick={() => setSearch(!search)}
                 />
 

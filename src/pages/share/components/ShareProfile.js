@@ -3,7 +3,7 @@ import { ReactComponent as Rect } from '../../../imgs/tags/Rectangle_orange.svg'
 import styles from '../Share.module.scss';
 import config from '../../../Config';
 
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
 function ShareProfile() {
   const [activeTopic, setActiveTopic] = useState('saves');
@@ -43,11 +43,32 @@ function ShareProfile() {
 
   return (
     <>
-      <div className={`mycontainer`}>
+      <div className={`mycontainer ${styles['share-bread']}`}>
         <div className="row">
           <div className="col">
             <div className="d-flex justify-content-between">
-              <p className="mytitle en-title-14-10">HOME / SHARE / MY-SHARE</p>
+              <div className="pt-3 pt-md-0">
+                <p className="en-title-14-10 d-flex">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME/&nbsp;
+                  </Link>
+                  <Link
+                    to={'/share'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    SHARE/&nbsp;
+                  </Link>
+                  <Link
+                    to={`/share/saves`}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    MYSHARE
+                  </Link>
+                </p>
+              </div>
               <div className="d-flex align-items-center">
                 <Delete
                   className={`${styles['large-del']} mx-md-4 p-2`}

@@ -8,7 +8,7 @@ import EditForm from './components/EditForm';
 import NavPage from '../layout/components/NavPage';
 
 import { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory, Link } from 'react-router-dom';
 
 import { Button, Modal } from 'react-bootstrap';
 
@@ -204,13 +204,32 @@ function ShareEdit(props) {
           <div style={{ width: '100%' }}>
             <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
 
-            <div className={`mycontainer`}>
+            <div className={`mycontainer  ${styles['share-bread']}`}>
               <div className="row">
                 <div className="col">
                   <div className="d-flex justify-content-between">
-                    <p className="mytitle en-title-14-10">
-                      HOME / SHARE / UPLOAD
-                    </p>
+                    <div className="pt-3 pt-md-0">
+                      <p className="en-title-14-10 d-flex">
+                        <Link
+                          to={'/'}
+                          style={{ textDecoration: 'none', color: '#575757' }}
+                        >
+                          HOME/&nbsp;
+                        </Link>
+                        <Link
+                          to={'/share'}
+                          style={{ textDecoration: 'none', color: '#575757' }}
+                        >
+                          SHARE/&nbsp;
+                        </Link>
+                        <Link
+                          to={`/share/edit`}
+                          style={{ textDecoration: 'none', color: '#b03342' }}
+                        >
+                          {action === 'UPDATE' ? 'EDIT' : 'UPLOAD'}
+                        </Link>
+                      </p>
+                    </div>
                     <div className="d-flex align-items-center">
                       <Delete
                         className={`${styles['large-del']} mx-md-4 p-2`}
