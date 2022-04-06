@@ -6,6 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { registerMem, registerMail } from '../../WebApi';
 import { setAuthToken, setMemId } from '../../utils';
 import NavPage from '../layout/components/NavPage';
+import { Button, Modal } from 'react-bootstrap';
 
 //styled component
 const LoginBody = styled.body`
@@ -106,24 +107,28 @@ function Register(props) {
   const [errorMessageMail, setErrorMessageMail] = useState('');
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
+  const [suc, setSuc] = useState(false);
+  const [sendVc, setSendVc] = useState(false)
+  const handleClose = () => setSuc(false);
+  const handleShow = () => setSuc(true);
+
   //function
   const handleRegister = e => {
     e.preventDefault();
     if (verify_code) {
       registerMem(registerData, verify_code).then(obj => {
-        console.log(obj);
         if (obj.success) {
-          alert('註冊成功');
+          setSuc(true);
           setAuthToken(obj.token);
           setMemId(obj.info.mem_id);
-          history.push('/member');
+          localStorage.setItem('loginStatus', true);
+          
         }
       });
     } else {
       registerMail(registerData).then(obj => {
-        console.log(obj);
         if (obj.success) {
-          alert('發送成功');
+          setSendVc(true)
           localStorage.setItem('verify_code', obj.verify_code);
           setVcode(obj.verify_code);
           setTimeout(() => {
@@ -144,6 +149,47 @@ function Register(props) {
 
   return (
     <>
+      {
+        <Modal show={suc} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="ch-title-20 m-3">印食感謝您</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ margin: '0 3%' }}>感謝您的註冊!</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+              onClick={() => {
+                setSuc(false);
+                history.push('/member')
+              }}
+            >
+              離開
+            </Button>
+            {/*TODO: 確認門市要送出表單並存到DB mem */}
+          </Modal.Footer>
+        </Modal>
+      }
+      {
+        <Modal show={sendVc} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="ch-title-20 m-3"></Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ margin: '0 3%' }}>驗證碼已發送</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+              onClick={() => {
+                setSendVc(false);
+              }}
+            >
+              離開
+            </Button>
+            {/*TODO: 確認門市要送出表單並存到DB mem */}
+          </Modal.Footer>
+        </Modal>
+      }
       <LoginBody>
         {/* <Header /> */}
         {navIsOpen && (

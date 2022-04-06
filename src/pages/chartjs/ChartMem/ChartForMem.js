@@ -147,7 +147,7 @@ const ChartForMem = () => {
   });
 
   return (
-    <div className="d-flex px-3 my-5 py-5">
+    <div className="d-flex px-3 my-5 py-5 justify-content-center">
       <div className="mr-5" style={{ width: '600px' }}>
         <BarChart chartData={weekData} options={options} />
       </div>

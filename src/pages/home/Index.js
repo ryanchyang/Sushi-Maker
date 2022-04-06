@@ -36,18 +36,14 @@ function Index(props) {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
+  // 儲存promotion offsetTop位置
+  const [promoTop, setPromoTop] = useState();
 
   // 真實DOM ref
   const scrollTo = useRef();
   const processRef = useRef();
   const cubeImgRef = useRef();
   const textImgRef = useRef();
-  const promotion = useRef();
-  const footer = useRef();
-  const aboutus01 = useRef();
-  const aboutus02 = useRef();
-  const aboutus03 = useRef();
-  // const temNav = useRef();
 
   // didMount AJAX 促銷產品
   const getPromoData = async () => {
@@ -58,19 +54,19 @@ function Index(props) {
 
   // 處理背景變色
   const changeBackground = () => {
-    if (promotion.current.offsetTop) {
+    const promotionTop = document.querySelector('.promotion').offsetTop;
+    const footerTop = document.querySelector('.index-footer').offsetTop;
+    // console.log(promotionTop);
+    if (promotionTop) {
       if (
         changeBG !== true &&
-        (window.scrollY <=
-          promotion.current.offsetTop - windowDimensions.height / 2 ||
-          window.scrollY >=
-            footer.current.offsetTop - windowDimensions.height / 3)
+        (window.scrollY <= promotionTop - windowDimensions.height / 2 ||
+          window.scrollY >= footerTop - windowDimensions.height / 3)
       ) {
         setChangeBG(true);
       } else if (
         changeBG !== false &&
-        window.scrollY >=
-          promotion.current.offsetTop - windowDimensions.height / 2
+        window.scrollY >= promotionTop - windowDimensions.height / 2
       ) {
         setChangeBG(false);
       }
@@ -79,27 +75,22 @@ function Index(props) {
 
   // 處理About us三頁的content進場
   const titleEnter = () => {
-    // console.log(aboutus01.current.offsetTop);
-    if (
-      window.scrollY >=
-      aboutus01.current.offsetTop - windowDimensions.height / 2
-    ) {
-      aboutus01.current.style.opacity = 1;
-      aboutus01.current.style.transform = 'translateX(0px)';
+    const aboutus01 = document.querySelector('.about-us-content01');
+    const aboutus02 = document.querySelector('.about-us-content02');
+    const aboutus03 = document.querySelector('.about-us-content03');
+    if (window.scrollY >= aboutus01.offsetTop - windowDimensions.height / 2) {
+      const asideRightNav = document.querySelector('.asideRight-nav');
+      asideRightNav.classList.add('fadeout');
+      aboutus01.style.opacity = 1;
+      aboutus01.style.transform = 'translateX(0px)';
     }
-    if (
-      window.scrollY >=
-      aboutus02.current.offsetTop - windowDimensions.height / 2
-    ) {
-      aboutus02.current.style.opacity = 1;
-      aboutus02.current.style.transform = 'translateY(0px)';
+    if (window.scrollY >= aboutus02.offsetTop - windowDimensions.height / 2) {
+      aboutus02.style.opacity = 1;
+      aboutus02.style.transform = 'translateY(0px)';
     }
-    if (
-      window.scrollY >=
-      aboutus03.current.offsetTop - windowDimensions.height / 2
-    ) {
-      aboutus03.current.style.opacity = 1;
-      aboutus03.current.style.transform = 'translateX(0px)';
+    if (window.scrollY >= aboutus03.offsetTop - windowDimensions.height / 2) {
+      aboutus03.style.opacity = 1;
+      aboutus03.style.transform = 'translateX(0px)';
     }
   };
 
@@ -110,21 +101,18 @@ function Index(props) {
       start = 0;
     }
     if (start === 0) {
-      // console.log('0');
       processRef.current.innerText = 'Constructing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-constructing.svg';
       textImgRef.current.src =
         'http://localhost:3500/img/home/intro-constructing-txt.svg';
     } else if (start === 1) {
-      // console.log('1');
       processRef.current.innerText = 'Materializing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-materializing.svg';
       textImgRef.current.src =
         'http://localhost:3500/img/home/intro-materializing-txt.svg';
     } else if (start === 2) {
-      // console.log('2');
       processRef.current.innerText = 'Printing...';
       cubeImgRef.current.src =
         'http://localhost:3500/img/home/intro-printing.svg';
@@ -137,7 +125,9 @@ function Index(props) {
   // 處理Scroll To時，右側Nav上移並消失
   const navFly = () => {
     const asideRightNav = document.querySelector('.asideRight-nav');
-    asideRightNav.classList.add('fadeout');
+    if (window.scrollY >= windowDimensions.height / 3) {
+      asideRightNav.classList.add('fadeout');
+    }
   };
 
   // 處理第一頁Scroll To
@@ -258,8 +248,6 @@ function Index(props) {
               changeBG={changeBG}
               setChangeBG={setChangeBG}
               windowDimensions={windowDimensions}
-              promotion={promotion}
-              footer={footer}
             />
             <div style={{ width: '100%' }}>
               <div className="home-page">
@@ -268,7 +256,7 @@ function Index(props) {
                   changeBG={changeBG}
                   setNavIsOpen={setNavIsOpen}
                 />
-                {/* PC index top */}
+                {/* PC index top 
                 {/* todo: scroll down opacity 0 */}
                 {/*{pageYOffset < 900 && (
                   <div className="d-none d-sm-block">
@@ -346,7 +334,7 @@ function Index(props) {
                 <div className="en-title-24 about-us-title" ref={scrollTo}>
                   About us
                 </div>
-                <div className="about-us-content01" ref={aboutus01}>
+                <div className="about-us-content01">
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">創造新食感</p>
@@ -371,7 +359,7 @@ function Index(props) {
               </div>
               <div className="home-page">
                 <div className="en-title-24 about-us-title">About us</div>
-                <div className="about-us-content02" ref={aboutus02}>
+                <div className="about-us-content02">
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">精準客製飲食</p>
@@ -397,7 +385,7 @@ function Index(props) {
               </div>
               <div className="home-page">
                 <div className="en-title-24 about-us-title">About us</div>
-                <div className="about-us-content03" ref={aboutus03}>
+                <div className="about-us-content03">
                   <div className="about-us-text-area">
                     <div className="about-title">
                       <p className="ch-title-22 about-ch-title">食物藝術</p>
@@ -422,7 +410,7 @@ function Index(props) {
 
               {/* promotion */}
               {/* todo scroll down to change bg color */}
-              <div className="home-page" ref={promotion}>
+              <div className="home-page promotion">
                 {/* <Title title={'Promotion'} /> */}
                 <div className="page-title en-title-24">Promotion</div>
                 <div className="promotion-wrap">
@@ -889,7 +877,7 @@ function Index(props) {
               </div>
 
               {/* footer */}
-              <div className="home-page" ref={footer}>
+              <div className="home-page index-footer">
                 {/* <Title title={''} />*/}
                 <div className="footer-top">
                   <Link to={'./classic'} style={{ textDecoration: 'none' }}>
@@ -964,8 +952,6 @@ function Index(props) {
               changeBG={changeBG}
               setChangeBG={setChangeBG}
               windowDimensions={windowDimensions}
-              promotion={promotion}
-              footer={footer}
               navIsOpen={navIsOpen}
               setNavIsOpen={setNavIsOpen}
             />

@@ -17,7 +17,7 @@ import useCurrentWidth from './hooks/useCurrentWidth';
 import getCurrentColumns from './helpers/getCurrentColumns';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { useParams, useHistory, useLocation, Link } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 
 import config from '../../Config';
@@ -288,13 +288,32 @@ function ShareItems(props) {
           <AsideLeft />
           <div style={{ width: '100%' }}>
             <Title title={'Share'} setNavIsOpen={setNavIsOpen} />
-            <div className={`mycontainer`}>
+            <div className={`mycontainer ${styles['share-bread']}`}>
               <div className="row">
                 <div className="col">
                   <div className="d-flex justify-content-between">
-                    <p className="mytitle en-title-14-10">
-                      HOME / SHARE / ITEMS
-                    </p>
+                    <div className="pt-3 pt-md-0">
+                      <p className="en-title-14-10 d-flex">
+                        <Link
+                          to={'/'}
+                          style={{ textDecoration: 'none', color: '#575757' }}
+                        >
+                          HOME/&nbsp;
+                        </Link>
+                        <Link
+                          to={'/share'}
+                          style={{ textDecoration: 'none', color: '#575757' }}
+                        >
+                          SHARE/&nbsp;
+                        </Link>
+                        <Link
+                          to={`/share/items/${id}`}
+                          style={{ textDecoration: 'none', color: '#b03342' }}
+                        >
+                          ITEM
+                        </Link>
+                      </p>
+                    </div>
                     <div className="d-flex align-items-center">
                       {editHandler()}
                       <Delete
