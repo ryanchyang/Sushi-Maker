@@ -106,9 +106,9 @@ function LatestNews(props) {
             <Title title={'Latest News'} setNavIsOpen={setNavIsOpen} />
             <div className="latest-news min-hi">
               <div className="mycontainer">
-                {/* lastest-news top */}
-                <div className="lastest-news-nav d-flex justify-content-between align-items-center">
-                  <div className="lastest-news-nav-breadcrumbs">
+                {/* latest-news top */}
+                <div className="latest-news-nav d-flex justify-content-between align-items-center">
+                  <div className="latest-news-nav-breadcrumbs">
                     <p className="en-title-14-10">
                       <Link
                         to={'/'}
@@ -124,7 +124,7 @@ function LatestNews(props) {
                       </Link>
                     </p>
                   </div>
-                  <div className="lastest-news-nav-right d-flex align-items-center">
+                  <div className="latest-news-nav-right d-flex align-items-center">
                     <div className="search-input d-flex justify-content-end align-items-center">
                       <input
                         type="text"

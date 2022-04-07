@@ -125,9 +125,7 @@ function Index(props) {
   // 處理Scroll To時，右側Nav上移並消失
   const navFly = () => {
     const asideRightNav = document.querySelector('.asideRight-nav');
-    if (window.scrollY >= windowDimensions.height / 3) {
-      asideRightNav.classList.add('fadeout');
-    }
+    asideRightNav.classList.add('fadeout');
   };
 
   // 處理第一頁Scroll To
@@ -137,6 +135,18 @@ function Index(props) {
       behavior: 'smooth',
     });
     navFly();
+  };
+
+  // 處理scroll時，asideNav的隱藏與顯示
+  const asideNavHandler = () => {
+    const asideRightNav = document.querySelector('.asideRight-nav');
+    if (!asideRightNav.classList.contains('fadeout')) {
+      if (window.scrollY >= windowDimensions.height) {
+        asideRightNav.classList.add('fadeout');
+      }
+    } else if (window.scrollY <= windowDimensions.height / 2) {
+      asideRightNav.classList.remove('fadeout');
+    }
   };
 
   // 處理just for you類別切換
@@ -203,12 +213,14 @@ function Index(props) {
     getPromoData();
     window.addEventListener('scroll', changeBackground);
     window.addEventListener('scroll', titleEnter);
+    window.addEventListener('scroll', asideNavHandler);
     setChangeBG(true);
 
     // 結束後移除事件
     return () => {
-      window.addEventListener('scroll', changeBackground);
+      window.removeEventListener('scroll', changeBackground);
       window.removeEventListener('scroll', titleEnter);
+      window.removeEventListener('scroll', asideNavHandler);
       clearInterval(intervalId);
     };
   }, []);
