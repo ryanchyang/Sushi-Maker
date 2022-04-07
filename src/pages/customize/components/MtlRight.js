@@ -27,11 +27,9 @@ function MtlRight(props) {
     setIndexTotal,
     sushiGroup,
     setSushiGroup,
+    navIsOpen,
+    setNavIsOpen,
   } = props;
-  // console.log(props.addMtlData);
-  // console.log(props.mtlData);
-
-  
 
   const changeOrderHandler = (drag, drop) => {
     let originalArr = [...sushiGroup];
@@ -197,7 +195,12 @@ function MtlRight(props) {
                 alt="member-photo"
               />
             </div>
-            <Hamburger className="buger" />
+            <Hamburger
+              className="buger"
+              onClick={() => {
+                setNavIsOpen(true);
+              }}
+            />
           </div>
           <div className="mtlBtn-r col p-0">
             <div className="d-flex choose ch-title-16">

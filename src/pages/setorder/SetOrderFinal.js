@@ -1,21 +1,19 @@
 //最後預覽
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import SetMenuFinal from './components/SetMenuFinal';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import './SetOrderAll.scss';
 import { useEffect, useState } from 'react';
 import config from '../../Config';
 import { Button, Modal } from 'react-bootstrap';
 import NavPage from '../layout/components/NavPage';
-//會員 加入購物車
-import { getCartCount } from '../../utils';
 
 function SetOrderFinal(props) {
+  //nav
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
-  const history = useHistory();
-  const [changeCartCount, setChangeCartCount] = useState(0); //改變購物車數量
+  //改變購物車數量
+  const [changeCartCount, setChangeCartCount] = useState(0);
   //加入購物車的光箱
   const [cartShow, setCartShow] = useState(false);
   const handleCartClose = () => {
@@ -74,7 +72,16 @@ function SetOrderFinal(props) {
     default:
       price = 0;
   }
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
   useEffect(() => {
+    // //如果沒有登入的話的判斷
+    // if (!isLogin) {
+    //   history.push('/member/login');
+    //   return <></>;
+    // }
+
     const finalprice = price;
     setCombosum(finalprice);
   }, []);
@@ -111,11 +118,26 @@ function SetOrderFinal(props) {
       })
         .then(res => res.json())
         .then(async d => {
-          console.log('123');
-          //加入購物車後重新設定購物車的商品數量
-          await getCartCount(+localStorage.getItem('mem_id'));
+          //
+          setTimeout(async () => {
+            await fetch(`http://localhost:3500/member/api/get-cart-count`, {
+              method: `POST`,
+              headers: {
+                'content-type': 'application/json',
+              },
+              body: JSON.stringify({
+                mem_id: +localStorage.getItem('mem_id'),
+              }),
+            })
+              .then(res => res.json())
+              .then(obj => {
+                console.log('second');
+                localStorage.setItem('cart_count', obj.cart_count);
+              });
+          }, 500);
           setChangeCartCount(changeCartCount + 1);
         });
+      handleCartShow();
     };
     sendData();
   }

@@ -45,6 +45,7 @@ $areaHeight: calc( 100vh - 80px );
     }
     @include mobile{
       height: $areaHeight;
+      margin-top: 80px;
     }
   }
   .mtlView {
@@ -153,6 +154,16 @@ $areaHeight: calc( 100vh - 80px );
   .mem,
   .buger {
     margin: 1rem;
+  }
+  .buger{
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+
+    &:hover{
+      background-color: $gray;
+      transition: 0.3s;
+    }
   }
   .mem {
     width: 3rem;

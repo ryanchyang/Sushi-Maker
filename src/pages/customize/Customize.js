@@ -4,17 +4,26 @@ import MtlLeft from './components/MtlLeft';
 import MtlMid from './components/MtlMid';
 import MtlRight from './components/MtlRight';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 // import { mtlData } from './sushiMtlTest';
 import { useHistory } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import config from '../../Config';
+import NavPage from '../layout/components/NavPage';
 
-function Customize() {
+function Customize(props) {
+  // 判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
+  const canvasRef = useRef(null);
+
+  // nav
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+
   const [mtlDataSQL, setMtlDataSQL] = useState({});
   const [addMtlData, setAddMtlData] = useState([]);
-  //{ mtlId: 1, mtlPct: 1 }
-  // 接SQL資料
 
   const [altTotal, setAltTotal] = useState(1);
   const [indexTotal, setIndexTotal] = useState(0);
@@ -28,6 +37,7 @@ function Customize() {
     },
   ]);
 
+  // 接SQL資料
   useEffect(() => {
     const catchData = async () => {
       const mtlRes = await fetch(config.GET_MTLS);
@@ -40,18 +50,35 @@ function Customize() {
     setAddMtlData([{ mtlId: 1, mtlPct: 1 }]);
   }, []);
 
-  // console.log('father\'s mtlDataSQL:', mtlDataSQL);
-  // console.log('father\'s addMtlData:', addMtlData);
+  // 轉換blob格式
+  function dataURLtoBlob(dataurl) {
+    var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], { type: mime });
+  }
 
   // 傳送資料至後端
   const postCusData = async () => {
+    const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5);
+    const blobImg = dataURLtoBlob(dataUrl);
+    console.log(blobImg);
+    const fd = new FormData();
+
+    // insert order id and images into formdata
+    fd.append('canvasImage', blobImg, 'sushi.jpg');
+    fd.append('cm_prod', JSON.stringify(addMtlData));
+    fd.append('memid', localStorage.getItem('mem_id'));
+
     const res = await fetch(config.POST_CUS_DATA, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        cm_prod: addMtlData,
-        memid: localStorage.getItem('mem_id'),
-      }),
+      'Content-Type': 'multipart/form-data',
+      body: fd,
     });
     const resJson = await res.json();
   };
@@ -110,7 +137,7 @@ function Customize() {
           onClick={() => {
             postCusData();
             handleNextClose();
-            goDetail.push('./CusMiDetail');
+            goDetail.push('./cusmidetail');
           }}
         >
           確認
@@ -119,55 +146,68 @@ function Customize() {
     </Modal>
   );
 
-  return (
-    <>
-      {saveModel}
-      {nextModel}
-      <div className="mtlHeader">
-        <Title />
-      </div>
-      <div className="container-fluid customize">
-        <div className="row mtlView">
-          <MtlLeft
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            setAddMtlData={setAddMtlData}
-          />
+  if (!isLogin) {
+    history.push('/member/login');
+    return <></>;
+  } else {
+    return (
+      <>
+        {navIsOpen && (
+          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+        )}
+        <div style={navIsOpen ? hiddenBlock : showBlock}>
+          {saveModel}
+          {nextModel}
+          <div className="mtlHeader">
+            <Title />
+          </div>
+          <div className="container-fluid customize">
+            <div className="row mtlView">
+              <MtlLeft
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                setAddMtlData={setAddMtlData}
+              />
 
-          <MtlMid
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-          />
-          <MtlRight
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            setAddMtlData={setAddMtlData}
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-            handleSaveShow={() => setSaveShow(true)}
-            handleNextShow={() => setNextShow(true)}
-            postCusData={postCusData}
-          />
+              <MtlMid
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+                ref={canvasRef}
+              />
+              <MtlRight
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                setAddMtlData={setAddMtlData}
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+                handleSaveShow={() => setSaveShow(true)}
+                handleNextShow={() => setNextShow(true)}
+                postCusData={postCusData}
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default Customize;

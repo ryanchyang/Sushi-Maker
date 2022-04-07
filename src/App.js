@@ -84,49 +84,28 @@ function App() {
               )}
             />
             <Route path="/member" exact>
-              <MemIndex
-                navIsOpen={navIsOpen}
-                setNavIsOpen={setNavIsOpen}
-                
-              />
+              <MemIndex navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/login">
-              <Login
-                navIsOpen={navIsOpen}
-                setNavIsOpen={setNavIsOpen}
-                
-              />
+              <Login navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/register">
               <Register navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/active">
-              <IndexActive
-                navIsOpen={navIsOpen}
-                setNavIsOpen={setNavIsOpen}
-                
-              />
+              <IndexActive navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/analyze">
-              <IndexAnalyze
-                navIsOpen={navIsOpen}
-                setNavIsOpen={setNavIsOpen}
-                
-              />
+              <IndexAnalyze navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/member/historyorder">
               <IndexHistoryOrder
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
-                
               />
             </Route>
             <Route path="/member/revise">
-              <IndexRevise
-                navIsOpen={navIsOpen}
-                setNavIsOpen={setNavIsOpen}
-                
-              />
+              <IndexRevise navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/share" exact>
               <Share navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
@@ -200,11 +179,11 @@ function App() {
             <Route path="/setorder/setorderlist">
               <SetOrderList navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
-            <Route path="/customize/:id" exact>
-              <CusMiDetail />
+            <Route path="/cusmidetail">
+              <CusMiDetail navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/customize">
-              <Customize />
+              <Customize navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
             </Route>
             <Route path="/cart/stepone" exact>
               <CartStepOne navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />

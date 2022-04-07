@@ -1,5 +1,4 @@
-import { useState, useEffect, Suspense, useRef } from 'react';
-// import Sushi from './Sushi';
+import { Suspense, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -7,39 +6,8 @@ import Scene from '../../share/Scene';
 import RenderImage from '../../share/RenderImage';
 import config from '../../../Config';
 
-// 轉換blob格式
-function dataURLtoBlob(dataurl) {
-  var arr = dataurl.split(','),
-    mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]),
-    n = bstr.length,
-    u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], { type: mime });
-}
-
-const submitUpload = async blob => {
-  try {
-    const fd = new FormData();
-
-    // insert order id and images into formdata
-    fd.append('canvasImage', blob, 'sushi.jpg');
-
-    await fetch(config.THREE_TEST, {
-      method: 'POST',
-      'Content-Type': 'multipart/form-data',
-      body: fd,
-    });
-  } catch (err) {
-    console.error(err.message);
-  }
-};
-
-function MtlMid(props) {
+const MtlMid = forwardRef((props, ref) => {
   const { sushiGroup, setSushiGroup } = props;
-  const canvasRef = useRef(null);
 
   return (
     <>
@@ -51,7 +19,10 @@ function MtlMid(props) {
             HOME
           </Link>{' '}
           /{' '}
-          <Link to={''} style={{ textDecoration: 'none', color: '#b03342' }}>
+          <Link
+            to={'/customize'}
+            style={{ textDecoration: 'none', color: '#b03342' }}
+          >
             CUSTOMIZATION
           </Link>
         </div>
@@ -67,7 +38,7 @@ function MtlMid(props) {
                 <Sushi position={[1.2, 0, 0]} />
               </Canvas>
             </Suspense> */}
-          <button
+          {/* <button
             onClick={async () => {
               const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5);
               const blobImg = dataURLtoBlob(dataUrl);
@@ -76,9 +47,9 @@ function MtlMid(props) {
             }}
           >
             儲存照片
-          </button>
+          </button> */}
           <Canvas
-            ref={canvasRef}
+            ref={ref}
             gl={{ preserveDrawingBuffer: true }}
             shadows
             camera={{ position: [0, 25, 100], fov: 2.5, near: 0.3 }}
@@ -123,6 +94,6 @@ function MtlMid(props) {
       </div>
     </>
   );
-}
+});
 
 export default MtlMid;

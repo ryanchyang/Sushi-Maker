@@ -2,7 +2,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import SetMenuList from './components/SetMenuList';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import './SetOrderAll.scss';
 import config from '../../Config';
 import NavPage from '../layout/components/NavPage';
@@ -43,8 +43,17 @@ function SetOrderList(props) {
   //推薦的套餐id
   const [numberid, setNumberid] = useState(0);
   //資料傳到後端後做完判斷,傳出結果
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
 
   useEffect(() => {
+    //如果沒有登入的話的判斷
+    if (!isLogin) {
+      // Hello();
+      history.push('/member/login');
+      return <></>;
+    }
     const getData = async () => {
       const res = await fetch(config.GET_SET_COMPARE, {
         method: 'POST',
