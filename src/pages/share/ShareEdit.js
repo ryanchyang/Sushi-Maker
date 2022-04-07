@@ -1,6 +1,7 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
 import styles from './Share.module.scss';
 import config from '../../Config';
+import { getMemId } from '../../utils';
 
 import { ReactComponent as Delete } from '../../imgs/delete-lg.svg';
 import EditImgPreview from './components/EditImgPreview';
@@ -31,6 +32,9 @@ function ShareEdit(props) {
   const [formIsValid, setFormIsValid] = useState(true);
   const [tagsInput, setTagsInput] = useState([]);
   const [foundTags, setFoundTags] = useState([]);
+
+  // 取得用戶id
+  const mem_id = getMemId();
 
   // 加入購物車光箱
   const [show, setShow] = useState(false);
@@ -140,6 +144,14 @@ function ShareEdit(props) {
     }
   };
 
+  const addCreditHandler = async () => {
+    const res = await fetch(config.ADD_CREDIT + `${mem_id}`);
+    const result = res.json();
+    if (result.success) {
+      // console.log('積分已加入資料庫');
+    }
+  };
+
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -147,14 +159,22 @@ function ShareEdit(props) {
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
         <div className="en-cont-14 pb-2">
-          {action === 'UPDATE' ? '您的貼文已編輯成功!' : '您的貼文上傳成功!'}
+          {action === 'UPDATE'
+            ? '您的貼文已編輯成功!'
+            : '您的貼文上傳成功! 恭喜您獲得會員積分300點! '}
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
           variant="secondary"
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-          onClick={() => history.push('/share')}
+          onClick={() => {
+            if (action === 'ADD') {
+              // console.log('新增積分300點');
+              addCreditHandler();
+            }
+            history.push('/share');
+          }}
         >
           Close
         </Button>

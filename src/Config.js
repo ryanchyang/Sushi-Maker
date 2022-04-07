@@ -49,11 +49,13 @@ const config = {
   UPLOAD_COMMENT: `${host}/api/share/upload/comment`,
   UPDATE_COMMENT: `${host}/api/share/update/comment`,
   DELETE_COMMENT: `${host}/api/share/delete/comment`,
+
   HOST: `${host}`,
   //會員
   MEM_PHOTO: `${host}/img/member`,
   ACTIVE_PATH: `${host}/member/api/active/`,
   CANCEL_ACTIVE_PATH: `${host}/member/api/active/cancel`,
+  ADD_CREDIT: `${host}/member/api/addCredit/`,
   // 購物車
   // 得到購物車清單 stepone
   GET_CUR_CART: `${host}/api/cart/getcurcart/`,
