@@ -130,10 +130,19 @@ function Index(props) {
 
   // 處理第一頁Scroll To
   const goToAboutUs = () => {
-    window.scrollTo({
-      top: scrollTo.current.offsetTop - 150,
-      behavior: 'smooth',
-    });
+    const winWidth = window.innerWidth;
+    if (winWidth < 576) {
+      window.scrollTo({
+        top: scrollTo.current.offsetTop,
+        behavior: 'smooth',
+      });
+    } else {
+      window.scrollTo({
+        top: scrollTo.current.offsetTop - 150,
+        behavior: 'smooth',
+      });
+    }
+
     navFly();
   };
 

@@ -471,8 +471,8 @@ function Index(props) {
   const pageSelected = { border: '1px solid #B03342', color: '#B03342' };
   const searchBarHandler = () =>
     search
-      ? { transform: 'translateX(0px) translateY(-7px)' }
-      : { transform: 'translateX(280px) translateY(-7px)' };
+      ? { transform: 'translateX(0px)' }
+      : { transform: 'translateX(280px)' };
 
   //請先登入的光箱
   const [likeShow, setLikeShow] = useState(false);
@@ -534,7 +534,7 @@ function Index(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Classic'} setNavIsOpen={setNavIsOpen}/>
+            <Title title={'Classic'} setNavIsOpen={setNavIsOpen} />
 
             {/* 麵包屑 */}
             <p className="en-title-14-10 bread">
@@ -558,12 +558,12 @@ function Index(props) {
                       placeholder="Search"
                     ></input>
                   </div>
-                  <div>
+                  <div className="classic-search-btn">
                     <SearchBtn onClick={() => setSearch(!search)} />
                   </div>
                 </div>
                 <div
-                  className="filter-btn"
+                  className="filter-btn classic-filter-btn"
                   onClick={() => {
                     setIsOpenFilter(!isOpenFilter);
                   }}

@@ -49,12 +49,22 @@
     outline: none;
   }
 
-
-
-
-
-
-
+  .classic-search-btn,
+  .classic-filter-btn {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .classic-search-btn:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
+  }
+  .classic-filter-btn:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
+  }
   .search-filter {
     display: flex;
     justify-content: flex-end;
@@ -78,10 +88,12 @@
     outline: none;
     border-bottom: 2px solid $dark-bg;
   }
-  .search-btn,
+  .search-btn {
+    margin-bottom: 3%;
+    cursor: pointer;
+  }
   .filter-btn {
     margin-right: 2%;
-    margin-bottom: 3%;
     cursor: pointer;
   }
   .en-category {
@@ -141,7 +153,8 @@
     padding-bottom: 7%;
     transition: transform 0.5s;
   }
-  @media (hover: hover) { //如果要電腦版啟用此hover但手機板不能因為點擊而觸發，需要寫成這樣
+  @media (hover: hover) {
+    //如果要電腦版啟用此hover但手機板不能因為點擊而觸發，需要寫成這樣
     .prod-card:hover {
       background-color: #ffffff;
       transform: scale(1.1);
@@ -149,7 +162,7 @@
     }
     .prod-card:hover .prod-img-box {
       transform: translate(-5rem, -4rem);
-    }  
+    }
     .prod-card:hover .content {
       opacity: 1;
       transform: translate(4rem, 4rem);
@@ -180,11 +193,11 @@
   }
   // .prod-card:hover .prod-img-box {
   //   transform: translate(-5rem, -4rem);
-  // }  
+  // }
   // .prod-card:hover .content {
   //   opacity: 1;
   //   transform: translate(4rem, 4rem);
-  // }  
+  // }
   .content {
     position: relative;
     top: 45%;
@@ -194,7 +207,7 @@
     // background: green;
     // background: center/cover no-repeat url(./brush.png);
   }
-  .content:before{
+  .content:before {
     content: ' ';
     display: block;
     position: absolute;
@@ -205,7 +218,6 @@
     opacity: 0.35;
     background: center/cover no-repeat url(./brush.png);
   }
-
 
   .discount-tag {
     position: absolute;
@@ -526,7 +538,7 @@
       width: 99%;
       margin-top: 5%;
     }
-    prod-filter-sh{
+    prod-filter-sh {
       left: 0;
     }
     .prod-card {
@@ -605,22 +617,22 @@
       border-right: 1px solid #545454;
       border-bottom: none;
     }
-    .discount-tag{
+    .discount-tag {
       top: 2%;
     }
-    .prod-name-ch{
+    .prod-name-ch {
       top: 30%;
     }
-    .prod-name-en{
+    .prod-name-en {
       top: 30%;
     }
-    .prod-price-special{
+    .prod-price-special {
       top: 30%;
     }
-    .prod-price-no-discount{      
+    .prod-price-no-discount {
       top: 30%;
     }
-    .no-discount{
+    .no-discount {
       margin-bottom: 6%;
     }
     .flavor-tag-box {
