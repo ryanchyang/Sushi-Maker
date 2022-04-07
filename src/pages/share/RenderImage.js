@@ -91,6 +91,12 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/tako.jpg`,
     `${config.HOST}/img/mtl/three/tako-normal.png`,
   ]);
+
+  useTexture([
+    `${config.HOST}/img/mtl/three/tamago.jpg`,
+    `${config.HOST}/img/mtl/three/tamago-normal.jpg`,
+  ]);
+
   return <></>;
 }
 
