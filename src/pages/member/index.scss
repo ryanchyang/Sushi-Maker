@@ -4,6 +4,7 @@ input:-webkit-autofill:focus {
   background-color: transparent;
 }
 
+
 $width: calc(100vw - 25vw);
 .member-container {
   width:$width;
@@ -356,6 +357,7 @@ $width: calc(100vw - 25vw);
     .memPhoto {
       width: 120px;
       height: 120px;
+
     }
     .divCarou {
       margin-top: 5%;

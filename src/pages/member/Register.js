@@ -200,9 +200,13 @@ function Register(props) {
       {
         <Modal show={sendVc} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title className="ch-title-20 m-3"></Modal.Title>
+            <Modal.Title className="ch-title-20 m-3">
+              印食驗證碼已發送
+            </Modal.Title>
           </Modal.Header>
-          <Modal.Body style={{ margin: '0 3%' }}>驗證碼已發送</Modal.Body>
+          <Modal.Body style={{ margin: '0 3%' }}>
+            請至信箱收取驗證碼!
+          </Modal.Body>
           <Modal.Footer>
             <Button
               variant="secondary"
@@ -213,7 +217,6 @@ function Register(props) {
             >
               離開
             </Button>
-            {/*TODO: 確認門市要送出表單並存到DB mem */}
           </Modal.Footer>
         </Modal>
       }

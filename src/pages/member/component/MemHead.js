@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { getMemId } from '../../../utils';
 import { findMem, memLike } from '../../../WebApi';
 import { memDoUpload } from '../../../WebApi';
@@ -11,8 +11,9 @@ function MemHead(props) {
   const location = useLocation();
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const [imgSrc, setImgSrc] = useState('');
-  const { memReviseInfo} = props;
+  const { memReviseInfo } = props;
   const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
 
   //備註:因為我是要進來直接render在頁面上 ,所以用useEffct處理
   useEffect(() => {
@@ -35,6 +36,7 @@ function MemHead(props) {
     memDoUpload(fd).then(img => {
       setImgSrc('http://localhost:3500/img/member' + '/' + img.filename);
       localStorage.setItem('mem_photo', img.filename);
+      history.go(0);
     });
   };
 
@@ -46,9 +48,16 @@ function MemHead(props) {
           onSubmit={e => e.preventDefault()}
           className="memPhotoArea col-md-6 col-sm-24"
         >
-          <div className="memPhoto">
-            <img className="memImg" src={imgSrc} alt="member-photo" />
-          </div>
+          {memData && memData.mem_photo_img_path ? (
+            <div className="memPhoto">
+              <img className="memImg" src={imgSrc} alt="member-photo" />
+            </div>
+          ) : (
+            <img
+              src={'http://localhost:3500/img/member/member.png'}
+              alt="member-photo"
+            />
+          )}
 
           <div class="memUpload mt-4">
             <div className="memName">

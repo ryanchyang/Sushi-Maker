@@ -12,6 +12,7 @@ import { findMem, reviseMem } from '../../WebApi';
 import { getMemId } from '../../utils';
 import IndexRevisePwd from './component/IndexRevisePwd';
 import NavPage from '../layout/components/NavPage';
+import { Button, Modal } from 'react-bootstrap';
 
 function IndexRevise(props) {
   const [memInfo, setMemInfo] = useState({
@@ -24,6 +25,8 @@ function IndexRevise(props) {
   const mem_id = getMemId('mem_id');
   const [isRevisePwd, setIsRevisePwd] = useState(false);
   const [memReviseInfo, setMemReviseInfo] = useState('');
+  const [reviseShow, setReviseShow] = useState(false);
+  const [resultMsg, setResultMsg] = useState('');
   const { navIsOpen, setNavIsOpen, isLogin } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
@@ -38,10 +41,11 @@ function IndexRevise(props) {
     e.preventDefault();
     reviseMem(memInfo, mem_id).then(obj => {
       if (obj.success) {
-        alert('修改成功');
         setMemReviseInfo(obj[0]);
+        setResultMsg(obj.msg);
         localStorage.setItem('mem_name', obj.info.mem_name);
         localStorage.setItem('mem_nickname', obj.info.mem_nickname);
+        setReviseShow(true);
       }
     });
   };
@@ -52,9 +56,33 @@ function IndexRevise(props) {
 
   const revisePwdBlock = { display: 'block' };
   const revisePwdNone = { display: 'none' };
+  const handleClose = () => setReviseShow(false);
 
   return (
     <>
+      {
+        <Modal show={reviseShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="ch-title-20 m-3">會員資訊修改</Modal.Title>
+          </Modal.Header>
+          {resultMsg && (
+            <Modal.Body style={{ margin: '0 3%' }}>{resultMsg}</Modal.Body>
+          )}
+
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+              onClick={() => {
+                setReviseShow(false);
+              }}
+            >
+              離開
+            </Button>
+            {/*TODO: 確認門市要送出表單並存到DB mem */}
+          </Modal.Footer>
+        </Modal>
+      }
       <Header />
       {navIsOpen && (
         <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />

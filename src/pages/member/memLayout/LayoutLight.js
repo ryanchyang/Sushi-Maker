@@ -203,7 +203,7 @@ function AsideLeft() {
                       : '#212121',
                 }}
               >
-                <p>我的訂單</p>
+                <p>歷史訂單</p>
               </Link>
             </div>
           </div>
@@ -236,7 +236,7 @@ function AsideRight(props) {
             />
           </div>
           <div className="layout-mem-photo-box">
-            {mem_id ? (
+            {mem_photo ? (
               <img
                 src={'http://localhost:3500/img/member/' + '/' + mem_photo}
                 alt="member-photo"

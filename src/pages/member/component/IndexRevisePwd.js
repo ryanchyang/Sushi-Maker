@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ReactComponent as EyeOff } from '../../../imgs/eye-off-dark.svg';
 import { ReactComponent as EyeShow } from '../../../imgs/eye-show-dark.svg';
 import { indexRevisePwd } from '../../../WebApi';
+import { Button, Modal } from 'react-bootstrap';
 
 const mem_id = localStorage.getItem('mem_id');
 
@@ -10,6 +11,7 @@ function IndexRevisePwd(props) {
   const { setIsRevisePwd } = props;
   const [showPwd, setShowPwd] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
+  const [revisePwdShow, setRevisePwdShow] = useState(false);
   const [revisePwd, setRevisePwd] = useState({
     originalPwd: '',
     newPwd: '',
@@ -32,15 +34,36 @@ function IndexRevisePwd(props) {
         setErrorMsg('密碼與確認密碼不符!');
       } else {
         indexRevisePwd(mem_id, revisePwd).then(obj => {
-          console.log(obj);
-          alert('修改成功');
+          setRevisePwdShow(true);
         });
       }
     }
   };
 
+  const handleClose = () => setRevisePwdShow(false);
+
   return (
     <>
+      {
+        <Modal show={revisePwdShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="ch-title-20 m-3">會員密碼修改</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ margin: '0 3%' }}>密碼修改成功!</Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+              onClick={() => {
+                setRevisePwdShow(false);
+              }}
+            >
+              離開
+            </Button>
+            {/*TODO: 確認門市要送出表單並存到DB mem */}
+          </Modal.Footer>
+        </Modal>
+      }
       <div
         onClick={() => {
           setIsRevisePwd(false);

@@ -30,11 +30,13 @@ const HistoryOrder = () => {
     // setIndex(id);
     setCartId(newCartData);
   };
-  console.log(cartId);
 
   useEffect(() => {
     orderInfo(mem_id).then(obj => {
-      const cartData = obj.newData2.map(v => {
+      console.log(obj);
+      const cartData = obj.newData2.filter(i => {
+        return i.cart_status !== '未結帳'
+      }).map(v => {
         return { ...v, cId: v.cart_id, open: false };
       });
       setHistoryOrderInfo(obj);
