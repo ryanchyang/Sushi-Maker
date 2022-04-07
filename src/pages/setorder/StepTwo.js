@@ -1,5 +1,5 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import NavPage from '../layout/components/NavPage';
 
@@ -22,6 +22,16 @@ function StepTwo(props) {
 
   const answerClicked = { color: '#f7f6f3', backgroundColor: '#b03342' };
   const answerNoClick = { color: '#b03342', backgroundColor: 'transparent' };
+
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
+  //如果沒有登入的話的判斷
+  if (!isLogin) {
+    // Hello();
+    history.push('/member/login');
+    return <></>;
+  }
 
   return (
     <>

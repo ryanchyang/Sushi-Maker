@@ -1,17 +1,20 @@
 import { Header, Title, AsideLeft, AsideRight, Footer } from '../layout/Layout';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import NavPage from '../layout/components/NavPage';
 
 function StepFour(props) {
+  //回上一頁
+  function BackToLastPage() {
+    history.go(-1);
+  }
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
+  //nav
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
-  // const data = useLocation();
-  // console.log(data.state);
-  // const y = data.state;
-  // console.log('第二次,第一題的答案', data.state2);
-  // console.log('第二題的答案', y);
 
   const data = useLocation();
   const question2 = data.state;
@@ -31,130 +34,124 @@ function StepFour(props) {
   ];
   //先把lists存到setSelectrd3裡面
   useEffect(() => {
+    //如果沒有登入的話的判斷
+    if (!isLogin) {
+      // Hello();
+      history.push('/member/login');
+      return <></>;
+    }
+   
+    if (data.state === undefined) {
+      history.push('/setorder/stepstart');
+    }
     setSelected3(lists);
   }, []);
   const [selected3, setSelected3] = useState([]);
-  //判斷上一題有沒有回答,沒有回答的話就跳回套餐首頁
-  // if (question2 === undefined) {
-  //   window.location.href = `./stepStart`;
-  // } else {
-    //設定按鈕
-    const handleColorMultiple = e => {
-      const newData = selected3.map(v => {
-        if (+e.target.dataset.id === v.id) {
-          return { ...v, selected: !v.selected };
-        } else {
-          return v;
-        }
-      });
-      setSelected3(newData);
-    };
+  //設定按鈕
+  const handleColorMultiple = e => {
+    const newData = selected3.map(v => {
+      if (+e.target.dataset.id === v.id) {
+        return { ...v, selected: !v.selected };
+      } else {
+        return v;
+      }
+    });
+    setSelected3(newData);
+  };
 
-    // console.log('data.list.selected', data.list.selected);
+  const answerClicked = { color: '#f7f6f3', backgroundColor: '#b03342' };
+  const answerNoClick = { color: '#b03342', backgroundColor: 'transparent' };
+  return (
+    <>
+      <Header />
+      {navIsOpen && (
+        <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+      )}
+      <div style={navIsOpen ? hiddenBlock : showBlock}>
+        <div style={{ display: 'flex' }}>
+          <AsideLeft />
+          <div style={{ width: '100%' }}>
+            <Title title={'JUST FOR YOU'} />
 
-    // function setCheck() {
-    //   if (data.list.selected) {
-    //     return 1;
-    //   }
-    // }
-    // const handleColor = row => {
-    //   setSelected3(row.id);
-    //   console.log('selected3', selected3);
-    // }; //所有按鈕
+            <div className="step">
+              <div className="mycontainer min-hi">
+                <p className="en-title-14-10">
+                  <Link
+                    to={'/'}
+                    style={{ textDecoration: 'none', color: '#575757' }}
+                  >
+                    HOME /
+                  </Link>
 
-    const answerClicked = { color: '#f7f6f3', backgroundColor: '#b03342' };
-    const answerNoClick = { color: '#b03342', backgroundColor: 'transparent' };
-    return (
-      <>
-        <Header />
-        {navIsOpen && (
-          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
-        )}
-        <div style={navIsOpen ? hiddenBlock : showBlock}>
-          <div style={{ display: 'flex' }}>
-            <AsideLeft />
-            <div style={{ width: '100%' }}>
-              <Title title={'JUST FOR YOU'} />
-
-              <div className="step">
-                <div className="mycontainer min-hi">
-                  <p className="en-title-14-10">
-                    <Link
-                      to={'/'}
-                      style={{ textDecoration: 'none', color: '#575757' }}
-                    >
-                      HOME /
-                    </Link>
-
-                    <Link
-                      to={'./stepstart'}
-                      style={{ textDecoration: 'none', color: '#b03342' }}
-                    >
-                      SET
-                    </Link>
-                  </p>
-                  <div className="set-all-content">
-                    <div className="set-title col-12 set-title-0">
-                      <div className="step-mob-title set-text-center set-title-4">
-                        規劃您的專屬菜單
-                      </div>
+                  <Link
+                    to={'./stepstart'}
+                    style={{ textDecoration: 'none', color: '#b03342' }}
+                  >
+                    SET
+                  </Link>
+                </p>
+                <div className="set-all-content">
+                  <div className="set-title col-12 set-title-0">
+                    <div className="step-mob-title set-text-center set-title-4">
+                      規劃您的專屬菜單
                     </div>
-                    <div className="set-question-box">
-                      <div className="ch-title-22 set-text-center set-content-four">
-                        喜歡吃什麼食物?
-                      </div>
-                      <div className="step4-annotation ch-cont-12">
-                        如果沒有選擇任何食材,
-                        <br />
-                        則推薦這些食材以外的套餐。
-                      </div>
+                  </div>
+                  <div className="set-question-box">
+                    <div className="ch-title-22 set-text-center set-content-four">
+                      喜歡吃什麼食物?
+                    </div>
+                    <div className="step4-annotation ch-cont-12">
+                      如果沒有選擇任何食材,
+                      <br />
+                      則推薦這些食材以外的套餐。
+                    </div>
 
-                      <div className="set-text-center stepfour-paddiing">
-                        {selected3.map(list => (
-                          <button
-                            className="set-question-btn ch-cont-14"
-                            key={list.id}
-                            data-id={list.id}
-                            style={
-                              list.selected ? answerClicked : answerNoClick
-                            }
-                            onClick={handleColorMultiple}
-                          >
-                            {list.title}
-                          </button>
-                        ))}
-                      </div>
-                      <div className="ch-cont-16"></div>
-                      <div className="step-reset-enter-btn-all">
-                        <Link to="/setorder/stepthree">
-                          <button className="ch-title-22 step-reset-btn">
-                            返回
-                          </button>
-                        </Link>
-                        <Link
-                          to={{
-                            pathname: '/setorder/setorderlist',
-
-                            state: { ...question2, selected3 },
-                          }}
+                    <div className="set-text-center stepfour-paddiing">
+                      {selected3.map(list => (
+                        <button
+                          className="set-question-btn ch-cont-14"
+                          key={list.id}
+                          data-id={list.id}
+                          style={list.selected ? answerClicked : answerNoClick}
+                          onClick={handleColorMultiple}
                         >
-                          <button className="ch-title-22 step-reset-btn-red">
-                            確定
-                          </button>
-                        </Link>
-                      </div>
+                          {list.title}
+                        </button>
+                      ))}
+                    </div>
+                    <div className="ch-cont-16"></div>
+                    <div className="step-reset-enter-btn-all">
+                      <button
+                        className="ch-title-22 step-reset-btn"
+                        onClick={BackToLastPage}
+                      >
+                        返回
+                      </button>
+
+                      <Link
+                        to={{
+                          pathname: '/setorder/setorderlist',
+
+                          state: { ...question2, selected3 },
+                        }}
+                      >
+                        <button className="ch-title-22 step-reset-btn-red">
+                          確定
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
-              <Footer />
             </div>
-            <AsideRight setNavIsOpen={setNavIsOpen} />
+            <Footer />
           </div>
+          <AsideRight setNavIsOpen={setNavIsOpen} />
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
+}
 // }
 
 export default StepFour;
