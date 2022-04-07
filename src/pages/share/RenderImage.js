@@ -97,6 +97,27 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/tamago-normal.jpg`,
   ]);
 
+  useTexture([
+    `${config.HOST}/img/mtl/three/cheese.png`,
+    `${config.HOST}/img/mtl/three/cheese-normal.png`,
+  ]);
+
+  // 裝飾材質
+  useTexture([
+    `${config.HOST}/img/mtl/three/bottarga.png`,
+    `${config.HOST}/img/mtl/three/bottarga-normal.png`,
+  ]);
+
+  useTexture([
+    `${config.HOST}/img/mtl/three/tobiko.png`,
+    `${config.HOST}/img/mtl/three/tobiko-normal.png`,
+  ]);
+
+  useTexture([
+    `${config.HOST}/img/mtl/three/wasabi.jpg`,
+    `${config.HOST}/img/mtl/three/wasabi-normal.jpg`,
+  ]);
+
   return <></>;
 }
 
