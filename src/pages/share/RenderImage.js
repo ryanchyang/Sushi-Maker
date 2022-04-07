@@ -49,7 +49,7 @@ function RenderImage(props) {
   ]);
   useTexture([
     `${config.HOST}/img/mtl/three/chickenchop.png`,
-    `${config.HOST}/img/mtl/three/mackerel-normal.png`,
+    `${config.HOST}/img/mtl/three/chickenchop-normal.png`,
   ]);
   useTexture([
     `${config.HOST}/img/mtl/three/aji.jpg`,
