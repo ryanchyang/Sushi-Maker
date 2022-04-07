@@ -93,9 +93,9 @@ function EvntsDetails(props) {
             <Title title={'Events'} setNavIsOpen={setNavIsOpen} />
             <div className="evnts">
               <div className="mycontainer">
-                {/* lastest-news top */}
-                <div className="lastest-news-nav d-flex justify-content-between align-items-center">
-                  <div className="lastest-news-nav-breadcrumbs">
+                {/* latest-news top */}
+                <div className="latest-news-nav d-flex justify-content-between align-items-center">
+                  <div className="latest-news-nav-breadcrumbs">
                     <p className="en-title-14-10" style={{ color: '#b03342' }}>
                       <Link
                         to={'/'}

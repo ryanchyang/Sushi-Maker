@@ -7,6 +7,11 @@ import { registerMem, registerMail } from '../../WebApi';
 import { setAuthToken, setMemId } from '../../utils';
 import NavPage from '../layout/components/NavPage';
 import { Button, Modal } from 'react-bootstrap';
+import { ReactComponent as GoogleIcon } from '../../imgs/GoogleIcon.svg';
+import { ReactComponent as FacebookIcon } from '../../imgs/facebookIcon.svg';
+import { ReactComponent as IgIcon } from '../../imgs/instagramIcon.svg';
+import GoogleLogin from 'react-google-login';
+import { FacebookProvider, Login } from 'react-facebook';
 
 //styled component
 const LoginBody = styled.body`
@@ -73,7 +78,9 @@ const MemTitle = styled.p`
   color: #f7f6f3;
   margin-bottom: 80px;
 `;
-const IconArea = styled.div``;
+const IconArea = styled.div`
+  display: flex;
+`;
 const Intro = styled.p`
   color: #f7f6f3;
 `;
@@ -155,6 +162,17 @@ function Register(props) {
   };
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
+  //Google
+  const responseGoogle = response => {
+    console.log(response);
+  };
+  //facebook
+  const handleResponse = data => {
+    console.log(data);
+  };
+  const handleError = error => {
+    this.setState({ error });
+  };
 
   return (
     <>
@@ -214,7 +232,45 @@ function Register(props) {
                 <IconRegisterArea>
                   <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
                   <IconArea>
-                    <Intro className="ch-cont-16">依社群加入</Intro>
+                    <Intro className="ch-cont-16 mr-3">依社群加入</Intro>
+                    <div className="mr-3">
+                      <GoogleLogin
+                        clientId="300216709327-65uomu0mbi8jca832vvl8s67b1o9ecqv.apps.googleusercontent.com"
+                        buttonText="Login"
+                        render={renderProps => (
+                          <GoogleIcon
+                            style={{ cursor: 'pointer' }}
+                            onClick={renderProps.onClick}
+                            disabled={renderProps.disabled}
+                          ></GoogleIcon>
+                        )}
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                        cookiePolicy={'single_host_origin'}
+                      />
+                    </div>
+                    {/* facebook */}
+                    <div className="mr-3">
+                      <FacebookProvider appId="379915777327177">
+                        <Login
+                          scope="email"
+                          onCompleted={handleResponse}
+                          onError={handleError}
+                        >
+                          {({ loading, handleClick, error, data }) => (
+                            <FacebookIcon
+                              style={{ cursor: 'pointer' }}
+                              onClick={handleClick}
+                            >
+                              {loading && <span>Loading...</span>}
+                            </FacebookIcon>
+                          )}
+                        </Login>
+                      </FacebookProvider>
+                    </div>
+                    <div>
+                      <IgIcon style={{ cursor: 'pointer' }}></IgIcon>
+                    </div>
                   </IconArea>
                 </IconRegisterArea>
 

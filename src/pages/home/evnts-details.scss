@@ -1,7 +1,7 @@
 @import './../../styles/global.scss';
 .evnts {
   // mobile version
-  .lastest-news-nav {
+  .latest-news-nav {
     padding-top: 12%;
   }
   .mobile-evnts-detail {
@@ -116,7 +116,7 @@
     cursor: pointer;
   }
   @media screen and (min-width: 577px) {
-    .lastest-news-nav {
+    .latest-news-nav {
       padding-top: 0;
     }
     .evnts-info {
