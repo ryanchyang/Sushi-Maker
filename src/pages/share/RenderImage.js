@@ -16,6 +16,14 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/corn.jpg`,
     `${config.HOST}/img/mtl/three/corn-normal.png`,
   ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/snapper.jpg`,
+    `${config.HOST}/img/mtl/three/snapper-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/charsau.png`,
+    `${config.HOST}/img/mtl/three/charsau-normal.png`,
+  ]);
 
   return <></>;
 }
