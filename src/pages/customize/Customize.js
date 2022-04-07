@@ -9,25 +9,34 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import config from '../../Config';
+import NavPage from '../layout/components/NavPage';
 
-function Customize() {
+function Customize(props) {
+  // 判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
+
+  // nav
+  const { navIsOpen, setNavIsOpen } = props;
+  const showBlock = { display: 'block' };
+  const hiddenBlock = { display: 'none' };
+
   const [mtlDataSQL, setMtlDataSQL] = useState({});
   const [addMtlData, setAddMtlData] = useState([]);
-  //{ mtlId: 1, mtlPct: 1 }
-  // 接SQL資料
 
   const [altTotal, setAltTotal] = useState(1);
   const [indexTotal, setIndexTotal] = useState(0);
   const [sushiGroup, setSushiGroup] = useState([
     {
-      map: `${config.HOST}/img/mtl/three/rice.jpg`,
-      normalMap: `${config.HOST}/img/mtl/three/rice-normal3.png`,
+      map: '/img/rice.jpg',
+      normalMap: '/img/rice-normal3.png',
       height: 0.5,
       alt: -0.05, // 預設增加高度
       fixIndex: 0,
     },
   ]);
 
+  // 接SQL資料
   useEffect(() => {
     const catchData = async () => {
       const mtlRes = await fetch(config.GET_MTLS);
@@ -39,9 +48,6 @@ function Customize() {
     catchData();
     setAddMtlData([{ mtlId: 1, mtlPct: 1 }]);
   }, []);
-
-  // console.log('father\'s mtlDataSQL:', mtlDataSQL);
-  // console.log('father\'s addMtlData:', addMtlData);
 
   // 傳送資料至後端
   const postCusData = async () => {
@@ -110,7 +116,7 @@ function Customize() {
           onClick={() => {
             postCusData();
             handleNextClose();
-            goDetail.push('./CusMiDetail');
+            goDetail.push('./cusmidetail');
           }}
         >
           確認
@@ -119,55 +125,67 @@ function Customize() {
     </Modal>
   );
 
-  return (
-    <>
-      {saveModel}
-      {nextModel}
-      <div className="mtlHeader">
-        <Title />
-      </div>
-      <div className="container-fluid customize">
-        <div className="row mtlView">
-          <MtlLeft
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            setAddMtlData={setAddMtlData}
-          />
+  if (!isLogin) {
+    history.push('/member/login');
+    return <></>;
+  } else {
+    return (
+      <>
+        {navIsOpen && (
+          <NavPage navIsOpen={navIsOpen} setNavIsOpen={setNavIsOpen} />
+        )}
+        <div style={navIsOpen ? hiddenBlock : showBlock}>
+          {saveModel}
+          {nextModel}
+          <div className="mtlHeader">
+            <Title />
+          </div>
+          <div className="container-fluid customize">
+            <div className="row mtlView">
+              <MtlLeft
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                setAddMtlData={setAddMtlData}
+              />
 
-          <MtlMid
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-          />
-          <MtlRight
-            mtlData={mtlDataSQL}
-            addMtlData={addMtlData}
-            setAddMtlData={setAddMtlData}
-            altTotal={altTotal}
-            setAltTotal={setAltTotal}
-            indexTotal={indexTotal}
-            setIndexTotal={setIndexTotal}
-            sushiGroup={sushiGroup}
-            setSushiGroup={setSushiGroup}
-            handleSaveShow={() => setSaveShow(true)}
-            handleNextShow={() => setNextShow(true)}
-            postCusData={postCusData}
-          />
+              <MtlMid
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+              />
+              <MtlRight
+                mtlData={mtlDataSQL}
+                addMtlData={addMtlData}
+                setAddMtlData={setAddMtlData}
+                altTotal={altTotal}
+                setAltTotal={setAltTotal}
+                indexTotal={indexTotal}
+                setIndexTotal={setIndexTotal}
+                sushiGroup={sushiGroup}
+                setSushiGroup={setSushiGroup}
+                handleSaveShow={() => setSaveShow(true)}
+                handleNextShow={() => setNextShow(true)}
+                postCusData={postCusData}
+                navIsOpen={navIsOpen}
+                setNavIsOpen={setNavIsOpen}
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }
 
 export default Customize;

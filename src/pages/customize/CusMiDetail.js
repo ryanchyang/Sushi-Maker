@@ -11,7 +11,7 @@ import { Button, Modal } from 'react-bootstrap';
 function CusMiDetail() {
   const [cusProdSQL, setCusProdSQL] = useState();
   const [cusCount, setCusCount] = useState(1);
-  const [namedCusProd, setNamedCusProd] = useState();
+  const [namedCusProd, setNamedCusProd] = useState('');
   const [changeCartCount, setChangeCartCount] = useState(0);
 
   // 接SQL資料
@@ -37,7 +37,7 @@ function CusMiDetail() {
 
   // 數量增減
   // 輸入數量
-  const countIt = count => {
+  const countIt = (count) => {
     if (count <= 0 || count >= 6) {
       return false;
     }
@@ -46,7 +46,7 @@ function CusMiDetail() {
   };
 
   // 數量-1
-  const contMinus = count => {
+  const contMinus = (count) => {
     if (count <= 1) {
       return false;
     }
@@ -56,7 +56,7 @@ function CusMiDetail() {
   };
 
   // 數量+1
-  const countAdd = count => {
+  const countAdd = (count) => {
     if (count >= 99) {
       return false;
     }
@@ -81,31 +81,30 @@ function CusMiDetail() {
   const addToCart = () => {
     const isLogin = localStorage.getItem('mem_id') !== null; //判斷是否登入
 
-    console.log(isLogin);
-    // if (isLogin) {
-    //   fetch(config.CUS_TO_CART, {
-    //     method: 'POST',
-    //     headers: {
-    //       'content-type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       memid: +localStorage.getItem('mem_id'),
-    //       cm_prod_id: cusProdSQL.cm_prod_id,
-    //       count: cusCount,
-    //       value: +cusProdSQL.cm_prod_value,
-    //       print: cusProdSQL.cm_prod_print_time,
-    //       category: 'cm',
-    //     }),
-    //   })
-    //     .then((res) => res.json())
-    //     .then(async (d) => {
-    //       await getCartCount(+localStorage.getItem('mem_id'));
-    //       setChangeCartCount(changeCartCount + 1);
-    //     });
-    //   handleCartShow();
-    // } else {
-    //   handleLikeShow();
-    // }
+    if (isLogin) {
+      fetch(config.CUS_TO_CART, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          memid: +localStorage.getItem('mem_id'),
+          cm_prod_id: cusProdSQL[0].cm_prod_id,
+          count: cusCount,
+          value: +cusProdSQL[0].cm_prod_value,
+          print: cusProdSQL[0].cm_prod_print_time,
+          category: 'cm',
+        }),
+      })
+        .then((res) => res.json())
+        .then(async (d) => {
+          await getCartCount(+localStorage.getItem('mem_id'));
+          setChangeCartCount(changeCartCount + 1);
+        });
+      handleCartShow();
+    } else {
+      handleLikeShow();
+    }
   };
 
   //請先登入的光箱
@@ -156,10 +155,34 @@ function CusMiDetail() {
     </Modal>
   );
 
+  const [saveShow, setSaveShow] = useState(false);
+  const handleSaveClose = () => setSaveShow(false);
+  const handleSaveShow = () => setSaveShow(true);
+  const saveModel = (
+    <Modal show={saveShow} onHide={handleSaveClose}>
+      <Modal.Header closeButton>
+        <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
+      </Modal.Header>
+      <Modal.Body style={{ margin: '0 3%' }}>
+        <div className="en-cont-14 pb-2">已為您儲存當前資料</div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button
+          variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
+          onClick={handleSaveClose}
+        >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+
   return (
     <>
       {likeModel}
       {cartModel}
+      {saveModel}
       <Header />
       <div style={{ display: 'flex' }}>
         <AsideLeft />
@@ -183,7 +206,7 @@ function CusMiDetail() {
             </div>
             {!cusProdSQL
               ? ''
-              : cusProdSQL.map(e => {
+              : cusProdSQL.map((e) => {
                   return (
                     <>
                       <div className="cus-detail">
@@ -196,7 +219,7 @@ function CusMiDetail() {
                             className="search-input-bar ch-title-20"
                             placeholder="請幫您的成品取名"
                             value={namedCusProd}
-                            onChange={e => {
+                            onChange={(e) => {
                               setNamedCusProd(e.target.value);
                             }}
                           />
@@ -266,7 +289,13 @@ function CusMiDetail() {
                 <button className="btn-sm btn-outline-primary primeal-btn-outline m-2">
                   返回製作
                 </button>
-                <button className="btn-sm btn-outline-primary primeal-btn-outline m-2">
+                <button
+                  className="btn-sm btn-outline-primary primeal-btn-outline m-2"
+                  onClick={() => {
+                    cusProdname();
+                    handleSaveShow();
+                  }}
+                >
                   儲存編輯
                 </button>
               </div>
@@ -279,7 +308,7 @@ function CusMiDetail() {
                     <input
                       type="number"
                       value={cusCount}
-                      onChange={e => countIt(+e.target.value)}
+                      onChange={(e) => countIt(+e.target.value)}
                     />
                     <button onClick={() => countAdd()}>
                       <Plus />

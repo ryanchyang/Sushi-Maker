@@ -1,5 +1,4 @@
-import { useState, useEffect, Suspense, useRef } from 'react';
-// import Sushi from './Sushi';
+import { Suspense, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
@@ -51,7 +50,10 @@ function MtlMid(props) {
             HOME
           </Link>{' '}
           /{' '}
-          <Link to={''} style={{ textDecoration: 'none', color: '#b03342' }}>
+          <Link
+            to={'/customize'}
+            style={{ textDecoration: 'none', color: '#b03342' }}
+          >
             CUSTOMIZATION
           </Link>
         </div>
