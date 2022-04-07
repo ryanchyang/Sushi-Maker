@@ -1,5 +1,9 @@
 @import "./../../styles/global.scss";
 .setmenulist {
+  .set-list-title{
+    z-index: 5;
+    position: relative;
+  }
   .animation-opcaity{
     animation: select-box-appear 0.5s ease-in-out;
   }
@@ -180,16 +184,48 @@
     }
   }
   .set-orderfinal-svg{
-    animation: set-order-final-svg 6s ease-in-out;
+    animation: set-order-final-svg 2s ease-in-out;
   }
   .set-order-final{
-    // animation: set-order-final 6s ease-in-out;
+    // animation: set-order-final 2s ease-in-out;
   }
+  .set-loading{
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  opacity: 0%;
+  z-index: 3;
+  animation: set-order-final-disappear 2s ease-in-out;
+  }
+  .space-animation{
+    background-color: #f7f6f3;
+    width: 70%;
+    height: 0px;
+    position: absolute;
+    top: 20%;
+    z-index: 2;
+    animation:space-disappear 2.5s ;
+    transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
+}
+
   @keyframes set-order-final {
     0%   { opacity: 0%;}
     25%  { opacity: 0%;}
-    80%  { opacity: 0%;}
+    95%  { opacity: 0%;}
     100% { opacity: 100%;}
+  }
+
+  @keyframes set-order-final-disappear {
+    0%  { opacity: 100%;}
+    95%  { opacity: 100%;}
+    100% { opacity: 0%;}
+  }
+
+  @keyframes space-disappear {
+    0%   { height: 750px;}
+    80%   { height: 750px;}
+    85%{ height: 650px;}
+    100% { height: 0px;}
   }
   .set-order-list-buttom {
     justify-content: end;
@@ -231,6 +267,11 @@
   .set-nutrient-bento-name-lightbox {
     padding-left: 5%;
   }
+  @media screen and (max-width: 2260px){
+    .space-animation{
+      top:15%;
+    }
+  }
   @media screen and (max-width: 1516) {
     @include mytitle;
     font-size: 1.4rem;
@@ -238,7 +279,19 @@
     letter-spacing: 0.14rem;
   }
 
+  @media screen and (min-width:577px)  and (max-width: 991px) {
+    .space-animation{
+      top:10%;
+    }
+  }
   @media screen and (max-width: 991px) {
+    .space-animation{
+      width: 95%;
+    }
+    .set-loading{
+      left:30%;
+    }
+    
     .date-error {
       padding: 2% 0 2% 2%;
     }
@@ -282,8 +335,16 @@
   }
 }
 @media screen and(max-width:576px) {
+  
+  .space-animation{
+    top:14%;
+  }
+  .set-loading{
+    left:0%;
+  }
   .link-bread-set {
     margin-top: 10%;
     margin-bottom: 2%;
+    
   }
 }

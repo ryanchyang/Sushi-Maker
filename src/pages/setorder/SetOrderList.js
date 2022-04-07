@@ -138,7 +138,10 @@ function SetOrderList(props) {
                 <div className="set-list-title ch-title-22 link-bread-set">
                   推薦結果
                 </div>
-
+                <div className="set-loading ch-title-22">
+                  正在為您篩選菜單．．．
+                </div>
+                <div class="space-animation"></div>
                 <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">
