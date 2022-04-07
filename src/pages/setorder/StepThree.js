@@ -4,21 +4,21 @@ import { useState } from 'react';
 import NavPage from '../layout/components/NavPage';
 
 function StepThree(props) {
+  //回上一頁
+  function BackToLastPage() {
+    history.go(-1);
+  }
   //nav 滿版
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
   //上一個的答案
   const data = useLocation();
-  // console.log('data.state', data.state);
+
   const question1 = data.state;
-  console.log('question1', question1);
+
   const [selected2, setSelected2] = useState(1);
 
-  //判斷上一題有沒有回答,沒有回答的話就跳回套餐首頁
-  // if (question1 === undefined) {
-  //   window.location.href = `./stepStart`;
-  // } else {
   const lists = [
     { id: 1, title: '普通' },
     { id: 2, title: '小孩' },
@@ -31,6 +31,21 @@ function StepThree(props) {
   };
   const answerClicked = { color: '#f7f6f3', backgroundColor: '#b03342' };
   const answerNoClick = { color: '#b03342', backgroundColor: 'transparent' };
+
+  //判斷登入
+  const isLogin = localStorage.getItem('loginStatus');
+  const history = useHistory();
+  //如果沒有登入的話的判斷
+  if (!isLogin) {
+    // Hello();
+    history.push('/member/login');
+    return <></>;
+  }
+
+  if (data.state === undefined) {
+    history.push('/setorder/stepstart');
+  }
+
   return (
     <>
       <Header />
@@ -89,11 +104,12 @@ function StepThree(props) {
                     </div>
                     <div className="ch-cont-16"></div>
                     <div className="step-reset-enter-btn-all">
-                      <Link to="/setorder/steptwo">
-                        <button className="ch-title-22 step-reset-btn">
-                          返回
-                        </button>
-                      </Link>
+                      <button
+                        className="ch-title-22 step-reset-btn"
+                        onClick={BackToLastPage}
+                      >
+                        返回
+                      </button>
 
                       <Link
                         to={{
