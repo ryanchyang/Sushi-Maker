@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useTexture } from '@react-three/drei';
+import config from '../../Config';
 // import { TextureLoader } from 'three/src/loaders/TextureLoader';
 // All textures are CC0 textures from: https://cc0textures.com/
 
@@ -11,9 +12,12 @@ function RenderImage(props) {
   useTexture(['/img/salmon-dark.jpg', '/img/salmon-normal.jpg']);
   useTexture(['/img/darker/unknown.jpg', '/img/unknown-normal.jpg']);
   useTexture(['/img/darker/Pumpkin.jpg', '/img/Pumpkin-normal.jpg']);
+  useTexture([
+    `${config.HOST}/img/mtl/three/corn.jpg`,
+    `${config.HOST}/img/mtl/three/corn-normal.png`,
+  ]);
 
   return <></>;
 }
 
 export default RenderImage;
-

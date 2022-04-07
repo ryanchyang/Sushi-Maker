@@ -17,13 +17,12 @@ function MtlLBtn(props) {
     sushiGroup,
     setSushiGroup,
   } = props;
- 
 
- // 總層數加法
- const countTotal = arr => {
-  const totalPct = arr.map(pct => pct.mtlPct);
-  return totalPct.reduce((x, y) => x + y);
-};
+  // 總層數加法
+  const countTotal = arr => {
+    const totalPct = arr.map(pct => pct.mtlPct);
+    return totalPct.reduce((x, y) => x + y);
+  };
 
   return (
     <div
@@ -36,14 +35,14 @@ function MtlLBtn(props) {
         newList.unshift({ mtlId: mtl_id, mtlPct: 1 });
         // setMtlActive([mtl_id, ...mtlActive]);
         setMtlActive(newList);
-        
+
         // three add sushi
         setIndexTotal(indexTotal + 1);
         setSushiGroup([
           ...sushiGroup,
           {
-            map: mtl_3d_img_path,
-            normalMap: mtl_3d_normalmap_img_path,
+            map: config.HOST + mtl_3d_img_path,
+            normalMap: config.HOST + mtl_3d_normalmap_img_path,
             height: 0.125,
             alt: altTotal * 0.125, // 預設增加高度
             fixIndex: indexTotal + 1,
