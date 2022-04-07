@@ -5,11 +5,22 @@ import config from '../../Config';
 // All textures are CC0 textures from: https://cc0textures.com/
 
 function RenderImage(props) {
+  useTexture([
+    `${config.HOST}/img/mtl/three/rice.jpg`,
+    `${config.HOST}/img/mtl/three/rice-normal3.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/salmon.jpg`,
+    `${config.HOST}/img/mtl/three/salmon-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/meat.jpg`,
+    `${config.HOST}/img/mtl/three/meat-normal.jpg`,
+  ]);
   useTexture(['/img/darker/egg.jpg', '/img/egg-normal.jpg']);
-  useTexture(['/img/rice.jpg', '/img/rice-normal3.png']);
-  useTexture(['/img/darker/meat.jpg', '/img/meat-normal.jpg']);
+
   useTexture(['/img/darker/bottarga.png', '/img/bottarga-normal.png']);
-  useTexture(['/img/salmon-dark.jpg', '/img/salmon-normal.jpg']);
+
   useTexture(['/img/darker/unknown.jpg', '/img/unknown-normal.jpg']);
   useTexture(['/img/darker/Pumpkin.jpg', '/img/Pumpkin-normal.jpg']);
   useTexture([

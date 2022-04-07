@@ -20,8 +20,8 @@ function Customize() {
   const [indexTotal, setIndexTotal] = useState(0);
   const [sushiGroup, setSushiGroup] = useState([
     {
-      map: '/img/rice.jpg',
-      normalMap: '/img/rice-normal3.png',
+      map: `${config.HOST}/img/mtl/three/rice.jpg`,
+      normalMap: `${config.HOST}/img/mtl/three/rice-normal3.png`,
       height: 0.5,
       alt: -0.05, // 預設增加高度
       fixIndex: 0,
@@ -43,7 +43,7 @@ function Customize() {
   // console.log('father\'s mtlDataSQL:', mtlDataSQL);
   // console.log('father\'s addMtlData:', addMtlData);
 
- // 傳送資料至後端
+  // 傳送資料至後端
   const postCusData = async () => {
     const res = await fetch(config.POST_CUS_DATA, {
       method: 'POST',
@@ -118,12 +118,12 @@ function Customize() {
       </Modal.Footer>
     </Modal>
   );
-  
+
   return (
     <>
-     {saveModel}
+      {saveModel}
       {nextModel}
-         <div className="mtlHeader">
+      <div className="mtlHeader">
         <Title />
       </div>
       <div className="container-fluid customize">
