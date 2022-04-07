@@ -142,6 +142,7 @@ function SetOrderList(props) {
                   正在為您篩選菜單．．．
                 </div>
                 <div class="space-animation"></div>
+                <div class="space-animation-gray"></div>
                 <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">

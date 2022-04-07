@@ -33,20 +33,19 @@ function StepStart(props) {
             <Title title={'JUST FOR YOU'} />
             <div className="step">
               <div className="mycontainer min-hi">
-                <p className="en-title-14-10">
+                <p className="en-title-14-10 link-bread-set set-row">
                   <Link
                     to={'/'}
                     style={{ textDecoration: 'none', color: '#575757' }}
                   >
                     HOME /
                   </Link>
-
-                  <Link
-                    to={'./stepstart'}
+                  <div
+                    className="en-title-14-10"
                     style={{ textDecoration: 'none', color: '#b03342' }}
                   >
                     SET
-                  </Link>
+                  </div>
                 </p>
                 <div className="set-all-content">
                   <div className="set-title col-12 set-title-0">

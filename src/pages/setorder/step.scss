@@ -1,5 +1,8 @@
 @import './../../styles/global.scss';
 .step {
+  .link-bread-set {
+    margin-bottom: 3%;
+  }
   .step-title{
     animation: select-box-appear 0.5s ease-in-out;
   }
@@ -207,6 +210,9 @@
     }
   }
   @media screen and (max-width: 600px) {
+    .set-question-box-start{
+      margin:5% auto 0 auto;
+    }
     .set-question-box{
       margin:5% auto 0 auto;
 
@@ -239,12 +245,15 @@
   }
   @media screen and (max-width: 576px) {
     .link-bread-set{
-      margin-top:10%;
+      margin-top: 10%;
+      margin-bottom: 2%;
     }
 
     .set-question-box{
       margin:15% auto 0 auto;
-
+    }
+    .set-question-box-start{
+      margin:15% auto 0 auto;
     }
   }
 
@@ -253,7 +262,9 @@
 
     .set-question-box{
       margin-top:20% auto 0 auto;
-
+    .set-question-box-start{
+      margin-top:20% auto 0 auto;
+    }
     }
   }
 }

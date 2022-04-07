@@ -34,7 +34,7 @@ function SetMenuList(props) {
             </div>
             <div className="bento-sushi-menu-all">
               <div className="set-nutrient-bento-name en-cont-28">
-                {props.answer[props.index]?.bento_ch_name}
+                Day{props.index+1}-{props.answer[props.index]?.bento_ch_name}
               </div>
               <div className="set-nutrient-bento-name en-cont-28">
                 {props.answer[props.index]?.bento_en_name}

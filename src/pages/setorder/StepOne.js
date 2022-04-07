@@ -31,7 +31,7 @@ function StepOne(props) {
             <Title title={'JUST FOR YOU'} />
             <div className="step">
               <div className="mycontainer min-hi">
-                <p className="en-title-14-10">
+                <p className="en-title-14-10 link-bread-set">
                   <Link
                     to={'/'}
                     style={{ textDecoration: 'none', color: '#575757' }}
