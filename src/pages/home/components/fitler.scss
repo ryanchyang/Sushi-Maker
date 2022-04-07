@@ -11,7 +11,16 @@
     cursor: pointer;
   }
   .cancel-filter {
+    width: 45px;
+    height: 45px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cancel-filter:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
   }
   .by-date {
     clear: both;

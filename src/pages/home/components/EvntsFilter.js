@@ -133,6 +133,11 @@ function EvntsFilter(props) {
     setEvntsData(fetchEvntsData);
   };
 
+  // 關閉Filter視窗
+  const closeHandler = () => {
+    setIsOpenFilter(false);
+  };
+
   return (
     <>
       {/* clean or cancel filter */}
@@ -145,7 +150,7 @@ function EvntsFilter(props) {
             />
             <span>清空條件</span>
           </div>
-          <div className="cancel-filter ch-cont-16">
+          <div className="cancel-filter ch-cont-16" onClick={closeHandler}>
             <span>X</span>
           </div>
         </div>

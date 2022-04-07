@@ -974,7 +974,7 @@ function Index(props) {
               </div>
               <div className="asideRight-nav-text">
                 <Link
-                  to={'/setorder/stepstart'}
+                  to={'/customize'}
                   style={{ textDecoration: 'none', color: '#ffffff' }}
                 >
                   客製產品
@@ -982,7 +982,7 @@ function Index(props) {
               </div>
               <div className="asideRight-nav-text">
                 <Link
-                  to={'/customize'}
+                  to={'/setorder/stepstart'}
                   style={{ textDecoration: 'none', color: '#ffffff' }}
                 >
                   套餐規劃

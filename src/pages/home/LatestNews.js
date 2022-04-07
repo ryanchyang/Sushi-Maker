@@ -87,7 +87,7 @@ function LatestNews(props) {
   const searchBarHandler = () =>
     search
       ? { transform: 'translateX(0px) translateY(-7px)' }
-      : { transform: 'translateX(280px) translateY(-7px)' };
+      : { transform: 'translateX(350px) translateY(-7px)' };
 
   // 動態調整CSS inline style
   const showBlock = { display: 'block' };

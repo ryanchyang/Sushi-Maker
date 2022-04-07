@@ -27,15 +27,35 @@
     border-bottom: 2px solid $dark-bg;
   }
   .search {
+    width: 45px;
+    height: 45px;
+    padding: 5%;
     cursor: pointer;
     transform: translateX(2px) translateY(-7px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
   }
   .filter {
-    margin-left: 5%;
-    margin-right: 2%;
-    margin-bottom: 3%;
+    // margin-left: 5%;
+    // margin-right: 2%;
+    // margin-bottom: 3%;
+    width: 45px;
+    height: 45px;
+    padding: 5%;
     cursor: pointer;
     transform: translateY(-5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .filter:hover {
+    background-color: rgb(232, 232, 232);
+    border-radius: 50%;
   }
   .page-item {
     width: 30px;
