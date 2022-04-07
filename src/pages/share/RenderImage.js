@@ -18,7 +18,10 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/meat-normal.jpg`,
   ]);
   useTexture(['/img/darker/egg.jpg', '/img/egg-normal.jpg']);
-
+  useTexture([
+    `${config.HOST}/img/mtl/three/cheese.jpg`,
+    `${config.HOST}/img/mtl/three/cheese-normal.jpg`,
+  ]);
   useTexture(['/img/darker/bottarga.png', '/img/bottarga-normal.png']);
 
   useTexture(['/img/darker/unknown.jpg', '/img/unknown-normal.jpg']);
