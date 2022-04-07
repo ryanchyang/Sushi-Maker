@@ -4,8 +4,16 @@ import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
 import { ReactComponent as ArrR } from '../../../imgs/arrow-right-noccircle.svg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 function MtlLeft(props) {
+  // console.log(props.mtlData);
+  const {
+    altTotal,
+    setAltTotal,
+    indexTotal,
+    setIndexTotal,
+    sushiGroup,
+    setSushiGroup,
+  } = props;
   const [openLArea, setOpenLArea] = useState(false);
 
   // 切換食材分類
@@ -34,6 +42,9 @@ function MtlLeft(props) {
     catePage(changeCate);
   }, [props.mtlData]);
 
+  // 食材選擇
+  // const [mtlActive, setMtlActive] = useState([1]);
+  // const [mtlActive, setMtlActive] = useState([{ mtlId: 1, mtlPct: 1 }]);
   const { addMtlData, setAddMtlData } = props;
 
   return (
@@ -48,7 +59,7 @@ function MtlLeft(props) {
       >
         <div className="la-menu col px-0">
           <div className="logoMtl">
-            <Link to="/" className="logoMtl-box">
+          <Link to="/" className="logoMtl-box">
               <Logo />
             </Link>
             <div className="col-12" />
@@ -76,12 +87,41 @@ function MtlLeft(props) {
                   </div>
                 );
               })}
+              {/* 舊做法 */}
+              {/* <div
+                className="dec col-12"
+                onClick={() => {
+                  setchangeCate(!changeCate);
+                }}
+              >
+                <Rectangle
+                  className={changeCate ? 'rectangle' : 'rectangle-displaynone'}
+                />
+                <div className={changeCate ? '' : 'mtl-cate-blur'}>食材</div>
+              </div>
+              <div
+                className="ing col-12"
+                onClick={() => {
+                  setchangeCate(!changeCate);
+                }}
+              >
+                <Rectangle
+                  className={changeCate ? 'rectangle-displaynone' : 'rectangle'}
+                />
+                <div className={changeCate ? 'mtl-cate-blur' : ''}>裝飾</div>
+              </div> */}
             </div>
             <div className="mtlBtnIn-L d-flex flex-wrap pt-3 px-2">
               {Object.keys(props.mtlData).length === 0
                 ? ''
                 : changeCatePage.map(e => {
-                    const { mtl_id, mtl_name, mtl_img_path } = e;
+                    const {
+                      mtl_id,
+                      mtl_name,
+                      mtl_img_path,
+                      mtl_3d_img_path,
+                      mtl_3d_normalmap_img_path,
+                    } = e;
 
                     return (
                       <MtlLBtn
@@ -91,11 +131,22 @@ function MtlLeft(props) {
                         mtl_img_path={mtl_img_path}
                         setMtlActive={setAddMtlData}
                         mtlActive={addMtlData}
+                        // addclass={mtlActive.includes(mtl_id) ? true : false}
                         addclass={
                           addMtlData.some(a => a.mtlId === mtl_id)
                             ? true
                             : false
                         }
+                        // three
+                        mtl_3d_img_path={mtl_3d_img_path}
+                        mtl_3d_normalmap_img_path={mtl_3d_normalmap_img_path}
+                        altTotal={altTotal}
+                        setAltTotal={setAltTotal}
+                        indexTotal={indexTotal}
+                        setIndexTotal={setIndexTotal}
+                        sushiGroup={sushiGroup}
+                        setSushiGroup={setSushiGroup}
+                        // setAddMtlData={setAddMtlData(mtlActive)} // 要加不然資料傳不上去
                       />
                     );
                   })}

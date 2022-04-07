@@ -3,7 +3,9 @@ import './customize.scss';
 import MtlLeft from './components/MtlLeft';
 import MtlMid from './components/MtlMid';
 import MtlRight from './components/MtlRight';
+
 import { useEffect, useState } from 'react';
+// import { mtlData } from './sushiMtlTest';
 import { useHistory } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import config from '../../Config';
@@ -11,8 +13,21 @@ import config from '../../Config';
 function Customize() {
   const [mtlDataSQL, setMtlDataSQL] = useState({});
   const [addMtlData, setAddMtlData] = useState([]);
-
+  //{ mtlId: 1, mtlPct: 1 }
   // 接SQL資料
+
+  const [altTotal, setAltTotal] = useState(1);
+  const [indexTotal, setIndexTotal] = useState(0);
+  const [sushiGroup, setSushiGroup] = useState([
+    {
+      map: '/img/rice.jpg',
+      normalMap: '/img/rice-normal3.png',
+      height: 0.5,
+      alt: -0.05, // 預設增加高度
+      fixIndex: 0,
+    },
+  ]);
+
   useEffect(() => {
     const catchData = async () => {
       const mtlRes = await fetch(config.GET_MTLS);
@@ -25,7 +40,10 @@ function Customize() {
     setAddMtlData([{ mtlId: 1, mtlPct: 1 }]);
   }, []);
 
-  // 傳送資料至後端
+  // console.log('father\'s mtlDataSQL:', mtlDataSQL);
+  // console.log('father\'s addMtlData:', addMtlData);
+
+ // 傳送資料至後端
   const postCusData = async () => {
     const res = await fetch(config.POST_CUS_DATA, {
       method: 'POST',
@@ -100,26 +118,48 @@ function Customize() {
       </Modal.Footer>
     </Modal>
   );
-
+  
   return (
     <>
-      {saveModel}
+     {saveModel}
       {nextModel}
-      <div className="mtlHeader">
+         <div className="mtlHeader">
         <Title />
       </div>
       <div className="container-fluid customize">
         <div className="row mtlView">
           <MtlLeft
+            altTotal={altTotal}
+            setAltTotal={setAltTotal}
+            indexTotal={indexTotal}
+            setIndexTotal={setIndexTotal}
+            sushiGroup={sushiGroup}
+            setSushiGroup={setSushiGroup}
             mtlData={mtlDataSQL}
             addMtlData={addMtlData}
             setAddMtlData={setAddMtlData}
           />
-          <MtlMid mtlData={mtlDataSQL} addMtlData={addMtlData} />
+
+          <MtlMid
+            mtlData={mtlDataSQL}
+            addMtlData={addMtlData}
+            altTotal={altTotal}
+            setAltTotal={setAltTotal}
+            indexTotal={indexTotal}
+            setIndexTotal={setIndexTotal}
+            sushiGroup={sushiGroup}
+            setSushiGroup={setSushiGroup}
+          />
           <MtlRight
             mtlData={mtlDataSQL}
             addMtlData={addMtlData}
             setAddMtlData={setAddMtlData}
+            altTotal={altTotal}
+            setAltTotal={setAltTotal}
+            indexTotal={indexTotal}
+            setIndexTotal={setIndexTotal}
+            sushiGroup={sushiGroup}
+            setSushiGroup={setSushiGroup}
             handleSaveShow={() => setSaveShow(true)}
             handleNextShow={() => setNextShow(true)}
             postCusData={postCusData}

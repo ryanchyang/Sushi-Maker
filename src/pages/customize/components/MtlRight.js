@@ -4,7 +4,11 @@ import { ReactComponent as Help } from '../../../imgs/help-circle.svg';
 import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
 import { ReactComponent as ArrL } from '../../../imgs/arrow-left-noccircle.svg';
 import MtlRBtn from './MtlRBtn';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import config from '../../../Config';
+
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 function MtlRight(props) {
   const [openRArea, setOpenRArea] = useState(false);
@@ -17,7 +21,152 @@ function MtlRight(props) {
     handleSaveShow,
     handleNextShow,
     postCusData,
+    altTotal,
+    setAltTotal,
+    indexTotal,
+    setIndexTotal,
+    sushiGroup,
+    setSushiGroup,
   } = props;
+  // console.log(props.addMtlData);
+  // console.log(props.mtlData);
+
+  
+
+  const changeOrderHandler = (drag, drop) => {
+    let originalArr = [...sushiGroup];
+    let boxGroupArr;
+    let lastArr;
+    lastArr =
+      drag > drop
+        ? [...originalArr].slice(drag + 1)
+        : [...originalArr].slice(drop + 1);
+
+    /////////////////////////////////////////////////////
+
+    if (lastArr.length) {
+      if (drag > drop) {
+        boxGroupArr = [...originalArr].slice(drop + 1, drag + 1);
+      }
+      if (drag < drop) {
+        boxGroupArr = [...originalArr].slice(drag + 1, drop + 1);
+      }
+
+      const singBoxObj = drag > drop ? originalArr[drop] : originalArr[drag];
+
+      const boxGroupHeight = boxGroupArr.reduce(
+        (total, v) => total + v.height,
+        0
+      );
+
+      singBoxObj.alt = singBoxObj.alt + boxGroupHeight;
+      const finalGroup = boxGroupArr.map(box => {
+        return { ...box, alt: box.alt - singBoxObj.height };
+      });
+
+      const finalRestGroupArr = [...finalGroup];
+
+      finalRestGroupArr.pop();
+
+      const finalRestGroupHeight = finalRestGroupArr.reduce(
+        (total, v) => total + v.height,
+        0
+      );
+      const lastBoxObj = finalGroup[finalGroup.length - 1];
+
+      lastBoxObj.alt = lastBoxObj.alt - finalRestGroupHeight;
+      const finalAddedAltRestGroup = finalRestGroupArr.map(box => {
+        return { ...box, alt: box.alt + lastBoxObj.height };
+      });
+
+      const finalArr =
+        drag > drop
+          ? [
+              ...originalArr.slice(0, drop),
+              lastBoxObj,
+              ...finalAddedAltRestGroup,
+              singBoxObj,
+              ...lastArr,
+            ]
+          : [
+              ...originalArr.slice(0, drag),
+              lastBoxObj,
+              ...finalAddedAltRestGroup,
+              singBoxObj,
+              ...lastArr,
+            ];
+
+      setSushiGroup(finalArr);
+    }
+
+    if (!lastArr.length) {
+      if (drag > drop) {
+        boxGroupArr = [...originalArr].slice(drop, drag);
+      }
+      if (drag < drop) {
+        boxGroupArr = [...originalArr].slice(drag + 1, drop + 1);
+      }
+
+      const singBoxHeightObj = originalArr[drag];
+
+      const boxGroupHeight = boxGroupArr.reduce(
+        (total, v) => total + v.height,
+        0
+      );
+
+      singBoxHeightObj.alt =
+        drag > drop
+          ? singBoxHeightObj.alt - boxGroupHeight
+          : singBoxHeightObj.alt + boxGroupHeight;
+
+      const finalBoxGroup = boxGroupArr.map(box =>
+        drag > drop
+          ? { ...box, alt: box.alt + singBoxHeightObj.height }
+          : { ...box, alt: box.alt - singBoxHeightObj.height }
+      );
+
+      const finalArr =
+        drag > drop
+          ? [...originalArr.slice(0, drop), singBoxHeightObj, ...finalBoxGroup]
+          : [...originalArr.slice(0, drag), ...finalBoxGroup, singBoxHeightObj];
+
+      // originalArr.splice(4, 1, sushiGroup[1]);
+      setSushiGroup(finalArr);
+    }
+  };
+
+  const reorder = (list, startIndex, endIndex) => {
+    const result = [...list];
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  function onDragEnd(result) {
+    if (!result.destination) {
+      return;
+    }
+
+    if (result.destination.index === result.source.index) {
+      return;
+    }
+
+    const ModifiedAddMtlData = reorder(
+      addMtlData,
+      result.source.index,
+      result.destination.index
+    );
+
+    console.log(addMtlData, result.source.index, result.destination.index);
+
+    changeOrderHandler(
+      addMtlData.length - result.source.index - 1,
+      addMtlData.length - result.destination.index - 1
+    );
+
+    setAddMtlData(ModifiedAddMtlData);
+  }
 
   return (
     <>
@@ -76,30 +225,47 @@ function MtlRight(props) {
               })}
             </div>
             <div className="mtlBtnIn-R pt-3 px-2">
-              {Object.keys(props.addMtlData).length === 0
-                ? ''
-                : props.addMtlData.map((el, i) => {
-                    const takeMtlId =
-                      Object.keys(props.mtlData).length === 0
-                        ? ''
-                        : props.mtlData.find(
-                            p => p.mtl_id === props.addMtlData[i].mtlId
-                          );
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="list">
+                  {provided =>
+                    Object.keys(props.addMtlData).length === 0 ? (
+                      ''
+                    ) : (
+                      <div ref={provided.innerRef} {...provided.droppableProps}>
+                        {props.addMtlData.map((el, i) => {
+                          const takeMtlId =
+                            Object.keys(props.mtlData).length === 0
+                              ? ''
+                              : props.mtlData.find(
+                                  p => p.mtl_id === props.addMtlData[i].mtlId
+                                );
 
-                    return (
-                      <MtlRBtn
-                        key={i}
-                        mtl_id={takeMtlId.mtl_id}
-                        mtl_name={takeMtlId.mtl_name}
-                        mtl_cate={takeMtlId.mtl_cate}
-                        mtl_img_path={takeMtlId.mtl_img_path}
-                        removeMtl={addMtlData}
-                        setRemoveMtl={setAddMtlData}
-                        el={el}
-                        i={i}
-                      />
-                    );
-                  })}
+                          return (
+                            <MtlRBtn
+                              key={i + Date.now()}
+                              mtl_id={takeMtlId.mtl_id}
+                              mtl_name={takeMtlId.mtl_name}
+                              mtl_cate={takeMtlId.mtl_cate}
+                              mtl_img_path={takeMtlId.mtl_img_path}
+                              removeMtl={addMtlData}
+                              setRemoveMtl={setAddMtlData}
+                              el={el}
+                              i={i}
+                              altTotal={altTotal}
+                              setAltTotal={setAltTotal}
+                              indexTotal={indexTotal}
+                              setIndexTotal={setIndexTotal}
+                              sushiGroup={sushiGroup}
+                              setSushiGroup={setSushiGroup}
+                            />
+                          );
+                        })}
+                        {provided.placeholder}
+                      </div>
+                    )
+                  }
+                </Droppable>
+              </DragDropContext>
             </div>
           </div>
           <div className="btn">

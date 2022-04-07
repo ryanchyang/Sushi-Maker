@@ -18,10 +18,10 @@ function Scene(props) {
 
   // interpolate values from common spring
   const { position } = useSpring({
-    from: { position: [0, fixIndex / 2 + alt + 0.5, 0] },
+    from: { position: [0, fixIndex / 8 + alt + 0.125, 0] },
     to: async next => {
       if (active) {
-        await next({ position: [0, fixIndex / 2 + alt, 0] });
+        await next({ position: [0, fixIndex / 8 + alt, 0] });
       }
     },
     config: { mass: 5, tension: 400, friction: 50, precision: 0.0001 },
@@ -81,16 +81,17 @@ function Scene(props) {
         }}
       >
         {/* Width and height segments for displacementMap */}
-        {/* <sphereBufferGeometry args={[1, 100, 100]} />
+        {/* <sphereBufferGeometry args={[0.5, 100, 100]} />
         <meshStandardMaterial
           displacementScale={0.2}
-          map={colorMap}
-          normalMap={normalMap}
+          map={img}
+          normalMap={normalImg}
         /> */}
 
         <RoundedBox args={[1, height, 1]} radius={0.04} smoothness={4}>
           <meshStandardMaterial
-            bumpScale={0.05}
+            attach="material"
+            normalScale={1}
             map={img}
             normalMap={normalImg}
           />

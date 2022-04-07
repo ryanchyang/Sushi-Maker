@@ -30,6 +30,7 @@
     "prop-types": "^15.8.1",
     "qrcode.react": "^2.0.0",
     "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.0",
     "react-big-calendar": "^0.39.3",
     "react-bootstrap": "1.6.4",
     "react-chartjs-2": "^4.0.1",

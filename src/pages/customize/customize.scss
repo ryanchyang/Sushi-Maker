@@ -626,4 +626,16 @@ $areaHeight: calc( 100vh - 80px );
   .cus-detail{
     display: flex;
   }
+
+  .draggable {
+    top: auto !important;
+    left: auto !important;
+  }
+  .dragItem {
+    background-color: $card-hover;
+    border-radius: 10px;
+  }
+
 }
+
+
