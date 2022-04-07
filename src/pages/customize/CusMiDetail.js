@@ -37,7 +37,7 @@ function CusMiDetail() {
 
   // 數量增減
   // 輸入數量
-  const countIt = (count) => {
+  const countIt = count => {
     if (count <= 0 || count >= 6) {
       return false;
     }
@@ -46,7 +46,7 @@ function CusMiDetail() {
   };
 
   // 數量-1
-  const contMinus = (count) => {
+  const contMinus = count => {
     if (count <= 1) {
       return false;
     }
@@ -56,7 +56,7 @@ function CusMiDetail() {
   };
 
   // 數量+1
-  const countAdd = (count) => {
+  const countAdd = count => {
     if (count >= 99) {
       return false;
     }
@@ -96,8 +96,8 @@ function CusMiDetail() {
           category: 'cm',
         }),
       })
-        .then((res) => res.json())
-        .then(async (d) => {
+        .then(res => res.json())
+        .then(async d => {
           await getCartCount(+localStorage.getItem('mem_id'));
           setChangeCartCount(changeCartCount + 1);
         });
@@ -206,12 +206,15 @@ function CusMiDetail() {
             </div>
             {!cusProdSQL
               ? ''
-              : cusProdSQL.map((e) => {
+              : cusProdSQL.map(e => {
                   return (
                     <>
                       <div className="cus-detail">
                         <div className="cus-img">
-                          <img src="" alt="" />
+                          <img
+                            src={`${config.HOST}/img/customize/${e.cm_prod_img_path}`}
+                            alt=""
+                          />
                         </div>
                         <div className="detail">
                           <input
@@ -219,7 +222,7 @@ function CusMiDetail() {
                             className="search-input-bar ch-title-20"
                             placeholder="請幫您的成品取名"
                             value={namedCusProd}
-                            onChange={(e) => {
+                            onChange={e => {
                               setNamedCusProd(e.target.value);
                             }}
                           />
@@ -308,7 +311,7 @@ function CusMiDetail() {
                     <input
                       type="number"
                       value={cusCount}
-                      onChange={(e) => countIt(+e.target.value)}
+                      onChange={e => countIt(+e.target.value)}
                     />
                     <button onClick={() => countAdd()}>
                       <Plus />
