@@ -4,29 +4,20 @@ import { ReactComponent as Help } from '../../../imgs/help-circle.svg';
 import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
 import { ReactComponent as ArrL } from '../../../imgs/arrow-left-noccircle.svg';
 import MtlRBtn from './MtlRBtn';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import config from '../../../Config';
+import { useState } from 'react';
 
 function MtlRight(props) {
   const [openRArea, setOpenRArea] = useState(false);
 
   const chooseItems = ['選擇食材', '營養分析'];
   const [changeChoose, setChangeChoose] = useState('選擇食材');
-  const { addMtlData, setAddMtlData } = props;
-  // console.log(props.addMtlData);
-  // console.log(props.mtlData);
-
-
-  const postCusData = async () => {
-    const res = await fetch(config.POST_CUS_DATA, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ mtl_id: props.addMtlData }),
-    });
-    const resJson = await res.json();
-    console.log('resJson: ', resJson);
-  };
+  const {
+    addMtlData,
+    setAddMtlData,
+    handleSaveShow,
+    handleNextShow,
+    postCusData,
+  } = props;
 
   return (
     <>
@@ -88,21 +79,12 @@ function MtlRight(props) {
               {Object.keys(props.addMtlData).length === 0
                 ? ''
                 : props.addMtlData.map((el, i) => {
-                    {
-                      /* const { mtl_id, mtl_name, mtl_cate, mtl_img_path } = e; */
-                    }
                     const takeMtlId =
                       Object.keys(props.mtlData).length === 0
                         ? ''
                         : props.mtlData.find(
-                            (p) => p.mtl_id === props.addMtlData[i].mtlId
+                            p => p.mtl_id === props.addMtlData[i].mtlId
                           );
-                    {
-                      /* console.log(takeMtlId) */
-                    }
-                    {
-                      /* 每次找到陣列內的第幾項的id都去撈mtl_id數據比對 */
-                    }
 
                     return (
                       <MtlRBtn
@@ -123,15 +105,21 @@ function MtlRight(props) {
           <div className="btn">
             <button
               className="btn-sm btn-outline-primary primeal-btn-outline m-2"
-              onClick={postCusData}
+              onClick={() => {
+                handleSaveShow();
+                postCusData();
+              }}
             >
               儲存編輯
             </button>
-            <Link to="./CusMiDetail">
-              <button className="btn-sm btn-primary primeal-btn m-2">
-                下一步
-              </button>
-            </Link>
+            <button
+              className="btn-sm btn-primary primeal-btn m-2"
+              onClick={() => {
+                handleNextShow();
+              }}
+            >
+              下一步
+            </button>
           </div>
         </div>
       </div>

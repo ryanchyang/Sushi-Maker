@@ -428,7 +428,6 @@ $areaHeight: calc( 100vh - 80px );
     display: flex;
     margin: 0 auto;
     justify-content: space-between;
-    padding-right: 5%;
 
     @include pad{
       display: block;
@@ -466,4 +465,165 @@ $areaHeight: calc( 100vh - 80px );
     }
   }
 
+  .cus-detail, .cus-mtl-detial, .manual, .btn-area{
+    padding: 1.5rem;
+  }
+
+  .search-input-bar {
+    height: 6.3rem;
+    padding: 1rem;
+    width: 100%;
+    background-color: transparent;
+    border-top: 1px solid $dark-text;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid $dark-text;
+    text-align: center;
+    margin-bottom: 3rem;
+
+    &:focus {
+      border-top: 2px solid $dark-bg;
+      outline: none;
+      border-bottom: 2px solid $dark-bg;
+    }
+  }
+
+  .cus-value, .cus-printtime, .mtl-name, .origin, .mfd, .rm{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .value-r, .printtime-r{
+    @extend .en-cont-16;
+
+    @include pad{
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      letter-spacing: 0.14rem;
+    }
+    @include mobile{
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      letter-spacing: 0.14rem;
+    }
+  }
+
+  .value-l, .printtime-l{
+    @extend .en-cont-36;
+
+    @include pad{
+      font-size: 2.8rem;
+      line-height: 3.7rem;
+      letter-spacing: 0.28rem;
+    }
+    @include mobile{
+      font-size: 2.4rem;
+      line-height: 3.7rem;
+      letter-spacing: 0.28rem;
+    }
+  }
+
+  .name-l{
+    font-size: 2.4rem;
+    line-height: 3.7rem;
+    letter-spacing: 0.28rem;
+  }
+
+  .name-r img{
+    width: 4rem;
+    height: 4rem;
+    background-color: $gray;
+    border-radius: 50%;
+  }
+
+  .manual{
+    display: flex;
+
+    @include pad{
+      display: inline;
+    }
+    @include mobile{
+      display: inline;
+    }
+  }
+
+  .delivery, .mfd-time, .package{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 3rem;
+  }
+
+  .btn-area{
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 50%;
+    margin-left: auto;
+
+    @include pad{
+      width: 100%;
+      justify-content: space-around;
+    }
+    @include mobile{
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+
+  .btn-top, .btn-buttom{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .select-add-cart {
+      width: 20rem;
+      display: flex;
+      justify-content: space-between;
+      margin: 2%;
+  
+      @include pad{
+        display: block;
+      }
+      @include mobile{
+        display: block;
+      }
+    }
+    .select-count{
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #c4c4c4;
+      border-bottom: 1px solid #c4c4c4;
+      & input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      & button {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        font-size: 2.5rem;
+      }
+      & input {
+        width: 100%;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        text-align: center;
+      }
+      & SVG{
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+  }
+
+  .cus-detail{
+    display: flex;
+  }
 }
