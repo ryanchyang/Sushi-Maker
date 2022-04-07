@@ -71,7 +71,26 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/shrimp.png`,
     `${config.HOST}/img/mtl/three/shrimp-normal.png`,
   ]);
-
+  useTexture([
+    `${config.HOST}/img/mtl/three/tuna.png`,
+    `${config.HOST}/img/mtl/three/tuna-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/flounder.png`,
+    `${config.HOST}/img/mtl/three/flounder-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/squid.jpg`,
+    `${config.HOST}/img/mtl/three/squid-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/cuttlefish.jpg`,
+    `${config.HOST}/img/mtl/three/cuttlefish-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/tako.jpg`,
+    `${config.HOST}/img/mtl/three/tako-normal.png`,
+  ]);
   return <></>;
 }
 
