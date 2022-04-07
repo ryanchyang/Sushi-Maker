@@ -105,10 +105,11 @@ function Register(props) {
   const [vCode, setVcode] = useState('');
   const { navIsOpen, setNavIsOpen } = props;
   const [errorMessageMail, setErrorMessageMail] = useState('');
+  const [errorMessageEmpty, setErrorMessageEmpty] = useState('');
   const history = useHistory();
   const verify_code = localStorage.getItem('verify_code');
   const [suc, setSuc] = useState(false);
-  const [sendVc, setSendVc] = useState(false)
+  const [sendVc, setSendVc] = useState(false);
   const handleClose = () => setSuc(false);
   const handleShow = () => setSuc(true);
 
@@ -122,22 +123,30 @@ function Register(props) {
           setAuthToken(obj.token);
           setMemId(obj.info.mem_id);
           localStorage.setItem('loginStatus', true);
-          
         }
       });
     } else {
-      registerMail(registerData).then(obj => {
-        if (obj.success) {
-          setSendVc(true)
-          localStorage.setItem('verify_code', obj.verify_code);
-          setVcode(obj.verify_code);
-          setTimeout(() => {
-            localStorage.removeItem('verify_code');
-          }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
-        } else {
-          setErrorMessageMail(obj.errorMessage);
-        }
-      });
+      if (
+        !registerData.mem_account ||
+        !registerData.mem_pwd ||
+        !registerData.mem_mobile ||
+        !registerData.mem_name
+      ) {
+        setErrorMessageEmpty('此欄位不可為空!');
+      } else {
+        registerMail(registerData).then(obj => {
+          if (obj.success) {
+            setSendVc(true);
+            localStorage.setItem('verify_code', obj.verify_code);
+            setVcode(obj.verify_code);
+            setTimeout(() => {
+              localStorage.removeItem('verify_code');
+            }, 1000 * 60 * 5); //設定5分鐘後刪除驗證碼
+          } else {
+            setErrorMessageMail(obj.errorMessage);
+          }
+        });
+      }
     }
   };
   const handleChange = e => {
@@ -161,7 +170,7 @@ function Register(props) {
               className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
               onClick={() => {
                 setSuc(false);
-                history.push('/member')
+                history.push('/member');
               }}
             >
               離開
@@ -231,6 +240,7 @@ function Register(props) {
                     />
                     <ErrorMessage className="ch-cont-14">
                       {errorMessageMail}
+                      {registerData.mem_account == '' && errorMessageEmpty}
                     </ErrorMessage>
 
                     <InputTitle className="ch-cont-14">密碼</InputTitle>
@@ -251,7 +261,9 @@ function Register(props) {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    <ErrorMessage className="ch-cont-14"></ErrorMessage>
+                    <ErrorMessage className="ch-cont-14">
+                      {registerData.mem_pwd == '' && errorMessageEmpty}
+                    </ErrorMessage>
                     <InputTitle className="ch-cont-14">手機號碼</InputTitle>
                     <input
                       type="text"
@@ -270,7 +282,9 @@ function Register(props) {
                         letterSpacing: '0.14rem',
                       }}
                     />
-                    <ErrorMessage className="ch-cont-14"></ErrorMessage>
+                    <ErrorMessage className="ch-cont-14">
+                      {registerData.mem_mobile == '' && errorMessageEmpty}
+                    </ErrorMessage>
                     <div className="d-none d-md-flex mb-3">
                       <div>
                         <InputTitle className="ch-cont-14 ">姓名</InputTitle>
@@ -292,7 +306,11 @@ function Register(props) {
                             letterSpacing: '0.14rem',
                           }}
                         />
+                        <ErrorMessage className="ch-cont-14">
+                          {registerData.mem_name == '' && errorMessageEmpty}
+                        </ErrorMessage>
                       </div>
+
                       <div>
                         <InputTitle className="ch-cont-14">暱稱</InputTitle>
                         <input
