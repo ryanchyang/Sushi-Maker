@@ -24,6 +24,42 @@ function RenderImage(props) {
     `${config.HOST}/img/mtl/three/charsau.png`,
     `${config.HOST}/img/mtl/three/charsau-normal.png`,
   ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/pike.jpg`,
+    `${config.HOST}/img/mtl/three/pike-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/congereel.png`,
+    `${config.HOST}/img/mtl/three/congereel-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/mackerel.jpg`,
+    `${config.HOST}/img/mtl/three/mackerel-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/chickenchop.png`,
+    `${config.HOST}/img/mtl/three/mackerel-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/aji.jpg`,
+    `${config.HOST}/img/mtl/three/aji-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/buri.jpg`,
+    `${config.HOST}/img/mtl/three/buri-normal.jpg`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/crabstick.png`,
+    `${config.HOST}/img/mtl/three/crabstick-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/shrimp.png`,
+    `${config.HOST}/img/mtl/three/shrimp-normal.png`,
+  ]);
+  useTexture([
+    `${config.HOST}/img/mtl/three/shrimp.png`,
+    `${config.HOST}/img/mtl/three/shrimp-normal.png`,
+  ]);
 
   return <></>;
 }
