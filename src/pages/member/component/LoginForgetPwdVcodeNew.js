@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ReactComponent as DeleteSm } from '../../../imgs/delete-sm.svg';
 import { resetPwd } from '../../../WebApi';
 import { useHistory } from 'react-router-dom';
+import { Button, Modal } from 'react-bootstrap';
 
 //styled component
 const Slogan = styled.p`
@@ -44,8 +45,8 @@ function LoginForgetPwdVcodeNew(props) {
 
   const [newPassword, setNewPassword] = useState('');
   const [newCheckPassword, setNewCheckPassword] = useState('');
+  const [reviseShow, setReviseShow] = useState(false);
   const mem_id = localStorage.getItem('mem_id');
-  const history = useHistory();
   const handleClickClose = () => {
     setVcodePass(false);
   };
@@ -59,15 +60,40 @@ function LoginForgetPwdVcodeNew(props) {
         if (obj.success === false) {
           setErrorMessage(obj.errorMessage);
         } else {
-          alert('修改成功! 請重新登入');
+          setReviseShow(true);
           setVcodePass(false);
         }
       });
     }
   };
+  const handleClose = () => setReviseShow(false);
 
   return (
     <>
+      {
+        <Modal show={reviseShow} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="ch-title-20 m-3">會員密碼修改</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body style={{ margin: '0 3%' }}>
+            修改成功,請重新登入!
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+              onClick={() => {
+                setReviseShow(false);
+              }}
+            >
+              離開
+            </Button>
+            {/*TODO: 確認門市要送出表單並存到DB mem */}
+          </Modal.Footer>
+        </Modal>
+      }
       <InputArea
         className="col-5"
         style={

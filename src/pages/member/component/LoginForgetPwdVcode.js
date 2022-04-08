@@ -49,7 +49,6 @@ function LoginForgetPwdVcode(props) {
   const handleVcodeSubmit = e => {
     e.preventDefault();
     vcodeCheck(validCode, verify_code).then(obj => {
-      console.log(obj.success);
       if (obj.success === false) {
         setErrorMessage(obj.errorMessage);
       } else {
