@@ -66,7 +66,7 @@ function EvntsFilter(props) {
     e.preventDefault();
     // 日期篩選
     let evntsFilterResult = [...evntsData];
-    console.log('evntsFilterResult', evntsFilterResult);
+    // console.log('evntsFilterResult', evntsFilterResult);
 
     // 判斷起始日有沒有填寫，沒有的話起始日為操作日當天
     const startDate =
@@ -88,33 +88,33 @@ function EvntsFilter(props) {
         new Date(element.evnts_date) <= endDate
       );
     });
-    console.log('evntsFilterResult', evntsFilterResult);
+    // console.log('evntsFilterResult', evntsFilterResult);
 
     // 類別標籤篩選
     let tagList = [...evntsTagFilter];
     const evntsTag = tagList.filter(tag => tag.value).map(tag => tag.tag);
-    console.log('evntsTag', evntsTag);
+    // console.log('evntsTag', evntsTag);
 
     if (evntsTag.length > 0) {
       evntsFilterResult = evntsFilterResult.filter(element => {
         return evntsTag.includes(element.evnts_cate);
       });
     }
-    console.log('evntsFilterResult', evntsFilterResult);
+    // console.log('evntsFilterResult', evntsFilterResult);
 
     // 狀態標籤篩選
     let statusList = [...evntsStatusFilter];
     const evntsStatus = statusList
       .filter(status => status.value)
       .map(status => status.tag);
-    console.log('evntsStatus', evntsStatus);
+    // console.log('evntsStatus', evntsStatus);
 
     if (evntsStatus.length > 0) {
       evntsFilterResult = evntsFilterResult.filter(element => {
         return evntsStatus.includes(element.status);
       });
     }
-    console.log('evntsFilterResult', evntsFilterResult);
+    // console.log('evntsFilterResult', evntsFilterResult);
     setEvntsData(evntsFilterResult);
     setIsOpenFilter(false);
   };

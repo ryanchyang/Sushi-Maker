@@ -17,14 +17,15 @@ function EvntsSignUp(props) {
   const mem_id = getMemId();
   const mem_name = localStorage.getItem('mem_name');
   // console.log('mem_id:', mem_id);
+  // console.log('mem_name:', mem_name);
 
   const { id } = useParams();
-  console.log('evnts_id:', id);
+  // console.log('evnts_id:', id);
 
   const getEvntsInfo = async () => {
     const res = await fetch(config.EVNTSD_PATH + `${id}`);
     const obj = await res.json();
-    console.log('obj:', obj);
+    // console.log('obj:', obj);
     setEvntsInfo(obj.data);
   };
 
@@ -60,7 +61,7 @@ function EvntsSignUp(props) {
     let formIsValid = true;
     let errorMsg = {};
     // 提交前作驗証，並自定義fieldsError訊息
-    console.log('fields:', fields);
+    // console.log('fields:', fields);
 
     // 格式規則
     const name_re = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
@@ -140,7 +141,7 @@ function EvntsSignUp(props) {
       }
       dataObj.mem_id = mem_id;
       dataObj.mem_name = mem_name;
-      console.log({ dataObj });
+      // console.log({ dataObj });
 
       // fetch
       const r = fetch(config.POST_SINGUP_PATH, {
@@ -152,7 +153,7 @@ function EvntsSignUp(props) {
       })
         .then(r => r.json())
         .then(obj => {
-          console.log(obj);
+          // console.log(obj);
           if (obj.success) {
             setSignUpResult(true);
             setModalShow(true);

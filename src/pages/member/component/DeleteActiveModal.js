@@ -4,7 +4,7 @@ import { getMemId } from '../../../utils';
 import config from '../../../Config';
 
 function DeleteActiveModal(props) {
-  const { modalShow, setModalShow, selected, mem_name, onHide } = props;
+  const { modalShow, setModalShow, selected, onHide } = props;
 
   const date = format(new Date(selected.start), 'yyyy/MM/dd');
   const start = format(new Date(selected.start), 'HH:mm');
@@ -14,6 +14,8 @@ function DeleteActiveModal(props) {
   const evnts_title = selected.title;
   const evnts_location = selected.desc;
   const mem_id = getMemId();
+  const mem_name = localStorage.getItem('mem_name');
+  // console.log('mem_name:', mem_name);
 
   const cancelHandler = e => {
     e.preventDefault();
@@ -23,7 +25,7 @@ function DeleteActiveModal(props) {
     dataObj.evnts_signup_number = evnts_signup_number;
     dataObj.evnts_title = evnts_title;
     dataObj.mem_name = mem_name;
-    console.log({ dataObj });
+    // console.log({ dataObj });
 
     const r = fetch(config.CANCEL_ACTIVE_PATH, {
       method: 'POST',
@@ -35,7 +37,7 @@ function DeleteActiveModal(props) {
       .then(r => r.json())
       .then(obj => {
         if (obj.success) {
-          console.log('delete success');
+          // console.log('delete success');
           setModalShow(false);
         }
       });

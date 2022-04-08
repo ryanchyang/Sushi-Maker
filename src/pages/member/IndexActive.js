@@ -26,8 +26,6 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-const mem_name = localStorage.getItem('mem_name');
-
 // SQL
 // [
 //   {
@@ -63,7 +61,6 @@ function IndexActive(props) {
   const { navIsOpen, setNavIsOpen, isLogin } = props;
   const mem_id = getMemId();
 
-
   const getActive = async () => {
     const res = await fetch(config.ACTIVE_PATH + `${mem_id}`);
     const obj = await res.json();
@@ -96,7 +93,7 @@ function IndexActive(props) {
           <div style={{ width: '75%' }}>
             {/* <Title title={''} /> */}
             <div className="member ">
-              <MemHead isLogin={isLogin}/>
+              <MemHead isLogin={isLogin} />
               <div className="mycontainer">
                 <Calendar
                   localizer={localizer}
@@ -112,7 +109,6 @@ function IndexActive(props) {
                     show={modalShow}
                     setModalShow={setModalShow}
                     selected={selected}
-                    mem_name={mem_name}
                     onHide={() => {
                       setModalShow(false);
                     }}

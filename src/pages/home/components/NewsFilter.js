@@ -51,7 +51,7 @@ function NewsFilter(props) {
     e.preventDefault();
     // 日期篩選
     let newsFilterResult = [...newsData];
-    console.log('newsFilterResult', newsFilterResult);
+    // console.log('newsFilterResult', newsFilterResult);
 
     // 判斷起始日有沒有填寫，沒有的話起始日為操作日當天
     const startDate =
@@ -61,17 +61,17 @@ function NewsFilter(props) {
       newsDateFilter[1] === ''
         ? new Date(2022, 11, 31)
         : new Date(newsDateFilter[1]);
-    console.log('startDate:', startDate);
-    console.log('endDate:', endDate);
+    // console.log('startDate:', startDate);
+    // console.log('endDate:', endDate);
     newsFilterResult = newsFilterResult.filter(element => {
-      console.log('element.news_start_date:', element.news_start_date);
-      console.log('element.news_end_date:', element.news_end_date);
-      console.log(
-        (new Date(element.news_start_date) <= startDate &&
-          new Date(element.news_end_date) >= startDate) ||
-          (new Date(element.news_start_date) >= startDate &&
-            new Date(element.news_start_date) <= endDate)
-      );
+      // console.log('element.news_start_date:', element.news_start_date);
+      // console.log('element.news_end_date:', element.news_end_date);
+      // console.log(
+      //   (new Date(element.news_start_date) <= startDate &&
+      //     new Date(element.news_end_date) >= startDate) ||
+      //     (new Date(element.news_start_date) >= startDate &&
+      //       new Date(element.news_start_date) <= endDate)
+      // );
       return (
         (new Date(element.news_start_date) <= startDate &&
           new Date(element.news_end_date) >= startDate) ||
@@ -79,20 +79,20 @@ function NewsFilter(props) {
           new Date(element.news_start_date) <= endDate)
       );
     });
-    console.log('newsFilterResult', newsFilterResult);
+    // console.log('newsFilterResult', newsFilterResult);
 
     // 類別標籤篩選
     let tagList = [...newsTagFilter];
 
     const newsTag = tagList.filter(tag => tag.value).map(tag => tag.tag);
-    console.log('newsTag', newsTag);
+    // console.log('newsTag', newsTag);
 
     if (newsTag.length > 0) {
       newsFilterResult = newsFilterResult.filter(element => {
         return newsTag.includes(element.news_cate);
       });
     }
-    console.log('newsFilterResult:', newsFilterResult);
+    // console.log('newsFilterResult:', newsFilterResult);
     setNewsData(newsFilterResult);
 
     setIsOpenFilter(false);
