@@ -7,11 +7,13 @@ import MtlRBtn from './MtlRBtn';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import config from '../../../Config';
+import ChartForCm from '../../chartjs/ChartCs/ChartForCm';
 
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 function MtlRight(props) {
   const [openRArea, setOpenRArea] = useState(false);
+  const [arrayForChart, setArrayForChart] = useState([]);
 
   const chooseItems = ['選擇食材', '營養分析'];
   const [changeChoose, setChangeChoose] = useState('選擇食材');
@@ -29,7 +31,17 @@ function MtlRight(props) {
     setSushiGroup,
     navIsOpen,
     setNavIsOpen,
+    cart_count,
+    setCart_count,
+    loginMemid,
+    mem_photo,
   } = props;
+
+  useEffect(() => {
+    const mtls = addMtlData?.map(m => m.mtlId);
+    setArrayForChart(mtls);
+    // console.log(mtls);
+  }, [addMtlData]);
 
   const changeOrderHandler = (drag, drop) => {
     let originalArr = [...sushiGroup];
@@ -188,13 +200,36 @@ function MtlRight(props) {
         <div className="ra-menu col px-0">
           <div className="menuMtl">
             <Help className="tech" />
-            <Cart className="cart" />
-            <div className="mem">
-              <img
-                src={require('./../../../imgs/ruka.png')}
-                alt="member-photo"
-              />
-            </div>
+            <Link to={'/cart/stepone'} className="cart">
+              <div className="cart-icon-add">
+                <Cart className="layout-cart-btn" />
+                {cart_count > 0 ? (
+                  <span class="cart-num">{cart_count}</span>
+                ) : (
+                  ''
+                )}
+              </div>
+            </Link>
+
+            {loginMemid ? (
+              <Link to={'/member'} className="mem">
+                <div className="memimg">
+                  <img
+                    src={`${config.HOST}/img/member/` + '/' + mem_photo}
+                    alt="member-photo"
+                  />
+                </div>
+              </Link>
+            ) : (
+              <Link to={'/member/login'}>
+                <div>
+                  <img
+                    src={`${config.HOST}/img/home/login.svg`}
+                    alt="member-photo"
+                  />
+                </div>
+              </Link>
+            )}
             <Hamburger
               className="buger"
               onClick={() => {
@@ -246,6 +281,7 @@ function MtlRight(props) {
                           return (
                             <MtlRBtn
                               key={i + Date.now()}
+                              dragId={i + Date.now()}
                               mtl_id={takeMtlId.mtl_id}
                               mtl_name={takeMtlId.mtl_name}
                               mtl_cate={takeMtlId.mtl_cate}
@@ -269,6 +305,11 @@ function MtlRight(props) {
                   }
                 </Droppable>
               </DragDropContext>
+              <div className="nutrition-box pt-3 px-2">
+                <div className="nutrition-img-box-mobile">
+                  <ChartForCm mtls={arrayForChart} />
+                </div>
+              </div>
             </div>
           </div>
           <div className="btn">

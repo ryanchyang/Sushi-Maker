@@ -17,14 +17,14 @@ function MtlLeft(props) {
   const [openLArea, setOpenLArea] = useState(false);
 
   // 切換食材分類
-  const cateItems = ['食材', '裝飾'];
+  const cateItems = ['食材', '配料'];
   const [changeCate, setchangeCate] = useState('食材');
 
   // 選單切換
   const [changeCatePage, setChangeCatePage] = useState([]);
   const catePage = e => {
     switch (e) {
-      case '裝飾':
+      case '配料':
         let categoryTop =
           Object.keys(props.mtlData).length === 0 ? [] : [...props.mtlData];
         categoryTop = categoryTop.filter(i => i.mtl_cate === 'top');
@@ -108,7 +108,7 @@ function MtlLeft(props) {
                 <Rectangle
                   className={changeCate ? 'rectangle-displaynone' : 'rectangle'}
                 />
-                <div className={changeCate ? 'mtl-cate-blur' : ''}>裝飾</div>
+                <div className={changeCate ? 'mtl-cate-blur' : ''}>配料</div>
               </div> */}
             </div>
             <div className="mtlBtnIn-L d-flex flex-wrap pt-3 px-2">

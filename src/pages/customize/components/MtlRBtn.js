@@ -2,9 +2,6 @@ import { ReactComponent as Del } from '../../../imgs/del.svg';
 import { ReactComponent as Plus } from '../../../imgs/plus.svg';
 import { ReactComponent as Minus } from '../../../imgs/minus.svg';
 import config from '../../../Config';
-
-import styled from '@emotion/styled';
-
 import { Draggable } from 'react-beautiful-dnd';
 
 function MtlRBtn(props) {
@@ -22,6 +19,7 @@ function MtlRBtn(props) {
     setIndexTotal,
     sushiGroup,
     setSushiGroup,
+    dragId,
   } = props;
   // console.log(props);
   // console.log(removeMtl);
@@ -101,8 +99,8 @@ function MtlRBtn(props) {
   };
 
   // 判斷總層數不可大於10
-  const countTotal = (arr) => {
-    const totalPct = arr.map((pct) => pct.mtlPct);
+  const countTotal = arr => {
+    const totalPct = arr.map(pct => pct.mtlPct);
     return totalPct.reduce((x, y) => x + y);
   };
 
@@ -165,7 +163,7 @@ function MtlRBtn(props) {
   };
 
   return (
-    <Draggable draggableId={mtl_id + ''} index={i}>
+    <Draggable draggableId={dragId + '123'} index={i}>
       {(provided, snapshot) => {
         return (
           <div

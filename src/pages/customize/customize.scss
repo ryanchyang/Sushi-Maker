@@ -45,12 +45,12 @@ $areaHeight: calc( 100vh - 80px );
     }
     @include mobile{
       height: $areaHeight;
-      margin-top: 80px;
     }
   }
   .mtlView {
     position: relative;
     overflow: hidden;
+    flex-wrap: nowrap;
   }
   .logoMtl,
   .menuMtl {
@@ -78,6 +78,7 @@ $areaHeight: calc( 100vh - 80px );
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
+    min-width: 25%;
     flex: 0 0 25%;
 
     @include pad {
@@ -154,6 +155,7 @@ $areaHeight: calc( 100vh - 80px );
   .mem,
   .buger {
     margin: 1rem;
+    cursor: pointer;
   }
   .buger{
     width: 5.5rem;
@@ -161,16 +163,39 @@ $areaHeight: calc( 100vh - 80px );
     border-radius: 50%;
 
     &:hover{
-      background-color: $gray;
+      background-color: $card-hover;
       transition: 0.3s;
     }
   }
-  .mem {
-    width: 3rem;
-    height: 3rem;
-  }
-  .mem img {
+  .cart{
+    margin-top: 1.7rem;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
+
+    .cart-icon-add{
+      padding-left: 1.2rem;
+      padding-top: 1rem;
+    }
+
+    &:hover{
+      background-color: $card-hover;
+      transition: 0.3s;
+    }
+  }
+  .memimg{
+    width: 5.5rem;
+    height: 5.5rem;
+    border: 0.5rem solid transparent;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &:hover{
+      border: 0.5rem solid $card-hover;
+      transition: 0.3s;
+    }
+  }
+  .memimg img {
     width: 100%;
     height: auto;
   }
@@ -421,6 +446,7 @@ $areaHeight: calc( 100vh - 80px );
       font-size: 1.2rem;
       line-height: 1.8rem;
       letter-spacing: 0.08rem;
+      margin-top: 5rem;
     }
   }
 
@@ -479,7 +505,22 @@ $areaHeight: calc( 100vh - 80px );
   .cus-detail, .cus-mtl-detial, .manual, .btn-area{
     padding: 1.5rem;
   }
+  .cus-mtl-detial{
+    display: flex;
 
+    @include mobile{
+      flex-wrap: wrap;
+    }
+
+    .chart-img, .mtl-detail{
+      width: 50%;
+      padding: 1.5rem;
+
+      @include mobile{
+        width: 100%;
+      }
+    }
+  }
   .search-input-bar {
     height: 6.3rem;
     padding: 1rem;
@@ -636,6 +677,10 @@ $areaHeight: calc( 100vh - 80px );
 
   .cus-detail{
     display: flex;
+
+    @include mobile{
+      flex-wrap: wrap;
+    }
   }
 
   .draggable {
@@ -646,6 +691,72 @@ $areaHeight: calc( 100vh - 80px );
     background-color: $card-hover;
     border-radius: 10px;
   }
+  .cart-icon-add {
+    position: relative;
+    display: inline-block;
+  }
+  .layout-cart-btn {
+    display: block;
+    margin: 0 auto;
+    font-size: 25px;
+  }
+  .cart-num {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ff5656;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -0.5rem;
+    top: 0;
+  }
+
+.cus-img{
+  width: 50%;
+  height: 80%;
+
+  & img{
+    width: 100%;
+  }
+
+  @include mobile{
+    width: 100%;
+  }
+}
+
+.detail{
+  width: 50%;
+
+  @include mobile{
+    width: 100%;
+  }
+}
+.mtl-btn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.detailMtlBtn{
+  cursor: pointer;
+  width: 7.5rem;
+  height: 7.5rem;
+  margin: 1rem;
+
+  & img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 0.5rem solid transparent;
+
+    &:hover{
+      border: 0.5rem solid $card-hover;
+      transition: 0.3s;
+    }
+  }
+}
 
 }
 

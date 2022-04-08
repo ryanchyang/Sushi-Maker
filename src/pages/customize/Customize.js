@@ -12,10 +12,17 @@ import config from '../../Config';
 import NavPage from '../layout/components/NavPage';
 
 function Customize(props) {
+  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
+  useEffect(() => {
+    setCart_count(localStorage.getItem('cart_count'));
+  }, [props.changeCartCount]);
+
   // 判斷登入
   const isLogin = localStorage.getItem('loginStatus');
   const history = useHistory();
   const canvasRef = useRef(null);
+  const loginMemid = localStorage.getItem('mem_id');
+  const mem_photo = localStorage.getItem('mem_photo');
 
   // nav
   const { navIsOpen, setNavIsOpen } = props;
@@ -201,6 +208,10 @@ function Customize(props) {
                 postCusData={postCusData}
                 navIsOpen={navIsOpen}
                 setNavIsOpen={setNavIsOpen}
+                cart_count={cart_count}
+                setCart_count={setCart_count}
+                loginMemid={loginMemid}
+                mem_photo={mem_photo}
               />
             </div>
           </div>
