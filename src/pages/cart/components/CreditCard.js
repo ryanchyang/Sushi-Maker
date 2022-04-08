@@ -48,8 +48,8 @@ class CreditCard extends React.Component {
 
     this.state = {
       ...this.props.card,
-      ...this.props.setBtnSend,
-      ...this.props.btnSend,
+      ...this.props.setBtnSend, // 從父層接下來
+      ...this.props.btnSend, // 從父層接下來
     };
 
     // this.setState({
@@ -75,18 +75,43 @@ class CreditCard extends React.Component {
     });
   };
   // 有效日期
+  // handleInputChangeDate = e => {
+  //   const exdate = { month: '', year: '' };
+  //   exdate.month = e.target.value.slice(0, 2);
+  //   console.log(exdate);
+  //   exdate.year = e.target.value.slice(2);
+  //   console.log(exdate);
+  //   this.setState(exdate);
+  // };
+
+  // 有效日期
   handleInputChangeDate = e => {
     const exdate = { month: '', year: '' };
-    exdate.month = e.target.value.slice(0, 2);
-    console.log(exdate);
-    exdate.year = e.target.value.slice(2);
-    console.log(exdate);
+
+    if (e.target.value.replace('/', '').length > 4) return;
+    if (this.state.month?.length === 1) exdate.slashToggle = true;
+    if (this.state.year?.length === 1 && e.target.value.length === 3)
+      exdate.slashToggle = false;
+    // 切割
+    exdate.month = e.target.value.replace('/', '').slice(0, 2);
+    exdate.year = e.target.value.replace('/', '').slice(2);
+
     this.setState(exdate);
+  };
+  // 有效日期顯示
+  handleInputChangeDateValue = () => {
+    if (!this.state.month) return;
+
+    if (this.state.slashToggle === true)
+      return `${this.state.month || ''}/${this.state.year || ''}`;
+
+    return `${this.state.month || ''}`;
   };
 
   // 表單送出
   handleSubmit = e => {
     e.preventDefault();
+    // 表單資料做驗證 如果資料都有才設定 props 回去 setBtnSend
     if (this.form.checkValidity()) {
       this.props.setBtnSend(true);
     }
@@ -156,10 +181,13 @@ class CreditCard extends React.Component {
                 placeholder="MM/YY"
                 pattern="\d\d/\d\d"
                 required
-                onChange={this.handleInputChange}
-                // onChange={e => this.handleInputChangeDate(e)}
-                onFocus={this.handleInputFocus}
+                // onChange={this.handleInputChange}
+                // onFocus={this.handleInputFocus}
                 // value={`${this.state.month || ''} / ${this.state.year || ''}`}
+                // onChange={this.handleInputChange}
+                onChange={e => this.handleInputChangeDate(e)}
+                onFocus={this.handleInputFocus}
+                value={this.handleInputChangeDateValue()}
               />
             </div>
             <div className="col-md-12 col-12">
@@ -183,10 +211,10 @@ class CreditCard extends React.Component {
             {/* <input type="hidden" name="issuer" value={issuer} /> */}
             {/* <div className="form-actions"> */}
             <button
-              ref={this.props.innerRef}
+              ref={this.props.innerRef} // ref 與前面的 btn 連動
               className="btn btn-primary btn-block creditBtn"
               type="submit"
-              // hidden
+              hidden
             >
               PAY
             </button>

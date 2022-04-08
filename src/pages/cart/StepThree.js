@@ -67,8 +67,8 @@ function StepThree(props) {
     e.preventDefault();
 
     // console.log(btnRef.current.click());
-    btnRef.current.click();
-    if (!btnSend) {
+    btnRef.current.click(); // 去點到子元件的btn
+    if (!btnSend) { // 判斷當回傳false 時 會停下
       return;
     }
     console.log(JSON.stringify(card));
