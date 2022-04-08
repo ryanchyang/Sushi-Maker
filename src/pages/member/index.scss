@@ -4,17 +4,17 @@ input:-webkit-autofill:focus {
   background-color: transparent;
 }
 
-
 $mem-min-height-md: calc(100vh - 50rem);
 
 $width: calc(100vw - 25vw);
 .member-container {
-  width:$width;
+  width: $width;
 }
-@media screen and (max-width: 576px){
+@media screen and (max-width: 576px) {
   .member-container {
-    width:100%;
-}}
+    width: 100%;
+  }
+}
 
 .member {
   .memHead {
@@ -230,6 +230,9 @@ $width: calc(100vw - 25vw);
     flex-direction: column;
     align-items: center;
   }
+  .order-detail-list:hover {
+    background-color: #c4c4c452;
+  }
 
   .buttonLeft {
     position: absolute;
@@ -272,7 +275,6 @@ $width: calc(100vw - 25vw);
     width: 100%;
     height: 100%;
     // overflow: hidden;
-    
   }
   .swiper-pagination-bullet-active {
     background-color: #ff5656;
@@ -296,8 +298,6 @@ $width: calc(100vw - 25vw);
     text-align: center;
     font-size: 18px;
     background: #f7f6f3;
-   
-    
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -319,7 +319,6 @@ $width: calc(100vw - 25vw);
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
   }
   .activeImg {
     width: 120px;
@@ -332,7 +331,6 @@ $width: calc(100vw - 25vw);
     width: 577px;
   }
 
-  
   //RWD
   @media screen and (max-width: 576px) {
     .ActiveDetail {
@@ -345,9 +343,7 @@ $width: calc(100vw - 25vw);
     .swiper-container {
       width: 1px;
     }
-  
-    
-    
+
     .memHead {
       display: block;
     }
@@ -363,7 +359,6 @@ $width: calc(100vw - 25vw);
     .memPhoto {
       width: 120px;
       height: 120px;
-
     }
     .divCarou {
       margin-top: 5%;

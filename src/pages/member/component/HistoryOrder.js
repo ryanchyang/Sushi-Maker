@@ -105,7 +105,6 @@ const HistoryOrder = () => {
               >
                 <div
                   style={{
-                    backgroundColor: '#ffffff',
                     padding: '2%',
                   }}
                 >
@@ -116,11 +115,12 @@ const HistoryOrder = () => {
                         return (
                           <>
                             <div
+                              className='order-detail-list'
                               style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
-                                marginBottom: '3%',
                                 textAlign: 'left',
+                                padding: '1%'
                               }}
                             >
                               <div className="col-4">
