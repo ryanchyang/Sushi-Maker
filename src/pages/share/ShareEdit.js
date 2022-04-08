@@ -55,6 +55,7 @@ function ShareEdit(props) {
     shareDesc = '',
     itemImgs,
     shareTags = [],
+    orderCate = '',
   } = location.state || {};
 
   const handleClose = () => setShow(false);
@@ -144,8 +145,22 @@ function ShareEdit(props) {
     }
   };
 
+  const creditAmountHandler = () => {
+    const cateCredits = [
+      { cate: 'cs', credit: 300 },
+      { cate: 'cm', credit: 500 },
+      { cate: 'set', credit: 800 },
+    ];
+
+    const amount = cateCredits.find(cateObj => cateObj.cate === orderCate);
+
+    return amount.credit;
+  };
+
   const addCreditHandler = async () => {
-    const res = await fetch(config.ADD_CREDIT + `${mem_id}`);
+    const res = await fetch(
+      config.ADD_CREDIT + `${mem_id}/${creditAmountHandler()}`
+    );
     const result = res.json();
     if (result.success) {
       // console.log('積分已加入資料庫');
@@ -161,7 +176,7 @@ function ShareEdit(props) {
         <div className="en-cont-14 pb-2">
           {action === 'UPDATE'
             ? '您的貼文已編輯成功!'
-            : '您的貼文上傳成功! 恭喜您獲得會員積分300點! '}
+            : `您的貼文上傳成功! 恭喜您獲得會員積分${creditAmountHandler()}點!`}
         </div>
       </Modal.Body>
       <Modal.Footer>

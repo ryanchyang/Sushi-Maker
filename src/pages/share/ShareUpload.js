@@ -105,8 +105,8 @@ function ShareUpload(props) {
                         src={
                           config.HOST +
                           `${
-                            uploadItemsData[uploadItem]?.c_prod_img_path ??
-                            uploadItemsData[0]?.c_prod_img_path // default image
+                            uploadItemsData[uploadItem]?.img_path ??
+                            uploadItemsData[0]?.img_path // default image
                           }`
                         }
                         alt=""
@@ -150,7 +150,7 @@ function ShareUpload(props) {
                           {
                             orders_id: id,
                             orders_category: cate,
-                            c_prod_ch_name: name,
+                            prod_name: name,
                             orders_date: date,
                           },
                           i
@@ -174,7 +174,11 @@ function ShareUpload(props) {
                                   onClick={() => {
                                     history.push({
                                       pathname: '/share/edit',
-                                      state: { orderId: id, orderName: name },
+                                      state: {
+                                        orderId: id,
+                                        orderName: name,
+                                        orderCate: cate,
+                                      },
                                     });
                                   }}
                                 >
