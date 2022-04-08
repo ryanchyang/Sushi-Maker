@@ -3,9 +3,11 @@ $share-min-height: calc(64.5vh);
 
 $upload-min-height: calc(47vh);
 
-$post-min-height: calc(46vh);
+$post-min-height: calc(47vh);
 
 $saves-min-height: calc(47vh);
+
+$edit-min-height: calc(78.7vh);
 
 .mysharebutton {
   border-radius: 30rem;
@@ -63,9 +65,15 @@ $saves-min-height: calc(47vh);
   margin: 0;
   min-height: $post-min-height;
 }
+
 .saves-min-height {
   margin: 0;
   min-height: $saves-min-height;
+}
+
+.edit-min-height {
+  margin: 0;
+  min-height: $edit-min-height;
 }
 
 .ml-100 {

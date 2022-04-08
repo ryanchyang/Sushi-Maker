@@ -276,7 +276,9 @@ function ShareEdit(props) {
               </div>
             </div>
 
-            <div className={`${styles['waterfall-container']}`}>
+            <div
+              className={`${styles['waterfall-container']} ${styles['edit-min-height']}`}
+            >
               <div className="container">
                 <div className="row">
                   <div className="col d-flex flex-column">

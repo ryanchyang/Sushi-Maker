@@ -196,7 +196,6 @@ function SharePost(props) {
                 </div>
               </div>
             </div>
-            <br />
             <Footer />
           </div>
           <AsideRight setNavIsOpen={setNavIsOpen} />
