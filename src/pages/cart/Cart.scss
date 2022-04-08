@@ -211,12 +211,6 @@ align-self: center;
 width: 100%;
 }
 
-// 頁尾固定
-// Footer{
-//    /*  */
-//     position: sticky;
-//     bottom: 0;
-// }
 
 
 
@@ -227,15 +221,7 @@ width: 100%;
   letter-spacing: 0.54rem;
 }
 
-// 所有 input 高度
-// input.form-control{
-//   height: 40px;
-//   padding: 10px 20px;
-// }
 
-// input::placeholder {
-//   padding: 0 0px;
-// }
 
 // 下拉選單
 select{
@@ -283,9 +269,10 @@ select{
 
 // //購物車套餐光箱表格
 
-table {
-  font-size: 20rem;
-}
+// table {
+//   font-size: 20rem;
+// }
+
 //地圖
 .store-map{
             margin: 20px auto;
@@ -305,8 +292,19 @@ table {
 //             background-color: #c4c4c4;
 //         }
 
+// 套餐光箱選項
+.set-bento-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
-
+.set-bento-item-bg{
+// border: 1px solid;
+ background-color: #c4c4c4 !important;
+ border-bottom: #c4c4c4;
+}
 
 //交易明細 折疊開關的標題
 .cart-detail-title{

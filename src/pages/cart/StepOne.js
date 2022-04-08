@@ -15,6 +15,9 @@ function StepOne(props) {
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構
 
+  const showSetImg = { display: 'block' };
+  const hiddenSetImg = { display: 'none' };
+
   // 回上一頁 按鈕
   let history = useHistory();
   const [list, setList] = useState({}); //總資料
@@ -26,6 +29,9 @@ function StepOne(props) {
   const [cart_id, setCart_id] = useState(0); // 取得cart id
   const [discountTotal, setDiscountTotal] = useState([]); // 會員可以折抵積分提示欄位
   const [changeCartCount, setChangeCartCount] = useState(0); // 要知道什麼時候更改購物車的數量
+  const [selectImg, setSelectImg] = useState(0); //被選到的便當 右邊清單的便當照片
+  const [selectId, setSelectId] = useState(0); //被選到的便當的id
+  // console.log('36', selectImg);
 
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
@@ -85,6 +91,11 @@ function StepOne(props) {
           setProdCount(count);
           setPrintTime(time);
           setAmount(total);
+          setSelectId(
+            `/img/setorder/bento_img/` +
+              obj.data.set[0].set_info_array[0]?.bento_id +
+              `.png`
+          );
         } else {
           //購物車無商品則導頁
           history.push('/cart/cartlist');
@@ -547,6 +558,15 @@ function StepOne(props) {
       </Modal.Footer>
     </Modal>
   );
+  // const [showImg, setShowImg] = useState(null);
+
+  // 套餐光箱 圖片顯示
+  const handleClickSetBentoItem = (id, img) => {
+    console.log('558', id, img);
+    setSelectId(`/img/setorder/bento_img/${id}.png`);
+    setSelectImg(id);
+  };
+
   return (
     <>
       {discountShowModel}
@@ -786,6 +806,7 @@ function StepOne(props) {
                             <Modal
                               show={show && setSelect === i}
                               onHide={handleClose}
+                              size="lg"
                             >
                               {/* { show={ show && setSelect === i }} */}
                               <Modal.Header closeButton>
@@ -797,29 +818,86 @@ function StepOne(props) {
                                 <div className="en-cont-14 pb-2">
                                   加入購物車後，套餐內容不可修改，如需調整，需移除購物車品項，重新下單，謝謝。
                                 </div>
-                                <table className="table table-hover">
-                                  <tbody show={show.set}>
-                                    {v.set_info_array.map((v, i) => {
-                                      return (
-                                        <tr key={i + 1}>
-                                          <th
-                                            scope="row"
-                                            className="en-cont-36"
-                                          >
-                                            {i + 1}
-                                          </th>
-                                          <td className="en-cont-14">
-                                            <div>
-                                              {v.bento_ch_name}
-                                              <br />
-                                              {v.bento_en_name}
+                                <div className="row">
+                                  <div className="col-md-12">
+                                    <div className="set-modal-array">
+                                      <div
+                                        className="set-modal-array-content"
+                                        show={show.set}
+                                      >
+                                        {v.set_info_array.map((v, i) => {
+                                          return (
+                                            <div
+                                              className="set-bento-item"
+                                              key={i + 1}
+                                              onClick={() =>
+                                                handleClickSetBentoItem(
+                                                  v.bento_id,
+                                                  v.set_bento_img
+                                                )
+                                              }
+                                              style={
+                                                v.bento_id === selectImg
+                                                  ? {
+                                                      display: 'flex',
+                                                      borderBottom:
+                                                        '1px solid #c4c4c4',
+                                                      // margin: '5%',
+                                                      padding: '3%',
+                                                      backgroundColor:
+                                                        '#c4c4c452',
+                                                    }
+                                                  : {
+                                                      display: 'flex',
+                                                      borderBottom:
+                                                        '1px solid #c4c4c4',
+                                                      padding: '3%',
+                                                    }
+                                              }
+                                            >
+                                              <div
+                                                className="en-cont-36 set-bento-item-num"
+                                                style={{
+                                                  width: '10%',
+                                                  height: '10%',
+                                                }}
+                                              >
+                                                {i + 1}
+                                              </div>
+                                              <div className="en-cont-14 set-bento-item-name">
+                                                {v.bento_ch_name}
+                                                <br />
+                                                {v.bento_en_name}
+                                              </div>
                                             </div>
-                                          </td>
-                                        </tr>
-                                      );
-                                    })}
-                                  </tbody>
-                                </table>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    className="col-md-12"
+                                    style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                    }}
+                                  >
+                                    <div
+                                      className="set-box-img"
+                                      // style={
+                                      //   selectId === v.bento_id
+                                      //     ? showSetImg
+                                      //     : hiddenSetImg
+                                      // }
+                                    >
+                                      <img
+                                        className="set-bento-img"
+                                        src={`http://localhost:3500${selectId}`}
+                                        alt="product-image"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
                               </Modal.Body>
                               <Modal.Footer>
                                 <Button
