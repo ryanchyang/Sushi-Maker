@@ -63,7 +63,7 @@ function MemIndex(props) {
               <MemHead isLogin={isLogin} />
               {/* 以上不動 */}
 
-              <div className="mycontainer">
+              <div className="mycontainer mem-min-hi">
                 <div className="memInfoArea col-md-24 col-sm-24 ">
                   <div className="memInfo col-sm-24 col-md-12 mx-md-4 px-5">
                     <table class="table table-borderless col-md-16 mt-4 col-sm-24 tableInfo">

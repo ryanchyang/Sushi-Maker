@@ -35,7 +35,7 @@ function Title(props) {
           top: 0,
           right: 0,
           left: 0,
-          bottom: '88%',
+          bottom: '90%',
         }}
       >
         <div>
