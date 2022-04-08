@@ -36,7 +36,7 @@ function IndexHistoryOrder(props) {
               <MemHead isLogin={isLogin}/>
               {/* 以上不動 */}
 
-              <div className="mycontainer orderDetailTB">
+              <div className="mycontainer orderDetailTB mem-min-hi">
                 <HistoryOrder />
               </div>
             </div>

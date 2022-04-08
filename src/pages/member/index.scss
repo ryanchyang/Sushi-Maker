@@ -5,6 +5,8 @@ input:-webkit-autofill:focus {
 }
 
 
+$mem-min-height-md: calc(100vh - 50rem);
+
 $width: calc(100vw - 25vw);
 .member-container {
   width:$width;
@@ -19,6 +21,10 @@ $width: calc(100vw - 25vw);
     display: flex;
     margin-top: 4%;
     justify-content: space-between;
+  }
+  .mem-min-hi {
+    margin: 0;
+    min-height: $mem-min-height-md;
   }
   .memPhotoArea {
     display: flex;

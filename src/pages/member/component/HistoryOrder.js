@@ -33,16 +33,18 @@ const HistoryOrder = () => {
 
   useEffect(() => {
     orderInfo(mem_id).then(obj => {
-      console.log(obj);
-      const cartData = obj.newData2.filter(i => {
-        return i.cart_status !== '未結帳'
-      }).map(v => {
-        return { ...v, cId: v.cart_id, open: false };
-      });
+      const cartData = obj.newData2
+        .filter(i => {
+          return i.cart_status !== '未結帳';
+        })
+        .map(v => {
+          return { ...v, cId: v.cart_id, open: false };
+        });
       setHistoryOrderInfo(obj);
       setCartId(cartData);
     });
   }, []);
+  console.log(historyOrderInfo);
 
   return (
     <div className="row orderDetailRow">
@@ -107,8 +109,8 @@ const HistoryOrder = () => {
                     padding: '2%',
                   }}
                 >
-                  {historyOrderInfo.newData &&
-                    historyOrderInfo.newData
+                  {historyOrderInfo.newAllData &&
+                    historyOrderInfo.newAllData
                       .filter(d => d.cart_id === data.cart_id)
                       .map(info => {
                         return (
@@ -122,22 +124,57 @@ const HistoryOrder = () => {
                               }}
                             >
                               <div className="col-4">
-                                <img
-                                  style={{ width: '100px' }}
-                                  src={
-                                    'http://localhost:3500' +
-                                    info.c_prod_img_path
-                                  }
-                                />
+                                {info.c_prod_img_path ? (
+                                  <img
+                                    style={{ width: '100px' }}
+                                    src={
+                                      'http://localhost:3500' +
+                                      info.c_prod_img_path
+                                    }
+                                  />
+                                ) : (
+                                  ''
+                                )}
+                                {info.cm_prod_img_path ? (
+                                  <img
+                                    style={{ width: '100px' }}
+                                    src={
+                                      'http://localhost:3500' +
+                                      info.cm_prod_img_path
+                                    }
+                                  />
+                                ) : (
+                                  ''
+                                )}
+                                {info.set_name ? (
+                                  <img
+                                    style={{ width: '100px' }}
+                                    src={
+                                      'http://localhost:3500/img/setorder/bento_img/default.png'
+                                    }
+                                  />
+                                ) : (
+                                  ''
+                                )}
                               </div>
                               <div className="col-4 ch-cont-14">
-                                {info.c_prod_ch_name}
+                                {info.c_prod_ch_name ? info.c_prod_ch_name : ''}
+                                {info.set_name ? info.set_name : ''}
+                                {info.cm_prod_name ? info.cm_prod_name : ''}
                               </div>
                               <div className="col-4 ch-cont-14">
                                 共{info.orders_amount}件
                               </div>
                               <div className="col-4 ch-cont-14">
-                                NT {info.c_prod_value}元/件
+                                {info.c_prod_value
+                                  ? 'NT' + info.c_prod_value + '元/件'
+                                  : ''}
+                                {info.set_price
+                                  ? 'NT' + info.set_price + '元/件'
+                                  : ''}
+                                {info.cm_prod_value
+                                  ? 'NT' + info.cm_prod_value + '元/件'
+                                  : ''}
                               </div>
                               <div className="col-4 ch-cont-14">
                                 {info.orders_print_time / 60}分鐘/件
