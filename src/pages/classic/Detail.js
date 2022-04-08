@@ -72,7 +72,7 @@ function Detail(props) {
   //加入購物車
   const addToCart = () => {
     const isLogin = localStorage.getItem('mem_id') !== null; //判斷是否登入
-    if (isLogin) {      
+    if (isLogin) {
       fetch(config.ADD_CART, {
         method: 'POST',
         headers: {
@@ -234,7 +234,7 @@ function Detail(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Classic'} setNavIsOpen={setNavIsOpen}/>
+            <Title title={'Classic'} setNavIsOpen={setNavIsOpen} />
 
             {/* 麵包屑 */}
             <p className="en-title-14-10 bread">
@@ -246,10 +246,13 @@ function Detail(props) {
               </Link>
               <Link
                 to={'/classic'}
-                style={{ textDecoration: 'none', color: '#b03342' }}
+                style={{ textDecoration: 'none', color: '#575757' }}
               >
-                CLASSIC
+                &nbsp;CLASSIC /
               </Link>
+              <span style={{ textDecoration: 'none', color: '#b03342' }}>
+                &nbsp;DETAIL
+              </span>
             </p>
 
             <div className="classic-detail">
@@ -705,7 +708,10 @@ function Detail(props) {
 
             <Footer />
           </div>
-          <AsideRight setNavIsOpen={setNavIsOpen} changeCartCount={changeCartCount}/>
+          <AsideRight
+            setNavIsOpen={setNavIsOpen}
+            changeCartCount={changeCartCount}
+          />
         </div>
       </div>
     </>

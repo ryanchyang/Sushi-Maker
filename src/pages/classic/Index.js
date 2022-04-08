@@ -542,7 +542,13 @@ function Index(props) {
                 to={'/'}
                 style={{ textDecoration: 'none', color: '#575757' }}
               >
-                HOME
+                HOME /
+              </Link>
+              <Link
+                to={'/classic'}
+                style={{ textDecoration: 'none', color: '#b03342' }}
+              >
+                 &nbsp;CLASSIC
               </Link>
             </p>
             <div className="classic min-hi">
