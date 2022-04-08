@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import config from '../../Config';
 import { Button, Modal } from 'react-bootstrap';
 import NavPage from '../layout/components/NavPage';
+import { Collapse } from 'react-bootstrap';
 
 function SetOrderFinal(props) {
   //nav
@@ -27,7 +28,7 @@ function SetOrderFinal(props) {
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">已成功將商品加入購物車!</div>
+        <div className="en-cont-14 pb-2">已成功將套餐加入購物車!</div>
       </Modal.Body>
       <Modal.Footer>
         <Button
@@ -40,7 +41,7 @@ function SetOrderFinal(props) {
       </Modal.Footer>
     </Modal>
   );
-
+  const [dateOpen, setDateOpen] = useState(false);
   //上一個的答案
   const data = useLocation();
   const lastanswer = data.state;
@@ -96,7 +97,6 @@ function SetOrderFinal(props) {
     const finalprice = price * +e.target.value;
     setCombosum(finalprice);
   }
-  
 
   function sendList() {
     handleCartShow();
@@ -173,86 +173,117 @@ function SetOrderFinal(props) {
                   </Link>
                 </p>
                 <div className="set-list-title-final ch-title-22">推薦結果</div>
+                <div className="set-loading ch-title-22">
+                  正在為您統整菜單．．．
+                </div>
                 <div class="space-animation"></div>
                 <div class="space-animation-white"></div>
-                <div className="final_bento_exhibit_all">
-                  <div className="final_bento ">
-                    <div className="final_bento_day en-cont-18">Day1</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[0].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day2</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[1].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day3</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[2].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day4</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[3].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day5</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[4].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day6</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[5].bento_id}.png`}
-                        alt="product-image"
-                      />
-                    </div>
-                  </div>
-                  <div className="final_line"></div>
-                  <div className="final_bento">
-                    <div className="final_bento_day en-cont-18">Day7</div>
-                    <div className="final_bento_day-img">
-                      <img
-                        className="final-bento-img"
-                        src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[6].bento_id}.png`}
-                        alt="product-image"
-                      />
+                <div
+                  className="set-card-detail-title"
+                  onClick={() => setDateOpen(!dateOpen)}
+                >
+                  <div className="set-detail-title">
+                    <div className="set-select-all">
+                      <div className="ch-title-20">便當照片預覽</div>
+
+                      <div
+                        className="down-arrow"
+                        aria-controls="example-collapse-text"
+                        aria-expanded={dateOpen}
+                      ></div>
+                      {/* {console.log('open:', dateOpen)} */}
+                      {dateOpen ? (
+                        <img src="/img/cart/uparrow.svg" alt="up" />
+                      ) : (
+                        <img src="/img/cart/downarrow.svg" alt="down" />
+                      )}
                     </div>
                   </div>
                 </div>
+                <Collapse in={dateOpen}>
+                  <div>
+                    {/* 內頁詳細資訊 */}
+                    <div className="final_bento_exhibit_all">
+                      <div className="final_bento ">
+                        <div className="final_bento_day en-cont-18">Day1</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[0].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day2</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[1].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day3</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[2].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day4</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[3].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day5</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[4].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day6</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[5].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                      <div className="final_line"></div>
+                      <div className="final_bento">
+                        <div className="final_bento_day en-cont-18">Day7</div>
+                        <div className="final_bento_day-img">
+                          <img
+                            className="final-bento-img"
+                            src={`http://localhost:3500/img/setorder/bento_img/${finalchoose[6].bento_id}.png`}
+                            alt="product-image"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="final_under_line"></div>
+                  </div>
+                </Collapse>
 
                 <div className="setorderfinal animation-opcaity">
                   <div className="set-list-left col-lg-12 col-md-24">

@@ -1,5 +1,61 @@
 @import "./../../styles/global.scss";
 .setmenulist {
+ .set-card-detail-title{
+  width: 85%;
+  margin:0 auto 1% auto;
+ }
+  .set-select-all{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+ .set-detail-title{
+   display: flex;
+   justify-content:center;
+   user-select:none;
+   border-top: 1px solid #212121;
+  border-bottom: 1px solid #212121;
+ }
+ .set-card-detail-title:hover{
+  background-color: #fffefc;
+ }
+  .final_bento_exhibit_all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .final_bento{
+    width:12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+      }
+      .final_bento:hover{
+        background-color: #fffefc;
+      }
+      .final_under_line{
+        width: 85%;
+        height:1px;
+        margin: auto;
+        background-color: #212121;
+      }
+  .final_line{
+    background: #212121;
+    width:1px;
+    height:120px;
+    opacity:60%;
+  }
+  .final_bento_day{
+    
+  }
+  .final-bento-img{
+    width: 100%;
+    opacity:90%;
+  }
+  .final_bento_day-img{
+    width:100%;
+    padding:7%;
+  }
   .set-list-title{
     z-index: 5;
     position: relative;
@@ -67,17 +123,19 @@
   }
 
   .set-list-title-final {
-    padding-bottom: 6%;
+    padding-left: 7%;
+    padding-bottom: 1%;
   }
   .set-menu-title {
+    margin-top:2%;
     align-content: space-around;
     display: flex;
   }
   .set-day-title {
-    margin-left: 2%;
+    margin-left: 1%;
   }
   .set-bento-title {
-    margin-left: 10%;
+    margin-left: 6%;
   }
 
   .set-input-all {
@@ -206,7 +264,7 @@
     position: absolute;
     top: 20%;
     z-index: 4;
-    animation:space-disappear 2.5s ;
+    animation:space-disappear 2s ;
     transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
 }
 .space-animation-white{
@@ -216,17 +274,18 @@
   position: absolute;
   top: 20%;
   z-index: 3;
-  animation:space-disappear-white 2.5s ;
+  animation:space-disappear-white 2s ;
   transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
 }
 .space-animation-gray{
-  background-color: #d6d3cb;
+  background-color: #f5f2ea;
   width: 70%;
   height: 0px;
+  opacity: 0;
   position: absolute;
   top: 20%;
   z-index: 2;
-  animation:space-disappear-gray 2.5s ;
+  animation:space-disappear-gray 2s ;
   transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
 }
 
@@ -258,8 +317,9 @@
   }
   @keyframes space-disappear-gray {
     0%   { height: 750px;}
-    85% { height: 750px;}
-    99% { height: 700px;opacity: 100%;}
+    85% { height: 750px;opacity:0%;}
+    94% { height: 600px;opacity: 100%;}
+    96% { height: 580px;opacity: 100%;}
     100% { height: 0px;opacity: 0%;}
   }
   .set-order-list-buttom {
@@ -318,6 +378,7 @@
   }
 
   @media screen and (min-width:577px)  and (max-width: 991px) {
+    
     .space-animation{
       top:10%;
     }
@@ -326,6 +387,12 @@
     }
   }
   @media screen and (max-width: 991px) {
+    .set-list-title-final{
+      padding-left:0%;
+    }
+    .set-card-detail-title{
+      display: none;
+    }
     .space-animation{
       width: 95%;
     }

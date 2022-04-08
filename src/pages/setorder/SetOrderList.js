@@ -92,20 +92,21 @@ function SetOrderList(props) {
   function setdateChange(e) {
     setDate(e.target.value);
   }
-  //月曆設定
-  if (date < today) {
-    document.getElementById('date-error').style.display = 'block';
-    document.getElementById('date-true').style.display = 'none';
-  } else if (date > today) {
-    document.getElementById('date-error').style.display = 'none';
-    document.getElementById('date-true').style.display = 'block';
-  }
 
   //吃幾週的useState
   const [week, setWeek] = useState('1');
   function weekChange(e) {
     setWeek(e.target.value);
   }
+  //開始日期
+  const [startDate, setStartDate] = useState(getTodayDate);
+
+  //設定結束日期
+  const finalDate = new Date(startDate);
+  finalDate.setDate(finalDate.getDate() + +week * 7);
+
+  //結束日期
+  const [endDate, setEndDate] = useState(finalDate);
 
   return (
     <>
@@ -144,7 +145,7 @@ function SetOrderList(props) {
                 </div>
                 <div class="space-animation"></div>
                 <div class="space-animation-white"></div>
-                <div class="space-animation-white"></div>
+                
                 <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">
