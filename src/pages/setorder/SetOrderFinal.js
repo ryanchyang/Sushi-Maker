@@ -131,7 +131,6 @@ function SetOrderFinal(props) {
             })
               .then(res => res.json())
               .then(obj => {
-                // console.log('second');
                 localStorage.setItem('cart_count', obj.cart_count);
               });
           }, 500);
@@ -141,8 +140,7 @@ function SetOrderFinal(props) {
     };
     sendData();
   }
-  console.log('number_id', number_id);
-  console.log('finalchoose', finalchoose[0].bento_id);
+
   return (
     <>
       {cartModel}
@@ -191,7 +189,7 @@ function SetOrderFinal(props) {
                         aria-controls="example-collapse-text"
                         aria-expanded={dateOpen}
                       ></div>
-                      {/* {console.log('open:', dateOpen)} */}
+                    
                       {dateOpen ? (
                         <img src="/img/cart/uparrow.svg" alt="up" />
                       ) : (

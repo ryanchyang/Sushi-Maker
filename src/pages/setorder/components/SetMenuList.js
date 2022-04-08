@@ -1,6 +1,6 @@
 //選擇菜單的頁面的components(有下拉式選單選擇便當)
 import './../SetOrderAll.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as SetContent } from './../../../imgs/setorder/icon-info.svg';
 import { Link, useLocation } from 'react-router-dom';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
@@ -12,6 +12,7 @@ function SetMenuList(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [lightBoxCa, setLightBoxCa] = useState();
   const modal = (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -33,12 +34,19 @@ function SetMenuList(props) {
               <div className="set-nutrient-btn"></div>
             </div>
             <div className="bento-sushi-menu-all">
-              <div className="set-nutrient-bento-name en-cont-28">
-                Day{props.index+1}-{props.answer[props.index]?.bento_ch_name}
+              <div className="light-title">
+                {' '}
+                <div className="light_bento_days en-cont-28">
+                  Day{props.index + 1}
+                </div>
+                <div className="light-set-nutrient-bento-name en-cont-28">
+                  {props.answer[props.index]?.bento_ch_name}
+                </div>
+                <div className="light-set-nutrient-bento-name en-cont-18">
+                  {props.answer[props.index]?.bento_en_name}
+                </div>
               </div>
-              <div className="set-nutrient-bento-name en-cont-28">
-                {props.answer[props.index]?.bento_en_name}
-              </div>
+
               <div className="bento-sushi-menu">
                 {/* nswer[props.index].sushiList */}
                 {props.answer[props.index]?.sushiList.map((selects, i) => {
@@ -84,7 +92,18 @@ function SetMenuList(props) {
     props.setSelectTitle(selectedBento.bento_ch_name);
     props.setSelectImg(selectedBento.bento_img);
     props.setSelectId(selectedBento.bento_id);
-    console.log(selectedBento.bento_id);
+
+    const AllCA =
+      selectedBento.sushiList[0].mtl_calories +
+      selectedBento.sushiList[1].mtl_calories +
+      selectedBento.sushiList[2].mtl_calories +
+      selectedBento.sushiList[3].mtl_calories +
+      selectedBento.sushiList[4].mtl_calories +
+      selectedBento.sushiList[5].mtl_calories +
+      selectedBento.sushiList[6].mtl_calories +
+      selectedBento.sushiList[7].mtl_calories;
+    props.setSelectmtlCalories(AllCA * 3);
+    setLightBoxCa(AllCA * 3);
   }
 
   return (

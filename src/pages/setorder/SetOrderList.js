@@ -42,6 +42,8 @@ function SetOrderList(props) {
   const [selectId, setSelectId] = useState(0);
   //推薦的套餐id
   const [numberid, setNumberid] = useState(0);
+  //被選到的便當 右邊清單的卡路里
+  const [selectmtlCalories, setSelectmtlCalories] = useState();
 
   //資料傳到後端後做完判斷,傳出結果
   //判斷登入
@@ -67,7 +69,7 @@ function SetOrderList(props) {
           //return 將obj資料丟到useEffect外面
           return obj;
         });
-      // console.log('res', res);
+
       //init 結果弄成陣列
 
       const init = Array(7).fill(res[0]);
@@ -79,12 +81,19 @@ function SetOrderList(props) {
       setSelectTitleEng(res[0].bento_en_name);
       setSelectImg(res[0].bento_img);
       setSelectId(res[0].bento_id);
-      //list 比對清單
-      // setList(res.rows);
+      const firstbentoCa =
+        res[0].sushiList[0].mtl_calories +
+        res[0].sushiList[1].mtl_calories +
+        res[0].sushiList[2].mtl_calories +
+        res[0].sushiList[3].mtl_calories +
+        res[0].sushiList[4].mtl_calories +
+        res[0].sushiList[5].mtl_calories +
+        res[0].sushiList[6].mtl_calories +
+        res[0].sushiList[7].mtl_calories;
+      setSelectmtlCalories(firstbentoCa * 3);
     };
     getData();
   }, []);
-
   //月曆的useState
   const [date, setDate] = useState(getTodayDate);
   const today = getTodayDate();
@@ -145,7 +154,7 @@ function SetOrderList(props) {
                 </div>
                 <div class="space-animation"></div>
                 <div class="space-animation-white"></div>
-                
+
                 <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">
@@ -220,7 +229,8 @@ function SetOrderList(props) {
                       index={0}
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
-
+                      selectmtlCalories={selectmtlCalories}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -235,6 +245,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={1}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -249,6 +260,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={2}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -263,6 +275,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={3}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -277,6 +290,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={4}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -291,6 +305,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={5}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                     <SetMenuList
@@ -305,6 +320,7 @@ function SetOrderList(props) {
                       setSelectImg={setSelectImg}
                       setSelectId={setSelectId}
                       index={6}
+                      setSelectmtlCalories={setSelectmtlCalories}
                       // list={list}
                     />
                   </div>
@@ -317,14 +333,18 @@ function SetOrderList(props) {
                           alt="product-image"
                         />
                       </div>
-                      <div className="bento-view-buttom align-items-center">
+                      <div className="bento-view-buttom">
                         <div className="set-nutrient-btn">
                           <div className="set-nutrient-bento-name en-cont-28">
                             {selectTitle}
                           </div>
+
                           {/* <div className="btn btn-sm btn-outline-primary primeal-btn-outline-sm set-nutrient float-end">
                           營養成份
                         </div> */}
+                        </div>
+                        <div className="ch-cont-18 set-ca">
+                          卡路里:{selectmtlCalories} cal
                         </div>
                       </div>
                       {/* 右邊的菜單 */}
