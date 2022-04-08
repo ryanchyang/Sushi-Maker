@@ -48,6 +48,8 @@ class CreditCard extends React.Component {
 
     this.state = {
       ...this.props.card,
+      ...this.props.setBtnSend,
+      ...this.props.btnSend,
     };
 
     // this.setState({
@@ -72,10 +74,22 @@ class CreditCard extends React.Component {
       [name]: value,
     });
   };
+  // 有效日期
+  handleInputChangeDate = e => {
+    const exdate = { month: '', year: '' };
+    exdate.month = e.target.value.slice(0, 2);
+    console.log(exdate);
+    exdate.year = e.target.value.slice(2);
+    console.log(exdate);
+    this.setState(exdate);
+  };
 
   // 表單送出
   handleSubmit = e => {
     e.preventDefault();
+    if (this.form.checkValidity()) {
+      this.props.setBtnSend(true);
+    }
   };
 
   render() {
@@ -143,7 +157,9 @@ class CreditCard extends React.Component {
                 pattern="\d\d/\d\d"
                 required
                 onChange={this.handleInputChange}
+                // onChange={e => this.handleInputChangeDate(e)}
                 onFocus={this.handleInputFocus}
+                // value={`${this.state.month || ''} / ${this.state.year || ''}`}
               />
             </div>
             <div className="col-md-12 col-12">
@@ -167,9 +183,10 @@ class CreditCard extends React.Component {
             {/* <input type="hidden" name="issuer" value={issuer} /> */}
             {/* <div className="form-actions"> */}
             <button
+              ref={this.props.innerRef}
               className="btn btn-primary btn-block creditBtn"
               type="submit"
-              hidden
+              // hidden
             >
               PAY
             </button>
@@ -188,4 +205,7 @@ class CreditCard extends React.Component {
   }
 }
 
-export default CreditCard;
+export default React.forwardRef((props, ref) => (
+  <CreditCard innerRef={ref} {...props} />
+));
+// export default CreditCard;

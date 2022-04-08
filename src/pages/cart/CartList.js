@@ -23,7 +23,7 @@ function CartList(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Shopping Cart'} />
+            <Title title={'Shopping Cart'} setNavIsOpen={setNavIsOpen} />
             <div className="mycontainer cart min-hi ch-cont-14">
               <div className="breadcart">
                 <p className="en-title-14-10">

@@ -6,7 +6,7 @@ import CartSum from './CartSum';
 import CartDetail from './components/CartDetial';
 import CreditCard from './components/CreditCard';
 import NavPage from '../layout/components/NavPage';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // TODO: 資料庫拿資料
 import config from '../../Config';
@@ -15,10 +15,13 @@ import { getMemId, getCart } from '../../utils';
 function StepThree(props) {
   // 回上一頁 按鈕
   let history = useHistory();
+  //card用
+  const btnRef = useRef();
   // NAV BAR 使用 蓋版漢堡
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
   const { navIsOpen, setNavIsOpen } = props; // 解構
+  const [btnSend, setBtnSend] = useState(false); // 去card
 
   const [card, setCard] = useState({
     cvc: '',
@@ -62,6 +65,12 @@ function StepThree(props) {
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
+
+    // console.log(btnRef.current.click());
+    btnRef.current.click();
+    if (!btnSend) {
+      return;
+    }
     console.log(JSON.stringify(card));
     // fetch
     const r = fetch(config.POST_PAY_INFO + `${mem_id}/${cart_id}`, {
@@ -92,7 +101,6 @@ function StepThree(props) {
       )}
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         <div style={{ display: 'flex' }}>
-          
           <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
             <div className="cart-asL-nav-item">
               <div
@@ -137,7 +145,7 @@ function StepThree(props) {
 
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Payment Info'} setNavIsOpen={setNavIsOpen}/>
+            <Title title={'Payment Info'} setNavIsOpen={setNavIsOpen} />
             <div className="mycontainer cart  ch-cont-14 min-hi">
               <div className="breadcart">
                 {' '}
@@ -163,7 +171,13 @@ function StepThree(props) {
                   {/* TODO: 信用卡 refs */}
                   <div className="payment-info">
                     <div className="ch-title-22 my-4">信用卡資訊</div>
-                    <CreditCard card={card} setCard={setCard} />
+                    <CreditCard
+                      card={card}
+                      setCard={setCard}
+                      ref={btnRef}
+                      btnSend={btnSend}
+                      setBtnSend={setBtnSend}
+                    />
                   </div>
                 </div>
                 <CartSum sum={sum} className="d-none d-md-block" />
