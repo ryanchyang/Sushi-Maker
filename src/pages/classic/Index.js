@@ -586,30 +586,30 @@ function Index(props) {
                 {/* category tag */}
                 <div className="category-box">
                   <div className="en-category" onClick={handleClickCategory}>
-                    <OrangeTag
+                    <div
                       className="cate-orange-tag-img"
                       style={
                         category === 'sushi' ? showStyleInlne : hiddenStyle
                       }
-                    />
+                    ></div>
                     <div className="en-category">SUSHI</div>
                   </div>
                   <div className="en-category" onClick={handleClickCategory}>
-                    <OrangeTag
+                    <div
                       className="cate-orange-tag-img"
                       style={
                         category === 'dessert' ? showStyleInlne : hiddenStyle
                       }
-                    />
+                    ></div>
                     <div className="en-category">DESSERT</div>
                   </div>
                   <div className="en-category" onClick={handleClickCategory}>
-                    <OrangeTag
+                    <div
                       className="cate-orange-tag-img"
                       style={
                         category === 'package' ? showStyleInlne : hiddenStyle
                       }
-                    />
+                    ></div>
                     <div className="en-category">PACKAGE</div>
                   </div>
                 </div>
