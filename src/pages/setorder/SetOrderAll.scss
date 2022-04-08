@@ -9,6 +9,8 @@
   }
   .link-bread-set {
     margin-bottom: 3%;
+    position: relative;
+    z-index: 5;
   }
   .lightbox-bento-img-element {
     display: flex;
@@ -207,13 +209,23 @@
     animation:space-disappear 2.5s ;
     transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
 }
-.space-animation-gray{
+.space-animation-white{
   background-color: #ffffff;
   width: 70%;
   height: 0px;
   position: absolute;
   top: 20%;
   z-index: 3;
+  animation:space-disappear-white 2.5s ;
+  transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
+}
+.space-animation-gray{
+  background-color: #d6d3cb;
+  width: 70%;
+  height: 0px;
+  position: absolute;
+  top: 20%;
+  z-index: 2;
   animation:space-disappear-gray 2.5s ;
   transition-timing-function:cubic-bezier(1,-0.01,0,1.01)
 }
@@ -238,10 +250,16 @@
     90%{ height: 600px;}
     100% { height: 0px;}
   }
-  @keyframes space-disappear-gray {
+  @keyframes space-disappear-white {
     0%   { height: 750px;}
     85%   { height: 750px;}
     94%{ height: 600px;opacity: 100%;}
+    100% { height: 0px;opacity: 0%;}
+  }
+  @keyframes space-disappear-gray {
+    0%   { height: 750px;}
+    85% { height: 750px;}
+    99% { height: 700px;opacity: 100%;}
     100% { height: 0px;opacity: 0%;}
   }
   .set-order-list-buttom {
@@ -288,7 +306,7 @@
     .space-animation{
       top:15%;
     }
-    .space-animation-gray{
+    .space-animation-white{
       top:15%;
     }
   }
@@ -303,7 +321,7 @@
     .space-animation{
       top:10%;
     }
-    .space-animation-gray{
+    .space-animation-white{
       top:10%;
     }
   }
@@ -311,7 +329,7 @@
     .space-animation{
       width: 95%;
     }
-    .space-animation-gray{
+    .space-animation-white{
       width: 95%;
     }
     .set-loading{
@@ -365,7 +383,7 @@
   .space-animation{
     top:14%;
   }
-  .space-animation-gray{
+  .space-animation-white{
     top:14%;
   }
   .set-loading{

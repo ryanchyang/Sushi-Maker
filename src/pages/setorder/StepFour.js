@@ -71,7 +71,7 @@ function StepFour(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'JUST FOR YOU'} />
+            <Title title={'JUST FOR YOU'} setNavIsOpen={setNavIsOpen}/>
 
             <div className="step">
               <div className="mycontainer min-hi">

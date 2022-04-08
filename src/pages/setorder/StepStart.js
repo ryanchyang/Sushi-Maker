@@ -30,7 +30,7 @@ function StepStart(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'JUST FOR YOU'} />
+            <Title title={'JUST FOR YOU'} setNavIsOpen={setNavIsOpen}/>
             <div className="step">
               <div className="mycontainer min-hi">
                 <p className="en-title-14-10 link-bread-set set-row">

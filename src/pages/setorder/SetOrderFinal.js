@@ -152,7 +152,7 @@ function SetOrderFinal(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Just For You'} />
+            <Title title={'Just For You'} setNavIsOpen={setNavIsOpen}/>
             <div className="setmenulist">
               <div className="mycontainer min-hi">
                 <p className="en-title-14-10 link-bread-set">

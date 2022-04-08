@@ -42,6 +42,7 @@ function SetOrderList(props) {
   const [selectId, setSelectId] = useState(0);
   //推薦的套餐id
   const [numberid, setNumberid] = useState(0);
+
   //資料傳到後端後做完判斷,傳出結果
   //判斷登入
   const isLogin = localStorage.getItem('loginStatus');
@@ -116,7 +117,7 @@ function SetOrderList(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Just For You'} />
+            <Title title={'Just For You'} setNavIsOpen={setNavIsOpen} />
 
             <div className="setmenulist">
               <div className="mycontainer min-hi ">
@@ -142,7 +143,8 @@ function SetOrderList(props) {
                   正在為您篩選菜單．．．
                 </div>
                 <div class="space-animation"></div>
-                <div class="space-animation-gray"></div>
+                <div class="space-animation-white"></div>
+                <div class="space-animation-white"></div>
                 <div className="set-list-all set-order-final">
                   <div className="set-list-left">
                     <div className="set-input-all align-items-center">
