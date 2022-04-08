@@ -32,7 +32,7 @@ function Index(props) {
   // 最新消息輪播index狀態
   const [newsIndex, setNewsIndex] = useState(0);
   // scroll down 改變背景
-  const [changeBG, setChangeBG] = useState(null);
+  const [changeBG, setChangeBG] = useState();
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
