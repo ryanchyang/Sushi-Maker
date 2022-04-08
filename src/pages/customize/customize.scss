@@ -726,7 +726,9 @@ $areaHeight: calc( 100vh - 80px );
     width: 100%;
   }
 }
-
+.dis-choosed{
+  display: none;
+}
 .detail{
   width: 50%;
 
@@ -755,6 +757,15 @@ $areaHeight: calc( 100vh - 80px );
       border: 0.5rem solid $card-hover;
       transition: 0.3s;
     }
+  }
+
+  & .imgActive {
+    border: 5px solid $mtl-border;
+    transition: 0.5s;
+  }
+  & .imgActiveNone {
+    border: 5px solid transparent;
+    transition: 0.5s;
   }
 }
 

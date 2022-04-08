@@ -14,6 +14,7 @@ import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 function MtlRight(props) {
   const [openRArea, setOpenRArea] = useState(false);
   const [arrayForChart, setArrayForChart] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const chooseItems = ['選擇食材', '營養分析'];
   const [changeChoose, setChangeChoose] = useState('選擇食材');
@@ -262,7 +263,13 @@ function MtlRight(props) {
                 );
               })}
             </div>
-            <div className="mtlBtnIn-R pt-3 px-2">
+            <div
+              className={
+                changeChoose === '選擇食材'
+                  ? 'mtlBtnIn-R pt-3 px-2'
+                  : 'dis-choosed'
+              }
+            >
               <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="list">
                   {provided =>
@@ -281,7 +288,6 @@ function MtlRight(props) {
                           return (
                             <MtlRBtn
                               key={i + Date.now()}
-                              dragId={i + Date.now()}
                               mtl_id={takeMtlId.mtl_id}
                               mtl_name={takeMtlId.mtl_name}
                               mtl_cate={takeMtlId.mtl_cate}
@@ -305,6 +311,14 @@ function MtlRight(props) {
                   }
                 </Droppable>
               </DragDropContext>
+            </div>
+            <div
+              className={
+                changeChoose === '營養分析'
+                  ? 'mtlBtnIn-R pt-3 px-2'
+                  : 'dis-choosed'
+              }
+            >
               <div className="nutrition-box pt-3 px-2">
                 <div className="nutrition-img-box-mobile">
                   <ChartForCm mtls={arrayForChart} />

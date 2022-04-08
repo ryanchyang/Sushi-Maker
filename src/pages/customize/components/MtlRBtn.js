@@ -19,7 +19,6 @@ function MtlRBtn(props) {
     setIndexTotal,
     sushiGroup,
     setSushiGroup,
-    dragId,
   } = props;
   // console.log(props);
   // console.log(removeMtl);
@@ -163,7 +162,7 @@ function MtlRBtn(props) {
   };
 
   return (
-    <Draggable draggableId={dragId + '123'} index={i}>
+    <Draggable draggableId={mtl_id + '123'} index={i}>
       {(provided, snapshot) => {
         return (
           <div

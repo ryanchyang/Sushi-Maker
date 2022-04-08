@@ -4,13 +4,18 @@ import './customize.scss';
 import { ReactComponent as Plus } from '../../imgs/plus.svg';
 import { ReactComponent as Minus } from '../../imgs/minus.svg';
 import config from '../../Config';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { getCartCount } from '../../utils';
 import { Button, Modal } from 'react-bootstrap';
 import NavPage from '../layout/components/NavPage';
 import ChartForCm from '../chartjs/ChartCs/ChartForCm';
 
 function CusMiDetail(props) {
+  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
+  useEffect(() => {
+    setCart_count(localStorage.getItem('cart_count'));
+  }, [props.changeCartCount]);
+
   // nav
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
@@ -22,6 +27,7 @@ function CusMiDetail(props) {
   const [changeCartCount, setChangeCartCount] = useState(0); // 變更購物車圈圈數量
   const [selectedMtl, setSelectedMtl] = useState({}); //選定的食材資料
   const [arrayForChart, setArrayForChart] = useState([]); // fot chartjs的陣列
+  const history = useHistory();
 
   // 接SQL資料
   useEffect(() => {
@@ -36,14 +42,13 @@ function CusMiDetail(props) {
       const resJson = await res.json();
 
       setCusProdSQL(resJson.rows);
-      setSelectedMtl(resJson.rows.mtlarray[0]); 
+      setSelectedMtl(resJson.rows.mtlarray[0]);
     };
     setTimeout(() => {
       catchData();
     }, 300);
   }, []);
 
-  
   // chart圖表
   useEffect(() => {
     let newMtlArray = [];
@@ -109,10 +114,10 @@ function CusMiDetail(props) {
         },
         body: JSON.stringify({
           memid: +localStorage.getItem('mem_id'),
-          cm_prod_id: cusProdSQL[0].cm_prod_id,
+          cm_prod_id: cusProdSQL.cm_prod_id,
           count: cusCount,
-          value: +cusProdSQL[0].cm_prod_value,
-          print: cusProdSQL[0].cm_prod_print_time,
+          value: +cusProdSQL.cm_prod_value,
+          print: cusProdSQL.cm_prod_print_time,
           category: 'cm',
         }),
       })
@@ -167,7 +172,10 @@ function CusMiDetail(props) {
         <Button
           variant="secondary"
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-          onClick={handleCartClose}
+          onClick={() => {
+            handleCartClose();
+            history.push('/cart/stepone');
+          }}
         >
           關閉
         </Button>
@@ -212,7 +220,6 @@ function CusMiDetail(props) {
       <div style={navIsOpen ? hiddenBlock : showBlock}>
         {likeModel}
         {cartModel}
-        {/* {saveModel} */}
         <Header />
         <div style={{ display: 'flex' }}>
           <AsideLeft />
@@ -267,10 +274,13 @@ function CusMiDetail(props) {
                       <input
                         type="text"
                         className="search-input-bar ch-title-20"
-                        placeholder="請幫您的成品取名"
+                        placeholder="請為您的成品取名"
                         value={namedCusProd}
                         onChange={e => {
-                          setNamedCusProd(e.target.value);
+                          const v = e.target.value;
+                          if (v.length <= 6) {
+                            setNamedCusProd(v);
+                          }
                         }}
                       />
                       <div className="cus-value">
@@ -320,28 +330,6 @@ function CusMiDetail(props) {
                         <div className="rm-r">RM</div>
                       </div>
                     </div>
-
-                    {/* <div className="chart-img"></div>
-                  <div className="mtl-detail">
-                    <div className="mtl-name">
-                      <div className="name-l">鮭魚</div>
-                      <div className="name-r">
-                        <img src="" alt="" />
-                      </div>
-                    </div>
-                    <div className="origin">
-                      <div className="origin-l">挪威</div>
-                      <div className="origin-r">ORIGIN</div>
-                    </div>
-                    <div className="mfd">
-                      <div className="mfd-l">2022-11-15</div>
-                      <div className="mfd-r">MFD</div>
-                    </div>
-                    <div className="rm">
-                      <div className="rm-l">大豆</div>
-                      <div className="rm-r">RM</div>
-                    </div>
-                  </div> */}
                   </div>
                 </>
               )}
@@ -366,20 +354,6 @@ function CusMiDetail(props) {
                 </div>
               </div>
               <div className="btn-area">
-                {/* <div className="btn-top">
-                <button className="btn-sm btn-outline-primary primeal-btn-outline m-2">
-                  返回製作
-                </button>
-                <button
-                  className="btn-sm btn-outline-primary primeal-btn-outline m-2"
-                  onClick={() => {
-                    cusProdname();
-                    handleSaveShow();
-                  }}
-                >
-                  儲存編輯
-                </button>
-              </div> */}
                 <div className="btn-buttom">
                   <div className="select-add-cart ch-cont-28">
                     <div className="select-count">
