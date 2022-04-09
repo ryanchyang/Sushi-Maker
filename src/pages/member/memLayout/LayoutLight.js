@@ -260,7 +260,7 @@ function AsideRight(props) {
               <div className="cart-icon-add">
                 <Cart className="layout-cart-btn" />
                 {cart_count > 1 ? (
-                  <span class="cart-num ">{cart_count}</span>
+                  <span className="cart-num ">{cart_count}</span>
                 ) : (
                   ''
                 )}

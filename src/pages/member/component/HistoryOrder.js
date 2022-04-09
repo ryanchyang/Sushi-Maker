@@ -44,7 +44,6 @@ const HistoryOrder = () => {
       setCartId(cartData);
     });
   }, []);
-  console.log(historyOrderInfo);
 
   return (
     <div className="row orderDetailRow">

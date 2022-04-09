@@ -13,7 +13,6 @@ const ChartForMem = () => {
   const [barData, setBarData] = useState([]);
   const [doData, setDodata] = useState([]);
   const mem_id = localStorage.getItem('mem_id');
-  console.log(doData);
 
   setTimeout(() => {
     setShowChart(true);
@@ -82,7 +81,6 @@ const ChartForMem = () => {
     labels: memOrderDataAll && memOrderDataAll.map(v => v.label),
     datasets: doData,
   });
-  console.log(allData);
 
   useEffect(() => {
     setWeekData({

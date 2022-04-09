@@ -70,7 +70,7 @@ function MemIndex(props) {
               <div className="mycontainer mem-min-hi">
                 <div className="memInfoArea col-md-24 col-sm-24 ">
                   <div className="memInfo col-sm-24 col-md-12 mx-md-4 px-5">
-                    <table class="table table-borderless col-md-16 mt-4 col-sm-24 tableInfo">
+                    <table className="table table-borderless col-md-16 mt-4 col-sm-24 tableInfo">
                       <thead>
                         <tr>
                           <td className="ch-title-22">會員資訊</td>
@@ -110,7 +110,7 @@ function MemIndex(props) {
                           </Modal.Title>
                         </Modal.Header>
                         <Modal.Body style={{ margin: '0 3%' }}>
-                          <table class="table">
+                          <table className="table">
                             <thead>
                               <tr>
                                 <td className="ch-title-18">執行動作</td>

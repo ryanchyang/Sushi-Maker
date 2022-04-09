@@ -1,22 +1,20 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { eventsInfo } from '../../../WebApi';
 import { Link } from 'react-router-dom';
-
 
 const Events = () => {
   const [events, setEvents] = useState();
 
   useEffect(() => {
     eventsInfo().then(obj => {
-      console.log(obj);
       setEvents(obj);
     });
   }, []);
 
   if (events) {
-    return events.map(v => {
+    return events.map((v, i) => {
       return (
-        <>
+        <React.Fragment key={i}>
           <div className="active-wrap">
             <div className="activeImg">
               <img
@@ -49,7 +47,7 @@ const Events = () => {
               </div>
             </div>
           </div>
-        </>
+        </React.Fragment>
       );
     });
   } else {

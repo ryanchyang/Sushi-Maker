@@ -165,11 +165,11 @@ function Register(props) {
   const hiddenBlock = { display: 'none' };
   //Google
   const responseGoogle = response => {
-    console.log(response);
+    // console.log(response);
   };
   //facebook
   const handleResponse = data => {
-    console.log(data);
+    // console.log(data);
   };
   const handleError = error => {
     this.setState({ error });

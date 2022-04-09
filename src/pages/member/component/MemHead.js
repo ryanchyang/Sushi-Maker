@@ -59,7 +59,7 @@ function MemHead(props) {
             />
           )} */}
 
-          <div class="memUpload mt-4">
+          <div className="memUpload mt-4">
             <div className="memName">
               <p className="ch-title-22">{memData ? memData.mem_name : ''}</p>
             </div>
@@ -84,6 +84,7 @@ function MemHead(props) {
             type="text"
             value={mem_id}
             name="mem_id"
+            readOnly
             style={{ display: 'none' }}
           />
         </form>

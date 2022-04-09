@@ -15,7 +15,6 @@ function DeleteActiveModal(props) {
   const evnts_location = selected.desc;
   const mem_id = getMemId();
   const mem_name = localStorage.getItem('mem_name');
-  // console.log('mem_name:', mem_name);
 
   const cancelHandler = e => {
     e.preventDefault();
