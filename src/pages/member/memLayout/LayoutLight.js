@@ -24,6 +24,7 @@ function Header() {
 }
 
 function Title(props) {
+  const { setNavIsOpen, setIsLogin } = props;
   return (
     <>
       <div
@@ -51,7 +52,13 @@ function Title(props) {
           </div>
           <div>
             <div className="layout-hamberger-box">
-              <Hamburger className="layout-hamberger" />
+              <Hamburger
+                className="layout-hamberger"
+                // style={{ cursor: 'pointer' }}
+                onClick={() => {
+                  setNavIsOpen(true);
+                }}
+              />
             </div>
           </div>
         </div>

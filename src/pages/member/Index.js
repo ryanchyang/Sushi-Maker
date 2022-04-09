@@ -43,7 +43,6 @@ function MemIndex(props) {
       memCprodLike(mem_id).then(obj => {
         setMemLike(obj);
       });
-
     } else {
       history.push('/member/login');
     }
@@ -62,7 +61,7 @@ function MemIndex(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div className="member-container">
-            <Title title={''} />
+            <Title title={''} setNavIsOpen={setNavIsOpen} />
             <div className="d-md-none" style={{ marginTop: '30%' }}></div>
             <div className="member ">
               <MemHead isLogin={isLogin} />
@@ -223,7 +222,11 @@ function MemIndex(props) {
                   </button>
                   <div className="memActiveArea">
                     <div className="ActiveDetail col-md-24 mt-5">
-                      {toggleForCprod === false ? <Events /> : <MemProdLike memLike={memLike}/>}
+                      {toggleForCprod === false ? (
+                        <Events />
+                      ) : (
+                        <MemProdLike memLike={memLike} />
+                      )}
                     </div>
                   </div>
                   <div className="spaceForBtn"></div>
