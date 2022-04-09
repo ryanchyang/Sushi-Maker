@@ -554,7 +554,7 @@ function Index(props) {
             <div className="classic min-hi">
               <div className="search-filter">
                 <div className="search-btn d-flex">
-                  <div className="search-input d-flex justify-content-end align-items-center">
+                  <div className="search-input d-md-flex d-none justify-content-end align-items-center">
                     <input
                       type="text"
                       style={searchBarHandler()}
