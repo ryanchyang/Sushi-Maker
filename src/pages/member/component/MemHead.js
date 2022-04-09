@@ -48,16 +48,16 @@ function MemHead(props) {
           onSubmit={e => e.preventDefault()}
           className="memPhotoArea col-md-6 col-sm-24"
         >
-          {memData && memData.mem_photo_img_path ? (
+          {/* {memData && memData.mem_photo_img_path ? ( */}
             <div className="memPhoto">
               <img className="memImg" src={imgSrc} alt="member-photo" />
             </div>
-          ) : (
+          {/* ) : (
             <img 
               src={'http://localhost:3500/img/member/member.png'}
               alt="member-photo"
             />
-          )}
+          )} */}
 
           <div class="memUpload mt-4">
             <div className="memName">
