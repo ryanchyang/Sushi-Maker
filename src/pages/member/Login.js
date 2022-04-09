@@ -125,7 +125,11 @@ function Login(props) {
   const [vCodePass, setVcodePass] = useState(false);
   const history = useHistory();
   const { navIsOpen, setNavIsOpen } = props;
-  
+
+  const handleKeyinClick = () => {
+    setMem_account('agroupjoeshih@gmail.com');
+    setMem_pwd('123456');
+  };
 
   const handleClickPwd = e => {
     showPwd === true ? setShowPwd(false) : setShowPwd(true);
@@ -150,7 +154,6 @@ function Login(props) {
         localStorage.setItem('mem_photo', data.info.mem_photo_img_path);
         history.goBack(-2); //登入成功後導入會員頁
       }
-      
     });
   };
   const showBlock = { display: 'block' };
@@ -168,7 +171,7 @@ function Login(props) {
             <AsideLeft />
             <AsideRight setNavIsOpen={setNavIsOpen} />
             <div style={{ width: '100%' }}>
-              <Title  title={''} style={{ display: 'none' }}/>
+              <Title title={''} style={{ display: 'none' }} />
               <LoginArea>
                 <LoginAreaImg className="col-8" style={{ height: '100vh' }}>
                   <img
@@ -177,7 +180,10 @@ function Login(props) {
                   ></img>
                 </LoginAreaImg>
                 <InputArea className="col-md-5">
-                  <Slogan>
+                  <Slogan
+                    style={{ cursor: 'pointer' }}
+                    onClick={handleKeyinClick}
+                  >
                     Hello, <br />
                     My Friend
                   </Slogan>
