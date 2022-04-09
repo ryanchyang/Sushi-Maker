@@ -110,7 +110,7 @@ function LoginForgetPwdVcodeNew(props) {
         <LoginForm onSubmit={handlePwdSubmit}>
           <InputTitle className="ch-cont-14">請輸入新密碼</InputTitle>
           <input
-            type="text"
+            type="password"
             className="form-control"
             value={newPassword}
             onChange={e => {
@@ -130,7 +130,7 @@ function LoginForgetPwdVcodeNew(props) {
           <ErrorMessage className="ch-cont-14">{errorMessage}</ErrorMessage>
           <InputTitle className="ch-cont-14">請再次輸入密碼</InputTitle>
           <input
-            type="text"
+            type="password"
             className="form-control"
             value={newCheckPassword}
             onChange={e => {
