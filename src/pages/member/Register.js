@@ -130,6 +130,7 @@ function Register(props) {
           setAuthToken(obj.token);
           setMemId(obj.info.mem_id);
           localStorage.setItem('loginStatus', true);
+          localStorage.setItem('mem_photo', obj.info.mem_photo_img_path);
         }
       });
     } else {
