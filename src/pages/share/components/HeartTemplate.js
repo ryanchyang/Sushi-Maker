@@ -7,6 +7,9 @@ import config from '../../../Config';
 function HeartTemplate(props) {
   const { saves, setSaves, item } = props;
 
+  //Get member id
+  const memId = localStorage.getItem('mem_id');
+
   const isSaveItem = saves.some(
     save => save.share_item_id === item.share_item_id
   );
@@ -24,7 +27,7 @@ function HeartTemplate(props) {
       const response = await fetch(config.TOGGLE_SAVE, {
         method: method,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ itemId: itemId, memberId: '1' }),
+        body: JSON.stringify({ itemId: itemId, memberId: memId }),
       });
       if (!response.ok) throw new Error('Something went wrong!');
     } catch (err) {
