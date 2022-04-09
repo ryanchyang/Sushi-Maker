@@ -31,6 +31,7 @@ function StepOne(props) {
   const [changeCartCount, setChangeCartCount] = useState(0); // 要知道什麼時候更改購物車的數量
   const [selectImg, setSelectImg] = useState(0); //被選到的便當 右邊清單的便當照片
   const [selectId, setSelectId] = useState(0); //被選到的便當的id
+  const [itemIndex, setItemIndex] = useState(-1);
   // console.log('36', selectImg);
 
   // 接資料要post 到DB的
@@ -561,10 +562,11 @@ function StepOne(props) {
   // const [showImg, setShowImg] = useState(null);
 
   // 套餐光箱 圖片顯示
-  const handleClickSetBentoItem = (id, img) => {
+  const handleClickSetBentoItem = (id, img, index) => {
     console.log('558', id, img);
     setSelectId(`/img/setorder/bento_img/${id}.png`);
     setSelectImg(id);
+    setItemIndex(index);
   };
 
   return (
@@ -833,11 +835,12 @@ function StepOne(props) {
                                               onClick={() =>
                                                 handleClickSetBentoItem(
                                                   v.bento_id,
-                                                  v.set_bento_img
+                                                  v.set_bento_img,
+                                                  i
                                                 )
                                               }
                                               style={
-                                                v.bento_id === selectImg
+                                                i === itemIndex
                                                   ? {
                                                       display: 'flex',
                                                       borderBottom:
