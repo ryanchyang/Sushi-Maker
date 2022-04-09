@@ -124,7 +124,7 @@ function MemIndex(props) {
                                 <td>分享牆貼文</td>
                                 <td>無限制</td>
                                 <td>無限制</td>
-                                <td>+50</td>
+                                <td>+300</td>
                               </tr>
                               <tr>
                                 <td>分享牆留言</td>
@@ -136,13 +136,13 @@ function MemIndex(props) {
                                 <td>經典壽司列印</td>
                                 <td>無限制</td>
                                 <td>無限制</td>
-                                <td>+50</td>
+                                <td>+300</td>
                               </tr>
                               <tr>
                                 <td>客製壽司列印</td>
                                 <td>無限制</td>
                                 <td>無限制</td>
-                                <td>+50</td>
+                                <td>+300</td>
                               </tr>
                               <tr>
                                 <td>套餐訂閱</td>
