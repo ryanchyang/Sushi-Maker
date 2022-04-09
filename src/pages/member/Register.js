@@ -64,7 +64,7 @@ const InputForPsw = styled.p`
   text-align: center;
 `;
 const ErrorMessage = styled.p`
-  color: #b03342;
+  color: #841d29;
   height: 20px;
 `;
 const IconRegisterArea = styled.div`
