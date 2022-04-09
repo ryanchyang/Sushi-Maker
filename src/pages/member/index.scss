@@ -323,10 +323,17 @@ $width: calc(100vw - 25vw);
   .activeImg {
     width: 120px;
     height: auto;
+    transition:0.5s;
   }
   .memClassic {
-    display: flex;
+    display: flex;   
   }
+
+  .activeImg:hover {
+    width: 125px;
+  }
+
+
   .swiper-container {
     width: 577px;
   }
