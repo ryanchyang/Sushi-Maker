@@ -53,7 +53,7 @@ function MemHead(props) {
               <img className="memImg" src={imgSrc} alt="member-photo" />
             </div>
           ) : (
-            <img
+            <img 
               src={'http://localhost:3500/img/member/member.png'}
               alt="member-photo"
             />

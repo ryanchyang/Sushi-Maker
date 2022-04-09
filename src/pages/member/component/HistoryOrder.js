@@ -115,12 +115,12 @@ const HistoryOrder = () => {
                         return (
                           <>
                             <div
-                              className='order-detail-list'
+                              className="order-detail-list"
                               style={{
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 textAlign: 'left',
-                                padding: '1%'
+                                padding: '1%',
                               }}
                             >
                               <div className="col-4">
@@ -170,7 +170,9 @@ const HistoryOrder = () => {
                                   ? 'NT' + info.c_prod_value + '元/件'
                                   : ''}
                                 {info.set_price
-                                  ? 'NT' + info.set_price + '元/件'
+                                  ? 'NT' +
+                                    info.set_price / info.orders_amount +
+                                    '元/件'
                                   : ''}
                                 {info.cm_prod_value
                                   ? 'NT' + info.cm_prod_value + '元/件'
