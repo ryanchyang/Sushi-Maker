@@ -12,9 +12,8 @@ import ChartForCm from '../../chartjs/ChartCs/ChartForCm';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 function MtlRight(props) {
-  const [openRArea, setOpenRArea] = useState(false);
+  // chartjs
   const [arrayForChart, setArrayForChart] = useState([]);
-  const [open, setOpen] = useState(false);
 
   const chooseItems = ['選擇食材', '營養分析'];
   const [changeChoose, setChangeChoose] = useState('選擇食材');
@@ -36,6 +35,8 @@ function MtlRight(props) {
     setCart_count,
     loginMemid,
     mem_photo,
+    openRArea,
+    setOpenRArea,
   } = props;
 
   useEffect(() => {
@@ -182,11 +183,8 @@ function MtlRight(props) {
   return (
     <>
       <div
-        className="right-area mx-auto px-0"
-        style={
-          openRArea
-            ? { transform: 'translate(calc( 100% - 30px))' }
-            : { transform: 'translate(0%)' }
+        className={
+          'right-area mx-auto px-0' + (openRArea ? ' close-left' : ' open-left')
         }
       >
         <div

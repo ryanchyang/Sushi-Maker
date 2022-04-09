@@ -12,26 +12,29 @@ import config from '../../Config';
 import NavPage from '../layout/components/NavPage';
 
 function Customize(props) {
-  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
+  // 購物車數字變化
+  const [cart_count, setCart_count] = useState(0);
   useEffect(() => {
     setCart_count(localStorage.getItem('cart_count'));
   }, [props.changeCartCount]);
 
   // 判斷登入
   const isLogin = localStorage.getItem('loginStatus');
-  const history = useHistory();
-  const canvasRef = useRef(null);
   const loginMemid = localStorage.getItem('mem_id');
   const mem_photo = localStorage.getItem('mem_photo');
+  const history = useHistory();
 
   // nav
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
   const hiddenBlock = { display: 'none' };
 
+  // 材料Data
   const [mtlDataSQL, setMtlDataSQL] = useState({});
   const [addMtlData, setAddMtlData] = useState([]);
 
+  // 3D
+  const canvasRef = useRef(null);
   const [altTotal, setAltTotal] = useState(1);
   const [indexTotal, setIndexTotal] = useState(0);
   const [sushiGroup, setSushiGroup] = useState([
@@ -43,6 +46,12 @@ function Customize(props) {
       fixIndex: 0,
     },
   ]);
+
+  let goDetail = useHistory(); // 換頁用
+
+  // 左右選單
+  const [openLArea, setOpenLArea] = useState(false);
+  const [openRArea, setOpenRArea] = useState(false);
 
   // 接SQL資料
   useEffect(() => {
@@ -90,8 +99,6 @@ function Customize(props) {
     const resJson = await res.json();
   };
 
-  let goDetail = useHistory();
-
   // 儲存提示光箱
   const [saveShow, setSaveShow] = useState(false);
   const handleSaveClose = () => setSaveShow(false);
@@ -116,7 +123,7 @@ function Customize(props) {
     </Modal>
   );
 
-  // 儲存提示光箱
+  // 換頁提示光箱
   const [nextShow, setNextShow] = useState(false);
   const handleNextClose = () => setNextShow(false);
   const handleNextShow = () => setNextShow(true);
@@ -180,6 +187,8 @@ function Customize(props) {
                 mtlData={mtlDataSQL}
                 addMtlData={addMtlData}
                 setAddMtlData={setAddMtlData}
+                openLArea={openLArea}
+                setOpenLArea={setOpenLArea}
               />
 
               <MtlMid
@@ -212,6 +221,8 @@ function Customize(props) {
                 setCart_count={setCart_count}
                 loginMemid={loginMemid}
                 mem_photo={mem_photo}
+                openRArea={openRArea}
+                setOpenRArea={setOpenRArea}
               />
             </div>
           </div>

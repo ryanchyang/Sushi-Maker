@@ -4,8 +4,8 @@ import { ReactComponent as Rectangle } from '../../../imgs/rectangle.svg';
 import { ReactComponent as ArrR } from '../../../imgs/arrow-right-noccircle.svg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 function MtlLeft(props) {
-  // console.log(props.mtlData);
   const {
     altTotal,
     setAltTotal,
@@ -13,8 +13,11 @@ function MtlLeft(props) {
     setIndexTotal,
     sushiGroup,
     setSushiGroup,
+    addMtlData,
+    setAddMtlData,
+    openLArea,
+    setOpenLArea,
   } = props;
-  const [openLArea, setOpenLArea] = useState(false);
 
   // 切換食材分類
   const cateItems = ['食材', '配料'];
@@ -42,24 +45,17 @@ function MtlLeft(props) {
     catePage(changeCate);
   }, [props.mtlData]);
 
-  // 食材選擇
-  // const [mtlActive, setMtlActive] = useState([1]);
-  // const [mtlActive, setMtlActive] = useState([{ mtlId: 1, mtlPct: 1 }]);
-  const { addMtlData, setAddMtlData } = props;
-
   return (
     <>
       <div
-        className="left-area mx-auto px-0"
-        style={
-          openLArea
-            ? { transform: 'translate(calc( -100% + 30px))' }
-            : { transform: 'translate(0%)' }
+        className={
+          'left-area mx-auto px-0' +
+          (openLArea ? ' close-right' : ' open-right')
         }
       >
         <div className="la-menu col px-0">
           <div className="logoMtl">
-          <Link to="/" className="logoMtl-box">
+            <Link to="/" className="logoMtl-box">
               <Logo />
             </Link>
             <div className="col-12" />

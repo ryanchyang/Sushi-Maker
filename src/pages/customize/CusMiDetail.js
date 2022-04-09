@@ -11,11 +11,6 @@ import NavPage from '../layout/components/NavPage';
 import ChartForCm from '../chartjs/ChartCs/ChartForCm';
 
 function CusMiDetail(props) {
-  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
-  useEffect(() => {
-    setCart_count(localStorage.getItem('cart_count'));
-  }, [props.changeCartCount]);
-
   // nav
   const { navIsOpen, setNavIsOpen } = props;
   const showBlock = { display: 'block' };
@@ -28,6 +23,16 @@ function CusMiDetail(props) {
   const [selectedMtl, setSelectedMtl] = useState({}); //選定的食材資料
   const [arrayForChart, setArrayForChart] = useState([]); // fot chartjs的陣列
   const history = useHistory();
+
+  // 偵聽網頁拉到哪裡
+  const [offset, setOffset] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setOffset(window.pageYOffset);
+    // clean up code
+    window.removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   // 接SQL資料
   useEffect(() => {
@@ -63,7 +68,7 @@ function CusMiDetail(props) {
   // 數量增減
   // 輸入數量
   const countIt = count => {
-    if (count <= 0 || count >= 6) {
+    if (cusCount <= 0 || cusCount >= 99) {
       return false;
     }
 
@@ -72,7 +77,8 @@ function CusMiDetail(props) {
 
   // 數量-1
   const contMinus = count => {
-    if (count <= 1) {
+    if (cusCount <= 1) {
+      console.log('哈囉哈囉');
       return false;
     }
 
@@ -82,7 +88,7 @@ function CusMiDetail(props) {
 
   // 數量+1
   const countAdd = count => {
-    if (count >= 99) {
+    if (cusCount >= 99) {
       return false;
     }
 
@@ -90,6 +96,7 @@ function CusMiDetail(props) {
     setCusCount(newCount);
   };
 
+  // 命名並送至後端
   const cusProdname = async () => {
     const res = await fetch(config.POST_FINAL_DATA, {
       method: 'POST',
@@ -132,6 +139,12 @@ function CusMiDetail(props) {
     }
   };
 
+  // 購物車數字變化
+  const [cart_count, setCart_count] = useState(0);
+  useEffect(() => {
+    setCart_count(localStorage.getItem('cart_count'));
+  }, [props.changeCartCount]);
+
   //請先登入的光箱
   const [likeShow, setLikeShow] = useState(false);
   const handleLikeClose = () => setLikeShow(false);
@@ -166,46 +179,34 @@ function CusMiDetail(props) {
         <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
       </Modal.Header>
       <Modal.Body style={{ margin: '0 3%' }}>
-        <div className="en-cont-14 pb-2">已成功將商品加入購物車!</div>
+        <div className="en-cont-14 pb-2">
+          已成功將商品加入購物車！請問是否要前往結帳頁面？
+        </div>
       </Modal.Body>
       <Modal.Footer>
         <Button
           variant="secondary"
+          className="btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2"
+          onClick={() => {
+            handleCartClose();
+            history.push('/customize');
+          }}
+        >
+          返回製作
+        </Button>
+        <Button
+          variant=" btn btn-sm btn-primary primeal-btn-sm mx-md-4 mx-2 m-3"
           className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
           onClick={() => {
             handleCartClose();
             history.push('/cart/stepone');
           }}
         >
-          關閉
+          前往結帳
         </Button>
       </Modal.Footer>
     </Modal>
   );
-
-  // 儲存的光箱
-  // const [saveShow, setSaveShow] = useState(false);
-  // const handleSaveClose = () => setSaveShow(false);
-  // const handleSaveShow = () => setSaveShow(true);
-  // const saveModel = (
-  //   <Modal show={saveShow} onHide={handleSaveClose}>
-  //     <Modal.Header closeButton>
-  //       <Modal.Title className="en-cont-30 m-3">提醒</Modal.Title>
-  //     </Modal.Header>
-  //     <Modal.Body style={{ margin: '0 3%' }}>
-  //       <div className="en-cont-14 pb-2">已為您儲存當前資料</div>
-  //     </Modal.Body>
-  //     <Modal.Footer>
-  //       <Button
-  //         variant="secondary"
-  //         className="btn btn-sm btn-primary primeal-btn-sm mx-5 m-3"
-  //         onClick={handleSaveClose}
-  //       >
-  //         Close
-  //       </Button>
-  //     </Modal.Footer>
-  //   </Modal>
-  // );
 
   const clickMtl = mtlId => {
     const mtl = cusProdSQL.mtlarray.find(id => id.mtl_id === mtlId);
@@ -224,8 +225,9 @@ function CusMiDetail(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <Title title={'Customization'} />
-            <div className="customize mycontainer min-hi inside">
+            <div className="customize mycontainer min-hi">
+              <div className="title-box"></div>
+              <Title title={'Customization'} />
               <div className="trail">
                 <Link
                   to={'/'}
@@ -246,12 +248,23 @@ function CusMiDetail(props) {
               ) : (
                 <>
                   <div className="cus-detail">
-                    <div className="cus-img">
+                    <div
+                      className={
+                        'cus-img' + (offset > offset * 0.9 ? ' scrollit' : '')
+                      }
+                    >
                       <img
                         src={`${config.HOST}/${cusProdSQL.cm_prod_img_path}`}
                         alt=""
                       />
-                      <div className="mtl-btn">
+                      <div
+                        className={
+                          'mtl-btn' +
+                          (offset > offset * 0.9
+                            ? ' show-block'
+                            : ' disappear-block')
+                        }
+                      >
                         {cusProdSQL.mtlarray.map((e, i) => {
                           return (
                             <div
@@ -270,7 +283,14 @@ function CusMiDetail(props) {
                         })}
                       </div>
                     </div>
-                    <div className="detail">
+                    <div
+                      className={
+                        'detail' +
+                        (offset > offset * 0.9
+                          ? ' disappear-block'
+                          : ' show-block')
+                      }
+                    >
                       <input
                         type="text"
                         className="search-input-bar ch-title-20"
@@ -283,7 +303,10 @@ function CusMiDetail(props) {
                           }
                         }}
                       />
-                      <div className="cus-value">
+                      <span className="ch-cont-14">
+                        ※取名長度不可超過六個字元。
+                      </span>
+                      <div className="cus-value mt-4">
                         <div className="value-l">
                           NT_${`${cusProdSQL.cm_prod_value}`}
                         </div>
@@ -297,7 +320,14 @@ function CusMiDetail(props) {
                       </div>
                     </div>
                   </div>
-                  <div className="cus-mtl-detial ch-cont-16">
+                  <div
+                    className={
+                      'cus-mtl-detial ch-cont-16' +
+                      (offset > offset * 0.95
+                        ? ' show-block'
+                        : ' disappear-block')
+                    }
+                  >
                     <div className="chart-img nutrition-box">
                       <div className="nutrition-img-box-mobile">
                         <ChartForCm mtls={[selectedMtl.mtl_id]} />
@@ -334,20 +364,46 @@ function CusMiDetail(props) {
                 </>
               )}
 
-              <div className="manual ch-cont-14">
-                <div className="delivery col">
+              <div
+                className={
+                  'manual ch-cont-14' +
+                  (offset > offset * 0.99 ? ' show-block' : ' disappear-block')
+                }
+              >
+                <div
+                  className={
+                    'delivery col' +
+                    (offset > offset * 0.99
+                      ? ' show-block'
+                      : ' disappear-block')
+                  }
+                >
                   <div className="deli">配送類型</div>
                   <div className="deli">宅急便(冷藏)</div>
                   <div className="deli">
                     ※若需要冷凍宅配，請幫忙註明。若冷藏與冷凍商品需一起下單，將會延長運送時間，請先預約。另外，若商品需要變更，請提前與我們聯繫。
                   </div>
                 </div>
-                <div className="mfd-time col">
+                <div
+                  className={
+                    'mfd-time col' +
+                    (offset > offset * 0.99
+                      ? ' show-block'
+                      : ' disappear-block')
+                  }
+                >
                   <div className="mfdt">≪賞味期限≫</div>
                   <div className="mfdt">冷蔵：出貨後4天</div>
                   <div className="mfdt">冷凍：出貨後一個月</div>
                 </div>
-                <div className="package col">
+                <div
+                  className={
+                    'package col' +
+                    (offset > offset * 0.99
+                      ? ' show-block'
+                      : ' disappear-block')
+                  }
+                >
                   <div className="pkg">≪保存方法≫</div>
                   <div className="pkg">冷藏：請保存於4℃</div>
                   <div className="pkg">冷凍：請保存於-15℃</div>

@@ -53,10 +53,11 @@ const MtlMid = forwardRef((props, ref) => {
             gl={{ preserveDrawingBuffer: true }}
             shadows
             camera={{ position: [0, 25, 100], fov: 2.5, near: 0.3 }}
-            style={{
-              width: '50vw',
-              height: '100vh',
-            }}
+            // style={{
+            //   width: '50vw',
+            //   height: '100vh',
+            // }}
+            className="view"
           >
             <color attach="background" args={['#f7f6f3']} />
             <Suspense fallback={null}>
