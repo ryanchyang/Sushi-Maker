@@ -16,6 +16,7 @@ import NavPage from '../layout/components/NavPage';
 import { Button, Modal } from 'react-bootstrap';
 import { ReactComponent as Info } from '../../imgs/info.svg';
 import { useHistory } from 'react-router-dom';
+import { memCprodLike } from '../../WebApi';
 
 function MemIndex(props) {
   const [memData, setMemData] = useState(null);
@@ -29,7 +30,7 @@ function MemIndex(props) {
 
   const mem_id = getMemId('mem_id'); //TODO步驟1. 取得會員登入後存在localStorage的member id
   const isLogin = localStorage.getItem('loginStatus');
-  console.log(memSetOrder);
+  const [memLike, setMemLike] = useState();
 
   useEffect(() => {
     if (isLogin) {
@@ -39,6 +40,10 @@ function MemIndex(props) {
       memSet(mem_id).then(i => {
         setMemSetOrder(i[0]);
       });
+      memCprodLike(mem_id).then(obj => {
+        setMemLike(obj);
+      });
+
     } else {
       history.push('/member/login');
     }
@@ -218,7 +223,7 @@ function MemIndex(props) {
                   </button>
                   <div className="memActiveArea">
                     <div className="ActiveDetail col-md-24 mt-5">
-                      {toggleForCprod === false ? <Events /> : <MemProdLike />}
+                      {toggleForCprod === false ? <Events /> : <MemProdLike memLike={memLike}/>}
                     </div>
                   </div>
                   <div className="spaceForBtn"></div>

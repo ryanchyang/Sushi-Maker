@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { memCprodLike } from '../../../WebApi';
+
 import { Link } from 'react-router-dom';
 import '../index.scss';
 // Import Swiper React components
@@ -13,16 +13,8 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination } from 'swiper';
 
-const mem_id = localStorage.getItem('mem_id');
-
-const MemProdLike = () => {
-  const [memLike, setMemLike] = useState();
-
-  useEffect(() => {
-    memCprodLike(mem_id).then(obj => {
-      setMemLike(obj);
-    });
-  }, []);
+const MemProdLike = props => {
+  const { memLike } = props;
 
   if (memLike) {
     return (
