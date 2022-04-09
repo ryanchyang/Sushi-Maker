@@ -709,3 +709,14 @@
     letter-spacing: 0.3rem;
   }
 }
+
+
+  .bread{
+    padding-top: 15%;
+  }
+   @media screen and (min-width: 576px) {
+   .bread{
+     padding-top: 0%;
+
+}
+}
