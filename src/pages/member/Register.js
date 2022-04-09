@@ -120,6 +120,18 @@ function Register(props) {
   const handleClose = () => setSuc(false);
   const handleShow = () => setSuc(true);
 
+  //一鍵輸入function
+  const handleKeyinInfo = () => {
+    setRegisterData({
+      mem_account: 'injoe1001@gmail.com',
+      mem_pwd: '123456',
+      mem_mobile: '0953056571',
+      mem_name: 'JoeShih',
+      mem_nickname: 'JJ',
+      mem_gender: 'male',
+    });
+  };
+
   //function
   const handleRegister = e => {
     e.preventDefault();
@@ -234,7 +246,13 @@ function Register(props) {
               <div style={{ height: '8%' }}></div>
               <LoginArea className="col-18">
                 <IconRegisterArea>
-                  <MemTitle className="ch-title-40-30 ">會員註冊</MemTitle>
+                  <MemTitle
+                    className="ch-title-40-30 "
+                    onClick={handleKeyinInfo}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    會員註冊
+                  </MemTitle>
                   <IconArea>
                     <Intro className="ch-cont-16 mr-3">依社群加入</Intro>
                     <div className="mr-3">
