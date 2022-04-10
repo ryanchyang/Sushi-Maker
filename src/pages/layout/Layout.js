@@ -28,9 +28,26 @@ function Title(props) {
   useEffect(() => {
     setCart_count(localStorage.getItem('cart_count'));
   }, [props.changeCartCount]);
+
+  const darkBG = {
+    backgroundColor: '#212121',
+    color: '#ffffff',
+    transition: '1s',
+    width: '100%',
+    height: 'auto',
+    zIndex: '15',
+  };
+  const lightBG = {
+    backgroundColor: '#f7f6f3',
+    transition: '1s',
+    width: '100%',
+    height: 'auto',
+    zIndex: '15',
+  };
+
   return (
     <>
-      <div className="mobile-top">
+      <div className="mobile-top" style={changeBG ? darkBG : lightBG}>
         <div>
           <div className="logo-box">
             {changeBG ? (
