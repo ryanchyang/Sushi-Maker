@@ -153,7 +153,8 @@ function StepFour(props) {
                     <div className="qrcode">
                       <QRCode
                         id="qrc"
-                        value={qrC} //value引數為生成二維碼的連結 我這裡是由後端返回
+                        value="http://localhost:3000/member/historyorder"
+                        //value={qrC} //value引數為生成二維碼的連結 我這裡是由後端返回
                         size={150} //二維碼的寬高尺寸
                         fgColor="#000000" //二維碼的顏色
                         logoImage="/img/cart/logo.svg" // 加入logo
