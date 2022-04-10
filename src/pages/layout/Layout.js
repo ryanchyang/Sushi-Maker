@@ -33,16 +33,10 @@ function Title(props) {
     backgroundColor: '#212121',
     color: '#ffffff',
     transition: '1s',
-    width: '100%',
-    height: 'auto',
-    zIndex: '15',
   };
   const lightBG = {
     backgroundColor: '#f7f6f3',
     transition: '1s',
-    width: '100%',
-    height: 'auto',
-    zIndex: '15',
   };
 
   return (

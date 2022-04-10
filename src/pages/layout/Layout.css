@@ -146,12 +146,17 @@
     line-height: 3.6rem;
     letter-spacing: 0.54rem;
     padding: 60px 0 0 15px;
+    /* padding-left: 15px;
+    padding-top: 0px; */
   }
   .logo-box {
     width: 55px;
     height: 55px;
   }
   .mobile-top {
+    position: fixed;
+    width: 100%;
+    min-height: 70px;
     display: flex;
     padding: 0 15px;
     z-index: 3;
