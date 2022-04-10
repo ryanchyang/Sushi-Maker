@@ -230,10 +230,7 @@ function StepTwo(props) {
         <div style={{ display: 'flex' }}>
           <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#212121' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#212121' }}>
                 我的購物清單
               </div>
               <div className="cart-asL-nav-square"></div>
@@ -241,7 +238,7 @@ function StepTwo(props) {
 
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{
                   color: '#212121',
                 }}
@@ -252,20 +249,14 @@ function StepTwo(props) {
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#C4C4C4' }}
-              >
+              <div className=" cart-asL-nav-text" style={{ color: '#C4C4C4' }}>
                 輸入信用卡資料
               </div>
               <div className="cart-asL-nav-square-white"></div>
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#C4C4C4' }}
-              >
+              <div className=" cart-asL-nav-text" style={{ color: '#C4C4C4' }}>
                 完成訂單
               </div>
               <div className="cart-asL-nav-square-white"></div>
