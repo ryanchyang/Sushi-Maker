@@ -590,30 +590,21 @@ function StepOne(props) {
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#C4C4C4' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#C4C4C4' }}>
                 填寫訂購資訊
               </div>
               <div className="cart-asL-nav-square-white"></div>
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#C4C4C4' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#C4C4C4' }}>
                 輸入信用卡資料
               </div>
               <div className="cart-asL-nav-square-white"></div>
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#C4C4C4' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#C4C4C4' }}>
                 完成訂單
               </div>
               <div className="cart-asL-nav-square-white"></div>
@@ -623,8 +614,8 @@ function StepOne(props) {
 
           <div style={{ width: '100%' }}>
             <Title title={'Shopping List'} setNavIsOpen={setNavIsOpen} />
-            <div className="mycontainer cart min-hi" style={{ padding: '0' }}>
-              <div className=" mycontainer breadcart ">
+            <div className="mycontainer cart min-hi">
+              <div className="breadcart">
                 <p className="en-title-14-10">
                   <Link
                     to={'/'}
@@ -1278,14 +1269,14 @@ function StepOne(props) {
                     <Link to="/classic">
                       <button
                         type="button"
-                        className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                        className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-4 mx-md-3"
                       >
                         繼續購物
                       </button>
                     </Link>
                     <button
                       type="button"
-                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-4 mx-md-3"
                       onClick={handleSubmit}
                     >
                       前往結帳

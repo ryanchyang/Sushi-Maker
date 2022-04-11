@@ -68,7 +68,8 @@ function StepThree(props) {
 
     // console.log(btnRef.current.click());
     btnRef.current.click(); // 去點到子元件的btn
-    if (!btnSend) { // 判斷當回傳false 時 會停下
+    if (!btnSend) {
+      // 判斷當回傳false 時 會停下
       return;
     }
     console.log(JSON.stringify(card));
@@ -104,7 +105,7 @@ function StepThree(props) {
           <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{ color: '#212121' }}
               >
                 我的購物清單
@@ -114,7 +115,7 @@ function StepThree(props) {
 
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{ color: '#212121' }}
               >
                 填寫訂購資訊
@@ -124,7 +125,7 @@ function StepThree(props) {
 
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{ color: '#212121' }}
               >
                 輸入信用卡資料
@@ -134,7 +135,7 @@ function StepThree(props) {
 
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{ color: '#C4C4C4' }}
               >
                 完成訂單
@@ -188,7 +189,7 @@ function StepThree(props) {
                 <div className="  d-flex next-btn my-5">
                   <button
                     type="button"
-                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                    className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-4 mx-md-3"
                     onClick={() => {
                       // 轉至上一頁
                       history.goBack();
@@ -199,7 +200,7 @@ function StepThree(props) {
                   {/* <Link to="./StepFour"> */}
                   <button
                     type="button"
-                    className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                    className="btn btn-sm btn-primary primeal-btn-sm mx-4 mx-md-3"
                     //onClick={document.querySelector('.creditFor').submit()}
                     //onClick={document.querySelector('.creditBtn').click()}
                     onClick={handleSubmit}

@@ -487,7 +487,7 @@ function StepTwo(props) {
                   <div className="  d-flex next-btn my-5">
                     <button
                       type="button"
-                      className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-5 mx-md-3"
+                      className="btn btn-sm btn-outline-primary primeal-btn-outline-sm  mx-4 mx-md-3"
                       onClick={() => {
                         // 轉至上一頁
                         history.goBack();
@@ -498,7 +498,7 @@ function StepTwo(props) {
                     {/* <Link to="./StepThree"> */}
                     <button
                       type="submit"
-                      className="btn btn-sm btn-primary primeal-btn-sm mx-5 mx-md-3"
+                      className="btn btn-sm btn-primary primeal-btn-sm mx-4 mx-md-3"
                       onClick={handleSubmit}
                     >
                       下一步

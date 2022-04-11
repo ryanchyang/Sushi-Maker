@@ -70,7 +70,7 @@ function StepFour(props) {
           <div className="cart-asideLeft-nav d-lg-block d-none ch-title-16 ">
             <div className="cart-asL-nav-item">
               <div
-                className="mb-3 cart-asL-nav-text"
+                className="cart-asL-nav-text"
                 style={{ color: '#212121' }}
               >
                 我的購物清單
@@ -79,30 +79,21 @@ function StepFour(props) {
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#212121' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#212121' }}>
                 填寫訂購資訊
               </div>
               <div className="cart-asL-nav-square"></div>
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#212121' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#212121' }}>
                 輸入信用卡資料
               </div>
               <div className="cart-asL-nav-square"></div>
             </div>
 
             <div className="cart-asL-nav-item">
-              <div
-                className="mb-3 cart-asL-nav-text"
-                style={{ color: '#212121' }}
-              >
+              <div className="cart-asL-nav-text" style={{ color: '#212121' }}>
                 完成訂單
               </div>
               <div className="cart-asL-nav-square"></div>
