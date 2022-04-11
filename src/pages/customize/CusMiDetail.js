@@ -226,7 +226,6 @@ function CusMiDetail(props) {
           <AsideLeft />
           <div style={{ width: '100%' }}>
             <div className="customize mycontainer min-hi">
-              <div className="title-box"></div>
               <Title title={'Customization'} />
               <div className="trail">
                 <Link

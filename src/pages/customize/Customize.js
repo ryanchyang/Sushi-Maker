@@ -83,7 +83,6 @@ function Customize(props) {
   const postCusData = async () => {
     const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5);
     const blobImg = dataURLtoBlob(dataUrl);
-    console.log(blobImg);
     const fd = new FormData();
 
     // insert order id and images into formdata
