@@ -23,11 +23,10 @@ function Header() {
 // <Cart className="layout-cart-btn" />
 // <Hamburger className="layout-hamberger" />
 function Title(props) {
+  console.log('title');
   const { changeBG, setNavIsOpen } = props;
-  const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
-  useEffect(() => {
-    setCart_count(localStorage.getItem('cart_count'));
-  }, [props.changeCartCount]);
+
+  const cartCount = localStorage.getItem('cart_count');
 
   const darkBG = {
     backgroundColor: '#212121',
@@ -68,8 +67,8 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <CartLight className="layout-cart-btn" />
-                    {cart_count > 0 ? (
-                      <span class="cart-num ">{cart_count}</span>
+                    {cartCount > 0 ? (
+                      <span class="cart-num ">{cartCount}</span>
                     ) : (
                       ''
                     )}
@@ -79,8 +78,8 @@ function Title(props) {
                 <Link to={'/cart/stepone'}>
                   <div className="cart-icon-add">
                     <Cart className="layout-cart-btn" />
-                    {cart_count > 0 ? (
-                      <span class="cart-num ">{cart_count}</span>
+                    {cartCount > 0 ? (
+                      <span class="cart-num ">{cartCount}</span>
                     ) : (
                       ''
                     )}
@@ -156,6 +155,7 @@ function AsideLeft(props) {
 }
 
 function AsideRight(props) {
+  console.log('asideRight');
   const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
   useEffect(() => {
     setCart_count(localStorage.getItem('cart_count')); // 當商品數量有變更的時候會改變localStorage
