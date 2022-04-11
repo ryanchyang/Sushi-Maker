@@ -192,11 +192,16 @@ function StepOne(props) {
   // 提交
   const handleSubmit = e => {
     e.preventDefault();
-    const memid = localStorage.getItem('mem_id'); //取得 mem id 從localstorage    
+    const memid = localStorage.getItem('mem_id'); //取得 mem id 從localstorage
     setInputSum(inputSum); // 把下面的總計數量設定回去
     // console.log('summaryone');
-    
-    const inputText = {'cart_value': amount, 'cart_credit': inputCredit, 'cart_total_print_time': printTime}
+
+    const inputText = {
+      cart_value: amount,
+      cart_credit: inputCredit,
+      cart_total_print_time: printTime,
+      prod_count: list,
+    };
     //  POST 要傳的直設定回去
 
     console.log(JSON.stringify(inputText));
