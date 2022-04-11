@@ -52,6 +52,44 @@ function ProdItemInfo(props) {
 
   return (
     <>
+      {itemInfo.set?.map((v, i) => {
+        return (
+          <div className="prod-item-info ch-cont-14" key={v.cart_id}>
+            <div className="row col-24 my-2  d-flex align-items-center align-middle">
+              <div className="col-6 col-md-4 text-center">
+                <div className="cart-item-img-info text-center">
+                  <img
+                    alt=""
+                    className="img-fluid"
+                    src="/img/cart/mealplan-bento.png"
+                  />
+                </div>
+              </div>
+              <div
+                className={
+                  `d-flex ` +
+                  `flex-md-row flex-column ` +
+                  `col-14 col-md-10 justify-content-md-between text-center ` +
+                  `flex-grow-1 align-middle`
+                }
+              >
+                <div className="col-24 col-md-12 align-items-center  ">
+                  {v.set_name}
+                </div>
+                <div className="col-24 col-md-12 align-items-center  ">
+                  NT{v.orders_value}
+                </div>
+              </div>
+              <div className="col-4 col-md-4 align-items-center align-middle text-center ">
+                X {v.orders_amount}
+              </div>
+              <div className="col-md-6  align-items-center d-none d-md-flex text-center">
+                {v.orders_print_time}秒/個
+              </div>
+            </div>
+          </div>
+        );
+      })}
       {itemInfo.cs?.map((v, i) => {
         return (
           <div className="prod-item-info ch-cont-14" key={v.cart_id}>
@@ -113,44 +151,6 @@ function ProdItemInfo(props) {
               >
                 <div className="col-24 col-md-12 align-items-center  ">
                   {v.cm_prod_name}
-                </div>
-                <div className="col-24 col-md-12 align-items-center  ">
-                  NT{v.orders_value}
-                </div>
-              </div>
-              <div className="col-4 col-md-4 align-items-center align-middle text-center ">
-                X {v.orders_amount}
-              </div>
-              <div className="col-md-6  align-items-center d-none d-md-flex text-center">
-                {v.orders_print_time}秒/個
-              </div>
-            </div>
-          </div>
-        );
-      })}
-      {itemInfo.set?.map((v, i) => {
-        return (
-          <div className="prod-item-info ch-cont-14" key={v.cart_id}>
-            <div className="row col-24 my-2  d-flex align-items-center align-middle">
-              <div className="col-6 col-md-4 text-center">
-                <div className="cart-item-img-info text-center">
-                  <img
-                    alt=""
-                    className="img-fluid"
-                    src="/img/cart/mealplan-bento.png"
-                  />
-                </div>
-              </div>
-              <div
-                className={
-                  `d-flex ` +
-                  `flex-md-row flex-column ` +
-                  `col-14 col-md-10 justify-content-md-between text-center ` +
-                  `flex-grow-1 align-middle`
-                }
-              >
-                <div className="col-24 col-md-12 align-items-center  ">
-                  {v.set_name}
                 </div>
                 <div className="col-24 col-md-12 align-items-center  ">
                   NT{v.orders_value}
