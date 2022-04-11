@@ -225,7 +225,7 @@ function CusMiDetail(props) {
         <div style={{ display: 'flex' }}>
           <AsideLeft />
           <div style={{ width: '100%' }}>
-            <div className="customize mycontainer min-hi detail-title">
+            <div className="customize mycontainer min-hi margin-top">
               <Title title={'Customization'} />
               <div className="trail">
                 <Link
@@ -285,7 +285,7 @@ function CusMiDetail(props) {
                     <div
                       className={
                         'detail' +
-                        (offset > offset * 0.9
+                        (offset > offset * 0.95
                           ? ' disappear-block'
                           : ' show-block')
                       }
@@ -322,7 +322,7 @@ function CusMiDetail(props) {
                   <div
                     className={
                       'cus-mtl-detial ch-cont-16' +
-                      (offset > offset * 0.95
+                      (offset > offset * 0.97
                         ? ' show-block'
                         : ' disappear-block')
                     }
