@@ -66,6 +66,9 @@ function LoginForgetPwd(props) {
       });
     }
   };
+  const handleInfoKeyinClick = () => {
+    setMen_account('injoe1001@gmail.com')
+  }
 
   return (
     <>
@@ -90,7 +93,7 @@ function LoginForgetPwd(props) {
           style={{ position: 'absolute', top: 0, right: 10, cursor: 'pointer' }}
         ></DeleteSm>
 
-        <Slogan>Pleae confirm your Email</Slogan>
+        <Slogan onClick={handleInfoKeyinClick}>Pleae confirm your Email</Slogan>
         <PwdCheckForm onSubmit={handleForgetPwdSubmit}>
           <InputTitle className="ch-cont-14">請輸入您的帳號</InputTitle>
           <input
