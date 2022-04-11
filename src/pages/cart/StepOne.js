@@ -186,6 +186,7 @@ function StepOne(props) {
     setProdCount(count);
     setPrintTime(time);
     setAmount(total);
+    setInputSum(inputSum); // 把下面的總計數量設定回去
   }, [list]);
 
   // 提交
