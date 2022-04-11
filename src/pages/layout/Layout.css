@@ -156,9 +156,10 @@
   .mobile-top {
     position: fixed;
     width: 100%;
-    min-height: 70px;
+    min-height: 85px;
     display: flex;
     padding: 0 15px;
+    padding-bottom: 15px;
     z-index: 3;
   }
   .layout-cart-btn-box-top {
