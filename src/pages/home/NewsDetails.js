@@ -76,7 +76,12 @@ function NewsDetails(props) {
                       >
                         LATEST NEWS / {''}
                       </Link>
-                      NEWS
+                      <Link
+                        to={'/latest-news/news'}
+                        style={{ textDecoration: 'none', color: '#b03342' }}
+                      >
+                        NEWS / {''}
+                      </Link>
                     </p>
                   </div>
                 </div>

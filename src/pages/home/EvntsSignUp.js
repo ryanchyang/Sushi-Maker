@@ -187,7 +187,8 @@ function EvntsSignUp(props) {
                 <div className="latest-news-nav d-flex justify-content-between align-items-center">
                   <div className="latest-news-nav-breadcrumbs">
                     <p className="en-title-14-10">
-                      HOME / LATEST NEWS / EVENTS
+                      HOME / LATEST NEWS /{' '}
+                      <span style={{ color: '#b03342' }}>EVENTS</span>
                     </p>
                   </div>
                 </div>
