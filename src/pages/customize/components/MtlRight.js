@@ -170,7 +170,7 @@ function MtlRight(props) {
       result.destination.index
     );
 
-    console.log(addMtlData, result.source.index, result.destination.index);
+    // console.log(addMtlData, result.source.index, result.destination.index);
 
     changeOrderHandler(
       addMtlData.length - result.source.index - 1,
