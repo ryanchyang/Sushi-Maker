@@ -74,7 +74,7 @@ function StepTwo(props) {
                     <div className="setorder-btn-all set-text-center ">
                       {lists.map(list => (
                         <button
-                          className="set-question-btn ch-cont-14"
+                          className="set-question-btn ch-cont-18"
                           key={list.id}
                           onClick={() => handleClick(list)}
                           style={

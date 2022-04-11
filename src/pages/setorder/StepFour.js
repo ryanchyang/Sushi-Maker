@@ -100,7 +100,7 @@ function StepFour(props) {
                     <div className="ch-title-22 set-text-center set-content-four">
                       喜歡吃什麼食物?
                     </div>
-                    <div className="step4-annotation ch-cont-12">
+                    <div className="step4-annotation ch-cont-18">
                       如果沒有選擇任何食材,
                       <br />
                       則推薦這些食材以外的套餐。
@@ -109,7 +109,7 @@ function StepFour(props) {
                     <div className="set-text-center stepfour-paddiing">
                       {selected3.map(list => (
                         <button
-                          className="set-question-btn ch-cont-14"
+                          className="set-question-btn ch-cont-18"
                           key={list.id}
                           data-id={list.id}
                           style={list.selected ? answerClicked : answerNoClick}
