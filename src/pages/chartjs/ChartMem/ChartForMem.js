@@ -20,6 +20,7 @@ const ChartForMem = () => {
 
   useEffect(() => {
     chartInfo(mem_id).then(obj => {
+      console.log(obj);
       setMemOrderData(obj.dataForWeek);
       setMemOrderDataAll(obj.dataForAll);
     });

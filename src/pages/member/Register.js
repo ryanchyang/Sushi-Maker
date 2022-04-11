@@ -10,6 +10,8 @@ import { Button, Modal } from 'react-bootstrap';
 import { ReactComponent as GoogleIcon } from '../../imgs/GoogleIcon.svg';
 import { ReactComponent as FacebookIcon } from '../../imgs/facebookIcon.svg';
 import { ReactComponent as IgIcon } from '../../imgs/instagramIcon.svg';
+import { ReactComponent as EyeOff } from '../../imgs/eye-off.svg';
+import { ReactComponent as EyeShow } from '../../imgs/eye-show.svg';
 import GoogleLogin from 'react-google-login';
 import { FacebookProvider, Login } from 'react-facebook';
 
@@ -117,6 +119,7 @@ function Register(props) {
   const verify_code = localStorage.getItem('verify_code');
   const [suc, setSuc] = useState(false);
   const [sendVc, setSendVc] = useState(false);
+  const [showPwd, setShowPwd] = useState(false);
   const handleClose = () => setSuc(false);
   const handleShow = () => setSuc(true);
 
@@ -133,6 +136,9 @@ function Register(props) {
   };
 
   //function
+  const handleClickPwd = e => {
+    showPwd === true ? setShowPwd(false) : setShowPwd(true);
+  };
   const handleRegister = e => {
     e.preventDefault();
     if (verify_code) {
@@ -322,23 +328,49 @@ function Register(props) {
                     </ErrorMessage>
 
                     <InputTitle className="ch-cont-14">密碼</InputTitle>
-                    <input
-                      type="password"
-                      className="form-control"
-                      value={registerData.mem_pwd}
-                      name="mem_pwd"
-                      onChange={handleChange}
-                      style={{
-                        borderRadius: 50,
-                        height: '40px',
-                        background: '#212121',
-                        border: '1px solid #f7f6f3',
-                        color: '#f7f6f3',
-                        fontSize: '1.4rem',
-                        lineHeight: '1.8rem',
-                        letterSpacing: '0.14rem',
-                      }}
-                    />
+                    <div
+                    style={{
+                      position: 'relative',
+                    }}>
+                      <input
+                        type={showPwd === false ? 'password' : 'text'}
+                        className="form-control"
+                        value={registerData.mem_pwd}
+                        name="mem_pwd"
+                        onChange={handleChange}
+                        style={{
+                          borderRadius: 50,
+                          height: '40px',
+                          background: '#212121',
+                          border: '1px solid #f7f6f3',
+                          color: '#f7f6f3',
+                          fontSize: '1.4rem',
+                          lineHeight: '1.8rem',
+                          letterSpacing: '0.14rem',
+                        }}
+                      />
+                      {showPwd === false ? (
+                        <EyeOff
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '8px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={handleClickPwd}
+                        ></EyeOff>
+                      ) : (
+                        <EyeShow
+                          style={{
+                            position: 'absolute',
+                            right: '10px',
+                            top: '8px',
+                            cursor: 'pointer',
+                          }}
+                          onClick={handleClickPwd}
+                        ></EyeShow>
+                      )}
+                    </div>
                     <ErrorMessage className="ch-cont-14">
                       {registerData.mem_pwd == '' && errorMessageEmpty}
                     </ErrorMessage>
@@ -359,6 +391,7 @@ function Register(props) {
                         lineHeight: '1.8rem',
                         letterSpacing: '0.14rem',
                       }}
+                      
                     />
                     <ErrorMessage className="ch-cont-14">
                       {registerData.mem_mobile == '' && errorMessageEmpty}
