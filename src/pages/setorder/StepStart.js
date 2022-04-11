@@ -62,7 +62,7 @@ function StepStart(props) {
                       />
                     </div>
 
-                    <div className="ch-cont-16 set-text-center set-content-start">
+                    <div className="ch-cont-18 set-text-center set-content-start">
                       <p>用問卷的方式來幫您量身規劃</p>
                       <p>7天、14天，甚至是21天的套餐！</p>
                       <p>可以選擇瘦身健身，</p>
@@ -74,7 +74,7 @@ function StepStart(props) {
                         下一步
                       </button>
                     </Link>
-                    <div className="set-text-center">或</div>
+                    <div className="set-text-center ch-title-16 p-1 ">或</div>
                     {/* <Link
                   to={{
                     pathname: '/setorderlist',
@@ -82,7 +82,7 @@ function StepStart(props) {
                   }}> */}
                     <Link to="./setorderlist">
                       <a
-                        className="set-text-center"
+                        className="set-text-center ch-cont-18"
                         style={{ color: '#575757' }}
                         href="#/
               "
