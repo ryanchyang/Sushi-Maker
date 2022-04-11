@@ -23,7 +23,7 @@ function Header() {
 // <Cart className="layout-cart-btn" />
 // <Hamburger className="layout-hamberger" />
 function Title(props) {
-  console.log('title');
+  // console.log('title');
   const { changeBG, setNavIsOpen } = props;
 
   const cartCount = localStorage.getItem('cart_count');
@@ -155,7 +155,7 @@ function AsideLeft(props) {
 }
 
 function AsideRight(props) {
-  console.log('asideRight');
+  // console.log('asideRight');
   const [cart_count, setCart_count] = useState(0); // 有變化時候的購物車數字
   useEffect(() => {
     setCart_count(localStorage.getItem('cart_count')); // 當商品數量有變更的時候會改變localStorage
