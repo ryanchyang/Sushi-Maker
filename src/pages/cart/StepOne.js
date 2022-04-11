@@ -742,7 +742,7 @@ function StepOne(props) {
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
                         </div>
-                        {
+                        {+delShowSET.id === +v.product_id ? (
                           <Modal
                             show={delShowSET.open}
                             onHide={handleDelCloseSET}
@@ -755,7 +755,7 @@ function StepOne(props) {
                             <Modal.Body style={{ margin: '0 3%' }}>
                               <div className="en-cont-14 pb-2">
                                 套餐計畫一經刪除 需重新選擇欲加入購物車的選項
-                                <br /> 確認要刪除套餐【 {delShowSET.name}
+                                <br /> 確認要刪除套餐【{delShowSET.name}
                                 】嗎?
                               </div>
                             </Modal.Body>
@@ -783,7 +783,9 @@ function StepOne(props) {
                               </Button>
                             </Modal.Footer>
                           </Modal>
-                        }
+                        ) : (
+                          ''
+                        )}
                         <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                           <div
                             className="prod-item-icon"
@@ -983,7 +985,7 @@ function StepOne(props) {
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
                         </div>
-                        {
+                        {+delShowCS.id === +v.product_id ? (
                           <Modal
                             show={delShowCS.open}
                             onHide={handleDelCloseCS}
@@ -1022,7 +1024,9 @@ function StepOne(props) {
                               </Button>
                             </Modal.Footer>
                           </Modal>
-                        }
+                        ) : (
+                          ''
+                        )}
                         <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                           <div
                             className="prod-item-icon"
@@ -1124,7 +1128,7 @@ function StepOne(props) {
                         <div className="col-md-2 d-none d-md-flex align-items-center ">
                           ${v.orders_value * v.orders_amount}
                         </div>
-                        {
+                        {+delShowCM.id === +v.product_id ? (
                           <Modal
                             show={delShowCM.open}
                             onHide={handleDelCloseCM}
@@ -1138,7 +1142,7 @@ function StepOne(props) {
                               <div className="en-cont-14 pb-2">
                                 提醒您客製化商品移出購物車後將會清空製作的紀錄，
                                 <br />
-                                確認要刪除 【{delShowCM.name} 】嗎?
+                                確認要刪除【{delShowCM.name}】嗎?
                               </div>
                             </Modal.Body>
                             <Modal.Footer>
@@ -1165,7 +1169,9 @@ function StepOne(props) {
                               </Button>
                             </Modal.Footer>
                           </Modal>
-                        }
+                        ) : (
+                          ''
+                        )}
                         <div className="col-md-4 col-6 d-flex justify-content-around align-items-center">
                           <div
                             className="prod-item-icon"
