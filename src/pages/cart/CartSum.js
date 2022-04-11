@@ -29,8 +29,10 @@ function CartSum(props) {
             </div>
 
             <div className="row price my-4 d-flex justify-content-between">
-              <div className="col-12 col-md-12 ch-cont-14 align-self-center">結帳金額</div>
-              <div className="col-12 col-md-8 text-nowrap text-right ch-cont-24" style={{margin:'0 7%'}}>
+              <div className="col-12 col-md-12 ch-cont-14 align-self-center">
+                結帳金額
+              </div>
+              <div className="col-12 col-md-8 text-nowrap text-right ch-cont-24">
                 NT {v.cart_value - v.cart_credit}
               </div>
             </div>
