@@ -37,7 +37,7 @@ function StepOne(props) {
   // 接資料要post 到DB的
   const [inputSum, setInputSum] = useState({
     cart_value: amount,
-    cart_credit: '' || null,
+    cart_credit: '' || 0,
     cart_total_print_time: printTime,
   });
   // console.log('34 inputSum', inputSum);
@@ -197,11 +197,11 @@ function StepOne(props) {
     // console.log('summaryone');
 
     const inputText = {
-      cart_value: amount,
-      cart_credit: inputCredit,
-      cart_total_print_time: printTime,
+      ...inputSum,
+
       prod_count: list,
     };
+    console.log('205inputText', inputText);
     //  POST 要傳的直設定回去
 
     console.log(JSON.stringify(inputText));
