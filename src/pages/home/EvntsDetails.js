@@ -113,7 +113,7 @@ function EvntsDetails(props) {
                         to={'/latest-news/news'}
                         style={{ textDecoration: 'none', color: '#b03342' }}
                       >
-                        EVENTS / {''}
+                        EVENTS {''}
                       </Link>
                     </p>
                   </div>
