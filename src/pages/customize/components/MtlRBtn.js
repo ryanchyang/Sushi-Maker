@@ -97,7 +97,7 @@ function MtlRBtn(props) {
     setRemoveMtl(originalMtlArr);
   };
 
-  // 判斷總層數不可大於10
+  // 數量加總計算function
   const countTotal = arr => {
     const totalPct = arr.map(pct => pct.mtlPct);
     return totalPct.reduce((x, y) => x + y);
@@ -162,7 +162,7 @@ function MtlRBtn(props) {
   };
 
   return (
-    <Draggable draggableId={mtl_id + '123'} index={i}>
+    <Draggable draggableId={mtl_id + '' + i} index={i}>
       {(provided, snapshot) => {
         return (
           <div

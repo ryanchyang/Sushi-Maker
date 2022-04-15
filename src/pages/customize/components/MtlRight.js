@@ -45,6 +45,7 @@ function MtlRight(props) {
     // console.log(mtls);
   }, [addMtlData]);
 
+  // 老師修改整理的版本，把加減高度的變數重新整理過
   const changeOrderHandler = (drag, drop) => {
     let originalArr = [...sushiGroup];
     let boxGroupArr;
@@ -53,64 +54,38 @@ function MtlRight(props) {
       drag > drop
         ? [...originalArr].slice(drag + 1)
         : [...originalArr].slice(drop + 1);
-
     /////////////////////////////////////////////////////
-
+  
     if (lastArr.length) {
-      if (drag > drop) {
-        boxGroupArr = [...originalArr].slice(drop + 1, drag + 1);
-      }
-      if (drag < drop) {
-        boxGroupArr = [...originalArr].slice(drag + 1, drop + 1);
-      }
-
-      const singBoxObj = drag > drop ? originalArr[drop] : originalArr[drag];
-
+      const boxSlicePositionOffset = drag > drop ? 0 : 1;
+      const dragWithOffset = drag + boxSlicePositionOffset;
+      const dropWithOffset = drop + boxSlicePositionOffset;
+      boxGroupArr = [...originalArr].slice(
+        Math.min(dragWithOffset, dropWithOffset),
+        Math.max(dragWithOffset, dropWithOffset)
+      );
+  
+      const singBoxObj = originalArr[drag];
+  
       const boxGroupHeight = boxGroupArr.reduce(
         (total, v) => total + v.height,
         0
       );
-
-      singBoxObj.alt = singBoxObj.alt + boxGroupHeight;
-      const finalGroup = boxGroupArr.map(box => {
-        return { ...box, alt: box.alt - singBoxObj.height };
+  
+      const altDirection = drag > drop ? 1 : -1;
+  
+      singBoxObj.alt = singBoxObj.alt - boxGroupHeight * altDirection;
+      const midGroup = boxGroupArr.map(box => {
+        return { ...box, alt: box.alt + singBoxObj.height * altDirection };
       });
-
-      const finalRestGroupArr = [...finalGroup];
-
-      finalRestGroupArr.pop();
-
-      const finalRestGroupHeight = finalRestGroupArr.reduce(
-        (total, v) => total + v.height,
-        0
-      );
-      const lastBoxObj = finalGroup[finalGroup.length - 1];
-
-      lastBoxObj.alt = lastBoxObj.alt - finalRestGroupHeight;
-      const finalAddedAltRestGroup = finalRestGroupArr.map(box => {
-        return { ...box, alt: box.alt + lastBoxObj.height };
-      });
-
+  
       const finalArr =
         drag > drop
-          ? [
-              ...originalArr.slice(0, drop),
-              lastBoxObj,
-              ...finalAddedAltRestGroup,
-              singBoxObj,
-              ...lastArr,
-            ]
-          : [
-              ...originalArr.slice(0, drag),
-              lastBoxObj,
-              ...finalAddedAltRestGroup,
-              singBoxObj,
-              ...lastArr,
-            ];
-
+          ? [...originalArr.slice(0, drop), singBoxObj, ...midGroup, ...lastArr]
+          : [...originalArr.slice(0, drag), ...midGroup, singBoxObj, ...lastArr];
       setSushiGroup(finalArr);
     }
-
+  
     if (!lastArr.length) {
       if (drag > drop) {
         boxGroupArr = [...originalArr].slice(drop, drag);
@@ -118,30 +93,30 @@ function MtlRight(props) {
       if (drag < drop) {
         boxGroupArr = [...originalArr].slice(drag + 1, drop + 1);
       }
-
+  
       const singBoxHeightObj = originalArr[drag];
-
+  
       const boxGroupHeight = boxGroupArr.reduce(
         (total, v) => total + v.height,
         0
       );
-
+  
       singBoxHeightObj.alt =
         drag > drop
           ? singBoxHeightObj.alt - boxGroupHeight
           : singBoxHeightObj.alt + boxGroupHeight;
-
+  
       const finalBoxGroup = boxGroupArr.map(box =>
         drag > drop
           ? { ...box, alt: box.alt + singBoxHeightObj.height }
           : { ...box, alt: box.alt - singBoxHeightObj.height }
       );
-
+  
       const finalArr =
         drag > drop
           ? [...originalArr.slice(0, drop), singBoxHeightObj, ...finalBoxGroup]
           : [...originalArr.slice(0, drag), ...finalBoxGroup, singBoxHeightObj];
-
+  
       // originalArr.splice(4, 1, sushiGroup[1]);
       setSushiGroup(finalArr);
     }
