@@ -6,17 +6,18 @@ import { RoundedBox, useTexture } from '@react-three/drei';
 import { useSpring } from '@react-spring/core';
 import { a } from '@react-spring/three';
 // All textures are CC0 textures from: https://cc0textures.com/
-const name = type => `PavingStones092_1K_${type}.jpg`;
+// const name = type => `PavingStones092_1K_${type}.jpg`;
 
+// 單層材料層
 function Scene(props) {
   const { sushi, index, sushiGroup, setSushiGroup, isChange, setIsChange } =
     props;
   const { map, normalMap, height, alt, fixIndex } = sushi;
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(0); // 舊寫法
   const mesh = useRef();
   const [img, normalImg] = useTexture([map, normalMap]);
 
-  // interpolate values from common spring
+  // 用 react-spring 套件新增材料動畫
   const { position } = useSpring({
     from: { position: [0, fixIndex / 8 + alt + 0.125, 0] },
     to: async next => {
@@ -59,11 +60,11 @@ function Scene(props) {
 
   const changeHeightIndexHandler = () => {
     setIsChange([...isChange, index]);
-  };
+  }; // 舊寫法
 
   useEffect(() => {
     if (index === sushiGroup.length - 1) setActive(Number(!active));
-  }, []);
+  }, []); // 舊寫法
 
   return (
     <>
@@ -87,8 +88,9 @@ function Scene(props) {
           map={img}
           normalMap={normalImg}
         /> */}
-
+        {/* Form */}
         <RoundedBox args={[1, height, 1]} radius={0.04} smoothness={4}>
+          {/* Material */}
           <meshStandardMaterial
             attach="material"
             normalScale={1}

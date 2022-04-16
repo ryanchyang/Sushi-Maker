@@ -11,7 +11,6 @@ function MtlLBtn(props) {
     mtl_3d_img_path,
     mtl_3d_normalmap_img_path,
     altTotal,
-    setAltTotal,
     indexTotal,
     setIndexTotal,
     sushiGroup,
@@ -36,15 +35,15 @@ function MtlLBtn(props) {
         // setMtlActive([mtl_id, ...mtlActive]);
         setMtlActive(newList);
 
-        // three add sushi
+        // 3D 增加單層
         setIndexTotal(indexTotal + 1);
         setSushiGroup([
           ...sushiGroup,
           {
             map: config.HOST + mtl_3d_img_path,
             normalMap: config.HOST + mtl_3d_normalmap_img_path,
-            height: 0.125,
-            alt: altTotal * 0.125, // 預設增加高度
+            height: 0.125, // 單層高度
+            alt: altTotal * 0.125,
             fixIndex: indexTotal + 1,
           },
         ]);

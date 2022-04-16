@@ -27,10 +27,11 @@ function MtlRBtn(props) {
     cursor: isDragging ? 'all-scroll' : 'pointer',
   });
 
+  // 改變高度
   const changeHeightHandler = action => {
     let returnGroup = [...sushiGroup];
     // const clickItem = isChange[isChange.length - 1];
-    const addHeightObj = returnGroup[removeMtl.length - i - 1];
+    const addHeightObj = returnGroup[removeMtl.length - i - 1]; // 增加高度的單一層
 
     if (action === 'ADD') {
       addHeightObj.height = addHeightObj.height + 0.125; // 預設增加高度
@@ -38,11 +39,11 @@ function MtlRBtn(props) {
     }
 
     if (action === 'MINUS') {
-      addHeightObj.height = addHeightObj.height - 0.125; // 預設增加高度
-      addHeightObj.alt = addHeightObj.alt - 0.125 / 2; // 預設增加y軸高度
+      addHeightObj.height = addHeightObj.height - 0.125; // 預設減少高度
+      addHeightObj.alt = addHeightObj.alt - 0.125 / 2; // 預設減少y軸高度
     }
 
-    const willAddAltArr = [...returnGroup].slice(removeMtl.length - i);
+    const willAddAltArr = [...returnGroup].slice(removeMtl.length - i); // 群體
     let AddedAltArr;
 
     if (action === 'ADD') {
@@ -52,7 +53,7 @@ function MtlRBtn(props) {
     }
     if (action === 'MINUS') {
       AddedAltArr = willAddAltArr.map(obj => {
-        return { ...obj, alt: obj.alt - 0.125 }; // 預設增加高度
+        return { ...obj, alt: obj.alt - 0.125 }; // 預設減少高度
       });
     }
 
@@ -63,28 +64,29 @@ function MtlRBtn(props) {
     ];
 
     if (action === 'ADD') {
-      setAltTotal(altTotal + 1);
+      setAltTotal(altTotal + 1); // alt所需的紀錄狀態 + 1
     }
     if (action === 'MINUS') {
-      setAltTotal(altTotal - 1);
+      setAltTotal(altTotal - 1); // alt所需的紀錄狀態 - 1
     }
 
     setSushiGroup(finalArr);
   };
 
+  // 刪除單一層
   const deleteHandler = index => {
     let returnGroup = [...sushiGroup];
-    const deleteBox = returnGroup[index];
-    const boxGroupArr = [...returnGroup].slice(index + 1);
+    const deleteBox = returnGroup[index]; // 要刪除的單層
+    const boxGroupArr = [...returnGroup].slice(index + 1); // 剩餘群體
 
     const finalGroupBox = boxGroupArr.map(box => {
       return { ...box, alt: box.alt - deleteBox.height };
-    });
+    }); // 減掉要刪除的單層的高度
 
-    const finalArr = [...returnGroup.slice(0, index), ...finalGroupBox];
+    const finalArr = [...returnGroup.slice(0, index), ...finalGroupBox]; // 重組陣列
 
     setIndexTotal(indexTotal - 1);
-    const deleteAltAmount = deleteBox.height / 0.125 - 1;
+    const deleteAltAmount = deleteBox.height / 0.125 - 1; // 依照當下刪除層厚度刪減alt高度
     setAltTotal(altTotal - deleteAltAmount);
     setSushiGroup(finalArr);
   };
@@ -92,7 +94,7 @@ function MtlRBtn(props) {
   // 刪除品項
   const del = () => {
     let originalMtlArr = [...removeMtl];
-    deleteHandler(originalMtlArr.length - i - 1);
+    deleteHandler(originalMtlArr.length - i - 1); // index 順序顛倒
     originalMtlArr.splice(i, 1);
     setRemoveMtl(originalMtlArr);
   };

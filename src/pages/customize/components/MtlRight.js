@@ -46,46 +46,62 @@ function MtlRight(props) {
   }, [addMtlData]);
 
   // 老師修改整理的版本，把加減高度的變數重新整理過
+  // 改變順序
   const changeOrderHandler = (drag, drop) => {
-    let originalArr = [...sushiGroup];
-    let boxGroupArr;
-    let lastArr;
+    // 分成四層 最後 群體 單一層 最前  邏輯為群體跟單一層的位置互換，最後與最前不變動
+    let originalArr = [...sushiGroup]; // 複製原始陣列
+    let boxGroupArr; // 群體
+    let lastArr; // 最後
     lastArr =
       drag > drop
         ? [...originalArr].slice(drag + 1)
         : [...originalArr].slice(drop + 1);
     /////////////////////////////////////////////////////
-  
+
+    // 如果是在中間互換
     if (lastArr.length) {
-      const boxSlicePositionOffset = drag > drop ? 0 : 1;
+      const boxSlicePositionOffset = drag > drop ? 0 : 1; // 把slice的數字是否 +1 設成變數
       const dragWithOffset = drag + boxSlicePositionOffset;
       const dropWithOffset = drop + boxSlicePositionOffset;
       boxGroupArr = [...originalArr].slice(
         Math.min(dragWithOffset, dropWithOffset),
         Math.max(dragWithOffset, dropWithOffset)
       );
-  
-      const singBoxObj = originalArr[drag];
-  
+
+      // if drag = 4, drop = 1 ? boxGroupArr = slice (1,4)
+      // if drag = 1, drop = 4 ? boxGroupArr = slice (2,5)
+
+      const singBoxObj = originalArr[drag]; // 單一層
+
+      //  群體高度
       const boxGroupHeight = boxGroupArr.reduce(
         (total, v) => total + v.height,
         0
       );
-  
-      const altDirection = drag > drop ? 1 : -1;
-  
+
+      const altDirection = drag > drop ? 1 : -1; // 判斷drag 和drop 大小決定要扣除還是增加群體高度
+
+      // 單一層的alt 新增或減少群體高度
       singBoxObj.alt = singBoxObj.alt - boxGroupHeight * altDirection;
+      // 群體的alt 新增或減少單層高度
       const midGroup = boxGroupArr.map(box => {
         return { ...box, alt: box.alt + singBoxObj.height * altDirection };
       });
-  
+      // 重組順序
       const finalArr =
         drag > drop
           ? [...originalArr.slice(0, drop), singBoxObj, ...midGroup, ...lastArr]
-          : [...originalArr.slice(0, drag), ...midGroup, singBoxObj, ...lastArr];
+          : [
+              ...originalArr.slice(0, drag),
+              ...midGroup,
+              singBoxObj,
+              ...lastArr,
+            ];
       setSushiGroup(finalArr);
     }
-  
+
+    // 如果有換到最上層或最下層
+    // 分成三層  群體 單一層 最前
     if (!lastArr.length) {
       if (drag > drop) {
         boxGroupArr = [...originalArr].slice(drop, drag);
@@ -93,30 +109,30 @@ function MtlRight(props) {
       if (drag < drop) {
         boxGroupArr = [...originalArr].slice(drag + 1, drop + 1);
       }
-  
+
       const singBoxHeightObj = originalArr[drag];
-  
+
       const boxGroupHeight = boxGroupArr.reduce(
         (total, v) => total + v.height,
         0
       );
-  
+
       singBoxHeightObj.alt =
         drag > drop
           ? singBoxHeightObj.alt - boxGroupHeight
           : singBoxHeightObj.alt + boxGroupHeight;
-  
+
       const finalBoxGroup = boxGroupArr.map(box =>
         drag > drop
           ? { ...box, alt: box.alt + singBoxHeightObj.height }
           : { ...box, alt: box.alt - singBoxHeightObj.height }
       );
-  
+
       const finalArr =
         drag > drop
           ? [...originalArr.slice(0, drop), singBoxHeightObj, ...finalBoxGroup]
           : [...originalArr.slice(0, drag), ...finalBoxGroup, singBoxHeightObj];
-  
+
       // originalArr.splice(4, 1, sushiGroup[1]);
       setSushiGroup(finalArr);
     }
@@ -130,6 +146,7 @@ function MtlRight(props) {
     return result;
   };
 
+  // 使用drag 跟 drop 的index 去改變陣列順序
   function onDragEnd(result) {
     if (!result.destination) {
       return;
@@ -147,9 +164,10 @@ function MtlRight(props) {
 
     // console.log(addMtlData, result.source.index, result.destination.index);
 
+    // 3D 陣列的index 跟 dnd 的index 順序顛倒
     changeOrderHandler(
-      addMtlData.length - result.source.index - 1,
-      addMtlData.length - result.destination.index - 1
+      addMtlData.length - result.source.index - 1, // drag index
+      addMtlData.length - result.destination.index - 1 // drop index
     );
 
     setAddMtlData(ModifiedAddMtlData);

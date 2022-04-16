@@ -34,18 +34,27 @@ function Customize(props) {
   const [addMtlData, setAddMtlData] = useState([]);
 
   // 3D
+  /*
+   邏輯為當增加一層材料時記錄下他的位置高度參數alt，及當下index為fixIndex，
+   並且結合 alt 跟 fixIndex 算出每次渲染的材料層在3D環境中的y軸位置
+   alt 用來紀錄當材料層增加減少厚度或換位置時所必須增加或減少高度的值
+   ////////////////////////////////////////////////////////
+   增加單層 MtlLBtn.js 
+   改變順序 MtlRight.js
+   增加減少厚度 刪減單層 MtlRBtn.js
+  */
   const canvasRef = useRef(null);
-  const [altTotal, setAltTotal] = useState(1);
-  const [indexTotal, setIndexTotal] = useState(0);
+  const [altTotal, setAltTotal] = useState(1); // 增加一層時的當前alt所需的紀錄狀態 // MtlLBtn.js 46
+  const [indexTotal, setIndexTotal] = useState(0); // 增加一層時的當前index所需的紀錄狀態  // MtlLBtn.js 47
   const [sushiGroup, setSushiGroup] = useState([
     {
-      map: `${config.HOST}/img/mtl/three/rice.jpg`,
-      normalMap: `${config.HOST}/img/mtl/three/rice-normal3.png`,
-      height: 0.5,
-      alt: -0.05, // 預設增加高度
-      fixIndex: 0,
+      map: `${config.HOST}/img/mtl/three/rice.jpg`, // 彩色照片
+      normalMap: `${config.HOST}/img/mtl/three/rice-normal3.png`, // 凹凸光線照片
+      height: 0.5, // 單層高度
+      alt: -0.05, // altitude 預設增加或減少的位置高度
+      fixIndex: 0, // 當前狀況下的index
     },
-  ]);
+  ]); // 3D物件陣列，每層為一個物件，第一層為米飯
 
   let goDetail = useHistory(); // 換頁用
 
@@ -81,12 +90,12 @@ function Customize(props) {
 
   // 傳送資料至後端
   const postCusData = async () => {
-    const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5);
-    const blobImg = dataURLtoBlob(dataUrl);
+    const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5); // 將canvas轉成url
+    const blobImg = dataURLtoBlob(dataUrl); // 將url轉成blob
     const fd = new FormData();
 
     // insert order id and images into formdata
-    fd.append('canvasImage', blobImg, 'sushi.jpg');
+    fd.append('canvasImage', blobImg, 'sushi.jpg'); // blob格式進後端multer處理
     fd.append('cm_prod', JSON.stringify(addMtlData));
     fd.append('memid', localStorage.getItem('mem_id'));
 

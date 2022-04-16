@@ -27,30 +27,9 @@ const MtlMid = forwardRef((props, ref) => {
           </Link>
         </div>
         <div className="threedArea">
-          {/* <Suspense fallback={<div>Loading... </div>}>
-              <Canvas
-                camera={{ position: [0, 0, 10], near: 0.1, far: 1000 }}
-                style={{ height: '80vh' }}
-              >
-                <ambientLight />
-                <pointLight position={[10, 10, 10]} />
-                <Sushi position={[-1.2, 0, 0]} />
-                <Sushi position={[1.2, 0, 0]} />
-              </Canvas>
-            </Suspense> */}
-          {/* <button
-            onClick={async () => {
-              const dataUrl = canvasRef.current.toDataURL('image/jpeg', 0.5);
-              const blobImg = dataURLtoBlob(dataUrl);
-              console.log(blobImg);
-              await submitUpload(blobImg);
-            }}
-          >
-            儲存照片
-          </button> */}
           <Canvas
             ref={ref}
-            gl={{ preserveDrawingBuffer: true }}
+            gl={{ preserveDrawingBuffer: true }} // 讓截圖照不要空白
             shadows
             camera={{ position: [0, 25, 100], fov: 2.5, near: 0.3 }}
             // style={{
@@ -59,8 +38,10 @@ const MtlMid = forwardRef((props, ref) => {
             // }}
             className="view"
           >
+            {/* BackgroundColor */}
             <color attach="background" args={['#f7f6f3']} />
             <Suspense fallback={null}>
+              {/* Light */}
               {/*An ambient light that creates a soft light against the object */}
               <ambientLight intensity={0.5} />
               {/*An directional light which aims form the given position */}
@@ -75,7 +56,7 @@ const MtlMid = forwardRef((props, ref) => {
                 castShadow
                 penumbra={1}
               />
-
+              {/* Preload the images to prevent empty canvas */}
               <RenderImage />
               {sushiGroup.map((sushi, i) => {
                 return (
