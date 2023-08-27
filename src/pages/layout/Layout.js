@@ -40,7 +40,7 @@ function Title(props) {
 
   return (
     <>
-      <div className="mobile-top" style={changeBG ? darkBG : lightBG}>
+      {/* <div className="mobile-top" style={changeBG ? darkBG : lightBG}>
         <div>
           <div className="logo-box">
             {changeBG ? (
@@ -110,7 +110,7 @@ function Title(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="mytitle layout-title navtitle">{props.title}</div>
     </>
   );
