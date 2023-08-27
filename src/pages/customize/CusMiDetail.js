@@ -252,10 +252,7 @@ function CusMiDetail(props) {
                         'cus-img' + (offset > offset * 0.9 ? ' scrollit' : '')
                       }
                     >
-                      <img
-                        src={`${config.HOST}/${cusProdSQL.cm_prod_img_path}`}
-                        alt=""
-                      />
+                      <img src={`/${cusProdSQL.cm_prod_img_path}`} alt="" />
                       <div
                         className={
                           'mtl-btn' +

@@ -40,8 +40,8 @@ function MtlLBtn(props) {
         setSushiGroup([
           ...sushiGroup,
           {
-            map: config.HOST + mtl_3d_img_path,
-            normalMap: config.HOST + mtl_3d_normalmap_img_path,
+            map: mtl_3d_img_path,
+            normalMap: mtl_3d_normalmap_img_path,
             height: 0.125, // 單層高度
             alt: altTotal * 0.125,
             fixIndex: indexTotal + 1,
@@ -51,7 +51,7 @@ function MtlLBtn(props) {
     >
       <div className="mtlimg">
         <img
-          src={`${config.HOST}${mtl_img_path}`}
+          src={`${mtl_img_path}`}
           alt={mtl_name}
           className={addclass ? 'imgActive' : 'imgActiveNone'}
         />

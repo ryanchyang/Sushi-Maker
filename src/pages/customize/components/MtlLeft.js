@@ -20,14 +20,14 @@ function MtlLeft(props) {
   } = props;
 
   // 切換食材分類
-  const cateItems = ['食材', '配料'];
-  const [changeCate, setchangeCate] = useState('食材');
+  const cateItems = ['Ingredient', 'Topping'];
+  const [changeCate, setchangeCate] = useState('Ingredient');
 
   // 選單切換
   const [changeCatePage, setChangeCatePage] = useState([]);
   const catePage = e => {
     switch (e) {
-      case '配料':
+      case 'Topping':
         let categoryTop =
           Object.keys(props.mtlData).length === 0 ? [] : [...props.mtlData];
         categoryTop = categoryTop.filter(i => i.mtl_cate === 'top');

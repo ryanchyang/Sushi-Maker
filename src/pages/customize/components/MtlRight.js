@@ -15,26 +15,18 @@ function MtlRight(props) {
   // chartjs
   const [arrayForChart, setArrayForChart] = useState([]);
 
-  const chooseItems = ['選擇食材', '營養分析'];
-  const [changeChoose, setChangeChoose] = useState('選擇食材');
+  const chooseItems = ['Layer', 'Nutrition'];
+  const [changeChoose, setChangeChoose] = useState('Layer');
   const {
     addMtlData,
     setAddMtlData,
-    handleSaveShow,
-    handleNextShow,
-    postCusData,
+    downloadImage,
     altTotal,
     setAltTotal,
     indexTotal,
     setIndexTotal,
     sushiGroup,
     setSushiGroup,
-    navIsOpen,
-    setNavIsOpen,
-    cart_count,
-    setCart_count,
-    loginMemid,
-    mem_photo,
     openRArea,
     setOpenRArea,
   } = props;
@@ -190,45 +182,7 @@ function MtlRight(props) {
           <ArrL className="arrL" />
         </div>
         <div className="ra-menu col px-0">
-          <div className="menuMtl">
-            <Help className="tech" />
-            <Link to={'/cart/stepone'} className="cart">
-              <div className="cart-icon-add">
-                <Cart className="layout-cart-btn" />
-                {cart_count > 0 ? (
-                  <span class="cart-num">{cart_count}</span>
-                ) : (
-                  ''
-                )}
-              </div>
-            </Link>
-
-            {loginMemid ? (
-              <Link to={'/member'} className="mem">
-                <div className="memimg">
-                  <img
-                    src={`${config.HOST}/img/member/` + '/' + mem_photo}
-                    alt="member-photo"
-                  />
-                </div>
-              </Link>
-            ) : (
-              <Link to={'/member/login'}>
-                <div>
-                  <img
-                    src={`${config.HOST}/img/home/login.svg`}
-                    alt="member-photo"
-                  />
-                </div>
-              </Link>
-            )}
-            <Hamburger
-              className="buger"
-              onClick={() => {
-                setNavIsOpen(true);
-              }}
-            />
-          </div>
+          <div className="menuMtl"></div>
           <div className="mtlBtn-r col p-0">
             <div className="d-flex choose ch-title-16">
               {chooseItems.map((v, i) => {
@@ -256,7 +210,7 @@ function MtlRight(props) {
             </div>
             <div
               className={
-                changeChoose === '選擇食材'
+                changeChoose === 'Layer'
                   ? 'mtlBtnIn-R pt-3 px-2'
                   : 'dis-choosed'
               }
@@ -305,7 +259,7 @@ function MtlRight(props) {
             </div>
             <div
               className={
-                changeChoose === '營養分析'
+                changeChoose === 'Nutrition'
                   ? 'mtlBtnIn-R pt-3 px-2'
                   : 'dis-choosed'
               }
@@ -317,23 +271,15 @@ function MtlRight(props) {
               </div>
             </div>
           </div>
-          <div className="btn">
-            <button
-              className="btn-sm btn-outline-primary primeal-btn-outline m-2"
-              onClick={() => {
-                handleSaveShow();
-                postCusData();
-              }}
-            >
-              儲存編輯
-            </button>
+          <div className="d-flex justify-content-center">
             <button
               className="btn-sm btn-primary primeal-btn m-2"
               onClick={() => {
-                handleNextShow();
+                // handleSaveShow();
+                downloadImage();
               }}
             >
-              下一步
+              Download Image
             </button>
           </div>
         </div>

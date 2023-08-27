@@ -178,7 +178,7 @@ function MtlRBtn(props) {
             key={mtl_id}
           >
             <div className="mtlimg-r">
-              <img src={`${config.HOST}${mtl_img_path}`} alt={mtl_name} />
+              <img src={`${mtl_img_path}`} alt={mtl_name} />
             </div>
             <div className="mtlname-r ch-cont-16 col px-4">{mtl_name}</div>
             <div className="select-add-cart ch-cont-12">
