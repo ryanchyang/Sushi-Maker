@@ -1,7 +1,6 @@
-# Getting Started with Create React App
+# Sushi Maker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-ff
+![image](src/imgs/sushi_maker_screenshot.png)
 
 ## Available Scripts
 
